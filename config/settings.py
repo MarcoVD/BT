@@ -131,7 +131,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'marcovazquezdelgado.movilidad@gmail.com'  # correo desde el que se envían las notificaciones
 EMAIL_HOST_PASSWORD = 'tu_contraseña'  # contraseña o clave de aplicación
-#DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo <noreply@bolsadetrabajo.example.com>'
 DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo marcovazquezdelgado.movilidad@gmail.com>'
 
 # Para desarrollo, puedes usar el backend de consola (muestra emails en la terminal)
