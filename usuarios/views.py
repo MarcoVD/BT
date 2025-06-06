@@ -24,7 +24,9 @@ from django.core.files.base import ContentFile
 import io
 import os
 import uuid
-
+from django.shortcuts import render
+# from .forms import CVForm  # Asume que tienes un formulario para el CV
+# from .models import CV
 
 from .models import (
     Usuario, Interesado, Reclutador, Secretaria, # Añadido por si se usan directamente en vistas
@@ -1015,7 +1017,7 @@ class ReclutadorRegistroView(View):
 
 @method_decorator(login_required, name='dispatch')
 class PerfilInteresadoView(View):
-    """Vista para ver/editar perfil del interesado."""
+    """Vista para ver/editar perfil del interesado con CV integrado."""
 
     def get(self, request):
         if request.user.rol != 'interesado':
@@ -1024,12 +1026,86 @@ class PerfilInteresadoView(View):
 
         interesado = request.user.interesado
 
-        # Verificar si existe CV
+        # Obtener o crear curriculum
+        curriculum, created = Curriculum.objects.get_or_create(
+            interesado=interesado,
+            defaults={'resumen_profesional': ''}
+        )
+
+        # Obtener experiencias, educación, habilidades e idiomas existentes
+        experiencias = curriculum.experiencias.all()
+        educaciones = curriculum.educaciones.all()
+        habilidades = curriculum.habilidades.all()
+        idiomas = curriculum.idiomas.all()
+
+        # Verificar si existe CV completo
         tiene_cv = hasattr(interesado, 'curriculum')
 
         context = {
             'interesado': interesado,
-            'tiene_cv': tiene_cv
+            'curriculum': curriculum,
+            'experiencias': experiencias,
+            'educaciones': educaciones,
+            'habilidades': habilidades,
+            'idiomas': idiomas,
+            'tiene_cv': tiene_cv,
+            'es_nuevo': created,
+        }
+        return render(request, 'usuarios/perfil_interesado.html', context)
+
+    def post(self, request):
+        if request.user.rol != 'interesado':
+            messages.error(request, 'No tienes permiso para acceder a esta página.')
+            return redirect('index')
+
+        interesado = request.user.interesado
+        curriculum, created = Curriculum.objects.get_or_create(
+            interesado=interesado,
+            defaults={'resumen_profesional': ''}
+        )
+
+        try:
+            with transaction.atomic():
+                # Actualizar información personal del interesado
+                interesado.nombre = request.POST.get('nombre', '')
+                interesado.apellido_paterno = request.POST.get('apellido_paterno', '')
+                interesado.apellido_materno = request.POST.get('apellido_materno', '')
+                interesado.telefono = request.POST.get('telefono', '')
+                interesado.municipio = request.POST.get('municipio', '')
+                interesado.codigo_postal = request.POST.get('codigo_postal', '')
+
+                # Fecha de nacimiento
+                fecha_nacimiento = request.POST.get('fecha_nacimiento')
+                if fecha_nacimiento:
+                    interesado.fecha_nacimiento = fecha_nacimiento
+
+                interesado.save()
+
+                # Actualizar resumen profesional del curriculum
+                curriculum.resumen_profesional = request.POST.get('resumen_profesional', '')
+                curriculum.save()
+
+                messages.success(request, 'CV actualizado exitosamente.')
+                return redirect('perfil_interesado')
+
+        except Exception as e:
+            messages.error(request, f'Error al guardar el CV: {str(e)}')
+
+        # Si hay errores, volver a mostrar el formulario con los datos
+        experiencias = curriculum.experiencias.all()
+        educaciones = curriculum.educaciones.all()
+        habilidades = curriculum.habilidades.all()
+        idiomas = curriculum.idiomas.all()
+
+        context = {
+            'interesado': interesado,
+            'curriculum': curriculum,
+            'experiencias': experiencias,
+            'educaciones': educaciones,
+            'habilidades': habilidades,
+            'idiomas': idiomas,
+            'tiene_cv': True,
+            'es_nuevo': created,
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
 

@@ -111,4 +111,5 @@ document.getElementById('vacanteForm').addEventListener('submit', function() {
 function getCurrencyNumericValue(input) {
     const cleanValue = cleanCurrencyValue(input.value);
     return cleanValue ? parseFloat(cleanValue) : null;
-}{{ vacante.salario_min|floatformat:2|intcomma }} MXN
+}{{ vacante.salario_min|floatformat:2|intcomma }}
+
