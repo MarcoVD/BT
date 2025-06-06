@@ -143,9 +143,15 @@
                     <div class="d-grid gap-2">
                         {% if user.is_authenticated %}
                             {% if user.rol == 'interesado' %}
-                                <button type="button" class="btn btn-primary btn-lg" onclick="mostrarModalPostulacion()">
-                                    <i class="bi bi-send-fill"></i> Postularme Ahora
-                                </button>
+                                {% if ya_postulado %}
+                                    <button type="button" class="btn btn-success btn-lg" disabled>
+                                        <i class="bi bi-check-circle-fill"></i> Ya te postulaste
+                                    </button>
+                                {% else %}
+                                    <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
+                                        <i class="bi bi-send-fill"></i> Postularme Ahora
+                                    </button>
+                                {% endif %}
                             {% else %}
                                 <button type="button" class="btn btn-primary btn-lg" disabled>
                                     <i class="bi bi-send-fill"></i> Postularme Ahora
@@ -180,97 +186,36 @@
     </div>
 </div>
 
-<!-- Modal de Postulación -->
-<div class="modal fade" id="postulacionModal" tabindex="-1" aria-labelledby="postulacionModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="postulacionModalLabel">Postularse a {{ vacante.titulo }}</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="alert alert-info">
-                    <i class="bi bi-info-circle"></i>
-                    <strong>Tu currículum será enviado junto con esta postulación.</strong>
-                    Asegúrate de que tu información esté actualizada.
-                </div>
-
-                <form id="postulacionForm">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="mensaje_motivacion" class="form-label">Mensaje de motivación (opcional)</label>
-                        <textarea class="form-control" id="mensaje_motivacion" name="mensaje_motivacion" rows="4"
-                                  placeholder="Escribe por qué te interesa esta posición y qué puedes aportar..."></textarea>
-                        <div class="form-text">Este mensaje será visible para el reclutador junto con tu CV.</div>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="confirmarPostulacionBtn">
-                    <span class="btn-text">
-                        <i class="bi bi-send-fill"></i> Enviar Postulación
-                    </span>
-                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <script>
-function mostrarModalPostulacion() {
-    const modal = new bootstrap.Modal(document.getElementById('postulacionModal'));
-    modal.show();
-}
+function postularseDirect() {
+    const postularBtn = document.getElementById('postularseBtn');
 
-document.addEventListener('DOMContentLoaded', function() {
-    const confirmarBtn = document.getElementById('confirmarPostulacionBtn');
-    const postulacionForm = document.getElementById('postulacionForm');
+    // Deshabilitar botón temporalmente
+    postularBtn.disabled = true;
+    postularBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
 
-    if (confirmarBtn && postulacionForm) {
-        confirmarBtn.addEventListener('click', function() {
-            enviarPostulacion();
-        });
-    }
-});
-
-function enviarPostulacion() {
-    const confirmarBtn = document.getElementById('confirmarPostulacionBtn');
-    const btnText = confirmarBtn.querySelector('.btn-text');
-    const spinner = confirmarBtn.querySelector('.spinner-border');
-
-    // Mostrar spinner
-    btnText.classList.add('d-none');
-    spinner.classList.remove('d-none');
-    confirmarBtn.disabled = true;
-
-    const formData = new FormData(document.getElementById('postulacionForm'));
+    const formData = new FormData();
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
 
     fetch(`/postularse/{{ vacante.id }}/`, {
         method: 'POST',
         body: formData,
         headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            'X-CSRFToken': '{{ csrf_token }}'
         }
     })
     .then(response => response.json())
     .then(data => {
         if (data.success) {
             // Mostrar mensaje de éxito
-            mostrarMensaje(data.message, 'success');
+            mostrarMensaje('Postulación exitosa', 'success');
 
-            // Cerrar modal
-            bootstrap.Modal.getInstance(document.getElementById('postulacionModal')).hide();
+            // Cambiar botón a estado "ya postulado"
+            postularBtn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Ya te postulaste';
+            postularBtn.classList.remove('btn-primary');
+            postularBtn.classList.add('btn-success');
+            postularBtn.disabled = true;
 
-            // Deshabilitar botón de postulación
-            const postularBtn = document.querySelector('.btn-primary.btn-lg');
-            if (postularBtn) {
-                postularBtn.textContent = 'Ya te postulaste';
-                postularBtn.disabled = true;
-                postularBtn.classList.remove('btn-primary');
-                postularBtn.classList.add('btn-success');
-            }
         } else {
             mostrarMensaje(data.error, 'error');
 
@@ -279,18 +224,20 @@ function enviarPostulacion() {
                 setTimeout(() => {
                     window.location.href = data.redirect_url;
                 }, 2000);
+            } else {
+                // Restaurar botón si hay error
+                postularBtn.disabled = false;
+                postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
             }
         }
     })
     .catch(error => {
         console.error('Error:', error);
         mostrarMensaje('Error de conexión. Inténtalo nuevamente.', 'error');
-    })
-    .finally(() => {
+
         // Restaurar botón
-        btnText.classList.remove('d-none');
-        spinner.classList.add('d-none');
-        confirmarBtn.disabled = false;
+        postularBtn.disabled = false;
+        postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
     });
 }
 
