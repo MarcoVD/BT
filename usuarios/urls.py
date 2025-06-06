@@ -17,6 +17,10 @@ urlpatterns = [
     path('mis-vacantes/', views.MisVacantesView.as_view(), name='mis_vacantes'),
     # NUEVA URL PARA DETALLE DE VACANTE
     path('vacante/<int:vacante_id>/', views.detalle_vacante_view, name='detalle_vacante'),
+    path('postularse/<int:vacante_id>/', views.postularse_vacante, name='postularse_vacante'),
+    path('mis-postulaciones/', views.mis_postulaciones, name='mis_postulaciones'),
+    # path('postularse/<int:vacante_id>/', views.postularse_vacante, name='postularse_vacante'),
+    # path('mis-postulaciones/', views.mis_postulaciones, name='mis_postulaciones'),
 
     # URLs para CV
     path('mi-cv/', views.CrearEditarCVView.as_view(), name='crear_editar_cv'),

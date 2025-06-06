@@ -6,7 +6,6 @@
 {% block extra_css %}
 <style>
     body {
-        /* font-family: 'Inter', sans-serif; */ /* Ya está en base.html o styles.css */
         background-color: #f8f9fa;
     }
     .navbar {
@@ -23,7 +22,7 @@
         box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         margin-bottom: 30px;
     }
-    .job-header .company-logo { /* No se usa directamente, pero lo dejo por si se añade logo a la Secretaría */
+    .job-header .company-logo {
         max-width: 80px;
         max-height: 80px;
         border-radius: 8px;
@@ -37,7 +36,7 @@
     }
     .job-header .company-name {
         font-size: 1.2rem;
-        color: var(--primary); /* Usando tu variable CSS */
+        color: var(--primary);
         font-weight: 500;
     }
     .job-header .job-meta span {
@@ -70,8 +69,6 @@
         border-radius: 8px;
         padding: 10px 20px;
     }
-    /* .btn-primary se hereda de tu CSS principal o Bootstrap */
-    /* .btn-outline-primary se hereda de tu CSS principal o Bootstrap */
 
     .badge {
         font-size: 0.8rem;
@@ -82,7 +79,7 @@
     .sticky-sidebar {
         position: -webkit-sticky;
         position: sticky;
-        top: 90px; /* Ajustar según la altura del navbar si es necesario */
+        top: 90px;
     }
 </style>
 {% endblock %}
@@ -146,23 +143,33 @@
                     <div class="d-grid gap-2">
                         {% if user.is_authenticated %}
                             {% if user.rol == 'interesado' %}
-                                <a href="#" class="btn btn-primary btn-lg"><i class="bi bi-send-fill"></i> Postularme Ahora</a>
+                                {% if ya_postulado %}
+                                    <button type="button" class="btn btn-success btn-lg" disabled>
+                                        <i class="bi bi-check-circle-fill"></i> Ya te postulaste
+                                    </button>
                                 {% else %}
-                                <button type="button" class="btn btn-primary btn-lg" disabled><i class="bi bi-send-fill"></i> Postularme Ahora</button>
+                                    <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
+                                        <i class="bi bi-send-fill"></i> Postularme Ahora
+                                    </button>
+                                {% endif %}
+                            {% else %}
+                                <button type="button" class="btn btn-primary btn-lg" disabled>
+                                    <i class="bi bi-send-fill"></i> Postularme Ahora
+                                </button>
                             {% endif %}
                         {% else %}
-                            <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg"><i class="bi bi-send-fill"></i> Postularme Ahora</a>
+                            <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send-fill"></i> Postularme Ahora
+                            </a>
                         {% endif %}
-                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-bookmark-plus"></i> Guardar Vacante</button> </div>
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-bookmark-plus"></i> Guardar Vacante
+                        </button>
                     </div>
+                </div>
 
                 <div class="company-info-card">
                     <h5>Sobre {{ vacante.secretaria.nombre }}</h5>
-{#                    {% if vacante.secretaria.logo %}#}
-{#                    <img src="{{ vacante.secretaria.logo.url }}" alt="Logo de {{ vacante.secretaria.nombre }}" class="img-fluid rounded mb-3" style="max-height: 100px; object-fit: contain;">#}
-{#                    {% else %}#}
-{#                    <img src="https://placehold.co/200x100/6c757d/ffffff?text={{ vacante.secretaria.nombre|slice:':15' }}&font=inter" alt="Banner de la empresa" class="img-fluid rounded mb-3">#}
-{#                    {% endif %}#}
 
                     {% if vacante.secretaria.descripcion %}
                     <p class="small">{{ vacante.secretaria.descripcion|truncatewords:50 }}</p>
@@ -178,4 +185,105 @@
         </div>
     </div>
 </div>
+
+<script>
+function postularseDirect() {
+    const postularBtn = document.getElementById('postularseBtn');
+
+    // Deshabilitar botón temporalmente
+    postularBtn.disabled = true;
+    postularBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+
+    const formData = new FormData();
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    fetch(`/postularse/{{ vacante.id }}/`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': '{{ csrf_token }}'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Mostrar mensaje de éxito
+            mostrarMensaje('Postulación exitosa', 'success');
+
+            // Cambiar botón a estado "ya postulado"
+            postularBtn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Ya te postulaste';
+            postularBtn.classList.remove('btn-primary');
+            postularBtn.classList.add('btn-success');
+            postularBtn.disabled = true;
+
+        } else {
+            mostrarMensaje(data.error, 'error');
+
+            // Si necesita completar perfil, redirigir
+            if (data.redirect_url) {
+                setTimeout(() => {
+                    window.location.href = data.redirect_url;
+                }, 2000);
+            } else {
+                // Restaurar botón si hay error
+                postularBtn.disabled = false;
+                postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarMensaje('Error de conexión. Inténtalo nuevamente.', 'error');
+
+        // Restaurar botón
+        postularBtn.disabled = false;
+        postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
+    });
+}
+
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+</script>
 {% endblock %}

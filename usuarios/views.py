@@ -30,7 +30,7 @@ from .models import (
     Usuario, Interesado, Reclutador, Secretaria, # Añadido por si se usan directamente en vistas
     Curriculum, ExperienciaLaboral, Educacion,
     HabilidadInteresado, IdiomaInteresado, Habilidad,
-    Vacante, RequisitoVacante, Categoria # Añadido por si se usan directamente
+    Vacante, RequisitoVacante, Categoria, Postulacion # Añadido por si se usan directamente
 )
 from .forms import (
     LoginForm,  # <--- Importación añadida
@@ -1089,9 +1089,111 @@ def detalle_vacante_view(request, vacante_id):
     except AttributeError:
         requisitos = None
 
+    # Verificar si el usuario ya se postuló
+    ya_postulado = False
+    if request.user.is_authenticated and request.user.rol == 'interesado':
+        ya_postulado = Postulacion.objects.filter(
+            interesado=request.user.interesado,
+            vacante=vacante
+        ).exists()
+
     context = {
         'vacante': vacante,
         'requisitos': requisitos,
+        'ya_postulado': ya_postulado,
     }
     return render(request, 'usuarios/detalle_vacante.html', context)
 
+
+@login_required
+def postularse_vacante(request, vacante_id):
+    """Vista para que un interesado se postule a una vacante."""
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+    if request.user.rol != 'interesado':
+        return JsonResponse({'success': False, 'error': 'Solo los interesados pueden postularse'})
+
+    try:
+        # Verificar que la vacante existe y está activa
+        vacante = get_object_or_404(
+            Vacante,
+            id=vacante_id,
+            estado_vacante='publicada',
+            aprobada=True
+        )
+
+        interesado = request.user.interesado
+
+        # Verificar que el interesado tiene CV
+        if not hasattr(interesado, 'curriculum'):
+            return JsonResponse({
+                'success': False,
+                'error': 'Debes crear tu CV antes de postularte',
+                'redirect_url': '/perfil/interesado/'
+            })
+
+        curriculum = interesado.curriculum
+
+        # Verificar que tiene información mínima
+        if not (interesado.nombre and interesado.apellido_paterno):
+            return JsonResponse({
+                'success': False,
+                'error': 'Completa tu información personal antes de postularte',
+                'redirect_url': '/perfil/interesado/'
+            })
+
+        # Verificar si ya se postuló
+        if Postulacion.objects.filter(interesado=interesado, vacante=vacante).exists():
+            return JsonResponse({
+                'success': False,
+                'error': 'Ya te has postulado a esta vacante'
+            })
+
+        # Verificar límite de postulantes
+        postulaciones_actuales = vacante.postulaciones.count()
+        if postulaciones_actuales >= vacante.max_postulantes:
+            return JsonResponse({
+                'success': False,
+                'error': 'Esta vacante ya alcanzó el límite máximo de postulantes'
+            })
+
+        # Crear la postulación
+        mensaje_motivacion = request.POST.get('mensaje_motivacion', '').strip()
+
+        postulacion = Postulacion.objects.create(
+            interesado=interesado,
+            vacante=vacante,
+            curriculum=curriculum,
+            mensaje_motivacion=mensaje_motivacion,
+            estado='enviada'
+        )
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Te has postulado exitosamente a esta vacante',
+            'postulacion_id': postulacion.id
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Error al procesar la postulación: {str(e)}'
+        })
+
+
+@login_required
+def mis_postulaciones(request):
+    """Vista para ver las postulaciones del interesado."""
+    if request.user.rol != 'interesado':
+        messages.error(request, 'No tienes permiso para acceder a esta página.')
+        return redirect('index')
+
+    postulaciones = Postulacion.objects.filter(
+        interesado=request.user.interesado
+    ).select_related('vacante', 'vacante__secretaria').order_by('-fecha_postulacion')
+
+    context = {
+        'postulaciones': postulaciones
+    }
+    return render(request, 'usuarios/mis_postulaciones.html', context)

@@ -692,3 +692,49 @@ class IdiomaInteresado(models.Model):
         verbose_name = "Idioma del Interesado"
         verbose_name_plural = "Idiomas del Interesado"
         unique_together = ['curriculum', 'idioma']
+
+
+class Postulacion(models.Model):
+    """Modelo para las postulaciones de interesados a vacantes."""
+
+    ESTADOS_POSTULACION = (
+        ('enviada', 'Enviada'),
+        ('en_revision', 'En Revisión'),
+        ('preseleccionado', 'Preseleccionado'),
+        ('entrevista', 'En Entrevista'),
+        ('aceptada', 'Aceptada'),
+        ('rechazada', 'Rechazada'),
+    )
+
+    interesado = models.ForeignKey(Interesado, on_delete=models.CASCADE, related_name='postulaciones')
+    vacante = models.ForeignKey(Vacante, on_delete=models.CASCADE, related_name='postulaciones')
+    curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE, related_name='postulaciones')
+    fecha_postulacion = models.DateTimeField(auto_now_add=True)
+    estado = models.CharField(max_length=20, choices=ESTADOS_POSTULACION, default='enviada')
+    mensaje_motivacion = models.TextField(blank=True, null=True, help_text="Mensaje opcional del candidato")
+    notas_reclutador = models.TextField(blank=True, null=True, help_text="Notas del reclutador")
+    fecha_actualizacion = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.interesado.nombre_completo} - {self.vacante.titulo}"
+
+    @property
+    def tiempo_desde_postulacion(self):
+        """Retorna el tiempo transcurrido desde la postulación."""
+        from django.utils import timezone
+        delta = timezone.now() - self.fecha_postulacion
+
+        if delta.days > 0:
+            return f"Hace {delta.days} día{'s' if delta.days > 1 else ''}"
+        elif delta.seconds > 3600:
+            horas = delta.seconds // 3600
+            return f"Hace {horas} hora{'s' if horas > 1 else ''}"
+        else:
+            minutos = delta.seconds // 60
+            return f"Hace {minutos} minuto{'s' if minutos > 1 else ''}"
+
+    class Meta:
+        verbose_name = "Postulación"
+        verbose_name_plural = "Postulaciones"
+        unique_together = ['interesado', 'vacante']  # Un interesado solo puede postularse una vez por vacante
+        ordering = ['-fecha_postulacion']

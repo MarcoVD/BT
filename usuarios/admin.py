@@ -2,7 +2,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
-from .models import Usuario, Interesado, Reclutador, Secretaria, Categoria, Vacante, RequisitoVacante
+from .models import Usuario, Interesado, Reclutador, Secretaria, Categoria, Vacante, RequisitoVacante, Postulacion
 
 
 class InteresadoInline(admin.StackedInline):
@@ -116,3 +116,10 @@ class RequisitoVacanteAdmin(admin.ModelAdmin):
     list_display = ('vacante', 'educacion_minima', 'experiencia_minima')
     list_filter = ('vacante__categoria',)
     search_fields = ('vacante__titulo', 'descripcion_requisitos')
+
+@admin.register(Postulacion)
+class PostulacionAdmin(admin.ModelAdmin):
+    list_display = ('interesado', 'vacante', 'estado', 'fecha_postulacion')
+    list_filter = ('estado', 'fecha_postulacion', 'vacante__categoria')
+    search_fields = ('interesado__nombre', 'interesado__apellido_paterno', 'vacante__titulo')
+    readonly_fields = ('fecha_postulacion', 'fecha_actualizacion')
