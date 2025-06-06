@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block title %}Inicio - Bolsa de Trabajo{% endblock %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-4">Bienvenido a la Bolsa de Trabajo</h1>
+    <p class="lead">de la Secretaría de Movilidad del Estado de México</p>
+{#    {% if total_vacantes > 0 %}#}
+{#        <p class="text-muted">{{ total_vacantes }} vacante{{ total_vacantes|pluralize }} disponible{{ total_vacantes|pluralize }}</p>#}
+{#    {% endif %}#}
+</div>
+    <hr class="bg-secondary">
+{% if vacantes %}
+    <div class="container mb-5">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h4 class="text-muted">Vacantes Disponibles</h4>
+            </div>
+
+        <div class="row">
+            {% for vacante in vacantes %}
+                <div class="col-md-12 mb-3">
+                    <div class="card vacante-card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <h5 class="card-title text-primary fw-bold">{{ vacante.titulo }}</h5>
+{#                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.secretaria.nombre }} - Estado de México, {{ vacante.get_municipio_display}}.</h6>#}
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.get_municipio_display}} Estado de México.</h6>
+                                    <p class="card-text small">
+                                        {{ vacante.descripcion|truncatewords:25 }}
+                                    </p>
+                                </div>
+                                <div class="col-md-3 text-md-end">
+                                    {% if vacante.salario_formateado != 'No especificado' %}
+                                        <p class="text-success fw-bold mb-1">{{ vacante.salario_formateado }}</p>
+                                    {% else %}
+                                        <p class="text-muted mb-1">Salario a convenir</p>
+                                    {% endif %}
+{#                                    {{ vacante.get_municipio_display }}#}
+                                    <p class="small text-muted">Publicado: {{ vacante.fecha_publicacion|timesince }}</p>
+                                    <a href="{% url 'detalle_vacante' vacante_id=vacante.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span>
+                                <span class="badge  rounded-pill  border border-danger text-dark">{{ vacante.get_tipo_empleo_display }}</span>
+                                <span class="badge  rounded-pill  border border-success text-dark">{{ vacante.get_modalidad_display }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        {% if vacantes|length == 12 %} <div class="text-center mt-4">
+                <p class="text-muted">Mostrando las {{ vacantes|length }} vacantes más recientes</p>
+                </div>
+        {% endif %}
+    </div>
+{% else %}
+    <div class="container">
+        <div class="text-center py-5">
+            <i class="bi bi-briefcase" style="font-size: 64px; color: #6c757d;"></i>
+            <h3 class="mt-3 text-muted">No hay vacantes disponibles</h3>
+            <p class="text-muted">Las vacantes publicadas aparecerán aquí.</p>
+        </div>
+    </div>
+{% endif %}
+
+<style>
+.vacante-card {
+    border-radius: 10px; /* Un poco menos redondeado que el mockup para consistencia */
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.vacante-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.vacante-card .card-title {
+    color: var(--primary); /* Usando tu variable CSS */
+    font-weight: 500;
+}
+
+.vacante-card .card-subtitle {
+    font-size: 0.9rem;
+}
+
+.vacante-card .badge {
+    font-size: 0.75rem;
+    margin-right: 5px;
+}
+
+/* .btn y .btn-primary ya deberían estar definidos en tu CSS global o Bootstrap */
+</style>
+{% endblock %}

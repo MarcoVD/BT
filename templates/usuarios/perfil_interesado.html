@@ -1,0 +1,444 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'css/image-cropper.css' %}">
+    <!-- Cropper.js CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <style>
+        /* Estilos para hover de foto de perfil */
+
+        .profile-photo-container {
+            width: 160px;
+            height: 160px;
+            margin: 0 auto 1rem auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            border: 3px solid #dee2e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .profile-photo-placeholder {
+            font-size: 3rem;
+            color: #6c757d;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .profile-photo-container:hover .photo-overlay {
+            opacity: 1;
+        }
+
+.clickeable-photo:hover {
+    transform: scale(1.05);
+    opacity: 0.8;
+}
+
+.profile-photo-placeholder.clickeable-photo:hover {
+    background-color: #e3f2fd !important;
+    border: 2px solid #2196f3;
+}
+/* Ocultar el footer completamente en esta página */
+.footer {
+    display: none !important;
+}
+
+.footer-bottom {
+    display: none !important;
+}
+
+        @media (max-width: 576px) {
+            .profile-photo-container {
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile-photo-placeholder {
+                font-size: 3rem;
+            }
+        }
+        /* Espaciado responsive */
+        .empty-icon {
+            font-size: 2.5rem !important;
+            color: #6c757d;
+        }
+
+        @media (max-width: 576px) {
+            .empty-icon {
+                font-size: 2rem !important;
+            }
+        }
+    </style>
+{% endblock %}
+
+{% block extra_js %}
+    <!-- Cropper.js JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+    <!-- Scripts personalizados -->
+    <script src="{% static 'js/image-cropper.js' %}"></script>
+    <script src="{% static 'js/perfil-interesado.js' %}"></script>
+{% endblock %}
+{% block content %}
+
+<div class="container-fluid px-2 px-sm-3">
+    <div class="row g-3 g-md-4">
+        <!-- Columna del perfil -->
+        <div class="col-12 col-lg-4 order-1">
+            <!-- Card de foto y datos básicos -->
+            <div class="card mb-3 mb-md-4">
+                <div class="card-body text-center p-3 p-md-4">
+                    <div class="profile-photo-container mb-3">
+                        {% if interesado.foto_perfil %}
+                            <img src="{{ interesado.foto_perfil.url }}"
+                                 alt="Foto de perfil"
+                                 class="profile-photo img-fluid rounded-circle clickeable-photo"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#cropperModal">
+                        {% else %}
+                            <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#cropperModal">
+                                <i class="bi bi-person-fill profile-icon"></i>
+                            </div>
+                        {% endif %}
+                    </div>
+{#                end div#}
+                    <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
+                    <button class="btn btn-outline-primary btn-sm w-100 w-sm-auto"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editarPerfilModal">
+                        <i class="bi bi-pencil-square"></i>
+                        <span class="d-none d-sm-inline">Editar Perfil</span>
+                        <span class="d-sm-none">Editar</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card de información de contacto -->
+            <div class="card mb-3 mb-md-4">
+                <div class="card-header py-2 py-md-3">
+                    <h5 class="mb-0 h6 h-md-5">
+                        <i class="bi bi-info-circle"></i>
+                        <span class="d-none d-sm-inline">Información de Contacto</span>
+                        <span class="d-sm-none">Contacto</span>
+                    </h5>
+                </div>
+                <div class="card-body p-3">
+                    <div class="contact-info">
+                        <div class="contact-item mb-2 mb-md-3">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
+                                <div class="flex-grow-1">
+                                    <strong class="d-block d-sm-inline small"></strong>
+                                    <span class="text-break text-muted">{{ user.email }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item mb-2 mb-md-3">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-telephone me-2 mt-1 text-primary"></i>
+                                <div class="flex-grow-1">
+                                    <strong class="d-block d-sm-inline small"></strong>
+                                    {% if interesado.telefono %}
+                                        <span class="text-muted">{{ interesado.telefono }}</span>
+                                    {% else %}
+                                        <span class="text-muted">No especificado</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contact-item">
+                            <div class="d-flex align-items-start">
+                                <i class="bi bi-geo-alt me-2 mt-1 text-primary"></i>
+                                <div class="flex-grow-1">
+                                    <strong class="d-block d-sm-inline small"></strong>
+                                    {% if interesado.municipio %}
+                                        <span class="text-muted">{{ interesado.ubicacion_completa }}</span>
+                                    {% else %}
+                                        <span class="text-muted">No especificada</span>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{#    fin iformacion de contacto#}
+
+        <!-- Columna del contenido principal -->
+        <div class="col-12 col-lg-8 order-2">
+            <!-- Card de currículum -->
+<div class="card mb-3 mb-md-4">
+    <div class="card-header d-flex flex-column flex-sm-row justify-content-between align-items-start align-items-sm-center py-2 py-md-3">
+        <h5 class="mb-2 mb-sm-0 h6 h-md-5">
+            <i class="bi bi-file-earmark-person"></i> Mi Currículum
+        </h5>
+        {% if tiene_cv %}
+            <a href="{% url 'crear_editar_cv' %}" class="btn btn-sm text-white bg-primary w-sm-auto">
+                <i class="bi bi-pencil-square"></i>
+                <span class="d-none d-sm-inline">Editar mi CV</span>
+                <span class="d-sm-none">Editar CV</span>
+            </a>
+        {% else %}
+            <a href="{% url 'crear_editar_cv' %}" class="btn btn-sm btn-success w-sm-auto">
+                <i class="bi bi-plus-circle"></i>
+                <span class="d-none d-sm-inline">Crear mi CV</span>
+                <span class="d-sm-none">Crear CV</span>
+            </a>
+        {% endif %}
+    </div>
+    <div class="card-body text-center p-3 p-md-4">
+        {% if tiene_cv %}
+            <div class="cv-exists py-3 py-md-4">
+                <i class="bi bi-check-circle-fill text-success mb-3" style="font-size: 3rem;"></i>
+                <p class="mb-3 text-success fw-bold">Tu CV está creado y listo</p>
+                <div class="d-flex justify-content-center gap-2">
+                    <a href="{% url 'descargar_cv_pdf' %}" class="btn btn-outline-primary btn-sm">
+                        <i class="bi bi-download"></i>
+                        <span class="d-none d-sm-inline">Descargar PDF</span>
+                        <span class="d-sm-none">PDF</span>
+                    </a>
+                </div>
+            </div>
+        {% else %}
+            <div class="empty-state py-3 py-md-5">
+                <i class="bi bi-file-earmark-text empty-icon mb-3"></i>
+                <p class="mb-3">Aún no has creado tu currículum.</p>
+                <p class="small text-muted mb-3">Crea tu CV para poder postularte a vacantes</p>
+                <a href="{% url 'crear_editar_cv' %}" class="btn btn-success">
+                    <i class="bi bi-plus-circle"></i>
+                    <span class="d-none d-sm-inline">Crear mi CV Ahora</span>
+                    <span class="d-sm-none">Crear CV</span>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+            {#fin card curriculum#}
+
+            <!-- Cards de vacantes y postulaciones -->
+            <div class="row g-3 g-md-4">
+                <!-- Vacantes guardadas -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header py-2 py-md-3">
+                            <h5 class="mb-0 h6 h-md-5">
+                                <i class="bi bi-bookmark"></i>
+                                <span class="d-none d-sm-inline">Vacantes Guardadas</span>
+                                <span class="d-sm-none">Guardadas</span>
+                            </h5>
+                        </div>
+                        <div class="card-body text-center p-3">
+                            <div class="empty-state py-2 py-md-3">
+                                <i class="bi bi-bookmark-plus empty-icon-sm mb-2"></i>
+                                <p class="small text-muted mb-0">Aún no has guardado ninguna vacante.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mis postulaciones -->
+                <div class="col-12 col-md-6">
+                    <div class="card h-100">
+                        <div class="card-header py-2 py-md-3">
+                            <h5 class="mb-0 h6 h-md-5">
+                                <i class="bi bi-briefcase"></i>
+                                <span class="d-none d-sm-inline">Mis Postulaciones</span>
+                                <span class="d-sm-none">Postulaciones</span>
+                            </h5>
+                        </div>
+                        <div class="card-body text-center p-3">
+                            <div class="empty-state py-2 py-md-3">
+                                <i class="bi bi-send empty-icon-sm mb-2"></i>
+                                <p class="small text-muted mb-0">Aún no te has postulado a ninguna vacante.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar perfil con cropper integrado -->
+<div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary">
+                <h5 class="modal-title h6 h-md-5 text-white" id="editarPerfilModalLabel">Editar Perfil</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editarPerfilForm" enctype="multipart/form-data" data-update-url="{% url 'actualizar_perfil_ajax' %}">
+                    {% csrf_token %}
+
+                    <!-- Preview de foto -->
+                    <div class="text-center mb-4">
+                        <div class="profile-photo-container mx-auto" id="photoPreviewContainer">
+                            {% if interesado.foto_perfil %}
+                                <img src="{{ interesado.foto_perfil.url }}" alt="Foto de perfil" class="profile-photo" id="photoPreview">
+                            {% else %}
+                                <i class="bi bi-person-circle profile-photo-placeholder" id="photoPlaceholder"></i>
+                            {% endif %}
+                        </div>
+{#                        <small class="text-muted">Foto de perfil 160x160px (circular)</small>#}
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-12">
+                            <label for="foto_perfil" class="form-label">Foto de Perfil</label>
+                            <div class="d-flex gap-2">
+                                <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
+                                <button type="button" class="btn btn-outline-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#cropperModal">
+                                    <i class="bi bi-camera"></i> Cargar foto de Perfil
+                                </button>
+                            </div>
+                            <div class="form-text">Sube una imagen en formato JPG o JPEG para seguir.</div>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="nombre" class="form-label">Nombre(s)</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre" value="{{ interesado.nombre }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="apellido_paterno" name="apellido_paterno" value="{{ interesado.apellido_paterno }}" required>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="apellido_materno" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}">
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}">
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{% if interesado.fecha_nacimiento %}{ interesado.fecha_nacimiento|date:'Y-m-d' }{% endif %}">
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="municipio" class="form-label">Municipio</label>
+                            <select class="form-select" id="municipio" name="municipio">
+                                <option value="">Selecciona un municipio...</option>
+                                {% for value, label in interesado.MUNICIPIOS_ESTADO_MEXICO %}
+                                    <option value="{{ value }}" {% if interesado.municipio == value %}selected{% endif %}>{{ label }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+
+                        <div class="col-12 col-md-6">
+                            <label for="codigo_postal" class="form-label">Código Postal</label>
+                            <input type="text" class="form-control" id="codigo_postal" name="codigo_postal" value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" placeholder="Ej: 50000">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer flex-column flex-sm-row">
+                <button type="button" class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-2" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary w-100 w-sm-auto" id="guardarPerfilBtn">
+                    <span class="btn-text">Guardar Cambios</span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal del Cropper -->
+<div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cropperModalLabel">Recortar Imagen de Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body cropper-modal-body">
+
+                <!-- Paso 1: Seleccionar imagen -->
+                <div id="selectStep" class="cropper-step active">
+                    <div class="cropper-instructions">
+                        <h6><i class="bi bi-info-circle"></i> Instrucciones</h6>
+                        <p>Selecciona una imagen JPG para tu foto de perfil. Podrás recortarla en el siguiente paso.</p>
+                    </div>
+
+                    <div class="drop-zone" id="dropZone">
+                        <i class="bi bi-cloud-upload"></i>
+                        <p class="mb-2"><strong>Seleccione </strong> o arrastre una imagen en formato compatible</p>
+                        <p class="small text-muted">Formatos permitidos: JPG y JPEG.• Tamaño Máximo 5MB</p>
+                    </div>
+                </div>
+
+                <!-- Paso 2: Recortar imagen -->
+                <div id="cropStep" class="cropper-step">
+                    <div class="cropper-instructions">
+                        <h6><i class="bi bi-scissors"></i> Recortar Imagen</h6>
+                        <p>Ajusta el área de recorte para tu foto de perfil.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="image-cropper-container">
+                                <img id="cropperImage" src="" alt="Imagen a recortar" style="max-width: 100%; display: none;">
+                            </div>
+                            <div class="cropper-controls">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="resetCropButton">
+                                    <i class="bi bi-arrow-clockwise"></i> Reiniciar
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm" id="cancelCropButton">
+                                    <i class="bi bi-x-circle"></i> Cancelar
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm" id="cropButton">
+                                    <i class="bi bi-check-circle"></i> Recortar y Usar
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="text-center">
+                                <h6>Vista Previa</h6>
+                                <div class="crop-preview" id="cropPreview"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
