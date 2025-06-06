@@ -6,7 +6,6 @@
 {% block extra_css %}
 <style>
     body {
-        /* font-family: 'Inter', sans-serif; */ /* Ya está en base.html o styles.css */
         background-color: #f8f9fa;
     }
     .navbar {
@@ -23,7 +22,7 @@
         box-shadow: 0 4px 8px rgba(0,0,0,0.05);
         margin-bottom: 30px;
     }
-    .job-header .company-logo { /* No se usa directamente, pero lo dejo por si se añade logo a la Secretaría */
+    .job-header .company-logo {
         max-width: 80px;
         max-height: 80px;
         border-radius: 8px;
@@ -37,7 +36,7 @@
     }
     .job-header .company-name {
         font-size: 1.2rem;
-        color: var(--primary); /* Usando tu variable CSS */
+        color: var(--primary);
         font-weight: 500;
     }
     .job-header .job-meta span {
@@ -70,8 +69,6 @@
         border-radius: 8px;
         padding: 10px 20px;
     }
-    /* .btn-primary se hereda de tu CSS principal o Bootstrap */
-    /* .btn-outline-primary se hereda de tu CSS principal o Bootstrap */
 
     .badge {
         font-size: 0.8rem;
@@ -82,7 +79,7 @@
     .sticky-sidebar {
         position: -webkit-sticky;
         position: sticky;
-        top: 90px; /* Ajustar según la altura del navbar si es necesario */
+        top: 90px;
     }
 </style>
 {% endblock %}
@@ -146,23 +143,27 @@
                     <div class="d-grid gap-2">
                         {% if user.is_authenticated %}
                             {% if user.rol == 'interesado' %}
-                                <a href="#" class="btn btn-primary btn-lg"><i class="bi bi-send-fill"></i> Postularme Ahora</a>
-                                {% else %}
-                                <button type="button" class="btn btn-primary btn-lg" disabled><i class="bi bi-send-fill"></i> Postularme Ahora</button>
+                                <button type="button" class="btn btn-primary btn-lg" onclick="mostrarModalPostulacion()">
+                                    <i class="bi bi-send-fill"></i> Postularme Ahora
+                                </button>
+                            {% else %}
+                                <button type="button" class="btn btn-primary btn-lg" disabled>
+                                    <i class="bi bi-send-fill"></i> Postularme Ahora
+                                </button>
                             {% endif %}
                         {% else %}
-                            <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg"><i class="bi bi-send-fill"></i> Postularme Ahora</a>
+                            <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-send-fill"></i> Postularme Ahora
+                            </a>
                         {% endif %}
-                        <button type="button" class="btn btn-outline-primary"><i class="bi bi-bookmark-plus"></i> Guardar Vacante</button> </div>
+                        <button type="button" class="btn btn-outline-primary">
+                            <i class="bi bi-bookmark-plus"></i> Guardar Vacante
+                        </button>
                     </div>
+                </div>
 
                 <div class="company-info-card">
                     <h5>Sobre {{ vacante.secretaria.nombre }}</h5>
-{#                    {% if vacante.secretaria.logo %}#}
-{#                    <img src="{{ vacante.secretaria.logo.url }}" alt="Logo de {{ vacante.secretaria.nombre }}" class="img-fluid rounded mb-3" style="max-height: 100px; object-fit: contain;">#}
-{#                    {% else %}#}
-{#                    <img src="https://placehold.co/200x100/6c757d/ffffff?text={{ vacante.secretaria.nombre|slice:':15' }}&font=inter" alt="Banner de la empresa" class="img-fluid rounded mb-3">#}
-{#                    {% endif %}#}
 
                     {% if vacante.secretaria.descripcion %}
                     <p class="small">{{ vacante.secretaria.descripcion|truncatewords:50 }}</p>
@@ -178,4 +179,164 @@
         </div>
     </div>
 </div>
+
+<!-- Modal de Postulación -->
+<div class="modal fade" id="postulacionModal" tabindex="-1" aria-labelledby="postulacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="postulacionModalLabel">Postularse a {{ vacante.titulo }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-info">
+                    <i class="bi bi-info-circle"></i>
+                    <strong>Tu currículum será enviado junto con esta postulación.</strong>
+                    Asegúrate de que tu información esté actualizada.
+                </div>
+
+                <form id="postulacionForm">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label for="mensaje_motivacion" class="form-label">Mensaje de motivación (opcional)</label>
+                        <textarea class="form-control" id="mensaje_motivacion" name="mensaje_motivacion" rows="4"
+                                  placeholder="Escribe por qué te interesa esta posición y qué puedes aportar..."></textarea>
+                        <div class="form-text">Este mensaje será visible para el reclutador junto con tu CV.</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" id="confirmarPostulacionBtn">
+                    <span class="btn-text">
+                        <i class="bi bi-send-fill"></i> Enviar Postulación
+                    </span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function mostrarModalPostulacion() {
+    const modal = new bootstrap.Modal(document.getElementById('postulacionModal'));
+    modal.show();
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const confirmarBtn = document.getElementById('confirmarPostulacionBtn');
+    const postulacionForm = document.getElementById('postulacionForm');
+
+    if (confirmarBtn && postulacionForm) {
+        confirmarBtn.addEventListener('click', function() {
+            enviarPostulacion();
+        });
+    }
+});
+
+function enviarPostulacion() {
+    const confirmarBtn = document.getElementById('confirmarPostulacionBtn');
+    const btnText = confirmarBtn.querySelector('.btn-text');
+    const spinner = confirmarBtn.querySelector('.spinner-border');
+
+    // Mostrar spinner
+    btnText.classList.add('d-none');
+    spinner.classList.remove('d-none');
+    confirmarBtn.disabled = true;
+
+    const formData = new FormData(document.getElementById('postulacionForm'));
+
+    fetch(`/postularse/{{ vacante.id }}/`, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Mostrar mensaje de éxito
+            mostrarMensaje(data.message, 'success');
+
+            // Cerrar modal
+            bootstrap.Modal.getInstance(document.getElementById('postulacionModal')).hide();
+
+            // Deshabilitar botón de postulación
+            const postularBtn = document.querySelector('.btn-primary.btn-lg');
+            if (postularBtn) {
+                postularBtn.textContent = 'Ya te postulaste';
+                postularBtn.disabled = true;
+                postularBtn.classList.remove('btn-primary');
+                postularBtn.classList.add('btn-success');
+            }
+        } else {
+            mostrarMensaje(data.error, 'error');
+
+            // Si necesita completar perfil, redirigir
+            if (data.redirect_url) {
+                setTimeout(() => {
+                    window.location.href = data.redirect_url;
+                }, 2000);
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarMensaje('Error de conexión. Inténtalo nuevamente.', 'error');
+    })
+    .finally(() => {
+        // Restaurar botón
+        btnText.classList.remove('d-none');
+        spinner.classList.add('d-none');
+        confirmarBtn.disabled = false;
+    });
+}
+
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+</script>
 {% endblock %}
