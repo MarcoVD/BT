@@ -29,7 +29,7 @@ import uuid
 from .models import (
     Usuario, Interesado, Reclutador, Secretaria, # Añadido por si se usan directamente en vistas
     Curriculum, ExperienciaLaboral, Educacion,
-    HabilidadInteresado, IdiomaInteresado, Habilidad,
+    HabilidadInteresado, IdiomaInteresado,
     Vacante, RequisitoVacante, Categoria, Postulacion # Añadido por si se usan directamente
 )
 from .forms import (
@@ -1015,7 +1015,7 @@ class ReclutadorRegistroView(View):
 
 @method_decorator(login_required, name='dispatch')
 class PerfilInteresadoView(View):
-    """Vista para ver/editar perfil del interesado."""
+    """Vista para ver/editar perfil del interesado con CV integrado."""
 
     def get(self, request):
         if request.user.rol != 'interesado':
@@ -1024,14 +1024,72 @@ class PerfilInteresadoView(View):
 
         interesado = request.user.interesado
 
-        # Verificar si existe CV
-        tiene_cv = hasattr(interesado, 'curriculum')
+        # Obtener o crear curriculum
+        curriculum, created = Curriculum.objects.get_or_create(
+            interesado=interesado,
+            defaults={'resumen_profesional': ''}
+        )
+
+        # Obtener experiencias, educación, habilidades e idiomas existentes
+        experiencias = curriculum.experiencias.all()
+        educaciones = curriculum.educaciones.all()
+        habilidades = curriculum.habilidades.all()
+        idiomas = curriculum.idiomas.all()
+
+        # Verificar si existe CV completo
+        tiene_cv = hasattr(interesado, 'curriculum') and curriculum.resumen_profesional
 
         context = {
             'interesado': interesado,
-            'tiene_cv': tiene_cv
+            'curriculum': curriculum,
+            'experiencias': experiencias,
+            'educaciones': educaciones,
+            'habilidades': habilidades,
+            'idiomas': idiomas,
+            'tiene_cv': tiene_cv,
+            'es_nuevo': created,
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
+
+    def post(self, request):
+        if request.user.rol != 'interesado':
+            messages.error(request, 'No tienes permiso para acceder a esta página.')
+            return redirect('index')
+
+        interesado = request.user.interesado
+        curriculum, created = Curriculum.objects.get_or_create(
+            interesado=interesado,
+            defaults={'resumen_profesional': ''}
+        )
+
+        try:
+            with transaction.atomic():
+                # Actualizar información personal del interesado
+                interesado.nombre = request.POST.get('nombre', '')
+                interesado.apellido_paterno = request.POST.get('apellido_paterno', '')
+                interesado.apellido_materno = request.POST.get('apellido_materno', '')
+                interesado.telefono = request.POST.get('telefono', '')
+                interesado.municipio = request.POST.get('municipio', '')
+                interesado.codigo_postal = request.POST.get('codigo_postal', '')
+
+                # Fecha de nacimiento
+                fecha_nacimiento = request.POST.get('fecha_nacimiento')
+                if fecha_nacimiento:
+                    interesado.fecha_nacimiento = fecha_nacimiento
+
+                interesado.save()
+
+                # Actualizar resumen profesional del curriculum
+                curriculum.resumen_profesional = request.POST.get('resumen_profesional', '')
+                curriculum.save()
+
+                messages.success(request, 'CV actualizado exitosamente.')
+                return redirect('perfil_interesado')
+
+        except Exception as e:
+            messages.error(request, f'Error al guardar el CV: {str(e)}')
+
+        return redirect('perfil_interesado')
 
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
@@ -1183,17 +1241,78 @@ def postularse_vacante(request, vacante_id):
 
 
 @login_required
+@login_required
 def mis_postulaciones(request):
-    """Vista para ver las postulaciones del interesado."""
+    """Vista para ver las postulaciones del interesado con filtros."""
     if request.user.rol != 'interesado':
         messages.error(request, 'No tienes permiso para acceder a esta página.')
         return redirect('index')
 
+    # Base queryset
     postulaciones = Postulacion.objects.filter(
         interesado=request.user.interesado
-    ).select_related('vacante', 'vacante__secretaria').order_by('-fecha_postulacion')
+    ).select_related('vacante', 'vacante__secretaria', 'curriculum')
+
+    # Filtros
+    estado = request.GET.get('estado', '')
+    if estado:
+        postulaciones = postulaciones.filter(estado=estado)
+
+    buscar = request.GET.get('buscar', '')
+    if buscar:
+        postulaciones = postulaciones.filter(
+            Q(vacante__titulo__icontains=buscar) |
+            Q(vacante__secretaria__nombre__icontains=buscar)
+        )
+
+    # Ordenamiento
+    orden = request.GET.get('orden', '-fecha_postulacion')
+    postulaciones = postulaciones.order_by(orden)
+
+    # Paginación
+    from django.core.paginator import Paginator
+    paginator = Paginator(postulaciones, 10)  # 10 postulaciones por página
+    page_number = request.GET.get('page')
+    postulaciones = paginator.get_page(page_number)
 
     context = {
         'postulaciones': postulaciones
     }
     return render(request, 'usuarios/mis_postulaciones.html', context)
+
+
+@login_required
+def retirar_postulacion(request, postulacion_id):
+    """Vista AJAX para retirar una postulación."""
+    if request.method != 'POST' or request.user.rol != 'interesado':
+        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+    try:
+        postulacion = get_object_or_404(
+            Postulacion,
+            id=postulacion_id,
+            interesado=request.user.interesado
+        )
+
+        # Solo permitir retirar si está en estado inicial
+        if postulacion.estado not in ['enviada', 'en_revision']:
+            return JsonResponse({
+                'success': False,
+                'error': 'No puedes retirar esta postulación porque el proceso está muy avanzado'
+            })
+
+        # Eliminar la postulación
+        postulacion.delete()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Postulación retirada exitosamente'
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Error al retirar postulación: {str(e)}'
+        })
+
+

@@ -1,0 +1,371 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mis Postulaciones - Bolsa de Trabajo{% endblock %}
+
+{% block extra_css %}
+<style>
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #f8f9fa;
+    }
+    .navbar {
+        border-bottom: 1px solid #e9ecef;
+    }
+    .applications-container {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .page-header {
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .page-header h1 {
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+    .application-card {
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        margin-bottom: 20px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .application-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.08);
+    }
+    .application-card .card-body {
+        padding: 20px;
+    }
+    .application-card .job-title {
+        font-weight: 500;
+        color: #007bff;
+        font-size: 1.2rem;
+        margin-bottom: 5px;
+    }
+    .application-card .company-name {
+        font-size: 1rem;
+        color: #495057;
+        margin-bottom: 10px;
+    }
+    .application-card .application-date {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    .status-badge {
+        font-size: 0.85rem;
+        padding: 0.5em 0.75em;
+        font-weight: 500;
+    }
+    /* Colores específicos para estados */
+    .status-enviada { background-color: #17a2b8; color: #fff; } /* Celeste */
+    .status-en_revision { background-color: #ffc107; color: #000; } /* Amarillo */
+    .status-preseleccionado { background-color: #fd7e14; color: #fff; } /* Naranja */
+    .status-entrevista { background-color: #0dcaf0; color: #000; } /* Celeste */
+    .status-aceptada { background-color: #198754; color: #fff; } /* Verde */
+    .status-rechazada { background-color: #dc3545; color: #fff; } /* Rojo */
+    .actions-col {
+        text-align: right;
+    }
+    .btn {
+        border-radius: 8px;
+    }
+    .btn-sm {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.8rem;
+    }
+    .filter-controls {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 15px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .pagination .page-item .page-link {
+        border-radius: 8px;
+        margin: 0 2px;
+    }
+    .pagination .page-item.active .page-link {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+    }
+    .empty-state i {
+        font-size: 4rem;
+        color: #6c757d;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container applications-container">
+    <div class="page-header">
+        <h1><i class="bi bi-list-task"></i> Mis Postulaciones</h1>
+        <p class="text-muted">Aquí puedes ver el estado de todas tus postulaciones y gestionarlas.</p>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-controls">
+        <form method="get" id="filterForm">
+            <div class="row g-2 align-items-center">
+                <div class="col-md-4">
+                    <label for="estado" class="form-label visually-hidden">Filtrar por estado:</label>
+                    <select class="form-select form-select-sm" id="estado" name="estado" onchange="document.getElementById('filterForm').submit();">
+                        <option value="">Todos los estados</option>
+                        <option value="enviada" {% if request.GET.estado == 'enviada' %}selected{% endif %}>Enviada</option>
+                        <option value="en_revision" {% if request.GET.estado == 'en_revision' %}selected{% endif %}>En Revisión</option>
+                        <option value="preseleccionado" {% if request.GET.estado == 'preseleccionado' %}selected{% endif %}>Preseleccionado</option>
+                        <option value="entrevista" {% if request.GET.estado == 'entrevista' %}selected{% endif %}>Entrevista</option>
+                        <option value="aceptada" {% if request.GET.estado == 'aceptada' %}selected{% endif %}>Aceptada</option>
+                        <option value="rechazada" {% if request.GET.estado == 'rechazada' %}selected{% endif %}>Rechazada</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="orden" class="form-label visually-hidden">Ordenar por:</label>
+                    <select class="form-select form-select-sm" id="orden" name="orden" onchange="document.getElementById('filterForm').submit();">
+                        <option value="-fecha_postulacion" {% if request.GET.orden == '-fecha_postulacion' or not request.GET.orden %}selected{% endif %}>Más recientes primero</option>
+                        <option value="fecha_postulacion" {% if request.GET.orden == 'fecha_postulacion' %}selected{% endif %}>Más antiguas primero</option>
+                        <option value="vacante__secretaria__nombre" {% if request.GET.orden == 'vacante__secretaria__nombre' %}selected{% endif %}>Empresa (A-Z)</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <input type="text" class="form-control form-control-sm" name="buscar" value="{{ request.GET.buscar }}" placeholder="Buscar por puesto o empresa..." onchange="document.getElementById('filterForm').submit();">
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Lista de postulaciones -->
+    {% if postulaciones %}
+        {% for postulacion in postulaciones %}
+        <div class="application-card">
+            <div class="card-body">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <h5 class="job-title">{{ postulacion.vacante.titulo }}</h5>
+                        <p class="company-name mb-1">{{ postulacion.vacante.secretaria.nombre }}</p>
+                        <p class="application-date">Postulación enviada: {{ postulacion.fecha_postulacion|date:"d \d\e F, Y" }}</p>
+                        {% if postulacion.mensaje_motivacion %}
+                            <p class="small text-muted mt-2"><strong>Mensaje:</strong> {{ postulacion.mensaje_motivacion|truncatewords:15 }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-3 text-md-center">
+                        <span class="badge status-badge status-{{ postulacion.estado }}">{{ postulacion.get_estado_display }}</span>
+                        <p class="small text-muted mt-1 mb-0">{{ postulacion.tiempo_desde_postulacion }}</p>
+                    </div>
+                    <div class="col-md-3 actions-col">
+                        <a href="{% url 'detalle_vacante' vacante_id=postulacion.vacante.id %}" class="btn btn-outline-primary btn-sm mb-1 w-100">Ver Vacante</a>
+                        {% if postulacion.estado == 'enviada' or postulacion.estado == 'en_revision' %}
+                            <button type="button" class="btn btn-outline-danger btn-sm w-100" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#withdrawModal" 
+                                    data-postulacion-id="{{ postulacion.id }}"
+                                    data-puesto="{{ postulacion.vacante.titulo }}"
+                                    data-empresa="{{ postulacion.vacante.secretaria.nombre }}">
+                                Retirar Postulación
+                            </button>
+                        {% else %}
+                            <button type="button" class="btn btn-outline-danger btn-sm w-100" disabled>
+                                Retirar Postulación
+                            </button>
+                            <small class="form-text text-muted d-block mt-1">Retiro no disponible (proceso avanzado)</small>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+
+        <!-- Paginación -->
+        {% if postulaciones.has_other_pages %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                {% if postulaciones.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ postulaciones.previous_page_number }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}{% if request.GET.orden %}&orden={{ request.GET.orden }}{% endif %}{% if request.GET.buscar %}&buscar={{ request.GET.buscar }}{% endif %}">
+                            <i class="bi bi-chevron-left"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-chevron-left"></i></a>
+                    </li>
+                {% endif %}
+
+                {% for num in postulaciones.paginator.page_range %}
+                    {% if postulaciones.number == num %}
+                        <li class="page-item active" aria-current="page">
+                            <a class="page-link" href="#">{{ num }}</a>
+                        </li>
+                    {% elif num > postulaciones.number|add:'-3' and num < postulaciones.number|add:'3' %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ num }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}{% if request.GET.orden %}&orden={{ request.GET.orden }}{% endif %}{% if request.GET.buscar %}&buscar={{ request.GET.buscar }}{% endif %}">{{ num }}</a>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if postulaciones.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ postulaciones.next_page_number }}{% if request.GET.estado %}&estado={{ request.GET.estado }}{% endif %}{% if request.GET.orden %}&orden={{ request.GET.orden }}{% endif %}{% if request.GET.buscar %}&buscar={{ request.GET.buscar }}{% endif %}">
+                            <i class="bi bi-chevron-right"></i>
+                        </a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="bi bi-chevron-right"></i></a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+        {% endif %}
+
+    {% else %}
+        <!-- Estado vacío -->
+        <div class="empty-state">
+            <i class="bi bi-inbox"></i>
+            <h3 class="text-muted">No tienes postulaciones aún</h3>
+            <p class="text-muted">Cuando te postules a vacantes, aparecerán aquí para que puedas dar seguimiento.</p>
+            <a href="{% url 'index' %}" class="btn btn-primary mt-3">
+                <i class="bi bi-search"></i> Buscar Vacantes
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Modal de confirmación para retirar postulación -->
+<div class="modal fade" id="withdrawModal" tabindex="-1" aria-labelledby="withdrawModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius: 15px;">
+            <div class="modal-header">
+                <h5 class="modal-title" id="withdrawModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill text-danger"></i> Confirmar Retiro
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Estás a punto de retirar tu postulación para el puesto de <strong id="modal-puesto"></strong> en <strong id="modal-empresa"></strong>.</p>
+                <p>Esta acción no se puede deshacer. ¿Estás seguro de que deseas continuar?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmarRetiroBtn">
+                    <span class="btn-text">Sí, Retirar Postulación</span>
+                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const withdrawModal = document.getElementById('withdrawModal');
+    let postulacionIdToWithdraw = null;
+
+    // Configurar modal cuando se abre
+    withdrawModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget;
+        postulacionIdToWithdraw = button.getAttribute('data-postulacion-id');
+        const puesto = button.getAttribute('data-puesto');
+        const empresa = button.getAttribute('data-empresa');
+        
+        document.getElementById('modal-puesto').textContent = puesto;
+        document.getElementById('modal-empresa').textContent = empresa;
+    });
+
+    // Manejar confirmación de retiro
+    document.getElementById('confirmarRetiroBtn').addEventListener('click', function() {
+        if (!postulacionIdToWithdraw) return;
+
+        const btn = this;
+        const btnText = btn.querySelector('.btn-text');
+        const spinner = btn.querySelector('.spinner-border');
+
+        // Mostrar spinner
+        btnText.classList.add('d-none');
+        spinner.classList.remove('d-none');
+        btn.disabled = true;
+
+        // Enviar petición AJAX
+        fetch(`/retirar-postulacion/${postulacionIdToWithdraw}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': '{{ csrf_token }}',
+                'Content-Type': 'application/json',
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                mostrarMensaje('Postulación retirada exitosamente', 'success');
+                setTimeout(() => {
+                    location.reload();
+                }, 1500);
+            } else {
+                mostrarMensaje(data.error || 'Error al retirar postulación', 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarMensaje('Error de conexión', 'error');
+        })
+        .finally(() => {
+            // Restaurar botón
+            btnText.classList.remove('d-none');
+            spinner.classList.add('d-none');
+            btn.disabled = false;
+            
+            // Cerrar modal
+            bootstrap.Modal.getInstance(withdrawModal).hide();
+        });
+    });
+});
+
+function mostrarMensaje(mensaje, tipo) {
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+</script>
+{% endblock %}
