@@ -1316,4 +1316,76 @@ def retirar_postulacion(request, postulacion_id):
             'error': f'Error al retirar postulación: {str(e)}'
         })
 
+@login_required
+def mis_postulaciones(request):
+    """Vista para ver las postulaciones del interesado con filtros."""
+    if request.user.rol != 'interesado':
+        messages.error(request, 'No tienes permiso para acceder a esta página.')
+        return redirect('index')
 
+    # Base queryset
+    postulaciones = Postulacion.objects.filter(
+        interesado=request.user.interesado
+    ).select_related('vacante', 'vacante__secretaria', 'curriculum')
+
+    # Filtros
+    estado = request.GET.get('estado', '')
+    if estado:
+        postulaciones = postulaciones.filter(estado=estado)
+
+    buscar = request.GET.get('buscar', '')
+    if buscar:
+        postulaciones = postulaciones.filter(
+            Q(vacante__titulo__icontains=buscar) |
+            Q(vacante__secretaria__nombre__icontains=buscar)
+        )
+
+    # Ordenamiento
+    orden = request.GET.get('orden', '-fecha_postulacion')
+    postulaciones = postulaciones.order_by(orden)
+
+    # Paginación
+    from django.core.paginator import Paginator
+    paginator = Paginator(postulaciones, 10)  # 10 postulaciones por página
+    page_number = request.GET.get('page')
+    postulaciones = paginator.get_page(page_number)
+
+    context = {
+        'postulaciones': postulaciones
+    }
+    return render(request, 'usuarios/mis_postulaciones.html', context)
+
+
+@login_required
+def retirar_postulacion(request, postulacion_id):
+    """Vista AJAX para retirar una postulación."""
+    if request.method != 'POST' or request.user.rol != 'interesado':
+        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+    try:
+        postulacion = get_object_or_404(
+            Postulacion,
+            id=postulacion_id,
+            interesado=request.user.interesado
+        )
+
+        # Solo permitir retirar si está en estado inicial
+        if postulacion.estado not in ['enviada', 'en_revision']:
+            return JsonResponse({
+                'success': False,
+                'error': 'No puedes retirar esta postulación porque el proceso está muy avanzado'
+            })
+
+        # Eliminar la postulación
+        postulacion.delete()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Postulación retirada exitosamente'
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Error al retirar postulación: {str(e)}'
+        })
