@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.db import transaction
+from django.db.models import Q
 from django.http import JsonResponse, Http404, HttpResponse
 from django.template.loader import render_to_string
 # import weasyprint

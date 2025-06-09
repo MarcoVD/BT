@@ -27,6 +27,11 @@ urlpatterns = [
     path('mi-cv/previsualizar/', views.previsualizar_cv, name='previsualizar_cv'),
     path('ajax/actualizar-perfil/', views.actualizar_perfil_ajax, name='actualizar_perfil_ajax'),
     path('cv/descargar-pdf/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
+    # URLs para mis_postulaciones.html
+
+    path('postularse/<int:vacante_id>/', views.postularse_vacante, name='postularse_vacante'),
+    path('mis-postulaciones/', views.mis_postulaciones, name='mis_postulaciones'),
+    path('retirar-postulacion/<int:postulacion_id>/', views.retirar_postulacion, name='retirar_postulacion'),
 
     # URLs AJAX para CV (solo las que existen en views.py)
     path('ajax/experiencia/agregar/', views.agregar_experiencia_ajax, name='agregar_experiencia_ajax'),
