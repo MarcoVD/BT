@@ -1342,3 +1342,204 @@ def mis_postulaciones(request):
         'postulaciones': postulaciones
     }
     return render(request, 'usuarios/mis_postulaciones.html', context)
+
+
+# Agregar esta función al final del archivo usuarios/views.py
+#
+# @login_required
+# def retirar_postulacion(request, postulacion_id):
+#     """
+#     Vista para que un interesado retire su postulación a una vacante.
+#
+#     Args:
+#         postulacion_id: ID de la postulación a retirar
+#
+#     Returns:
+#         JsonResponse con success/error para AJAX requests
+#         Redirect para requests normales
+#     """
+#
+#     # Verificar permisos
+#     if request.user.rol != 'interesado':
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({
+#                 'success': False,
+#                 'error': 'Solo los interesados pueden retirar postulaciones.'
+#             })
+#         else:
+#             messages.error(request, 'No tienes permiso para realizar esta acción.')
+#             return redirect('index')
+#
+#     try:
+#         # Buscar la postulación que pertenece al interesado
+#         postulacion = get_object_or_404(
+#             Postulacion,
+#             id=postulacion_id,
+#             interesado=request.user.interesado
+#         )
+#
+#         # Verificar que la postulación se puede retirar
+#         # Solo se pueden retirar postulaciones en estado 'enviada' o 'en_revision'
+#         estados_retirables = ['enviada', 'en_revision']
+#
+#         if postulacion.estado not in estados_retirables:
+#             error_msg = f'No puedes retirar esta postulación porque está en estado: {postulacion.get_estado_display()}'
+#
+#             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#                 return JsonResponse({
+#                     'success': False,
+#                     'error': error_msg
+#                 })
+#             else:
+#                 messages.error(request, error_msg)
+#                 return redirect('mis_postulaciones')
+#
+#         # Guardar información para el mensaje
+#         vacante_titulo = postulacion.vacante.titulo
+#
+#         # Eliminar la postulación
+#         postulacion.delete()
+#
+#         # Mensaje de éxito
+#         success_msg = f'Has retirado exitosamente tu postulación para "{vacante_titulo}"'
+#
+#         # Responder según el tipo de request
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({
+#                 'success': True,
+#                 'message': success_msg
+#             })
+#         else:
+#             messages.success(request, success_msg)
+#             return redirect('mis_postulaciones')
+#
+#     except Postulacion.DoesNotExist:
+#         error_msg = 'Postulación no encontrada o no tienes permiso para retirarla.'
+#
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({
+#                 'success': False,
+#                 'error': error_msg
+#             })
+#         else:
+#             messages.error(request, error_msg)
+#             return redirect('mis_postulaciones')
+#
+#     except Exception as e:
+#         # Log del error para debugging
+#         print(f"Error en retirar_postulacion: {str(e)}")
+#
+#         error_msg = f'Error al retirar la postulación: {str(e)}'
+#
+#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+#             return JsonResponse({
+#                 'success': False,
+#                 'error': error_msg
+#             })
+#         else:
+#             messages.error(request, error_msg)
+#             return redirect('mis_postulaciones')
+
+@login_required
+@require_http_methods(["POST", "DELETE"])
+def retirar_postulacion(request, postulacion_id):
+    """
+    Vista para que un interesado retire su postulación a una vacante.
+
+    Args:
+        postulacion_id: ID de la postulación a retirar
+
+    Returns:
+        JsonResponse con success/error para AJAX requests
+        Redirect para requests normales
+    """
+
+    # Verificar permisos
+    if request.user.rol != 'interesado':
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': False,
+                'error': 'Solo los interesados pueden retirar postulaciones.'
+            }, status=403)
+        else:
+            messages.error(request, 'No tienes permiso para realizar esta acción.')
+            return redirect('index')
+
+    try:
+        # Buscar la postulación que pertenece al interesado
+        postulacion = get_object_or_404(
+            Postulacion,
+            id=postulacion_id,
+            interesado=request.user.interesado
+        )
+
+        # Verificar que la postulación se puede retirar
+        # Solo se pueden retirar postulaciones en estado 'enviada' o 'en_revision'
+        estados_retirables = ['enviada', 'en_revision']
+
+        if postulacion.estado not in estados_retirables:
+            error_msg = f'No puedes retirar esta postulación porque está en estado: {postulacion.get_estado_display()}'
+
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': False,
+                    'error': error_msg
+                }, status=400)
+            else:
+                messages.error(request, error_msg)
+                return redirect('mis_postulaciones')
+
+        # Guardar información para el mensaje
+        vacante_titulo = postulacion.vacante.titulo
+
+        # Eliminar la postulación
+        postulacion.delete()
+
+        # Mensaje de éxito
+        success_msg = f'Has retirado exitosamente tu postulación para "{vacante_titulo}"'
+
+        # Responder según el tipo de request
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': True,
+                'message': success_msg
+            })
+        else:
+            messages.success(request, success_msg)
+            return redirect('mis_postulaciones')
+
+    except Postulacion.DoesNotExist:
+        error_msg = 'Postulación no encontrada o no tienes permiso para retirarla.'
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': False,
+                'error': error_msg
+            }, status=404)
+        else:
+            messages.error(request, error_msg)
+            return redirect('mis_postulaciones')
+
+    except Exception as e:
+        # Log del error para debugging
+        print(f"Error en retirar_postulacion: {str(e)}")
+
+        error_msg = f'Error interno del servidor: {str(e)}'
+
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': False,
+                'error': error_msg
+            }, status=500)
+        else:
+            messages.error(request, error_msg)
+            return redirect('mis_postulaciones')
+
+def test_urls(request):
+    """Vista de prueba para verificar que las URLs funcionen"""
+    return JsonResponse({
+        'status': 'OK',
+        'message': 'Las URLs están funcionando correctamente',
+        'user': str(request.user),
+        'method': request.method
+    })
