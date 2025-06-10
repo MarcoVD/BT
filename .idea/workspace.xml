@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0cf8e1f-42f3-4792-94af-8b46d1351d2b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/usuarios/perfil_candidato_reclutador.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/usuarios/ver_postulantes.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/usuarios/mis_postulaciones.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/mis_postulaciones.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/usuarios/mis_vacantes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/mis_vacantes.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/usuarios/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/usuarios/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/usuarios/ver_postulantes.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/usuarios/ver_postulantes.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +111,7 @@
       <workItem from="1749505944297" duration="4163000" />
       <workItem from="1749510515974" duration="1198000" />
       <workItem from="1749511758220" duration="1942000" />
-      <workItem from="1749569829757" duration="12537000" />
+      <workItem from="1749569829757" duration="14160000" />
     </task>
     <servers />
   </component>

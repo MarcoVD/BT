@@ -129,12 +129,6 @@
     <!-- Header de la página -->
     <div class="page-header d-flex justify-content-between align-items-start">
         <div>
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-1">
-                    <li class="breadcrumb-item"><a href="{% url 'mis_vacantes' %}">Mis Vacantes</a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Gestionar Postulaciones</li>
-                </ol>
-            </nav>
             <h1>Postulantes para: <a href="{% url 'detalle_vacante' vacante.id %}" class="vacancy-title-link">{{ vacante.titulo }}</a></h1>
             <p class="text-muted mb-0">{{ vacante.secretaria.nombre }} • {{ vacante.get_municipio_display }}, Estado de México</p>
         </div>
@@ -223,7 +217,7 @@
                                         <i class="bi bi-person"></i>
                                     </div>
                                 {% endif %}
-                                
+
                                 <div>
                                     <h6 class="applicant-name mb-0">{{ postulacion.interesado.nombre_completo }}</h6>
                                     {% if postulacion.interesado.municipio %}
@@ -243,7 +237,7 @@
                             {% if postulacion.curriculum.habilidades.all %}
                                 <div class="skills-list">
                                     {% for habilidad in postulacion.curriculum.habilidades.all|slice:":5" %}
-                                        <span class="badge 
+                                        <span class="badge
                                             {% if habilidad.nivel == 'experto' %}bg-success
                                             {% elif habilidad.nivel == 'avanzado' %}bg-primary
                                             {% elif habilidad.nivel == 'intermedio' %}bg-info
@@ -261,22 +255,22 @@
                         <!-- Información de postulación -->
                         <div class="col-md-3">
                             <p class="applicant-meta mb-1">
-                                <i class="bi bi-calendar-event"></i> 
+                                <i class="bi bi-calendar-event"></i>
                                 Postuló: {{ postulacion.fecha_postulacion|date:"d M, Y" }}
                             </p>
                             <p class="applicant-meta mb-1">
-                                <i class="bi bi-clock"></i> 
+                                <i class="bi bi-clock"></i>
                                 {{ postulacion.tiempo_desde_postulacion }}
                             </p>
                             {% if postulacion.interesado.telefono %}
                                 <p class="applicant-meta mb-1">
-                                    <i class="bi bi-telephone"></i> 
+                                    <i class="bi bi-telephone"></i>
                                     {{ postulacion.interesado.telefono }}
                                 </p>
                             {% endif %}
                             {% if postulacion.mensaje_motivacion %}
                                 <p class="applicant-meta mb-0">
-                                    <i class="bi bi-chat-quote"></i> 
+                                    <i class="bi bi-chat-quote"></i>
                                     <em>"{{ postulacion.mensaje_motivacion|truncatewords:10 }}"</em>
                                 </p>
                             {% endif %}
@@ -284,7 +278,7 @@
 
                         <!-- Cambiar estado -->
                         <div class="col-md-2">
-                            <select class="form-select form-select-sm status-select" 
+                            <select class="form-select form-select-sm status-select"
                                     aria-label="Cambiar estado de {{ postulacion.interesado.nombre_completo }}"
                                     onchange="cambiarEstadoPostulacion({{ postulacion.id }}, this.value, '{{ postulacion.interesado.nombre_completo }}')">
                                 <option value="enviada" {% if postulacion.estado == 'enviada' %}selected{% endif %}>Enviada</option>
@@ -314,7 +308,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendMessageModal" 
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendMessageModal"
                                            data-candidate-name="{{ postulacion.interesado.nombre_completo }}"
                                            data-candidate-id="{{ postulacion.interesado.id }}"
                                            data-postulacion-id="{{ postulacion.id }}">
@@ -383,7 +377,7 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="sendMessageModalLabel">
-                    <i class="bi bi-chat-left-text-fill"></i> 
+                    <i class="bi bi-chat-left-text-fill"></i>
                     Enviar Mensaje a <span id="modalCandidateName">Candidato</span>
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -393,15 +387,15 @@
                     {% csrf_token %}
                     <input type="hidden" id="candidateId" name="candidate_id">
                     <input type="hidden" id="postulacionId" name="postulacion_id">
-                    
+
                     <div class="mb-3">
                         <label for="messageSubject" class="form-label">Asunto</label>
-                        <input type="text" class="form-control" id="messageSubject" name="subject" 
+                        <input type="text" class="form-control" id="messageSubject" name="subject"
                                value="Información sobre tu postulación a {{ vacante.titulo }}" required>
                     </div>
                     <div class="mb-3">
                         <label for="messageBody" class="form-label">Mensaje</label>
-                        <textarea class="form-control" id="messageBody" name="message" rows="6" 
+                        <textarea class="form-control" id="messageBody" name="message" rows="6"
                                   placeholder="Escribe tu mensaje aquí..." required></textarea>
                     </div>
                     <div class="mb-3">
@@ -526,7 +520,7 @@ if (sendMessageModal) {
         const candidateName = button.getAttribute('data-candidate-name');
         const candidateId = button.getAttribute('data-candidate-id');
         const postulacionId = button.getAttribute('data-postulacion-id');
-        
+
         document.getElementById('modalCandidateName').textContent = candidateName;
         document.getElementById('candidateId').value = candidateId;
         document.getElementById('postulacionId').value = postulacionId;
@@ -537,7 +531,7 @@ if (sendMessageModal) {
 function aplicarPlantilla(tipoPlantilla) {
     const messageBody = document.getElementById('messageBody');
     const messageSubject = document.getElementById('messageSubject');
-    
+
     const plantillas = {
         'invitacion_entrevista': {
             subject: 'Invitación a Entrevista - {{ vacante.titulo }}',
@@ -608,7 +602,7 @@ Saludos cordiales,
 {{ user.reclutador.secretaria.nombre }}`
         }
     };
-    
+
     if (plantillas[tipoPlantilla]) {
         messageSubject.value = plantillas[tipoPlantilla].subject;
         messageBody.value = plantillas[tipoPlantilla].body;
@@ -619,11 +613,11 @@ Saludos cordiales,
 function enviarMensaje() {
     const form = document.getElementById('messageForm');
     const formData = new FormData(form);
-    
+
     // Aquí implementarías el envío del mensaje
     // Por ahora solo simularemos
     mostrarMensaje('Mensaje enviado exitosamente', 'success');
-    
+
     const modal = bootstrap.Modal.getInstance(sendMessageModal);
     modal.hide();
     form.reset();
