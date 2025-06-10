@@ -1548,6 +1548,9 @@ def test_urls(request):
 # Agregar estas vistas al final de usuarios/views.py
 
 @method_decorator(login_required, name='dispatch')
+# Agregar estas vistas al final de usuarios/views.py
+
+@method_decorator(login_required, name='dispatch')
 class VerPostulantesView(View):
     """
     Vista para que los reclutadores vean los postulantes de una vacante específica.
@@ -1624,6 +1627,160 @@ class VerPostulantesView(View):
             'enviadas': estado_counts.get('enviada', 0),
             'preseleccionados': estado_counts.get('preseleccionado', 0),
         }
+
+
+@login_required
+def cambiar_estado_postulacion(request, postulacion_id):
+    """
+    Vista AJAX para cambiar el estado de una postulación.
+    """
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido'
+        }, status=405)
+
+    # Verificar que sea un reclutador
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'No tienes permisos para esta acción'
+        }, status=403)
+
+    try:
+        import json
+        data = json.loads(request.body)
+        nuevo_estado = data.get('nuevo_estado')
+
+        # Validar que el nuevo estado sea válido
+        estados_validos = [choice[0] for choice in Postulacion.ESTADOS_POSTULACION]
+        if nuevo_estado not in estados_validos:
+            return JsonResponse({
+                'success': False,
+                'error': 'Estado no válido'
+            }, status=400)
+
+        # Obtener la postulación y verificar que pertenezca a una vacante del reclutador
+        postulacion = get_object_or_404(
+            Postulacion.objects.select_related('vacante', 'interesado'),
+            id=postulacion_id,
+            vacante__reclutador=request.user.reclutador
+        )
+
+        # Guardar el estado anterior para logging
+        estado_anterior = postulacion.estado
+
+        # Actualizar el estado
+        postulacion.estado = nuevo_estado
+        postulacion.save()
+
+        # Obtener el display name del nuevo estado
+        estado_display = postulacion.get_estado_display()
+
+        # Calcular estadísticas actualizadas para la vacante
+        from datetime import date
+        from django.db.models import Count
+
+        postulaciones_vacante = Postulacion.objects.filter(vacante=postulacion.vacante)
+
+        # Contar por estados
+        estados = postulaciones_vacante.values('estado').annotate(count=Count('estado'))
+        estado_counts = {estado['estado']: estado['count'] for estado in estados}
+
+        # Contar nuevos hoy
+        nuevos_hoy = postulaciones_vacante.filter(
+            fecha_postulacion__date=date.today()
+        ).count()
+
+        estadisticas = {
+            'total_postulantes': postulaciones_vacante.count(),
+            'nuevos_hoy': nuevos_hoy,
+            'en_revision': estado_counts.get('en_revision', 0),
+            'entrevista': estado_counts.get('entrevista', 0),
+            'aceptados': estado_counts.get('aceptada', 0),
+            'rechazados': estado_counts.get('rechazada', 0),
+        }
+
+        # Log de la acción (opcional)
+        print(f"Reclutador {request.user.email} cambió estado de postulación {postulacion_id} "
+              f"de '{estado_anterior}' a '{nuevo_estado}'")
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Estado actualizado exitosamente',
+            'estado_display': estado_display,
+            'nuevo_estado': nuevo_estado,
+            'postulacion_id': postulacion_id,
+            'estadisticas': estadisticas
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Postulacion.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'error': 'Postulación no encontrada o no tienes permiso para modificarla'
+        }, status=404)
+    except Exception as e:
+        print(f"Error en cambiar_estado_postulacion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
+@login_required
+def agregar_notas_postulacion(request, postulacion_id):
+    """
+    Vista AJAX para agregar notas del reclutador a una postulación.
+    """
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido'
+        }, status=405)
+
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'No tienes permisos para esta acción'
+        }, status=403)
+
+    try:
+        import json
+        data = json.loads(request.body)
+        notas = data.get('notas', '').strip()
+
+        # Obtener la postulación
+        postulacion = get_object_or_404(
+            Postulacion,
+            id=postulacion_id,
+            vacante__reclutador=request.user.reclutador
+        )
+
+        # Actualizar las notas
+        postulacion.notas_reclutador = notas
+        postulacion.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Notas guardadas exitosamente'
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Exception as e:
+        print(f"Error en agregar_notas_postulacion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno: {str(e)}'
+        }, status=500)
 
 
 @login_required

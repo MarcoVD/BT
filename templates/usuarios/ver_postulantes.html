@@ -204,7 +204,11 @@
     {% if postulaciones %}
         <div id="postulantesContainer">
             {% for postulacion in postulaciones %}
-                <div class="applicant-card" data-estado="{{ postulacion.estado }}" data-nombre="{{ postulacion.interesado.nombre_completo|lower }}" data-municipio="{{ postulacion.interesado.get_municipio_display|default:'Sin especificar'|lower }}">
+                <div class="applicant-card"
+                     data-estado="{{ postulacion.estado }}"
+                     data-postulacion-id="{{ postulacion.id }}"
+                     data-nombre="{{ postulacion.interesado.nombre_completo|lower }}"
+                     data-municipio="{{ postulacion.interesado.get_municipio_display|default:'Sin especificar'|lower }}">
                     <div class="row align-items-center">
                         <!-- Información del candidato -->
                         <div class="col-md-4">
@@ -441,40 +445,76 @@
 </div>
 
 <script>
+// Función para actualizar estadísticas en tiempo real
+function actualizarEstadisticas() {
+    const cards = document.querySelectorAll('.applicant-card');
+
+    // Contar estados actuales
+    const contadores = {
+        total: cards.length,
+        enviada: 0,
+        en_revision: 0,
+        preseleccionado: 0,
+        entrevista: 0,
+        aceptada: 0,
+        rechazada: 0
+    };
+
+    cards.forEach(card => {
+        const estado = card.dataset.estado;
+        if (contadores.hasOwnProperty(estado)) {
+            contadores[estado]++;
+        }
+    });
+
+    // Actualizar los valores en el HTML
+    document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = contadores.total;
+    document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = contadores.en_revision;
+    document.querySelector('.stat-item:nth-child(4) .stat-value').textContent = contadores.entrevista;
+    document.querySelector('.stat-item:nth-child(5) .stat-value').textContent = contadores.aceptada;
+    document.querySelector('.stat-item:nth-child(6) .stat-value').textContent = contadores.rechazada;
+}
+
 // Función para filtrar postulantes en tiempo real
+// Variables globales para filtros
+let filterStatus, filterMunicipio, filterSkills, sortPostulantes;
+
+// Función para filtrar postulantes en tiempo real
+function filtrarPostulantes() {
+    const cards = document.querySelectorAll('.applicant-card');
+    const statusFilter = filterStatus?.value.toLowerCase() || '';
+    const municipioFilter = filterMunicipio?.value.toLowerCase() || '';
+    const skillsFilter = filterSkills?.value.toLowerCase() || '';
+
+    cards.forEach(card => {
+        const estado = card.dataset.estado.toLowerCase();
+        const nombre = card.dataset.nombre.toLowerCase();
+        const municipio = card.dataset.municipio.toLowerCase();
+        const skillsText = card.querySelector('.skills-list')?.textContent.toLowerCase() || '';
+
+        const matchStatus = !statusFilter || estado.includes(statusFilter);
+        const matchMunicipio = !municipioFilter || municipio.includes(municipioFilter);
+        const matchSkills = !skillsFilter || skillsText.includes(skillsFilter) || nombre.includes(skillsFilter);
+
+        if (matchStatus && matchMunicipio && matchSkills) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
 document.addEventListener('DOMContentLoaded', function() {
-    const filterStatus = document.getElementById('filterStatus');
-    const filterMunicipio = document.getElementById('filterMunicipio');
-    const filterSkills = document.getElementById('filterSkills');
-    const sortPostulantes = document.getElementById('sortPostulantes');
+    // Inicializar variables globales
+    filterStatus = document.getElementById('filterStatus');
+    filterMunicipio = document.getElementById('filterMunicipio');
+    filterSkills = document.getElementById('filterSkills');
+    sortPostulantes = document.getElementById('sortPostulantes');
 
-    function filtrarPostulantes() {
-        const cards = document.querySelectorAll('.applicant-card');
-        const statusFilter = filterStatus.value.toLowerCase();
-        const municipioFilter = filterMunicipio.value.toLowerCase();
-        const skillsFilter = filterSkills.value.toLowerCase();
-
-        cards.forEach(card => {
-            const estado = card.dataset.estado.toLowerCase();
-            const nombre = card.dataset.nombre.toLowerCase();
-            const municipio = card.dataset.municipio.toLowerCase();
-            const skillsText = card.querySelector('.skills-list')?.textContent.toLowerCase() || '';
-
-            const matchStatus = !statusFilter || estado.includes(statusFilter);
-            const matchMunicipio = !municipioFilter || municipio.includes(municipioFilter);
-            const matchSkills = !skillsFilter || skillsText.includes(skillsFilter) || nombre.includes(skillsFilter);
-
-            if (matchStatus && matchMunicipio && matchSkills) {
-                card.style.display = 'block';
-            } else {
-                card.style.display = 'none';
-            }
-        });
-    }
-
-    filterStatus.addEventListener('change', filtrarPostulantes);
-    filterMunicipio.addEventListener('input', filtrarPostulantes);
-    filterSkills.addEventListener('input', filtrarPostulantes);
+    // Agregar event listeners
+    if (filterStatus) filterStatus.addEventListener('change', filtrarPostulantes);
+    if (filterMunicipio) filterMunicipio.addEventListener('input', filtrarPostulantes);
+    if (filterSkills) filterSkills.addEventListener('input', filtrarPostulantes);
 });
 
 // Función para cambiar estado de postulación
@@ -498,8 +538,57 @@ function cambiarEstadoPostulacion(postulacionId, nuevoEstado, nombreCandidato) {
     })
     .then(response => response.json())
     .then(data => {
+        console.log('Respuesta del servidor:', data); // Debug
+
         if (data.success) {
             mostrarMensaje(`Estado de ${nombreCandidato} actualizado a "${data.estado_display}"`, 'success');
+
+            // ACTUALIZAR EL ATRIBUTO DATA-ESTADO EN EL HTML
+            const applicantCard = document.querySelector(`.applicant-card[data-postulacion-id="${postulacionId}"]`);
+            if (applicantCard) {
+                console.log(`Actualizando estado de ${data.nuevo_estado} para postulación ${postulacionId}`); // Debug
+                applicantCard.setAttribute('data-estado', data.nuevo_estado);
+
+                // También actualizar visualmente cualquier badge de estado si existe
+                const statusBadge = applicantCard.querySelector('.status-badge');
+                if (statusBadge) {
+                    // Remover todas las clases de estado anteriores
+                    statusBadge.classList.remove('bg-primary', 'bg-warning', 'bg-info', 'bg-success', 'bg-danger', 'bg-secondary');
+
+                    // Agregar la clase correspondiente al nuevo estado
+                    const statusClasses = {
+                        'enviada': 'bg-primary',
+                        'en_revision': 'bg-warning',
+                        'preseleccionado': 'bg-info',
+                        'entrevista': 'bg-info',
+                        'aceptada': 'bg-success',
+                        'rechazada': 'bg-danger'
+                    };
+
+                    if (statusClasses[data.nuevo_estado]) {
+                        statusBadge.classList.add(statusClasses[data.nuevo_estado]);
+                        statusBadge.textContent = data.estado_display;
+                    }
+                }
+            }
+
+            // ACTUALIZAR LAS ESTADÍSTICAS EN TIEMPO REAL
+            if (data.estadisticas) {
+                // Usar estadísticas del backend si están disponibles
+                document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = data.estadisticas.total_postulantes;
+                document.querySelector('.stat-item:nth-child(2) .stat-value').textContent = data.estadisticas.nuevos_hoy;
+                document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = data.estadisticas.en_revision;
+                document.querySelector('.stat-item:nth-child(4) .stat-value').textContent = data.estadisticas.entrevista;
+                document.querySelector('.stat-item:nth-child(5) .stat-value').textContent = data.estadisticas.aceptados;
+                document.querySelector('.stat-item:nth-child(6) .stat-value').textContent = data.estadisticas.rechazados;
+            } else {
+                // Fallback: calcular estadísticas desde el frontend
+                actualizarEstadisticas();
+            }
+
+            // REAPLICAR LOS FILTROS ACTUALES
+            filtrarPostulantes();
+
         } else {
             mostrarMensaje(data.error || 'Error al cambiar el estado', 'error');
             location.reload(); // Recargar para revertir el cambio

@@ -95,7 +95,7 @@
                                     <span class="badge bg-danger">Cerrada</span>
                                 {% endif %}
                                 <br>
-                                <small class="text-muted">0 postulantes</small>
+                                <small class="text-muted"> {{ vacante.postulaciones.count }} postulantes</small> <!--Contabiliza las personas postuladas-->
                             </div>
                         </div>
                     {% endfor %}
