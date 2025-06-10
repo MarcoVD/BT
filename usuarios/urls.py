@@ -32,6 +32,8 @@ urlpatterns = [
     path('publicar-vacante/', views.PublicarVacanteView.as_view(), name='publicar_vacante'),
     path('editar-vacante/<int:vacante_id>/', views.EditarVacanteView.as_view(), name='editar_vacante'),
     path('mis-vacantes/', views.MisVacantesView.as_view(), name='mis_vacantes'),
+    path('vacante/<int:vacante_id>/postulantes/', views.VerPostulantesView.as_view(), name='ver_postulantes'),
+    path('candidato/<int:interesado_id>/perfil/', views.ver_perfil_candidato, name='ver_perfil_candidato'),
 
     # ===========================
     # URLs PARA VACANTES (VISUALIZACIÓN)
@@ -84,6 +86,14 @@ urlpatterns = [
     # ===========================
     path('ajax/idioma/agregar/', views.agregar_idioma_ajax, name='agregar_idioma_ajax'),
     path('ajax/idioma/eliminar/<int:idioma_id>/', views.eliminar_idioma_ajax, name='eliminar_idioma_ajax'),
+
+    # ===========================
+    # URLs AJAX PARA GESTIÓN DE POSTULACIONES (RECLUTADORES)
+    # ===========================
+    path('ajax/cambiar-estado-postulacion/<int:postulacion_id>/', views.cambiar_estado_postulacion,
+         name='cambiar_estado_postulacion'),
+    path('ajax/agregar-notas-postulacion/<int:postulacion_id>/', views.agregar_notas_postulacion,
+         name='agregar_notas_postulacion'),
 
     # ===========================
     # URL DE PRUEBA (TEMPORAL)

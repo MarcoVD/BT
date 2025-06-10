@@ -90,8 +90,8 @@
 
                                     <div class="btn-group-vertical btn-group-sm w-100" role="group">
                                         {% if vacante.estado_vacante == 'publicada' %}
-                                            <a href="#" class="btn btn-info text-white">
-                                                <i class="bi bi-person-lines-fill"></i> Ver Postulantes
+                                            <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-info text-white">
+                                                <i class="bi bi-person-lines-fill"></i> Ver Postulantes ({{ vacante.postulaciones.count }})
                                             </a>
                                         {% endif %}
 

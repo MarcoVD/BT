@@ -1543,3 +1543,289 @@ def test_urls(request):
         'user': str(request.user),
         'method': request.method
     })
+
+
+# Agregar estas vistas al final de usuarios/views.py
+
+@method_decorator(login_required, name='dispatch')
+class VerPostulantesView(View):
+    """
+    Vista para que los reclutadores vean los postulantes de una vacante específica.
+    """
+
+    def get(self, request, vacante_id):
+        # Verificar que el usuario sea reclutador
+        if request.user.rol != 'reclutador':
+            messages.error(request, 'No tienes permiso para acceder a esta página.')
+            return redirect('index')
+
+        # Verificar que el reclutador esté aprobado
+        if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+            messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
+            return redirect('dashboard_reclutador')
+
+        try:
+            # Obtener la vacante y verificar que pertenezca al reclutador
+            vacante = get_object_or_404(
+                Vacante.objects.select_related('secretaria', 'categoria'),
+                id=vacante_id,
+                reclutador=request.user.reclutador
+            )
+        except Vacante.DoesNotExist:
+            messages.error(request, 'Vacante no encontrada o no tienes permiso para verla.')
+            return redirect('mis_vacantes')
+
+        # Obtener todas las postulaciones para esta vacante
+        postulaciones = Postulacion.objects.filter(
+            vacante=vacante
+        ).select_related(
+            'interesado',
+            'curriculum'
+        ).prefetch_related(
+            'curriculum__habilidades__habilidad'
+        ).order_by('-fecha_postulacion')
+
+        # Calcular estadísticas
+        estadisticas = self._calcular_estadisticas(postulaciones)
+
+        context = {
+            'vacante': vacante,
+            'postulaciones': postulaciones,
+            'estadisticas': estadisticas,
+        }
+
+        return render(request, 'usuarios/ver_postulantes.html', context)
+
+    def _calcular_estadisticas(self, postulaciones):
+        """
+        Calcula las estadísticas de las postulaciones.
+        """
+        from datetime import date
+        from django.db.models import Count
+
+        total_postulantes = postulaciones.count()
+
+        # Contar postulaciones por estado
+        estados = postulaciones.values('estado').annotate(count=Count('estado'))
+        estado_counts = {estado['estado']: estado['count'] for estado in estados}
+
+        # Contar nuevos hoy
+        nuevos_hoy = postulaciones.filter(
+            fecha_postulacion__date=date.today()
+        ).count()
+
+        return {
+            'total_postulantes': total_postulantes,
+            'nuevos_hoy': nuevos_hoy,
+            'en_revision': estado_counts.get('en_revision', 0),
+            'entrevista': estado_counts.get('entrevista', 0),
+            'aceptados': estado_counts.get('aceptada', 0),
+            'rechazados': estado_counts.get('rechazada', 0),
+            'enviadas': estado_counts.get('enviada', 0),
+            'preseleccionados': estado_counts.get('preseleccionado', 0),
+        }
+
+
+@login_required
+def cambiar_estado_postulacion(request, postulacion_id):
+    """
+    Vista AJAX para cambiar el estado de una postulación.
+    """
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido'
+        }, status=405)
+
+    # Verificar que sea un reclutador
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'No tienes permisos para esta acción'
+        }, status=403)
+
+    try:
+        import json
+        data = json.loads(request.body)
+        nuevo_estado = data.get('nuevo_estado')
+
+        # Validar que el nuevo estado sea válido
+        estados_validos = [choice[0] for choice in Postulacion.ESTADOS_POSTULACION]
+        if nuevo_estado not in estados_validos:
+            return JsonResponse({
+                'success': False,
+                'error': 'Estado no válido'
+            }, status=400)
+
+        # Obtener la postulación y verificar que pertenezca a una vacante del reclutador
+        postulacion = get_object_or_404(
+            Postulacion.objects.select_related('vacante', 'interesado'),
+            id=postulacion_id,
+            vacante__reclutador=request.user.reclutador
+        )
+
+        # Guardar el estado anterior para logging
+        estado_anterior = postulacion.estado
+
+        # Actualizar el estado
+        postulacion.estado = nuevo_estado
+        postulacion.save()
+
+        # Obtener el display name del nuevo estado
+        estado_display = postulacion.get_estado_display()
+
+        # Log de la acción (opcional)
+        print(f"Reclutador {request.user.email} cambió estado de postulación {postulacion_id} "
+              f"de '{estado_anterior}' a '{nuevo_estado}'")
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Estado actualizado exitosamente',
+            'estado_display': estado_display,
+            'postulacion_id': postulacion_id
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Postulacion.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'error': 'Postulación no encontrada o no tienes permiso para modificarla'
+        }, status=404)
+    except Exception as e:
+        print(f"Error en cambiar_estado_postulacion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
+@login_required
+def agregar_notas_postulacion(request, postulacion_id):
+    """
+    Vista AJAX para agregar notas del reclutador a una postulación.
+    """
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido'
+        }, status=405)
+
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'No tienes permisos para esta acción'
+        }, status=403)
+
+    try:
+        import json
+        data = json.loads(request.body)
+        notas = data.get('notas', '').strip()
+
+        # Obtener la postulación
+        postulacion = get_object_or_404(
+            Postulacion,
+            id=postulacion_id,
+            vacante__reclutador=request.user.reclutador
+        )
+
+        # Actualizar las notas
+        postulacion.notas_reclutador = notas
+        postulacion.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Notas guardadas exitosamente'
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Exception as e:
+        print(f"Error en agregar_notas_postulacion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno: {str(e)}'
+        }, status=500)
+
+
+# Agregar esta vista también a usuarios/views.py
+
+@login_required
+def ver_perfil_candidato(request, interesado_id):
+    """
+    Vista para que los reclutadores vean el perfil completo de un candidato.
+    Solo puede acceder si el candidato se ha postulado a alguna de sus vacantes.
+    """
+
+    # Verificar que sea un reclutador
+    if request.user.rol != 'reclutador':
+        messages.error(request, 'No tienes permiso para acceder a esta página.')
+        return redirect('index')
+
+    # Verificar que el reclutador esté aprobado
+    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+        messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
+        return redirect('dashboard_reclutador')
+
+    try:
+        # Obtener el interesado
+        interesado = get_object_or_404(
+            Interesado.objects.select_related('usuario'),
+            id=interesado_id
+        )
+
+        # Verificar que el candidato se haya postulado a alguna vacante del reclutador
+        tiene_postulacion = Postulacion.objects.filter(
+            interesado=interesado,
+            vacante__reclutador=request.user.reclutador
+        ).exists()
+
+        if not tiene_postulacion:
+            messages.error(request, 'No tienes permiso para ver este perfil.')
+            return redirect('dashboard_reclutador')
+
+        # Obtener o crear curriculum
+        curriculum = None
+        experiencias = []
+        educaciones = []
+        habilidades = []
+        idiomas = []
+
+        try:
+            curriculum = interesado.curriculum
+            experiencias = curriculum.experiencias.all().order_by('-fecha_inicio')
+            educaciones = curriculum.educaciones.all().order_by('-fecha_inicio')
+            habilidades = curriculum.habilidades.select_related('habilidad').all()
+            idiomas = curriculum.idiomas.all()
+        except Curriculum.DoesNotExist:
+            pass
+
+        # Obtener postulaciones del candidato a vacantes del reclutador
+        postulaciones_relacionadas = Postulacion.objects.filter(
+            interesado=interesado,
+            vacante__reclutador=request.user.reclutador
+        ).select_related('vacante').order_by('-fecha_postulacion')
+
+        context = {
+            'interesado': interesado,
+            'curriculum': curriculum,
+            'experiencias': experiencias,
+            'educaciones': educaciones,
+            'habilidades': habilidades,
+            'idiomas': idiomas,
+            'postulaciones_relacionadas': postulaciones_relacionadas,
+            'es_vista_reclutador': True,  # Flag para adaptar el template
+        }
+
+        return render(request, 'usuarios/perfil_candidato_reclutador.html', context)
+
+    except Exception as e:
+        print(f"Error en ver_perfil_candidato: {str(e)}")
+        messages.error(request, 'Error al cargar el perfil del candidato.')
+        return redirect('dashboard_reclutador')
