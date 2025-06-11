@@ -99,7 +99,9 @@ a:hover {
         }
 
         .logo-movilidad {
-            width: 500px;
+            max-width: 500px;
+            width: 100%;
+            height: auto;
         }
 
         .custom-card {
@@ -469,18 +471,22 @@ footer {
 /*                font-size: 1rem;*/
 /*            }*/
 /*        }*/
+        @media (max-width: 992px) {
+            .logo-movilidad {
+                max-width: 400px; /* Ajuste para laptops y tablets grandes */
+            }
+        }
+        @media (max-width: 768px) {
+            .logo-movilidad {
+                width: 400px; /*Ajuste  para tablets en modo vertical*/
+            }
+        }
 
-/*        @media (max-width: 768px) {*/
-/*            .logo-movilidad {*/
-/*                width: 400px;*/
-/*            }*/
-/*        }*/
-
-/*        @media (max-width: 425px) {*/
-/*            .logo-movilidad {*/
-/*                width: 300px;*/
-/*            }*/
-/*        }*/
+        @media (max-width: 576px) {
+            .logo-movilidad {
+                width: 288px; /* para telefonos celulares*/
+            }
+        }
 
 /*profile-photo-container {*/
 /*        width: 160px;*/

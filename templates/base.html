@@ -24,10 +24,13 @@
 <body class="d-flex flex-column min-vh-100">
  <!-- Reemplazar la sección del navbar en base.html para usuarios interesados -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container" id="navbarNav">
+    <div class="container">
         <a class="navbar-brand" href="{% url 'index' %}">
-            <img src="{% static 'img/Mobilidad1.png' %}" alt="Logo Mobilidad" height="" class="me-2 logo-movilidad">
+            <img src="{% static 'img/Mobilidad1.png' %}" alt="Logo Mobilidad" class="me-2 logo-movilidad">
         </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
@@ -50,9 +53,9 @@
                             <a class="nav-link" href="{% url 'dashboard_reclutador' %}">Dashboard</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'mis_vacantes' %}">Mis Vacantes</a>
+                            <a class="nav-link" href="#">Mis Vacantes</a>
                         </li>
-                        <li class="nav-item">
+                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
                         </li>
                     {% endif %}
@@ -115,12 +118,15 @@
                 <div class="col-12 col-lg-3 text-center text-lg-start">
                     <h6 class="fw-bold">SÍGUENOS</h6>
                     <div class="social-icons">
-
                         <a href="https://www.facebook.com/SEMOV.Edomex">
-                            <i src="{% static 'img/logoColores.png' %}"></i>
+                            <img src="{% static 'img/facebook.png' %}">
                         </a>
-                        <a href="https://twitter.com/SEMOV_Edomex"></a>
-                        <a href="https://www.instagram.com/semov.edomex"></a>
+                        <a href="https://twitter.com/SEMOV_Edomex">
+                            <img src="{% static 'img/x.png' %}">
+                        </a>
+                        <a href="https://www.instagram.com/semov.edomex">
+                            <img src="{% static 'img/instagram.png' %}">
+                        </a>
                     </div>
                     <p class="mt-2">
                         Secretaría de Movilidad <br>

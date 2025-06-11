@@ -3,6 +3,14 @@
 {% block title %}Mis Vacantes - Bolsa de Trabajo{% endblock %}
 
 {% block content %}
+    <style>
+    .footer {
+    display: none !important;
+}
+.footer-bottom {
+    display: none !important;
+}
+    </style>
 <div class="container">
     <div class="page-header d-flex justify-content-between align-items-center mb-4">
 
@@ -88,7 +96,7 @@
                                         {% endif %}
                                     </div>
 
-                                    <div class="btn-group-vertical btn-group-sm w-100" role="group">
+                                    <div class="btn-group-vertical btn-group-sm w-33" role="group">
                                         {% if vacante.estado_vacante == 'publicada' %}
                                             <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-info text-white">
                                                 <i class="bi bi-person-lines-fill"></i> Ver Postulantes
