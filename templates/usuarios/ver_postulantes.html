@@ -1,0 +1,791 @@
+{% extends 'base.html' %}
+
+{% block title %}Postulantes para {{ vacante.titulo }} - Bolsa de Trabajo{% endblock %}
+
+{% block extra_css %}
+<style>
+    .applicants-container {
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .page-header {
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #dee2e6;
+    }
+    .page-header h1 {
+        font-size: 1.6rem;
+        font-weight: 700;
+    }
+    .page-header .vacancy-title-link {
+        color: #9F2241;
+        text-decoration: none;
+    }
+    .page-header .vacancy-title-link:hover {
+        text-decoration: underline;
+    }
+    .stats-bar {
+        background-color: #e9ecef;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+    .stat-item {
+        text-align: center;
+        padding: 5px 10px;
+    }
+    .stat-item .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #9F2241;
+    }
+    .stat-item .stat-label {
+        font-size: 0.85rem;
+        color: #6c757d;
+    }
+    .filter-controls {
+        margin-bottom: 20px;
+        padding: 15px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+    .applicant-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        margin-bottom: 15px;
+        padding: 15px;
+        transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    .applicant-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .applicant-card .applicant-name {
+        font-weight: 500;
+        color: #343a40;
+        font-size: 1.1rem;
+    }
+    .applicant-card .applicant-summary,
+    .applicant-card .applicant-meta {
+        font-size: 0.85rem;
+        color: #6c757d;
+        margin-bottom: 5px;
+    }
+    .applicant-card .applicant-meta i {
+        margin-right: 4px;
+    }
+    .applicant-card .status-select {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.6rem;
+        max-width: 180px;
+    }
+    .actions-dropdown .dropdown-toggle::after {
+        display: none;
+    }
+    .skills-list span.badge {
+        margin-right: 4px;
+        margin-bottom: 4px;
+        font-size: 0.75rem;
+    }
+    .profile-photo {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #dee2e6;
+    }
+    .profile-photo-placeholder {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #f8f9fa;
+        border: 2px solid #dee2e6;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #6c757d;
+        font-size: 1.2rem;
+    }
+    .empty-state {
+        text-align: center;
+        padding: 60px 20px;
+        color: #6c757d;
+    }
+    .empty-state i {
+        font-size: 4rem;
+        margin-bottom: 20px;
+        opacity: 0.5;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container applicants-container">
+    <!-- Header de la página -->
+    <div class="page-header d-flex justify-content-between align-items-start">
+        <div>
+            <h1>Postulantes para: <a href="{% url 'detalle_vacante' vacante.id %}" class="vacancy-title-link">{{ vacante.titulo }}</a></h1>
+            <p class="text-muted mb-0">{{ vacante.secretaria.nombre }} • {{ vacante.get_municipio_display }}, Estado de México</p>
+        </div>
+        <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
+            <i class="bi bi-pencil-square"></i> Editar Vacante
+        </a>
+    </div>
+
+    <!-- Barra de estadísticas -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value">{{ estadisticas.total_postulantes }}</div>
+            <div class="stat-label">Total Postulantes</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value text-success">{{ estadisticas.nuevos_hoy }}</div>
+            <div class="stat-label">Nuevos Hoy</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{ estadisticas.en_revision }}</div>
+            <div class="stat-label">En Revisión</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{ estadisticas.entrevista }}</div>
+            <div class="stat-label">En Entrevista</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value">{{ estadisticas.aceptados }}</div>
+            <div class="stat-label">Aceptados</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value text-danger">{{ estadisticas.rechazados }}</div>
+            <div class="stat-label">Rechazados</div>
+        </div>
+    </div>
+
+    <!-- Controles de filtro -->
+    <div class="filter-controls">
+        <div class="row g-2 align-items-center">
+            <div class="col-md-3">
+                <label for="filterStatus" class="form-label visually-hidden">Filtrar por estado:</label>
+                <select class="form-select form-select-sm" id="filterStatus">
+                    <option selected value="">Todos los Estados</option>
+                    <option value="enviada">Enviada</option>
+                    <option value="en_revision">En Revisión</option>
+                    <option value="preseleccionado">Preseleccionado</option>
+                    <option value="entrevista">En Entrevista</option>
+                    <option value="aceptada">Aceptada</option>
+                    <option value="rechazada">Rechazada</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="filterMunicipio" class="form-label visually-hidden">Filtrar por municipio:</label>
+                <input type="text" class="form-control form-control-sm" id="filterMunicipio" placeholder="Municipio del candidato">
+            </div>
+            <div class="col-md-3">
+                <label for="filterSkills" class="form-label visually-hidden">Filtrar por habilidad:</label>
+                <input type="text" class="form-control form-control-sm" id="filterSkills" placeholder="Habilidad (ej: React)">
+            </div>
+            <div class="col-md-3">
+                <label for="sortPostulantes" class="form-label visually-hidden">Ordenar por:</label>
+                <select class="form-select form-select-sm" id="sortPostulantes">
+                    <option selected value="fecha_desc">Más Recientes</option>
+                    <option value="fecha_asc">Más Antiguos</option>
+                    <option value="nombre_asc">Nombre (A-Z)</option>
+                    <option value="nombre_desc">Nombre (Z-A)</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lista de postulantes -->
+    {% if postulaciones %}
+        <div id="postulantesContainer">
+            {% for postulacion in postulaciones %}
+                <div class="applicant-card"
+                     data-estado="{{ postulacion.estado }}"
+                     data-postulacion-id="{{ postulacion.id }}"
+                     data-nombre="{{ postulacion.interesado.nombre_completo|lower }}"
+                     data-municipio="{{ postulacion.interesado.get_municipio_display|default:'Sin especificar'|lower }}">
+                    <div class="row align-items-center">
+                        <!-- Información del candidato -->
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-center mb-2">
+                                <!-- Foto de perfil -->
+                                {% if postulacion.interesado.foto_perfil %}
+                                    <img src="{{ postulacion.interesado.foto_perfil.url }}" alt="Foto de {{ postulacion.interesado.nombre_completo }}" class="profile-photo me-2">
+                                {% else %}
+                                    <div class="profile-photo-placeholder me-2">
+                                        <i class="bi bi-person"></i>
+                                    </div>
+                                {% endif %}
+
+                                <div>
+                                    <h6 class="applicant-name mb-0">{{ postulacion.interesado.nombre_completo }}</h6>
+                                    {% if postulacion.interesado.municipio %}
+                                        <small class="text-muted">{{ postulacion.interesado.get_municipio_display }}, Edo. México</small>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <!-- Resumen profesional -->
+                            {% if postulacion.curriculum.resumen_profesional %}
+                                <p class="applicant-summary">{{ postulacion.curriculum.resumen_profesional|truncatewords:20 }}</p>
+                            {% else %}
+                                <p class="applicant-summary text-muted fst-italic">Sin resumen profesional disponible</p>
+                            {% endif %}
+
+                            <!-- Habilidades -->
+                            {% if postulacion.curriculum.habilidades.all %}
+                                <div class="skills-list">
+                                    {% for habilidad in postulacion.curriculum.habilidades.all|slice:":5" %}
+                                        <span class="badge
+                                            {% if habilidad.nivel == 'experto' %}bg-success
+                                            {% elif habilidad.nivel == 'avanzado' %}bg-primary
+                                            {% elif habilidad.nivel == 'intermedio' %}bg-info
+                                            {% else %}bg-secondary{% endif %}">
+                                            {{ habilidad.habilidad.nombre }}
+                                        </span>
+                                    {% endfor %}
+                                    {% if postulacion.curriculum.habilidades.count > 5 %}
+                                        <span class="badge bg-light text-dark">+{{ postulacion.curriculum.habilidades.count|add:"-5" }} más</span>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Información de postulación -->
+                        <div class="col-md-3">
+                            <p class="applicant-meta mb-1">
+                                <i class="bi bi-calendar-event"></i>
+                                Postuló: {{ postulacion.fecha_postulacion|date:"d M, Y" }}
+                            </p>
+                            <p class="applicant-meta mb-1">
+                                <i class="bi bi-clock"></i>
+                                {{ postulacion.tiempo_desde_postulacion }}
+                            </p>
+                            {% if postulacion.interesado.telefono %}
+                                <p class="applicant-meta mb-1">
+                                    <i class="bi bi-telephone"></i>
+                                    {{ postulacion.interesado.telefono }}
+                                </p>
+                            {% endif %}
+                            {% if postulacion.mensaje_motivacion %}
+                                <p class="applicant-meta mb-0">
+                                    <i class="bi bi-chat-quote"></i>
+                                    <em>"{{ postulacion.mensaje_motivacion|truncatewords:10 }}"</em>
+                                </p>
+                            {% endif %}
+                        </div>
+
+                        <!-- Cambiar estado -->
+                        <div class="col-md-2">
+                            <select class="form-select form-select-sm status-select"
+                                    aria-label="Cambiar estado de {{ postulacion.interesado.nombre_completo }}"
+                                    onchange="cambiarEstadoPostulacion({{ postulacion.id }}, this.value, '{{ postulacion.interesado.nombre_completo }}')">
+                                <option value="enviada" {% if postulacion.estado == 'enviada' %}selected{% endif %}>Enviada</option>
+                                <option value="en_revision" {% if postulacion.estado == 'en_revision' %}selected{% endif %}>En Revisión</option>
+                                <option value="preseleccionado" {% if postulacion.estado == 'preseleccionado' %}selected{% endif %}>Preseleccionado</option>
+                                <option value="entrevista" {% if postulacion.estado == 'entrevista' %}selected{% endif %}>En Entrevista</option>
+                                <option value="aceptada" {% if postulacion.estado == 'aceptada' %}selected{% endif %}>Aceptada</option>
+                                <option value="rechazada" {% if postulacion.estado == 'rechazada' %}selected{% endif %}>Rechazada</option>
+                            </select>
+                        </div>
+
+                        <!-- Acciones -->
+                        <div class="col-md-3 text-md-end">
+                            <div class="dropdown">
+                                <button class="btn btn-outline-secondary btn-sm dropdown-toggle" type="button" id="actionsDropdown{{ postulacion.id }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i> Acciones
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown{{ postulacion.id }}">
+                                    <li>
+                                        <a class="dropdown-item" href="#" onclick="verPerfilCompleto({{ postulacion.interesado.id }})">
+                                            <i class="bi bi-person-fill"></i> Ver Perfil Completo
+                                        </a>
+                                    </li>
+                                    <li>
+                                            <a class="dropdown-item" href="{% url 'descargar_cv_pdf_reclutador' %}?interesado_id={{ postulacion.interesado.id }}">
+                                            <i class="bi bi-file-earmark-arrow-down-fill empty-state"></i> Descargar CV
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendMessageModal"
+                                           data-candidate-name="{{ postulacion.interesado.nombre_completo }}"
+                                           data-candidate-id="{{ postulacion.interesado.id }}"
+                                           data-postulacion-id="{{ postulacion.id }}">
+                                            <i class="bi bi-chat-left-text-fill"></i> Enviar Mensaje
+                                        </a>
+                                    </li>
+                                    {% if postulacion.notas_reclutador %}
+                                        <li>
+                                            <a class="dropdown-item" href="#" onclick="verNotas({{ postulacion.id }}, '{{ postulacion.notas_reclutador|escapejs }}')">
+                                                <i class="bi bi-sticky-fill"></i> Ver Notas
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                    <li><hr class="dropdown-divider"></li>
+                                    <li>
+                                        <a class="dropdown-item text-danger" href="#" onclick="rechazarPostulacion({{ postulacion.id }}, '{{ postulacion.interesado.nombre_completo }}')">
+                                            <i class="bi bi-x-circle-fill"></i> Rechazar Definitivamente
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Paginación (para futuro) -->
+        {% comment %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">2</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endcomment %}
+
+    {% else %}
+        <!-- Estado vacío -->
+        <div class="empty-state">
+            <i class="bi bi-person-x"></i>
+            <h3>Aún no hay postulaciones</h3>
+            <p>Esta vacante aún no ha recibido postulaciones de candidatos.</p>
+            <p class="text-muted">Las postulaciones aparecerán aquí conforme los interesados se postulen a esta vacante.</p>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Modal para enviar mensajes -->
+<div class="modal fade" id="sendMessageModal" tabindex="-1" aria-labelledby="sendMessageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="sendMessageModalLabel">
+                    <i class="bi bi-chat-left-text-fill"></i>
+                    Enviar Mensaje a <span id="modalCandidateName">Candidato</span>
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="messageForm">
+                    {% csrf_token %}
+                    <input type="hidden" id="candidateId" name="candidate_id">
+                    <input type="hidden" id="postulacionId" name="postulacion_id">
+
+                    <div class="mb-3">
+                        <label for="messageSubject" class="form-label">Asunto</label>
+                        <input type="text" class="form-control" id="messageSubject" name="subject"
+                               value="Información sobre tu postulación a {{ vacante.titulo }}" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="messageBody" class="form-label">Mensaje</label>
+                        <textarea class="form-control" id="messageBody" name="message" rows="6"
+                                  placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="messageTemplate" class="form-label">Usar Plantilla (Opcional)</label>
+                        <select class="form-select form-select-sm" id="messageTemplate" onchange="aplicarPlantilla(this.value)">
+                            <option selected value="">Sin plantilla</option>
+                            <option value="invitacion_entrevista">Invitación a Entrevista</option>
+                            <option value="solicitud_informacion">Solicitud de Información Adicional</option>
+                            <option value="agradecimiento">Agradecimiento y Próximos Pasos</option>
+                            <option value="rechazo_respetuoso">Rechazo Respetuoso</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="enviarMensaje()">
+                    <i class="bi bi-send-fill"></i> Enviar Mensaje
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para notas del reclutador -->
+<div class="modal fade" id="notasModal" tabindex="-1" aria-labelledby="notasModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="notasModalLabel">
+                    <i class="bi bi-sticky-fill"></i> Notas del Reclutador
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p id="notasContent"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Función para actualizar estadísticas en tiempo real
+function actualizarEstadisticas() {
+    const cards = document.querySelectorAll('.applicant-card');
+
+    // Contar estados actuales
+    const contadores = {
+        total: cards.length,
+        enviada: 0,
+        en_revision: 0,
+        preseleccionado: 0,
+        entrevista: 0,
+        aceptada: 0,
+        rechazada: 0
+    };
+
+    cards.forEach(card => {
+        const estado = card.dataset.estado;
+        if (contadores.hasOwnProperty(estado)) {
+            contadores[estado]++;
+        }
+    });
+
+    // Actualizar los valores en el HTML
+    document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = contadores.total;
+    document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = contadores.en_revision;
+    document.querySelector('.stat-item:nth-child(4) .stat-value').textContent = contadores.entrevista;
+    document.querySelector('.stat-item:nth-child(5) .stat-value').textContent = contadores.aceptada;
+    document.querySelector('.stat-item:nth-child(6) .stat-value').textContent = contadores.rechazada;
+}
+
+// Función para filtrar postulantes en tiempo real
+// Variables globales para filtros
+let filterStatus, filterMunicipio, filterSkills, sortPostulantes;
+
+// Función para filtrar postulantes en tiempo real
+function filtrarPostulantes() {
+    const cards = document.querySelectorAll('.applicant-card');
+    const statusFilter = filterStatus?.value.toLowerCase() || '';
+    const municipioFilter = filterMunicipio?.value.toLowerCase() || '';
+    const skillsFilter = filterSkills?.value.toLowerCase() || '';
+
+    cards.forEach(card => {
+        const estado = card.dataset.estado.toLowerCase();
+        const nombre = card.dataset.nombre.toLowerCase();
+        const municipio = card.dataset.municipio.toLowerCase();
+        const skillsText = card.querySelector('.skills-list')?.textContent.toLowerCase() || '';
+
+        const matchStatus = !statusFilter || estado.includes(statusFilter);
+        const matchMunicipio = !municipioFilter || municipio.includes(municipioFilter);
+        const matchSkills = !skillsFilter || skillsText.includes(skillsFilter) || nombre.includes(skillsFilter);
+
+        if (matchStatus && matchMunicipio && matchSkills) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar variables globales
+    filterStatus = document.getElementById('filterStatus');
+    filterMunicipio = document.getElementById('filterMunicipio');
+    filterSkills = document.getElementById('filterSkills');
+    sortPostulantes = document.getElementById('sortPostulantes');
+
+    // Agregar event listeners
+    if (filterStatus) filterStatus.addEventListener('change', filtrarPostulantes);
+    if (filterMunicipio) filterMunicipio.addEventListener('input', filtrarPostulantes);
+    if (filterSkills) filterSkills.addEventListener('input', filtrarPostulantes);
+});
+
+// Función para cambiar estado de postulación
+function cambiarEstadoPostulacion(postulacionId, nuevoEstado, nombreCandidato) {
+    if (!confirm(`¿Cambiar el estado de ${nombreCandidato} a "${nuevoEstado}"?`)) {
+        // Si cancela, revertir el select
+        location.reload();
+        return;
+    }
+
+    fetch(`/ajax/cambiar-estado-postulacion/${postulacionId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken'),
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        body: JSON.stringify({
+            'nuevo_estado': nuevoEstado
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Respuesta del servidor:', data); // Debug
+
+        if (data.success) {
+            mostrarMensaje(`Estado de ${nombreCandidato} actualizado a "${data.estado_display}"`, 'success');
+
+            // ACTUALIZAR EL ATRIBUTO DATA-ESTADO EN EL HTML
+            const applicantCard = document.querySelector(`.applicant-card[data-postulacion-id="${postulacionId}"]`);
+            if (applicantCard) {
+                console.log(`Actualizando estado de ${data.nuevo_estado} para postulación ${postulacionId}`); // Debug
+                applicantCard.setAttribute('data-estado', data.nuevo_estado);
+
+                // También actualizar visualmente cualquier badge de estado si existe
+                const statusBadge = applicantCard.querySelector('.status-badge');
+                if (statusBadge) {
+                    // Remover todas las clases de estado anteriores
+                    statusBadge.classList.remove('bg-primary', 'bg-warning', 'bg-info', 'bg-success', 'bg-danger', 'bg-secondary');
+
+                    // Agregar la clase correspondiente al nuevo estado
+                    const statusClasses = {
+                        'enviada': 'bg-primary',
+                        'en_revision': 'bg-warning',
+                        'preseleccionado': 'bg-info',
+                        'entrevista': 'bg-info',
+                        'aceptada': 'bg-success',
+                        'rechazada': 'bg-danger'
+                    };
+
+                    if (statusClasses[data.nuevo_estado]) {
+                        statusBadge.classList.add(statusClasses[data.nuevo_estado]);
+                        statusBadge.textContent = data.estado_display;
+                    }
+                }
+            }
+
+            // ACTUALIZAR LAS ESTADÍSTICAS EN TIEMPO REAL
+            if (data.estadisticas) {
+                // Usar estadísticas del backend si están disponibles
+                document.querySelector('.stat-item:nth-child(1) .stat-value').textContent = data.estadisticas.total_postulantes;
+                document.querySelector('.stat-item:nth-child(2) .stat-value').textContent = data.estadisticas.nuevos_hoy;
+                document.querySelector('.stat-item:nth-child(3) .stat-value').textContent = data.estadisticas.en_revision;
+                document.querySelector('.stat-item:nth-child(4) .stat-value').textContent = data.estadisticas.entrevista;
+                document.querySelector('.stat-item:nth-child(5) .stat-value').textContent = data.estadisticas.aceptados;
+                document.querySelector('.stat-item:nth-child(6) .stat-value').textContent = data.estadisticas.rechazados;
+            } else {
+                // Fallback: calcular estadísticas desde el frontend
+                actualizarEstadisticas();
+            }
+
+            // REAPLICAR LOS FILTROS ACTUALES
+            filtrarPostulantes();
+
+        } else {
+            mostrarMensaje(data.error || 'Error al cambiar el estado', 'error');
+            location.reload(); // Recargar para revertir el cambio
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarMensaje('Error de conexión', 'error');
+        location.reload();
+    });
+}
+
+// Configurar modal de envío de mensajes
+const sendMessageModal = document.getElementById('sendMessageModal');
+if (sendMessageModal) {
+    sendMessageModal.addEventListener('show.bs.modal', event => {
+        const button = event.relatedTarget;
+        const candidateName = button.getAttribute('data-candidate-name');
+        const candidateId = button.getAttribute('data-candidate-id');
+        const postulacionId = button.getAttribute('data-postulacion-id');
+
+        document.getElementById('modalCandidateName').textContent = candidateName;
+        document.getElementById('candidateId').value = candidateId;
+        document.getElementById('postulacionId').value = postulacionId;
+    });
+}
+
+// Plantillas de mensajes
+function aplicarPlantilla(tipoPlantilla) {
+    const messageBody = document.getElementById('messageBody');
+    const messageSubject = document.getElementById('messageSubject');
+
+    const plantillas = {
+        'invitacion_entrevista': {
+            subject: 'Invitación a Entrevista - {{ vacante.titulo }}',
+            body: `Estimado/a candidato/a,
+
+Nos complace informarte que has sido preseleccionado/a para una entrevista para el puesto de {{ vacante.titulo }}.
+
+Detalles de la entrevista:
+- Fecha: [Especificar fecha]
+- Hora: [Especificar hora]
+- Modalidad: [Presencial/Virtual]
+- Duración estimada: [Tiempo estimado]
+
+Por favor, confirma tu disponibilidad respondiendo a este mensaje.
+
+Saludos cordiales,
+{{ user.reclutador.nombre_completo }}
+{{ user.reclutador.secretaria.nombre }}`
+        },
+        'solicitud_informacion': {
+            subject: 'Solicitud de Información Adicional - {{ vacante.titulo }}',
+            body: `Estimado/a candidato/a,
+
+Gracias por tu interés en el puesto de {{ vacante.titulo }}.
+
+Nos gustaría solicitar información adicional para continuar con el proceso de selección:
+
+- [Especificar qué información necesitas]
+- [Documentos adicionales si es necesario]
+
+Te agradecemos tu pronta respuesta.
+
+Saludos cordiales,
+{{ user.reclutador.nombre_completo }}
+{{ user.reclutador.secretaria.nombre }}`
+        },
+        'agradecimiento': {
+            subject: 'Agradecimiento y Próximos Pasos - {{ vacante.titulo }}',
+            body: `Estimado/a candidato/a,
+
+Agradecemos tu participación en el proceso de selección para {{ vacante.titulo }}.
+
+Los próximos pasos en el proceso serán:
+1. [Paso 1]
+2. [Paso 2]
+3. [Paso 3]
+
+Nos pondremos en contacto contigo dentro de [timeframe] para informarte sobre el avance.
+
+Saludos cordiales,
+{{ user.reclutador.nombre_completo }}
+{{ user.reclutador.secretaria.nombre }}`
+        },
+        'rechazo_respetuoso': {
+            subject: 'Actualización sobre tu Postulación - {{ vacante.titulo }}',
+            body: `Estimado/a candidato/a,
+
+Agradecemos sinceramente tu interés en el puesto de {{ vacante.titulo }} y el tiempo que dedicaste al proceso de selección.
+
+Después de una cuidadosa evaluación, hemos decidido continuar con otros candidatos que se ajustan más específicamente a los requisitos actuales del puesto.
+
+Valoramos tu perfil profesional y te animamos a postularte a futuras oportunidades que puedan surgir en nuestra organización.
+
+Te deseamos mucho éxito en tu búsqueda profesional.
+
+Saludos cordiales,
+{{ user.reclutador.nombre_completo }}
+{{ user.reclutador.secretaria.nombre }}`
+        }
+    };
+
+    if (plantillas[tipoPlantilla]) {
+        messageSubject.value = plantillas[tipoPlantilla].subject;
+        messageBody.value = plantillas[tipoPlantilla].body;
+    }
+}
+
+// Función para enviar mensaje
+function enviarMensaje() {
+    const form = document.getElementById('messageForm');
+    const formData = new FormData(form);
+
+    // Aquí implementarías el envío del mensaje
+    // Por ahora solo simularemos
+    mostrarMensaje('Mensaje enviado exitosamente', 'success');
+
+    const modal = bootstrap.Modal.getInstance(sendMessageModal);
+    modal.hide();
+    form.reset();
+}
+
+// Función para ver notas
+function verNotas(postulacionId, notas) {
+    document.getElementById('notasContent').textContent = notas;
+    const notasModal = new bootstrap.Modal(document.getElementById('notasModal'));
+    notasModal.show();
+}
+
+// Función para ver perfil completo
+function verPerfilCompleto(interesadoId) {
+    // Redirigir a la vista del perfil del candidato
+    window.open(`{% url 'ver_perfil_candidato' 0 %}`.replace('0', interesadoId), '_blank');
+}
+
+// Función para rechazar postulación
+function rechazarPostulacion(postulacionId, nombreCandidato) {
+    if (confirm(`¿Estás seguro de que deseas rechazar definitivamente a ${nombreCandidato}? Esta acción no se puede deshacer.`)) {
+        cambiarEstadoPostulacion(postulacionId, 'rechazada', nombreCandidato);
+    }
+}
+
+// Función para obtener cookie CSRF
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// Función para mostrar mensajes
+function mostrarMensaje(mensaje, tipo) {
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    const toastDiv = document.createElement('div');
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+</script>
+{% endblock %}

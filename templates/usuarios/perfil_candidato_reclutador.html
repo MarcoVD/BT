@@ -1,0 +1,351 @@
+{% extends 'base.html' %}
+
+{% block title %}Perfil de {{ interesado.nombre_completo }} - Bolsa de Trabajo{% endblock %}
+
+{% block extra_css %}
+<style>
+    .candidate-header {
+        background: linear-gradient(135deg, #9F2241 0%, #bc955b 100%);
+        color: white;
+        padding: 40px 0;
+        margin-bottom: 30px;
+    }
+    .profile-photo {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid white;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .profile-photo-placeholder {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+        background-color: rgba(255,255,255,0.2);
+        border: 4px solid white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 3rem;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    }
+    .info-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        margin-bottom: 25px;
+        overflow: hidden;
+    }
+    .info-card-header {
+        background-color: #f8f9fa;
+        padding: 15px 20px;
+        border-bottom: 1px solid #dee2e6;
+        font-weight: 600;
+        color: #495057;
+    }
+    .info-card-body {
+        padding: 20px;
+    }
+    .skill-badge {
+        display: inline-block;
+        padding: 0.5rem 0.75rem;
+        margin: 0.25rem 0.25rem 0.25rem 0;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 500;
+    }
+    .skill-basico { background-color: #e9ecef; color: #495057; }
+    .skill-intermedio { background-color: #cff4fc; color: #055160; }
+    .skill-avanzado { background-color: #d1ecf1; color: #0c5460; }
+    .skill-experto { background-color: #d4edda; color: #155724; }
+    .timeline-item {
+        border-left: 3px solid #9F2241;
+        padding-left: 20px;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    .timeline-item::before {
+        content: '';
+        position: absolute;
+        left: -6px;
+        top: 0;
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background-color: #9F2241;
+    }
+    .postulacion-relacionada {
+        background-color: #f8f9fa;
+        border-left: 4px solid #9F2241;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 0 8px 8px 0;
+    }
+    .contact-info {
+        /*background-color: #f8f9fa;*/
+        border-radius: 8px;
+        padding: 15px;
+    }
+    .contact-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .contact-item:last-child {
+        margin-bottom: 0;
+    }
+    .contact-item i {
+        color: #9F2241;
+        margin-right: 10px;
+        width: 16px;
+    }
+</style>
+{% endblock %}
+{% block content %}
+<!-- Header del candidato -->
+<div class="candidate-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+                {% if interesado.foto_perfil %}
+                    <img src="{{ interesado.foto_perfil.url }}" alt="Foto de {{ interesado.nombre_completo }}" class="profile-photo">
+                {% else %}
+                    <div class="profile-photo-placeholder">
+                        <i class="bi bi-person"></i>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <h1 class="mb-2">{{ interesado.nombre_completo }}</h1>
+                {% if curriculum and curriculum.resumen_profesional %}
+                    <p class="lead">{{ curriculum.resumen_profesional }}</p>
+                {% else %}
+                    <p class="lead text-white-50">Candidato sin resumen profesional</p>
+                {% endif %}
+                
+                <div class="contact-info">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="contact-item">
+                                <i class="bi bi-envelope"></i>
+                                <span>{{ interesado.usuario.email }}</span>
+                            </div>
+                            {% if interesado.telefono %}
+                                <div class="contact-item">
+                                    <i class="bi bi-telephone"></i>
+                                    <span>{{ interesado.telefono }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="col-md-6">
+                            {% if interesado.municipio %}
+                                <div class="contact-item">
+                                    <i class="bi bi-geo-alt"></i>
+                                    <span>{{ interesado.get_municipio_display }}, Estado de México</span>
+                                </div>
+                            {% endif %}
+                            {% if interesado.fecha_nacimiento %}
+                                <div class="contact-item">
+                                    <i class="bi bi-calendar"></i>
+                                    <span>{{ interesado.fecha_nacimiento|date:"d M Y" }}</span>
+                                </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <!-- Columna principal -->
+        <div class="col-lg-8">
+            <!-- Experiencia Laboral -->
+            {% if experiencias %}
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-briefcase me-2"></i>Experiencia Laboral
+                    </div>
+                    <div class="info-card-body">
+                        {% for experiencia in experiencias %}
+                            <div class="timeline-item">
+                                <h6 class="mb-1">{{ experiencia.puesto }}</h6>
+                                <p class="text-primary mb-1">{{ experiencia.empresa }}</p>
+                                <p class="text-muted small mb-2">{{ experiencia.periodo_trabajo }}</p>
+                                <p class="mb-0">{{ experiencia.descripcion }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Educación -->
+            {% if educaciones %}
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-mortarboard me-2"></i>Educación y Formación
+                    </div>
+                    <div class="info-card-body">
+                        {% for educacion in educaciones %}
+                            <div class="timeline-item">
+                                <h6 class="mb-1">{{ educacion.titulo }}</h6>
+                                <p class="text-primary mb-1">{{ educacion.institucion }}</p>
+                                <p class="text-muted small mb-2">{{ educacion.periodo_estudio }}</p>
+                                {% if educacion.descripcion %}
+                                    <p class="mb-0">{{ educacion.descripcion }}</p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Habilidades -->
+            {% if habilidades %}
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-tools me-2"></i>Habilidades Técnicas
+                    </div>
+                    <div class="info-card-body">
+                        {% for habilidad in habilidades %}
+                            <span class="skill-badge skill-{{ habilidad.nivel }}">
+                                {{ habilidad.habilidad.nombre }} - {{ habilidad.get_nivel_display }}
+                            </span>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Idiomas -->
+            {% if idiomas %}
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-translate me-2"></i>Idiomas
+                    </div>
+                    <div class="info-card-body">
+                        <div class="row">
+                            {% for idioma in idiomas %}
+                                <div class="col-md-6 mb-3">
+                                    <h6>{{ idioma.idioma }}</h6>
+                                    <small class="text-muted">
+                                        Lectura: {{ idioma.get_nivel_lectura_display }} • 
+                                        Escritura: {{ idioma.get_nivel_escritura_display }} • 
+                                        Conversación: {{ idioma.get_nivel_conversacion_display }}
+                                    </small>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Columna lateral -->
+        <div class="col-lg-4">
+            <!-- Postulaciones relacionadas -->
+            {% if postulaciones_relacionadas %}
+                <div class="info-card">
+                    <div class="info-card-header">
+                        <i class="bi bi-file-earmark-person me-2"></i>Postulaciones a tus Vacantes
+                    </div>
+                    <div class="info-card-body">
+                        {% for postulacion in postulaciones_relacionadas %}
+                            <div class="postulacion-relacionada">
+                                <h6 class="mb-1">{{ postulacion.vacante.titulo }}</h6>
+                                <p class="small text-muted mb-1">
+                                    Postulado: {{ postulacion.fecha_postulacion|date:"d M, Y" }}
+                                </p>
+                                <span class="badge 
+                                    {% if postulacion.estado == 'enviada' %}bg-primary
+                                    {% elif postulacion.estado == 'en_revision' %}bg-warning
+                                    {% elif postulacion.estado == 'preseleccionado' %}bg-info
+                                    {% elif postulacion.estado == 'entrevista' %}bg-info
+                                    {% elif postulacion.estado == 'aceptada' %}bg-success
+                                    {% elif postulacion.estado == 'rechazada' %}bg-danger
+                                    {% else %}bg-secondary{% endif %}">
+                                    {{ postulacion.get_estado_display }}
+                                </span>
+                                {% if postulacion.mensaje_motivacion %}
+                                    <p class="small mt-2 mb-0 fst-italic">
+                                        "{{ postulacion.mensaje_motivacion|truncatewords:20 }}"
+                                    </p>
+                                {% endif %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Acciones del reclutador -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <i class="bi bi-gear me-2"></i>Acciones
+                </div>
+                <div class="info-card-body">
+                    <div class="d-grid gap-2">
+                        <a class="btn btn-outline-primary" href="{% url 'descargar_cv_pdf_reclutador' %}?interesado_id={{ postulacion.interesado.id }}"
+                           target="_blank">
+                            <i class="bi bi-file-earmark-arrow-down"></i> Descargar CV en PDF
+                        </a>
+                        <button type="button" class="btn btn-outline-success" 
+                                onclick="enviarMensajeRapido('{{ interesado.nombre_completo }}', {{ interesado.id }})">
+                            <i class="bi bi-chat-left-text"></i> Enviar Mensaje
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="window.close()">
+                            <i class="bi bi-x-circle"></i> Cerrar Ventana
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Estadísticas rápidas -->
+            <div class="info-card">
+                <div class="info-card-header">
+                    <i class="bi bi-graph-up me-2"></i>Resumen
+                </div>
+                <div class="info-card-body">
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="border-end">
+                                <h5 class="text-primary mb-0">{{ experiencias|length }}</h5>
+                                <small class="text-muted">Empleos</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="border-end">
+                                <h5 class="text-success mb-0">{{ educaciones|length }}</h5>
+                                <small class="text-muted">Estudios</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <h5 class="text-info mb-0">{{ habilidades|length }}</h5>
+                            <small class="text-muted">Habilidades</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function enviarMensajeRapido(nombreCandidato, candidatoId) {
+    // Esta función podría abrir un modal o redirigir a una página de mensajería
+    alert(`Funcionalidad de mensajería para ${nombreCandidato} (ID: ${candidatoId}) estará disponible próximamente.`);
+}
+
+// Funcionalidad para imprimir el perfil
+function imprimirPerfil() {
+    window.print();
+}
+
+// Agregar botón de imprimir si es necesario
+document.addEventListener('DOMContentLoaded', function() {
+    // Cualquier inicialización adicional si es necesaria
+});
+</script>
+{% endblock %}

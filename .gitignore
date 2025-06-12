@@ -1,0 +1,15 @@
+# Archivos de cache de Python
+__pycache__/
+*.pyc
+
+# Archivos de configuración del IDE (PyCharm)
+.idea/
+
+# Entorno virtual
+.venv/
+venv/
+env/
+
+ Otros archivos de sistema
+#.DS_Store
+#

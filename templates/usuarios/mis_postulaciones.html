@@ -1,0 +1,385 @@
+{% extends 'base.html' %}
+
+{% block title %}Mis Postulaciones - Bolsa de Trabajo{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header d-flex justify-content-between align-items-center mb-4">
+        <h1><i class="bi bi-file-earmark-person"></i> Mis Postulaciones</h1>
+        <a href="{% url 'index' %}" class="btn btn-primary">
+            <i class="bi bi-search"></i> Buscar Más Empleos
+        </a>
+    </div>
+
+    {% if postulaciones %}
+        <div class="row">
+            {% for postulacion in postulaciones %}
+                <div class="col-12 mb-3">
+                    <div class="card postulacion-card
+                        {% if postulacion.estado == 'enviada' %}border-primary
+                        {% elif postulacion.estado == 'en_revision' %}border-warning
+                        {% elif postulacion.estado == 'preseleccionado' %}border-info
+                        {% elif postulacion.estado == 'entrevista' %}border-info
+                        {% elif postulacion.estado == 'aceptada' %}border-success
+                        {% elif postulacion.estado == 'rechazada' %}border-danger
+                        {% else %}border-secondary{% endif %}">
+
+                        <div class="card-body">
+                            <div class="row align-items-center">
+                                <div class="col-md-7 col-lg-8">
+                                    <h5 class="card-title text-primary">
+                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="text-decoration-none">
+                                            {{ postulacion.vacante.titulo }}
+                                        </a>
+                                    </h5>
+
+                                    <div class="row text-muted small">
+                                        <div class="col-md-6">
+                                            <p class="mb-1">
+                                                <i class="bi bi-building"></i>
+                                                {{ postulacion.vacante.secretaria.nombre }}
+                                            </p>
+                                            <p class="mb-1">
+                                                <i class="bi bi-geo-alt"></i>
+                                                {{ postulacion.vacante.get_municipio_display }}, Estado de México
+                                            </p>
+                                            <p class="mb-1">
+                                                <i class="bi bi-calendar-check"></i>
+                                                Postulado: {{ postulacion.fecha_postulacion|date:"d M, Y" }}
+                                            </p>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <p class="mb-1">
+                                                <i class="bi bi-briefcase"></i>
+                                                {{ postulacion.vacante.get_tipo_empleo_display }}
+                                            </p>
+                                            {% if postulacion.vacante.salario_formateado != 'No especificado' %}
+                                                <p class="mb-1">
+                                                    <i class="bi bi-cash-stack"></i>
+                                                    {{ postulacion.vacante.salario_formateado }}
+                                                </p>
+                                            {% endif %}
+                                            <p class="mb-1">
+                                                <i class="bi bi-clock"></i>
+                                                {{ postulacion.tiempo_desde_postulacion }}
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {% if postulacion.mensaje_motivacion %}
+                                        <div class="mt-2">
+                                            <small class="text-muted">
+                                                <strong>Tu mensaje:</strong> "{{ postulacion.mensaje_motivacion|truncatewords:15 }}"
+                                            </small>
+                                        </div>
+                                    {% endif %}
+
+                                    {% if postulacion.notas_reclutador %}
+                                        <div class="mt-2">
+                                            <small class="text-info">
+                                                <i class="bi bi-chat-square-dots"></i>
+                                                <strong>Nota del reclutador:</strong> {{ postulacion.notas_reclutador|truncatewords:20 }}
+                                            </small>
+                                        </div>
+                                    {% endif %}
+                                </div>
+
+                                <div class="col-md-5 col-lg-4 d-flex flex-column align-items-md-end justify-content-between">
+                                    <!-- Estado de la postulación -->
+                                    <div class="mb-2">
+                                        {% if postulacion.estado == 'enviada' %}
+                                            <span class="badge bg-primary">Enviada</span>
+                                        {% elif postulacion.estado == 'en_revision' %}
+                                            <span class="badge bg-warning text-dark">En Revisión</span>
+                                        {% elif postulacion.estado == 'preseleccionado' %}
+                                            <span class="badge bg-info">Preseleccionado</span>
+                                        {% elif postulacion.estado == 'entrevista' %}
+                                            <span class="badge bg-info">En Entrevista</span>
+                                        {% elif postulacion.estado == 'aceptada' %}
+                                            <span class="badge bg-success">Aceptada</span>
+                                        {% elif postulacion.estado == 'rechazada' %}
+                                            <span class="badge bg-danger">Rechazada</span>
+                                        {% else %}
+                                            <span class="badge bg-secondary">{{ postulacion.get_estado_display }}</span>
+                                        {% endif %}
+                                    </div>
+
+                                    <!-- Acciones -->
+                                    <div class="btn-group-vertical btn-group-sm w-100" role="group">
+                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="btn btn-outline-primary">
+                                            <i class="bi bi-eye"></i> Ver Vacante
+                                        </a>
+
+                                        {% if postulacion.estado == 'enviada' or postulacion.estado == 'en_revision' %}
+                                            <button type="button" class="btn btn-outline-danger"
+                                                    onclick="confirmarRetiro('{{ postulacion.id }}', '{{ postulacion.vacante.titulo }}')">
+                                                <i class="bi bi-x-circle"></i> Retirar Postulación
+                                            </button>
+                                        {% endif %}
+
+                                        {% if postulacion.estado == 'aceptada' %}
+                                            <small class="text-success mt-2 text-center">
+                                                <i class="bi bi-check-circle"></i> ¡Felicitaciones!
+                                            </small>
+                                        {% elif postulacion.estado == 'entrevista' %}
+                                            <small class="text-info mt-2 text-center">
+                                                <i class="bi bi-person-video2"></i> ¡Prepárate para la entrevista!
+                                            </small>
+                                        {% endif %}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Paginación (opcional para futuro) -->
+        {% comment %}
+        <nav aria-label="Page navigation" class="mt-4">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="bi bi-chevron-left"></i>
+                    </a>
+                </li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">1</a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="bi bi-chevron-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        {% endcomment %}
+
+    {% else %}
+        <!-- Estado vacío -->
+        <div class="text-center py-5">
+            <i class="bi bi-file-earmark-person" style="font-size: 64px; color: #6c757d;"></i>
+            <h3 class="mt-3 text-muted">Aún no tienes postulaciones</h3>
+            <p class="text-muted">Explora las vacantes disponibles y postúlate a las que más te interesen.</p>
+            <a href="{% url 'index' %}" class="btn btn-primary btn-lg mt-3">
+                <i class="bi bi-search"></i> Buscar Empleos
+            </a>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Modal de confirmación para retirar postulación -->
+<div class="modal fade" id="confirmRetiroModal" tabindex="-1" aria-labelledby="confirmRetiroModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="confirmRetiroModalLabel">Confirmar Retiro de Postulación</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning">
+                    <i class="bi bi-exclamation-triangle-fill"></i>
+                    <strong>¿Estás seguro?</strong>
+                </div>
+                <p id="confirmRetiroMessage"></p>
+                <small class="text-muted">
+                    <strong>Nota:</strong> Una vez retirada la postulación, no podrás recuperarla.
+                    Si cambias de opinión, tendrás que postularte nuevamente.
+                </small>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-danger" id="confirmRetiroButton">
+                    <i class="bi bi-x-circle"></i> Sí, Retirar Postulación
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.postulacion-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    border-left-width: 4px !important;
+}
+
+.postulacion-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.btn-group-vertical .btn {
+    margin-bottom: 5px;
+}
+
+.btn-group-vertical .btn:last-child {
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .btn-group-vertical .btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+</style>
+
+<script>
+// Función para obtener el token CSRF
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function confirmarRetiro(postulacionId, vacanteNombre) {
+    const mensaje = `¿Estás seguro de que deseas retirar tu postulación para "${vacanteNombre}"?`;
+
+    document.getElementById('confirmRetiroMessage').textContent = mensaje;
+
+    const confirmButton = document.getElementById('confirmRetiroButton');
+    confirmButton.onclick = function() {
+        retirarPostulacion(postulacionId);
+    };
+
+    const modal = new bootstrap.Modal(document.getElementById('confirmRetiroModal'));
+    modal.show();
+}
+
+function retirarPostulacion(postulacionId) {
+    const confirmButton = document.getElementById('confirmRetiroButton');
+
+    // Mostrar spinner en el botón
+    const originalText = confirmButton.innerHTML;
+    confirmButton.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Retirando...';
+    confirmButton.disabled = true;
+
+    // Obtener CSRF token
+    const csrfToken = getCookie('csrftoken');
+
+    console.log('Enviando petición para retirar postulación:', postulacionId);
+    console.log('CSRF Token:', csrfToken);
+
+    fetch(`/retirar-postulacion/${postulacionId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrfToken,
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'same-origin'
+    })
+    .then(response => {
+        console.log('Response status:', response.status);
+        console.log('Response headers:', response.headers);
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data);
+
+        if (data.success) {
+            // Mostrar mensaje de éxito
+            mostrarMensaje(data.message, 'success');
+
+            // Cerrar modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('confirmRetiroModal'));
+            modal.hide();
+
+            // Recargar la página después de un momento
+            setTimeout(() => {
+                window.location.reload();
+            }, 1500);
+
+        } else {
+            mostrarMensaje(data.error || 'Error desconocido', 'error');
+
+            // Restaurar botón
+            confirmButton.innerHTML = originalText;
+            confirmButton.disabled = false;
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error);
+
+        // Mensajes de error más específicos
+        let errorMessage = 'Error de conexión. ';
+
+        if (error.message.includes('404')) {
+            errorMessage += 'Postulación no encontrada.';
+        } else if (error.message.includes('403')) {
+            errorMessage += 'No tienes permisos para esta acción.';
+        } else if (error.message.includes('500')) {
+            errorMessage += 'Error interno del servidor.';
+        } else {
+            errorMessage += 'Inténtalo nuevamente.';
+        }
+
+        mostrarMensaje(errorMessage, 'error');
+
+        // Restaurar botón
+        confirmButton.innerHTML = originalText;
+        confirmButton.disabled = false;
+    });
+}
+
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+</script>
+{% endblock %}
