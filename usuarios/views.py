@@ -12,11 +12,12 @@ from django.views.decorators.http import require_http_methods
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction
 from django.db.models import Count, Q
-from django.http import JsonResponse, Http404, HttpResponse
+from django.http import JsonResponse, HttpResponse, Http404
 from django.template.loader import render_to_string
 from django.forms import modelformset_factory
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
+from django.core.paginator import Paginator
 from datetime import date
 # Importaciones para manejo de archivos e imágenes
 from weasyprint import HTML
@@ -1107,7 +1108,7 @@ def index_view(request):
     vacantes = Vacante.objects.filter(
         estado_vacante='publicada',
         aprobada=True
-    ).select_related('secretaria', 'reclutador', 'categoria')
+    ).select_related('secretaria', 'categoria')
 
     # Aplicar búsqueda si existe
     if busqueda:
@@ -1118,6 +1119,10 @@ def index_view(request):
         )
 
     vacantes = vacantes.order_by('-fecha_publicacion')[:12]
+    # Paginación
+    paginator = Paginator(vacantes, 2)  # 15 cards por página
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
         'vacantes': vacantes,

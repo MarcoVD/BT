@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
-
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/cards-responsive.css' %}">
 {% block title %}Inicio - Bolsa de Trabajo{% endblock %}
 
 {% block content %}
 <div class="text-center">
     <h1 class="display-4">Bienvenido a la Bolsa de Trabajo</h1>
     <p class="lead">de la Secretaría de Movilidad del Estado de México</p>
-<!--    {% if total_vacantes > 0 %}-->
-<!--        <p class="text-muted">{{ total_vacantes }} vacante{{ total_vacantes|pluralize }} disponible{{ total_vacantes|pluralize }}</p>-->
-<!--    {% endif %}-->
+{#<!--    {% if total_vacantes > 0 %}-->#}
+{#<!--        <p class="text-muted">{{ total_vacantes }} vacante{{ total_vacantes|pluralize }} disponible{{ total_vacantes|pluralize }}</p>-->#}
+{#<!--    {% endif %}-->#}
 </div>
     <hr class="bg-secondary">
 <!--busqueda-->

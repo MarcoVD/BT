@@ -287,10 +287,10 @@
                 </div>
                 <div class="info-card-body">
                     <div class="d-grid gap-2">
-                        <a class="btn btn-outline-primary" href="{% url 'descargar_cv_pdf_reclutador' %}?interesado_id={{ postulacion.interesado.id }}"
-                           target="_blank">
-                            <i class="bi bi-file-earmark-arrow-down"></i> Descargar CV en PDF
-                        </a>
+{#                        <a class="btn btn-outline-primary" href="{% url 'descargar_cv_pdf_reclutador' %}?interesado_id={{ postulacion.interesado.id }}"#}
+{#                           target="_blank">#}
+{#                            <i class="bi bi-file-earmark-arrow-down"></i> Descargar CV en PDF#}
+{#                        </a>#}
                         <button type="button" class="btn btn-outline-success" 
                                 onclick="enviarMensajeRapido('{{ interesado.nombre_completo }}', {{ interesado.id }})">
                             <i class="bi bi-chat-left-text"></i> Enviar Mensaje

@@ -303,12 +303,12 @@
                                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="actionsDropdown{{ postulacion.id }}">
                                     <li>
                                         <a class="dropdown-item" href="#" onclick="verPerfilCompleto({{ postulacion.interesado.id }})">
-                                            <i class="bi bi-person-fill"></i> Ver Perfil Completo
+                                            <i class="empty-state bi bi-person-fill"></i> Ver Perfil Completo
                                         </a>
                                     </li>
                                     <li>
                                             <a class="dropdown-item" href="{% url 'descargar_cv_pdf_reclutador' %}?interesado_id={{ postulacion.interesado.id }}">
-                                            <i class="bi bi-file-earmark-arrow-down-fill empty-state"></i> Descargar CV
+                                            <i class="empty-state bi bi-file-earmark-arrow-down-fill"></i> Descargar CV
                                         </a>
                                     </li>
                                     <li>
@@ -316,7 +316,7 @@
                                            data-candidate-name="{{ postulacion.interesado.nombre_completo }}"
                                            data-candidate-id="{{ postulacion.interesado.id }}"
                                            data-postulacion-id="{{ postulacion.id }}">
-                                            <i class="bi bi-chat-left-text-fill"></i> Enviar Mensaje
+                                            <i class="empty-state bi bi-chat-left-text-fill"></i> Enviar Mensaje
                                         </a>
                                     </li>
                                     {% if postulacion.notas_reclutador %}
