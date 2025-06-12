@@ -98,28 +98,28 @@
 
                                     <div class="btn-group-vertical btn-group-sm w-33" role="group">
                                         {% if vacante.estado_vacante == 'publicada' %}
-                                            <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-info text-white">
+                                                    <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-person-lines-fill"></i> Ver Postulantes
                                             </a>
                                         {% endif %}
 
-                                        <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-warning text-dark">
+                                            <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
                                             <i class="bi bi-pencil-square"></i>
                                             {% if vacante.estado_vacante == 'borrador' %}Continuar Edición{% else %}Editar{% endif %}
                                         </a>
 
                                         {% if vacante.estado_vacante == 'publicada' %}
-                                            <button type="button" class="btn btn-danger"
+                                                    <button type="button" class="btn btn-outline-danger btn-sm"
                                                     onclick="confirmarAccion('cerrar', '{{ vacante.id }}', '{{ vacante.titulo }}')">
                                                 <i class="bi bi-lock-fill"></i> Cerrar Vacante
                                             </button>
                                         {% elif vacante.estado_vacante == 'cerrada' %}
-                                            <button type="button" class="btn btn-success"
+                                                    <button type="button" class="btn btn-outline-success btn-sm"
                                                     onclick="confirmarAccion('reabrir', '{{ vacante.id }}', '{{ vacante.titulo }}')">
                                                 <i class="bi bi-unlock-fill"></i> Reabrir Vacante
                                             </button>
                                         {% elif vacante.estado_vacante == 'borrador' %}
-                                            <button type="button" class="btn btn-danger"
+                                                    <button type="button" class="btn btn-outline-danger btn-sm"
                                                     onclick="confirmarAccion('eliminar', '{{ vacante.id }}', '{{ vacante.titulo }}')">
                                                 <i class="bi bi-trash-fill"></i> Eliminar Borrador
                                             </button>
