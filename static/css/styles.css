@@ -571,3 +571,328 @@ footer {
 /*            font-size: 2rem !important;*/
 /*        }*/
 /*    }*/
+
+/* ==============================================
+   SISTEMA DE CARDS RESPONSIVAS REUTILIZABLE
+   ============================================== */
+
+/* Contenedor principal para el sistema de cards responsivas */
+.responsive-cards-container {
+    display: grid;
+    gap: 1.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+/* Items individuales del grid */
+.responsive-card-item {
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Efectos de hover para las cards */
+.responsive-card-item:hover {
+    transform: translateY(-3px);
+}
+
+/* Animaciones para mostrar/ocultar cards */
+.responsive-card-item.hidden {
+    display: none;
+}
+
+.responsive-card-item.fade-out {
+    opacity: 0;
+    transform: translateY(10px);
+}
+
+.responsive-card-item.fade-in {
+    animation: fadeInUp 0.4s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ==============================================
+   BREAKPOINTS RESPONSIVOS
+   ============================================== */
+
+/* Móviles: 3 cards por vista (1 columna, mostrar 3) */
+@media (max-width: 767px) {
+    .responsive-cards-container {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
+
+/* Tablets: 3 cards por vista (3 columnas, 1 fila) */
+@media (min-width: 768px) and (max-width: 991px) {
+    .responsive-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.25rem;
+    }
+}
+
+/* Laptops: 4 cards por vista (2 columnas, 2 filas) */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .responsive-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* PC/Escritorio: 5 cards por vista (5 columnas, 1 fila en pantallas grandes, 2-3 filas en otras) */
+@media (min-width: 1200px) {
+    .responsive-cards-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Pantallas extra grandes: verdadero layout de 5 columnas */
+@media (min-width: 1400px) {
+    .responsive-cards-container {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.75rem;
+    }
+}
+
+/* ==============================================
+   CONTROLES DE PAGINACIÓN
+   ============================================== */
+
+.pagination-controls {
+    margin-top: 2rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #e9ecef;
+}
+
+.pagination-controls .btn {
+    min-width: 110px;
+    font-weight: 500;
+    border-radius: 8px;
+}
+
+.pagination-controls .btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.pagination-controls .btn:not(:disabled):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+}
+
+.pagination-info {
+    min-width: 150px;
+}
+
+#page-info {
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+}
+
+#showing-info {
+    font-size: 0.8rem;
+    color: #6c757d;
+}
+
+/* ==============================================
+   CLASES UTILITARIAS REUTILIZABLES
+   ============================================== */
+
+/* Variantes de espaciado */
+.responsive-cards-container.compact {
+    gap: 1rem;
+}
+
+.responsive-cards-container.spacious {
+    gap: 2rem;
+}
+
+/* Variantes de animación */
+.responsive-cards-container.no-animation .responsive-card-item {
+    transition: none;
+}
+
+.responsive-cards-container.fast-animation .responsive-card-item {
+    transition: all 0.15s ease;
+}
+
+.responsive-cards-container.slow-animation .responsive-card-item {
+    transition: all 0.6s ease;
+}
+
+/* Estados de carga */
+.responsive-cards-container.loading {
+    opacity: 0.7;
+    pointer-events: none;
+}
+
+.responsive-card-item.skeleton {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeleton-loading 1.5s infinite;
+    border-radius: 8px;
+    min-height: 200px;
+}
+
+@keyframes skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ==============================================
+   CLASES PARA DIFERENTES TIPOS DE CONTENIDO
+   ============================================== */
+
+/* Para cards de productos */
+.responsive-cards-container.products-grid .responsive-card-item {
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+/* Para cards de noticias/artículos */
+.responsive-cards-container.articles-grid {
+    gap: 2rem;
+}
+
+/* Para cards de equipo/personas */
+.responsive-cards-container.team-grid .responsive-card-item {
+    text-align: center;
+}
+
+/* Para cards de servicios */
+.responsive-cards-container.services-grid .responsive-card-item {
+    min-height: 250px;
+}
+
+/* ==============================================
+   MEJORAS DE ACCESIBILIDAD
+   ============================================== */
+
+.responsive-card-item:focus-within {
+    outline: 2px solid var(--bs-primary, #0d6efd);
+    outline-offset: 4px;
+    border-radius: 8px;
+}
+
+.pagination-controls .btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+    outline: none;
+}
+
+/* Reducir movimiento para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+    .responsive-card-item,
+    .pagination-controls .btn {
+        transition: none;
+    }
+
+    .responsive-card-item:hover,
+    .pagination-controls .btn:hover {
+        transform: none;
+    }
+
+    @keyframes fadeInUp {
+        from, to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* ==============================================
+   RESPONSIVE UTILITIES ADICIONALES
+   ============================================== */
+
+/* Ocultar elementos específicos por dispositivo */
+@media (max-width: 576px) {
+    .hide-mobile { display: none !important; }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+    .hide-tablet { display: none !important; }
+}
+
+@media (min-width: 992px) {
+    .hide-desktop { display: none !important; }
+}
+
+/* Mostrar solo en dispositivos específicos */
+@media (max-width: 576px) {
+    .show-mobile-only { display: block !important; }
+}
+@media (min-width: 577px) {
+    .show-mobile-only { display: none !important; }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+    .show-tablet-only { display: block !important; }
+}
+@media (max-width: 576px), (min-width: 992px) {
+    .show-tablet-only { display: none !important; }
+}
+
+@media (min-width: 992px) {
+    .show-desktop-only { display: block !important; }
+}
+@media (max-width: 991px) {
+    .show-desktop-only { display: none !important; }
+}
+
+/* ==============================================
+   OPTIMIZACIONES DE RENDIMIENTO
+   ============================================== */
+
+.responsive-cards-container {
+    contain: layout style;
+}
+
+.responsive-card-item {
+    contain: layout style paint;
+}
+
+/* Solo aplicar will-change cuando sea necesario */
+.responsive-card-item:hover {
+    will-change: transform, box-shadow;
+}
+
+.responsive-card-item:not(:hover) {
+    will-change: auto;
+}
+
+/* ==============================================
+   PRINT STYLES
+   ============================================== */
+
+@media print {
+    .responsive-cards-container {
+        display: block !important;
+        grid-template-columns: none !important;
+    }
+
+    .responsive-card-item {
+        break-inside: avoid;
+        margin-bottom: 1rem;
+        page-break-inside: avoid;
+    }
+
+    .pagination-controls {
+        display: none !important;
+    }
+
+    .responsive-card-item.hidden {
+        display: block !important;
+    }
+}
