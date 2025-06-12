@@ -104,26 +104,84 @@ a:hover {
             height: auto;
         }
 
-        .custom-card {
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: none;
-            position: relative;
-        }
+/* Reutilizar y mejorar estilos para las tarjetas en general */
+.custom-card, .vacante-card { /* Añadimos .vacante-card aquí para reutilizar estilos */
+    border-radius: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    height: 100%; /* Asegura que todas las tarjetas en una fila tengan la misma altura */
+    display: flex;
+    flex-direction: column;
+}
+.custom-card:hover, .vacante-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
 
-        .custom-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px #BC955B;
-        }
+.custom-card .card-body, .vacante-card .card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Permite que el cuerpo de la tarjeta ocupe el espacio disponible */
+}
 
-        .custom-card:hover::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            height: 4px;
-            width: 100%;
-        }
+.vacante-card .card-title {
+    color: var(--primary);
+    font-weight: 500;
+}
+
+.vacante-card .card-subtitle {
+    font-size: 0.9rem;
+}
+
+.vacante-card .badge {
+    font-size: 0.75rem;
+    margin-right: 5px;
+    margin-bottom: 5px;
+}
+
+/* Reglas Responsive para el número de tarjetas por fila */
+/* Por defecto (móviles): 3 tarjetas por fila */
+.card-columns-3 .col-md-12 {
+    flex: 0 0 auto;
+    width: 100%;
+}
+
+@media (min-width: 576px) { /* Small devices (landscape phones, 576px and up) */
+    .card-columns-3 .col-md-12 {
+        width: 33.333333%; /* 3 cards per row */
+    }
+}
+
+@media (min-width: 768px) { /* Medium devices (tablets, 768px and up) */
+    .card-columns-4 .col-md-12 {
+        width: 25%; /* 4 cards per row */
+    }
+    /* Asegurarse de que el col-md-12 del busqueda-vacantes se mantenga al 100% */
+    .search-results-container .col-md-12 { /* Usaremos una clase contenedora para la búsqueda */
+        width: 100%;
+    }
+}
+
+@media (min-width: 992px) { /* Large devices (desktops, 992px and up) */
+    .card-columns-5 .col-md-12 {
+        width: 20%; /* 5 cards per row */
+    }
+}
+
+        /*.custom-card:hover {*/
+        /*    transform: translateY(-5px);*/
+        /*    box-shadow: 0 10px 20px #BC955B;*/
+        /*}*/
+
+        /*.custom-card:hover::after {*/
+        /*    content: '';*/
+        /*    position: absolute;*/
+        /*    bottom: 0;*/
+        /*    left: 0;*/
+        /*    height: 4px;*/
+        /*    width: 100%;*/
+        /*}*/
 
         .custom-icon {
             font-size: 3.5rem;
