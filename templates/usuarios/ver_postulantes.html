@@ -4,6 +4,14 @@
 
 {% block extra_css %}
 <style>
+/* Ocultar el footer completamente en esta página */
+.footer {
+    display: none !important;
+}
+
+.footer-bottom {
+    display: none !important;
+}
     .applicants-container {
         margin-top: 20px;
         margin-bottom: 50px;
@@ -311,14 +319,15 @@
                                             <i class="empty-state bi bi-file-earmark-arrow-down-fill"></i> Descargar CV
                                         </a>
                                     </li>
-                                    <li>
-                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendMessageModal"
-                                           data-candidate-name="{{ postulacion.interesado.nombre_completo }}"
-                                           data-candidate-id="{{ postulacion.interesado.id }}"
-                                           data-postulacion-id="{{ postulacion.id }}">
-                                            <i class="empty-state bi bi-chat-left-text-fill"></i> Enviar Mensaje
-                                        </a>
-                                    </li>
+{#                                Aun no disponible#}
+{#                                    <li>#}
+{#                                        <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#sendMessageModal"#}
+{#                                           data-candidate-name="{{ postulacion.interesado.nombre_completo }}"#}
+{#                                           data-candidate-id="{{ postulacion.interesado.id }}"#}
+{#                                           data-postulacion-id="{{ postulacion.id }}">#}
+{#                                            <i class="empty-state bi bi-chat-left-text-fill"></i> Enviar Mensaje#}
+{#                                        </a>#}
+{#                                    </li>#}
                                     {% if postulacion.notas_reclutador %}
                                         <li>
                                             <a class="dropdown-item" href="#" onclick="verNotas({{ postulacion.id }}, '{{ postulacion.notas_reclutador|escapejs }}')">
@@ -340,29 +349,29 @@
             {% endfor %}
         </div>
 
-        <!-- Paginación (para futuro) -->
-        {% comment %}
-        <nav aria-label="Page navigation" class="mt-4">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <i class="bi bi-chevron-left"></i>
-                    </a>
-                </li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        <i class="bi bi-chevron-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        {% endcomment %}
+{#        <!-- Paginación (para futuro) -->#}
+{#        {% comment %}#}
+{#        <nav aria-label="Page navigation" class="mt-4">#}
+{#            <ul class="pagination justify-content-center">#}
+{#                <li class="page-item disabled">#}
+{#                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">#}
+{#                        <i class="bi bi-chevron-left"></i>#}
+{#                    </a>#}
+{#                </li>#}
+{#                <li class="page-item active" aria-current="page">#}
+{#                    <a class="page-link" href="#">1</a>#}
+{#                </li>#}
+{#                <li class="page-item">#}
+{#                    <a class="page-link" href="#">2</a>#}
+{#                </li>#}
+{#                <li class="page-item">#}
+{#                    <a class="page-link" href="#">#}
+{#                        <i class="bi bi-chevron-right"></i>#}
+{#                    </a>#}
+{#                </li>#}
+{#            </ul>#}
+{#        </nav>#}
+{#        {% endcomment %}#}
 
     {% else %}
         <!-- Estado vacío -->

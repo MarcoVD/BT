@@ -148,13 +148,11 @@
     <script src="{% static 'js/main.js' %}"></script>
 
     {% block extra_js %}
-            <!-- Script específico para búsqueda en index -->
-    {% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'buscar_vacantes' %}
-        <script src="{% static 'js/busqueda-vacantes.js' %}"></script>
-    {% endif %}
+        <!-- Script específico para búsqueda en index -->
+        {% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'buscar_vacantes' %}
+            <script src="{% static 'js/busqueda-vacantes.js' %}"></script>
+            <script src="{% static 'js/cards-responsive.js' %}"></script>
+        {% endif %}
     {% endblock %}
-
-
-
 </body>
 </html>
