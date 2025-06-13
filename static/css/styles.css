@@ -887,7 +887,6 @@ footer {
         margin-bottom: 1rem;
         page-break-inside: avoid;
     }
-
     .pagination-controls {
         display: none !important;
     }
