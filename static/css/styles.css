@@ -573,325 +573,218 @@ footer {
 /*    }*/
 
 /* ==============================================
-   SISTEMA DE CARDS RESPONSIVAS REUTILIZABLE
+   ESTILOS PARA PAGINACIÓN BOOTSTRAP
    ============================================== */
 
-/* Contenedor principal para el sistema de cards responsivas */
-.responsive-cards-container {
-    display: grid;
-    gap: 1.5rem;
-    width: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-/* Items individuales del grid */
-.responsive-card-item {
-    transition: all 0.3s ease;
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Efectos de hover para las cards */
-.responsive-card-item:hover {
-    transform: translateY(-3px);
-}
-
-/* Animaciones para mostrar/ocultar cards */
-.responsive-card-item.hidden {
-    display: none;
-}
-
-.responsive-card-item.fade-out {
-    opacity: 0;
-    transform: translateY(10px);
-}
-
-.responsive-card-item.fade-in {
-    animation: fadeInUp 0.4s ease forwards;
-}
-
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ==============================================
-   BREAKPOINTS RESPONSIVOS
-   ============================================== */
-
-/* Móviles: 3 cards por vista (1 columna, mostrar 3) */
-@media (max-width: 767px) {
-    .responsive-cards-container {
-        grid-template-columns: 1fr;
-        gap: 1rem;
-    }
-}
-
-/* Tablets: 3 cards por vista (3 columnas, 1 fila) */
-@media (min-width: 768px) and (max-width: 991px) {
-    .responsive-cards-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.25rem;
-    }
-}
-
-/* Laptops: 4 cards por vista (2 columnas, 2 filas) */
-@media (min-width: 992px) and (max-width: 1199px) {
-    .responsive-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-/* PC/Escritorio: 5 cards por vista (5 columnas, 1 fila en pantallas grandes, 2-3 filas en otras) */
-@media (min-width: 1200px) {
-    .responsive-cards-container {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1.5rem;
-    }
-}
-
-/* Pantallas extra grandes: verdadero layout de 5 columnas */
-@media (min-width: 1400px) {
-    .responsive-cards-container {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.75rem;
-    }
-}
-
-/* ==============================================
-   CONTROLES DE PAGINACIÓN
-   ============================================== */
-
-.pagination-controls {
+/* Estilos principales de paginación */
+.pagination {
     margin-top: 2rem;
-    padding: 1.5rem 0;
-    border-top: 1px solid #e9ecef;
+    margin-bottom: 1rem;
 }
 
-.pagination-controls .btn {
-    min-width: 110px;
+.pagination .page-link {
+    color: var(--primary);
+    border-color: #dee2e6;
+    padding: 0.5rem 0.75rem;
+    margin: 0 2px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
     font-weight: 500;
-    border-radius: 8px;
 }
 
-.pagination-controls .btn:disabled {
-    opacity: 0.6;
-    cursor: not-allowed;
-}
-
-.pagination-controls .btn:not(:disabled):hover {
+.pagination .page-link:hover {
+    color: white;
+    background-color: var(--primary);
+    border-color: var(--primary);
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.pagination-info {
-    min-width: 150px;
+.pagination .page-item.active .page-link {
+    background-color: var(--primary);
+    border-color: var(--primary);
+    color: white;
+    font-weight: 600;
+    box-shadow: 0 2px 6px rgba(159, 34, 65, 0.3);
 }
 
-#page-info {
-    font-size: 0.9rem;
-    padding: 0.5rem 1rem;
-    border-radius: 20px;
+.pagination .page-item.disabled .page-link {
+    color: #6c757d;
+    background-color: #fff;
+    border-color: #dee2e6;
+    cursor: not-allowed;
+    opacity: 0.6;
 }
 
-#showing-info {
-    font-size: 0.8rem;
+.pagination .page-item.disabled .page-link:hover {
+    transform: none;
+    box-shadow: none;
+    background-color: #fff;
+    border-color: #dee2e6;
     color: #6c757d;
 }
 
-/* ==============================================
-   CLASES UTILITARIAS REUTILIZABLES
-   ============================================== */
-
-/* Variantes de espaciado */
-.responsive-cards-container.compact {
-    gap: 1rem;
-}
-
-.responsive-cards-container.spacious {
-    gap: 2rem;
-}
-
-/* Variantes de animación */
-.responsive-cards-container.no-animation .responsive-card-item {
-    transition: none;
-}
-
-.responsive-cards-container.fast-animation .responsive-card-item {
-    transition: all 0.15s ease;
-}
-
-.responsive-cards-container.slow-animation .responsive-card-item {
-    transition: all 0.6s ease;
-}
-
-/* Estados de carga */
-.responsive-cards-container.loading {
-    opacity: 0.7;
-    pointer-events: none;
-}
-
-.responsive-card-item.skeleton {
-    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
-    background-size: 200% 100%;
-    animation: skeleton-loading 1.5s infinite;
-    border-radius: 8px;
-    min-height: 200px;
-}
-
-@keyframes skeleton-loading {
-    0% { background-position: 200% 0; }
-    100% { background-position: -200% 0; }
-}
-
-/* ==============================================
-   CLASES PARA DIFERENTES TIPOS DE CONTENIDO
-   ============================================== */
-
-/* Para cards de productos */
-.responsive-cards-container.products-grid .responsive-card-item {
-    max-width: 300px;
-    margin: 0 auto;
-}
-
-/* Para cards de noticias/artículos */
-.responsive-cards-container.articles-grid {
-    gap: 2rem;
-}
-
-/* Para cards de equipo/personas */
-.responsive-cards-container.team-grid .responsive-card-item {
+/* Efectos especiales para navegación */
+.pagination .page-item:first-child .page-link,
+.pagination .page-item:last-child .page-link {
+    font-weight: 600;
+    min-width: 80px;
     text-align: center;
 }
 
-/* Para cards de servicios */
-.responsive-cards-container.services-grid .responsive-card-item {
-    min-height: 250px;
+/* Animación de loading para enlaces de paginación */
+.pagination .page-link.loading {
+    pointer-events: none;
+    opacity: 0.7;
+    position: relative;
 }
 
-/* ==============================================
-   MEJORAS DE ACCESIBILIDAD
-   ============================================== */
-
-.responsive-card-item:focus-within {
-    outline: 2px solid var(--bs-primary, #0d6efd);
-    outline-offset: 4px;
-    border-radius: 8px;
+.pagination .page-link.loading::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin: -8px 0 0 -8px;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 0.8s linear infinite;
 }
 
-.pagination-controls .btn:focus {
-    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Información de paginación */
+.pagination-info {
+    text-align: center;
+    margin-top: 1rem;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+/* Responsive para paginación en móviles */
+@media (max-width: 576px) {
+    .pagination {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .pagination .page-link {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.875rem;
+        margin: 1px;
+    }
+
+    .pagination .page-item:first-child .page-link,
+    .pagination .page-item:last-child .page-link {
+        min-width: 70px;
+    }
+
+    /* Ocultar algunos números de página en móvil */
+    .pagination .page-item:not(.active):not(:first-child):not(:last-child):not(:nth-child(2)):not(:nth-last-child(2)) {
+        display: none;
+    }
+}
+
+/* Efecto hover mejorado */
+.pagination .page-link:focus {
+    box-shadow: 0 0 0 0.25rem rgba(159, 34, 65, 0.25);
+    border-color: var(--primary);
     outline: none;
 }
 
-/* Reducir movimiento para usuarios que lo prefieren */
-@media (prefers-reduced-motion: reduce) {
-    .responsive-card-item,
-    .pagination-controls .btn {
-        transition: none;
-    }
+/* Estados especiales para UX */
+.pagination .page-item.jumping .page-link {
+    animation: pageJump 0.3s ease;
+}
 
-    .responsive-card-item:hover,
-    .pagination-controls .btn:hover {
-        transform: none;
-    }
-
-    @keyframes fadeInUp {
-        from, to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
+@keyframes pageJump {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
 }
 
 /* ==============================================
-   RESPONSIVE UTILITIES ADICIONALES
+   UTILIDADES ADICIONALES PARA PAGINACIÓN
    ============================================== */
 
-/* Ocultar elementos específicos por dispositivo */
-@media (max-width: 576px) {
-    .hide-mobile { display: none !important; }
+/* Estilos para información adicional */
+.pagination-summary {
+    background-color: #f8f9fa;
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin: 1rem 0;
+    border-left: 4px solid var(--primary);
 }
 
-@media (min-width: 577px) and (max-width: 991px) {
-    .hide-tablet { display: none !important; }
+.pagination-summary .badge {
+    background-color: var(--primary);
+    color: white;
+    font-size: 0.8rem;
+    padding: 0.35em 0.6em;
 }
 
-@media (min-width: 992px) {
-    .hide-desktop { display: none !important; }
+/* Loading overlay para toda la página */
+#pagination-loading {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(2px);
 }
 
-/* Mostrar solo en dispositivos específicos */
-@media (max-width: 576px) {
-    .show-mobile-only { display: block !important; }
-}
-@media (min-width: 577px) {
-    .show-mobile-only { display: none !important; }
-}
-
-@media (min-width: 577px) and (max-width: 991px) {
-    .show-tablet-only { display: block !important; }
-}
-@media (max-width: 576px), (min-width: 992px) {
-    .show-tablet-only { display: none !important; }
-}
-
-@media (min-width: 992px) {
-    .show-desktop-only { display: block !important; }
-}
-@media (max-width: 991px) {
-    .show-desktop-only { display: none !important; }
-}
-
-/* ==============================================
-   OPTIMIZACIONES DE RENDIMIENTO
-   ============================================== */
-
-.responsive-cards-container {
-    contain: layout style;
-}
-
-.responsive-card-item {
-    contain: layout style paint;
-}
-
-/* Solo aplicar will-change cuando sea necesario */
-.responsive-card-item:hover {
-    will-change: transform, box-shadow;
-}
-
-.responsive-card-item:not(:hover) {
-    will-change: auto;
+#pagination-loading .spinner-border {
+    color: var(--primary);
+    width: 3rem;
+    height: 3rem;
 }
 
 /* ==============================================
-   PRINT STYLES
+   PRINT STYLES PARA PAGINACIÓN
    ============================================== */
 
 @media print {
-    .responsive-cards-container {
-        display: block !important;
-        grid-template-columns: none !important;
-    }
-
-    .responsive-card-item {
-        break-inside: avoid;
-        margin-bottom: 1rem;
-        page-break-inside: avoid;
-    }
-    .pagination-controls {
+    .pagination,
+    .pagination-info,
+    .pagination-summary {
         display: none !important;
     }
+}
 
-    .responsive-card-item.hidden {
-        display: block !important;
+/* ==============================================
+   ACCESIBILIDAD PARA PAGINACIÓN
+   ============================================== */
+
+/* Mejoras para lectores de pantalla */
+.pagination .page-link[aria-current="page"] {
+    font-weight: bold;
+}
+
+/* Reducir animaciones para usuarios que lo prefieren */
+@media (prefers-reduced-motion: reduce) {
+    .pagination .page-link {
+        transition: none;
+    }
+
+    .pagination .page-link:hover {
+        transform: none;
+    }
+
+    .pagination .page-item.jumping .page-link {
+        animation: none;
+    }
+
+    @keyframes pageJump {
+        0%, 100% { transform: translateY(0); }
     }
 }

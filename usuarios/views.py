@@ -816,6 +816,7 @@ def descargar_cv_pdf(request):
         messages.error(request, f'Error al generar PDF: {str(e)}')
         return redirect('perfil_interesado')
 
+
 @login_required
 # Agregar esta vista al archivo usuarios/views.py
 
@@ -901,6 +902,7 @@ def descargar_cv_pdf_reclutador(request):
     except Exception as e:
         messages.error(request, f'Error interno: {str(e)}')
         return redirect('mis_vacantes')
+
 
 @method_decorator(login_required, name='dispatch')
 class PublicarVacanteView(View):
@@ -1100,33 +1102,35 @@ class MisVacantesView(View):
 
 
 def index_view(request):
-    """Vista de la página de inicio con vacantes publicadas."""
+    """Vista de la página de inicio con vacantes publicadas y paginación."""
+
     # Obtener término de búsqueda
     busqueda = request.GET.get('q', '').strip()
 
     # Filtro base
-    vacantes = Vacante.objects.filter(
+    vacantes_list = Vacante.objects.filter(
         estado_vacante='publicada',
         aprobada=True
-    ).select_related('secretaria', 'categoria')
+    ).select_related('secretaria', 'categoria').order_by('-fecha_publicacion')
 
     # Aplicar búsqueda si existe
     if busqueda:
-        vacantes = vacantes.filter(
+        vacantes_list = vacantes_list.filter(
             Q(titulo__icontains=busqueda) |
             Q(categoria__nombre__icontains=busqueda) |
             Q(municipio__icontains=busqueda)
         )
 
-    vacantes = vacantes.order_by('-fecha_publicacion')[:12]
-    # Paginación
-    paginator = Paginator(vacantes, 2)  # 15 cards por página
+    # Configurar paginación - 5 vacantes por página
+    paginator = Paginator(vacantes_list, 5)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
 
     context = {
-        'vacantes': vacantes,
-        'total_vacantes': vacantes.count(),
+        'vacantes': page_obj,
+        'page_obj': page_obj,
+        'total_vacantes': paginator.count,
+        'busqueda': busqueda,
     }
     return render(request, 'usuarios/index.html', context)
 
@@ -1637,6 +1641,7 @@ def retirar_postulacion(request, postulacion_id):
             messages.error(request, error_msg)
             return redirect('mis_postulaciones')
 
+
 def test_urls(request):
     """Vista de prueba para verificar que las URLs funcionen"""
     return JsonResponse({
@@ -1705,7 +1710,6 @@ class VerPostulantesView(View):
         """
         Calcula las estadísticas de las postulaciones.
         """
-
 
         total_postulantes = postulaciones.count()
 
@@ -1779,7 +1783,6 @@ def cambiar_estado_postulacion(request, postulacion_id):
         estado_display = postulacion.get_estado_display()
 
         # Calcular estadísticas actualizadas para la vacante
-
 
         postulaciones_vacante = Postulacion.objects.filter(vacante=postulacion.vacante)
 
@@ -2092,7 +2095,7 @@ def ver_perfil_candidato(request, interesado_id):
 
 
 def buscar_vacantes(request):
-    """Vista para buscar vacantes con filtros."""
+    """Vista para buscar vacantes con filtros y paginación."""
 
     # Obtener parámetros de búsqueda
     query = request.GET.get('q', '').strip()
@@ -2100,14 +2103,14 @@ def buscar_vacantes(request):
     municipio = request.GET.get('municipio', '')
 
     # Comenzar con todas las vacantes publicadas y aprobadas
-    vacantes = Vacante.objects.filter(
+    vacantes_list = Vacante.objects.filter(
         estado_vacante='publicada',
         aprobada=True
-    ).select_related('secretaria', 'reclutador', 'categoria')
+    ).select_related('secretaria', 'reclutador', 'categoria').order_by('-fecha_publicacion')
 
     # Aplicar filtro de búsqueda por texto
     if query:
-        vacantes = vacantes.filter(
+        vacantes_list = vacantes_list.filter(
             Q(titulo__icontains=query) |
             Q(descripcion__icontains=query) |
             Q(categoria__nombre__icontains=query) |
@@ -2119,24 +2122,24 @@ def buscar_vacantes(request):
 
     # Aplicar filtro por tipo de empleo
     if tipo_empleo:
-        vacantes = vacantes.filter(tipo_empleo=tipo_empleo)
+        vacantes_list = vacantes_list.filter(tipo_empleo=tipo_empleo)
 
     # Aplicar filtro por municipio
     if municipio:
-        vacantes = vacantes.filter(municipio=municipio)
+        vacantes_list = vacantes_list.filter(municipio=municipio)
 
-    # Ordenar por fecha de publicación (más recientes primero)
-    vacantes = vacantes.order_by('-fecha_publicacion')
-
-    # Limitar resultados para mejor rendimiento
-    vacantes = vacantes[:50]
+    # Configurar paginación - 5 vacantes por página
+    paginator = Paginator(vacantes_list, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
 
     context = {
-        'vacantes': vacantes,
+        'vacantes': page_obj,
+        'page_obj': page_obj,
         'query': query,
         'tipo_empleo': tipo_empleo,
         'municipio': municipio,
-        'total_resultados': len(vacantes),
+        'total_resultados': paginator.count,
     }
 
     return render(request, 'usuarios/index.html', context)
@@ -2162,5 +2165,3 @@ def busqueda_vacantes_ajax(request):
 
     html = render_to_string('usuarios/vacantes_lista.html', {'vacantes': vacantes})
     return JsonResponse({'html': html})
-
-
