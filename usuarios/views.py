@@ -702,28 +702,113 @@ def eliminar_experiencia_ajax(request, experiencia_id):
             'success': False,
             'error': str(e)
         })
-
-
 @login_required
-def eliminar_educacion_ajax(request, educacion_id):
-    """Vista AJAX para eliminar educación."""
-    if request.method != 'DELETE' or request.user.rol != 'interesado':
+def editar_educacion_ajax(request, educacion_id):
+    """Vista AJAX para editar educación."""
+    if request.method != 'POST' or request.user.rol != 'interesado':
         return JsonResponse({'success': False, 'error': 'Método no permitido'})
 
     try:
         curriculum = request.user.interesado.curriculum
         educacion = get_object_or_404(Educacion, id=educacion_id, curriculum=curriculum)
-        educacion.delete()
 
-        return JsonResponse({
-            'success': True,
-            'message': 'Educación eliminada exitosamente'
-        })
+        # Usar la instancia existente para editar
+        form = EducacionForm(request.POST, instance=educacion)
+
+        if form.is_valid():
+            educacion_actualizada = form.save()
+            return JsonResponse({
+                'success': True,
+                'message': 'Educación actualizada exitosamente',
+                'educacion': {
+                    'id': educacion_actualizada.id,
+                    'titulo': educacion_actualizada.titulo,
+                    'institucion': educacion_actualizada.institucion,
+                    'periodo': educacion_actualizada.periodo_estudio
+                }
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'errors': form.errors
+            })
     except Exception as e:
         return JsonResponse({
             'success': False,
             'error': str(e)
         })
+
+@login_required
+# usuarios/views.py - VISTA DE ELIMINACIÓN CORREGIDA
+
+@login_required
+def eliminar_educacion_ajax(request, educacion_id):
+    """Vista AJAX para eliminar educación - VERSIÓN CORREGIDA."""
+
+    # ✅ CORREGIDO: Aceptar tanto DELETE como POST
+    if request.method not in ['DELETE', 'POST']:
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido. Se requiere DELETE o POST.'
+        }, status=405)
+
+    # Verificar permisos
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los interesados pueden eliminar educación.'
+        }, status=403)
+
+    try:
+        # Verificar que el usuario tenga curriculum
+        if not hasattr(request.user, 'interesado'):
+            return JsonResponse({
+                'success': False,
+                'error': 'Usuario no tiene perfil de interesado.'
+            }, status=403)
+
+        interesado = request.user.interesado
+
+        if not hasattr(interesado, 'curriculum'):
+            return JsonResponse({
+                'success': False,
+                'error': 'No tienes un curriculum creado.'
+            }, status=404)
+
+        curriculum = interesado.curriculum
+
+        # Buscar la educación que pertenece al curriculum del usuario
+        educacion = get_object_or_404(
+            Educacion,
+            id=educacion_id,
+            curriculum=curriculum
+        )
+
+        # Guardar información para el mensaje
+        titulo_educacion = educacion.titulo
+        institucion = educacion.institucion
+
+        # Eliminar la educación
+        educacion.delete()
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Educación "{titulo_educacion}" de {institucion} eliminada exitosamente.'
+        })
+
+    except Educacion.DoesNotExist:
+        return JsonResponse({
+            'success': False,
+            'error': 'Educación no encontrada o no tienes permiso para eliminarla.'
+        }, status=404)
+    except Exception as e:
+        # Log del error para debugging
+        print(f"Error en eliminar_educacion_ajax: {str(e)}")
+
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
 
 
 @login_required

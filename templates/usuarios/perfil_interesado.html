@@ -346,11 +346,17 @@
                                                     {% endif %}
                                                 </div>
                                                 <div class="btn-group-vertical">
+                                                    <!-- ✅ BOTÓN DE EDITAR (verificar que esté bien) -->
                                                     <button type="button" class="btn btn-sm btn-outline-primary mb-1"
                                                         onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}', '{{ educacion.fecha_inicio|date:"Y-m-d" }}', '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}', '{{ educacion.descripcion|escapejs }}')">
                                                         <i class="bi bi-pencil"></i>
                                                     </button>
-                                                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarEducacion({{ educacion.id }})">
+
+                                                    <!-- ✅ BOTÓN DE ELIMINAR (este es el importante) -->
+                                                    <button type="button"
+                                                            class="btn btn-sm btn-outline-danger"
+                                                            onclick="eliminarEducacion({{ educacion.id }})"
+                                                            title="Eliminar educación">
                                                         <i class="bi bi-trash"></i>
                                                     </button>
                                                 </div>
@@ -864,24 +870,26 @@ function eliminarExperiencia(id) {
 }
 
 // =========================
-// EDUCACIÓN
+// EDUCACIÓN - JAVASCRIPT CORREGIDO
 // =========================
 function mostrarModalEducacion() {
-    educacionEditandoId = null;
+    educacionEditandoId = null; // ← IMPORTANTE: Resetear ID
     document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
-    document.getElementById('educacionForm').reset();
+    document.getElementById('educacionForm').reset(); // ← IMPORTANTE: Limpiar formulario
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
 
 function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
-    educacionEditandoId = id;
+    educacionEditandoId = id; // ← IMPORTANTE: Establecer ID para edición
 
+    // Llenar el formulario con los datos existentes
     document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
     document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
     document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
     document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
     document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';
 
+    // Cambiar título del modal
     document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
@@ -890,7 +898,15 @@ function guardarEducacion() {
     const form = document.getElementById('educacionForm');
     const formData = new FormData(form);
 
-    let url = '/ajax/educacion/agregar/'; // Solo creación por ahora
+    // ✅ CORREGIDO: Determinar URL según si es creación o edición
+    let url;
+    if (educacionEditandoId) {
+        // Modo edición
+        url = `/ajax/educacion/editar/${educacionEditandoId}/`;
+    } else {
+        // Modo creación
+        url = '/ajax/educacion/agregar/';
+    }
 
     fetch(url, {
         method: 'POST',
@@ -903,34 +919,258 @@ function guardarEducacion() {
     .then(data => {
         if (data.success) {
             bootstrap.Modal.getInstance(document.getElementById('educacionModal')).hide();
-            location.reload();
+
+            // Mostrar mensaje de éxito
+            const accion = educacionEditandoId ? 'actualizada' : 'agregada';
+            mostrarMensaje(`Educación ${accion} exitosamente`, 'success');
+
+            // Recargar página para mostrar cambios
+            setTimeout(() => {
+                location.reload();
+            }, 1000);
         } else {
-            alert('Error: ' + JSON.stringify(data.errors || data.error));
+            mostrarMensaje('Error: ' + JSON.stringify(data.errors || data.error), 'error');
         }
     })
     .catch(error => {
         console.error('Error:', error);
-        alert('Error al guardar la educación');
+        mostrarMensaje('Error al guardar la educación', 'error');
     });
 }
 
-function eliminarEducacion(id) {
-    if (confirm('¿Estás seguro de eliminar esta educación?')) {
-        fetch(`/ajax/educacion/eliminar/${id}/`, {
-            method: 'DELETE',
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error al eliminar: ' + data.error);
-            }
+// ✅ AGREGAR: Event listener para limpiar modal al cerrar
+document.addEventListener('DOMContentLoaded', function() {
+    // Limpiar modal de educación cuando se cierre
+    const educacionModal = document.getElementById('educacionModal');
+    if (educacionModal) {
+        educacionModal.addEventListener('hidden.bs.modal', function () {
+            educacionEditandoId = null;
+            document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
+            document.getElementById('educacionForm').reset();
         });
     }
+});
+
+// ✅ FUNCIÓN AUXILIAR para mostrar mensajes
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+
+// =========================
+// FUNCIÓN PARA ELIMINAR EDUCACIÓN - VERSIÓN CORREGIDA
+// =========================
+
+function eliminarEducacion(id) {
+    // ✅ AGREGADO: Confirmación antes de eliminar
+    if (!confirm('¿Estás seguro de que deseas eliminar esta educación? Esta acción no se puede deshacer.')) {
+        return; // El usuario canceló
+    }
+
+    // ✅ AGREGADO: Mostrar indicador de carga
+    const deleteButton = document.querySelector(`[onclick="eliminarEducacion(${id})"]`);
+    if (deleteButton) {
+        deleteButton.innerHTML = '<i class="bi bi-spinner-grow"></i>';
+        deleteButton.disabled = true;
+    }
+
+    // ✅ CORREGIDO: Usar fetch con método DELETE y manejo de errores completo
+    fetch(`/ajax/educacion/eliminar/${id}/`, {
+        method: 'DELETE', // ✅ Método correcto
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCsrfToken(), // ✅ Token CSRF
+            'X-Requested-With': 'XMLHttpRequest'
+        },
+        credentials: 'same-origin' // ✅ Incluir cookies
+    })
+    .then(response => {
+        console.log('Response status:', response.status); // ✅ Debug
+
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        return response.json();
+    })
+    .then(data => {
+        console.log('Response data:', data); // ✅ Debug
+
+        if (data.success) {
+            // ✅ Mostrar mensaje de éxito
+            mostrarMensaje(data.message || 'Educación eliminada exitosamente', 'success');
+
+            // ✅ Remover el elemento del DOM con animación
+            const educacionItem = document.querySelector(`.educacion-item[data-id="${id}"]`);
+            if (educacionItem) {
+                educacionItem.style.transition = 'opacity 0.3s ease';
+                educacionItem.style.opacity = '0';
+                setTimeout(() => {
+                    educacionItem.remove();
+                    // Verificar si quedan elementos
+                    const container = document.getElementById('educacionContainer');
+                    if (container && container.children.length === 0) {
+                        container.innerHTML = '<p class="text-muted text-center">No hay educación registrada.</p>';
+                    }
+                }, 300);
+            } else {
+                // Si no encontramos el elemento específico, recargar la página
+                setTimeout(() => location.reload(), 1000);
+            }
+        } else {
+            // ✅ Manejar errores del servidor
+            mostrarMensaje(data.error || 'Error desconocido al eliminar', 'error');
+
+            // Restaurar botón
+            if (deleteButton) {
+                deleteButton.innerHTML = '<i class="bi bi-trash"></i>';
+                deleteButton.disabled = false;
+            }
+        }
+    })
+    .catch(error => {
+        console.error('Fetch error:', error); // ✅ Debug detallado
+
+        // ✅ Mensajes de error específicos
+        let errorMessage = 'Error al eliminar la educación. ';
+
+        if (error.message.includes('404')) {
+            errorMessage += 'Educación no encontrada.';
+        } else if (error.message.includes('403')) {
+            errorMessage += 'No tienes permisos para esta acción.';
+        } else if (error.message.includes('500')) {
+            errorMessage += 'Error interno del servidor.';
+        } else {
+            errorMessage += 'Verifica tu conexión e inténtalo nuevamente.';
+        }
+
+        mostrarMensaje(errorMessage, 'error');
+
+        // Restaurar botón
+        if (deleteButton) {
+            deleteButton.innerHTML = '<i class="bi bi-trash"></i>';
+            deleteButton.disabled = false;
+        }
+    });
+}
+
+// =========================
+// FUNCIÓN AUXILIAR PARA OBTENER TOKEN CSRF
+// =========================
+function getCsrfToken() {
+    // ✅ Múltiples métodos para obtener el token CSRF
+
+    // Método 1: Desde meta tag
+    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    if (csrfMeta) {
+        return csrfMeta.getAttribute('content');
+    }
+
+    // Método 2: Desde input hidden
+    const csrfInput = document.querySelector('input[name="csrfmiddlewaretoken"]');
+    if (csrfInput) {
+        return csrfInput.value;
+    }
+
+    // Método 3: Desde cookies
+    const cookies = document.cookie.split(';');
+    for (let cookie of cookies) {
+        const [name, value] = cookie.trim().split('=');
+        if (name === 'csrftoken') {
+            return decodeURIComponent(value);
+        }
+    }
+
+    console.error('No se pudo obtener el token CSRF');
+    return null;
+}
+
+// =========================
+// FUNCIÓN AUXILIAR PARA MOSTRAR MENSAJES (si no existe)
+// =========================
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
+
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
+
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
 }
 
 // =========================
