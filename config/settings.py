@@ -19,6 +19,7 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
+    'jazzmin',  # <-- AÑADIR JAZZMIN AQUÍ ARRIBA
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -44,7 +45,7 @@ MIDDLEWARE = [
     # ... otros middlewares que puedas tener ...
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
-
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ROOT_URLCONF = 'config.urls'
 
 TEMPLATES = [
@@ -154,3 +155,106 @@ DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo marcovazquezdelgado.movilidad@gmail.com>'
 #         },
 #     },
 # }
+
+JAZZMIN_SETTINGS = {
+    # Título que se muestra en la pestaña del navegador y en la cabecera del login.
+    "site_title": "Bolsa de Trabajo Admin",
+
+    # Título en la cabecera principal (puedes usar un texto corto).
+    "site_header": "Bolsa de Trabajo",
+
+    # Título en la página de login.
+    "site_brand": "Administración",
+
+    # Logo para la página de login y la barra de navegación.
+    # Debe estar en una carpeta de archivos estáticos. Ej: 'img/logo.png'
+    "site_logo": None,  # "static/assets/img/logo.png",
+
+    # Logo para la página de login en modo oscuro
+    "login_logo_dark": None,
+
+    # Clases CSS para aplicar al logo
+    "site_logo_classes": "img-circle",
+
+    # Mensaje de bienvenida en la página de inicio del admin.
+    "welcome_sign": "Bienvenido al panel de administración de la Bolsa de Trabajo",
+
+    # Modelo a usar para la barra de búsqueda global en la parte superior.
+    "search_model": ["usuarios.CustomUser", "usuarios.Vacante"],
+
+    # --- Menú Superior ---
+    "topmenu_links": [
+        # Link a la página principal del sitio
+        {"name": "Inicio del Sitio", "url": "index", "permissions": ["auth.view_user"]},
+
+        # Link a tu modelo de Vacante
+        {"model": "usuarios.Vacante"},
+
+        # Link a tu modelo de Secretaria
+        {"model": "usuarios.Secretaria"},
+    ],
+
+    # --- Menú Lateral (Sidebar) ---
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "hide_apps": [],
+    "hide_models": [],
+
+    # Orden de las aplicaciones en el menú
+    "order_with_respect_to": ["usuarios", "auth"],
+
+    # Iconos para las aplicaciones y modelos. Usa los iconos de Font Awesome 5.
+    # https://fontawesome.com/v5/search
+    "icons": {
+        "auth": "fas fa-users-cog",
+        "auth.user": "fas fa-user",
+        "auth.Group": "fas fa-users",
+        "usuarios": "fas fa-briefcase",
+        "usuarios.customuser": "fas fa-user-plus",
+        "usuarios.interesado": "fas fa-user-tie",
+        "usuarios.reclutador": "fas fa-user-shield",
+        "usuarios.secretaria": "fas fa-building",
+        "usuarios.vacante": "fas fa-file-invoice-dollar",
+        "usuarios.postulacion": "fas fa-paper-plane",
+        "usuarios.categoria": "fas fa-tags",
+        "usuarios.cv": "fas fa-id-card",
+        "usuarios.educacion": "fas fa-graduation-cap",
+        "usuarios.experiencialaboral": "fas fa-history",
+    },
+
+    # Texto que se muestra en la cabecera de la sección de "Informes"
+    "show_ui_builder": False,
+}
+
+# ----------------- AJUSTES VISUALES DE JAZZMIN (OPCIONAL) -----------------
+JAZZMIN_UI_TWEAKS = {
+    "navbar_small_text": False,
+    "footer_small_text": False,
+    "body_small_text": False,
+    "brand_small_text": False,
+    "brand_colour": "navbar-dark",
+    "accent": "accent-primary",
+    "navbar": "navbar-dark",
+    "no_navbar_border": False,
+    "navbar_fixed": True,
+    "layout_boxed": False,
+    "footer_fixed": False,
+    "sidebar_fixed": True,
+    "sidebar": "sidebar-dark-primary",
+    "sidebar_nav_small_text": False,
+    "sidebar_disable_expand": False,
+    "sidebar_nav_child_indent": False,
+    "sidebar_nav_compact_style": False,
+    "sidebar_nav_legacy_style": False,
+    "sidebar_nav_flat_style": True,
+    "theme": "darkly",  # Puedes probar otros temas como "flatly", "cerulean", "litera", etc.
+    "dark_mode_theme": "darkly",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    }
+}

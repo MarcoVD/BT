@@ -1,0 +1,182 @@
+/* static/css/busqueda-vacantes.css */
+
+/* Estilos para el formulario de búsqueda */
+.search-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+}
+
+.search-card .card-body {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+/* Animaciones para el input de búsqueda */
+.search-input-group {
+    position: relative;
+    overflow: hidden;
+}
+
+.search-input-group::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    transition: left 0.5s;
+}
+
+.search-input-group:focus-within::before {
+    left: 100%;
+}
+
+/* Hover effects para sugerencias */
+.search-suggestion {
+    transition: all 0.3s ease;
+    border: 1px solid #dee2e6;
+}
+
+.search-suggestion:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    border-color: var(--bs-primary);
+}
+
+/* Estilos para resultados destacados */
+.vacante-card {
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.vacante-card:hover {
+    border-left-color: var(--bs-primary);
+    transform: translateX(5px);
+}
+
+/* Highlight de términos de búsqueda */
+mark.bg-warning {
+    background-color: #fff3cd !important;
+    padding: 1px 3px;
+    border-radius: 3px;
+    font-weight: 600;
+}
+
+/* Loading states */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Filtros responsive */
+@media (max-width: 768px) {
+    .search-suggestions {
+        text-align: center;
+    }
+
+    .search-suggestion {
+        margin: 3px;
+        font-size: 0.8rem;
+    }
+
+    .input-group-lg .form-control {
+        font-size: 1rem;
+    }
+}
+
+/* Estados de los filtros */
+.filter-active {
+    background-color: var(--bs-primary) !important;
+    color: white !important;
+}
+
+/* Animación de resultados */
+.vacante-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mejorar el aspecto del dropdown de municipios */
+.form-select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='%23343a40' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='m1 6 7 7 7-7'/%3e%3c/svg%3e");
+}
+
+.form-select:focus {
+    border-color: var(--bs-primary);
+    box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
+}
+
+/* Estilos para el botón de limpiar */
+#clearBtn {
+    transition: all 0.3s ease;
+}
+
+#clearBtn:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: white;
+    transform: scale(1.05);
+}
+
+/* Badge personalizado para categorías */
+.categoria-badge {
+    background: linear-gradient(45deg, var(--bs-primary), var(--bs-info));
+    color: white;
+    border: none;
+}
+
+.tipo-empleo-badge {
+    background: linear-gradient(45deg, var(--bs-danger), var(--bs-warning));
+    color: white;
+    border: none;
+}
+
+.modalidad-badge {
+    background: linear-gradient(45deg, var(--bs-success), var(--bs-info));
+    color: white;
+    border: none;
+}
+
+/* Mejoras para la accesibilidad */
+.form-control:focus,
+.form-select:focus,
+.btn:focus {
+    outline: 2px solid var(--bs-primary);
+    outline-offset: 2px;
+}
+
+/* Spinner personalizado */
+.custom-spinner {
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid var(--bs-primary);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}

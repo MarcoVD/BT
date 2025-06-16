@@ -46,6 +46,7 @@ class UsuarioAdmin(BaseUserAdmin):
             },
         ),
     )
+    #configuracion de la lista
     list_display = ('email', 'first_name', 'last_name', 'rol', 'is_staff', 'activo')
     list_filter = ('is_staff', 'is_superuser', 'is_active', 'rol', 'groups')
     search_fields = ('email', 'first_name', 'last_name')
@@ -74,7 +75,9 @@ class InteresadoAdmin(admin.ModelAdmin):
     list_filter = ('municipio',)  # Cambiado de 'ciudad', 'estado'
     search_fields = ('nombre', 'apellido_paterno', 'apellido_materno', 'usuario__email')
 
-
+    def nombre_completo(self, obj):
+        return obj.nombre_completo
+    nombre_completo.short_description = 'Nombre Completo'
 
 @admin.register(Reclutador)
 class ReclutadorAdmin(admin.ModelAdmin):
@@ -82,6 +85,10 @@ class ReclutadorAdmin(admin.ModelAdmin):
     list_filter = ('aprobado', 'secretaria')
     search_fields = ('nombre', 'apellido_paterno', 'apellido_materno', 'usuario__email', 'secretaria__nombre')
     list_editable = ('aprobado',)
+
+    def nombre_completo(self, obj):
+        return obj.nombre_completo
+    nombre_completo.short_description = 'Nombre Completo'
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
