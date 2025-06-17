@@ -2,14 +2,14 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <title>CV - {{ interesado.nombre_completo }}</title>
     <style>
         @page {
             size: A4;
             margin: 0;
         }
-
         :root {
             --color-primary-dark: #6d2133;
             --color-primary-light: #f5f0f0;
@@ -57,8 +57,8 @@
         }
 
         .profile-pic {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--color-accent);
@@ -91,16 +91,16 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 15px;
-            text-align: center;
+            text-align: start;
             padding-bottom: 5px;
             border-bottom: 2px solid var(--color-accent);
         }
 
         .contact-item {
-            display: flex;
+            display: block;
             align-items: center;
-            margin-bottom: 10px;
-            font-size: 9pt;
+            margin-bottom: 12px;
+            font-size: 10pt;
         }
 
         .contact-item .icon {
@@ -141,7 +141,7 @@
         }
 
         .right-section {
-            margin-bottom: 25px;
+            margin-bottom: 16px;
         }
 
         .right-title {
@@ -150,11 +150,12 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-bottom: 15px;
-            padding-bottom: 5px;
-            border-bottom: 2px solid var(--color-primary-dark);
+            margin-top: 4px;
+            padding-top: 4px;
+            margin-bottom: 4px;
+            padding-bottom: 4px;
+            border-top: 2px solid var(--color-primary-dark);
         }
-
         .item {
             margin-bottom: 20px;
         }
@@ -185,6 +186,9 @@
             color: var(--color-text-subtle);
         }
 
+        p{
+            text-align: justify;
+        }
         p.summary {
             text-align: justify;
             font-size: 10pt;
@@ -203,7 +207,6 @@
     <div class="resume-container">
         <!-- ===== COLUMNA IZQUIERDA ===== -->
         <div class="left-column">
-            <!-- ✅ IMAGEN DE PERFIL CON MANEJO DE ERRORES -->
             <div class="profile-pic-container">
                 {% if foto_url %}
                     <!-- Mostrar imagen si existe -->
@@ -222,15 +225,16 @@
             <div class="left-section">
                 <h3 class="left-title">Contacto</h3>
                 <div class="contact-item">
-                    <span class="icon">📞</span>
-                    <span>{{ interesado.telefono|default:'No disponible' }}</span>
+
+                    <i class="bi bi-telephone me-2 mt-1"></i>
+                    <span class>{{ interesado.telefono|default:'No disponible' }}</span>
                 </div>
                 <div class="contact-item">
-                    <span class="icon">✉️</span>
+                    <i class="bi bi-envelope me-2 mt-1"></i>
                     <span>{{ interesado.usuario.email }}</span>
                 </div>
                 <div class="contact-item">
-                    <span class="icon">📍</span>
+                    <i class="bi bi-geo-alt me-2 mt-1"></i>
                     <span>{{ interesado.ubicacion_completa|default:'Ubicación no especificada' }}</span>
                 </div>
             </div>
@@ -271,7 +275,7 @@
 
             <!-- Sobre mí -->
             {% if curriculum.resumen_profesional %}
-            <div class="right-section">
+            <div class="right-section ">
                 <h2 class="right-title">Sobre Mí</h2>
                 <p class="summary">{{ curriculum.resumen_profesional }}</p>
             </div>
@@ -312,7 +316,6 @@
                 {% endfor %}
             </div>
             {% endif %}
-
             <!-- Mensaje si no hay contenido -->
             {% if not curriculum.resumen_profesional and not experiencias and not educaciones %}
             <div class="right-section">
