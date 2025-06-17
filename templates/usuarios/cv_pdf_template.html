@@ -3,208 +3,361 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CV - {{ interesado.nombre_completo }}</title>
     <style>
+        /* Importar fuentes de Google Fonts (esencial para que WeasyPrint las encuentre) */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
+
         @page {
             size: A4;
-            margin: 2cm;
+            margin: 0; /* Quitamos los márgenes de la página para controlar todo el espacio */
+        }
+
+        :root {
+            --color-primary-dark: #6d2133; /* El rojo vino del fondo */
+            --color-primary-light: #f5f0f0; /* El texto claro sobre el fondo vino */
+            --color-accent: #bca28d;       /* El dorado/ocre para títulos */
+            --color-text-dark: #4a4a4a;     /* Texto principal en la columna blanca */
+            --color-text-subtle: #6c6c6c;   /* Texto más sutil (fechas, etc.) */
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            color: #333;
+            font-family: 'Roboto', 'Arial', sans-serif;
+            font-size: 10pt;
+            line-height: 1.5;
+            color: var(--color-text-dark);
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* Fondo por defecto */
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
             margin: 0;
             padding: 0;
         }
 
-        .header {
+        .resume-container {
+            display: flex;
+            width: 210mm; /* Ancho de A4 */
+            height: 297mm; /* Alto de A4 */
+            position: relative;
+        }
+
+        /* --- Columna Izquierda (Roja) --- */
+        .left-column {
+            background-color: var(--color-primary-dark);
+            color: var(--color-primary-light);
+            width: 35%;
+            padding: 30px 25px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .profile-pic-container {
             text-align: center;
             margin-bottom: 30px;
-            border-bottom: 2px solid #9F2241;
-            padding-bottom: 20px;
-        }
-        .txt_justificado{
-            text-align: justify;
-            text-justify: inter-word;
         }
 
-
-        .header h1 {
-            color: #9F2241;
-            margin: 0;
-            font-size: 28px;
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--color-accent);
         }
 
-        .contact-info {
-            margin-top: 10px;
-            font-size: 14px;
-        }
-
-        .contact-info span {
-            margin: 0 15px;
-        }
-
-        .section {
+        .left-section {
             margin-bottom: 25px;
         }
 
-        .section-title {
-            background-color: #9F2241;
-            color: white;
-            padding: 8px 15px;
-            margin: 0 0 15px 0;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .item {
+        .left-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14pt;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
             margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-
-        .item:last-child {
-            border-bottom: none;
-        }
-
-        .item-title {
-            font-weight: bold;
-            color: #9F2241;
-            margin-bottom: 5px;
-        }
-
-        .item-subtitle {
-            color: #666;
-            font-style: italic;
-            margin-bottom: 5px;
-        }
-
-        .item-date {
-            color: #888;
-            font-size: 12px;
-            margin-bottom: 8px;
-        }
-
-        .skills-container {
+            text-align: center;
             display: flex;
-            flex-wrap: wrap;
+            align-items: center;
             gap: 10px;
         }
 
-        .skill-badge {
-            background-color: #f0f0f0;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 12px;
-            border: 1px solid #ddd;
+        .left-title::before, .left-title::after {
+            content: '';
+            flex-grow: 1;
+            height: 1px;
+            background: var(--color-accent);
         }
 
-        .languages-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
         }
 
-        .language-item {
-            padding: 10px;
-            background-color: #f9f9f9;
+        .contact-item .icon {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+
+        .skill-list, .tool-list, .language-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .tool-item {
+            margin-bottom: 8px;
+        }
+
+        .progress-bar {
+            width: 100%;
+            background-color: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            height: 8px;
+            margin-top: 4px;
+        }
+
+        .progress {
+            background-color: var(--color-accent);
+            height: 100%;
             border-radius: 5px;
         }
 
-        .language-name {
-            font-weight: bold;
-            color: #9F2241;
+        /* --- Columna Derecha (Blanca) --- */
+        .right-column {
+            width: 65%;
+            padding: 40px 30px;
+            background-color: #fff;
         }
 
-        .language-levels {
-            font-size: 12px;
-            color: #666;
-            margin-top: 5px;
+        .main-header {
+            margin-bottom: 22px;
         }
+
+        .main-header h1 {
+            font-size: 36pt;
+            font-weight: 700;
+            color: var(--color-text-dark);
+            text-transform: uppercase;
+            line-height: 1.1;
+        }
+
+        .main-header .title {
+            font-size: 12pt;
+            color: var(--color-accent);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .right-section {
+            margin-bottom: 25px;
+        }
+
+        .right-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14pt;
+            color: var(--color-accent);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-primary-dark);
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+        }
+
+        .item-title {
+            font-size: 12pt;
+            font-weight: 700;
+            color: var(--color-primary-dark);
+        }
+
+        .item-date {
+            font-size: 9pt;
+            font-weight: 500;
+            color: var(--color-text-subtle);
+        }
+
+        .item-subtitle {
+            font-size: 10pt;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .item ul {
+            padding-left: 20px;
+            margin-top: 5px;
+            color: var(--color-text-dark);
+        }
+
+        p.summary {
+            text-align: justify;
+        }
+
+        /* --- Footer --- */
+        .footer {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 60px; /* Altura del footer */
+            background-color: var(--color-primary-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 30px;
+            box-sizing: border-box;
+        }
+
+        .footer-logo {
+            max-height: 45px;
+            margin: 0 20px;
+        }
+
     </style>
+
 </head>
 <body>
-    <!-- Encabezado -->
-    <div class="header">
-        <h1>{{ interesado.nombre_completo }}</h1>
-        <div class="contact-info">
-            <span>📧 {{ interesado.usuario.email }}</span>
-            {% if interesado.telefono %}<span>📞 {{ interesado.telefono }}</span>{% endif %}
-            {% if interesado.municipio %}<span>📍 {{ interesado.ubicacion_completa }}</span>{% endif %}
-        </div>
-    </div>
+    <div class="resume-container">
+        <!-- ===== COLUMNA IZQUIERDA ===== -->
 
-    <!-- Resumen Profesional -->
-    {% if curriculum.resumen_profesional %}
-    <div class="section">
-        <h2 class="section-title">RESUMEN PROFESIONAL</h2>
-        <p class="txt_justificado">{{ curriculum.resumen_profesional }}</p>
-    </div>
-    {% endif %}
+        <div class="left-column">
+            <div class="profile-photo-container mb-3">
+                        {% if interesado.foto_perfil %}
+                            <img src="{{ interesado.foto_perfil.url }}"
+                                 alt="Foto de perfil"
+                                 class="profile-photo img-fluid rounded-circle clickeable-photo"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#cropperModal">
+                        {% else %}
+                            <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
+                                 data-bs-toggle="modal"
+                                 data-bs-target="#cropperModal">
+                                <i class="bi bi-person-fill profile-icon"></i>
+                            </div>
+                        {% endif %}
 
-    <!-- Experiencia Laboral -->
-    {% if experiencias %}
-    <div class="section">
-        <h2 class="section-title">EXPERIENCIA LABORAL</h2>
-        {% for experiencia in experiencias %}
-        <div class="item txt_justificado">
-            <div class="item-title">{{ experiencia.puesto }}</div>
-            <div class="item-subtitle">{{ experiencia.empresa }}</div>
-            <div class="item-date">{{ experiencia.periodo_trabajo }}</div>
-            <div>{{ experiencia.descripcion }}</div>
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <!-- Educación -->
-    {% if educaciones %}
-    <div class="section">
-        <h2 class="section-title">EDUCACIÓN Y FORMACIÓN</h2>
-        {% for educacion in educaciones %}
-        <div class="item txt_justificado">
-            <div class="item-title">{{ educacion.titulo }}</div>
-            <div class="item-subtitle">{{ educacion.institucion }}</div>
-            <div class="item-date">{{ educacion.periodo_estudio }}</div>
-            {% if educacion.descripcion %}
-            <div>{{ educacion.descripcion }}</div>
-            {% endif %}
-        </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <!-- Habilidades -->
-    {% if habilidades %}
-    <div class="section">
-        <h2 class="section-title">HABILIDADES</h2>
-        <div class="skills-container">
-            {% for habilidad in habilidades %}
-            <span class="skill-badge">{{ habilidad.habilidad.nombre }} - {{ habilidad.get_nivel_display }}</span>
-            {% endfor %}
-        </div>
-    </div>
-    {% endif %}
-
-    <!-- Idiomas -->
-    {% if idiomas %}
-    <div class="section">
-        <h2 class="section-title">IDIOMAS</h2>
-        <div class="languages-grid">
-            {% for idioma in idiomas %}
-            <div class="language-item">
-                <div class="language-name">{{ idioma.idioma }}</div>
-                <div class="language-levels">
-                    Lectura: {{ idioma.get_nivel_lectura_display }} |
-                    Escritura: {{ idioma.get_nivel_escritura_display }} |
-                    Conversación: {{ idioma.get_nivel_conversacion_display }}
+                    </div>
+            <!-- Contacto -->
+            <div class="left-section">
+                <h3 class="left-title">Contacto</h3>
+                <div class="contact-item">
+                    <span class="icon">📞</span>
+                    <span>{{ interesado.telefono|default:'No disponible' }}</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">✉️</span>
+                    <span>{{ interesado.usuario.email }}</span>
+                </div>
+                <div class="contact-item">
+                    <span class="icon">📍</span>
+                    <span>{{ interesado.ubicacion_completa|default:'Ubicación no especificada' }}</span>
                 </div>
             </div>
-            {% endfor %}
+
+            <!-- Competencias -->
+            <div class="left-section">
+                <h3 class="left-title">Competencias</h3>
+
+                <h4>Habilidades</h4>
+                <ul class="skill-list">
+                    {% for habilidad in habilidades %}
+                        <li>{{ habilidad.habilidad.nombre }}</li>
+                    {% empty %}
+                        <li>No hay habilidades registradas.</li>
+                    {% endfor %}
+                </ul>
+                <h4 style="margin-top: 20px;">Idiomas</h4>
+                <ul class="language-list">
+                    {% for idioma in idiomas %}
+                        <li>{{ idioma.idioma }} - {{ idioma.get_nivel_conversacion_display }}</li>
+                    {% empty %}
+                        <li>No hay idiomas registrados.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+
+        <!-- ===== COLUMNA DERECHA ===== -->
+        <div class="right-column">
+
+            <div class="main-header">
+                <h1>{{ interesado.nombre_completo }}</h1>
+            </div>
+
+            <!-- Sobre mí -->
+            {% if curriculum.resumen_profesional %}
+            <div class="right-section">
+                <h2 class="right-title">Sobre Mí</h2>
+                <p class="summary">{{ curriculum.resumen_profesional }}</p>
+            </div>
+            {% endif %}
+
+            <!-- Experiencia -->
+            {% if experiencias %}
+            <div class="right-section">
+                <h2 class="right-title">Experiencia</h2>
+                {% for experiencia in experiencias %}
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-title">{{ experiencia.puesto }}</span>
+                        <span class="item-date">{{ experiencia.periodo_trabajo }}</span>
+                    </div>
+                    <div class="item-subtitle">{{ experiencia.empresa }}</div>
+                    <!-- El diseño original usa una lista de funciones, así que podrías querer estructurar la descripción -->
+{#                    <ul>#}
+{#                        <li>{{ experiencia.descripcion|linebreaksbr|replace:"<br />"|safe }}</li>#}
+{#                        <!-- Si la descripción tiene saltos de línea, puedes splitearla en el backend y hacer un for -->#}
+{#                    </ul>#}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+
+            <!-- Educación -->
+            {% if educaciones %}
+            <div class="right-section">
+                <h2 class="right-title">Educación</h2>
+                {% for educacion in educaciones %}
+                <div class="item">
+                    <div class="item-header">
+                        <span class="item-title">{{ educacion.titulo }}</span>
+                        <span class="item-date">{{ educacion.periodo_estudio }}</span>
+                    </div>
+                    <div class="item-subtitle">{{ educacion.institucion }}</div>
+                    {% if educacion.descripcion %}
+                    <p>{{ educacion.descripcion }}</p>
+                    {% endif %}
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
         </div>
     </div>
-    {% endif %}
+
+    <!-- FOOTER CON LOGOS -->
+    <!-- Nota: Este footer puede ser complicado de posicionar en un PDF. Position: absolute funciona bien con WeasyPrint -->
+{#    <div class="footer">#}
+{#        <!-- Asegúrate de tener las rutas correctas a tus logos en la carpeta static -->#}
+{#        <img src="/path/to/static/logo_estado_de_mexico.png" alt="Logo Gobierno del Estado de México" class="footer-logo">#}
+{#        <img src="/path/to/static/logo_poder_de_servir.png" alt="Logo El poder de servir" class="footer-logo">#}
+{#    </div>#}
+
 </body>
 </html>
