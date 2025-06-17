@@ -1,50 +1,41 @@
-<!-- templates/usuarios/cv_pdf_template.html -->
+<!-- templates/usuarios/cv_pdf_template.html - VERSIÓN ROBUSTA -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <title>CV - {{ interesado.nombre_completo }}</title>
     <style>
-        /* Importar fuentes de Google Fonts (esencial para que WeasyPrint las encuentre) */
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Roboto:wght@400;500;700&display=swap');
-
         @page {
             size: A4;
-            margin: 0; /* Quitamos los márgenes de la página para controlar todo el espacio */
+            margin: 0;
         }
 
         :root {
-            --color-primary-dark: #6d2133; /* El rojo vino del fondo */
-            --color-primary-light: #f5f0f0; /* El texto claro sobre el fondo vino */
-            --color-accent: #bca28d;       /* El dorado/ocre para títulos */
-            --color-text-dark: #4a4a4a;     /* Texto principal en la columna blanca */
-            --color-text-subtle: #6c6c6c;   /* Texto más sutil (fechas, etc.) */
+            --color-primary-dark: #6d2133;
+            --color-primary-light: #f5f0f0;
+            --color-accent: #bca28d;
+            --color-text-dark: #4a4a4a;
+            --color-text-subtle: #6c6c6c;
         }
 
         body {
-            font-family: 'Roboto', 'Arial', sans-serif;
+            font-family: 'Arial', sans-serif;
             font-size: 10pt;
             line-height: 1.5;
             color: var(--color-text-dark);
             margin: 0;
             padding: 0;
-            background-color: #fff; /* Fondo por defecto */
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            margin: 0;
-            padding: 0;
+            background-color: #fff;
         }
 
         .resume-container {
             display: flex;
-            width: 210mm; /* Ancho de A4 */
-            height: 297mm; /* Alto de A4 */
+            width: 210mm;
+            height: 297mm;
             position: relative;
         }
 
-        /* --- Columna Izquierda (Roja) --- */
+        /* ===== COLUMNA IZQUIERDA ===== */
         .left-column {
             background-color: var(--color-primary-dark);
             color: var(--color-primary-light);
@@ -54,9 +45,15 @@
             flex-direction: column;
         }
 
+        /* ✅ ESTILOS DE IMAGEN ROBUSTOS */
         .profile-pic-container {
             text-align: center;
             margin-bottom: 30px;
+            width: 150px;
+            height: 150px;
+            margin-left: auto;
+            margin-right: auto;
+            position: relative;
         }
 
         .profile-pic {
@@ -65,6 +62,23 @@
             border-radius: 50%;
             object-fit: cover;
             border: 4px solid var(--color-accent);
+            display: block;
+            /* Fallback en caso de error */
+            background-color: var(--color-accent);
+        }
+
+        .profile-pic-placeholder {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background-color: var(--color-accent);
+            border: 4px solid var(--color-accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-primary-dark);
+            font-size: 4rem;
+            font-weight: bold;
         }
 
         .left-section {
@@ -72,29 +86,21 @@
         }
 
         .left-title {
-            font-family: 'Montserrat', sans-serif;
             font-size: 14pt;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 15px;
             text-align: center;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .left-title::before, .left-title::after {
-            content: '';
-            flex-grow: 1;
-            height: 1px;
-            background: var(--color-accent);
+            padding-bottom: 5px;
+            border-bottom: 2px solid var(--color-accent);
         }
 
         .contact-item {
             display: flex;
             align-items: center;
             margin-bottom: 10px;
+            font-size: 9pt;
         }
 
         .contact-item .icon {
@@ -103,31 +109,18 @@
             text-align: center;
         }
 
-        .skill-list, .tool-list, .language-list {
+        .skill-list, .language-list {
             list-style: none;
             padding: 0;
             margin: 0;
         }
 
-        .tool-item {
-            margin-bottom: 8px;
+        .skill-list li, .language-list li {
+            margin-bottom: 5px;
+            font-size: 9pt;
         }
 
-        .progress-bar {
-            width: 100%;
-            background-color: rgba(0,0,0,0.2);
-            border-radius: 5px;
-            height: 8px;
-            margin-top: 4px;
-        }
-
-        .progress {
-            background-color: var(--color-accent);
-            height: 100%;
-            border-radius: 5px;
-        }
-
-        /* --- Columna Derecha (Blanca) --- */
+        /* ===== COLUMNA DERECHA ===== */
         .right-column {
             width: 65%;
             padding: 40px 30px;
@@ -139,20 +132,12 @@
         }
 
         .main-header h1 {
-            font-size: 36pt;
+            font-size: 28pt;
             font-weight: 700;
             color: var(--color-text-dark);
             text-transform: uppercase;
             line-height: 1.1;
-        }
-
-        .main-header .title {
-            font-size: 12pt;
-            color: var(--color-accent);
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-top: 4px;
+            margin: 0;
         }
 
         .right-section {
@@ -160,7 +145,6 @@
         }
 
         .right-title {
-            font-family: 'Montserrat', sans-serif;
             font-size: 14pt;
             color: var(--color-accent);
             font-weight: 700;
@@ -179,6 +163,7 @@
             display: flex;
             justify-content: space-between;
             align-items: baseline;
+            margin-bottom: 5px;
         }
 
         .item-title {
@@ -197,62 +182,42 @@
             font-size: 10pt;
             font-weight: 500;
             margin-bottom: 5px;
-        }
-
-        .item ul {
-            padding-left: 20px;
-            margin-top: 5px;
-            color: var(--color-text-dark);
+            color: var(--color-text-subtle);
         }
 
         p.summary {
             text-align: justify;
+            font-size: 10pt;
         }
 
-        /* --- Footer --- */
-        .footer {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 60px; /* Altura del footer */
-            background-color: var(--color-primary-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0 30px;
-            box-sizing: border-box;
+        /* Estilos para h4 en la columna izquierda */
+        .left-column h4 {
+            color: var(--color-accent);
+            font-size: 11pt;
+            margin-top: 15px;
+            margin-bottom: 8px;
         }
-
-        .footer-logo {
-            max-height: 45px;
-            margin: 0 20px;
-        }
-
     </style>
-
 </head>
 <body>
     <div class="resume-container">
         <!-- ===== COLUMNA IZQUIERDA ===== -->
-
         <div class="left-column">
-            <div class="profile-photo-container mb-3">
-                        {% if interesado.foto_perfil %}
-                            <img src="{{ interesado.foto_perfil.url }}"
-                                 alt="Foto de perfil"
-                                 class="profile-photo img-fluid rounded-circle clickeable-photo"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#cropperModal">
-                        {% else %}
-                            <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#cropperModal">
-                                <i class="bi bi-person-fill profile-icon"></i>
-                            </div>
-                        {% endif %}
-
+            <!-- ✅ IMAGEN DE PERFIL CON MANEJO DE ERRORES -->
+            <div class="profile-pic-container">
+                {% if foto_url %}
+                    <!-- Mostrar imagen si existe -->
+                    <img src="{{ foto_url }}"
+                         alt="Foto de {{ interesado.nombre_completo }}"
+                         class="profile-pic">
+                {% else %}
+                    <!-- Placeholder elegante cuando no hay imagen -->
+                    <div class="profile-pic-placeholder">
+                        <span>{{ interesado.nombre.0|default:"?" }}{{ interesado.apellido_paterno.0|default:"" }}</span>
                     </div>
+                {% endif %}
+            </div>
+
             <!-- Contacto -->
             <div class="left-section">
                 <h3 class="left-title">Contacto</h3>
@@ -274,29 +239,32 @@
             <div class="left-section">
                 <h3 class="left-title">Competencias</h3>
 
+                {% if habilidades %}
                 <h4>Habilidades</h4>
                 <ul class="skill-list">
                     {% for habilidad in habilidades %}
-                        <li>{{ habilidad.habilidad.nombre }}</li>
-                    {% empty %}
-                        <li>No hay habilidades registradas.</li>
+                        <li>{{ habilidad.habilidad.nombre }} - {{ habilidad.get_nivel_display }}</li>
                     {% endfor %}
                 </ul>
-                <h4 style="margin-top: 20px;">Idiomas</h4>
+                {% endif %}
+
+                {% if idiomas %}
+                <h4>Idiomas</h4>
                 <ul class="language-list">
                     {% for idioma in idiomas %}
                         <li>{{ idioma.idioma }} - {{ idioma.get_nivel_conversacion_display }}</li>
-                    {% empty %}
-                        <li>No hay idiomas registrados.</li>
                     {% endfor %}
                 </ul>
-            </div>
+                {% endif %}
 
+                {% if not habilidades and not idiomas %}
+                <p style="font-size: 9pt; font-style: italic;">No hay competencias registradas.</p>
+                {% endif %}
+            </div>
         </div>
 
         <!-- ===== COLUMNA DERECHA ===== -->
         <div class="right-column">
-
             <div class="main-header">
                 <h1>{{ interesado.nombre_completo }}</h1>
             </div>
@@ -320,11 +288,7 @@
                         <span class="item-date">{{ experiencia.periodo_trabajo }}</span>
                     </div>
                     <div class="item-subtitle">{{ experiencia.empresa }}</div>
-                    <!-- El diseño original usa una lista de funciones, así que podrías querer estructurar la descripción -->
-{#                    <ul>#}
-{#                        <li>{{ experiencia.descripcion|linebreaksbr|replace:"<br />"|safe }}</li>#}
-{#                        <!-- Si la descripción tiene saltos de línea, puedes splitearla en el backend y hacer un for -->#}
-{#                    </ul>#}
+                    <p>{{ experiencia.descripcion }}</p>
                 </div>
                 {% endfor %}
             </div>
@@ -348,16 +312,15 @@
                 {% endfor %}
             </div>
             {% endif %}
+
+            <!-- Mensaje si no hay contenido -->
+            {% if not curriculum.resumen_profesional and not experiencias and not educaciones %}
+            <div class="right-section">
+                <h2 class="right-title">Información Profesional</h2>
+                <p class="summary">CV en construcción. El candidato está completando su información profesional.</p>
+            </div>
+            {% endif %}
         </div>
     </div>
-
-    <!-- FOOTER CON LOGOS -->
-    <!-- Nota: Este footer puede ser complicado de posicionar en un PDF. Position: absolute funciona bien con WeasyPrint -->
-{#    <div class="footer">#}
-{#        <!-- Asegúrate de tener las rutas correctas a tus logos en la carpeta static -->#}
-{#        <img src="/path/to/static/logo_estado_de_mexico.png" alt="Logo Gobierno del Estado de México" class="footer-logo">#}
-{#        <img src="/path/to/static/logo_poder_de_servir.png" alt="Logo El poder de servir" class="footer-logo">#}
-{#    </div>#}
-
 </body>
 </html>

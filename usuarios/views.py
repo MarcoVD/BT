@@ -858,9 +858,11 @@ def previsualizar_cv(request):
         return redirect('crear_editar_cv')
 
 
+# usuarios/views.py - VISTAS CORREGIDAS PARA PDFs
+
 @login_required
 def descargar_cv_pdf(request):
-    """Vista para generar y descargar CV en PDF."""
+    """Vista para generar y descargar CV en PDF con URLs de imagen corregidas."""
     if request.user.rol != 'interesado':
         messages.error(request, 'No tienes permiso para acceder a esta página.')
         return redirect('index')
@@ -873,6 +875,16 @@ def descargar_cv_pdf(request):
         messages.warning(request, 'Primero debes crear tu CV.')
         return redirect('crear_editar_cv')
 
+    # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE
+    foto_url = None
+    if interesado.foto_perfil:
+        try:
+            # Construir URL absoluta de la imagen
+            foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+        except Exception as e:
+            print(f"Error al construir URL de imagen: {e}")
+            foto_url = None
+
     # Preparar datos para el PDF
     context = {
         'interesado': interesado,
@@ -881,15 +893,29 @@ def descargar_cv_pdf(request):
         'educaciones': curriculum.educaciones.all(),
         'habilidades': curriculum.habilidades.all(),
         'idiomas': curriculum.idiomas.all(),
+        'foto_url': foto_url,  # ✅ PASAR URL CONSTRUIDA
+        'request': request,
     }
 
     # Renderizar HTML
-    html_string = render_to_string('usuarios/cv_pdf_template.html', context)
+    html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
 
     # Generar PDF
     try:
-        html_doc = HTML(string=html_string)
-        pdf_bytes = html_doc.write_pdf()
+        from weasyprint import HTML
+        from django.conf import settings
+
+        # ✅ CONFIGURACIÓN MEJORADA PARA WEASYPRINT
+        html_doc = HTML(
+            string=html_string,
+            base_url=request.build_absolute_uri('/'),
+            encoding='utf-8'
+        )
+
+        pdf_bytes = html_doc.write_pdf(
+            optimize_images=True,
+            presentational_hints=True
+        )
 
         # Preparar respuesta
         response = HttpResponse(pdf_bytes, content_type='application/pdf')
@@ -897,24 +923,22 @@ def descargar_cv_pdf(request):
         response['Content-Disposition'] = f'attachment; filename="{filename}"'
 
         return response
+
     except Exception as e:
+        print(f"Error al generar PDF: {str(e)}")
         messages.error(request, f'Error al generar PDF: {str(e)}')
         return redirect('perfil_interesado')
 
 
 @login_required
-# Agregar esta vista al archivo usuarios/views.py
-
-@login_required
 def descargar_cv_pdf_reclutador(request):
-    """Vista para que reclutadores descarguen CV de interesados que se postularon a sus vacantes."""
+    """Vista para que reclutadores descarguen CV - URLs corregidas."""
 
-    # Verificar que el usuario sea reclutador
+    # Verificaciones de permisos
     if request.user.rol != 'reclutador':
         messages.error(request, 'No tienes permiso para descargar CVs.')
         return redirect('index')
 
-    # Verificar que el reclutador esté aprobado
     if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
         messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
         return redirect('dashboard_reclutador')
@@ -929,8 +953,7 @@ def descargar_cv_pdf_reclutador(request):
         # Obtener el interesado
         interesado = get_object_or_404(Interesado, id=interesado_id)
 
-        # Verificar que el reclutador tenga permiso para ver este CV
-        # (el interesado debe haberse postulado a alguna vacante del reclutador)
+        # Verificar permisos
         tiene_permiso = Postulacion.objects.filter(
             interesado=interesado,
             vacante__reclutador=request.user.reclutador
@@ -940,17 +963,23 @@ def descargar_cv_pdf_reclutador(request):
             messages.error(request, 'No tienes permiso para descargar este CV.')
             return redirect('mis_vacantes')
 
-        # Verificar que el interesado tenga CV
+        # Verificar que tenga CV
         if not hasattr(interesado, 'curriculum'):
             messages.error(request, 'Este interesado no tiene CV disponible.')
             return redirect('mis_vacantes')
 
         curriculum = interesado.curriculum
 
-        # Verificar que el CV tenga contenido mínimo
-        if not curriculum.resumen_profesional and not curriculum.experiencias.exists():
-            messages.error(request, 'El CV de este interesado está incompleto.')
-            return redirect('mis_vacantes')
+        # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE
+        foto_url = None
+        if interesado.foto_perfil:
+            try:
+                # Construir URL absoluta de la imagen
+                foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+                print(f"URL de imagen construida: {foto_url}")  # Debug
+            except Exception as e:
+                print(f"Error al construir URL de imagen: {e}")
+                foto_url = None
 
         # Preparar datos para el PDF
         context = {
@@ -960,15 +989,27 @@ def descargar_cv_pdf_reclutador(request):
             'educaciones': curriculum.educaciones.all(),
             'habilidades': curriculum.habilidades.all(),
             'idiomas': curriculum.idiomas.all(),
+            'foto_url': foto_url,  # ✅ PASAR URL CONSTRUIDA
+            'request': request,
         }
 
-        # Renderizar HTML usando el template existente
-        html_string = render_to_string('usuarios/cv_pdf_template.html', context)
+        # Renderizar HTML
+        html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
 
         # Generar PDF
         try:
-            html_doc = HTML(string=html_string)
-            pdf_bytes = html_doc.write_pdf()
+            from weasyprint import HTML
+
+            html_doc = HTML(
+                string=html_string,
+                base_url=request.build_absolute_uri('/'),
+                encoding='utf-8'
+            )
+
+            pdf_bytes = html_doc.write_pdf(
+                optimize_images=True,
+                presentational_hints=True
+            )
 
             # Preparar respuesta
             response = HttpResponse(pdf_bytes, content_type='application/pdf')
@@ -978,6 +1019,7 @@ def descargar_cv_pdf_reclutador(request):
             return response
 
         except Exception as e:
+            print(f"Error al generar PDF: {str(e)}")
             messages.error(request, f'Error al generar PDF: {str(e)}')
             return redirect('mis_vacantes')
 
@@ -985,6 +1027,7 @@ def descargar_cv_pdf_reclutador(request):
         messages.error(request, 'Interesado no encontrado.')
         return redirect('mis_vacantes')
     except Exception as e:
+        print(f"Error interno: {str(e)}")
         messages.error(request, f'Error interno: {str(e)}')
         return redirect('mis_vacantes')
 
