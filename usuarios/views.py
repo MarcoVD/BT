@@ -19,6 +19,10 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
 from datetime import date
+#Verificacion de correo
+from django.core.mail import send_mail
+from django.utils.html import strip_tags
+import logging
 # Importaciones para manejo de archivos e imágenes
 from weasyprint import HTML
 from io import BytesIO
@@ -253,8 +257,290 @@ def eliminar_habilidad_ajax(request, habilidad_id):
 # RESTO DE LAS VISTAS (mantener igual)
 # =========================================
 
+def send_verification_email(request, user):
+    """
+    Envía un correo de verificación al usuario.
+
+    Args:
+        request: HttpRequest object
+        user: Usuario object
+
+    Returns:
+        bool: True si se envió exitosamente, False en caso contrario
+    """
+    try:
+        # Generar token de verificación
+        user.generate_verification_token()
+
+        # Obtener el dominio actual
+        current_site = get_current_site(request)
+        domain = current_site.domain
+
+        # Construir la URL de verificación
+        verification_url = request.build_absolute_uri(
+            reverse('verificar_email', kwargs={'token': user.verification_token})
+        )
+
+        # Preparar el contexto para el template del correo
+        context = {
+            'user': user,
+            'verification_url': verification_url,
+            'domain': domain,
+            'site_name': 'Bolsa de Trabajo - Estado de México',
+            'expires_hours': 24,
+        }
+
+        # Renderizar el template del correo
+        html_message = render_to_string('emails/verificacion_email.html', context)
+        plain_message = strip_tags(html_message)
+
+        # Configurar el asunto según el rol
+        if user.rol == 'interesado':
+            subject = 'Verifica tu cuenta - Bolsa de Trabajo Estado de México'
+        else:
+            subject = 'Verifica tu cuenta de Reclutador - Bolsa de Trabajo Estado de México'
+
+        # Enviar el correo
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+
+        logger.info(f"Correo de verificación enviado a {user.email}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error enviando correo de verificación a {user.email}: {str(e)}")
+        return False
+
+
+class VerificarEmailView(View):
+    """Vista para verificar el email del usuario mediante token."""
+
+    def get(self, request, token):
+        """Procesa la verificación del email."""
+        try:
+            # Buscar usuario con el token
+            user = Usuario.objects.filter(verification_token=token).first()
+
+            if not user:
+                messages.error(request, 'Token de verificación inválido.')
+                return render(request, 'usuarios/verificacion_resultado.html', {
+                    'success': False,
+                    'title': 'Token Inválido',
+                    'message': 'El enlace de verificación no es válido.',
+                })
+
+            # Verificar si el token es válido y no ha expirado
+            if not user.is_verification_token_valid(token):
+                messages.error(request, 'El token de verificación ha expirado.')
+                return render(request, 'usuarios/verificacion_resultado.html', {
+                    'success': False,
+                    'title': 'Token Expirado',
+                    'message': 'El enlace de verificación ha expirado. Puedes solicitar uno nuevo.',
+                    'show_resend': True,
+                    'user_email': user.email,
+                })
+
+            # Verificar el email
+            user.verify_email()
+
+            # Mensaje de éxito según el rol
+            if user.rol == 'interesado':
+                success_message = 'Tu cuenta ha sido verificada exitosamente. Ahora puedes iniciar sesión y comenzar a buscar empleos.'
+            elif user.rol == 'reclutador':
+                success_message = 'Tu cuenta ha sido verificada exitosamente. Tu solicitud de reclutador será revisada por un administrador.'
+            else:
+                success_message = 'Tu cuenta ha sido verificada exitosamente.'
+
+            messages.success(request, success_message)
+
+            return render(request, 'usuarios/verificacion_resultado.html', {
+                'success': True,
+                'title': 'Email Verificado',
+                'message': success_message,
+                'user_role': user.rol,
+            })
+
+        except Exception as e:
+            logger.error(f"Error en verificación de email: {str(e)}")
+            messages.error(request, 'Error interno del servidor.')
+            return render(request, 'usuarios/verificacion_resultado.html', {
+                'success': False,
+                'title': 'Error',
+                'message': 'Ocurrió un error al verificar tu cuenta. Inténtalo nuevamente.',
+            })
+
+
+class ReenviarVerificacionView(View):
+    """Vista para reenviar correo de verificación."""
+
+    def get(self, request):
+        """Muestra formulario para reenviar verificación."""
+        return render(request, 'usuarios/reenviar_verificacion.html')
+
+    def post(self, request):
+        """Procesa el reenvío de verificación."""
+        email = request.POST.get('email', '').strip().lower()
+
+        if not email:
+            messages.error(request, 'Por favor ingresa tu correo electrónico.')
+            return render(request, 'usuarios/reenviar_verificacion.html')
+
+        try:
+            # Buscar usuario con ese email
+            user = Usuario.objects.filter(email=email).first()
+
+            if not user:
+                # Por seguridad, no revelar si el email existe o no
+                messages.success(request,
+                                 'Si existe una cuenta con ese correo, recibirás un enlace de verificación en breve.')
+                return render(request, 'usuarios/reenviar_verificacion.html')
+
+            # Si ya está verificado
+            if user.email_verified:
+                messages.info(request, 'Tu cuenta ya está verificada. Puedes iniciar sesión.')
+                return redirect('login')
+
+            # Reenviar correo de verificación
+            if send_verification_email(request, user):
+                messages.success(request,
+                                 'Se ha enviado un nuevo enlace de verificación a tu correo electrónico.')
+            else:
+                messages.error(request,
+                               'Error al enviar el correo. Inténtalo nuevamente en unos minutos.')
+
+            return render(request, 'usuarios/reenviar_verificacion.html')
+
+        except Exception as e:
+            logger.error(f"Error reenviando verificación: {str(e)}")
+            messages.error(request, 'Error interno del servidor.')
+            return render(request, 'usuarios/reenviar_verificacion.html')
+
+
+# ACTUALIZAR LAS VISTAS DE REGISTRO EXISTENTES
+
+class InteresadoRegistroView(View):
+    """Vista para registro de interesados - ACTUALIZADA CON VERIFICACIÓN."""
+
+    def get(self, request):
+        form = InteresadoRegistroForm()
+        return render(request, 'usuarios/registro_interesado.html', {'form': form})
+
+    def post(self, request):
+        form = InteresadoRegistroForm(request.POST)
+        if form.is_valid():
+            try:
+                # Crear usuario sin verificar
+                user = form.save(commit=False)
+                user.email_verified = False
+                user.save()
+
+                # Crear perfil de interesado
+                from .models import Interesado
+                Interesado.objects.get_or_create(
+                    usuario=user,
+                    defaults={
+                        'nombre': '',
+                        'apellido_paterno': '',
+                        'apellido_materno': ''
+                    }
+                )
+
+                # Enviar correo de verificación
+                if send_verification_email(request, user):
+                    messages.success(request,
+                                     '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                     'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
+                else:
+                    messages.warning(request,
+                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                     'Puedes solicitar un nuevo enlace más tarde.')
+
+                return render(request, 'usuarios/registro_exitoso.html', {
+                    'user_email': user.email,
+                    'user_role': 'interesado'
+                })
+
+            except Exception as e:
+                logger.error(f"Error en registro de interesado: {str(e)}")
+                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
+
+        return render(request, 'usuarios/registro_interesado.html', {'form': form})
+
+
+class ReclutadorRegistroView(View):
+    """Vista para registro de reclutadores - ACTUALIZADA CON VERIFICACIÓN."""
+
+    def get(self, request):
+        secretaria_form = SecretariaRegistroForm()
+        reclutador_form = ReclutadorRegistroForm()
+        return render(request, 'usuarios/registro_reclutador.html', {
+            'secretaria_form': secretaria_form,
+            'reclutador_form': reclutador_form
+        })
+
+    def post(self, request):
+        secretaria_form = SecretariaRegistroForm(request.POST)
+        reclutador_form = ReclutadorRegistroForm(request.POST)
+
+        if secretaria_form.is_valid() and reclutador_form.is_valid():
+            try:
+                with transaction.atomic():
+                    # Crear secretaría
+                    secretaria = secretaria_form.save()
+
+                    # Crear usuario sin verificar
+                    user = reclutador_form.save(commit=False)
+                    user.email_verified = False
+                    user.save()
+
+                    # Crear perfil de reclutador
+                    from .models import Reclutador
+                    Reclutador.objects.create(
+                        usuario=user,
+                        secretaria=secretaria,
+                        nombre=reclutador_form.cleaned_data.get('nombre'),
+                        apellido_paterno=reclutador_form.cleaned_data.get('apellido_paterno'),
+                        apellido_materno=reclutador_form.cleaned_data.get('apellido_materno'),
+                        cargo=reclutador_form.cleaned_data.get('cargo'),
+                        telefono=reclutador_form.cleaned_data.get('telefono'),
+                        aprobado=False  # Requiere aprobación adicional
+                    )
+
+                    # Enviar correo de verificación
+                    if send_verification_email(request, user):
+                        messages.success(request,
+                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                         'Después de verificar tu email, tu cuenta será revisada por un administrador.')
+                    else:
+                        messages.warning(request,
+                                         'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                         'Puedes solicitar un nuevo enlace más tarde.')
+
+                    return render(request, 'usuarios/registro_exitoso.html', {
+                        'user_email': user.email,
+                        'user_role': 'reclutador'
+                    })
+
+            except Exception as e:
+                logger.error(f"Error en registro de reclutador: {str(e)}")
+                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
+
+        return render(request, 'usuarios/registro_reclutador.html', {
+            'secretaria_form': secretaria_form,
+            'reclutador_form': reclutador_form
+        })
+
+
+# ACTUALIZAR LA VISTA DE LOGIN
+
 class LoginView(View):
-    """Vista para inicio de sesión de usuarios."""
+    """Vista para inicio de sesión de usuarios - ACTUALIZADA CON VERIFICACIÓN."""
 
     def get(self, request):
         form = LoginForm()
@@ -266,8 +552,26 @@ class LoginView(View):
             email = form.cleaned_data.get('username')
             password = form.cleaned_data.get('password')
             user = authenticate(username=email, password=password)
+
             if user is not None:
+                # Verificar si el usuario puede iniciar sesión
+                if not user.can_login:
+                    if not user.email_verified:
+                        messages.warning(request,
+                                         'Debes verificar tu correo electrónico antes de iniciar sesión. '
+                                         'Revisa tu bandeja de entrada o solicita un nuevo enlace de verificación.')
+                        return render(request, 'usuarios/login.html', {
+                            'form': form,
+                            'show_resend_verification': True,
+                            'user_email': user.email
+                        })
+                    else:
+                        messages.error(request, 'Tu cuenta no está activa.')
+                        return render(request, 'usuarios/login.html', {'form': form})
+
+                # Usuario puede iniciar sesión
                 login(request, user)
+
                 # Redirigir según el rol
                 if user.rol == 'interesado':
                     return redirect('perfil_interesado')
@@ -276,13 +580,15 @@ class LoginView(View):
                     if hasattr(user, 'reclutador') and user.reclutador.aprobado:
                         return redirect('dashboard_reclutador')
                     else:
-                        messages.warning(request, 'Tu cuenta de reclutador está pendiente de aprobación.')
+                        messages.warning(request,
+                                         'Tu cuenta de reclutador está pendiente de aprobación por un administrador.')
                         logout(request)
                         return redirect('login')
                 elif user.rol == 'administrador':
                     return redirect('admin:index')
             else:
                 messages.error(request, 'Correo o contraseña incorrectos. Intenta nuevamente.')
+
         return render(request, 'usuarios/login.html', {'form': form})
 
 

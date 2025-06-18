@@ -19,7 +19,7 @@ ALLOWED_HOSTS = []
 
 
 INSTALLED_APPS = [
-    'jazzmin',  # <-- AÑADIR JAZZMIN AQUÍ ARRIBA
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -27,12 +27,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',  # Para humanizar números y fechas
-
+    'django.contrib.sites',
     # Apps propias
     'usuarios',
 
     # Apps de terceros
     'crispy_forms',
+    # 'two_factor'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -42,7 +43,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware', # Necesario para la autenticación
     'django.contrib.messages.middleware.MessageMiddleware', # Necesario para los mensajes
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # ... otros middlewares que puedas tener ...
+    'django_otp.middleware.OTPMiddleware',  # <--- AÑADIR ESTA LÍNEA
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -131,10 +132,10 @@ EMAIL_HOST = 'smtp.gmail.com'  # o el servidor SMTP que uses
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'marcovazquezdelgado.movilidad@gmail.com'  # correo desde el que se envían las notificaciones
-EMAIL_HOST_PASSWORD = 'tu_contraseña'  # contraseña o clave de aplicación
-#DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo <noreply@bolsadetrabajo.example.com>'
-DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo marcovazquezdelgado.movilidad@gmail.com>'
-
+EMAIL_HOST_PASSWORD = 'jufg zcao sdzs hsof'  # IMPORTANTE: Usar clave de aplicación, no contraseña normal
+# DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo <marcovazquezdelgado.movilidad@gmail.com>'
+DEFAULT_FROM_EMAIL = 'marcovazquezdelgado.movilidad@gmail.com'
+SITE_ID = 1
 # Para desarrollo, puedes usar el backend de consola (muestra emails en la terminal)
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 #
@@ -155,6 +156,7 @@ DEFAULT_FROM_EMAIL = 'Bolsa de Trabajo marcovazquezdelgado.movilidad@gmail.com>'
 #         },
 #     },
 # }
+
 
 JAZZMIN_SETTINGS = {
     # Título que se muestra en la pestaña del navegador y en la cabecera del login.
@@ -258,3 +260,10 @@ JAZZMIN_UI_TWEAKS = {
         "success": "btn-success"
     }
 }
+
+LOGIN_URL = 'two_factor:login'
+LOGIN_REDIRECT_URL = 'index'
+LOGOUT_REDIRECT_URL = 'index'
+
+# Opcional: Nombre del sitio que aparecerá en la app de autenticación
+TWO_FACTOR_APP_NAME = 'Bolsa de Trabajo'

@@ -3,9 +3,12 @@ from django.db import models
 from django.contrib.auth.models import User, AbstractUser, BaseUserManager
 from django.utils.translation import gettext_lazy as _
 from django.contrib.humanize.templatetags.humanize import intcomma # Para formatear con comas
-from django.utils.translation import gettext_lazy as _
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from django.utils import timezone
+from datetime import timedelta
+import uuid
+
 
 class UserManager(BaseUserManager):
     """Define una clase gestora de usuario para crear usuarios con email."""
@@ -25,6 +28,7 @@ class UserManager(BaseUserManager):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('rol', 'administrador')
+        extra_fields.setdefault('email_verified', True)  # Los superusuarios están verificados por defecto
 
         if extra_fields.get('is_staff') is not True:
             raise ValueError('Superusuario debe tener is_staff=True.')
@@ -50,6 +54,22 @@ class Usuario(AbstractUser):
     ultimo_acceso = models.DateTimeField(auto_now=True)
     activo = models.BooleanField(default=True)
 
+    # Campos para verificación de email
+    email_verified = models.BooleanField(
+        default=False,
+        help_text='Indica si el email ha sido verificado'
+    )
+    verification_token = models.UUIDField(
+        blank=True,
+        null=True,
+        help_text='Token para verificación de email'
+    )
+    verification_token_expires = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text='Fecha de expiración del token'
+    )
+
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -57,6 +77,42 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def generate_verification_token(self):
+        """Genera un nuevo token de verificación con expiración en 24 horas."""
+        self.verification_token = uuid.uuid4()
+        self.verification_token_expires = timezone.now() + timedelta(hours=24)
+        self.save(update_fields=['verification_token', 'verification_token_expires'])
+
+    def is_verification_token_valid(self, token):
+        """Verifica si el token es válido y no ha expirado."""
+        if not self.verification_token or not self.verification_token_expires:
+            return False
+
+        if str(self.verification_token) != str(token):
+            return False
+
+        if timezone.now() > self.verification_token_expires:
+            return False
+
+        return True
+
+    def verify_email(self):
+        """Marca el email como verificado y limpia el token."""
+        self.email_verified = True
+        self.verification_token = None
+        self.verification_token_expires = None
+        self.save(update_fields=['email_verified', 'verification_token', 'verification_token_expires'])
+
+    @property
+    def can_login(self):
+        """Determina si el usuario puede iniciar sesión."""
+        # Los administradores pueden iniciar sesión sin verificación
+        if self.rol == 'administrador' or self.is_superuser:
+            return True
+
+        # Los demás usuarios necesitan verificar su email
+        return self.email_verified
 
 # usuarios/models.py - SECCIÓN ACTUALIZADA PARA INTERESADO
 class Interesado(models.Model):

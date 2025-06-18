@@ -1,4 +1,4 @@
-# usuarios/urls.py
+# usuarios/urls.py - URLS ACTUALIZADAS CON VERIFICACIÓN DE EMAIL
 from django.urls import path
 from . import views
 
@@ -20,6 +20,12 @@ urlpatterns = [
     # ===========================
     path('registro/interesado/', views.InteresadoRegistroView.as_view(), name='registro_interesado'),
     path('registro/reclutador/', views.ReclutadorRegistroView.as_view(), name='registro_reclutador'),
+
+    # ===========================
+    # URLs DE VERIFICACIÓN DE EMAIL
+    # ===========================
+    path('verificar-email/<uuid:token>/', views.VerificarEmailView.as_view(), name='verificar_email'),
+    path('reenviar-verificacion/', views.ReenviarVerificacionView.as_view(), name='reenviar_verificacion'),
 
     # ===========================
     # URLs DE PERFILES Y DASHBOARDS
@@ -53,12 +59,8 @@ urlpatterns = [
     # ===========================
     path('mi-cv/', views.CrearEditarCVView.as_view(), name='crear_editar_cv'),
     path('mi-cv/previsualizar/', views.previsualizar_cv, name='previsualizar_cv'),
-    # path('cv/descargar-pdf/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
     path('cv/descargar/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
     path('cv/descarga/', views.descargar_cv_pdf_reclutador, name='descargar_cv_pdf_reclutador'),
-    # descargar_cv_pdf_reclutador
-    # path('cv/descargar/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
-
 
     # ===========================
     # URLs AJAX PARA ACTUALIZACIÓN DE PERFIL
@@ -80,9 +82,7 @@ urlpatterns = [
     # ===========================
     path('ajax/educacion/agregar/', views.agregar_educacion_ajax, name='agregar_educacion_ajax'),
     path('ajax/educacion/eliminar/<int:educacion_id>/', views.eliminar_educacion_ajax, name='eliminar_educacion_ajax'),
-    path('ajax/educacion/agregar/', views.agregar_educacion_ajax, name='agregar_educacion_ajax'),
-    path('ajax/educacion/editar/<int:educacion_id>/', views.editar_educacion_ajax, name='editar_educacion_ajax'),  # ← AGREGAR ESTA LÍNEA
-    path('ajax/educacion/eliminar/<int:educacion_id>/', views.eliminar_educacion_ajax, name='eliminar_educacion_ajax'),
+    path('ajax/educacion/editar/<int:educacion_id>/', views.editar_educacion_ajax, name='editar_educacion_ajax'),
 
     # ===========================
     # URLs AJAX PARA HABILIDADES
