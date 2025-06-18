@@ -1,7 +1,10 @@
-# usuarios/admin.py
+# usuarios/admin.py - SECCIÓN ACTUALIZADA
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
+from django.utils.html import format_html
+from django.urls import reverse
+from django.utils import timezone
 from .models import Usuario, Interesado, Reclutador, Secretaria, Categoria, Vacante, RequisitoVacante, Postulacion
 
 
@@ -36,6 +39,10 @@ class UsuarioAdmin(BaseUserAdmin):
         ),
         (_('Important dates'), {'fields': ('last_login', 'date_joined')}),
         (_('Extras'), {'fields': ('rol', 'activo')}),
+        (_('Email Verification'), {
+            'fields': ('email_verified', 'verification_token', 'verification_token_expires'),
+            'classes': ('collapse',),
+        }),
     )
     add_fieldsets = (
         (
@@ -46,12 +53,44 @@ class UsuarioAdmin(BaseUserAdmin):
             },
         ),
     )
-    #configuracion de la lista
-    list_display = ('email', 'first_name', 'last_name', 'rol', 'is_staff', 'activo')
-    list_filter = ('is_staff', 'is_superuser', 'is_active', 'rol', 'groups')
+
+    # Configuración de la lista
+    list_display = (
+        'email', 'first_name', 'last_name', 'rol',
+        'email_verified_display', 'is_staff', 'activo', 'date_joined'
+    )
+    list_filter = (
+        'is_staff', 'is_superuser', 'is_active', 'rol',
+        'email_verified', 'groups', 'date_joined'
+    )
     search_fields = ('email', 'first_name', 'last_name')
     ordering = ('email',)
     filter_horizontal = ('groups', 'user_permissions',)
+    readonly_fields = ('verification_token', 'verification_token_expires')
+
+    def email_verified_display(self, obj):
+        """Muestra el estado de verificación de email con colores."""
+        if obj.email_verified:
+            return format_html(
+                '<span style="color: green; font-weight: bold;">✓ Verificado</span>'
+            )
+        else:
+            # Verificar si tiene token expirado
+            if obj.verification_token_expires and obj.verification_token_expires < timezone.now():
+                return format_html(
+                    '<span style="color: red; font-weight: bold;">✗ Token Expirado</span>'
+                )
+            elif obj.verification_token:
+                return format_html(
+                    '<span style="color: orange; font-weight: bold;">⏳ Pendiente</span>'
+                )
+            else:
+                return format_html(
+                    '<span style="color: red; font-weight: bold;">✗ No Verificado</span>'
+                )
+
+    email_verified_display.short_description = 'Email Verificado'
+    email_verified_display.admin_order_field = 'email_verified'
 
     def get_inlines(self, request, obj=None):
         if obj:
@@ -61,23 +100,54 @@ class UsuarioAdmin(BaseUserAdmin):
                 return [ReclutadorInline]
         return []
 
+    actions = ['marcar_email_verificado', 'limpiar_tokens_expirados']
 
+    def marcar_email_verificado(self, request, queryset):
+        """Acción para marcar emails como verificados manualmente."""
+        updated = queryset.update(
+            email_verified=True,
+            verification_token=None,
+            verification_token_expires=None
+        )
+        self.message_user(request, f'{updated} usuarios marcados como verificados.')
+
+    marcar_email_verificado.short_description = "Marcar emails como verificados"
+
+    def limpiar_tokens_expirados(self, request, queryset):
+        """Acción para limpiar tokens expirados."""
+        tokens_expirados = queryset.filter(
+            verification_token__isnull=False,
+            verification_token_expires__lt=timezone.now()
+        )
+        updated = tokens_expirados.update(
+            verification_token=None,
+            verification_token_expires=None
+        )
+        self.message_user(request, f'{updated} tokens expirados limpiados.')
+
+    limpiar_tokens_expirados.short_description = "Limpiar tokens expirados"
+
+
+# Resto de los modelos admin permanecen igual...
 @admin.register(Secretaria)
 class SecretariaAdmin(admin.ModelAdmin):
-    list_display = ('nombre', 'rfc', 'activa', 'fecha_registro')  # Removido 'ciudad'
-    list_filter = ('activa',)  # Removido 'ciudad', 'estado'
+    list_display = ('nombre', 'rfc', 'activa', 'fecha_registro')
+    list_filter = ('activa',)
     search_fields = ('nombre', 'rfc')
     date_hierarchy = 'fecha_registro'
+
 
 @admin.register(Interesado)
 class InteresadoAdmin(admin.ModelAdmin):
     list_display = ('nombre', 'apellido_paterno', 'apellido_materno', 'usuario', 'telefono', 'municipio')
-    list_filter = ('municipio',)  # Cambiado de 'ciudad', 'estado'
+    list_filter = ('municipio',)
     search_fields = ('nombre', 'apellido_paterno', 'apellido_materno', 'usuario__email')
 
     def nombre_completo(self, obj):
         return obj.nombre_completo
+
     nombre_completo.short_description = 'Nombre Completo'
+
 
 @admin.register(Reclutador)
 class ReclutadorAdmin(admin.ModelAdmin):
@@ -88,7 +158,9 @@ class ReclutadorAdmin(admin.ModelAdmin):
 
     def nombre_completo(self, obj):
         return obj.nombre_completo
+
     nombre_completo.short_description = 'Nombre Completo'
+
 
 @admin.register(Categoria)
 class CategoriaAdmin(admin.ModelAdmin):
@@ -106,11 +178,11 @@ class RequisitoVacanteInline(admin.StackedInline):
 class VacanteAdmin(admin.ModelAdmin):
     list_display = (
         'titulo', 'secretaria', 'reclutador', 'categoria',
-        'estado_vacante', 'tipo_empleo', 'fecha_publicacion', 'fecha_limite', 'municipio'  # Agregado municipio
+        'estado_vacante', 'tipo_empleo', 'fecha_publicacion', 'fecha_limite', 'municipio'
     )
     list_filter = (
         'estado_vacante', 'tipo_empleo', 'modalidad', 'categoria',
-        'secretaria', 'aprobada', 'destacada', 'municipio'  # Cambiado a municipio
+        'secretaria', 'aprobada', 'destacada', 'municipio'
     )
     search_fields = ('titulo', 'descripcion', 'reclutador__nombre', 'secretaria__nombre')
     date_hierarchy = 'fecha_publicacion'
@@ -123,6 +195,7 @@ class RequisitoVacanteAdmin(admin.ModelAdmin):
     list_display = ('vacante', 'educacion_minima', 'experiencia_minima')
     list_filter = ('vacante__categoria',)
     search_fields = ('vacante__titulo', 'descripcion_requisitos')
+
 
 @admin.register(Postulacion)
 class PostulacionAdmin(admin.ModelAdmin):

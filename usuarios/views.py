@@ -1,6 +1,3 @@
-# usuarios/views.py
-
-# Importaciones de Django core
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -19,10 +16,18 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
 from datetime import date
-#Verificacion de correo
+
+# Verificacion de correo - IMPORTACIONES CORREGIDAS
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
+from django.contrib.sites.shortcuts import get_current_site  # AGREGADO
+from django.urls import reverse
+from django.conf import settings
 import logging
+
+# CONFIGURAR LOGGER
+logger = logging.getLogger(__name__)
+
 # Importaciones para manejo de archivos e imágenes
 from weasyprint import HTML
 from io import BytesIO
@@ -290,7 +295,7 @@ def send_verification_email(request, user):
             'expires_hours': 24,
         }
 
-        # Renderizar el template del correo
+        # ✅ TEMPLATE CORREGIDO - Ahora busca en la carpeta correcta
         html_message = render_to_string('emails/verificacion_email.html', context)
         plain_message = strip_tags(html_message)
 
@@ -300,22 +305,25 @@ def send_verification_email(request, user):
         else:
             subject = 'Verifica tu cuenta de Reclutador - Bolsa de Trabajo Estado de México'
 
-        # Enviar el correo
+        # ✅ ENVIAR EL CORREO CON MANEJO DE ERRORES MEJORADO
         send_mail(
             subject=subject,
             message=plain_message,
             from_email=settings.DEFAULT_FROM_EMAIL,
             recipient_list=[user.email],
             html_message=html_message,
-            fail_silently=False,
+            fail_silently=False,  # ✅ Cambiar a False para ver errores
         )
 
-        logger.info(f"Correo de verificación enviado a {user.email}")
+        logger.info(f"Correo de verificación enviado exitosamente a {user.email}")
         return True
 
     except Exception as e:
         logger.error(f"Error enviando correo de verificación a {user.email}: {str(e)}")
+        print(f"ERROR DETALLADO: {str(e)}")  # ✅ Para debugging
         return False
+
+
 
 
 class VerificarEmailView(View):
@@ -422,10 +430,63 @@ class ReenviarVerificacionView(View):
             return render(request, 'usuarios/reenviar_verificacion.html')
 
 
-# ACTUALIZAR LAS VISTAS DE REGISTRO EXISTENTES
-
 class InteresadoRegistroView(View):
     """Vista para registro de interesados - ACTUALIZADA CON VERIFICACIÓN."""
+
+    def get(self, request):
+        form = InteresadoRegistroForm()
+        return render(request, 'usuarios/registro_interesado.html', {'form': form})
+
+    def post(self, request):
+        form = InteresadoRegistroForm(request.POST)
+        if form.is_valid():
+            try:
+                # Crear usuario sin verificar
+                user = form.save(commit=False)
+                user.email_verified = False
+                user.save()
+
+                # Crear perfil de interesado
+                from .models import Interesado
+                Interesado.objects.get_or_create(
+                    usuario=user,
+                    defaults={
+                        'nombre': '',
+                        'apellido_paterno': '',
+                        'apellido_materno': ''
+                    }
+                )
+
+                # ✅ ENVIAR CORREO CON MEJOR MANEJO DE ERRORES
+                try:
+                    email_enviado = send_verification_email(request, user)
+                    if email_enviado:
+                        messages.success(request,
+                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                         'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
+                    else:
+                        messages.warning(request,
+                                         'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                         'Puedes solicitar un nuevo enlace desde la página de login.')
+                except Exception as e:
+                    logger.error(f"Error crítico enviando email: {str(e)}")
+                    messages.warning(request,
+                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                     'Puedes solicitar un nuevo enlace desde la página de login.')
+
+                return render(request, 'usuarios/registro_exitoso.html', {
+                    'user_email': user.email,
+                    'user_role': 'interesado'
+                })
+
+            except Exception as e:
+                logger.error(f"Error en registro de interesado: {str(e)}")
+                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
+
+        return render(request, 'usuarios/registro_interesado.html', {'form': form})
+
+
+
 
     def get(self, request):
         form = InteresadoRegistroForm()
@@ -509,18 +570,25 @@ class ReclutadorRegistroView(View):
                         apellido_materno=reclutador_form.cleaned_data.get('apellido_materno'),
                         cargo=reclutador_form.cleaned_data.get('cargo'),
                         telefono=reclutador_form.cleaned_data.get('telefono'),
-                        aprobado=False  # Requiere aprobación adicional
+                        aprobado=False
                     )
 
-                    # Enviar correo de verificación
-                    if send_verification_email(request, user):
-                        messages.success(request,
-                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
-                                         'Después de verificar tu email, tu cuenta será revisada por un administrador.')
-                    else:
+                    # ✅ ENVIAR CORREO CON MEJOR MANEJO DE ERRORES
+                    try:
+                        email_enviado = send_verification_email(request, user)
+                        if email_enviado:
+                            messages.success(request,
+                                             '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                             'Después de verificar tu email, tu cuenta será revisada por un administrador.')
+                        else:
+                            messages.warning(request,
+                                             'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                             'Puedes solicitar un nuevo enlace desde la página de login.')
+                    except Exception as e:
+                        logger.error(f"Error crítico enviando email: {str(e)}")
                         messages.warning(request,
                                          'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                         'Puedes solicitar un nuevo enlace más tarde.')
+                                         'Puedes solicitar un nuevo enlace desde la página de login.')
 
                     return render(request, 'usuarios/registro_exitoso.html', {
                         'user_email': user.email,
@@ -535,7 +603,6 @@ class ReclutadorRegistroView(View):
             'secretaria_form': secretaria_form,
             'reclutador_form': reclutador_form
         })
-
 
 # ACTUALIZAR LA VISTA DE LOGIN
 

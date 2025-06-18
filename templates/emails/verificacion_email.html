@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica tu cuenta - {{ site_name }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        .email-container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #9F2241;
+        }
+        .header h1 {
+            color: #9F2241;
+            margin: 0;
+        }
+        .content {
+            margin-bottom: 30px;
+        }
+        .verification-button {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .verification-button a {
+            background-color: #9F2241;
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+        }
+        .verification-button a:hover {
+            background-color: #7a1a33;
+        }
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+        }
+        .warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>{{ site_name }}</h1>
+            <p>Secretaría de Movilidad del Estado de México</p>
+        </div>
+
+        <div class="content">
+            <h2>¡Hola{% if user.interesado.nombre %} {{ user.interesado.nombre }}{% endif %}!</h2>
+
+            {% if user.rol == 'interesado' %}
+                <p>Gracias por registrarte en nuestra Bolsa de Trabajo. Para comenzar a buscar empleos y postularte a vacantes, necesitas verificar tu dirección de correo electrónico.</p>
+            {% elif user.rol == 'reclutador' %}
+                <p>Gracias por registrarte como reclutador en nuestra Bolsa de Trabajo. Para comenzar a publicar vacantes, primero necesitas verificar tu dirección de correo electrónico.</p>
+            {% endif %}
+
+            <p><strong>Tu correo electrónico:</strong> {{ user.email }}</p>
+
+            <div class="verification-button">
+                <a href="{{ verification_url }}">Verificar mi cuenta</a>
+            </div>
+
+            <p>Si no puedes hacer clic en el botón, copia y pega el siguiente enlace en tu navegador:</p>
+            <p style="word-break: break-all; background-color: #f8f9fa; padding: 10px; border-radius: 5px; font-family: monospace;">
+                {{ verification_url }}
+            </p>
+
+            <div class="warning">
+                <strong>⚠️ Importante:</strong>
+                <ul>
+                    <li>Este enlace expirará en {{ expires_hours }} horas</li>
+                    <li>Si no solicitaste esta cuenta, puedes ignorar este correo</li>
+                    <li>No compartas este enlace con nadie</li>
+                </ul>
+            </div>
+
+            {% if user.rol == 'reclutador' %}
+                <p><strong>Próximos pasos para reclutadores:</strong></p>
+                <ol>
+                    <li>Verifica tu correo electrónico haciendo clic en el botón</li>
+                    <li>Tu cuenta será revisada por nuestro equipo de administración</li>
+                    <li>Recibirás una notificación cuando tu cuenta sea aprobada</li>
+                    <li>Una vez aprobada, podrás comenzar a publicar vacantes</li>
+                </ol>
+            {% endif %}
+        </div>
+
+        <div class="footer">
+            <p>Este correo fue enviado automáticamente. No respondas a este mensaje.</p>
+            <p>
+                <strong>Secretaría de Movilidad del Estado de México</strong><br>
+                Av. Gustavo Baz #2160, La Loma Tlalnepantla de Baz<br>
+                Tel. 55 53 668 200
+            </p>
+            <p>© {{ "now"|date:"Y" }} Gobierno del Estado de México. Todos los derechos reservados.</p>
+        </div>
+    </div>
+</body>
+</html>

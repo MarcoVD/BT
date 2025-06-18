@@ -1,0 +1,71 @@
+<!-- templates/usuarios/verificacion_resultado.html -->
+{% extends 'base.html' %}
+
+{% block title %}{{ title }} - Bolsa de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body text-center p-5">
+                {% if success %}
+                    <div class="mb-4">
+                        <i class="bi bi-check-circle-fill text-success" style="font-size: 4rem;"></i>
+                    </div>
+                    <h2 class="text-success">{{ title }}</h2>
+                    <p class="lead">{{ message }}</p>
+
+                    {% if user_role == 'interesado' %}
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'login' %}" class="btn btn-primary btn-lg">
+                                <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                            </a>
+                            <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                                Ver Vacantes Disponibles
+                            </a>
+                        </div>
+                    {% elif user_role == 'reclutador' %}
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle"></i>
+                            <strong>Próximo paso:</strong> Tu cuenta será revisada por un administrador.
+                            Te notificaremos por correo cuando sea aprobada.
+                        </div>
+                        <a href="{% url 'login' %}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right"></i> Ir al Login
+                        </a>
+                    {% else %}
+                        <a href="{% url 'login' %}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right"></i> Iniciar Sesión
+                        </a>
+                    {% endif %}
+                {% else %}
+                    <div class="mb-4">
+                        <i class="bi bi-x-circle-fill text-danger" style="font-size: 4rem;"></i>
+                    </div>
+                    <h2 class="text-danger">{{ title }}</h2>
+                    <p class="lead">{{ message }}</p>
+
+                    {% if show_resend %}
+                        <div class="alert alert-warning">
+                            <strong>¿Necesitas un nuevo enlace?</strong><br>
+                            Puedes solicitar un nuevo enlace de verificación.
+                        </div>
+                        <div class="d-grid gap-2">
+                            <a href="{% url 'reenviar_verificacion' %}" class="btn btn-warning">
+                                <i class="bi bi-arrow-clockwise"></i> Solicitar Nuevo Enlace
+                            </a>
+                            <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                                Volver al Inicio
+                            </a>
+                        </div>
+                    {% else %}
+                        <a href="{% url 'index' %}" class="btn btn-primary">
+                            <i class="bi bi-house"></i> Volver al Inicio
+                        </a>
+                    {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

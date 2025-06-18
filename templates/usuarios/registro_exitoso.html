@@ -1,0 +1,82 @@
+<!-- templates/usuarios/registro_exitoso.html -->
+{% extends 'base.html' %}
+
+{% block title %}Registro Exitoso - Bolsa de Trabajo{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="card">
+            <div class="card-body text-center p-5">
+                <div class="mb-4">
+                    <i class="bi bi-envelope-check text-success" style="font-size: 4rem;"></i>
+                </div>
+
+                <h2 class="text-success mb-3">¡Registro Exitoso!</h2>
+
+                {% if user_role == 'interesado' %}
+                    <h4>¡Bienvenido a la Bolsa de Trabajo!</h4>
+                    <p class="lead">
+                        Tu cuenta ha sido creada exitosamente. Para comenzar a buscar empleos y postularte a vacantes,
+                        necesitas verificar tu correo electrónico.
+                    </p>
+                {% elif user_role == 'reclutador' %}
+                    <h4>¡Bienvenido, Reclutador!</h4>
+                    <p class="lead">
+                        Tu cuenta ha sido creada exitosamente. Para comenzar a publicar vacantes,
+                        primero verifica tu correo electrónico.
+                    </p>
+                {% endif %}
+
+                <div class="alert alert-info my-4">
+                    <i class="bi bi-info-circle me-2"></i>
+                    <strong>Hemos enviado un correo de verificación a:</strong><br>
+                    <code>{{ user_email }}</code>
+                </div>
+
+                <div class="row text-start">
+                    <div class="col-md-6">
+                        <h5><i class="bi bi-1-circle text-primary"></i> Verifica tu Email</h5>
+                        <p class="small">
+                            Revisa tu bandeja de entrada y haz clic en el enlace de verificación.
+                            También revisa la carpeta de spam.
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        {% if user_role == 'reclutador' %}
+                            <h5><i class="bi bi-2-circle text-primary"></i> Aprobación</h5>
+                            <p class="small">
+                                Después de verificar tu email, tu cuenta será revisada por un administrador.
+                            </p>
+                        {% else %}
+                            <h5><i class="bi bi-2-circle text-primary"></i> ¡Comienza a Buscar!</h5>
+                            <p class="small">
+                                Una vez verificado, podrás iniciar sesión y explorar todas las oportunidades laborales.
+                            </p>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <h6>¿No recibiste el correo?</h6>
+                    <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                        <a href="{% url 'reenviar_verificacion' %}" class="btn btn-outline-primary">
+                            <i class="bi bi-arrow-clockwise"></i> Reenviar Correo
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-secondary">
+                            <i class="bi bi-house"></i> Volver al Inicio
+                        </a>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 bg-light rounded">
+                    <small class="text-muted">
+                        <strong>Importante:</strong> El enlace de verificación expira en 24 horas.
+                        Si tienes problemas, puedes solicitar un nuevo enlace en cualquier momento.
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
