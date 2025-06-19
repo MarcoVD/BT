@@ -78,7 +78,7 @@
             <h2>¡Hola{% if user.interesado.nombre %} {{ user.interesado.nombre }}{% endif %}!</h2>
 
             {% if user.rol == 'interesado' %}
-                <p>Gracias por registrarte en nuestra Bolsa de Trabajo. Para comenzar a buscar empleos y postularte a vacantes, necesitas verificar tu dirección de correo electrónico.</p>
+                <p><strong>Gracias por registrarte en nuestra Bolsa de Trabajo.</strong>  Para comenzar a buscar empleos y postularte a vacantes, necesitas verificar tu dirección de correo electrónico.</p>
             {% elif user.rol == 'reclutador' %}
                 <p>Gracias por registrarte como reclutador en nuestra Bolsa de Trabajo. Para comenzar a publicar vacantes, primero necesitas verificar tu dirección de correo electrónico.</p>
             {% endif %}
