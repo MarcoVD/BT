@@ -57,7 +57,7 @@ urlpatterns = [
     # ===========================
     # URLs PARA GESTIÓN DE CV
     # ===========================
-    path('mi-cv/', views.CrearEditarCVView.as_view(), name='crear_editar_cv'),
+    # path('mi-cv/', views.CrearEditarCVView.as_view(), name='crear_editar_cv'),
     path('mi-cv/previsualizar/', views.previsualizar_cv, name='previsualizar_cv'),
     path('cv/descargar/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
     path('cv/descarga/', views.descargar_cv_pdf_reclutador, name='descargar_cv_pdf_reclutador'),
