@@ -190,11 +190,28 @@ class VacanteAdmin(admin.ModelAdmin):
     inlines = [RequisitoVacanteInline]
 
 
+# usuarios/admin.py - SECCIÓN ACTUALIZADA PARA RequisitoVacante
+
 @admin.register(RequisitoVacante)
 class RequisitoVacanteAdmin(admin.ModelAdmin):
-    list_display = ('vacante', 'educacion_minima', 'experiencia_minima')
-    list_filter = ('vacante__categoria',)
-    search_fields = ('vacante__titulo', 'descripcion_requisitos')
+    list_display = ('vacante', 'educacion_minima', 'experiencia_display', 'fecha_vacante')
+    list_filter = ('experiencia_minima', 'vacante__categoria')
+    search_fields = ('vacante__titulo', 'descripcion_requisitos', 'educacion_minima')
+    readonly_fields = ('fecha_vacante',)
+
+    def experiencia_display(self, obj):
+        """Muestra la experiencia de forma más clara."""
+        return obj.experiencia_display
+
+    experiencia_display.short_description = 'Experiencia Mínima'
+    experiencia_display.admin_order_field = 'experiencia_minima'
+
+    def fecha_vacante(self, obj):
+        """Muestra la fecha de publicación de la vacante."""
+        return obj.vacante.fecha_publicacion.strftime("%d/%m/%Y")
+
+    fecha_vacante.short_description = 'Fecha de Vacante'
+    fecha_vacante.admin_order_field = 'vacante__fecha_publicacion'
 
 
 @admin.register(Postulacion)

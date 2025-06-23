@@ -471,9 +471,9 @@ class RequisitoVacanteForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Ej: Licenciatura en Informática (Titulado)'
             }),
-            'experiencia_minima': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Ej: 3+ años de experiencia en desarrollo web'
+            # WIDGET ACTUALIZADO: Ahora es un Select para elegir años
+            'experiencia_minima': forms.Select(attrs={
+                'class': 'form-select'
             }),
             'descripcion_requisitos': forms.Textarea(attrs={
                 'class': 'form-control',
@@ -483,10 +483,23 @@ class RequisitoVacanteForm(forms.ModelForm):
         }
         labels = {
             'educacion_minima': 'Educación Mínima (opcional)',
-            'experiencia_minima': 'Experiencia Mínima (opcional)',
+            'experiencia_minima': 'Años de Experiencia Mínima',
             'descripcion_requisitos': 'Requisitos (Educación, Experiencia, Habilidades)',
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.fields['descripcion_requisitos'].required = True
+
+        # Agregar opción vacía al select de experiencia
+        experiencia_choices = [('', 'Selecciona años de experiencia...')] + list(
+            self.fields['experiencia_minima'].choices)
+        self.fields['experiencia_minima'].choices = experiencia_choices
+
+        # Configurar help_text personalizado
+        self.fields[
+            'experiencia_minima'].help_text = 'Selecciona los años mínimos de experiencia requeridos para el puesto.'
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+    #     self.fields['descripcion_requisitos'].required = True

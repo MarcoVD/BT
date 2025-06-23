@@ -13,19 +13,19 @@
             {% for postulacion in postulaciones %}
                 <div class="col-12 mb-3">
                     <div class="card postulacion-card
-                        {% if postulacion.estado == 'enviada' %}border-primary
-                        {% elif postulacion.estado == 'en_revision' %}border-warning
-                        {% elif postulacion.estado == 'preseleccionado' %}border-info
-                        {% elif postulacion.estado == 'entrevista' %}border-info
-                        {% elif postulacion.estado == 'aceptada' %}border-success
-                        {% elif postulacion.estado == 'rechazada' %}border-danger
-                        {% else %}border-secondary{% endif %}">
+                        {% if postulacion.estado == 'enviada' %}
+                        {% elif postulacion.estado == 'en_revision' %}
+                        {% elif postulacion.estado == 'preseleccionado' %}
+                        {% elif postulacion.estado == 'entrevista' %}
+                        {% elif postulacion.estado == 'aceptada' %}
+                        {% elif postulacion.estado == 'rechazada' %}
+                        {% else %}{% endif %}">
 
                         <div class="card-body">
                             <div class="row align-items-center">
                                 <div class="col-md-7 col-lg-8">
                                     <h5 class="card-title text-primary">
-                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="text-decoration-none">
+                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="text-decoration-none text-primary">
                                             {{ postulacion.vacante.titulo }}
                                         </a>
                                     </h5>
@@ -91,7 +91,7 @@
                                         {% elif postulacion.estado == 'preseleccionado' %}
                                             <span class="badge bg-info">Preseleccionado</span>
                                         {% elif postulacion.estado == 'entrevista' %}
-                                            <span class="badge bg-info">En Entrevista</span>
+                                            <span class="badge bg-info ">En Entrevista</span>
                                         {% elif postulacion.estado == 'aceptada' %}
                                             <span class="badge bg-success">Aceptada</span>
                                         {% elif postulacion.estado == 'rechazada' %}
@@ -103,7 +103,7 @@
 
                                     <!-- Acciones -->
                                     <div class="btn-group-vertical btn-group-sm w-100" role="group">
-                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="btn btn-outline-primary">
+                                        <a href="{% url 'detalle_vacante' postulacion.vacante.id %}" class="btn btn-sm btn-outline-primary text-primary">
                                             <i class="bi bi-eye"></i> Ver Vacante
                                         </a>
 
@@ -115,12 +115,16 @@
                                         {% endif %}
 
                                         {% if postulacion.estado == 'aceptada' %}
-                                            <small class="text-success mt-2 text-center">
+                                            <small class="text-success mt-2">
                                                 <i class="bi bi-check-circle"></i> ¡Felicitaciones!
                                             </small>
                                         {% elif postulacion.estado == 'entrevista' %}
-                                            <small class="text-info mt-2 text-center">
+                                            <small class="text-info mt-2 ">
                                                 <i class="bi bi-person-video2"></i> ¡Prepárate para la entrevista!
+
+{#justify-content-center → centra horizontalmente#}
+{#align-items-center → centra verticalmente#}
+{#style="height: 200px;" → necesario para que haya espacio vertical en el contenedor#}
                                             </small>
                                         {% endif %}
                                     </div>
@@ -206,7 +210,7 @@
 }
 .postulacion-card {
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-    border-left-width: 4px !important;
+    {#border-left-width: 4px !important;#}
 }
 
 .postulacion-card:hover {

@@ -81,6 +81,14 @@
         position: sticky;
         top: 90px;
     }
+    /* Ocultar el footer completamente en esta página */
+    .footer {
+        display: none !important;
+    }
+
+    .footer-bottom {
+        display: none !important;
+    }
 </style>
 {% endblock %}
 
@@ -115,22 +123,22 @@
             </div>
 
             <div class="job-content-card">
-                <h5>Descripción del Puesto</h5>
-                <p>{{ vacante.descripcion|linebreaksbr }}</p>
+                <h5 class="text-primary">Descripción del Puesto</h5>
+                <p class="text-black">{{ vacante.descripcion|linebreaksbr }}</p>
 
                 {% if requisitos and requisitos.descripcion_requisitos %}
-                <h5 class="mt-4">Requisitos y Responsabilidades</h5>
-                <p>{{ requisitos.descripcion_requisitos|linebreaksbr }}</p>
+                <h5 class="mt-4 text-primary">Requisitos y Responsabilidades</h5>
+                <p class="text-black">{{ requisitos.descripcion_requisitos|linebreaksbr }}</p>
                 {% endif %}
 
                 {% if requisitos and requisitos.educacion_minima %}
-                <h5 class="mt-4">Educación Requerida</h5>
-                <p>{{ requisitos.educacion_minima }}</p>
+                <h5 class="mt-4 text-primary">Educación Requerida</h5>
+                <p class="text-black">{{ requisitos.educacion_minima }}</p>
                 {% endif %}
 
                 {% if requisitos and requisitos.experiencia_minima %}
-                <h5 class="mt-4">Experiencia Requerida</h5>
-                <p>{{ requisitos.experiencia_minima }}</p>
+                <h5 class="mt-4 text-primary">Experiencia Requerida</h5>
+                <p class="text-black">{{ requisitos.experiencia_minima }} años</p>
                 {% endif %}
 
                 </div>
@@ -148,12 +156,13 @@
                                         <i class="bi bi-check-circle-fill"></i> Ya te postulaste
                                     </button>
                                 {% else %}
-                                    <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
+                                    <button type="button" class="btn btn-primary btn-lg " id="postularseBtn" onclick="postularseDirect()">
                                         <i class="bi bi-send-fill"></i> Postularme Ahora
                                     </button>
                                 {% endif %}
                             {% else %}
-                                <button type="button" class="btn btn-primary btn-lg" disabled>
+                                <button type="button" class="btn btn-primary btn-lg">
+{#                              <button type="button" class="btn btn-primary btn-lg">  disabled#}
                                     <i class="bi bi-send-fill"></i> Postularme Ahora
                                 </button>
                             {% endif %}
@@ -162,7 +171,7 @@
                                 <i class="bi bi-send-fill"></i> Postularme Ahora
                             </a>
                         {% endif %}
-                        <button type="button" class="btn btn-outline-primary">
+                        <button type="button" class="btn btn-outline-primary text-primary">
                             <i class="bi bi-bookmark-plus"></i> Guardar Vacante
                         </button>
                     </div>

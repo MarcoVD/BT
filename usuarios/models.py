@@ -562,18 +562,51 @@ class Vacante(models.Model):
         ordering = ['-fecha_publicacion']
 
 
+# usuarios/models.py - SECCIÓN ACTUALIZADA PARA RequisitoVacante
+
 class RequisitoVacante(models.Model):
     """Modelo para los requisitos específicos de una vacante."""
+    # Choices para años de experiencia
+    EXPERIENCIA_CHOICES = (
+        ('0', 'Sin experiencia requerida'),
+        ('1', '1 año'),
+        ('2', '2 años'),
+        ('3', '3 años'),
+        ('4', '4 años'),
+        ('5', '5 años'),
+        ('6', '6 años'),
+        ('7', '7 años'),
+        ('8', '8 años'),
+        ('9', '9 años'),
+        ('10', '10 años'),
+        ('10+', 'Más de 10 años'),
+    )
 
     vacante = models.OneToOneField(Vacante, on_delete=models.CASCADE, related_name='requisitos')
     educacion_minima = models.CharField(max_length=200, blank=True, null=True)
-    experiencia_minima = models.CharField(max_length=200, blank=True, null=True)
+
+    # CAMPO ACTUALIZADO: Ahora es un campo de choices
+    experiencia_minima = models.CharField(
+        max_length=10,
+        choices=EXPERIENCIA_CHOICES,
+        blank=True,
+        null=True,
+        verbose_name="Años de experiencia mínima"
+    )
+
     descripcion_requisitos = models.TextField(
         help_text="Detalla los requisitos específicos, habilidades técnicas, etc."
     )
 
     def __str__(self):
         return f"Requisitos - {self.vacante.titulo}"
+
+    @property
+    def experiencia_display(self):
+        """Retorna el texto formateado de la experiencia."""
+        if self.experiencia_minima:
+            return dict(self.EXPERIENCIA_CHOICES).get(self.experiencia_minima, self.experiencia_minima)
+        return "No especificada"
 
     class Meta:
         verbose_name = "Requisito de Vacante"

@@ -44,7 +44,7 @@ body {
 /* FOCUS STYLING - Bootstrap will override some of these */
 .form-control:focus,
 input[type=radio]:focus,
-.btn:focus {
+.btn:focus{
     outline-color: var(--secondary);
     outline-width: 4px;
     outline-style: solid;
@@ -53,6 +53,7 @@ input[type=radio]:focus,
 a:hover {
     text-decoration: none;
 }
+
 
 .bg-primary {
     background-color: var(--primary) !important;
@@ -231,6 +232,12 @@ a:hover {
 
 .btn-primary:hover {
     background-color: var(--primary);
+}
+/*Hover que cambia despues*/
+.btn-outline-primary:hover,
+.btn-outline-primary:active {
+  background-color: var(--primary) !important;
+  color: white !important;
 }
 
 #sidebar-container {
