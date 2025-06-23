@@ -5,19 +5,55 @@
     <!-- Cropper.js CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
     <style>
-        /* Estilos para hover de foto de perfil */
+        /* Contenedor principal para un padding consistente */
+        .container-fluid {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        /* Tarjetas con un estilo minimalista y consistente */
+        .card {
+            border: 1px solid var(--bordefooter); /* Borde sutil */
+            border-radius: 12px; /* Bordes más suaves */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Sombra suave */
+            background-color: var(--light);
+            margin-bottom: 2rem;
+        }
+        .card-header {
+            background-color: transparent; /* Fondo limpio */
+            border-bottom: 1px solid var(--bordefooter);
+            padding: 1.25rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        /* Títulos de las tarjetas */
+        .card-header h5 {
+            font-size: 1.1rem;
+            font-weight: var(--peso700);
+            color: var(--primary);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-header h5 i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           Columna Izquierda: Perfil de Usuario
+           ========================================================================== */
+
+        /* Contenedor de la foto de perfil */
         .profile-photo-container {
-            width: 160px;
-            height: 160px;
-            margin: 0 auto 1rem auto;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
             position: relative;
             border-radius: 50%;
             overflow: hidden;
-            background-color: #f8f9fa;
-            border: 3px solid #dee2e6;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            border: 4px solid var(--light);
+            box-shadow: 0 0 0 2px var(--primary); /* Doble borde con color primario */
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -25,116 +61,167 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            object-position: center;
-            transition: opacity 0.3s ease;
         }
-
         .profile-photo-placeholder {
-            font-size: 3rem;
-            color: #6c757d;
-            transition: opacity 0.3s ease;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--grey);
         }
-
+        .profile-photo-placeholder .profile-icon {
+            font-size: 5rem;
+            color: var(--btndetalle);
+        }
+        /* Superposición para cambiar la foto */
         .photo-overlay {
             position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.6);
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--letrablanca);
             display: flex;
             align-items: center;
             justify-content: center;
             opacity: 0;
             transition: opacity 0.3s ease;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .profile-photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px var(--secondary);
         }
 
         .profile-photo-container:hover .photo-overlay {
             opacity: 1;
         }
 
-.clickeable-photo:hover {
-    transform: scale(1.05);
-    opacity: 0.8;
-}
+        /* Información de Contacto */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .contact-item i {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            color: var(--primary);
+        }
+        .contact-item span {
+            color: var(--titulo-pag);
+        }
 
-.profile-photo-placeholder.clickeable-photo:hover {
-    background-color: #e3f2fd !important;
-    border: 2px solid #2196f3;
-}
-/* Ocultar el footer completamente en esta página */
-.footer {
-    display: none !important;
-}
+        /* ==========================================================================
+           Columna Derecha: Formulario de CV
+           ========================================================================== */
 
-.footer-bottom {
-    display: none !important;
-}
+        .cv-container {
+            max-width: 100%;
+        }
+
+        /* Estilo de los formularios */
+        .form-label {
+            font-weight: 500;
+            color: var(--dark_grey);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid var(--bordefooter);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(159, 34, 65, 0.15);
+            outline: none; /* Se mantiene el focus styling de :root */
+        }
+
+        /* Botón para "Agregar" en cada sección */
+        .card-header .btn-outline-primary {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        /* Contenedores de items (experiencia, educación, etc.) */
+        .experiencia-item, .educacion-item, .idioma-item {
+            padding: 1rem;
+            border: 1px solid var(--bordefooter);
+            border-radius: 8px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .experiencia-item:hover, .educacion-item:hover {
+            background-color: #fcfcfc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .experiencia-item h6, .educacion-item h6 {
+            color: var(--primary);
+            font-weight: var(--peso700);
+        }
+        .experiencia-item .btn-group-vertical {
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .experiencia-item .btn-group-vertical .btn {
+            padding: 0.25rem 0.6rem;
+        }
+
+        /* Habilidades como badges */
+        #habilidadesContainer .badge {
+            background-color: var(--colordependecias);
+            font-size: 0.9rem;
+            padding: 0.6em 1em;
+            font-weight: 400;
+        }
+        #habilidadesContainer .btn-close {
+            margin-left: 0.5rem;
+        }
+
+        /* Idiomas */
+        .idioma-item strong {
+            color: var(--primary);
+        }
+
+        /* Botones principales de acción */
+        .cv-container .text-end .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: var(--peso700);
+            font-size: 1rem;
+        }
+
+        /* ==========================================================================
+           Responsividad
+           ========================================================================== */
+
+        @media (max-width: 991px) {
+            .cv-container {
+                margin-top: 0;
+            }
+        }
 
         @media (max-width: 576px) {
             .profile-photo-container {
                 width: 120px;
                 height: 120px;
             }
-
-            .profile-photo-placeholder {
-                font-size: 3rem;
+            .profile-photo-placeholder .profile-icon {
+                font-size: 4rem;
+            }
+            .cv-container .text-end .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
             }
         }
-        /* Espaciado responsive */
-        .empty-icon {
-            font-size: 2.5rem !important;
-            color: #6c757d;
+        /* Ocultar el footer completamente en esta página */
+        footer {
+            display: none !important;
         }
+        /* Ocultar el footer completamente en esta página */
 
-        @media (max-width: 576px) {
-            .empty-icon {
-                font-size: 2rem !important;
-            }
-        }
-
-        /* Estilos del CV integrado */
-        .cv-container {
-            max-width: 960px;
-            margin-top: 20px;
-            margin-bottom: 50px;
-        }
-
-        .card {
-            border-radius: 15px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        }
-
-        .card-header {
-            background-color: #e9ecef;
-            border-bottom: 1px solid #dee2e6;
-            font-weight: 500;
-            border-top-left-radius: 15px;
-            border-top-right-radius: 15px;
-        }
-
-        .form-label {
-            font-weight: 500;
-        }
-
-        .form-control, .form-select {
-            border-radius: 8px;
-        }
-
-        .btn {
-            border-radius: 8px;
-        }
-
-        .experiencia-item, .educacion-item, .idioma-item {
-            transition: background-color 0.2s;
-        }
-
-        .experiencia-item:hover, .educacion-item:hover, .idioma-item:hover {
-            background-color: #f8f9fa;
+        .footer-bottom {
+            display: none !important;
         }
     </style>
 {% endblock %}
@@ -174,10 +261,9 @@
                     <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
                 {#va el correo, num cel y lugar donde recide #}
                         <div class="flex-grow-1">
-                            <i class="bi bi-geo-alt me-2 mt-1 text-primary"></i>
+                            <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
                             <span class="text-muted">{{ user.email }}</span>
                         </div>
-
                             <i class="bi bi-telephone me-2 mt-1 text-primary"></i>
                             <span class="text-muted">{{ interesado.telefono }}</span>
                         <div>
@@ -258,8 +344,8 @@
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5><i class="bi bi-briefcase-fill"></i> Experiencia Laboral</h5>
-                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="mostrarModalExperiencia()">
-                                <i class="bi bi-plus-circle"></i> Agregar Experiencia
+                            <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalExperiencia()">
+                                <i class="bi bi-plus-circle "></i> Agregar Experiencia
                             </button>
                         </div>
                         <div class="card-body">
@@ -285,10 +371,11 @@
                                                             {{ experiencia.actual|yesno:"true,false" }},
                                                             '{{ experiencia.descripcion|escapejs }}'
                                                         )">
-                                                        <i class="bi bi-pencil"></i>
+{#                                                        <i class="bi bi-pencil text-black"></i>#}
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarExperiencia({{ experiencia.id }})">
-                                                        <i class="bi bi-trash"></i>
+                                                        <i class="bi bi-pencil text-black m-1"></i>
+                                                        <i class="bi bi-trash text-black m-1"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -305,7 +392,7 @@
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5><i class="bi bi-mortarboard-fill"></i> Educación y Formación</h5>
-                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="mostrarModalEducacion()">
+                            <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalEducacion()">
                                 <i class="bi bi-plus-circle"></i> Agregar Formación
                             </button>
                         </div>
@@ -326,10 +413,10 @@
                                                 <div class="btn-group-vertical">
                                                     <button type="button" class="btn btn-sm btn-outline-primary mb-1"
                                                         onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}', '{{ educacion.fecha_inicio|date:"Y-m-d" }}', '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}', '{{ educacion.descripcion|escapejs }}')">
-                                                        <i class="bi bi-pencil"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarEducacion({{ educacion.id }})">
-                                                        <i class="bi bi-trash"></i>
+                                                        <i class="bi bi-pencil text-black m-1"></i>
+                                                        <i class="bi bi-trash text-black m-1"></i>
                                                     </button>
                                                 </div>
                                             </div>
@@ -346,7 +433,7 @@
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5><i class="bi bi-tools"></i> Habilidades Técnicas</h5>
-                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="mostrarModalHabilidad()">
+                            <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalHabilidad()">
                                 <i class="bi bi-plus-circle"></i> Agregar Habilidad
                             </button>
                         </div>
@@ -370,7 +457,7 @@
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
                             <h5><i class="bi bi-translate"></i> Idiomas</h5>
-                            <button type="button" class="btn btn-sm btn-outline-primary" onclick="mostrarModalIdioma()">
+                            <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalIdioma()">
                                 <i class="bi bi-plus-circle"></i> Agregar Idioma
                             </button>
                         </div>
@@ -388,7 +475,7 @@
                                                 </small>
                                             </div>
                                             <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarIdioma({{ idioma.id }})">
-                                                <i class="bi bi-trash"></i>
+                                                <i class="bi bi-trash text-black m-1"></i>
                                             </button>
                                         </div>
                                     {% endfor %}
@@ -404,8 +491,8 @@
                             <i class="bi bi-save"></i> Guardar CV Completo
                         </button>
                         {% if tiene_cv %}
-                            <a href="{% url 'descargar_cv_pdf' %}" class="btn btn-outline-primary">
-                                <i class="bi bi-download"></i> Descargar PDF
+                            <a href="{% url 'descargar_cv_pdf' %}" class=" text-primary btn btn-outline-primary">
+                                <i class="bi bi-download "></i> Descargar PDF
                             </a>
                         {% endif %}
                     </div>
