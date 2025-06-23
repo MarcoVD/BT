@@ -1582,23 +1582,35 @@ class EditarVacanteView(View):
         }
         return render(request, 'usuarios/publicar_vacante.html', context)
 
-
 @method_decorator(login_required, name='dispatch')
 class MisVacantesView(View):
-    """Vista para listar las vacantes del reclutador."""
+    """Vista para listar las vacantes del reclutador con paginación."""
 
     def get(self, request):
         if request.user.rol != 'reclutador':
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
 
-        vacantes = Vacante.objects.filter(
+        # --- INICIO DE LA MODIFICACIÓN ---
+
+        # 1. Obtener la lista de vacantes como antes
+        vacantes_list = Vacante.objects.filter(
             reclutador=request.user.reclutador
         ).order_by('-fecha_actualizacion')
 
+        # 2. Crear un objeto Paginator con 5 vacantes por página
+        paginator = Paginator(vacantes_list, 5)
+        page_number = request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        # 3. Actualizar el contexto para pasar el objeto de la página
         context = {
-            'vacantes': vacantes
+            'vacantes': page_obj,  # page_obj es iterable y contiene solo las 5 vacantes de la página actual
+            'page_obj': page_obj  # Se pasa el objeto completo para los controles de paginación
         }
+
+        # --- FIN DE LA MODIFICACIÓN ---
+
         return render(request, 'usuarios/mis_vacantes.html', context)
 
 

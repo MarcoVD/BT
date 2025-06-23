@@ -75,7 +75,6 @@
                                         </p>
                                     {% endif %}
                                 </div>
-
                                 <div class="col-md-5 col-lg-4 d-flex flex-column align-items-md-end justify-content-between">
                                     <div class="mb-2">
                                         {% if vacante.estado_vacante == 'publicada' %}
@@ -88,19 +87,16 @@
                                             <span class="badge bg-warning text-dark">{{ vacante.get_estado_vacante_display }}</span>
                                         {% endif %}
                                     </div>
-
                                     <div class="btn-group-vertical btn-group-sm w-33" role="group">
                                         {% if vacante.estado_vacante == 'publicada' %}
                                                     <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-person-lines-fill"></i> Ver Postulantes
                                             </a>
                                         {% endif %}
-
                                             <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
                                             <i class="bi bi-pencil-square"></i>
                                             {% if vacante.estado_vacante == 'borrador' %}Continuar Edición{% else %}Editar{% endif %}
                                         </a>
-
                                         {% if vacante.estado_vacante == 'publicada' %}
                                                     <button type="button" class="btn btn-outline-danger btn-sm"
                                                     onclick="confirmarAccion('cerrar', '{{ vacante.id }}', '{{ vacante.titulo }}')">
@@ -125,28 +121,6 @@
                 </div>
             {% endfor %}
         </div>
-
-        <!-- Paginación (si es necesaria) -->
-        <nav aria-label="Page navigation" class="mt-4">
-            <ul class="pagination justify-content-center">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
-                        <i class="bi bi-chevron-left"></i>
-                    </a>
-                </li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">1</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">2</a>
-                </li>
-                <li class="page-item">
-                    <a class="page-link" href="#">
-                        <i class="bi bi-chevron-right"></i>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     {% else %}
         <div class="text-center py-5">
             <i class="bi bi-briefcase" style="font-size: 64px; color: #6c757d;"></i>
@@ -177,10 +151,10 @@
         </div>
     </div>
 </div>
-{% comment %} PEGA ESTE BLOQUE AL FINAL DE TU TEMPLATE mis_vacantes.html {% endcomment %}
 
+    {% comment %} PAGINADOR {% endcomment %}
 {% if page_obj.paginator.num_pages > 1 %}
-    <div class="mt-5">
+    <div class="mt-1">
         <nav aria-label="Navegación de mis vacantes">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -222,6 +196,25 @@
                     {% endif %}
                 {% endfor %}
 
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    </li>
+                {% else %}
+                    <li class="page-item disabled">
+                        <a class="page-link" href="#" aria-disabled="true">Siguiente</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+
+        <div class="text-center mt-3">
+            <small class="text-muted">
+                Mostrando vacantes {{ page_obj.start_index }}-{{ page_obj.end_index }} de {{ page_obj.paginator.count }}
+            </small>
+        </div>
+    </div>
+{% endif %}
 <style>
  .footer {
     display: none !important;
