@@ -26,9 +26,9 @@
             {% for vacante in vacantes %}
                 <div class="col-12 mb-3">
                     <div class="card vacancy-card
-                        {% if vacante.estado_vacante == 'publicada' %}border-success
-                        {% elif vacante.estado_vacante == 'borrador' %}border-secondary
-                        {% elif vacante.estado_vacante == 'cerrada' %}border-danger
+                        {% if vacante.estado_vacante == 'publicada' %}
+                        {% elif vacante.estado_vacante == 'borrador' %}
+                        {% elif vacante.estado_vacante == 'cerrada' %}
                         {% else %}border-warning{% endif %}">
 
                         <div class="card-body">
