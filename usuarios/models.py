@@ -794,7 +794,6 @@ class Postulacion(models.Model):
         ('aceptada', 'Aceptada'),
         ('rechazada', 'Rechazada'),
     )
-
     interesado = models.ForeignKey(Interesado, on_delete=models.CASCADE, related_name='postulaciones')
     vacante = models.ForeignKey(Vacante, on_delete=models.CASCADE, related_name='postulaciones')
     curriculum = models.ForeignKey(Curriculum, on_delete=models.CASCADE, related_name='postulaciones')
@@ -803,7 +802,6 @@ class Postulacion(models.Model):
     mensaje_motivacion = models.TextField(blank=True, null=True, help_text="Mensaje opcional del candidato")
     notas_reclutador = models.TextField(blank=True, null=True, help_text="Notas del reclutador")
     fecha_actualizacion = models.DateTimeField(auto_now=True)
-
     def __str__(self):
         return f"{self.interesado.nombre_completo} - {self.vacante.titulo}"
 

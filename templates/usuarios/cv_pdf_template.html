@@ -36,7 +36,7 @@
         }
 
         /* ===== COLUMNA IZQUIERDA ===== */
-        .left-column {
+        .columna-izquierda {
             background-color: var(--color-primary-dark);
             color: var(--color-primary-light);
             width: 35%;
@@ -44,8 +44,6 @@
             display: flex;
             flex-direction: column;
         }
-
-        /* ✅ ESTILOS DE IMAGEN ROBUSTOS */
         .profile-pic-container {
             text-align: center;
             margin-bottom: 30px;
@@ -120,7 +118,7 @@
         }
 
         /* ===== COLUMNA DERECHA ===== */
-        .right-column {
+        .columna-derecha {
             width: 65%;
             padding: 10px 30px;
             background-color: #fff;
@@ -129,18 +127,23 @@
         .main-header {
             margin-bottom: 5px;
         }
+        .linea{
+            color: greenyellow;
+            border-top: 2px solid var(--color-primary-dark);
+
+        }
 
         .main-header h1 {
             font-size: 28pt;
             font-weight: 700;
             color: var(--color-text-dark);
             text-transform: uppercase;
-            line-height: 1.1;
-            margin: 0;
+            line-height: 1.1;  
+            margin: 0;                       
         }
 
         .right-section {
-            margin-bottom: 16px;
+            margin-bottom: 12px;
         }
 
         .right-title {
@@ -149,11 +152,8 @@
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            margin-top: 1px;
-            padding-top: 1px;
-            margin-bottom: 4px;
-            padding-bottom: 4px;
-            border-top: 2px solid var(--color-primary-dark);
+            margin-top: 0px;
+            margin-bottom: 0px;
         }
         .item {
             margin-bottom: 0;
@@ -191,10 +191,12 @@
         p.summary {
             text-align: justify;
             font-size: 10pt;
+            padding: 5px;
+            margin: 5px;
         }
 
         /* Estilos para h4 en la columna izquierda */
-        .left-column h4 {
+        .columna-izquierda h4 {
             color: var(--color-accent);
             font-size: 11pt;
             margin-top: 5px;
@@ -205,7 +207,7 @@
 <body>
     <div class="resume-container">
         <!-- ===== COLUMNA IZQUIERDA ===== -->
-        <div class="left-column">
+        <div class="columna-izquierda">
             <div class="profile-pic-container">
                 {% if foto_url %}
                     <!-- Mostrar imagen si existe -->
@@ -267,19 +269,20 @@
         </div>
 
         <!-- ===== COLUMNA DERECHA ===== -->
-        <div class="right-column">
+        <div class="columna-derecha">
             <div class="main-header">
                 <h1>{{ interesado.nombre_completo }}</h1>
             </div>
-
+            <hr class="linea">
             <!-- Sobre mí -->
             {% if curriculum.resumen_profesional %}
-            <div class="right-section ">
-                <h2 class="right-title">Sobre Mí</h2>
-                <p class="summary">{{ curriculum.resumen_profesional }}</p>
+            <div class="right-section">
+                <h2 class="right-title ">Sobre Mí</h2>
+                <p class="summary ">{{ curriculum.resumen_profesional }}</p>
             </div>
             {% endif %}
 
+            <hr class="linea">
             <!-- Experiencia -->
             {% if experiencias %}
             <div class="right-section">
@@ -297,6 +300,7 @@
             </div>
             {% endif %}
 
+            <hr class="linea">
             <!-- Educación -->
             {% if educaciones %}
             <div class="right-section">
