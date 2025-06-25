@@ -5,7 +5,6 @@ from django.contrib.auth import get_user_model
 from .fields import CurrencyField
 from .widgets import CurrencyInput
 from .models import Interesado, Reclutador, Secretaria, Vacante, RequisitoVacante, Curriculum, ExperienciaLaboral, Educacion, HabilidadInteresado, IdiomaInteresado, Categoria
-# from .models import Vacante, RequisitoVacante, Categoria
 Usuario = get_user_model()
 
 class LoginForm(AuthenticationForm):
