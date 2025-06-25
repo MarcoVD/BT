@@ -9,7 +9,7 @@ django-jazzmin==3.0.1
 django-otp==1.6.0
 django-phonenumber-field==8.1.0
 django-two-factor-auth==1.17.0
-dotenv==1.1.0
+dotenv==0.9.9
 fonttools==4.58.2
 html5lib==1.1
 pillow==11.2.1
