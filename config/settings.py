@@ -181,7 +181,7 @@ else:
 #  EMAIL CONFIGURATION
 if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-    print("🔄 Usando EMAIL_BACKEND de consola para desarrollo")
+    print("Usando EMAIL_BACKEND de consola para desarrollo")
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
@@ -334,3 +334,4 @@ if not DEBUG:
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 86400  # 24 horas
 SESSION_SAVE_EVERY_REQUEST = True
+

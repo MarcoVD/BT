@@ -275,10 +275,10 @@ class SecretariaRegistroForm(forms.ModelForm):
         model = Secretaria
         fields = ('rfc', 'descripcion', 'sitio_web', 'direccion')  # Removido 'nombre'
         widgets = {
-            'rfc': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'RFC de la secretaría'}),
-            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Descripción breve'}),
+            'rfc': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese un RFC valido'}),
+            'descripcion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': ''}),
             'sitio_web': forms.URLInput(attrs={'class': 'form-control', 'placeholder': 'https://www.example.com'}),
-            'direccion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Dirección completa'})
+            'direccion': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Ej.  Av. Dr. Gustavo Baz 2160, La Loma, 54060 Tlalnepantla, Méx.'})
         }
 
     def save(self, commit=True):
@@ -302,7 +302,7 @@ class ReclutadorRegistroForm(UserCreationForm):
     apellido_materno = forms.CharField(
         max_length=50,
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido materno (opcional)'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido materno'})
     )
     cargo = forms.CharField(
         max_length=100,
