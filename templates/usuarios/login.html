@@ -28,7 +28,6 @@
         padding: 0.75rem;
         font-weight: 600;
     }
-
     /* Estilo para la alerta de error de credenciales */
     .alert-credentials-error {
         background-color: rgba(220, 53, 69, 0.1);
@@ -62,7 +61,6 @@
 
             <form method="post" action="{% url 'login' %}">
                 {% csrf_token %}
-
                 {# ==================================================================== #}
                 {# Manejo de Errores Generales (Credenciales Incorrectas)               #}
                 {# Este es el bloque clave para mostrar el error que solicitaste.     #}
