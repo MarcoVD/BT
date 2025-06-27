@@ -225,6 +225,14 @@
         .footer-bottom {
             display: none !important;
         }
+        .footer {
+    display: none !important;
+}
+
+.footer-bottom {
+    display: none !important;
+}
+
     </style>
 {% endblock %}
 
@@ -337,7 +345,7 @@
                             <h5><i class="bi bi-file-person"></i> Resumen Profesional</h5>
                         </div>
                         <div class="card-body text-justify">
-                            <label for="resumen_profesional" class="form-label">Resumen Profesional</label>
+{#                            <label for="resumen_profesional" class="form-label">Resumen Profesional</label>#}
                             <textarea class="form-control" id="resumen_profesional" name="resumen_profesional" rows="4" placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web...">{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>
                         </div>
                     </div>
@@ -532,7 +540,7 @@
                             <label for="foto_perfil" class="form-label">Foto de Perfil</label>
                             <div class="d-flex gap-2">
                                 <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
-                                <button type="button" class="btn btn-outline-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#cropperModal">
+                                <button type="button" class="btn btn-outline-primary flex-grow-1 text-primary" data-bs-toggle="modal" data-bs-target="#cropperModal">
                                     <i class="bi bi-camera"></i> Cargar foto de Perfil
                                 </button>
                             </div>

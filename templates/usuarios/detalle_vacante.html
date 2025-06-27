@@ -12,68 +12,60 @@
         border-bottom: 1px solid #e9ecef;
     }
     .job-detail-container {
-        margin-top: 20px;
-        margin-bottom: 50px;
+        margin: 2rem auto 3rem;
     }
-    .job-header {
-        background-color: #ffffff;
-        padding: 30px;
-        border-radius: 15px;
+    .job-header, .job-content-card, .company-info-card, .actions-card {
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 1rem;
         box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
+        margin-bottom: 2rem;
     }
     .job-header .company-logo {
         max-width: 80px;
         max-height: 80px;
-        border-radius: 8px;
-        margin-right: 20px;
+        border-radius: 0.5rem;
+        margin-right: 1.25rem;
         border: 1px solid #eee;
     }
     .job-header h1 {
         font-size: 2rem;
         font-weight: 700;
         color: #343a40;
+        margin-bottom: 0.25rem;
     }
     .job-header .company-name {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         color: var(--primary);
         font-weight: 500;
+        text-decoration: none;
     }
     .job-header .job-meta span {
-        margin-right: 15px;
+        margin-right: 1rem;
         color: #6c757d;
         font-size: 0.9rem;
     }
     .job-header .job-meta i {
-        margin-right: 5px;
-    }
-    .job-content-card, .company-info-card, .actions-card {
-        background-color: #ffffff;
-        padding: 25px;
-        border-radius: 15px;
-        box-shadow: 0 4px 8px rgba(0,0,0,0.05);
-        margin-bottom: 30px;
+        margin-right: 0.5rem;
     }
     .job-content-card h5, .company-info-card h5, .actions-card h5 {
         font-weight: 700;
-        margin-bottom: 20px;
+        margin-bottom: 1rem;
         color: #495057;
     }
     .job-content-card ul {
-        padding-left: 20px;
+        padding-left: 1.25rem;
     }
     .job-content-card ul li {
-        margin-bottom: 8px;
+        margin-bottom: 0.5rem;
     }
     .btn {
-        border-radius: 8px;
-        padding: 10px 20px;
+        border-radius: 0.5rem;
+        padding: 0.75rem 1.5rem;
     }
-
     .badge {
         font-size: 0.8rem;
-        margin-right: 5px;
-        margin-bottom: 5px;
+        margin: 0.25rem 0.25rem 0 0;
         padding: 0.5em 0.75em;
     }
     .sticky-sidebar {
@@ -81,12 +73,7 @@
         position: sticky;
         top: 90px;
     }
-    /* Ocultar el footer completamente en esta página */
-    .footer {
-        display: none !important;
-    }
-
-    .footer-bottom {
+    .footer, .footer-bottom {
         display: none !important;
     }
 </style>
@@ -99,49 +86,45 @@
             <div class="job-header">
                 <div class="d-flex align-items-start mb-3">
                     {% if vacante.secretaria.logo %}
-                        {% endif %}
+                        <img src="{{ vacante.secretaria.logo.url }}" class="company-logo" alt="Logo {{ vacante.secretaria.nombre }}">
+                    {% endif %}
                     <div>
                         <h1>{{ vacante.titulo }}</h1>
-                        <a href="{{ vacante.secretaria.sitio_web|default:"#" }}" target="_blank" class="company-name">{{ vacante.secretaria.nombre }}</a>
+                        <a href="{{ vacante.secretaria.sitio_web|default:'#' }}" target="_blank" class="company-name">{{ vacante.secretaria.nombre }}</a>
                     </div>
                 </div>
                 <div class="job-meta mb-3">
-                    <span><i class="bi bi-geo-alt-fill"></i>{{ vacante.get_municipio_display}}, Estado de México</span>
+                    <span><i class="bi bi-geo-alt-fill"></i>{{ vacante.get_municipio_display }}, Estado de México</span>
                     <span><i class="bi bi-briefcase-fill"></i> {{ vacante.get_tipo_empleo_display }}</span>
-                    {% if vacante.salario_formateado != "No especificado" %}
-                    <span><i class="bi bi-cash-stack"></i> {{ vacante.salario_formateado }}</span>
-                    {% else %}
-                    <span><i class="bi bi-cash-stack"></i> Salario a convenir</span>
-                    {% endif %}
+                    <span><i class="bi bi-cash-stack"></i> {{ vacante.salario_formateado|default:"Salario a convenir" }}</span>
                     <span><i class="bi bi-calendar3"></i> Publicado: {{ vacante.fecha_publicacion|timesince }}</span>
                 </div>
                 <div>
                     <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span>
                     <span class="badge rounded-pill border border-danger text-dark">{{ vacante.get_tipo_empleo_display }}</span>
                     <span class="badge rounded-pill border border-success text-dark">{{ vacante.get_modalidad_display }}</span>
-                    </div>
+                </div>
             </div>
 
             <div class="job-content-card">
-                <h5 class="text-primary">Descripción del Puesto</h5>
+                <h5 class="text-primary"><i class="bi bi-card-text"></i> Descripción del Puesto</h5>
                 <p class="text-black">{{ vacante.descripcion|linebreaksbr }}</p>
 
                 {% if requisitos and requisitos.descripcion_requisitos %}
-                <h5 class="mt-4 text-primary">Requisitos y Responsabilidades</h5>
+                <h5 class="mt-4 text-primary"><i class="bi bi-list-check"></i> Requisitos y Responsabilidades</h5>
                 <p class="text-black">{{ requisitos.descripcion_requisitos|linebreaksbr }}</p>
                 {% endif %}
 
                 {% if requisitos and requisitos.educacion_minima %}
-                <h5 class="mt-4 text-primary">Educación Requerida</h5>
+                <h5 class="mt-4 text-primary"><i class="bi bi-book"></i> Educación Requerida</h5>
                 <p class="text-black">{{ requisitos.educacion_minima }}</p>
                 {% endif %}
 
                 {% if requisitos and requisitos.experiencia_minima %}
-                <h5 class="mt-4 text-primary">Experiencia Requerida</h5>
+                <h5 class="mt-4 text-primary"><i class="bi bi-person-workspace"></i> Experiencia Requerida</h5>
                 <p class="text-black">{{ requisitos.experiencia_minima }} años</p>
                 {% endif %}
-
-                </div>
+            </div>
         </div>
 
         <div class="col-lg-4">
@@ -149,27 +132,24 @@
                 <div class="actions-card text-center">
                     <h5>¿Te interesa esta vacante?</h5>
                     <div class="d-grid gap-2">
-                        {% if user.is_authenticated %}
-                            {% if user.rol == 'interesado' %}
-                                {% if ya_postulado %}
-                                    <button type="button" class="btn btn-success btn-lg" disabled>
-                                        <i class="bi bi-check-circle-fill"></i> Ya te postulaste
-                                    </button>
-                                {% else %}
-                                    <button type="button" class="btn btn-primary btn-lg " id="postularseBtn" onclick="postularseDirect()">
-                                        <i class="bi bi-send-fill"></i> Postularme Ahora
-                                    </button>
-                                {% endif %}
+                        {% if user.is_authenticated and user.rol == 'interesado' %}
+                            {% if ya_postulado %}
+                                <button type="button" class="btn btn-success btn-lg" disabled>
+                                    <i class="bi bi-check-circle-fill"></i> Ya te postulaste
+                                </button>
                             {% else %}
-                                <button type="button" class="btn btn-primary btn-lg disabled">
-{#                              <button type="button" class="btn btn-primary btn-lg">  disabled#}
+                                <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
                                     <i class="bi bi-send-fill"></i> Postularme Ahora
                                 </button>
                             {% endif %}
-                        {% else %}
+                        {% elif not user.is_authenticated %}
                             <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
                                 <i class="bi bi-send-fill"></i> Postularme Ahora
                             </a>
+                        {% else %}
+                            <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                <i class="bi bi-send-fill"></i> Postularme Ahora
+                            </button>
                         {% endif %}
                         <button type="button" class="btn btn-outline-primary text-primary">
                             <i class="bi bi-bookmark-plus"></i> Guardar Vacante
@@ -179,13 +159,9 @@
 
                 <div class="company-info-card">
                     <h5>Sobre {{ vacante.secretaria.nombre }}</h5>
-
-                    {% if vacante.secretaria.descripcion %}
-                    <p class="small">{{ vacante.secretaria.descripcion|truncatewords:50 }}</p>
-                    {% else %}
-                    <p class="small text-muted">No hay descripción disponible para esta secretaría.</p>
-                    {% endif %}
-
+                    <p class="small">
+                        {{ vacante.secretaria.descripcion|default:"No hay descripción disponible para esta secretaría."|truncatewords:50 }}
+                    </p>
                     {% if vacante.secretaria.sitio_web %}
                     <a href="{{ vacante.secretaria.sitio_web }}" target="_blank" class="btn btn-sm btn-outline-secondary w-100">Visitar sitio web de la empresa</a>
                     {% endif %}

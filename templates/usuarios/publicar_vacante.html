@@ -10,8 +10,6 @@
             footer {
             display: none !important;
         }
-        /* Ocultar el footer completamente en esta página */
-
         .footer-bottom {
             display: none !important;
         }
@@ -24,7 +22,7 @@
                     <i class="bi bi-{% if accion == 'editar' %}pencil-square{% else %}plus-square-fill{% endif %}"></i>
                     {% if accion == 'editar' %}Editar Vacante{% else %}Publicar Nueva Vacante{% endif %}
                 </h1>
-                <p class="text-muted">
+                <p class="text-muted fw-semibold">
                     {% if accion == 'editar' %}
                         Actualiza la información de tu vacante
                     {% else %}
@@ -38,7 +36,7 @@
 
                 <!-- Sección 1: Información General -->
                 <div class="card mb-4">
-                    <div class="card-header bg-light">
+                    <div class="card-header text-primary bg-light">
                         <h5 class="mb-0"><i class="bi bi-info-circle-fill"></i> Información General</h5>
                     </div>
                     <div class="card-body">
@@ -80,8 +78,8 @@
 
                 <!-- Sección 2: Detalles del Puesto -->
                 <div class="card mb-4">
-                    <div class="card-header bg-light">
-                        <h5 class="mb-0"><i class="bi bi-text-paragraph"></i> Detalles del Puesto</h5>
+                    <div class="card-header text-primary bg-light">
+                        <h5 class="mb-0"><i class="bi bi-chat-left-text-fill"></i> Detalles del Puesto</h5>
                     </div>
                     <div class="card-body">
                         <div class="mb-3">
@@ -122,7 +120,7 @@
 
                 <!-- Sección 3: Condiciones y Ubicación - ACTUALIZADA CON MUNICIPIO -->
                 <div class="card mb-4">
-                    <div class="card-header bg-light">
+                    <div class="card-header text-primary bg-light">
                         <h5 class="mb-0"><i class="bi bi-geo-alt-fill"></i> Condiciones y Ubicación</h5>
                     </div>
                     <div class="card-body">
@@ -183,7 +181,7 @@
 
                 <!-- Sección 4: Gestión de Postulaciones -->
                 <div class="card mb-4">
-                    <div class="card-header bg-light">
+                    <div class="card-header text-primary bg-light">
                         <h5 class="mb-0"><i class="bi bi-calendar-check-fill"></i> Gestión de Postulaciones</h5>
                     </div>
                     <div class="card-body">
@@ -215,7 +213,7 @@
                     <button type="submit" name="accion" value="guardar_borrador" class="btn btn-secondary">
                         <i class="bi bi-save"></i> Guardar Borrador
                     </button>
-                    <button type="submit" name="accion" value="publicar" class="btn btn-success btn-lg">
+                    <button type="submit" name="accion" value="publicar" class="btn btn-primary btn-lg">
                         <i class="bi bi-send-check-fill"></i>
                         {% if accion == 'editar' %}Actualizar y Publicar{% else %}Publicar Vacante{% endif %}
                     </button>

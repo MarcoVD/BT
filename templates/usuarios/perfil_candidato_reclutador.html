@@ -5,7 +5,8 @@
 {% block extra_css %}
 <style>
     .candidate-header {
-        background: linear-gradient(135deg, #9F2241 0%, #bc955b 100%);
+        {#background: linear-gradient(135deg, #9F2241 0%, #bc955b 10%);#}
+        background: linear-gradient(90deg, #bc955b 0%, #9F2241 0%);
         color: white;
         padding: 40px 0;
         margin-bottom: 30px;
@@ -100,6 +101,13 @@
         color: #9F2241;
         margin-right: 10px;
         width: 16px;
+    .footer {
+        display: none !important;
+    }
+
+    .footer-bottom {
+        display: none !important;
+    }
     }
 </style>
 {% endblock %}
@@ -107,6 +115,7 @@
 <!-- Header del candidato -->
 <div class="candidate-header">
     <div class="container">
+
         <div class="row align-items-center">
             <div class="col-md-3 text-center">
                 {% if interesado.foto_perfil %}
@@ -129,12 +138,12 @@
                     <div class="row">
                         <div class="col-md-6">
                             <div class="contact-item">
-                                <i class="bi bi-envelope"></i>
+                                <i class="bi bi-envelope text-white"></i>
                                 <span>{{ interesado.usuario.email }}</span>
                             </div>
                             {% if interesado.telefono %}
                                 <div class="contact-item">
-                                    <i class="bi bi-telephone"></i>
+                                    <i class="bi bi-telephone text-white"></i>
                                     <span>{{ interesado.telefono }}</span>
                                 </div>
                             {% endif %}
@@ -142,13 +151,13 @@
                         <div class="col-md-6">
                             {% if interesado.municipio %}
                                 <div class="contact-item">
-                                    <i class="bi bi-geo-alt"></i>
+                                    <i class="bi bi-geo-alt text-white"></i>
                                     <span>{{ interesado.get_municipio_display }}, Estado de México</span>
                                 </div>
                             {% endif %}
                             {% if interesado.fecha_nacimiento %}
                                 <div class="contact-item">
-                                    <i class="bi bi-calendar"></i>
+                                    <i class="bi bi-calendar text-white"></i>
                                     <span>{{ interesado.fecha_nacimiento|date:"d M Y" }}</span>
                                 </div>
                             {% endif %}
@@ -287,13 +296,12 @@
                 </div>
                 <div class="info-card-body">
                     <div class="d-grid gap-2">
-
-{#                        <button type="button" class="btn btn-outline-success" #}
+{#                        <button type="button" class="btn btn-outline-success"#}
 {#                                onclick="enviarMensajeRapido('{{ interesado.nombre_completo }}', {{ interesado.id }})">#}
 {#                                Siguiente etapa que se puede implementar el envio de mensajes#}
 {#                            <i class="bi bi-chat-left-text"></i> Enviar Mensaje#}
 {#                        </button>#}
-                        <button type="button" class="btn btn-outline-secondary" onclick="window.close()">
+                        <button type="button" class="btn btn-outline text-primary" onclick="window.close()">
                             <i class="bi bi-x-circle"></i> Cerrar Ventana
                         </button>
                     </div>

@@ -430,108 +430,6 @@ class ReenviarVerificacionView(View):
             return render(request, 'usuarios/reenviar_verificacion.html')
 
 
-class InteresadoRegistroView(View):
-    """Vista para registro de interesados - ACTUALIZADA CON VERIFICACIÓN."""
-
-    def get(self, request):
-        form = InteresadoRegistroForm()
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-    def post(self, request):
-        form = InteresadoRegistroForm(request.POST)
-        if form.is_valid():
-            try:
-                # Crear usuario sin verificar
-                user = form.save(commit=False)
-                user.email_verified = False
-                user.save()
-
-                # Crear perfil de interesado
-                from .models import Interesado
-                Interesado.objects.get_or_create(
-                    usuario=user,
-                    defaults={
-                        'nombre': '',
-                        'apellido_paterno': '',
-                        'apellido_materno': ''
-                    }
-                )
-
-                # ✅ ENVIAR CORREO CON MEJOR MANEJO DE ERRORES
-                try:
-                    email_enviado = send_verification_email(request, user)
-                    if email_enviado:
-                        messages.success(request,
-                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
-                                         'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
-                    else:
-                        messages.warning(request,
-                                         'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                         'Puedes solicitar un nuevo enlace desde la página de login.')
-                except Exception as e:
-                    logger.error(f"Error crítico enviando email: {str(e)}")
-                    messages.warning(request,
-                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                     'Puedes solicitar un nuevo enlace desde la página de login.')
-
-                return render(request, 'usuarios/registro_exitoso.html', {
-                    'user_email': user.email,
-                    'user_role': 'interesado'
-                })
-
-            except Exception as e:
-                logger.error(f"Error en registro de interesado: {str(e)}")
-                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
-
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-
-
-
-    def get(self, request):
-        form = InteresadoRegistroForm()
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-    def post(self, request):
-        form = InteresadoRegistroForm(request.POST)
-        if form.is_valid():
-            try:
-                # Crear usuario sin verificar
-                user = form.save(commit=False)
-                user.email_verified = False
-                user.save()
-
-                # Crear perfil de interesado
-                from .models import Interesado
-                Interesado.objects.get_or_create(
-                    usuario=user,
-                    defaults={
-                        'nombre': '',
-                        'apellido_paterno': '',
-                        'apellido_materno': ''
-                    }
-                )
-
-                # Enviar correo de verificación
-                if send_verification_email(request, user):
-                    messages.success(request,
-                                     '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
-                                     'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
-                else:
-                    messages.warning(request,
-                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                     'Puedes solicitar un nuevo enlace más tarde.')
-
-                return render(request, 'usuarios/registro_exitoso.html', {
-                    'user_email': user.email,
-                    'user_role': 'interesado'
-                })
-
-            except Exception as e:
-                logger.error(f"Error en registro de interesado: {str(e)}")
-                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
-
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
 
 
 class ReclutadorRegistroView(View):
@@ -1655,21 +1553,68 @@ def logout_view(request):
     return redirect('index')
 
 
+# usuarios/views.py - CORRECCIÓN PARA ENVÍO DE EMAIL DE VERIFICACIÓN
+
+# 1. BUSCA esta clase en tu archivo usuarios/views.py:
 class InteresadoRegistroView(View):
-    """Vista para registro de interesados."""
+    """Vista para registro de interesados - ACTUALIZADA CON VERIFICACIÓN."""
 
     def get(self, request):
         form = InteresadoRegistroForm()
         return render(request, 'usuarios/registro_interesado.html', {'form': form})
 
+    # 🔧 REEMPLAZA todo el método post() con ESTA VERSIÓN ÚNICA:
     def post(self, request):
         form = InteresadoRegistroForm(request.POST)
         if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-            return redirect('login')
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
+            try:
+                # Crear usuario sin verificar
+                user = form.save(commit=False)
+                user.email_verified = False
+                user.save()
 
+                # Crear perfil de interesado
+                from .models import Interesado
+                Interesado.objects.get_or_create(
+                    usuario=user,
+                    defaults={
+                        'nombre': '',
+                        'apellido_paterno': '',
+                        'apellido_materno': ''
+                    }
+                )
+
+                # 🔧 ENVIAR CORREO CON MEJOR MANEJO DE ERRORES
+                try:
+                    email_enviado = send_verification_email(request, user)
+                    if email_enviado:
+                        print(f"✅ EMAIL ENVIADO EXITOSAMENTE a {user.email}")  # Debug
+                        messages.success(request,
+                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                         'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
+                    else:
+                        print(f"❌ ERROR: Email NO enviado a {user.email}")  # Debug
+                        messages.warning(request,
+                                         'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                         'Puedes solicitar un nuevo enlace desde la página de login.')
+                except Exception as e:
+                    print(f"🚨 EXCEPCIÓN al enviar email: {str(e)}")  # Debug
+                    logger.error(f"Error crítico enviando email: {str(e)}")
+                    messages.warning(request,
+                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                     'Puedes solicitar un nuevo enlace desde la página de login.')
+
+                return render(request, 'usuarios/registro_exitoso.html', {
+                    'user_email': user.email,
+                    'user_role': 'interesado'
+                })
+
+            except Exception as e:
+                print(f"🚨 ERROR EN REGISTRO: {str(e)}")  # Debug
+                logger.error(f"Error en registro de interesado: {str(e)}")
+                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
+
+        return render(request, 'usuarios/registro_interesado.html', {'form': form})
 
 class ReclutadorRegistroView(View):
     """Vista para registro de reclutadores."""
@@ -1794,11 +1739,9 @@ class PerfilInteresadoView(View):
             'es_nuevo': created,
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
-
-
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
-    """Vista para dashboard del reclutador."""
+    """Vista para dashboard del reclutador - VERSIÓN CORREGIDA."""
 
     def get(self, request):
         if request.user.rol != 'reclutador':
@@ -1816,9 +1759,27 @@ class DashboardReclutadorView(View):
         # Obtener las últimas 3 vacantes para mostrar en el dashboard
         ultimas_vacantes = reclutador.vacantes.all().order_by('-fecha_actualizacion')[:3]
 
-        # TODO: Cuando implementemos postulaciones, calcular estas estadísticas
-        postulaciones_recibidas = 0  # Placeholder
-        postulaciones_nuevas = 0  # Placeholder
+        postulaciones_recibidas_total = Postulacion.objects.filter(
+            vacante__reclutador=reclutador
+        ).count()
+
+        # Postulaciones nuevas (últimas 7 días)
+        from datetime import timedelta
+        from django.utils import timezone
+        hace_una_semana = timezone.now() - timedelta(days=7)
+
+        postulaciones_nuevas = Postulacion.objects.filter(
+            vacante__reclutador=reclutador,
+            fecha_postulacion__gte=hace_una_semana
+        ).count()
+
+        # ✅ OBTENER LAS 5 POSTULACIONES MÁS RECIENTES
+        postulaciones_recientes = Postulacion.objects.filter(
+            vacante__reclutador=reclutador
+        ).select_related(
+            'interesado',
+            'vacante'
+        ).order_by('-fecha_postulacion')[:5]
 
         context = {
             'reclutador': reclutador,
@@ -1827,13 +1788,16 @@ class DashboardReclutadorView(View):
             'vacantes_cerradas': vacantes_cerradas,
             'total_vacantes': total_vacantes,
             'ultimas_vacantes': ultimas_vacantes,
-            'postulaciones_recibidas': postulaciones_recibidas,
+
+            # ESTADÍSTICAS REALES DE POSTULACIONES
+            'postulaciones_recibidas': postulaciones_recibidas_total,
             'postulaciones_nuevas': postulaciones_nuevas,
+
+            # POSTULACIONES RECIENTES
+            'postulaciones_recientes': postulaciones_recientes,
         }
-        # return render(request, 'usuarios/dashboard_reclutador.html', context)'usuarios/dashboard_reclutador.html', context)
 
         return render(request, 'usuarios/dashboard_reclutador.html', context)
-
 
 def detalle_vacante_view(request, vacante_id):
     """
