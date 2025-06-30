@@ -2,6 +2,7 @@
 {% load static %}
 
 {% block title %}Inicio - Bolsa de Trabajo{% endblock %}
+    <link rel="stylesheet" href="{% static 'css/' %}">
 
 {% block content %}
 <div class="text-center">
@@ -164,60 +165,5 @@
     </div>
 {% endif %}
 
-<style>
-.vacante-card {
-    border-radius: 10px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-}
 
-.vacante-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
-}
-
-.vacante-card .card-title {
-    color: var(--primary);
-    font-weight: 500;
-}
-
-.vacante-card .card-subtitle {
-    font-size: 0.9rem;
-}
-
-.vacante-card .badge {
-    font-size: 0.75rem;
-    margin-right: 5px;
-}
-
-/* Estilos para la paginación */
-.pagination {
-    margin-top: 2rem;
-}
-
-.pagination .page-link {
-    color: var(--primary);
-    border-color: #dee2e6;
-    padding: 0.5rem 0.75rem;
-}
-
-.pagination .page-link:hover {
-    color: var(--primary);
-    background-color: #f8f9fa;
-    border-color: var(--primary);
-}
-
-.pagination .page-item.active .page-link {
-    background-color: var(--primary);
-    border-color: var(--primary);
-    color: white;
-}
-
-.pagination .page-item.disabled .page-link {
-    color: #6c757d;
-    background-color: #fff;
-    border-color: #dee2e6;
-}
-</style>
 {% endblock %}

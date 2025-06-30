@@ -244,7 +244,6 @@ class Interesado(models.Model):
     apellido_materno = models.CharField(max_length=50, blank=True, null=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
     fecha_nacimiento = models.DateField(blank=True, null=True)
-    # CAMPO ELIMINADO: direccion
     municipio = models.CharField(max_length=50, choices=MUNICIPIOS_ESTADO_MEXICO, blank=True, null=True, verbose_name="Municipio")
     codigo_postal = models.CharField(max_length=10, blank=True, null=True)
     foto_perfil = models.ImageField(upload_to='interesados/', blank=True, null=True)
@@ -281,6 +280,7 @@ class Interesado(models.Model):
                 self.apellido_paterno and
                 self.curriculum.resumen_profesional
         )
+
 
 class Secretaria(models.Model):
     """Modelo para las secretarías (organizaciones) que pueden publicar vacantes."""
@@ -634,6 +634,49 @@ class Curriculum(models.Model):
         verbose_name = "Currículum"
         verbose_name_plural = "Currículums"
 
+    @property
+    def validation_errors(self):
+        """
+        Returns a list of missing fields for the CV to be considered complete.
+        """
+        errors = []
+        # 1. Validar campos del perfil del interesado
+        profile_fields = {
+            'nombre': 'Nombre(s)',
+            'apellido_paterno': 'Apellido Paterno',
+            'telefono': 'Teléfono',
+            'fecha_nacimiento': 'Fecha de Nacimiento',
+            'municipio': 'Municipio',
+            'codigo_postal': 'Código Postal',
+            'foto_perfil': 'Foto de Perfil',
+        }
+        for field, label in profile_fields.items():
+            if not getattr(self.interesado, field):
+                errors.append(label)
+
+        # 2. Validar resumen profesional
+        if not self.resumen_profesional or not self.resumen_profesional.strip():
+            errors.append('Resumen Profesional')
+
+        # 3. Validar secciones con al menos una entrada
+        if not self.experiencias.exists():
+            errors.append('Al menos una Experiencia Laboral')
+        if not self.educaciones.exists():
+            errors.append('Al menos una entrada de Educación')
+        if not self.habilidades.exists():
+            errors.append('Al menos una Habilidad')
+        if not self.idiomas.exists():
+            errors.append('Al menos un Idioma')
+
+        return errors
+
+    @property
+    def is_cv_complete(self):
+        """
+        Checks if the CV has all the necessary components.
+        A CV is complete if there are no validation errors.
+        """
+        return not self.validation_errors
 
 class ExperienciaLaboral(models.Model):
     """Modelo para las experiencias laborales del CV."""

@@ -1,7 +1,232 @@
-/* static/css/image-cropper.css */
+        /* Contenedor principal para un padding consistente */
+        .container-fluid {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        /* Tarjetas con un estilo minimalista y consistente */
+        .card {
+            border: 1px solid var(--bordefooter); /* Borde sutil */
+            border-radius: 12px; /* Bordes más suaves */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Sombra suave */
+            background-color: var(--light);
+            margin-bottom: 2rem;
+        }
+        /*{##Agustin01#}*/
+        .card-header {
+            background-color: transparent; /* Fondo limpio */
+            border-bottom: 1px solid var(--bordefooter);
+            padding-top: 1rem;
+            padding-bottom: 0.75rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        /* Títulos de las tarjetas */
+        .card-header h5 {
+            font-size: 1.1rem;
+            font-weight: var(--peso700);
+            color: var(--primary);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+        }
 
-/* Contenedor del cropper */
-.image-cropper-container {
+        .card-header h5 i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           Columna Izquierda: Perfil de Usuario
+           ========================================================================== */
+
+        /* Contenedor de la foto de perfil */
+        .profile-photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--light);
+            box-shadow: 0 0 0 2px var(--primary); /* Doble borde con color primario */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--grey);
+        }
+        .profile-photo-placeholder .profile-icon {
+            font-size: 5rem;
+            color: var(--btndetalle);
+        }
+        /* Superposición para cambiar la foto */
+        .photo-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--letrablanca);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .profile-photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+
+        .profile-photo-container:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        /* Información de Contacto */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .contact-item i {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            color: var(--primary);
+        }
+        .contact-item span {
+            color: var(--titulo-pag);
+        }
+
+        /* ==========================================================================
+           Columna Derecha: Formulario de CV
+           ========================================================================== */
+
+        .cv-container {
+            max-width: 100%;
+        }
+
+        /* Estilo de los formularios */
+        .form-label {
+            font-weight: 500;
+            color: var(--dark_grey);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid var(--bordefooter);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(159, 34, 65, 0.15);
+            outline: none; /* Se mantiene el focus styling de :root */
+        }
+
+        /* Botón para "Agregar" en cada sección */
+        .card-header .btn-outline-primary {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        /* Contenedores de items (experiencia, educación, etc.) */
+        .experiencia-item, .educacion-item, .idioma-item {
+            padding: 1rem;
+            border: 1px solid var(--bordefooter);
+            border-radius: 8px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .experiencia-item:hover, .educacion-item:hover {
+            background-color: #fcfcfc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .experiencia-item h6, .educacion-item h6 {
+            color: var(--primary);
+            font-weight: var(--peso700);
+        }
+        .experiencia-item .btn-group-vertical {
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .experiencia-item .btn-group-vertical .btn {
+            padding: 0.25rem 0.6rem;
+        }
+
+        /* Habilidades como badges */
+        #habilidadesContainer .badge {
+            background-color: var(--colordependecias);
+            font-size: 0.9rem;
+            padding: 0.6em 1em;
+            font-weight: 400;
+        }
+        #habilidadesContainer .btn-close {
+            margin-left: 0.5rem;
+        }
+
+        /* Idiomas */
+        .idioma-item strong {
+            color: var(--primary);
+        }
+
+        /* Botones principales de acción */
+        .cv-container .text-end .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: var(--peso700);
+            font-size: 1rem;
+        }
+
+        /* ==========================================================================
+           Responsividad
+           ========================================================================== */
+
+        @media (max-width: 991px) {
+            .cv-container {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .profile-photo-container {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-photo-placeholder .profile-icon {
+                font-size: 4rem;
+            }
+            .cv-container .text-end .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+        /* Ocultar el footer completamente en esta página */
+        footer {
+            display: none !important;
+        }
+        /* Ocultar el footer completamente en esta página */
+
+        .footer-bottom {
+            display: none !important;
+        }
+        .footer {
+    display: none !important;
+}
+
+.footer-bottom {
+    display: none !important;
+}
+
+    .image-cropper-container {
     max-width: 100%;
     height: 400px;
     margin: 20px 0;

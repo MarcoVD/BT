@@ -1,5 +1,29 @@
-// static/js/perfil-interesado.js - Simplificado ya que el cropper maneja el guardado automático
+// static/js/perfil-interesado.js - ARCHIVO COMPLETO CON TODA LA FUNCIONALIDAD DEL CV
+
+// =========================
+// VARIABLES GLOBALES
+// =========================
+let experienciaEditandoId = null;
+let educacionEditandoId = null;
+
+// =========================
+// INICIALIZACIÓN PRINCIPAL
+// =========================
 document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar funcionalidad del perfil (modal de edición)
+    initializeProfileModal();
+
+    // Inicializar funcionalidad del CV
+    initializeCVFunctionality();
+
+    // Inicializar event listeners específicos
+    initializeEventListeners();
+});
+
+// =========================
+// FUNCIONALIDAD DEL PERFIL
+// =========================
+function initializeProfileModal() {
     const guardarBtn = document.getElementById('guardarPerfilBtn');
     const form = document.getElementById('editarPerfilForm');
     const modal = document.getElementById('editarPerfilModal');
@@ -69,9 +93,7 @@ document.addEventListener('DOMContentLoaded', function() {
             guardarBtn.disabled = false;
         });
     });
-});
-
-// static/js/perfil-interesado.js - Función actualizarInformacionPerfil corregida
+}
 
 function actualizarInformacionPerfil(data) {
     // Actualizar nombre en el perfil
@@ -165,7 +187,303 @@ function actualizarInformacionPerfil(data) {
     }
 }
 
+// =========================
+// FUNCIONALIDAD DEL CV
+// =========================
+function initializeCVFunctionality() {
+    // Esta función se encarga de inicializar toda la funcionalidad del CV
+    console.log('Inicializando funcionalidad del CV...');
+}
 
+function initializeEventListeners() {
+    // Control de trabajo actual para experiencia
+    const actualCheck = document.getElementById('actualCheck');
+    if (actualCheck) {
+        actualCheck.addEventListener('change', function() {
+            const fechaFin = document.querySelector('#experienciaForm input[name="fecha_fin"]');
+            if (this.checked) {
+                fechaFin.disabled = true;
+                fechaFin.value = '';
+            } else {
+                fechaFin.disabled = false;
+            }
+        });
+    }
+
+    // Limpiar modales al cerrar
+    const experienciaModal = document.getElementById('experienciaModal');
+    if (experienciaModal) {
+        experienciaModal.addEventListener('hidden.bs.modal', function () {
+            experienciaEditandoId = null;
+            document.querySelector('#experienciaModal .modal-title').textContent = 'Agregar Experiencia Laboral';
+        });
+    }
+
+    const educacionModal = document.getElementById('educacionModal');
+    if (educacionModal) {
+        educacionModal.addEventListener('hidden.bs.modal', function () {
+            educacionEditandoId = null;
+            document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
+        });
+    }
+}
+
+// =========================
+// EXPERIENCIA LABORAL
+// =========================
+function mostrarModalExperiencia() {
+    experienciaEditandoId = null;
+    document.querySelector('#experienciaModal .modal-title').textContent = 'Agregar Experiencia Laboral';
+    document.getElementById('experienciaForm').reset();
+    document.querySelector('#experienciaForm input[name="fecha_fin"]').disabled = false;
+    new bootstrap.Modal(document.getElementById('experienciaModal')).show();
+}
+
+function editarExperiencia(id, puesto, empresa, fechaInicio, fechaFin, actual, descripcion) {
+    experienciaEditandoId = id;
+
+    document.querySelector('#experienciaForm input[name="puesto"]').value = puesto;
+    document.querySelector('#experienciaForm input[name="empresa"]').value = empresa;
+    document.querySelector('#experienciaForm input[name="fecha_inicio"]').value = fechaInicio;
+    document.querySelector('#experienciaForm input[name="fecha_fin"]').value = fechaFin || '';
+    document.querySelector('#experienciaForm input[name="actual"]').checked = actual;
+    document.querySelector('#experienciaForm textarea[name="descripcion"]').value = descripcion;
+
+    const fechaFinInput = document.querySelector('#experienciaForm input[name="fecha_fin"]');
+    fechaFinInput.disabled = actual;
+
+    document.querySelector('#experienciaModal .modal-title').textContent = 'Editar Experiencia Laboral';
+    new bootstrap.Modal(document.getElementById('experienciaModal')).show();
+}
+
+function guardarExperiencia() {
+    const form = document.getElementById('experienciaForm');
+    const formData = new FormData(form);
+
+    let url = experienciaEditandoId ?
+        `/ajax/experiencia/editar/${experienciaEditandoId}/` :
+        '/ajax/experiencia/agregar/';
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('experienciaModal')).hide();
+            location.reload();
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la experiencia');
+    });
+}
+
+function eliminarExperiencia(id) {
+    if (confirm('¿Estás seguro de eliminar esta experiencia?')) {
+        fetch(`/ajax/experiencia/eliminar/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error al eliminar: ' + data.error);
+            }
+        });
+    }
+}
+
+// =========================
+// EDUCACIÓN
+// =========================
+function mostrarModalEducacion() {
+    educacionEditandoId = null;
+    document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
+    document.getElementById('educacionForm').reset();
+    new bootstrap.Modal(document.getElementById('educacionModal')).show();
+}
+
+function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
+    educacionEditandoId = id;
+
+    document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
+    document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
+    document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
+    document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
+    document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';
+
+    document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
+    new bootstrap.Modal(document.getElementById('educacionModal')).show();
+}
+
+function guardarEducacion() {
+    const form = document.getElementById('educacionForm');
+    const formData = new FormData(form);
+
+    let url = '/ajax/educacion/agregar/'; // Solo creación por ahora
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('educacionModal')).hide();
+            location.reload();
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la educación');
+    });
+}
+
+function eliminarEducacion(id) {
+    if (confirm('¿Estás seguro de eliminar esta educación?')) {
+        fetch(`/ajax/educacion/eliminar/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error al eliminar: ' + data.error);
+            }
+        });
+    }
+}
+
+// =========================
+// HABILIDADES
+// =========================
+function mostrarModalHabilidad() {
+    document.getElementById('habilidadForm').reset();
+    new bootstrap.Modal(document.getElementById('habilidadModal')).show();
+}
+
+function guardarHabilidad() {
+    const form = document.getElementById('habilidadForm');
+    const formData = new FormData(form);
+
+    fetch('/ajax/habilidad/agregar/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('habilidadModal')).hide();
+            location.reload();
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la habilidad');
+    });
+}
+
+function eliminarHabilidad(id) {
+    if (confirm('¿Estás seguro de eliminar esta habilidad?')) {
+        fetch(`/ajax/habilidad/eliminar/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error al eliminar: ' + data.error);
+            }
+        });
+    }
+}
+
+// =========================
+// IDIOMAS
+// =========================
+function mostrarModalIdioma() {
+    document.getElementById('idiomaForm').reset();
+    new bootstrap.Modal(document.getElementById('idiomaModal')).show();
+}
+
+function guardarIdioma() {
+    const form = document.getElementById('idiomaForm');
+    const formData = new FormData(form);
+
+    fetch('/ajax/idioma/agregar/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('idiomaModal')).hide();
+            location.reload();
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar el idioma');
+    });
+}
+
+function eliminarIdioma(id) {
+    if (confirm('¿Estás seguro de eliminar este idioma?')) {
+        fetch(`/ajax/idioma/eliminar/${id}/`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                location.reload();
+            } else {
+                alert('Error al eliminar: ' + data.error);
+            }
+        });
+    }
+}
+
+// =========================
+// FUNCIONES UTILITARIAS
+// =========================
 function mostrarMensaje(mensaje, tipo) {
     // Crear contenedor de toasts si no existe
     let toastContainer = document.getElementById('toast-container');
@@ -210,3 +528,21 @@ function mostrarMensaje(mensaje, tipo) {
         toastDiv.remove();
     });
 }
+
+// =========================
+// FUNCIONES GLOBALES (para ser llamadas desde HTML)
+// =========================
+window.mostrarModalExperiencia = mostrarModalExperiencia;
+window.editarExperiencia = editarExperiencia;
+window.guardarExperiencia = guardarExperiencia;
+window.eliminarExperiencia = eliminarExperiencia;
+window.mostrarModalEducacion = mostrarModalEducacion;
+window.editarEducacion = editarEducacion;
+window.guardarEducacion = guardarEducacion;
+window.eliminarEducacion = eliminarEducacion;
+window.mostrarModalHabilidad = mostrarModalHabilidad;
+window.guardarHabilidad = guardarHabilidad;
+window.eliminarHabilidad = eliminarHabilidad;
+window.mostrarModalIdioma = mostrarModalIdioma;
+window.guardarIdioma = guardarIdioma;
+window.eliminarIdioma = eliminarIdioma;

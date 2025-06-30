@@ -95,7 +95,6 @@ urlpatterns = [
     # ===========================
     path('ajax/idioma/agregar/', views.agregar_idioma_ajax, name='agregar_idioma_ajax'),
     path('ajax/idioma/eliminar/<int:idioma_id>/', views.eliminar_idioma_ajax, name='eliminar_idioma_ajax'),
-
     # ===========================
     # URLs AJAX PARA GESTIÓN DE POSTULACIONES (RECLUTADORES)
     # ===========================
