@@ -152,16 +152,9 @@
         {% endif %}
 
         <!-- Script específico para perfil de interesado -->
-        {% if request.resolver_match.url_name == 'perfil_interesado' %}
-            <script src="{% static 'js/perfil-interesado.js' %}"></script>
-        {% endif %}
-
-{#    {% block extra_js %}#}
-{#        <!-- Script específico para búsqueda en index -->#}
-{#        {% if request.resolver_match.url_name == 'index' or request.resolver_match.url_name == 'buscar_vacantes' %}#}
-{#            <script src="{% static 'js/busqueda-vacantes.js' %}"></script>#}
-{#            <script src="{% static 'js/cards-responsive.js' %}"></script>#}
+{#        {% if request.resolver_match.url_name == 'perfil_interesado' %}#}
+{#            <script src="{% static 'js/perfil-interesado.js' %}"></script>#}
 {#        {% endif %}#}
-{#    {% endblock %}#}
+ {#    {% endblock %}#}
 </body>
 </html>

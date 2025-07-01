@@ -101,33 +101,40 @@ class ImageCropper {
         }
     }
 
-    openCropperModal() {
-        console.log('🎭 Abriendo modal cropper...');
+openCropperModal() {
+    console.log('🎭 Abriendo modal cropper...');
 
-        const cropperModalElement = document.getElementById('cropperModal');
-        if (!cropperModalElement) {
-            console.error('❌ Modal cropper no encontrado!');
-            this.showMessage('Error: Modal no encontrado', 'error');
-            return;
-        }
-
-        // Reset del estado
-        this.showSelectStep();
-        this.destroyCropper();
-
-        // Abrir modal
-        const cropperModal = new bootstrap.Modal(cropperModalElement, {
-            backdrop: 'static',
-            keyboard: false
-        });
-        cropperModal.show();
-
-        // Configurar eventos cuando se abra
-        cropperModalElement.addEventListener('shown.bs.modal', () => {
-            console.log('🎭 Modal cropper abierto, configurando listeners...');
-            this.setupCropperModalEvents();
-        }, { once: true });
+    const cropperModalElement = document.getElementById('cropperModal');
+    if (!cropperModalElement) {
+        console.error('❌ Modal cropper no encontrado!');
+        this.showMessage('Error: Modal no encontrado', 'error');
+        return;
     }
+
+    // Reset del estado
+    this.showSelectStep();
+    this.destroyCropper();
+
+    // Abrir modal
+    const cropperModal = new bootstrap.Modal(cropperModalElement, {
+        backdrop: 'static',
+        keyboard: false
+    });
+    cropperModal.show();
+
+    // CONFIGURAR EVENTOS INMEDIATAMENTE Y DESPUÉS DEL SHOWN
+    setTimeout(() => {
+        this.setupCropperModalEvents();
+        this.configureFileInput();
+    }, 100);
+
+    // Configurar también cuando se abra completamente
+    cropperModalElement.addEventListener('shown.bs.modal', () => {
+        console.log('🎭 Modal cropper abierto completamente');
+        this.setupCropperModalEvents();
+        this.configureFileInput();
+    }, { once: true });
+}
 
     setupCropperModal() {
         const cropperModalElement = document.getElementById('cropperModal');
@@ -140,57 +147,80 @@ class ImageCropper {
         }
     }
 
-    setupCropperModalEvents() {
-        const dropZone = document.getElementById('dropZone');
-        const fileInput = document.getElementById('foto_perfil');
+setupCropperModalEvents() {
+    const dropZone = document.getElementById('dropZone');
+    const fileInput = document.getElementById('foto_perfil');
 
-        console.log('🎯 Configurando eventos del modal cropper...', { dropZone, fileInput });
+    console.log('Configurando eventos del modal cropper...', { dropZone, fileInput });
 
-        if (dropZone && fileInput) {
-            //  CLICK EN DROP ZONE
-            dropZone.onclick = (e) => {
-                e.preventDefault();
-                console.log('🎯 Drop zone clickeado, abriendo selector...');
-                fileInput.click();
-            };
+    if (dropZone && fileInput) {
+        // LIMPIAR eventos anteriores
+        dropZone.replaceWith(dropZone.cloneNode(true));
+        const newDropZone = document.getElementById('dropZone');
 
-            //  DRAG AND DROP
-            dropZone.ondragover = (e) => {
-                e.preventDefault();
-                dropZone.classList.add('dragover');
-            };
+        // CLICK EN DROP ZONE
+        newDropZone.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('🎯 Drop zone clickeado, abriendo selector...');
+            fileInput.click();
+        });
 
-            dropZone.ondragleave = (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
-            };
+        // DRAG AND DROP
+        newDropZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            newDropZone.classList.add('dragover');
+        });
 
-            dropZone.ondrop = (e) => {
-                e.preventDefault();
-                dropZone.classList.remove('dragover');
+        newDropZone.addEventListener('dragleave', (e) => {
+            e.preventDefault();
+            newDropZone.classList.remove('dragover');
+        });
 
-                const files = e.dataTransfer.files;
-                if (files.length > 0) {
-                    this.processFile(files[0]);
-                }
-            };
-        }
+        newDropZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            newDropZone.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                this.processFile(files[0]);
+            }
+        });
     }
+}
 
-    setupFileInput() {
-        const fileInput = document.getElementById('foto_perfil');
-        if (fileInput) {
-            console.log('📁 Configurando input file...');
+setupFileInput() {
+    // Configurar cuando el DOM esté listo
+    document.addEventListener('DOMContentLoaded', () => {
+        this.configureFileInput();
+    });
 
-            fileInput.onchange = (e) => {
-                console.log('📁 Archivo seleccionado:', e.target.files);
-                const file = e.target.files[0];
-                if (file) {
-                    this.processFile(file);
-                }
-            };
-        }
+    // También configurar inmediatamente por si ya está listo
+    if (document.readyState === 'complete') {
+        this.configureFileInput();
     }
+}
+
+configureFileInput() {
+    const fileInput = document.getElementById('foto_perfil');
+    if (fileInput) {
+        console.log('📁 Configurando input file...');
+
+        // LIMPIAR evento anterior
+        fileInput.removeEventListener('change', this.handleFileChange);
+
+        // Crear handler bound
+        this.handleFileChange = (e) => {
+            console.log('📁 Archivo seleccionado:', e.target.files);
+            const file = e.target.files[0];
+            if (file) {
+                this.processFile(file);
+            }
+        };
+
+        // Agregar evento
+        fileInput.addEventListener('change', this.handleFileChange);
+    }
+}
 
     setupCropperButtons() {
         console.log('🔲 Configurando botones del cropper...');
@@ -223,10 +253,10 @@ class ImageCropper {
         console.log('📋 Procesando archivo:', file);
 
         // Validar tipo
-        if (!file.type.match(/^image\/(jpeg|jpg|png)$/i)) {
-            this.showMessage('Solo se permiten archivos JPG, JPEG o PNG', 'error');
-            return;
-        }
+            if (!file.type.match(/^image\/(jpeg|jpg|png)$/i)) {
+                this.showMessage('Solo se permiten archivos JPG, JPEG o PNG', 'error');
+                return;
+            }
 
         // Validar tamaño (5MB)
         if (file.size > 5 * 1024 * 1024) {
