@@ -41,8 +41,8 @@
 
         /* Contenedor de la foto de perfil */
         .profile-photo-container {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             margin: 0 auto 1.5rem auto;
             position: relative;
             border-radius: 50%;
@@ -91,7 +91,6 @@
         .profile-photo-container:hover .photo-overlay {
             opacity: 1;
         }
-
         /* Información de Contacto */
         .contact-item {
             display: flex;
@@ -209,22 +208,19 @@
                 margin-bottom: 0.5rem;
             }
         }
-        /* Ocultar el footer completamente en esta página */
         footer {
             display: none !important;
         }
         /* Ocultar el footer completamente en esta página */
-
         .footer-bottom {
             display: none !important;
         }
         .footer {
-    display: none !important;
-}
-
-.footer-bottom {
-    display: none !important;
-}
+            display: none !important;
+        }
+        .footer-bottom {
+            display: none !important;
+        }
 
     .image-cropper-container {
     max-width: 100%;

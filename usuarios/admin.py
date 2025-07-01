@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 from django.urls import reverse
 from django.utils import timezone
-from .models import Usuario, Interesado, Reclutador, Secretaria, Categoria, Vacante, RequisitoVacante, Postulacion
+from .models import Usuario, Interesado, Reclutador, Secretaria, Categoria, Educacion, Vacante, RequisitoVacante, Postulacion
 
 
 class InteresadoInline(admin.StackedInline):

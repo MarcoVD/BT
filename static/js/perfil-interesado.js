@@ -10,6 +10,8 @@ let educacionEditandoId = null;
 // INICIALIZACIÓN PRINCIPAL
 // =========================
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('Inicializando perfil-interesado.js...');
+
     // Inicializar funcionalidad del perfil (modal de edición)
     initializeProfileModal();
 
@@ -18,7 +20,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Inicializar event listeners específicos
     initializeEventListeners();
+
+    // ✅ AGREGAR: Verificar que image-cropper esté disponible
+    checkImageCropperAvailability();
 });
+
+// =========================
+// VERIFICACIÓN DEL CROPPER
+// =========================
+function checkImageCropperAvailability() {
+    // Verificar que image-cropper esté cargado
+    if (typeof window.imageCropper === 'undefined') {
+        console.warn('ImageCropper no está disponible aún, reintentando...');
+
+        // Reintentar después de un tiempo
+        setTimeout(() => {
+            if (typeof window.imageCropper === 'undefined') {
+                console.error('ImageCropper no se cargó correctamente');
+            } else {
+                console.log('ImageCropper detectado exitosamente');
+            }
+        }, 1000);
+    } else {
+        console.log('ImageCropper ya está disponible');
+    }
+}
 
 // =========================
 // FUNCIONALIDAD DEL PERFIL
@@ -332,7 +358,10 @@ function guardarEducacion() {
     const form = document.getElementById('educacionForm');
     const formData = new FormData(form);
 
-    let url = '/ajax/educacion/agregar/'; // Solo creación por ahora
+    // ✅ CORRECCIÓN: Verificar si estamos editando o creando
+    let url = educacionEditandoId ?
+        `/ajax/educacion/editar/${educacionEditandoId}/` :
+        '/ajax/educacion/agregar/';
 
     fetch(url, {
         method: 'POST',
