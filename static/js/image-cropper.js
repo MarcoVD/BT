@@ -1,5 +1,4 @@
-// static/js/image-cropper.js - SOLUCIÓN SIMPLIFICADA
-class ImageCropper {
+ class ImageCropper {
     constructor() {
         this.cropper = null;
         this.currentFile = null;
@@ -35,7 +34,6 @@ class ImageCropper {
         //  4. CONFIGURAR BOTONES DEL CROPPER
         this.setupCropperButtons();
     }
-
     setupProfileImageClicks() {
         console.log('🖼️ Configurando clics en imágenes de perfil...');
 
@@ -149,7 +147,7 @@ openCropperModal() {
 
 setupCropperModalEvents() {
     const dropZone = document.getElementById('dropZone');
-    const fileInput = document.getElementById('foto_perfil');
+    const fileInput = document.getElementById('foto_perfil_cropper'); // ✅ CAMBIO AQUÍ
 
     console.log('Configurando eventos del modal cropper...', { dropZone, fileInput });
 
@@ -201,7 +199,7 @@ setupFileInput() {
 }
 
 configureFileInput() {
-    const fileInput = document.getElementById('foto_perfil');
+    const fileInput = document.getElementById('foto_perfil_cropper'); // ✅ CAMBIO AQUÍ
     if (fileInput) {
         console.log('📁 Configurando input file...');
 
@@ -253,10 +251,10 @@ configureFileInput() {
         console.log('📋 Procesando archivo:', file);
 
         // Validar tipo
-            if (!file.type.match(/^image\/(jpeg|jpg|png)$/i)) {
-                this.showMessage('Solo se permiten archivos JPG, JPEG o PNG', 'error');
-                return;
-            }
+        if (!file.type.match(/^image\/(jpeg|jpg|png)$/i)) {
+            this.showMessage('Solo se permiten archivos JPG, JPEG o PNG', 'error');
+            return;
+        }
 
         // Validar tamaño (5MB)
         if (file.size > 5 * 1024 * 1024) {
@@ -273,7 +271,7 @@ configureFileInput() {
 
         const reader = new FileReader();
         reader.onload = (e) => {
-            console.log(' Imagen cargada');
+            console.log('✅ Imagen cargada');
             this.showCropperStep();
             this.initializeCropper(e.target.result);
         };
@@ -325,7 +323,7 @@ configureFileInput() {
 
         // Esperar a que se cargue la imagen
         imageElement.onload = () => {
-            console.log(' Imagen cargada, creando cropper...');
+            console.log('✅ Imagen cargada, creando cropper...');
 
             try {
                 this.cropper = new Cropper(imageElement, {
@@ -347,7 +345,7 @@ configureFileInput() {
                     minCropBoxWidth: 100,
                     minCropBoxHeight: 100,
                     ready: () => {
-                        console.log(' Cropper listo');
+                        console.log('✅ Cropper listo');
                         this.updatePreview();
                     },
                     cropend: () => {
@@ -415,7 +413,7 @@ configureFileInput() {
                     return;
                 }
 
-                console.log(' Imagen recortada exitosamente');
+                console.log('✅ Imagen recortada exitosamente');
                 this.croppedBlob = blob;
                 const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
 
@@ -446,7 +444,7 @@ configureFileInput() {
     }
 
     resetFileInput() {
-        const fileInput = document.getElementById('foto_perfil');
+        const fileInput = document.getElementById('foto_perfil_cropper'); // ✅ CAMBIO AQUÍ
         if (fileInput) {
             fileInput.value = '';
         }
@@ -503,7 +501,7 @@ configureFileInput() {
             return response.json();
         })
         .then(data => {
-            console.log(' Respuesta:', data);
+            console.log('✅ Respuesta:', data);
             if (data.success) {
                 this.updateAllProfileImages(data.data.foto_url || dataUrl);
                 this.showMessage('Imagen guardada exitosamente', 'success');
@@ -589,6 +587,7 @@ configureFileInput() {
         });
     }
 }
+
 
 //  INICIALIZAR INMEDIATAMENTE
 console.log('🚀 Creando instancia de ImageCropper...');
