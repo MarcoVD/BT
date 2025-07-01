@@ -105,7 +105,15 @@
         .contact-item span {
             color: var(--titulo-pag);
         }
+.clickeable-photo {
+    cursor: pointer !important;
+    transition: transform 0.2s ease;
+}
 
+.clickeable-photo:hover {
+    transform: scale(1.05);
+    opacity: 0.9;
+}
         /* ==========================================================================
            Columna Derecha: Formulario de CV
            ========================================================================== */

@@ -20,21 +20,20 @@
             <!-- Card de foto y datos básicos -->
             <div class="card mb-3 mb-md-4">
                 <div class="card-body text-center p-3 p-md-4">
-                    <div class="profile-photo-container mb-3">
-                        {% if interesado.foto_perfil %}
-                            <img src="{{ interesado.foto_perfil.url }}"
-                                 alt="Foto de perfil"
-                                 class="profile-photo img-fluid rounded-circle clickeable-photo"
-                                 data-bs-toggle="modal">
-{#                                 data-bs-target="#cropperModal">#}
-                        {% else %}
-                            <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#cropperModal">
-                                <i class="bi bi-person-fill profile-icon"></i>
-                            </div>
-                        {% endif %}
-                    </div>
+                        <div class="profile-photo-container mb-3">
+                            {% if interesado.foto_perfil %}
+                                <img src="{{ interesado.foto_perfil.url }}"
+                                     alt="Foto de perfil"
+                                     class="profile-photo img-fluid rounded-circle clickeable-photo"
+                                     style="cursor: pointer;">
+                            {% else %}
+                                <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
+                                     style="cursor: pointer; width: 150px; height: 150px;">
+                                    <i class="bi bi-person-fill profile-icon"></i>
+                                </div>
+                            {% endif %}
+                        </div>
+{#                    </div>#}
                     <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
                 {#va el correo, num cel y lugar donde recide #}
                         <div class="flex-grow-1">
@@ -305,7 +304,8 @@
                         <div class="col-12">
                             <label for="foto_perfil" class="form-label">Foto de Perfil</label>
                             <div class="d-flex gap-2">
-                                <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
+{#                                <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">#}
+                                <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="position: absolute; opacity: 0; pointer-events: none;">
                                 <button type="button" class="btn btn-outline-primary flex-grow-1 text-primary" data-bs-toggle="modal" data-bs-target="#cropperModal">
                                     <i class="bi bi-camera"></i> Cargar foto de Perfil
                                 </button>
@@ -386,7 +386,7 @@
                         <div class="drop-zone" id="dropZone">
                             <i class="bi bi-cloud-upload"></i>
                             <p class="mb-2"><strong>Seleccione </strong> o arrastre una imagen en formato compatible</p>
-                            <p class="small text-muted">Formatos permitidos: JPG y JPEG.• Tamaño Máximo 5MB</p>
+                            <p class="small text-muted">Formatos permitidos: JPG y JPEG.• Tamaño Máximo 5MB </p>
                         </div>
                     </div>
 
