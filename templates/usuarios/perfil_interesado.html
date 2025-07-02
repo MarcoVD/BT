@@ -4,39 +4,245 @@
     <link rel="stylesheet" href="{% static 'css/image-cropper.css' %}">
     <!-- Cropper.js CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.css">
+    <style>
+        /* Contenedor principal para un padding consistente */
+        .container-fluid {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        /* Tarjetas con un estilo minimalista y consistente */
+        .card {
+            border: 1px solid var(--bordefooter); /* Borde sutil */
+            border-radius: 12px; /* Bordes más suaves */
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06); /* Sombra suave */
+            background-color: var(--light);
+            margin-bottom: 2rem;
+        }
+        {##Agustin01#}
+        .card-header {
+            background-color: transparent; /* Fondo limpio */
+            border-bottom: 1px solid var(--bordefooter);
+            padding-top: 1rem;
+            padding-bottom: 0.75rem;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
+        /* Títulos de las tarjetas */
+        .card-header h5 {
+            font-size: 1.1rem;
+            font-weight: var(--peso700);
+            color: var(--primary);
+            margin-bottom: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .card-header h5 i {
+            margin-right: 0.75rem;
+            font-size: 1.2rem;
+        }
+
+        /* ==========================================================================
+           Columna Izquierda: Perfil de Usuario
+           ========================================================================== */
+
+        /* Contenedor de la foto de perfil */
+        .profile-photo-container {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem auto;
+            position: relative;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid var(--light);
+            box-shadow: 0 0 0 2px var(--primary); /* Doble borde con color primario */
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .profile-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .profile-photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--grey);
+        }
+        .profile-photo-placeholder .profile-icon {
+            font-size: 5rem;
+            color: var(--btndetalle);
+        }
+        /* Superposición para cambiar la foto */
+        .photo-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: var(--letrablanca);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-size: 1rem;
+            text-align: center;
+        }
+        .profile-photo-container:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 0 3px var(--secondary);
+        }
+
+        .profile-photo-container:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        /* Información de Contacto */
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+        .contact-item i {
+            margin-right: 1rem;
+            margin-top: 0.25rem;
+            color: var(--primary);
+        }
+        .contact-item span {
+            color: var(--titulo-pag);
+        }
+
+        /* ==========================================================================
+           Columna Derecha: Formulario de CV
+           ========================================================================== */
+
+        .cv-container {
+            max-width: 100%;
+        }
+
+        /* Estilo de los formularios */
+        .form-label {
+            font-weight: 500;
+            color: var(--dark_grey);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid var(--bordefooter);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(159, 34, 65, 0.15);
+            outline: none; /* Se mantiene el focus styling de :root */
+        }
+
+        /* Botón para "Agregar" en cada sección */
+        .card-header .btn-outline-primary {
+            border-radius: 8px;
+            font-weight: 500;
+        }
+
+        /* Contenedores de items (experiencia, educación, etc.) */
+        .experiencia-item, .educacion-item, .idioma-item {
+            padding: 1rem;
+            border: 1px solid var(--bordefooter);
+            border-radius: 8px;
+            transition: background-color 0.2s, box-shadow 0.2s;
+        }
+        .experiencia-item:hover, .educacion-item:hover {
+            background-color: #fcfcfc;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .experiencia-item h6, .educacion-item h6 {
+            color: var(--primary);
+            font-weight: var(--peso700);
+        }
+        .experiencia-item .btn-group-vertical {
+            flex-shrink: 0;
+            margin-left: 1rem;
+        }
+        .experiencia-item .btn-group-vertical .btn {
+            padding: 0.25rem 0.6rem;
+        }
+
+        /* Habilidades como badges */
+        #habilidadesContainer .badge {
+            background-color: var(--colordependecias);
+            font-size: 0.9rem;
+            padding: 0.6em 1em;
+            font-weight: 400;
+        }
+        #habilidadesContainer .btn-close {
+            margin-left: 0.5rem;
+        }
+
+        /* Idiomas */
+        .idioma-item strong {
+            color: var(--primary);
+        }
+
+        /* Botones principales de acción */
+        .cv-container .text-end .btn {
+            padding: 0.75rem 1.5rem;
+            font-weight: var(--peso700);
+            font-size: 1rem;
+        }
+
+        /* ==========================================================================
+           Responsividad
+           ========================================================================== */
+
+        @media (max-width: 991px) {
+            .cv-container {
+                margin-top: 0;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .profile-photo-container {
+                width: 120px;
+                height: 120px;
+            }
+            .profile-photo-placeholder .profile-icon {
+                font-size: 4rem;
+            }
+            .cv-container .text-end .btn {
+                width: 100%;
+                margin-bottom: 0.5rem;
+            }
+        }
+        /* Ocultar el footer completamente en esta página */
+        footer {
+            display: none !important;
+        }
+        /* Ocultar el footer completamente en esta página */
+
+        .footer-bottom {
+            display: none !important;
+        }
+        .footer {
+    display: none !important;
+}
+
+.footer-bottom {
+    display: none !important;
+}
+
+    </style>
 {% endblock %}
 
 {% block extra_js %}
     <!-- Cropper.js CSS y JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
+
+    <!-- SCRIPTS PERSONALIZADOS - ORDEN IMPORTANTE -->
     <script src="{% static 'js/image-cropper.js' %}"></script>
     <script src="{% static 'js/perfil-interesado.js' %}"></script>
-    <script>
-        // Esperar a que el DOM y Cropper.js estén listos
-        document.addEventListener('DOMContentLoaded', function() {
-            // Verificar que Cropper.js esté disponible
-            if (typeof Cropper === 'undefined') {
-                console.error('❌ Cropper.js no está cargado');
-                return;
-            }
-
-            // Cargar image-cropper.js dinámicamente
-            const imageCropperScript = document.createElement('script');
-            imageCropperScript.src = "{% static 'js/image-cropper.js' %}";
-            imageCropperScript.onload = function() {
-                console.log('✅ ImageCropper cargado');
-
-                // Ahora cargar perfil-interesado.js
-                const perfilScript = document.createElement('script');
-                perfilScript.src = "{% static 'js/perfil-interesado.js' %}";
-                perfilScript.onload = function() {
-                    console.log('✅ perfil-interesado.js cargado');
-                };
-                document.head.appendChild(perfilScript);
-            };
-            document.head.appendChild(imageCropperScript);
-        });
-    </script>
 {% endblock %}
 
 {% block content %}
@@ -46,38 +252,82 @@
         <!-- Columna del perfil - MANTENER TAL COMO ESTÁ -->
         <div class="col-12 col-lg-4 order-1">
             <!-- Card de foto y datos básicos -->
-            <div class="card mb-3 mb-md-4">
-                <div class="card-body text-center p-3 p-md-4">
-                    <div class="profile-photo-container mb-3">
-                        {% if interesado.foto_perfil %}
-                            <img src="{{ interesado.foto_perfil.url }}"
-                                 alt="Foto de perfil"
-                                 class="profile-photo img-fluid rounded-circle clickeable-photo"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#cropperModal">
-                        {% else %}
-                            <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
-                                 data-bs-toggle="modal"
-                                 data-bs-target="#cropperModal">
-                                <i class="bi bi-person-fill profile-icon"></i>
-                            </div>
-                        {% endif %}
-                    </div>
-                    <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
-                {#va el correo, num cel y lugar donde recide #}
-                        <div class="flex-grow-1">
-                            <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
-                            <span class="text-muted">{{ user.email }}</span>
-                        </div>
-                            <i class="bi bi-telephone me-2 mt-1 text-primary"></i>
-                            <span class="text-muted">{{ interesado.telefono }}</span>
-                        <div>
-                            <i class="bi bi-geo-alt me-2 mt-1 text-primary"></i>
-                            <span class="text-muted">{{ interesado.ubicacion_completa }}</span>
-                        </div>
-
+<div class="card mb-3 mb-md-4">
+    <div class="card-body text-center p-3 p-md-4">
+        <!-- Contenedor de la foto de perfil mejorado -->
+        <div class="profile-photo-container mb-3 position-relative mx-auto">
+            {% if interesado.foto_perfil %}
+                <img src="{{ interesado.foto_perfil.url }}"
+                     alt="Foto de perfil"
+                     class="profile-photo img-fluid rounded-circle clickeable-photo"
+                     id="currentProfilePhoto">
+            {% else %}
+                <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
+                     id="profilePhotoPlaceholder">
+                    <i class="bi bi-person-fill profile-icon"></i>
                 </div>
+            {% endif %}
+
+            <!-- Overlay que aparece al hacer hover -->
+            <div class="photo-overlay rounded-circle">
+                <i class="bi bi-camera-fill mb-1"></i>
+                <small>Hacer clic para cambiar</small>
             </div>
+        </div>
+
+        <!-- Botón principal para gestionar foto -->
+        <div class="mb-3">
+            <button type="button"
+                    class="btn btn-primary btn-sm px-4 shadow-sm"
+                    id="btnGestionarFoto"
+                    data-bs-toggle="modal"
+                    data-bs-target="#cropperModal"
+                    title="{% if interesado.foto_perfil %}Cambiar foto de perfil{% else %}Agregar foto de perfil{% endif %}">
+                <i class="bi bi-camera me-2"></i>
+                {% if interesado.foto_perfil %}
+                    Cambiar Foto
+                {% else %}
+                    Agregar Foto
+                {% endif %}
+            </button>
+
+            <!-- Botón secundario para eliminar foto (solo si existe) -->
+            {% if interesado.foto_perfil %}
+            <button type="button"
+                    class="btn btn-outline-danger btn-sm ms-2"
+                    id="btnEliminarFoto"
+                    onclick="eliminarFotoPerfil()"
+                    title="Eliminar foto de perfil">
+                <i class="bi bi-trash"></i>
+            </button>
+            {% endif %}
+        </div>
+
+        <!-- Información de contacto -->
+        <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
+
+        <div class="contact-info">
+            <div class="contact-item mb-2">
+                <i class="bi bi-envelope me-2 text-primary"></i>
+                <span class="text-muted">{{ user.email }}</span>
+            </div>
+
+            {% if interesado.telefono %}
+            <div class="contact-item mb-2">
+                <i class="bi bi-telephone me-2 text-primary"></i>
+                <span class="text-muted">{{ interesado.telefono }}</span>
+            </div>
+            {% endif %}
+
+            {% if interesado.ubicacion_completa %}
+            <div class="contact-item mb-2">
+                <i class="bi bi-geo-alt me-2 text-primary"></i>
+                <span class="text-muted">{{ interesado.ubicacion_completa }}</span>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
         </div>
 
         <!-- Columna del contenido principal - REEMPLAZAR CON CV -->
@@ -217,18 +467,13 @@
                                                 </div>
                                                 <div class="">
                                                     <button type="button" class="btn btn-sm btn-outline-primary mb-1"
-                                                        onclick="editarEducacion({{ educacion.id }},
-                                                                '{{ educacion.titulo|escapejs }}',
-                                                                '{{ educacion.institucion|escapejs }}',
-                                                                '{{ educacion.fecha_inicio|date:"Y-m-d" }}',
-                                                                '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}',
-                                                                '{{ educacion.descripcion|escapejs }}')">
+                                                        onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}', '{{ educacion.fecha_inicio|date:"Y-m-d" }}', '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}', '{{ educacion.descripcion|escapejs }}')">
                                                         <i class="bi bi-pencil text-black m-1"></i>
                                                     </button>
-                                                </div>
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarEducacion({{ educacion.id }})">
                                                         <i class="bi bi-trash text-black m-1"></i>
                                                     </button>
+                                                </div>
                                             </div>
                                         </div>
                                     {% endfor %}
@@ -313,7 +558,7 @@
 </div>
 
 <!-- Modal para editar perfil con cropper integrado -->
-<div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header bg-primary">
@@ -400,8 +645,6 @@
     </div>
 </div>
 
-<!-- Modal del Cropper -->
-<!-- Modal del Cropper CORREGIDO -->
 <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
@@ -410,25 +653,16 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body cropper-modal-body">
-
-                <!-- ✅ AGREGAR INPUT FILE OCULTO DENTRO DEL MODAL CROPPER -->
-                <input type="file"
-                       id="foto_perfil_cropper"
-                       name="foto_perfil"
-                       accept=".jpg,.jpeg,.png"
-                       style="display: none;">
-
                 <!-- Paso 1: Seleccionar imagen -->
                 <div id="selectStep" class="cropper-step active">
                     <div class="cropper-instructions">
                         <h6><i class="bi bi-info-circle"></i> Instrucciones</h6>
                         <p>Selecciona una imagen JPG para tu foto de perfil. Podrás recortarla en el siguiente paso.</p>
                     </div>
-
                     <div class="drop-zone" id="dropZone">
                         <i class="bi bi-cloud-upload"></i>
-                        <p class="mb-2"><strong>Haz clic aquí</strong> o arrastra una imagen en formato compatible</p>
-                        <p class="small text-muted">Formatos permitidos: JPG, JPEG y PNG • Tamaño Máximo 5MB</p>
+                        <p class="mb-2"><strong>Seleccione </strong> o arrastre una imagen en formato compatible</p>
+                        <p class="small text-muted">Formatos permitidos: JPG y JPEG.• Tamaño Máximo 5MB...</p>
                     </div>
                 </div>
 
@@ -456,6 +690,7 @@
                             </div>
                         </div>
 
+
                         <div class="col-lg-4">
                             <div class="text-center">
                                 <h6>Vista Previa</h6>
@@ -468,13 +703,21 @@
         </div>
     </div>
 </div>
-
-<!-- CSS adicional para mejorar el drop zone -->
+ima
+<!-- CSS para el cropper -->
 <style>
+.cropper-step {
+    display: none;
+}
+
+.cropper-step.active {
+    display: block;
+}
+
 .drop-zone {
     border: 2px dashed #6c757d;
     border-radius: 10px;
-    padding: 40px 20px;
+    padding: 60px 20px;
     text-align: center;
     background-color: #f8f9fa;
     cursor: pointer;
@@ -505,24 +748,16 @@
     color: #0d6efd;
 }
 
-.cropper-step {
-    display: none;
-}
-
-.cropper-step.active {
-    display: block;
-}
-
 .image-cropper-container {
     max-height: 400px;
     overflow: hidden;
     border: 1px solid #dee2e6;
     border-radius: 8px;
     margin-bottom: 15px;
+    background-color: #f8f9fa;
 }
 
 .cropper-controls {
-    text-align: center;
     margin-top: 15px;
 }
 
@@ -531,8 +766,8 @@
 }
 
 .crop-preview {
-    width: 150px;
-    height: 150px;
+    width: 160px;
+    height: 160px;
     border: 2px solid #dee2e6;
     border-radius: 50%;
     overflow: hidden;
@@ -549,8 +784,58 @@
     height: 100%;
     object-fit: cover;
 }
+
+.cropper-instructions {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cropper-instructions h6 {
+    color: #1976d2;
+    margin-bottom: 10px;
+}
+
+.cropper-instructions p {
+    color: #424242;
+    margin: 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .image-cropper-container {
+        height: 300px;
+    }
+
+    .cropper-controls {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .cropper-controls .btn {
+        width: 100%;
+        max-width: 200px;
+        margin: 5px 0;
+    }
+
+    .crop-preview {
+        width: 120px;
+        height: 120px;
+    }
+
+    .drop-zone {
+        padding: 40px 15px;
+    }
+
+    .drop-zone i {
+        font-size: 2rem;
+    }
+}
 </style>
-<!-- Modales para CV (igual que en crear_editar_cv.html) -->
+
 <!-- Modal para Experiencia Laboral -->
 <div class="modal fade" id="experienciaModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
@@ -745,8 +1030,260 @@
 </div>
 
 <script>
-// JavaScript del CV (igual que en crear_editar_cv.html)
-// Variables globales para controlar edición
+function eliminarFotoPerfil() {
+    if (!confirm('¿Estás seguro de que quieres eliminar tu foto de perfil?')) {
+        return;
+    }
+
+    const btnEliminar = document.getElementById('btnEliminarFoto');
+    const btnGestionar = document.getElementById('btnGestionarFoto');
+
+    // Mostrar loading
+    if (btnEliminar) {
+        btnEliminar.disabled = true;
+        btnEliminar.innerHTML = '<span class="spinner-border spinner-border-sm"></span>';
+    }
+
+    // Hacer petición para eliminar
+    fetch('/ajax/eliminar-foto-perfil/', {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Reemplazar imagen con placeholder
+            const currentPhoto = document.getElementById('currentProfilePhoto');
+            if (currentPhoto) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo';
+                placeholder.id = 'profilePhotoPlaceholder';
+                placeholder.innerHTML = '<i class="bi bi-person-fill profile-icon"></i>';
+
+                currentPhoto.parentNode.replaceChild(placeholder, currentPhoto);
+            }
+
+            // Actualizar botón principal
+            if (btnGestionar) {
+                btnGestionar.innerHTML = '<i class="bi bi-camera me-2"></i>Agregar Foto';
+                btnGestionar.className = 'btn btn-primary btn-sm px-4 shadow-sm btn-agregar-foto';
+            }
+
+            // Eliminar botón de eliminar
+            if (btnEliminar) {
+                btnEliminar.remove();
+            }
+
+            // Mostrar mensaje de éxito
+            mostrarMensaje('Foto eliminada exitosamente', 'success');
+        } else {
+            mostrarMensaje('Error al eliminar la foto: ' + data.error, 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarMensaje('Error al eliminar la foto', 'error');
+    })
+    .finally(() => {
+        // Restaurar botón eliminar si aún existe
+        if (btnEliminar && document.body.contains(btnEliminar)) {
+            btnEliminar.disabled = false;
+            btnEliminar.innerHTML = '<i class="bi bi-trash"></i>';
+        }
+    });
+}
+
+// Función para mostrar mensajes tipo toast
+function mostrarMensaje(mensaje, tipo = 'info') {
+    // Crear toast container si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 end-0 p-3';
+        toastContainer.style.zIndex = '9999';
+        document.body.appendChild(toastContainer);
+    }
+
+    // Crear toast
+    const toastElement = document.createElement('div');
+    toastElement.className = `toast align-items-center text-bg-${tipo === 'error' ? 'danger' : tipo === 'success' ? 'success' : 'info'} border-0`;
+    toastElement.setAttribute('role', 'alert');
+    toastElement.setAttribute('aria-live', 'assertive');
+    toastElement.setAttribute('aria-atomic', 'true');
+
+    toastElement.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastElement);
+
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastElement, {
+        autohide: true,
+        delay: tipo === 'error' ? 5000 : 3000
+    });
+
+    toast.show();
+
+    // Limpiar después de que se oculte
+    toastElement.addEventListener('hidden.bs.toast', () => {
+        toastElement.remove();
+    });
+}
+
+// Gestión mejorada del botón principal
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Inicializando gestión avanzada de foto de perfil...');
+
+    const btnGestionarFoto = document.getElementById('btnGestionarFoto');
+    const profilePhotoContainer = document.querySelector('.profile-photo-container');
+
+    // Mejorar la experiencia del botón principal
+    if (btnGestionarFoto) {
+        // Agregar clase según el estado inicial
+        const tieneImage = document.getElementById('currentProfilePhoto') !== null;
+        if (tieneImage) {
+            btnGestionarFoto.classList.add('btn-cambiar-foto');
+        } else {
+            btnGestionarFoto.classList.add('btn-agregar-foto');
+        }
+
+        // Evento click mejorado
+        btnGestionarFoto.addEventListener('click', function(e) {
+            console.log('📸 Botón gestionar foto clickeado');
+
+            // Agregar efecto visual
+            this.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                this.style.transform = '';
+            }, 150);
+        });
+    }
+
+    // Hacer que toda el área de la foto sea clickeable
+    if (profilePhotoContainer) {
+        profilePhotoContainer.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🖼️ Contenedor de foto clickeado - abriendo modal');
+
+            // Abrir modal programáticamente
+            const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'), {
+                backdrop: 'static',
+                keyboard: false
+            });
+            cropperModal.show();
+        });
+    }
+
+    // Escuchar eventos del image-cropper para actualizar la UI
+    document.addEventListener('fotoPerfilActualizada', function(e) {
+        console.log('📨 Evento foto actualizada recibido:', e.detail);
+        if (e.detail && e.detail.fotoUrl) {
+            actualizarUIFoto(e.detail.fotoUrl);
+        }
+    });
+
+    // Función para actualizar la UI después de cargar nueva foto
+    function actualizarUIFoto(fotoUrl) {
+        console.log('🔄 Actualizando UI con nueva foto:', fotoUrl);
+
+        const placeholder = document.getElementById('profilePhotoPlaceholder');
+        const currentPhoto = document.getElementById('currentProfilePhoto');
+
+        // Si hay placeholder, reemplazarlo con imagen
+        if (placeholder) {
+            const nuevaImg = document.createElement('img');
+            nuevaImg.src = fotoUrl + '?v=' + Date.now();
+            nuevaImg.alt = 'Foto de perfil';
+            nuevaImg.className = 'profile-photo img-fluid rounded-circle clickeable-photo';
+            nuevaImg.id = 'currentProfilePhoto';
+
+            placeholder.parentNode.replaceChild(nuevaImg, placeholder);
+        }
+        // Si ya hay imagen, actualizarla
+        else if (currentPhoto) {
+            currentPhoto.src = fotoUrl + '?v=' + Date.now();
+        }
+
+        // Actualizar botón principal
+        if (btnGestionarFoto) {
+            btnGestionarFoto.innerHTML = '<i class="bi bi-camera me-2"></i>Cambiar Foto';
+            btnGestionarFoto.classList.remove('btn-agregar-foto');
+            btnGestionarFoto.classList.add('btn-cambiar-foto');
+        }
+
+        // Agregar botón de eliminar si no existe
+        const btnEliminar = document.getElementById('btnEliminarFoto');
+        if (!btnEliminar && btnGestionarFoto) {
+            const nuevoBotonEliminar = document.createElement('button');
+            nuevoBotonEliminar.type = 'button';
+            nuevoBotonEliminar.className = 'btn btn-outline-danger btn-sm ms-2';
+            nuevoBotonEliminar.id = 'btnEliminarFoto';
+            nuevoBotonEliminar.title = 'Eliminar foto de perfil';
+            nuevoBotonEliminar.innerHTML = '<i class="bi bi-trash"></i>';
+            nuevoBotonEliminar.onclick = eliminarFotoPerfil;
+
+            btnGestionarFoto.parentNode.appendChild(nuevoBotonEliminar);
+        }
+    }
+
+    console.log('✅ Gestión avanzada de foto de perfil inicializada');
+});
+
+// Función global para uso desde image-cropper.js
+window.actualizarBotonFoto = function(tieneImage) {
+    const btnGestionarFoto = document.getElementById('btnGestionarFoto');
+    if (btnGestionarFoto) {
+        const texto = tieneImage ? 'Cambiar Foto' : 'Agregar Foto';
+        const claseEstado = tieneImage ? 'btn-cambiar-foto' : 'btn-agregar-foto';
+
+        btnGestionarFoto.innerHTML = `<i class="bi bi-camera me-2"></i>${texto}`;
+        btnGestionarFoto.className = `btn btn-sm px-4 shadow-sm ${claseEstado}`;
+    }
+};
+
+// Interceptar el guardado del image-cropper para mejor feedback
+document.addEventListener('DOMContentLoaded', function() {
+    // Esperar a que imageCropper esté disponible
+    const checkImageCropper = () => {
+        if (window.imageCropper && window.imageCropper.saveImageAutomatically) {
+            const originalSave = window.imageCropper.saveImageAutomatically.bind(window.imageCropper);
+
+            window.imageCropper.saveImageAutomatically = function(blob, dataUrl) {
+                const btnGestionar = document.getElementById('btnGestionarFoto');
+
+                // Mostrar loading en el botón
+                if (btnGestionar) {
+                    btnGestionar.disabled = true;
+                    btnGestionar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Guardando...';
+                }
+
+                return originalSave(blob, dataUrl).finally(() => {
+                    // Restaurar botón
+                    if (btnGestionar) {
+                        btnGestionar.disabled = false;
+                        const tieneImage = document.getElementById('currentProfilePhoto') !== null;
+                        const texto = tieneImage ? 'Cambiar Foto' : 'Agregar Foto';
+                        btnGestionar.innerHTML = `<i class="bi bi-camera me-2"></i>${texto}`;
+                    }
+                });
+            };
+        } else {
+            // Reintentar después de 100ms
+            setTimeout(checkImageCropper, 100);
+        }
+    };
+
+    checkImageCropper();
+});
 let experienciaEditandoId = null;
 let educacionEditandoId = null;
 
@@ -1005,36 +1542,111 @@ function eliminarIdioma(id) {
         });
     }
 }
-
-// =========================
-// EVENT LISTENERS
-// =========================
 document.addEventListener('DOMContentLoaded', function() {
-    // Control de trabajo actual para experiencia
-    const actualCheck = document.getElementById('actualCheck');
-    if (actualCheck) {
-        actualCheck.addEventListener('change', function() {
-            const fechaFin = document.querySelector('#experienciaForm input[name="fecha_fin"]');
-            if (this.checked) {
-                fechaFin.disabled = true;
-                fechaFin.value = '';
-            } else {
-                fechaFin.disabled = false;
-            }
+    console.log('🚀 Inicializando gestión de foto de perfil...');
+
+    {#// Referencias a elementos#}
+    const btnGestionarFoto = document.getElementById('btnGestionarFoto');
+    const profilePhotoContainer = document.querySelector('.profile-photo-container');
+    const currentProfilePhoto = document.getElementById('currentProfilePhoto');
+    const profilePhotoPlaceholder = document.getElementById('profilePhotoPlaceholder');
+
+    {#// Evento click en el botón principal#}
+    if (btnGestionarFoto) {
+        btnGestionarFoto.addEventListener('click', function(e) {
+            console.log('📸 Botón gestionar foto clickeado');
+            // El modal se abre automáticamente por data-bs-target
         });
     }
 
-    // Limpiar modales al cerrar
-    document.getElementById('experienciaModal')?.addEventListener('hidden.bs.modal', function () {
-        experienciaEditandoId = null;
-        document.querySelector('#experienciaModal .modal-title').textContent = 'Agregar Experiencia Laboral';
+    {#// Evento click en el contenedor de la foto (funcionalidad existente)#}
+    if (profilePhotoContainer) {
+        profilePhotoContainer.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('🖼️ Contenedor de foto clickeado');
+
+            // Abrir el modal programáticamente
+            const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+            cropperModal.show();
+        });
+    }
+
+    {#// Función para actualizar la UI después de cargar una nueva foto#}
+    function actualizarUIFoto(fotoUrl) {
+        console.log('🔄 Actualizando UI con nueva foto:', fotoUrl);
+
+        {#// Si hay placeholder, reemplazarlo con imagen#}
+        if (profilePhotoPlaceholder) {
+            const nuevaImg = document.createElement('img');
+            nuevaImg.src = fotoUrl;
+            nuevaImg.alt = 'Foto de perfil';
+            nuevaImg.className = 'profile-photo img-fluid rounded-circle clickeable-photo';
+            nuevaImg.id = 'currentProfilePhoto';
+
+            profilePhotoPlaceholder.parentNode.replaceChild(nuevaImg, profilePhotoPlaceholder);
+        }
+        {#// Si ya hay imagen, actualizarla#}
+        else if (currentProfilePhoto) {
+            currentProfilePhoto.src = fotoUrl + '?v=' + Date.now(); // Cache busting
+        }
+
+        {#// Actualizar texto del botón#}
+        if (btnGestionarFoto) {
+            btnGestionarFoto.innerHTML = '<i class="bi bi-camera me-2"></i>Cambiar Foto';
+            btnGestionarFoto.classList.remove('btn-agregar-foto');
+            btnGestionarFoto.classList.add('btn-cambiar-foto');
+        }
+    }
+
+    {#// Escuchar eventos personalizados del image-cropper#}
+    document.addEventListener('fotoPerfilActualizada', function(e) {
+        console.log('📨 Evento foto actualizada recibido:', e.detail);
+        if (e.detail && e.detail.fotoUrl) {
+            actualizarUIFoto(e.detail.fotoUrl);
+        }
     });
 
-    document.getElementById('educacionModal')?.addEventListener('hidden.bs.modal', function () {
-        educacionEditandoId = null;
-        document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
-    });
+    {#// Mejorar el feedback visual#}
+    function mostrarCargando(mostrar = true) {
+        if (btnGestionarFoto) {
+            if (mostrar) {
+                btnGestionarFoto.disabled = true;
+                btnGestionarFoto.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Guardando...';
+            } else {
+                btnGestionarFoto.disabled = false;
+                const texto = document.getElementById('currentProfilePhoto') ? 'Cambiar Foto' : 'Agregar Foto';
+                btnGestionarFoto.innerHTML = `<i class="bi bi-camera me-2"></i>${texto}`;
+            }
+        }
+    }
+
+    {#// Interceptar el proceso de guardado para mostrar loading#}
+    const originalSaveFunction = window.imageCropper?.saveImageAutomatically;
+    if (window.imageCropper && originalSaveFunction) {
+        window.imageCropper.saveImageAutomatically = function(blob, dataUrl) {
+            mostrarCargando(true);
+
+            // Llamar a la función original
+            return originalSaveFunction.call(this, blob, dataUrl).finally(() => {
+                mostrarCargando(false);
+            });
+        };
+    }
+
+    console.log('✅ Gestión de foto de perfil inicializada');
 });
+
+{#// Función global para uso desde el image-cropper.js#}
+window.actualizarBotonFoto = function(tieneImage) {
+    const btnGestionarFoto = document.getElementById('btnGestionarFoto');
+    if (btnGestionarFoto) {
+        const texto = tieneImage ? 'Cambiar Foto' : 'Agregar Foto';
+        const clase = tieneImage ? 'btn-cambiar-foto' : 'btn-agregar-foto';
+
+        btnGestionarFoto.innerHTML = `<i class="bi bi-camera me-2"></i>${texto}`;
+        btnGestionarFoto.className = `btn btn-sm px-4 ${clase}`;
+    }
+};
 </script>
 
 {% endblock %}

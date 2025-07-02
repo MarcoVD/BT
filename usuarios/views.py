@@ -16,7 +16,6 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
 from datetime import date
-
 # Verificacion de correo - IMPORTACIONES CORREGIDAS
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
@@ -72,7 +71,7 @@ from .forms import (
     ExperienciaLaboralForm,
     EducacionForm,
     HabilidadInteresadoForm,
-    IdiomaInteresadoForm
+    IdiomaInteresadoForm,
 )
 
 
@@ -638,9 +637,6 @@ class CrearEditarCVView(View):
         }
         return render(request, 'usuarios/crear_editar_cv.html', context)
 
-
-# usuarios/views.py - Vista actualizada para manejar guardado automático de imagen
-
 @login_required
 def actualizar_perfil_ajax(request):
     """Vista AJAX para actualizar perfil del interesado."""
@@ -710,7 +706,8 @@ def actualizar_perfil_ajax(request):
 
 
 @login_required
-@require_http_methods(["POST"])
+# @require_http_methods(["POST"])
+
 def actualizar_foto_perfil_ajax(request):
     """
     Vista AJAX específica para actualizar solo la foto de perfil del interesado
@@ -806,6 +803,63 @@ def actualizar_foto_perfil_ajax(request):
         }, status=500)
 
 
+# Agregar esta vista al archivo usuarios/views.py
+
+@login_required
+@require_http_methods(["DELETE"])
+def eliminar_foto_perfil_ajax(request):
+    """
+    Vista AJAX para eliminar la foto de perfil del interesado.
+
+    Returns:
+        JsonResponse con success/error
+    """
+    try:
+        # Verificar que el usuario sea un interesado
+        if not hasattr(request.user, 'interesado'):
+            return JsonResponse({
+                'success': False,
+                'error': 'Usuario no autorizado'
+            }, status=403)
+
+        interesado = request.user.interesado
+
+        # Verificar que hay una foto para eliminar
+        if not interesado.foto_perfil:
+            return JsonResponse({
+                'success': False,
+                'error': 'No hay foto de perfil para eliminar'
+            }, status=400)
+
+        # Guardar la ruta del archivo para eliminarlo
+        foto_path = interesado.foto_perfil.name
+
+        # Eliminar archivo físico del storage
+        try:
+            if default_storage.exists(foto_path):
+                default_storage.delete(foto_path)
+                print(f"✅ Archivo eliminado: {foto_path}")
+            else:
+                print(f"⚠️ Archivo no encontrado en storage: {foto_path}")
+        except Exception as e:
+            print(f"❌ Error al eliminar archivo físico: {e}")
+            # No devolver error aquí, continuar con la limpieza de BD
+
+        # Limpiar campo en la base de datos
+        interesado.foto_perfil = None
+        interesado.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Foto de perfil eliminada correctamente'
+        })
+
+    except Exception as e:
+        print(f"❌ Error en eliminar_foto_perfil_ajax: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
 @login_required
 def editar_experiencia_ajax(request, experiencia_id):
     """Vista AJAX para editar experiencia laboral."""
@@ -878,7 +932,6 @@ def agregar_experiencia_ajax(request):
             'success': False,
             'error': str(e)
         })
-
 
 @login_required
 def agregar_educacion_ajax(request):

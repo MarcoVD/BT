@@ -66,7 +66,8 @@ urlpatterns = [
     # URLs AJAX PARA ACTUALIZACIÓN DE PERFIL
     # ===========================
     path('ajax/actualizar-perfil/', views.actualizar_perfil_ajax, name='actualizar_perfil_ajax'),
-    path('ajax/actualizar-foto-perfil/', views.actualizar_foto_perfil_ajax, name='actualizar_foto_perfil_ajax'),
+    path('actualizar-foto-perfil/', views.actualizar_foto_perfil_ajax, name='actualizar_foto_perfil_ajax'),
+    path('ajax/eliminar-foto-perfil/', views.eliminar_foto_perfil_ajax, name='eliminar_foto_perfil_ajax'),
 
     # ===========================
     # URLs AJAX PARA EXPERIENCIA LABORAL
