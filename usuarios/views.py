@@ -1164,7 +1164,7 @@ def descargar_cv_pdf(request):
         'educaciones': curriculum.educaciones.all(),
         'habilidades': curriculum.habilidades.all(),
         'idiomas': curriculum.idiomas.all(),
-        'foto_url': foto_url,  # ✅ PASAR URL CONSTRUIDA
+        'foto_url': foto_url,
         'request': request,
     }
 
