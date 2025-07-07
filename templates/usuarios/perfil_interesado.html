@@ -414,7 +414,10 @@
                                                 </div>
                                                 <div class="">
                                                     <button type="button" class="btn btn-sm btn-outline-primary mb-1"
-                                                        onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}', '{{ educacion.fecha_inicio|date:"Y-m-d" }}', '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}', '{{ educacion.descripcion|escapejs }}')">
+                                                        onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}',
+                                                                '{{ educacion.fecha_inicio|date:"Y-m-d" }}',
+                                                                '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}',
+                                                                '{{ educacion.descripcion|escapejs }}')">
                                                         <i class="bi bi-pencil text-black m-1"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarEducacion({{ educacion.id }})">
@@ -941,8 +944,9 @@ function mostrarModalEducacion() {
 }
 
 function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
-    educacionEditandoId = id;
+    let url = '/editar_educacion_ajax/'; // Solo creación por ahora
 
+    educacionEditandoId = id;
     document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
     document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
     document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
@@ -952,13 +956,15 @@ function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descrip
     document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
-
+{#comment#}
 function guardarEducacion() {
     const form = document.getElementById('educacionForm');
     const formData = new FormData(form);
 
-    let url = '/ajax/educacion/agregar/'; // Solo creación por ahora
-
+    {#let url = '/ajax/educacion/agregar/'; // Solo creación por ahora#}
+    let url =  editarEducacion ?
+        `/ajax/educacion/editar/${educacionEditandoId}/` :
+        '/ajax/educacion/agregar/';
     fetch(url, {
         method: 'POST',
         body: formData,

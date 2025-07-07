@@ -1108,9 +1108,6 @@ def editar_educacion_ajax(request, educacion_id):
             'error': str(e)
         })
 @login_required
-# usuarios/views.py - VISTA DE ELIMINACIÓN CORREGIDA
-
-@login_required
 def eliminar_educacion_ajax(request, educacion_id):
     """Vista AJAX para eliminar educación - VERSIÓN CORREGIDA."""
 

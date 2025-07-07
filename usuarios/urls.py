@@ -83,7 +83,6 @@ urlpatterns = [
     path('ajax/educacion/agregar/', views.agregar_educacion_ajax, name='agregar_educacion_ajax'),
     path('ajax/educacion/eliminar/<int:educacion_id>/', views.eliminar_educacion_ajax, name='eliminar_educacion_ajax'),
     path('ajax/educacion/editar/<int:educacion_id>/', views.editar_educacion_ajax, name='editar_educacion_ajax'),
-
     # ===========================
     # URLs AJAX PARA HABILIDADES
     # ===========================
