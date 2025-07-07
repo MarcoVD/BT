@@ -1,292 +1,212 @@
-// static/js/perfil-interesado.js - VERSIÓN CORREGIDA
+// static/js/perfil-interesado.js - Simplificado ya que el cropper maneja el guardado automático
+document.addEventListener('DOMContentLoaded', function() {
+    const guardarBtn = document.getElementById('guardarPerfilBtn');
+    const form = document.getElementById('editarPerfilForm');
+    const modal = document.getElementById('editarPerfilModal');
 
-console.log('📋 Cargando perfil-interesado.js...');
+    if (!guardarBtn || !form || !modal) return;
 
-// Función para verificar disponibilidad de ImageCropper
-function initializePerfilInteresado() {
-    console.log('🔍 Verificando disponibilidad de ImageCropper...');
+    guardarBtn.addEventListener('click', function() {
+        // Validar campos requeridos
+        const nombre = form.querySelector('#nombre').value.trim();
+        const apellidoPaterno = form.querySelector('#apellido_paterno').value.trim();
 
-    if (typeof window.imageCropper !== 'undefined' && window.imageCropper) {
-        console.log('✅ ImageCropper disponible, inicializando funcionalidades...');
-        setupPerfilEventListeners();
-    } else {
-        console.log('⏳ ImageCropper no disponible aún, reintentando en 500ms...');
-        setTimeout(initializePerfilInteresado, 500);
+        if (!nombre || !apellidoPaterno) {
+            mostrarMensaje('Nombre y apellido paterno son obligatorios', 'error');
+            return;
+        }
+
+        // Mostrar spinner
+        const btnText = guardarBtn.querySelector('.btn-text');
+        const spinner = guardarBtn.querySelector('.spinner-border');
+
+        btnText.textContent = 'Guardando...';
+        spinner.classList.remove('d-none');
+        guardarBtn.disabled = true;
+
+        // Crear FormData solo con datos del formulario (sin imagen, ya se guardó automáticamente)
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', document.querySelector('[name=csrfmiddlewaretoken]').value);
+        formData.append('nombre', form.querySelector('#nombre').value);
+        formData.append('apellido_paterno', form.querySelector('#apellido_paterno').value);
+        formData.append('apellido_materno', form.querySelector('#apellido_materno').value);
+        formData.append('telefono', form.querySelector('#telefono').value);
+        formData.append('fecha_nacimiento', form.querySelector('#fecha_nacimiento').value);
+        formData.append('municipio', form.querySelector('#municipio').value);
+        formData.append('codigo_postal', form.querySelector('#codigo_postal').value);
+
+        // Obtener URL
+        const updateUrl = form.dataset.updateUrl || '/ajax/actualizar-perfil/';
+
+        // Enviar petición AJAX
+        fetch(updateUrl, {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                // Actualizar información en la página
+                actualizarInformacionPerfil(data.data);
+
+                // Mostrar mensaje de éxito
+                mostrarMensaje('Perfil actualizado exitosamente', 'success');
+
+                // Cerrar modal
+                bootstrap.Modal.getInstance(modal).hide();
+            } else {
+                mostrarMensaje('Error: ' + (data.error || 'No se pudo actualizar el perfil'), 'error');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            mostrarMensaje('Error de conexión. Inténtalo nuevamente.', 'error');
+        })
+        .finally(() => {
+            // Restaurar botón
+            btnText.textContent = 'Guardar Cambios';
+            spinner.classList.add('d-none');
+            guardarBtn.disabled = false;
+        });
+    });
+});
+
+// static/js/perfil-interesado.js - Función actualizarInformacionPerfil corregida
+
+function actualizarInformacionPerfil(data) {
+    // Actualizar nombre en el perfil
+    const nombreElement = document.querySelector('.card-body h4');
+    if (nombreElement && data.nombre_completo) {
+        nombreElement.textContent = data.nombre_completo;
+    }
+
+    // Actualizar información de contacto
+    const contactInfo = document.querySelector('.contact-info');
+    if (contactInfo) {
+        // Actualizar teléfono
+        const telefonoItem = contactInfo.querySelector('.contact-item:nth-child(2)');
+        if (telefonoItem && data.telefono) {
+            const telefonoSpan = telefonoItem.querySelector('span:last-child');
+            if (telefonoSpan) {
+                telefonoSpan.textContent = data.telefono;
+            }
+        }
+
+        // Actualizar ubicación - CORREGIDO PARA EVITAR DUPLICACIÓN
+        const ubicacionItem = contactInfo.querySelector('.contact-item:nth-child(3)');
+        if (ubicacionItem && data.ubicacion) {
+            const ubicacionContainer = ubicacionItem.querySelector('div.flex-grow-1');
+
+            if (ubicacionContainer) {
+                // Limpiar todo el contenido de ubicación para evitar duplicados
+                ubicacionContainer.innerHTML = '';
+
+                // Crear el contenido de ubicación completo
+                const strongElement = document.createElement('strong');
+                strongElement.className = 'd-block d-sm-inline small';
+                strongElement.textContent = 'Ubicación:';
+
+                const ubicacionSpan = document.createElement('span');
+
+                // Manejar diferentes formatos de ubicación
+                if (data.ubicacion.startsWith('C.P.')) {
+                    // Formato: "C.P. 56616, Valle de Chalco Solidaridad, Estado de México"
+                    ubicacionSpan.textContent = ` ${data.ubicacion}`;
+                    ubicacionContainer.appendChild(strongElement);
+                    ubicacionContainer.appendChild(ubicacionSpan);
+                } else if (data.ubicacion.includes(' C.P. ')) {
+                    // Formato: "Valle de Chalco Solidaridad, Estado de México C.P. 56616"
+                    const parts = data.ubicacion.split(' C.P. ');
+                    const ubicacionSinCP = parts[0];
+                    const codigoPostal = parts[1];
+
+                    if (codigoPostal && codigoPostal !== 'undefined') {
+                        ubicacionSpan.textContent = ` ${ubicacionSinCP}`;
+
+                        // Crear elemento del código postal
+                        const cpElement = document.createElement('small');
+                        cpElement.className = 'd-block text-muted';
+                        cpElement.textContent = `C.P. ${codigoPostal}`;
+
+                        // Añadir elementos al contenedor
+                        ubicacionContainer.appendChild(strongElement);
+                        ubicacionContainer.appendChild(ubicacionSpan);
+                        ubicacionContainer.appendChild(cpElement);
+                    } else {
+                        // Si el código postal está undefined, solo mostrar la ubicación
+                        ubicacionSpan.textContent = ` ${ubicacionSinCP}`;
+                        ubicacionContainer.appendChild(strongElement);
+                        ubicacionContainer.appendChild(ubicacionSpan);
+                    }
+                } else {
+                    // Solo ubicación sin código postal
+                    ubicacionSpan.textContent = ` ${data.ubicacion}`;
+                    ubicacionContainer.appendChild(strongElement);
+                    ubicacionContainer.appendChild(ubicacionSpan);
+                }
+            }
+        }
+    }
+
+    // Actualizar foto de perfil principal y en información móvil
+    if (data.foto_url) {
+        const fotoElements = document.querySelectorAll('.profile-photo');
+        const placeholderElements = document.querySelectorAll('.profile-photo-placeholder');
+
+        fotoElements.forEach(el => el.src = data.foto_url);
+
+        placeholderElements.forEach(placeholder => {
+            const imgElement = document.createElement('img');
+            imgElement.src = data.foto_url;
+            imgElement.alt = 'Foto de perfil';
+            imgElement.className = 'profile-photo';
+            placeholder.parentNode.replaceChild(imgElement, placeholder);
+        });
     }
 }
 
-function setupPerfilEventListeners() {
-    console.log('🎯 Configurando event listeners del perfil...');
 
-    // Event listeners para modales de CV
-    setupModalEventListeners();
+function mostrarMensaje(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
 
-    // Event listeners para formularios
-    setupFormEventListeners();
+    // Crear toast
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.setAttribute('aria-live', 'assertive');
+    toastDiv.setAttribute('aria-atomic', 'true');
 
-    console.log('✅ Perfil interesado inicializado correctamente');
-}
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
+                ${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    `;
 
-function setupModalEventListeners() {
-    // Experiencia laboral
-    window.mostrarModalExperiencia = function() {
-        const modal = new bootstrap.Modal(document.getElementById('experienciaModal'));
-        document.getElementById('experienciaForm').reset();
-        modal.show();
-    };
+    toastContainer.appendChild(toastDiv);
 
-    window.editarExperiencia = function(id, puesto, empresa, fechaInicio, fechaFin, actual, descripcion) {
-        const modal = new bootstrap.Modal(document.getElementById('experienciaModal'));
-        const form = document.getElementById('experienciaForm');
+    // Mostrar toast
+    const toast = new bootstrap.Toast(toastDiv, {
+        autohide: true,
+        delay: 4000
+    });
+    toast.show();
 
-        form.querySelector('[name="puesto"]').value = puesto;
-        form.querySelector('[name="empresa"]').value = empresa;
-        form.querySelector('[name="fecha_inicio"]').value = fechaInicio;
-        form.querySelector('[name="fecha_fin"]').value = fechaFin || '';
-        form.querySelector('[name="actual"]').checked = actual;
-        form.querySelector('[name="descripcion"]').value = descripcion;
-
-        // Cambiar el botón de guardar para edición
-        const saveBtn = modal._element.querySelector('[onclick="guardarExperiencia()"]');
-        saveBtn.setAttribute('onclick', `actualizarExperiencia(${id})`);
-
-        modal.show();
-    };
-
-    // Educación
-    window.mostrarModalEducacion = function() {
-        const modal = new bootstrap.Modal(document.getElementById('educacionModal'));
-        document.getElementById('educacionForm').reset();
-        modal.show();
-    };
-
-    window.editarEducacion = function(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
-        const modal = new bootstrap.Modal(document.getElementById('educacionModal'));
-        const form = document.getElementById('educacionForm');
-
-        form.querySelector('[name="titulo"]').value = titulo;
-        form.querySelector('[name="institucion"]').value = institucion;
-        form.querySelector('[name="fecha_inicio"]').value = fechaInicio;
-        form.querySelector('[name="fecha_fin"]').value = fechaFin || '';
-        form.querySelector('[name="descripcion"]').value = descripcion || '';
-
-        const saveBtn = modal._element.querySelector('[onclick="guardarEducacion()"]');
-        saveBtn.setAttribute('onclick', `actualizarEducacion(${id})`);
-
-        modal.show();
-    };
-
-    // Habilidades
-    window.mostrarModalHabilidad = function() {
-        const modal = new bootstrap.Modal(document.getElementById('habilidadModal'));
-        document.getElementById('habilidadForm').reset();
-        modal.show();
-    };
-
-    // Idiomas
-    window.mostrarModalIdioma = function() {
-        const modal = new bootstrap.Modal(document.getElementById('idiomaModal'));
-        document.getElementById('idiomaForm').reset();
-        modal.show();
-    };
-}
-
-function setupFormEventListeners() {
-    // Funciones para guardar entidades
-
-    window.guardarExperiencia = function() {
-        const form = document.getElementById('experienciaForm');
-        const formData = new FormData(form);
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch('/ajax/experiencia/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error: ' + (data.error || 'Error desconocido'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error de conexión');
-        });
-    };
-
-    window.guardarEducacion = function() {
-        const form = document.getElementById('educacionForm');
-        const formData = new FormData(form);
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch('/ajax/educacion/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error: ' + (data.error || 'Error desconocido'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error de conexión');
-        });
-    };
-
-    window.guardarHabilidad = function() {
-        const form = document.getElementById('habilidadForm');
-        const formData = new FormData(form);
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch('/ajax/habilidad/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error: ' + (data.error || 'Error desconocido'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error de conexión');
-        });
-    };
-
-    window.guardarIdioma = function() {
-        const form = document.getElementById('idiomaForm');
-        const formData = new FormData(form);
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-        fetch('/ajax/idioma/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                location.reload();
-            } else {
-                alert('Error: ' + (data.error || 'Error desconocido'));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error de conexión');
-        });
-    };
-
-    // Funciones para eliminar
-    window.eliminarExperiencia = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta experiencia?')) {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-            fetch(`/ajax/experiencia/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + (data.error || 'Error desconocido'));
-                }
-            });
-        }
-    };
-
-    window.eliminarEducacion = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta educación?')) {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-            fetch(`/ajax/educacion/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + (data.error || 'Error desconocido'));
-                }
-            });
-        }
-    };
-
-    window.eliminarHabilidad = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta habilidad?')) {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-            fetch(`/ajax/habilidad/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + (data.error || 'Error desconocido'));
-                }
-            });
-        }
-    };
-
-    window.eliminarIdioma = function(id) {
-        if (confirm('¿Estás seguro de eliminar este idioma?')) {
-            const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-
-            fetch(`/ajax/idioma/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': csrfToken
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error: ' + (data.error || 'Error desconocido'));
-                }
-            });
-        }
-    };
-}
-
-// Inicializar cuando el DOM esté listo
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializePerfilInteresado);
-} else {
-    initializePerfilInteresado();
+    // Remover del DOM después de que se oculte
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
 }

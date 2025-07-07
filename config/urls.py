@@ -9,7 +9,6 @@ urlpatterns = [
     path('', include('usuarios.urls')),
 ]
 
-# ✅ CONFIGURACIÓN CORRECTA PARA DESARROLLO
 if settings.DEBUG:
     # Servir archivos media (imágenes subidas)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

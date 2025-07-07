@@ -66,8 +66,7 @@ urlpatterns = [
     # URLs AJAX PARA ACTUALIZACIÓN DE PERFIL
     # ===========================
     path('ajax/actualizar-perfil/', views.actualizar_perfil_ajax, name='actualizar_perfil_ajax'),
-    path('actualizar-foto-perfil/', views.actualizar_foto_perfil_ajax, name='actualizar_foto_perfil_ajax'),
-    path('ajax/eliminar-foto-perfil/', views.eliminar_foto_perfil_ajax, name='eliminar_foto_perfil_ajax'),
+    path('ajax/actualizar-foto-perfil/', views.actualizar_foto_perfil_ajax, name='actualizar_foto_perfil_ajax'),
 
     # ===========================
     # URLs AJAX PARA EXPERIENCIA LABORAL
@@ -82,8 +81,8 @@ urlpatterns = [
     # URLs AJAX PARA EDUCACIÓN
     # ===========================
     path('ajax/educacion/agregar/', views.agregar_educacion_ajax, name='agregar_educacion_ajax'),
-    path('ajax/educacion/editar/<int:educacion_id>/', views.editar_educacion_ajax, name='editar_educacion_ajax'),
     path('ajax/educacion/eliminar/<int:educacion_id>/', views.eliminar_educacion_ajax, name='eliminar_educacion_ajax'),
+    path('ajax/educacion/editar/<int:educacion_id>/', views.editar_educacion_ajax, name='editar_educacion_ajax'),
 
     # ===========================
     # URLs AJAX PARA HABILIDADES
@@ -96,6 +95,7 @@ urlpatterns = [
     # ===========================
     path('ajax/idioma/agregar/', views.agregar_idioma_ajax, name='agregar_idioma_ajax'),
     path('ajax/idioma/eliminar/<int:idioma_id>/', views.eliminar_idioma_ajax, name='eliminar_idioma_ajax'),
+
     # ===========================
     # URLs AJAX PARA GESTIÓN DE POSTULACIONES (RECLUTADORES)
     # ===========================

@@ -1,5 +1,3 @@
-# config/settings.py - CONFIGURACIÓN CORREGIDA PARA PRODUCCIÓN
-
 import os
 from pathlib import Path
 from dotenv import load_dotenv
@@ -334,4 +332,3 @@ if not DEBUG:
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
 SESSION_COOKIE_AGE = 86400  # 24 horas
 SESSION_SAVE_EVERY_REQUEST = True
-
