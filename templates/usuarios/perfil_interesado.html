@@ -337,7 +337,7 @@
                             <h5><i class="bi bi-file-person"></i> Resumen Profesional</h5>
                         </div>
                         <div class="card-body text-justify">
-                            <label for="resumen_profesional" class="form-label">Resumen Profesional</label>
+{#                            <label for="resumen_profesional" class="form-label">Resumen Profesional</label>#}
                             <textarea class="form-control" id="resumen_profesional" name="resumen_profesional" rows="4" placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web...">{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>
                         </div>
                     </div>
@@ -554,22 +554,23 @@
 
                         <div class="col-12 col-md-6">
                             <label for="apellido_materno" class="form-label">Apellido Materno</label>
-                            <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}">
+                            <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}" required>
+{#                          <input type="text" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ interesado.apellido_materno }}" required>#}
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="telefono" class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}">
+                            <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}">
+                            <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento" value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
                         </div>
 
                         <div class="col-12 col-md-6">
                             <label for="municipio" class="form-label">Municipio</label>
-                            <select class="form-select" id="municipio" name="municipio">
+                            <select class="form-select" id="municipio" name="municipio" required>
                                 <option value="">Selecciona un municipio...</option>
                                 {% for value, label in interesado.MUNICIPIOS_ESTADO_MEXICO %}
                                     <option value="{{ value }}" {% if interesado.municipio == value %}selected{% endif %}>{{ label }}</option>
@@ -960,8 +961,6 @@ function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descrip
 function guardarEducacion() {
     const form = document.getElementById('educacionForm');
     const formData = new FormData(form);
-
-    {#let url = '/ajax/educacion/agregar/'; // Solo creación por ahora#}
     let url =  editarEducacion ?
         `/ajax/educacion/editar/${educacionEditandoId}/` :
         '/ajax/educacion/agregar/';

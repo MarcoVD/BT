@@ -210,3 +210,39 @@ function mostrarMensaje(mensaje, tipo) {
         toastDiv.remove();
     });
 }
+
+
+document.getElementById('cvForm').addEventListener('submit', function(e) {
+    // Validación para inputs/textarea/select nativos
+    if (!this.checkValidity()) {
+        e.preventDefault();
+        e.stopPropagation();
+        alert('Por favor, completa todos los campos obligatorios.');
+        this.classList.add('was-validated');
+        return false;
+    }
+
+    // Validación de contenedores dinámicos
+    let exp = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
+    let edu = document.querySelectorAll('#educacionContainer .educacion-item').length;
+    let hab = document.querySelectorAll('#habilidadesContainer .badge').length;
+    let idi = document.querySelectorAll('#idiomasContainer .idioma-item').length;
+
+    if (exp === 0) {
+        e.preventDefault();
+        alert('Debes agregar al menos una experiencia, educación, habilidad e idioma.');
+        return false;
+    }    if (edu === 0) {
+        e.preventDefault();
+        alert('Debes agregar al menos una escolaridad.');
+        return false;
+    }   if (idi === 0) {
+        e.preventDefault();
+        alert('Debes agregar al menos un idioma.');
+        return false;
+    }   if(hab === 4){
+        e.preventDefault();
+        alert('Debes de ingresar al menos 5 habilidades técnicas.');
+        return false
+    }
+});
