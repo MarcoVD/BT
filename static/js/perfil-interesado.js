@@ -246,3 +246,15 @@ document.getElementById('cvForm').addEventListener('submit', function(e) {
         return false
     }
 });
+
+document.getElementById('guardarPerfilBtn').addEventListener('click', function() {
+    var fotoInput = document.getElementById('foto_perfil');
+    var preview = document.querySelector('#photoPreview');
+    // Valida si hay una imagen ya cargada o seleccionada
+    if ((!fotoInput.value || fotoInput.files.length === 0) && !preview) {
+        alert('Debes cargar una foto de perfil antes de guardar.');
+        return false;
+    }
+    // Si pasa la validación, aquí sigue con tu AJAX normal
+    document.getElementById('editarPerfilForm').submit();
+});
