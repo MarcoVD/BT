@@ -48,7 +48,7 @@ class InteresadoRegistroForm(UserCreationForm):
                 }
             )
         return user
-# Formularios para CV
+
 
 class CurriculumForm(forms.ModelForm):
     """Formulario para la información básica del CV."""
