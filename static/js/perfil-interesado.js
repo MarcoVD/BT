@@ -227,11 +227,15 @@ document.getElementById('cvForm').addEventListener('submit', function(e) {
     let edu = document.querySelectorAll('#educacionContainer .educacion-item').length;
     let hab = document.querySelectorAll('#habilidadesContainer .badge').length;
     let idi = document.querySelectorAll('#idiomasContainer .idioma-item').length;
+    const photoPreview = document.querySelector('#photoPreview');
     if (exp === 0) {
         e.preventDefault();
         alert('Debes agregar al menos una experiencia, educación, habilidad e idioma.');
         return false;
-    }    if (edu === 0) {
+    }
+
+
+    if (edu === 0) {
         e.preventDefault();
         alert('Debes agregar al menos una escolaridad.');
         return false;
@@ -244,6 +248,8 @@ document.getElementById('cvForm').addEventListener('submit', function(e) {
         alert('Debes de ingresar al menos 5 habilidades técnicas.');
         return false
     }
+
+
 });
 
 document.getElementById('guardarPerfilBtn').addEventListener('click', function() {

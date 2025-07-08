@@ -798,9 +798,31 @@
             <div class="modal-body">
                 <form id="idiomaForm">
                     {% csrf_token %}
+{#                    <div class="mb-3">#}
+{#                        <label class="form-label">Idioma</label>#}
                     <div class="mb-3">
                         <label class="form-label">Idioma</label>
-                        <input type="text" class="form-control" name="idioma" placeholder="Ej: Inglés" required>
+                        <select class="form-select" name="idioma" required>
+                                <option value="">Selecciona un idioma...</option>
+                                <option value="Ingles">Inglés</option>
+                                <option value="Mandarin">Mandarín</option>
+                                <option value="Hindi">Hindi</option>
+                                <option value="Español">Español</option>
+                                <option value="Frances">Francés</option>
+                                <option value="Arabe">Árabe</option>
+                                <option value="Bengali">Bengalí</option>
+                                <option value="Portugues">Portugués</option>
+                                <option value="Ruso">Ruso</option>
+                                <option value="Urdu">Urdu</option>
+                                <option value="Indonesio">Indonesio</option>
+                                <option value="Aleman">Alemán</option>
+                                <option value="Japones">Japonés</option>
+                                <option value="Nigeriano">Nigeriano)</option>
+                                <option value="Turco">Turco</option>
+                                <option value="Vietnamita">Vietnamita</option>
+                                <option value="Italiano">Italiano</option>
+                        </select>
+{#                    </div>#}
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Nivel de Lectura</label>
@@ -843,6 +865,7 @@
                     </div>
                 </form>
             </div>
+
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button type="button" class="btn btn-primary" onclick="guardarIdioma()">Guardar</button>

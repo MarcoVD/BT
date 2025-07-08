@@ -5,13 +5,16 @@ cssselect2==0.8.0
 Django==5.2.1
 django-crispy-forms==2.4
 django-formtools==2.5.1
+django-gunicorn==0.1.1
 django-jazzmin==3.0.1
 django-otp==1.6.0
 django-phonenumber-field==8.1.0
 django-two-factor-auth==1.17.0
 dotenv==0.9.9
 fonttools==4.58.2
+gunicorn==23.0.0
 html5lib==1.1
+packaging==25.0
 pillow==11.2.1
 psycopg2-binary==2.9.10
 pycparser==2.22
