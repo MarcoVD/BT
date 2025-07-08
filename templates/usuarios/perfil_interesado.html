@@ -492,7 +492,7 @@
                     </div>
 
                     <div class="text-end mt-4 mb-5">
-                        <button type="submit" class="btn btn-primary btn-lg">
+                        <button type="submit" class="btn btn-primary btn-lg" id="btnDescargarCV" disabled>
                             <i class="bi bi-save"></i> Guardar CV Completo
                         </button>
                         {% if tiene_cv %}
@@ -943,25 +943,10 @@ function mostrarModalEducacion() {
     document.getElementById('educacionForm').reset();
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
-
-function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
-    let url = '/editar_educacion_ajax/'; // Solo creación por ahora
-
-    educacionEditandoId = id;
-    document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
-    document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
-    document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
-    document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
-    document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';
-
-    document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
-    new bootstrap.Modal(document.getElementById('educacionModal')).show();
-}
-{#comment#}
 function guardarEducacion() {
     const form = document.getElementById('educacionForm');
     const formData = new FormData(form);
-    let url =  editarEducacion ?
+    let url =  educacionEditandoId ?
         `/ajax/educacion/editar/${educacionEditandoId}/` :
         '/ajax/educacion/agregar/';
     fetch(url, {
@@ -984,6 +969,19 @@ function guardarEducacion() {
         console.error('Error:', error);
         alert('Error al guardar la educación');
     });
+}
+
+function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
+
+    educacionEditandoId = id;
+    document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
+    document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
+    document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
+    document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
+    document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';
+
+    document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
+    new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
 
 function eliminarEducacion(id) {
@@ -1057,7 +1055,6 @@ function eliminarHabilidad(id) {
         });
     }
 }
-
 // =========================
 // IDIOMAS
 // =========================

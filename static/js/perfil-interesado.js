@@ -227,7 +227,6 @@ document.getElementById('cvForm').addEventListener('submit', function(e) {
     let edu = document.querySelectorAll('#educacionContainer .educacion-item').length;
     let hab = document.querySelectorAll('#habilidadesContainer .badge').length;
     let idi = document.querySelectorAll('#idiomasContainer .idioma-item').length;
-
     if (exp === 0) {
         e.preventDefault();
         alert('Debes agregar al menos una experiencia, educación, habilidad e idioma.');
