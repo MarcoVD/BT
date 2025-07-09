@@ -211,55 +211,237 @@ function mostrarMensaje(mensaje, tipo) {
     });
 }
 
+// ===================================================================
+// VALIDACIONES MEJORADAS PARA EL FORMULARIO CV
+// ===================================================================
 
 document.getElementById('cvForm').addEventListener('submit', function(e) {
-    // Validación para inputs/textarea/select nativos
-    if (!this.checkValidity()) {
+    // Realizar validación completa antes del envío
+    const validacionCompleta = validarFormularioCompleto();
+
+    if (!validacionCompleta.esValido) {
         e.preventDefault();
         e.stopPropagation();
-        alert('Por favor, completa todos los campos obligatorios.');
+
+        // Mostrar mensaje detallado de campos faltantes
+        const mensajeError = 'Por favor, completa todos los campos obligatorios:\n\n' +
+                           validacionCompleta.camposFaltantes.join('\n');
+        alert(mensajeError);
+
         this.classList.add('was-validated');
         return false;
     }
 
-    // Validación de contenedores dinámicos
-    let exp = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
-    let edu = document.querySelectorAll('#educacionContainer .educacion-item').length;
-    let hab = document.querySelectorAll('#habilidadesContainer .badge').length;
-    let idi = document.querySelectorAll('#idiomasContainer .idioma-item').length;
-    const photoPreview = document.querySelector('#photoPreview');
-    if (exp === 0) {
+    // Validación adicional para inputs/textarea/select nativos
+    if (!this.checkValidity()) {
         e.preventDefault();
-        alert('Debes agregar al menos una experiencia, educación, habilidad e idioma.');
+        e.stopPropagation();
+        alert('Por favor, revisa que todos los campos estén correctamente completados.');
+        this.classList.add('was-validated');
         return false;
     }
-
-
-    if (edu === 0) {
-        e.preventDefault();
-        alert('Debes agregar al menos una escolaridad.');
-        return false;
-    }   if (idi === 0) {
-        e.preventDefault();
-        alert('Debes agregar al menos un idioma.');
-        return false;
-    }   if(hab === 4){
-        e.preventDefault();
-        alert('Debes de ingresar al menos 5 habilidades técnicas.');
-        return false
-    }
-
-
 });
 
+// ===================================================================
+// VALIDACIÓN ESPECÍFICA PARA EL BOTÓN DE DESCARGA DE CV
+// ===================================================================
+
+// Agregar validación específica al botón de descarga
+document.addEventListener('DOMContentLoaded', function() {
+    const btnDescargarCV = document.getElementById('btnDescargarCV');
+
+    if (btnDescargarCV) {
+        // Interceptar el clic del botón para validar antes de proceder
+        btnDescargarCV.addEventListener('click', function(e) {
+            const validacionCompleta = validarFormularioCompleto();
+
+            if (!validacionCompleta.esValido) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                // Mostrar mensaje detallado de lo que falta
+                const mensajeError = 'No se puede descargar el CV. Faltan los siguientes campos:\n\n' +
+                                   validacionCompleta.camposFaltantes.join('\n') +
+                                   '\n\nPor favor, completa toda la información antes de continuar.';
+                alert(mensajeError);
+                return false;
+            }
+        });
+    }
+});
+
+// Validación mejorada para el botón de guardar perfil
 document.getElementById('guardarPerfilBtn').addEventListener('click', function() {
     var fotoInput = document.getElementById('foto_perfil');
     var preview = document.querySelector('#photoPreview');
+
     // Valida si hay una imagen ya cargada o seleccionada
     if ((!fotoInput.value || fotoInput.files.length === 0) && !preview) {
         alert('Debes cargar una foto de perfil antes de guardar.');
         return false;
     }
+
     // Si pasa la validación, aquí sigue con tu AJAX normal
     document.getElementById('editarPerfilForm').submit();
+});
+
+// ===================================================================
+// FUNCIÓN PARA VERIFICAR ESTADO DEL BOTÓN DE GUARDAR CV
+// ===================================================================
+
+function verificarEstadoBotonGuardarCV() {
+    const btnGuardarCV = document.getElementById('btnDescargarCV');
+    if (!btnGuardarCV) return;
+
+    // Validar todos los campos del formulario y secciones
+    const validacionCompleta = validarFormularioCompleto();
+
+    // Habilitar o deshabilitar el botón según la validación completa
+    if (validacionCompleta.esValido) {
+        btnGuardarCV.disabled = false;
+        btnGuardarCV.title = 'Guardar CV Completo - Todos los campos están completos';
+        btnGuardarCV.innerHTML = '<i class="bi bi-save"></i> Guardar CV Completo';
+        btnGuardarCV.classList.remove('btn-secondary');
+        btnGuardarCV.classList.add('btn-primary');
+    } else {
+        btnGuardarCV.disabled = true;
+        btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
+        btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> CV Incompleto';
+        btnGuardarCV.classList.remove('btn-primary');
+        btnGuardarCV.classList.add('btn-secondary');
+    }
+}
+
+// ===================================================================
+// FUNCIÓN PARA VALIDAR FORMULARIO COMPLETO
+// ===================================================================
+
+function validarFormularioCompleto() {
+    const camposFaltantes = [];
+    let esValido = true;
+
+    // 1. Validar información personal
+    const camposPersonales = [
+        { selector: '#nombre', nombre: 'Nombre' },
+        { selector: '#apellido_paterno', nombre: 'Apellido Paterno' },
+        { selector: '#apellido_materno', nombre: 'Apellido Materno' },
+        { selector: '#telefono', nombre: 'Teléfono' },
+        { selector: '#fecha_nacimiento', nombre: 'Fecha de Nacimiento' },
+        { selector: '#municipio', nombre: 'Municipio' },
+        { selector: '#codigo_postal', nombre: 'Código Postal' }
+    ];
+
+    camposPersonales.forEach(campo => {
+        const elemento = document.querySelector(campo.selector);
+        if (!elemento || !elemento.value.trim()) {
+            camposFaltantes.push(`- ${campo.nombre}`);
+            esValido = false;
+        }
+    });
+
+    // 2. Validar foto de perfil
+    const fotoPreview = document.querySelector('#photoPreview');
+    const fotoInput = document.getElementById('foto_perfil');
+    if (!fotoPreview && (!fotoInput || !fotoInput.files.length)) {
+        camposFaltantes.push('- Foto de perfil');
+        esValido = false;
+    }
+
+    // 3. Validar resumen profesional
+    const resumenProfesional = document.querySelector('#resumen_profesional');
+    if (!resumenProfesional || !resumenProfesional.value.trim()) {
+        camposFaltantes.push('- Resumen profesional');
+        esValido = false;
+    }
+
+    // 4. Validar experiencias laborales (mínimo 1)
+    const cantidadExperiencias = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
+    if (cantidadExperiencias < 1) {
+        camposFaltantes.push('- Al menos 1 experiencia laboral');
+        esValido = false;
+    }
+
+    // 5. Validar educación/formación (mínimo 1)
+    const cantidadEducacion = document.querySelectorAll('#educacionContainer .educacion-item').length;
+    if (cantidadEducacion < 1) {
+        camposFaltantes.push('- Al menos 1 formación educativa');
+        esValido = false;
+    }
+
+    // 6. Validar habilidades técnicas (mínimo 5)
+    const cantidadHabilidades = document.querySelectorAll('#habilidadesContainer .badge').length;
+    if (cantidadHabilidades < 5) {
+        camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
+        esValido = false;
+    }
+
+    // 7. Validar idiomas (mínimo 1)
+    const cantidadIdiomas = document.querySelectorAll('#idiomasContainer .idioma-item').length;
+    if (cantidadIdiomas < 1) {
+        camposFaltantes.push('- Al menos 1 idioma');
+        esValido = false;
+    }
+
+    return {
+        esValido: esValido,
+        camposFaltantes: camposFaltantes
+    };
+}
+
+// Llamar a la verificación cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    verificarEstadoBotonGuardarCV();
+});
+
+// ===================================================================
+// OBSERVADOR PARA DETECTAR CAMBIOS EN LAS SECCIONES DEL CV
+// ===================================================================
+
+// Crear un observador de mutaciones para detectar cambios en los contenedores
+const observerConfig = { childList: true, subtree: true };
+
+// Función que se ejecutará cuando se detecten cambios
+const observerCallback = function(mutationsList) {
+    // Verificar el estado del botón cuando hay cambios
+    verificarEstadoBotonGuardarCV();
+};
+
+// Crear el observador
+const observer = new MutationObserver(observerCallback);
+
+// Observar cambios en los contenedores de CV y campos del formulario
+document.addEventListener('DOMContentLoaded', function() {
+    const contenedoresObservar = [
+        '#experienciaContainer',
+        '#educacionContainer',
+        '#habilidadesContainer',
+        '#idiomasContainer'
+    ];
+
+    contenedoresObservar.forEach(selector => {
+        const elemento = document.querySelector(selector);
+        if (elemento) {
+            observer.observe(elemento, observerConfig);
+        }
+    });
+
+    // También observar cambios en los inputs del formulario
+    const camposFormulario = [
+        '#nombre', '#apellido_paterno', '#apellido_materno',
+        '#telefono', '#fecha_nacimiento', '#municipio',
+        '#codigo_postal', '#resumen_profesional'
+    ];
+
+    camposFormulario.forEach(selector => {
+        const campo = document.querySelector(selector);
+        if (campo) {
+            // Agregar eventos para detectar cambios en tiempo real
+            campo.addEventListener('input', verificarEstadoBotonGuardarCV);
+            campo.addEventListener('change', verificarEstadoBotonGuardarCV);
+            campo.addEventListener('blur', verificarEstadoBotonGuardarCV);
+        }
+    });
+
+    // Verificación inicial al cargar la página
+    verificarEstadoBotonGuardarCV();
 });
