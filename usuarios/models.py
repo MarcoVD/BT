@@ -648,14 +648,13 @@ class Curriculum(models.Model):
 
     @property
     def validation_errors(self):
-        """
-        Returns a list of missing fields for the CV to be considered complete.
-        """
         errors = []
+        interesado = self.interesado
         # 1. Validar campos del perfil del interesado
         profile_fields = {
             'nombre': 'Nombre(s)',
             'apellido_paterno': 'Apellido Paterno',
+            'apellido_materno': 'Apellido Materno',
             'telefono': 'Teléfono',
             'fecha_nacimiento': 'Fecha de Nacimiento',
             'municipio': 'Municipio',
@@ -663,7 +662,7 @@ class Curriculum(models.Model):
             'foto_perfil': 'Foto de Perfil',
         }
         for field, label in profile_fields.items():
-            if not getattr(self.interesado, field):
+            if not getattr(interesado, field):
                 errors.append(label)
 
         # 2. Validar resumen profesional
@@ -675,19 +674,15 @@ class Curriculum(models.Model):
             errors.append('Al menos una Experiencia Laboral')
         if not self.educaciones.exists():
             errors.append('Al menos una entrada de Educación')
-        if not self.habilidades.exists():
-            errors.append('Al menos una Habilidad')
         if not self.idiomas.exists():
             errors.append('Al menos un Idioma')
-
+        habilidades_count = self.habilidades.count()
+        if habilidades_count < 5:
+            errors.append(f'Al menos 5 habilidades (tienes {habilidades_count})')
         return errors
 
     @property
     def is_cv_complete(self):
-        """
-        Checks if the CV has all the necessary components.
-        A CV is complete if there are no validation errors.
-        """
         return not self.validation_errors
 
 class ExperienciaLaboral(models.Model):

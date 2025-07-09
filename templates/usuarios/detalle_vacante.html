@@ -203,7 +203,6 @@ function postularseDirect() {
 
         } else {
             mostrarMensaje(data.error, 'error');
-
             // Si necesita completar perfil, redirigir
             if (data.redirect_url) {
                 setTimeout(() => {
@@ -225,6 +224,7 @@ function postularseDirect() {
         postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
     });
 }
+
 
 function mostrarMensaje(mensaje, tipo) {
     // Crear contenedor de toasts si no existe
