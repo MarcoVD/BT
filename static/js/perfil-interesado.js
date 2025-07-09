@@ -241,7 +241,6 @@ document.getElementById('cvForm').addEventListener('submit', function(e) {
         return false;
     }
 });
-
 // ===================================================================
 // VALIDACIÓN ESPECÍFICA PARA EL BOTÓN DE DESCARGA DE CV
 // ===================================================================
@@ -302,16 +301,15 @@ function verificarEstadoBotonGuardarCV() {
         btnGuardarCV.title = 'Guardar CV Completo - Todos los campos están completos';
         btnGuardarCV.innerHTML = '<i class="bi bi-save"></i> Guardar CV Completo';
         btnGuardarCV.classList.remove('btn-secondary');
-        btnGuardarCV.classList.add('btn-primary');
+        btnGuardarCV.classList.add('btn-primary text-white');
     } else {
         btnGuardarCV.disabled = true;
         btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
-        btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> CV Incompleto';
-        btnGuardarCV.classList.remove('btn-primary');
+        btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>';
+        btnGuardarCV.classList.remove('btn-primary text-black');
         btnGuardarCV.classList.add('btn-secondary');
     }
 }
-
 // ===================================================================
 // FUNCIÓN PARA VALIDAR FORMULARIO COMPLETO
 // ===================================================================
@@ -444,4 +442,28 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Verificación inicial al cargar la página
     verificarEstadoBotonGuardarCV();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Si tu botón "Guardar CV Completo" tiene un id específico, usa ese id.
+    // Si no, puedes usar:
+    var btnGuardar = document.querySelector('button[type="submit"].btn-primary'); // O ponle un id y usa getElementById
+    var btnDescargar = document.getElementById('btnDescargarCV');
+
+    // Función que sincroniza los estados
+    function syncDescargarBtn() {
+        // Si el botón guardar está habilitado, habilita "Descargar PDF"
+        if (!btnGuardar.disabled) {
+            btnDescargar.removeAttribute('disabled');
+        } else {
+            btnDescargar.setAttribute('disabled', true);
+        }
+    }
+
+    // Observa cambios en el atributo 'disabled' del botón de guardar
+    const observer = new MutationObserver(syncDescargarBtn);
+    observer.observe(btnGuardar, { attributes: true, attributeFilter: ['disabled'] });
+
+    // Valida el estado inicial al cargar
+    syncDescargarBtn();
 });

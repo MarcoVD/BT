@@ -44,11 +44,10 @@
         /* ==========================================================================
            Columna Izquierda: Perfil de Usuario
            ========================================================================== */
-
         /* Contenedor de la foto de perfil */
         .profile-photo-container {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             margin: 0 auto 1.5rem auto;
             position: relative;
             border-radius: 50%;
@@ -492,12 +491,13 @@
                     </div>
 
                     <div class="text-end mt-4 mb-5">
-                        <button type="submit" class="btn btn-primary btn-lg" id="btnDescargarCV">
+                        <button type="submit" class="btn btn-primary btn-lg" id="btnGuardarCV">
+{#                        <button type="submit" class="btn btn-primary btn-lg" id="btnDescargarCV">btnGuardarCV#}
                             <i class="bi bi-save"></i> Guardar CV Completo
                         </button>
                         {% if tiene_cv %}
-                            <a href="{% url 'descargar_cv_pdf' %}" class=" text-primary btn btn-outline-primary">
-                                <i class="bi bi-download "></i> Descargar PDF
+                            <a id="btnDescargarCV" href="{% url 'descargar_cv_pdf' %}" class=" text-primary btn btn-outline-primary" disabled>
+                                <i class="bi bi-download"></i> Descargar PDF
                             </a>
                         {% endif %}
                     </div>
@@ -511,8 +511,8 @@
 <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
         <div class="modal-content">
-            <div class="modal-header bg-primary">
-                <h5 class="modal-title h6 h-md-5 text-white" id="editarPerfilModalLabel">Editar Perfil</h5>
+            <div class="modal-header bg-primary ">
+                <h5 class="modal-title h5 h-md-5 text-white fw-bold mb-0" id="editarPerfilModalLabel">Editar Perfil</h5>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
@@ -520,7 +520,8 @@
                     {% csrf_token %}
 
                     <!-- Preview de foto -->
-                    <div class="text-center mb-4">
+
+                    <div class="text-center mb-0">
                         <div class="profile-photo-container mx-auto" id="photoPreviewContainer">
                             {% if interesado.foto_perfil %}
                                 <img src="{{ interesado.foto_perfil.url }}" alt="Foto de perfil" class="profile-photo" id="photoPreview">
@@ -531,15 +532,16 @@
                     </div>
 
                     <div class="row g-3">
-                        <div class="col-12">
-                            <label for="foto_perfil" class="form-label">Foto de Perfil</label>
-                            <div class="d-flex gap-2">
+                        <div class="col-12 mt-0" >
+                            <label for="foto_perfil" class="form-label"></label>
+                            <div class="d-flex gap-2 align-items-center">
                                 <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
-                                <button type="button" class="btn btn-outline-primary flex-grow-1" data-bs-toggle="modal" data-bs-target="#cropperModal">
-                                    <i class="bi bi-camera"></i> Cargar foto de Perfil
-                                </button>
+{#                                <button type="button" class="btn btn-primary text-center flex-grow-0" data-bs-toggle="modal" data-bs-target="#cropperModal">#}
+{#                                    <button type="button" class="btn btn-secondary flex-grow-1" data-bs-toggle="modal" data-bs-target="#cropperModal">#}
+{#                                    <i class="bi bi-camera"></i> Cargar foto de Perfil#}
+{#                                    </button>#}
                             </div>
-                            <div class="form-text">Sube una imagen en formato JPG o JPEG para seguir.</div>
+{#                            <div class="form-text">Sube una imagen en formato JPG o JPEG para seguir.</div>#}
                         </div>
 
                         <div class="col-12">
@@ -585,13 +587,26 @@
                     </div>
                 </form>
             </div>
-            <div class="modal-footer flex-column flex-sm-row">
-                <button type="button" class="btn btn-secondary w-100 w-sm-auto mb-2 mb-sm-0 me-sm-2" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary w-100 w-sm-auto" id="guardarPerfilBtn">
-                    <span class="btn-text">Guardar Cambios</span>
-                    <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                </button>
-            </div>
+                <div class="footer mb-3">
+                    <div class="row justify-content-center g-2">
+                        <div class="col-12 col-sm-auto">
+                            <button type="button"
+                                    class="btn btn-secondary w-100"
+                                    data-bs-dismiss="modal">
+                                Cancelar
+                            </button>
+                        </div>
+                        <div class="col-12 col-sm-auto">
+                            <button type="button"
+                                    class="btn btn-primary w-100"
+                                    id="guardarPerfilBtn">
+                                <span class="btn-text">Guardar Cambios</span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
         </div>
     </div>
 </div>
@@ -873,7 +888,6 @@
         </div>
     </div>
 </div>
-
 <script>
 // JavaScript del CV (igual que en crear_editar_cv.html)
 // Variables globales para controlar edición
@@ -956,7 +970,6 @@ function eliminarExperiencia(id) {
         });
     }
 }
-
 // =========================
 // EDUCACIÓN
 // =========================
@@ -993,7 +1006,6 @@ function guardarEducacion() {
         alert('Error al guardar la educación');
     });
 }
-
 function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
 
     educacionEditandoId = id;
@@ -1006,7 +1018,6 @@ function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descrip
     document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
 }
-
 function eliminarEducacion(id) {
     if (confirm('¿Estás seguro de eliminar esta educación?')) {
         fetch(`/ajax/educacion/eliminar/${id}/`, {
@@ -1161,5 +1172,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
 {% endblock %}
