@@ -247,6 +247,17 @@ class Interesado(models.Model):
     municipio = models.CharField(max_length=50, choices=MUNICIPIOS_ESTADO_MEXICO, blank=True, null=True, verbose_name="Municipio")
     codigo_postal = models.CharField(max_length=10, blank=True, null=True)
     foto_perfil = models.ImageField(upload_to='interesados/', blank=True, null=True)
+    def save(self, *args, **kwargs):
+        try:
+            # Obtener la instancia actual de la base de datos para comparar la foto
+            old_instance = Interesado.objects.get(pk=self.pk)
+            # Si la foto ha cambiado y la foto antigua existe
+            if old_instance.foto_perfil and old_instance.foto_perfil != self.foto_perfil:
+                # Eliminar el archivo de la foto anterior
+                old_instance.foto_perfil.delete(save=False)
+        except Interesado.DoesNotExist:
+            pass
+        super().save(*args, **kwargs)
 
     def __str__(self):
         if self.nombre and self.apellido_paterno:

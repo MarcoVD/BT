@@ -1,0 +1,1 @@
+Todas las respuestas deben ser en español.
