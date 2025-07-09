@@ -196,7 +196,6 @@
             margin-bottom: 0;
 
         }
-
         /* Estilos para h4 en la columna izquierda */
         .columna-izquierda h4 {
             color: var(--color-accent);
@@ -237,8 +236,10 @@
                     <span>{{ interesado.usuario.email }}</span>
                 </div>
                 <div class="contact-item">
-                    <i class="bi bi-geo-alt me-2 mt-1"></i>
-                    <span>{{ interesado.ubicacion_completa|default:'Ubicación no especificada' }}</span>
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-geo-alt fs-5"></i>
+                        <span>{{ interesado.ubicacion_completa|default:'Ubicación no especificada' }}</span>
+                    </div>
                 </div>
             </div>
 

@@ -82,18 +82,6 @@ from .forms import (
 
 @login_required
 def agregar_habilidad_ajax(request):
-    """
-    Vista AJAX para agregar una nueva habilidad al CV del interesado.
-
-    Parámetros esperados en POST:
-    - nombre_habilidad: Nombre de la habilidad (ej: "JavaScript", "Liderazgo")
-    - nivel: Nivel de dominio (basico, intermedio, avanzado, experto)
-
-    Returns:
-        JsonResponse con success/error y datos de la habilidad creada
-    """
-
-    # Validar método y permisos
     if request.method != 'POST':
         return JsonResponse({
             'success': False,
@@ -1941,131 +1929,28 @@ def postularse_vacante(request, vacante_id):
 
 @login_required
 def mis_postulaciones(request):
-    """Vista para ver las postulaciones del interesado."""
+    """Vista para ver las postulaciones del interesado con paginación."""
     if request.user.rol != 'interesado':
         messages.error(request, 'No tienes permiso para acceder a esta página.')
         return redirect('index')
 
-    postulaciones = Postulacion.objects.filter(
+    postulaciones_list = Postulacion.objects.filter(
         interesado=request.user.interesado
     ).select_related('vacante', 'vacante__secretaria').order_by('-fecha_postulacion')
 
+    # Configurar paginación - 5 postulaciones por página
+    paginator = Paginator(postulaciones_list, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+
     context = {
-        'postulaciones': postulaciones
+        'postulaciones': page_obj,
+        'page_obj': page_obj
     }
     return render(request, 'usuarios/mis_postulaciones.html', context)
-
-
-# Agregar esta función al final del archivo usuarios/views.py
-#
-# @login_required
-# def retirar_postulacion(request, postulacion_id):
-#     """
-#     Vista para que un interesado retire su postulación a una vacante.
-#
-#     Args:
-#         postulacion_id: ID de la postulación a retirar
-#
-#     Returns:
-#         JsonResponse con success/error para AJAX requests
-#         Redirect para requests normales
-#     """
-#
-#     # Verificar permisos
-#     if request.user.rol != 'interesado':
-#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-#             return JsonResponse({
-#                 'success': False,
-#                 'error': 'Solo los interesados pueden retirar postulaciones.'
-#             })
-#         else:
-#             messages.error(request, 'No tienes permiso para realizar esta acción.')
-#             return redirect('index')
-#
-#     try:
-#         # Buscar la postulación que pertenece al interesado
-#         postulacion = get_object_or_404(
-#             Postulacion,
-#             id=postulacion_id,
-#             interesado=request.user.interesado
-#         )
-#
-#         # Verificar que la postulación se puede retirar
-#         # Solo se pueden retirar postulaciones en estado 'enviada' o 'en_revision'
-#         estados_retirables = ['enviada', 'en_revision']
-#
-#         if postulacion.estado not in estados_retirables:
-#             error_msg = f'No puedes retirar esta postulación porque está en estado: {postulacion.get_estado_display()}'
-#
-#             if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-#                 return JsonResponse({
-#                     'success': False,
-#                     'error': error_msg
-#                 })
-#             else:
-#                 messages.error(request, error_msg)
-#                 return redirect('mis_postulaciones')
-#
-#         # Guardar información para el mensaje
-#         vacante_titulo = postulacion.vacante.titulo
-#
-#         # Eliminar la postulación
-#         postulacion.delete()
-#
-#         # Mensaje de éxito
-#         success_msg = f'Has retirado exitosamente tu postulación para "{vacante_titulo}"'
-#
-#         # Responder según el tipo de request
-#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-#             return JsonResponse({
-#                 'success': True,
-#                 'message': success_msg
-#             })
-#         else:
-#             messages.success(request, success_msg)
-#             return redirect('mis_postulaciones')
-#
-#     except Postulacion.DoesNotExist:
-#         error_msg = 'Postulación no encontrada o no tienes permiso para retirarla.'
-#
-#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-#             return JsonResponse({
-#                 'success': False,
-#                 'error': error_msg
-#             })
-#         else:
-#             messages.error(request, error_msg)
-#             return redirect('mis_postulaciones')
-#
-#     except Exception as e:
-#         # Log del error para debugging
-#         print(f"Error en retirar_postulacion: {str(e)}")
-#
-#         error_msg = f'Error al retirar la postulación: {str(e)}'
-#
-#         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
-#             return JsonResponse({
-#                 'success': False,
-#                 'error': error_msg
-#             })
-#         else:
-#             messages.error(request, error_msg)
-#             return redirect('mis_postulaciones')
-
 @login_required
 @require_http_methods(["POST", "DELETE"])
 def retirar_postulacion(request, postulacion_id):
-    """
-    Vista para que un interesado retire su postulación a una vacante.
-
-    Args:
-        postulacion_id: ID de la postulación a retirar
-
-    Returns:
-        JsonResponse con success/error para AJAX requests
-        Redirect para requests normales
-    """
-
     # Verificar permisos
     if request.user.rol != 'interesado':
         if request.headers.get('X-Requested-With') == 'XMLHttpRequest':

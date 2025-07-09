@@ -298,8 +298,8 @@ function verificarEstadoBotonGuardarCV() {
     // Habilitar o deshabilitar el botón según la validación completa
     if (validacionCompleta.esValido) {
         btnGuardarCV.disabled = false;
-        btnGuardarCV.title = 'Guardar CV Completo - Todos los campos están completos';
-        btnGuardarCV.innerHTML = '<i class="bi bi-save"></i> Guardar CV Completo';
+        btnGuardarCV.title = 'Descargar CV - Todos los campos están completos';
+        btnGuardarCV.innerHTML = '<i class="bi bi-save"></i> Descargar CV';
         btnGuardarCV.classList.remove('btn-secondary');
         btnGuardarCV.classList.add('btn-primary text-white');
     } else {

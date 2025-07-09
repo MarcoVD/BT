@@ -247,6 +247,7 @@ class Interesado(models.Model):
     municipio = models.CharField(max_length=50, choices=MUNICIPIOS_ESTADO_MEXICO, blank=True, null=True, verbose_name="Municipio")
     codigo_postal = models.CharField(max_length=10, blank=True, null=True)
     foto_perfil = models.ImageField(upload_to='interesados/', blank=True, null=True)
+
     def save(self, *args, **kwargs):
         try:
             # Obtener la instancia actual de la base de datos para comparar la foto

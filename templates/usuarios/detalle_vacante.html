@@ -151,9 +151,9 @@
                                 <i class="bi bi-send-fill"></i> Postularme Ahora
                             </button>
                         {% endif %}
-                        <button type="button" class="btn btn-outline-primary text-primary">
-                            <i class="bi bi-bookmark-plus"></i> Guardar Vacante
-                        </button>
+{#                        <button type="button" class="btn btn-outline-primary text-primary">#}
+{#                            <i class="bi bi-bookmark-plus"></i> Guardar Vacante#}
+{#                        </button>#}
                     </div>
                 </div>
 
@@ -163,7 +163,7 @@
                         {{ vacante.secretaria.descripcion|default:"No hay descripción disponible para esta secretaría."|truncatewords:50 }}
                     </p>
                     {% if vacante.secretaria.sitio_web %}
-                    <a href="{{ vacante.secretaria.sitio_web }}" target="_blank" class="btn btn-sm btn-outline-secondary w-100">Visitar sitio web de la empresa</a>
+                    <a href="{{ vacante.secretaria.sitio_web }}" target="_blank" class="btn btn-sm btn-outline-secondary w-100">Visitar Sitio Web</a>
                     {% endif %}
                 </div>
             </div>
