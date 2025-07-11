@@ -233,7 +233,6 @@
     <script src="{% static 'js/image-cropper.js' %}"></script>
     <script src="{% static 'js/perfil-interesado.js' %}"></script>
 {% endblock %}
-
 {% block content %}
 
 <div class="container-fluid px-2 px-sm-3">
@@ -278,9 +277,6 @@
         <!-- Columna del contenido principal - REEMPLAZAR CON CV -->
         <div class="col-12 col-lg-8 order-2">
             <div class="cv-container">
-{#                <div class="d-flex justify-content-between align-items-center mb-4">#}
-{#                    <h1>Mi Currículum Vitae</h1>#}
-{#                </div>#}
 
                 <form id="cvForm" method="post">
                     {% csrf_token %}
@@ -653,6 +649,7 @@
                                     <i class="bi bi-x-circle"></i> Cancelar
                                 </button>
                                 <button type="button" class="btn btn-success btn-sm" id="cropButton">
+{#                                    guardarPerfilBtn#}
                                     <i class="bi bi-check-circle"></i> Recortar y Usar
                                 </button>
                             </div>
@@ -765,7 +762,6 @@
         </div>
     </div>
 </div>
-
 <!-- Modal para Habilidades -->
 <div class="modal fade" id="habilidadModal" tabindex="-1">
     <div class="modal-dialog">
@@ -836,7 +832,6 @@
                                 <option value="Vietnamita">Vietnamita</option>
                                 <option value="Italiano">Italiano</option>
                         </select>
-{#                    </div>#}
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Nivel de Lectura</label>
