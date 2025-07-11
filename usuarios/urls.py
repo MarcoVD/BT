@@ -100,8 +100,8 @@ urlpatterns = [
     # ===========================
     path('ajax/cambiar-estado-postulacion/<int:postulacion_id>/', views.cambiar_estado_postulacion,
          name='cambiar_estado_postulacion'),
-    path('ajax/agregar-notas-postulacion/<int:postulacion_id>/', views.agregar_notas_postulacion,
-         name='agregar_notas_postulacion'),
+    # path('ajax/agregar-notas-postulacion/<int:postulacion_id>/', views.agregar_notas_postulacion,
+    #      name='agregar_notas_postulacion'),
     path('ajax/buscar-vacantes/', views.busqueda_vacantes_ajax, name='busqueda_vacantes_ajax'),
 
     # ===========================
