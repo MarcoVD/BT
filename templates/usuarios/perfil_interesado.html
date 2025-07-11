@@ -1023,9 +1023,14 @@ function eliminarEducacion(id) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                location.reload();
+                // Quitar el idioma eliminado del DOM
+                const elem = document.querySelector(`.idioma-item[data-id="${id}"]`);
+                if (elem) elem.remove();
+
+                // Muestra feedback visual
+                mostrarFeedback('Idioma eliminado', 'success');
             } else {
-                alert('Error al eliminar: ' + data.error);
+                mostrarFeedback('Error al eliminar: ' + data.error, 'danger');
             }
         });
     }
@@ -1117,7 +1122,26 @@ function guardarIdioma() {
     });
 }
 
-function eliminarIdioma(id) {
+{#function eliminarIdioma(id) {#}
+{#    if (confirm('¿Estás seguro de eliminar este idioma?')) {#}
+{#        fetch(`/ajax/idioma/eliminar/${id}/`, {#}
+{#            method: 'DELETE',#}
+{#            headers: {#}
+{#                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value#}
+{#            }#}
+{#        })#}
+{#        .then(response => response.json())#}
+{#        .then(data => {#}
+{#            if (data.success) {#}
+{#                location.reload();#}
+{#            } else {#}
+{#                alert('Error al eliminar: ' + data.error);#}
+{#            }#}
+{#        });#}
+{#    }#}
+{#}#}
+
+    function eliminarIdioma(id) {
     if (confirm('¿Estás seguro de eliminar este idioma?')) {
         fetch(`/ajax/idioma/eliminar/${id}/`, {
             method: 'DELETE',
@@ -1128,9 +1152,12 @@ function eliminarIdioma(id) {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
-                location.reload();
+                // Elimina solo el idioma del DOM, no recargues la página
+                const elem = document.querySelector(`.idioma-item[data-id="${id}"]`);
+                if (elem) elem.remove();
+                mostrarFeedback('Idioma eliminado', 'success');
             } else {
-                alert('Error al eliminar: ' + data.error);
+                mostrarFeedback('Error al eliminar: ' + data.error, 'danger');
             }
         });
     }
@@ -1228,6 +1255,16 @@ function limpiarLocalStorageSolo(tipo) {
         ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(c => delete datos[c]);
     }
     localStorage.setItem('cv_autoguardado', JSON.stringify(datos));
+}
+function mostrarFeedback(mensaje, tipo = 'success') {
+    let alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo} fixed-top m-3 fade show`;
+    alerta.style.zIndex = 9999;
+    alerta.style.right = '20px';
+    alerta.style.left = 'auto';
+    alerta.innerHTML = `<span>${mensaje} ✅</span>`;
+    document.body.appendChild(alerta);
+    setTimeout(() => alerta.remove(), 2000);
 }
 
 document.addEventListener('DOMContentLoaded', function() {
