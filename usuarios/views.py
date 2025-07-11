@@ -282,8 +282,6 @@ def send_verification_email(request, user):
             'site_name': 'Bolsa de Trabajo - Estado de México',
             'expires_hours': 24,
         }
-
-        # ✅ TEMPLATE CORREGIDO - Ahora busca en la carpeta correcta
         html_message = render_to_string('emails/verificacion_email.html', context)
         plain_message = strip_tags(html_message)
 
@@ -1855,10 +1853,8 @@ def postularse_vacante(request, vacante_id):
     """Vista para que un interesado se postule a una vacante."""
     if request.method != 'POST':
         return JsonResponse({'success': False, 'error': 'Método no permitido'})
-
     if request.user.rol != 'interesado':
         return JsonResponse({'success': False, 'error': 'Solo los interesados pueden postularse'})
-
     try:
         # Verificar que la vacante existe y está activa
         vacante = get_object_or_404(
@@ -1867,34 +1863,23 @@ def postularse_vacante(request, vacante_id):
             estado_vacante='publicada',
             aprobada=True
         )
-
         interesado = request.user.interesado
-
-        # Verificar que el interesado tiene CV
-        if not hasattr(interesado, 'curriculum'):
-            return JsonResponse({
-                'success': False,
-                'error': 'Debes crear tu CV antes de postularte',
-                'redirect_url': '/perfil/interesado/'
-            })
-
         curriculum = interesado.curriculum
-
-        # Verificar que tiene información mínima
-        if not (interesado.nombre and interesado.apellido_paterno):
+        # Verificar que el interesado tiene CV completo
+        if not curriculum.is_cv_complete:
             return JsonResponse({
                 'success': False,
-                'error': 'Completa tu información personal antes de postularte',
+                'error': 'Tu perfil está incompleto. Por favor, completa todos los campos de tu CV antes de postularte.',
+                'missing_fields': curriculum.validation_errors,
+                # 'redirect_url': reverse('perfil_interesado')
                 'redirect_url': '/perfil/interesado/'
             })
-
         # Verificar si ya se postuló
         if Postulacion.objects.filter(interesado=interesado, vacante=vacante).exists():
             return JsonResponse({
                 'success': False,
                 'error': 'Ya te has postulado a esta vacante'
             })
-
         # Verificar límite de postulantes
         postulaciones_actuales = vacante.postulaciones.count()
         if postulaciones_actuales >= vacante.max_postulantes:
@@ -1902,7 +1887,6 @@ def postularse_vacante(request, vacante_id):
                 'success': False,
                 'error': 'Esta vacante ya alcanzó el límite máximo de postulantes'
             })
-
         # Crear la postulación
         mensaje_motivacion = request.POST.get('mensaje_motivacion', '').strip()
 

@@ -402,6 +402,7 @@ class VacanteForm(forms.ModelForm):
             'max_postulantes': forms.Select(attrs={'class': 'form-select'}),
             'modalidad': forms.Select(attrs={'class': 'form-select'}),
         }
+        #Etiqueta de publicar vacantes
         labels = {
             'titulo': 'Título de la Vacante',
             'categoria': 'Categoría de la Vacante',
