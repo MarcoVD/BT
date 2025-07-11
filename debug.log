@@ -2143,3 +2143,1535 @@ INFO 2025-07-10 17:07:06,796 basehttp 147666 129374682609344 "POST /login/ HTTP/
 INFO 2025-07-10 17:07:06,813 basehttp 147666 129374682609344 "GET /dashboard/reclutador/ HTTP/1.1" 200 16397
 INFO 2025-07-10 17:07:08,356 basehttp 147666 129374682609344 "GET /publicar-vacante/ HTTP/1.1" 200 26722
 INFO 2025-07-11 12:13:56,987 autoreload 30961 125138667131136 Watching for file changes with StatReloader
+INFO 2025-07-11 12:19:25,598 autoreload 30961 125138667131136 /home/marco/PycharmProjects/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-11 12:19:25,824 autoreload 32771 131190041276672 Watching for file changes with StatReloader
+INFO 2025-07-11 12:28:34,089 autoreload 32771 131190041276672 /home/marco/PycharmProjects/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-11 12:28:34,298 autoreload 34314 139569644597504 Watching for file changes with StatReloader
+INFO 2025-07-11 12:28:43,176 basehttp 34314 139569455429312 "GET / HTTP/1.1" 200 19984
+INFO 2025-07-11 12:28:43,190 basehttp 34314 139569455429312 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-11 12:28:48,454 basehttp 34314 139569455429312 "GET /?page=2 HTTP/1.1" 200 18158
+INFO 2025-07-11 12:28:51,985 basehttp 34314 139569455429312 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 12:28:51,996 basehttp 34314 139569455429312 "GET / HTTP/1.1" 200 20068
+INFO 2025-07-11 12:28:56,111 basehttp 34314 139569455429312 "GET /registro/interesado/ HTTP/1.1" 200 9056
+INFO 2025-07-11 12:28:56,437 basehttp 34314 139569455429312 "GET /login/ HTTP/1.1" 200 10693
+INFO 2025-07-11 12:28:58,834 basehttp 34314 139569455429312 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 12:28:58,855 basehttp 34314 139569455429312 "GET /dashboard/reclutador/ HTTP/1.1" 200 16397
+INFO 2025-07-11 12:29:03,297 basehttp 34314 139569455429312 "GET /mis-vacantes/ HTTP/1.1" 200 34009
+INFO 2025-07-11 12:29:04,835 basehttp 34314 139569455429312 "GET /publicar-vacante/ HTTP/1.1" 200 26722
+INFO 2025-07-11 12:29:14,926 basehttp 34314 139569455429312 "GET /mis-vacantes/ HTTP/1.1" 200 34009
+INFO 2025-07-11 12:29:17,018 basehttp 34314 139569455429312 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 12:29:17,033 basehttp 34314 139569455429312 "GET / HTTP/1.1" 200 20068
+INFO 2025-07-11 12:29:23,941 basehttp 34314 139569455429312 "GET /registro/reclutador/ HTTP/1.1" 200 16129
+INFO 2025-07-11 12:29:28,839 autoreload 34314 139569644597504 /home/marco/PycharmProjects/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-11 12:29:29,133 autoreload 34973 132789027811584 Watching for file changes with StatReloader
+INFO 2025-07-11 12:29:32,978 basehttp 34973 132788838725312 "GET /login/ HTTP/1.1" 200 10693
+WARNING 2025-07-11 12:30:39,020 log 34973 132788838725312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:30:39,020 basehttp 34973 132788838725312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:31:14,204 basehttp 34973 132788838725312 "GET /login/ HTTP/1.1" 200 10410
+WARNING 2025-07-11 12:31:14,215 log 34973 132788838725312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:31:14,216 basehttp 34973 132788838725312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:31:14,244 basehttp 34973 132788829284032 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-11 12:31:21,581 basehttp 34973 132788838725312 "GET /registro/interesado/ HTTP/1.1" 200 9056
+WARNING 2025-07-11 12:31:21,597 log 34973 132788838725312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:31:21,597 basehttp 34973 132788838725312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:32:02,295 basehttp 34973 132788838725312 "GET /registro/interesado/ HTTP/1.1" 200 9045
+WARNING 2025-07-11 12:32:02,310 log 34973 132788838725312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:32:02,311 basehttp 34973 132788838725312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:32:09,722 basehttp 34973 132788838725312 "GET /registro/interesado/ HTTP/1.1" 200 9056
+WARNING 2025-07-11 12:32:09,734 log 34973 132788838725312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:32:09,734 basehttp 34973 132788838725312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:36:05,145 autoreload 34973 132789027811584 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 12:36:05,398 autoreload 35687 127936076923136 Watching for file changes with StatReloader
+INFO 2025-07-11 12:37:41,869 basehttp 35687 127935954548416 "GET /login/ HTTP/1.1" 200 10410
+WARNING 2025-07-11 12:37:41,883 log 35687 127935954548416 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:37:41,884 basehttp 35687 127935954548416 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:37:43,124 basehttp 35687 127935954548416 "GET /reenviar-verificacion/ HTTP/1.1" 200 8687
+WARNING 2025-07-11 12:37:43,135 log 35687 127935954548416 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:37:43,135 basehttp 35687 127935954548416 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:38:33,284 basehttp 35687 127935954548416 "POST /reenviar-verificacion/ HTTP/1.1" 200 9054
+WARNING 2025-07-11 12:38:33,298 log 35687 127935954548416 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:38:33,298 basehttp 35687 127935954548416 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:40:50,802 autoreload 35687 127936076923136 /home/marco/PycharmProjects/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-11 12:40:51,036 autoreload 36149 132485544460544 Watching for file changes with StatReloader
+INFO 2025-07-11 12:40:51,571 basehttp 36149 132485423822528 "GET /login/ HTTP/1.1" 200 10410
+WARNING 2025-07-11 12:40:51,582 log 36149 132485423822528 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 12:40:51,582 basehttp 36149 132485423822528 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 12:42:22,697 autoreload 36149 132485544460544 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 12:42:22,947 autoreload 36298 126095358271744 Watching for file changes with StatReloader
+INFO 2025-07-11 12:43:48,717 autoreload 36298 126095358271744 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 12:43:49,015 autoreload 36461 134398905155840 Watching for file changes with StatReloader
+INFO 2025-07-11 12:47:02,032 autoreload 36461 134398905155840 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 12:47:02,276 autoreload 36783 130837108736256 Watching for file changes with StatReloader
+INFO 2025-07-11 13:06:12,791 autoreload 36783 130837108736256 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 13:06:13,584 autoreload 39958 137392343359744 Watching for file changes with StatReloader
+INFO 2025-07-11 13:20:54,102 autoreload 39958 137392343359744 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 13:20:54,448 autoreload 43132 127538837393664 Watching for file changes with StatReloader
+INFO 2025-07-11 13:33:41,610 autoreload 43132 127538837393664 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 13:33:41,907 autoreload 46358 139088595665152 Watching for file changes with StatReloader
+INFO 2025-07-11 13:36:16,855 autoreload 46358 139088595665152 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 13:36:17,068 autoreload 46873 137445840171264 Watching for file changes with StatReloader
+INFO 2025-07-11 13:37:34,668 autoreload 46873 137445840171264 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 13:37:35,115 autoreload 47077 125342689005824 Watching for file changes with StatReloader
+INFO 2025-07-11 15:14:01,039 basehttp 47077 125342496147136 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:14:03,995 basehttp 47077 125342496147136 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:14:16,551 basehttp 47077 125342496147136 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:14:16,594 basehttp 47077 125342496147136 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:14:16,606 basehttp 47077 125342496147136 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-11 15:14:16,610 basehttp 47077 125342479361728 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-11 15:14:16,615 basehttp 47077 125342470969024 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:14:16,619 basehttp 47077 125342487754432 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6747
+INFO 2025-07-11 15:17:02,003 autoreload 47077 125342689005824 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:17:02,564 autoreload 57555 134245875245312 Watching for file changes with StatReloader
+INFO 2025-07-11 15:23:06,225 autoreload 57555 134245875245312 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:23:06,707 autoreload 59007 132348910022912 Watching for file changes with StatReloader
+INFO 2025-07-11 15:23:13,277 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:23:13,809 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:23:13,976 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:23:14,152 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:23:23,186 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91600
+INFO 2025-07-11 15:23:35,773 basehttp 59007 132348788078272 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:23:35,791 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 91911
+INFO 2025-07-11 15:23:41,868 basehttp 59007 132348788078272 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:23:41,881 basehttp 59007 132348788078272 "GET / HTTP/1.1" 200 20085
+INFO 2025-07-11 15:23:42,899 basehttp 59007 132348788078272 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:23:47,399 basehttp 59007 132348788078272 "POST /login/ HTTP/1.1" 200 10937
+INFO 2025-07-11 15:23:50,868 basehttp 59007 132348788078272 "GET /registro/interesado/ HTTP/1.1" 200 9055
+INFO 2025-07-11 15:23:59,499 views 59007 132348788078272 Correo de verificación enviado exitosamente a marko.vadel@gmail.com
+INFO 2025-07-11 15:23:59,501 basehttp 59007 132348788078272 "POST /registro/interesado/ HTTP/1.1" 200 9902
+INFO 2025-07-11 15:24:18,425 basehttp 59007 132348788078272 "GET /verificar-email/67d24882-c0ef-4895-85f3-7d6350dbaa25/ HTTP/1.1" 200 8208
+INFO 2025-07-11 15:24:19,927 basehttp 59007 132348788078272 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:24:24,793 basehttp 59007 132348788078272 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:24:24,811 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 15:26:54,506 basehttp 59007 132348788078272 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 216
+INFO 2025-07-11 15:26:54,521 basehttp 59007 132348788078272 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:28:02,653 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:28:02,669 basehttp 59007 132348788078272 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:28:09,125 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:28:09,143 basehttp 59007 132348788078272 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:28:09,445 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:28:09,634 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:28:22,802 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:28:22,820 basehttp 59007 132348788078272 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:28:29,568 basehttp 59007 132348788078272 "GET /perfil/interesado/ HTTP/1.1" 200 84448
+INFO 2025-07-11 15:29:51,758 autoreload 59007 132348910022912 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:29:52,508 autoreload 59833 139090624348416 Watching for file changes with StatReloader
+INFO 2025-07-11 15:29:54,208 basehttp 59833 139090434455232 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:29:54,226 basehttp 59833 139090434455232 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:29:54,788 basehttp 59833 139090434455232 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:29:54,968 basehttp 59833 139090434455232 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:29:55,007 autoreload 59833 139090624348416 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:29:55,433 autoreload 59917 127280520171776 Watching for file changes with StatReloader
+INFO 2025-07-11 15:30:01,831 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+WARNING 2025-07-11 15:30:07,204 log 59917 127280331355840 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 15:30:07,204 basehttp 59917 127280331355840 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 15:30:20,023 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+WARNING 2025-07-11 15:30:20,041 log 59917 127280331355840 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 15:30:20,042 basehttp 59917 127280331355840 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 15:30:20,048 basehttp 59917 127280321914560 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:31:39,916 basehttp 59917 127280331355840 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 77
+INFO 2025-07-11 15:31:53,394 basehttp 59917 127280331355840 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 201
+INFO 2025-07-11 15:31:53,420 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 86707
+INFO 2025-07-11 15:31:53,442 basehttp 59917 127280331355840 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+WARNING 2025-07-11 15:31:53,448 log 59917 127280321914560 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 15:31:53,448 basehttp 59917 127280321914560 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 15:32:11,563 basehttp 59917 127280331355840 "DELETE /ajax/experiencia/eliminar/19/ HTTP/1.1" 200 66
+INFO 2025-07-11 15:32:11,584 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+WARNING 2025-07-11 15:32:11,607 log 59917 127280331355840 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 15:32:11,607 basehttp 59917 127280331355840 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13621
+INFO 2025-07-11 15:32:33,900 basehttp 59917 127280331355840 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 77
+INFO 2025-07-11 15:32:39,430 basehttp 59917 127280331355840 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 201
+INFO 2025-07-11 15:32:39,459 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 86651
+INFO 2025-07-11 15:32:39,486 basehttp 59917 127280331355840 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:32:52,698 basehttp 59917 127280331355840 "POST /ajax/experiencia/editar/20/ HTTP/1.1" 200 204
+INFO 2025-07-11 15:32:52,719 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 86692
+INFO 2025-07-11 15:33:05,546 basehttp 59917 127280331355840 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 125
+INFO 2025-07-11 15:33:09,651 basehttp 59917 127280331355840 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 78
+INFO 2025-07-11 15:33:27,720 basehttp 59917 127280331355840 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 238
+INFO 2025-07-11 15:33:27,741 basehttp 59917 127280331355840 "GET /perfil/interesado/ HTTP/1.1" 200 88569
+INFO 2025-07-11 15:33:27,755 basehttp 59917 127280331355840 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:34:34,958 autoreload 59917 127280520171776 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:34:35,408 autoreload 60423 135935837180160 Watching for file changes with StatReloader
+INFO 2025-07-11 15:35:28,972 autoreload 60423 135935837180160 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:35:29,354 autoreload 60548 128546000081152 Watching for file changes with StatReloader
+INFO 2025-07-11 15:35:53,766 autoreload 60548 128546000081152 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:35:53,977 autoreload 60641 138922237776128 Watching for file changes with StatReloader
+INFO 2025-07-11 15:36:04,044 basehttp 60641 138922047829696 "POST /ajax/educacion/editar/67/ HTTP/1.1" 200 241
+INFO 2025-07-11 15:36:04,081 basehttp 60641 138922047829696 "GET /perfil/interesado/ HTTP/1.1" 200 88719
+INFO 2025-07-11 15:36:04,096 basehttp 60641 138922047829696 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:36:45,958 basehttp 60641 138922047829696 "DELETE /ajax/educacion/eliminar/67/ HTTP/1.1" 200 159
+INFO 2025-07-11 15:36:45,980 basehttp 60641 138922047829696 "GET /perfil/interesado/ HTTP/1.1" 200 86692
+INFO 2025-07-11 15:36:50,694 basehttp 60641 138922047829696 "DELETE /ajax/experiencia/eliminar/20/ HTTP/1.1" 200 66
+INFO 2025-07-11 15:36:50,718 basehttp 60641 138922047829696 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:37:00,939 basehttp 60641 138922047829696 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 142
+INFO 2025-07-11 15:37:00,962 basehttp 60641 138922047829696 "GET /perfil/interesado/ HTTP/1.1" 200 85486
+INFO 2025-07-11 15:37:00,978 basehttp 60641 138922047829696 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:37:07,297 basehttp 60641 138922047829696 "DELETE /ajax/idioma/eliminar/52/ HTTP/1.1" 200 61
+INFO 2025-07-11 15:37:07,320 basehttp 60641 138922047829696 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:38:24,856 autoreload 60641 138922237776128 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 15:38:25,068 autoreload 60933 124310711890176 Watching for file changes with StatReloader
+INFO 2025-07-11 15:39:35,373 autoreload 61399 133446265921792 Watching for file changes with StatReloader
+INFO 2025-07-11 15:39:38,074 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 84449
+INFO 2025-07-11 15:39:38,092 basehttp 61399 133446143833792 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:40:30,157 basehttp 61399 133446143833792 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 175
+INFO 2025-07-11 15:40:30,179 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 86595
+INFO 2025-07-11 15:41:13,579 basehttp 61399 133446143833792 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 171
+INFO 2025-07-11 15:41:13,607 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 88508
+INFO 2025-07-11 15:41:13,625 basehttp 61399 133446143833792 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:41:19,212 basehttp 61399 133446143833792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-11 15:41:19,234 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 88829
+INFO 2025-07-11 15:41:23,509 basehttp 61399 133446143833792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-11 15:41:23,530 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 89219
+INFO 2025-07-11 15:41:30,049 basehttp 61399 133446143833792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 159
+INFO 2025-07-11 15:41:30,070 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 89607
+INFO 2025-07-11 15:41:34,570 basehttp 61399 133446143833792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-11 15:41:34,592 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 89997
+INFO 2025-07-11 15:41:39,358 basehttp 61399 133446143833792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 159
+INFO 2025-07-11 15:41:39,381 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 90385
+INFO 2025-07-11 15:41:46,472 basehttp 61399 133446143833792 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 139
+INFO 2025-07-11 15:41:46,492 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91412
+INFO 2025-07-11 15:42:19,182 basehttp 61399 133446143833792 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:42:19,203 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91921
+INFO 2025-07-11 15:42:31,803 basehttp 61399 133446143833792 "POST /ajax/educacion/editar/68/ HTTP/1.1" 200 181
+INFO 2025-07-11 15:42:31,831 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91624
+INFO 2025-07-11 15:42:34,059 basehttp 61399 133446143833792 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:42:34,079 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91935
+INFO 2025-07-11 15:48:45,693 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:45,712 basehttp 61399 133446143833792 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 15:48:46,103 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:46,267 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:46,439 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:46,624 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:48,835 basehttp 61399 133446143833792 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:48,854 basehttp 61399 133446134392512 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:48,854 basehttp 61399 133446143833792 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:48,855 basehttp 61399 133445892167360 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:48,855 basehttp 61399 133445900560064 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:48,855 basehttp 61399 133446125999808 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:48,858 basehttp 61399 133446125999808 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:48,859 basehttp 61399 133445900560064 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:48,859 basehttp 61399 133446134392512 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:48,859 basehttp 61399 133445892167360 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:48,863 basehttp 61399 133445908952768 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:48,864 basehttp 61399 133445908952768 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:48,987 basehttp 61399 133445908952768 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:48,999 basehttp 61399 133445892167360 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:48,999 basehttp 61399 133445908952768 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:48,999 basehttp 61399 133446125999808 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:48,999 basehttp 61399 133446143833792 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,000 basehttp 61399 133446134392512 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,002 basehttp 61399 133446125999808 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,003 basehttp 61399 133446143833792 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,003 basehttp 61399 133446134392512 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,003 basehttp 61399 133445892167360 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,008 basehttp 61399 133445900560064 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,010 basehttp 61399 133445900560064 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,162 basehttp 61399 133445892167360 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:49,168 basehttp 61399 133445900560064 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,180 basehttp 61399 133446125999808 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,180 basehttp 61399 133445908952768 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,180 basehttp 61399 133445892167360 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,181 basehttp 61399 133445900560064 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,181 basehttp 61399 133446134392512 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,183 basehttp 61399 133446125999808 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,183 basehttp 61399 133445908952768 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,183 basehttp 61399 133446134392512 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,188 basehttp 61399 133446143833792 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,189 basehttp 61399 133446143833792 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,221 basehttp 61399 133445892167360 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,327 basehttp 61399 133445892167360 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,338 basehttp 61399 133446134392512 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,339 basehttp 61399 133445900560064 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,339 basehttp 61399 133445892167360 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,339 basehttp 61399 133445908952768 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,339 basehttp 61399 133446143833792 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,344 basehttp 61399 133446134392512 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,344 basehttp 61399 133445900560064 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,345 basehttp 61399 133446143833792 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,345 basehttp 61399 133445908952768 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,348 basehttp 61399 133446125999808 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,350 basehttp 61399 133446125999808 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,481 basehttp 61399 133446125999808 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,492 basehttp 61399 133446125999808 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,493 basehttp 61399 133446134392512 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,493 basehttp 61399 133446143833792 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,493 basehttp 61399 133445892167360 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,494 basehttp 61399 133445908952768 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,496 basehttp 61399 133446143833792 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,496 basehttp 61399 133446134392512 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,497 basehttp 61399 133445908952768 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,497 basehttp 61399 133445892167360 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,501 basehttp 61399 133445900560064 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,502 basehttp 61399 133445900560064 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,605 basehttp 61399 133445900560064 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:49,644 basehttp 61399 133445900560064 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,655 basehttp 61399 133446143833792 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,655 basehttp 61399 133445900560064 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,656 basehttp 61399 133446125999808 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,656 basehttp 61399 133445892167360 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,656 basehttp 61399 133445908952768 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,659 basehttp 61399 133446125999808 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,659 basehttp 61399 133446143833792 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,659 basehttp 61399 133445892167360 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,660 basehttp 61399 133445908952768 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,665 basehttp 61399 133446134392512 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,666 basehttp 61399 133446134392512 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,765 basehttp 61399 133446134392512 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:49,797 basehttp 61399 133446134392512 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,811 basehttp 61399 133446134392512 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,812 basehttp 61399 133445892167360 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,813 basehttp 61399 133445908952768 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,813 basehttp 61399 133445900560064 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,813 basehttp 61399 133445892167360 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,813 basehttp 61399 133446143833792 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,815 basehttp 61399 133445908952768 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,815 basehttp 61399 133446143833792 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,816 basehttp 61399 133445900560064 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,823 basehttp 61399 133446125999808 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,824 basehttp 61399 133446125999808 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:49,924 basehttp 61399 133446125999808 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:49,955 basehttp 61399 133446125999808 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:49,967 basehttp 61399 133446125999808 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:49,968 basehttp 61399 133445908952768 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:49,968 basehttp 61399 133446134392512 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:49,968 basehttp 61399 133445892167360 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:49,968 basehttp 61399 133446143833792 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:49,973 basehttp 61399 133446134392512 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:49,973 basehttp 61399 133446143833792 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:49,973 basehttp 61399 133445892167360 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:49,973 basehttp 61399 133445908952768 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:49,976 basehttp 61399 133445900560064 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:49,977 basehttp 61399 133445900560064 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:50,078 basehttp 61399 133445900560064 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:50,114 basehttp 61399 133445900560064 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:50,125 basehttp 61399 133445908952768 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:50,126 basehttp 61399 133445900560064 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:50,126 basehttp 61399 133445892167360 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:50,126 basehttp 61399 133446125999808 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:50,126 basehttp 61399 133446143833792 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:50,129 basehttp 61399 133446125999808 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:50,129 basehttp 61399 133445908952768 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:50,129 basehttp 61399 133446143833792 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:50,129 basehttp 61399 133445892167360 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:50,135 basehttp 61399 133446134392512 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:50,136 basehttp 61399 133446134392512 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:50,249 basehttp 61399 133446134392512 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:48:50,364 basehttp 61399 133446134392512 "GET /perfil/interesado/ HTTP/1.1" 200 91480
+INFO 2025-07-11 15:48:50,374 basehttp 61399 133446134392512 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:48:50,374 basehttp 61399 133446143833792 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:48:50,374 basehttp 61399 133445908952768 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:48:50,374 basehttp 61399 133445892167360 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:48:50,375 basehttp 61399 133445900560064 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:48:50,379 basehttp 61399 133445892167360 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:48:50,379 basehttp 61399 133445908952768 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:48:50,379 basehttp 61399 133446143833792 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:48:50,380 basehttp 61399 133445900560064 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:48:50,382 basehttp 61399 133446125999808 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:48:50,383 basehttp 61399 133446125999808 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:48:50,538 basehttp 61399 133446125999808 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:49:10,191 basehttp 61399 133446125999808 "POST /ajax/experiencia/editar/21/ HTTP/1.1" 200 182
+INFO 2025-07-11 15:49:19,508 basehttp 61399 133446125999808 "DELETE /ajax/idioma/eliminar/53/ HTTP/1.1" 200 61
+INFO 2025-07-11 15:49:30,378 basehttp 61399 133445883774656 "GET /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:49:30,384 basehttp 61399 133445883774656 "GET /login/?next=/perfil/interesado/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:49:30,433 basehttp 61399 133445883774656 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:49:30,433 basehttp 61399 133445866989248 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:49:30,434 basehttp 61399 133445875381952 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:49:30,436 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:49:30,436 basehttp 61399 133445858596544 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:49:30,436 basehttp 61399 133445866989248 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:49:30,436 basehttp 61399 133445304972992 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:49:30,766 basehttp 61399 133445866989248 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 15:49:34,879 basehttp 61399 133445866989248 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:49:34,896 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90444
+INFO 2025-07-11 15:49:34,907 basehttp 61399 133445866989248 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:49:34,908 basehttp 61399 133445304972992 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:49:34,908 basehttp 61399 133445858596544 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:49:34,917 basehttp 61399 133445883774656 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:50:07,886 basehttp 61399 133445866989248 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 143
+INFO 2025-07-11 15:50:12,579 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91465
+INFO 2025-07-11 15:50:17,365 basehttp 61399 133445866989248 "DELETE /ajax/idioma/eliminar/54/ HTTP/1.1" 200 61
+INFO 2025-07-11 15:50:19,911 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90443
+INFO 2025-07-11 15:50:50,914 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:50:51,110 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:50:51,303 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:50:51,947 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:50:52,126 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:51:00,574 basehttp 61399 133445866989248 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 138
+INFO 2025-07-11 15:51:00,597 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91601
+INFO 2025-07-11 15:51:04,194 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91601
+INFO 2025-07-11 15:51:04,736 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91601
+INFO 2025-07-11 15:51:05,075 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91601
+INFO 2025-07-11 15:51:08,471 basehttp 61399 133445866989248 "DELETE /ajax/idioma/eliminar/55/ HTTP/1.1" 200 61
+INFO 2025-07-11 15:51:08,495 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90587
+INFO 2025-07-11 15:51:33,836 basehttp 61399 133445866989248 "DELETE /ajax/habilidad/eliminar/61/ HTTP/1.1" 200 71
+INFO 2025-07-11 15:51:33,855 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90197
+INFO 2025-07-11 15:51:42,321 basehttp 61399 133445866989248 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 141
+INFO 2025-07-11 15:51:42,344 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:49,268 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,212 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,221 basehttp 61399 133445866989248 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:54,222 basehttp 61399 133445296580288 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:54,222 basehttp 61399 133445883774656 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:54,223 basehttp 61399 133445875381952 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:54,223 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:54,225 basehttp 61399 133445875381952 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:54,225 basehttp 61399 133445883774656 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:54,226 basehttp 61399 133445858596544 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:54,226 basehttp 61399 133445296580288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:54,230 basehttp 61399 133445304972992 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:54,231 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:54,386 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,396 basehttp 61399 133445883774656 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:54,396 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:54,397 basehttp 61399 133445866989248 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:54,397 basehttp 61399 133445304972992 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:54,397 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:54,399 basehttp 61399 133445883774656 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:54,399 basehttp 61399 133445875381952 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:54,399 basehttp 61399 133445866989248 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:54,399 basehttp 61399 133445858596544 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:54,405 basehttp 61399 133445296580288 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:54,406 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:54,544 basehttp 61399 133445296580288 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,556 basehttp 61399 133445858596544 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:54,556 basehttp 61399 133445304972992 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:54,556 basehttp 61399 133445296580288 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:54,556 basehttp 61399 133445875381952 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:54,556 basehttp 61399 133445866989248 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:54,561 basehttp 61399 133445875381952 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:54,562 basehttp 61399 133445866989248 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:54,562 basehttp 61399 133445304972992 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:54,562 basehttp 61399 133445858596544 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:54,565 basehttp 61399 133445883774656 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:54,566 basehttp 61399 133445883774656 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:54,725 basehttp 61399 133445883774656 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,737 basehttp 61399 133445883774656 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:54,737 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:54,737 basehttp 61399 133445296580288 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:54,737 basehttp 61399 133445866989248 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:54,737 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:54,740 basehttp 61399 133445866989248 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:54,740 basehttp 61399 133445858596544 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:54,740 basehttp 61399 133445875381952 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:54,740 basehttp 61399 133445296580288 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:54,743 basehttp 61399 133445304972992 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:54,744 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:54,881 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:54,895 basehttp 61399 133445883774656 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:54,895 basehttp 61399 133445858596544 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:54,895 basehttp 61399 133445866989248 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:54,895 basehttp 61399 133445304972992 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:54,896 basehttp 61399 133445875381952 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:54,900 basehttp 61399 133445883774656 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:54,900 basehttp 61399 133445866989248 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:54,900 basehttp 61399 133445858596544 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:54,900 basehttp 61399 133445875381952 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:54,904 basehttp 61399 133445296580288 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:54,905 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:55,065 basehttp 61399 133445296580288 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:55,076 basehttp 61399 133445304972992 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:55,077 basehttp 61399 133445883774656 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:55,077 basehttp 61399 133445875381952 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:55,077 basehttp 61399 133445296580288 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:55,077 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:55,080 basehttp 61399 133445304972992 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:55,081 basehttp 61399 133445858596544 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:55,081 basehttp 61399 133445883774656 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:55,081 basehttp 61399 133445875381952 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:55,085 basehttp 61399 133445866989248 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:55,087 basehttp 61399 133445866989248 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:51:55,197 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 91226
+INFO 2025-07-11 15:51:55,207 basehttp 61399 133445883774656 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:51:55,207 basehttp 61399 133445296580288 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:51:55,207 basehttp 61399 133445858596544 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:51:55,208 basehttp 61399 133445866989248 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:51:55,208 basehttp 61399 133445875381952 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:51:55,212 basehttp 61399 133445296580288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:51:55,212 basehttp 61399 133445883774656 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:51:55,212 basehttp 61399 133445858596544 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:51:55,212 basehttp 61399 133445875381952 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:51:55,215 basehttp 61399 133445304972992 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:51:55,216 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:52:12,807 basehttp 61399 133445304972992 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 233
+INFO 2025-07-11 15:52:12,833 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 93165
+INFO 2025-07-11 15:53:20,797 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:44,755 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:44,766 basehttp 61399 133445858596544 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:44,766 basehttp 61399 133445304972992 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:44,766 basehttp 61399 133445866989248 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:44,767 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:44,767 basehttp 61399 133445883774656 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:44,770 basehttp 61399 133445883774656 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:44,770 basehttp 61399 133445875381952 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:44,770 basehttp 61399 133445866989248 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:44,770 basehttp 61399 133445858596544 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:44,773 basehttp 61399 133445296580288 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:44,774 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:44,915 basehttp 61399 133445296580288 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:44,925 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:44,926 basehttp 61399 133445296580288 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:44,926 basehttp 61399 133445875381952 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:44,926 basehttp 61399 133445858596544 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:44,927 basehttp 61399 133445304972992 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:44,927 basehttp 61399 133445883774656 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:44,929 basehttp 61399 133445858596544 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:44,929 basehttp 61399 133445304972992 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:44,935 basehttp 61399 133445866989248 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:44,936 basehttp 61399 133445866989248 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:44,966 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:45,092 basehttp 61399 133445296580288 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:45,103 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:45,103 basehttp 61399 133445883774656 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:45,104 basehttp 61399 133445296580288 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:45,104 basehttp 61399 133445866989248 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:45,104 basehttp 61399 133445304972992 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:45,106 basehttp 61399 133445304972992 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:45,106 basehttp 61399 133445875381952 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:45,107 basehttp 61399 133445866989248 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:45,107 basehttp 61399 133445883774656 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:45,111 basehttp 61399 133445858596544 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:45,111 basehttp 61399 133445858596544 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:45,247 basehttp 61399 133445858596544 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:45,257 basehttp 61399 133445883774656 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:45,257 basehttp 61399 133445296580288 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:45,257 basehttp 61399 133445304972992 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:45,257 basehttp 61399 133445858596544 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:45,258 basehttp 61399 133445866989248 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:45,262 basehttp 61399 133445304972992 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:45,262 basehttp 61399 133445296580288 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:45,262 basehttp 61399 133445883774656 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:45,262 basehttp 61399 133445866989248 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:45,266 basehttp 61399 133445875381952 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:45,267 basehttp 61399 133445875381952 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:45,424 basehttp 61399 133445875381952 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:45,434 basehttp 61399 133445858596544 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:45,434 basehttp 61399 133445883774656 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:45,434 basehttp 61399 133445304972992 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:45,434 basehttp 61399 133445875381952 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:45,435 basehttp 61399 133445296580288 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:45,437 basehttp 61399 133445883774656 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:45,437 basehttp 61399 133445304972992 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:45,437 basehttp 61399 133445296580288 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:45,438 basehttp 61399 133445858596544 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:45,441 basehttp 61399 133445866989248 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:45,442 basehttp 61399 133445866989248 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:45,579 basehttp 61399 133445866989248 "GET /perfil/interesado/ HTTP/1.1" 200 90930
+INFO 2025-07-11 15:53:45,591 basehttp 61399 133445296580288 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 15:53:45,592 basehttp 61399 133445875381952 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:53:45,592 basehttp 61399 133445883774656 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:53:45,592 basehttp 61399 133445866989248 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:53:45,592 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:53:45,595 basehttp 61399 133445875381952 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:53:45,595 basehttp 61399 133445858596544 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 15:53:45,595 basehttp 61399 133445296580288 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:53:45,596 basehttp 61399 133445883774656 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 15:53:45,600 basehttp 61399 133445304972992 "GET /media/interesados/profile_zYLcVRn.jpg HTTP/1.1" 200 6752
+INFO 2025-07-11 15:53:45,601 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:53:50,096 basehttp 61399 133445304972992 "DELETE /ajax/experiencia/eliminar/21/ HTTP/1.1" 200 66
+INFO 2025-07-11 15:53:55,607 basehttp 61399 133445304972992 "GET / HTTP/1.1" 200 20160
+INFO 2025-07-11 15:53:55,614 basehttp 61399 133445304972992 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:53:55,614 basehttp 61399 133445858596544 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:53:57,110 basehttp 61399 133445304972992 "GET /perfil/interesado/ HTTP/1.1" 200 88793
+INFO 2025-07-11 15:53:58,650 basehttp 61399 133445304972992 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:53:58,663 basehttp 61399 133445304972992 "GET / HTTP/1.1" 200 20085
+INFO 2025-07-11 15:54:00,899 basehttp 61399 133445304972992 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:54:00,910 basehttp 61399 133445304972992 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:54:00,910 basehttp 61399 133445866989248 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:54:00,910 basehttp 61399 133445296580288 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:54:00,910 basehttp 61399 133445883774656 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:54:00,910 basehttp 61399 133445875381952 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:54:00,911 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:54:00,913 basehttp 61399 133445866989248 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:54:00,914 basehttp 61399 133445875381952 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:54:00,914 basehttp 61399 133445883774656 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:54:01,078 basehttp 61399 133445883774656 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:54:01,089 basehttp 61399 133445883774656 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:54:01,089 basehttp 61399 133445304972992 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:54:01,089 basehttp 61399 133445875381952 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:54:01,090 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:54:01,090 basehttp 61399 133445858596544 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:54:01,090 basehttp 61399 133445866989248 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:54:01,093 basehttp 61399 133445296580288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:54:01,093 basehttp 61399 133445875381952 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:54:01,093 basehttp 61399 133445858596544 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:54:01,217 basehttp 61399 133445858596544 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:54:01,226 basehttp 61399 133445866989248 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:54:01,226 basehttp 61399 133445883774656 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:54:01,226 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:54:01,226 basehttp 61399 133445296580288 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:54:01,226 basehttp 61399 133445858596544 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:54:01,227 basehttp 61399 133445875381952 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:54:01,229 basehttp 61399 133445304972992 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:54:01,229 basehttp 61399 133445866989248 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:54:01,229 basehttp 61399 133445883774656 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:54:01,393 basehttp 61399 133445883774656 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:54:01,402 basehttp 61399 133445304972992 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:54:01,403 basehttp 61399 133445858596544 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:54:01,403 basehttp 61399 133445875381952 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:54:01,403 basehttp 61399 133445296580288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:54:01,403 basehttp 61399 133445883774656 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:54:01,403 basehttp 61399 133445866989248 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:54:01,406 basehttp 61399 133445296580288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:54:01,406 basehttp 61399 133445875381952 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:54:01,406 basehttp 61399 133445858596544 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:54:01,548 basehttp 61399 133445875381952 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 15:54:01,554 basehttp 61399 133445296580288 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 15:54:01,555 basehttp 61399 133445875381952 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 15:54:01,556 basehttp 61399 133445296580288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 15:54:01,556 basehttp 61399 133445866989248 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 15:54:01,556 basehttp 61399 133445883774656 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 15:54:01,556 basehttp 61399 133445304972992 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 15:54:01,557 basehttp 61399 133445858596544 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 15:54:01,558 basehttp 61399 133445866989248 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 15:54:01,558 basehttp 61399 133445858596544 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 15:54:06,393 autoreload 63659 137791027822848 Watching for file changes with StatReloader
+INFO 2025-07-11 15:54:07,842 basehttp 63659 137790905906880 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:54:10,577 basehttp 63659 137790905906880 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:54:10,602 basehttp 63659 137790905906880 "GET /perfil/interesado/ HTTP/1.1" 200 88793
+INFO 2025-07-11 15:54:14,762 basehttp 63659 137790905906880 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:54:14,815 basehttp 63659 137790905906880 "GET / HTTP/1.1" 200 20085
+INFO 2025-07-11 15:54:17,529 basehttp 63659 137790905906880 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:54:20,576 basehttp 63659 137790905906880 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:54:20,600 basehttp 63659 137790905906880 "GET /admin/ HTTP/1.1" 200 34665
+INFO 2025-07-11 15:54:20,661 basehttp 63659 137790662633152 "GET /static/vendor/adminlte/img/AdminLTELogo.png HTTP/1.1" 200 2637
+INFO 2025-07-11 15:54:20,662 basehttp 63659 137790671025856 "GET /static/jazzmin/css/main.css HTTP/1.1" 200 16969
+INFO 2025-07-11 15:54:20,662 basehttp 63659 137790905906880 "GET /static/vendor/fontawesome-free/css/all.min.css HTTP/1.1" 200 103009
+INFO 2025-07-11 15:54:20,663 basehttp 63659 137790662633152 "GET /static/vendor/bootstrap/js/bootstrap.min.js HTTP/1.1" 200 62440
+INFO 2025-07-11 15:54:20,663 basehttp 63659 137790887024320 "GET /static/vendor/bootswatch/darkly/bootstrap.min.css HTTP/1.1" 200 164202
+INFO 2025-07-11 15:54:20,664 basehttp 63659 137790654240448 "GET /static/admin/js/vendor/jquery/jquery.js HTTP/1.1" 200 285314
+INFO 2025-07-11 15:54:20,666 basehttp 63659 137790895417024 "GET /static/vendor/adminlte/css/adminlte.min.css HTTP/1.1" 200 1382975
+INFO 2025-07-11 15:54:20,666 basehttp 63659 137790671025856 "GET /static/jazzmin/js/main.js HTTP/1.1" 200 2391
+INFO 2025-07-11 15:54:20,667 basehttp 63659 137790662633152 "GET /static/vendor/adminlte/js/adminlte.min.js HTTP/1.1" 200 44244
+INFO 2025-07-11 15:54:20,797 basehttp 63659 137790671025856 "GET /static/vendor/fontawesome-free/webfonts/fa-regular-400.woff2 HTTP/1.1" 200 25392
+INFO 2025-07-11 15:54:20,798 basehttp 63659 137790662633152 "GET /static/vendor/fontawesome-free/webfonts/fa-solid-900.woff2 HTTP/1.1" 200 156400
+INFO 2025-07-11 15:54:23,362 basehttp 63659 137790662633152 "GET /admin/usuarios/usuario/ HTTP/1.1" 200 32181
+INFO 2025-07-11 15:54:23,372 basehttp 63659 137790662633152 "GET /static/vendor/select2/css/select2.min.css HTTP/1.1" 200 16264
+INFO 2025-07-11 15:54:23,375 basehttp 63659 137790905906880 "GET /static/admin/js/jquery.init.js HTTP/1.1" 200 347
+INFO 2025-07-11 15:54:23,375 basehttp 63659 137790654240448 "GET /static/admin/js/admin/RelatedObjectLookups.js HTTP/1.1" 200 9777
+INFO 2025-07-11 15:54:23,376 basehttp 63659 137790887024320 "GET /static/admin/js/actions.js HTTP/1.1" 200 8076
+INFO 2025-07-11 15:54:23,376 basehttp 63659 137790895417024 "GET /static/admin/js/core.js HTTP/1.1" 200 6208
+INFO 2025-07-11 15:54:23,378 basehttp 63659 137790905906880 "GET /static/admin/js/urlify.js HTTP/1.1" 200 7887
+INFO 2025-07-11 15:54:23,378 basehttp 63659 137790887024320 "GET /static/admin/js/prepopulate.js HTTP/1.1" 200 1531
+INFO 2025-07-11 15:54:23,380 basehttp 63659 137790895417024 "GET /static/admin/img/icon-yes.svg HTTP/1.1" 200 436
+INFO 2025-07-11 15:54:23,380 basehttp 63659 137790654240448 "GET /static/admin/js/vendor/xregexp/xregexp.js HTTP/1.1" 200 325171
+INFO 2025-07-11 15:54:23,384 basehttp 63659 137790671025856 "GET /admin/jsi18n/ HTTP/1.1" 200 9208
+INFO 2025-07-11 15:54:23,385 basehttp 63659 137790671025856 "GET /static/admin/img/icon-no.svg HTTP/1.1" 200 560
+INFO 2025-07-11 15:54:23,424 basehttp 63659 137790895417024 "GET /static/vendor/select2/js/select2.min.js HTTP/1.1" 200 73170
+INFO 2025-07-11 15:54:23,430 basehttp 63659 137790671025856 "GET /static/jazzmin/js/change_list.js HTTP/1.1" 200 2252
+INFO 2025-07-11 15:54:30,346 basehttp 63659 137790671025856 "POST /admin/usuarios/usuario/ HTTP/1.1" 200 19011
+INFO 2025-07-11 15:54:30,356 basehttp 63659 137790671025856 "GET /static/admin/js/cancel.js HTTP/1.1" 200 564
+INFO 2025-07-11 15:54:31,967 basehttp 63659 137790671025856 "POST /admin/usuarios/usuario/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:54:31,994 basehttp 63659 137790671025856 "GET /admin/usuarios/usuario/ HTTP/1.1" 200 31817
+INFO 2025-07-11 15:54:32,056 basehttp 63659 137790671025856 "GET /admin/jsi18n/ HTTP/1.1" 200 9208
+INFO 2025-07-11 15:54:35,769 basehttp 63659 137790671025856 "GET /admin/usuarios/usuario/ HTTP/1.1" 200 31314
+INFO 2025-07-11 15:54:36,560 basehttp 63659 137790671025856 "GET /admin/ HTTP/1.1" 200 33960
+INFO 2025-07-11 15:54:38,818 basehttp 63659 137790671025856 "GET /registro/interesado/ HTTP/1.1" 200 8772
+INFO 2025-07-11 15:54:44,599 views 63659 137790671025856 Correo de verificación enviado exitosamente a marko.vadel@gmail.com
+INFO 2025-07-11 15:54:44,602 basehttp 63659 137790671025856 "POST /registro/interesado/ HTTP/1.1" 200 9619
+INFO 2025-07-11 15:54:47,854 basehttp 63659 137790645847744 "GET /verificar-email/a8934115-0e3d-4410-b0f4-ec7d259fcd72/ HTTP/1.1" 200 8208
+INFO 2025-07-11 15:54:49,366 basehttp 63659 137790645847744 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 15:54:51,026 basehttp 63659 137790645847744 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:54:51,050 basehttp 63659 137790645847744 "GET /perfil/interesado/ HTTP/1.1" 200 82239
+INFO 2025-07-11 15:55:17,832 basehttp 63659 137790645847744 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 77
+INFO 2025-07-11 15:55:22,348 basehttp 63659 137790645847744 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 198
+INFO 2025-07-11 15:55:54,575 basehttp 63659 137790645847744 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 168
+INFO 2025-07-11 15:56:08,816 basehttp 63659 137790645847744 "GET /perfil/interesado/ HTTP/1.1" 200 88833
+INFO 2025-07-11 15:56:27,935 basehttp 63659 137790645847744 "GET /perfil/interesado/ HTTP/1.1" 200 88833
+INFO 2025-07-11 15:56:36,252 basehttp 63659 137790645847744 "DELETE /ajax/experiencia/eliminar/23/ HTTP/1.1" 200 66
+INFO 2025-07-11 15:56:36,271 basehttp 63659 137790645847744 "GET /perfil/interesado/ HTTP/1.1" 200 86635
+INFO 2025-07-11 15:56:54,135 basehttp 63659 137790645847744 "DELETE /ajax/experiencia/eliminar/22/ HTTP/1.1" 200 66
+INFO 2025-07-11 15:56:54,153 basehttp 63659 137790645847744 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 15:58:53,439 basehttp 63659 137790645847744 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 15:58:53,451 basehttp 63659 137790645847744 "GET / HTTP/1.1" 200 20085
+INFO 2025-07-11 15:58:57,112 basehttp 63659 137790645847744 "GET /?page=2 HTTP/1.1" 200 17925
+INFO 2025-07-11 15:58:58,348 basehttp 63659 137790645847744 "GET /?page=1 HTTP/1.1" 200 19772
+INFO 2025-07-11 16:00:26,536 basehttp 63659 137790645847744 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 16:00:26,545 basehttp 63659 137790645847744 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:00:26,545 basehttp 63659 137790654240448 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:00:26,546 basehttp 63659 137790671025856 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:00:26,547 basehttp 63659 137790654240448 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:00:26,548 basehttp 63659 137790905906880 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:00:26,548 basehttp 63659 137790671025856 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:00:26,548 basehttp 63659 137790887024320 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:00:26,548 basehttp 63659 137790895417024 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:00:26,550 basehttp 63659 137790895417024 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:00:27,002 basehttp 63659 137790895417024 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 16:00:27,864 basehttp 63659 137790895417024 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 16:00:30,754 basehttp 63659 137790895417024 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 16:00:30,769 basehttp 63659 137790895417024 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:00:30,778 basehttp 63659 137790895417024 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:00:30,779 basehttp 63659 137790671025856 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:00:30,780 basehttp 63659 137790671025856 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:01:04,561 basehttp 63659 137790671025856 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 139
+INFO 2025-07-11 16:01:04,579 basehttp 63659 137790671025856 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:01:33,975 basehttp 63659 137790662633152 "GET / HTTP/1.1" 200 19772
+INFO 2025-07-11 16:01:33,985 basehttp 63659 137790629062336 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:01:33,986 basehttp 63659 137790662633152 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:01:33,986 basehttp 63659 137790637455040 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:01:33,988 basehttp 63659 137790067046080 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:01:33,988 basehttp 63659 137790620669632 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:01:33,988 basehttp 63659 137790637455040 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:01:33,988 basehttp 63659 137790058653376 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:01:33,988 basehttp 63659 137790629062336 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:01:33,989 basehttp 63659 137790620669632 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:01:34,815 basehttp 63659 137790629062336 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 16:01:36,339 basehttp 63659 137790629062336 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 16:01:40,559 basehttp 63659 137790629062336 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 16:01:42,037 basehttp 63659 137790629062336 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 16:01:45,213 basehttp 63659 137790629062336 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 16:01:45,232 basehttp 63659 137790629062336 "GET /dashboard/reclutador/ HTTP/1.1" 200 16397
+INFO 2025-07-11 16:01:47,208 basehttp 63659 137790629062336 "GET /publicar-vacante/ HTTP/1.1" 200 26722
+INFO 2025-07-11 16:03:42,899 autoreload 63659 137791027822848 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:03:43,235 autoreload 65788 125157051810048 Watching for file changes with StatReloader
+INFO 2025-07-11 16:03:58,464 basehttp 65788 125156929304256 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 44
+INFO 2025-07-11 16:04:09,092 autoreload 65788 125157051810048 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:04:09,473 autoreload 65897 138454019178752 Watching for file changes with StatReloader
+INFO 2025-07-11 16:04:10,111 basehttp 65897 138453830334144 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 168
+INFO 2025-07-11 16:04:12,932 basehttp 65897 138453830334144 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 168
+INFO 2025-07-11 16:05:11,030 autoreload 65897 138454019178752 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:05:11,316 autoreload 66030 140422989902080 Watching for file changes with StatReloader
+INFO 2025-07-11 16:05:29,408 autoreload 66030 140422989902080 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:05:29,614 autoreload 66076 124569309286656 Watching for file changes with StatReloader
+INFO 2025-07-11 16:06:09,101 autoreload 66076 124569309286656 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:06:09,464 autoreload 66184 124447532884224 Watching for file changes with StatReloader
+INFO 2025-07-11 16:06:40,589 autoreload 66184 124447532884224 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:06:40,787 autoreload 66225 129321770041600 Watching for file changes with StatReloader
+INFO 2025-07-11 16:06:58,150 autoreload 66225 129321770041600 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:06:58,416 autoreload 66312 139264252236032 Watching for file changes with StatReloader
+INFO 2025-07-11 16:08:09,222 autoreload 66312 139264252236032 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:08:09,432 autoreload 66468 140640029421824 Watching for file changes with StatReloader
+INFO 2025-07-11 16:08:20,146 basehttp 66468 140639839712960 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,167 basehttp 66468 140639830271680 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,167 basehttp 66468 140639839712960 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,167 basehttp 66468 140639813486272 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,168 basehttp 66468 140639805093568 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,168 basehttp 66468 140639795652288 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,168 basehttp 66468 140639821878976 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,171 basehttp 66468 140639813486272 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,171 basehttp 66468 140639795652288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,171 basehttp 66468 140639821878976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:20,172 basehttp 66468 140639805093568 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,255 basehttp 66468 140639805093568 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,264 basehttp 66468 140639805093568 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,264 basehttp 66468 140639830271680 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,264 basehttp 66468 140639839712960 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,265 basehttp 66468 140639795652288 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,265 basehttp 66468 140639821878976 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,265 basehttp 66468 140639813486272 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,268 basehttp 66468 140639821878976 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,268 basehttp 66468 140639795652288 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,268 basehttp 66468 140639839712960 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,268 basehttp 66468 140639813486272 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:20,436 basehttp 66468 140639813486272 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639830271680 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639805093568 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639839712960 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639795652288 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639813486272 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,446 basehttp 66468 140639821878976 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,449 basehttp 66468 140639805093568 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,449 basehttp 66468 140639821878976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:20,450 basehttp 66468 140639795652288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,450 basehttp 66468 140639830271680 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,618 basehttp 66468 140639830271680 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,631 basehttp 66468 140639821878976 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,631 basehttp 66468 140639813486272 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,631 basehttp 66468 140639805093568 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,632 basehttp 66468 140639839712960 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,632 basehttp 66468 140639830271680 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,632 basehttp 66468 140639795652288 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,634 basehttp 66468 140639813486272 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,634 basehttp 66468 140639839712960 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,634 basehttp 66468 140639805093568 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,634 basehttp 66468 140639821878976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:20,773 basehttp 66468 140639805093568 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,780 basehttp 66468 140639839712960 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,780 basehttp 66468 140639813486272 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,780 basehttp 66468 140639805093568 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,780 basehttp 66468 140639821878976 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,782 basehttp 66468 140639795652288 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,783 basehttp 66468 140639830271680 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,784 basehttp 66468 140639839712960 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,784 basehttp 66468 140639821878976 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,785 basehttp 66468 140639830271680 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,785 basehttp 66468 140639795652288 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:20,931 basehttp 66468 140639795652288 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:20,939 basehttp 66468 140639830271680 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:20,939 basehttp 66468 140639805093568 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:20,940 basehttp 66468 140639813486272 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:20,940 basehttp 66468 140639795652288 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:20,940 basehttp 66468 140639839712960 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:20,940 basehttp 66468 140639821878976 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:20,943 basehttp 66468 140639813486272 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:20,943 basehttp 66468 140639805093568 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:20,943 basehttp 66468 140639830271680 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:20,943 basehttp 66468 140639821878976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:21,086 basehttp 66468 140639830271680 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639795652288 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639839712960 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639813486272 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639821878976 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639830271680 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:21,101 basehttp 66468 140639805093568 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:21,108 basehttp 66468 140639839712960 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:21,108 basehttp 66468 140639821878976 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:21,108 basehttp 66468 140639805093568 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:21,108 basehttp 66468 140639813486272 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:21,290 basehttp 66468 140639805093568 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:21,302 basehttp 66468 140639795652288 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:21,302 basehttp 66468 140639813486272 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:21,303 basehttp 66468 140639805093568 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:21,303 basehttp 66468 140639830271680 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:21,303 basehttp 66468 140639821878976 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:21,303 basehttp 66468 140639839712960 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:21,307 basehttp 66468 140639830271680 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:21,308 basehttp 66468 140639813486272 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:21,308 basehttp 66468 140639821878976 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:21,308 basehttp 66468 140639795652288 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:21,456 basehttp 66468 140639821878976 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:21,466 basehttp 66468 140639821878976 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:21,466 basehttp 66468 140639830271680 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:21,467 basehttp 66468 140639805093568 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:21,467 basehttp 66468 140639839712960 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:21,467 basehttp 66468 140639795652288 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:21,467 basehttp 66468 140639813486272 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:21,471 basehttp 66468 140639830271680 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:21,471 basehttp 66468 140639795652288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:21,471 basehttp 66468 140639805093568 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:21,471 basehttp 66468 140639839712960 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:21,608 basehttp 66468 140639839712960 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639830271680 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639821878976 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639839712960 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639795652288 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639813486272 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:21,616 basehttp 66468 140639805093568 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:21,619 basehttp 66468 140639795652288 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:21,619 basehttp 66468 140639830271680 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:21,619 basehttp 66468 140639821878976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:21,620 basehttp 66468 140639813486272 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:21,787 basehttp 66468 140639821878976 "GET /perfil/interesado/ HTTP/1.1" 200 85498
+INFO 2025-07-11 16:08:21,794 basehttp 66468 140639813486272 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:08:21,795 basehttp 66468 140639795652288 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:08:21,795 basehttp 66468 140639805093568 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:08:21,795 basehttp 66468 140639821878976 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:08:21,796 basehttp 66468 140639839712960 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:08:21,796 basehttp 66468 140639830271680 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:08:21,798 basehttp 66468 140639813486272 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:08:21,799 basehttp 66468 140639795652288 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:08:21,799 basehttp 66468 140639839712960 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:08:21,800 basehttp 66468 140639805093568 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:08:34,935 basehttp 66468 140639805093568 "DELETE /ajax/idioma/eliminar/57/ HTTP/1.1" 200 61
+INFO 2025-07-11 16:08:34,953 basehttp 66468 140639805093568 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:09:06,240 basehttp 66468 140639805093568 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 125
+INFO 2025-07-11 16:09:09,425 basehttp 66468 140639805093568 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 78
+INFO 2025-07-11 16:11:12,513 autoreload 66468 140640029421824 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:11:13,078 autoreload 66781 132524705296640 Watching for file changes with StatReloader
+INFO 2025-07-11 16:11:17,880 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:11:18,071 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:11:18,247 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:11:18,407 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:11:18,568 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:11:43,616 basehttp 66781 132524582893248 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 77
+INFO 2025-07-11 16:11:49,764 basehttp 66781 132524582893248 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 265
+INFO 2025-07-11 16:11:49,784 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 86604
+INFO 2025-07-11 16:11:58,717 basehttp 66781 132524582893248 "POST /ajax/experiencia/editar/24/ HTTP/1.1" 200 264
+INFO 2025-07-11 16:11:58,737 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 86600
+INFO 2025-07-11 16:12:53,959 basehttp 66781 132524582893248 "POST /ajax/experiencia/editar/24/ HTTP/1.1" 200 268
+INFO 2025-07-11 16:12:53,977 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 86604
+INFO 2025-07-11 16:13:07,600 basehttp 66781 132524582893248 "DELETE /ajax/experiencia/eliminar/24/ HTTP/1.1" 200 66
+INFO 2025-07-11 16:13:07,623 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 84474
+INFO 2025-07-11 16:13:23,146 basehttp 66781 132524582893248 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 77
+INFO 2025-07-11 16:13:26,288 basehttp 66781 132524582893248 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 287
+INFO 2025-07-11 16:13:26,306 basehttp 66781 132524582893248 "GET /perfil/interesado/ HTTP/1.1" 200 86640
+INFO 2025-07-11 16:15:33,496 autoreload 66781 132524705296640 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:15:33,734 autoreload 67378 132720176853248 Watching for file changes with StatReloader
+INFO 2025-07-11 16:15:49,203 autoreload 67378 132720176853248 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:15:49,587 autoreload 67477 139213201154304 Watching for file changes with StatReloader
+INFO 2025-07-11 16:15:54,957 autoreload 67477 139213201154304 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:15:55,181 autoreload 67539 133390596292864 Watching for file changes with StatReloader
+INFO 2025-07-11 16:21:43,737 autoreload 67539 133390596292864 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:21:43,962 autoreload 68246 140561718071552 Watching for file changes with StatReloader
+INFO 2025-07-11 16:21:55,421 autoreload 68246 140561718071552 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:21:55,792 autoreload 68336 139688195604736 Watching for file changes with StatReloader
+INFO 2025-07-11 16:22:02,475 autoreload 68434 130722082881792 Watching for file changes with StatReloader
+INFO 2025-07-11 16:22:47,870 autoreload 68434 130722082881792 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 16:22:48,071 autoreload 68561 127670233428224 Watching for file changes with StatReloader
+INFO 2025-07-11 16:22:52,787 autoreload 68649 127380984815872 Watching for file changes with StatReloader
+INFO 2025-07-11 16:22:55,162 basehttp 68649 127380795422400 "GET /perfil/interesado/ HTTP/1.1" 200 86640
+INFO 2025-07-11 16:22:55,631 basehttp 68649 127380795422400 "GET /perfil/interesado/ HTTP/1.1" 200 86640
+INFO 2025-07-11 16:22:56,718 basehttp 68649 127380795422400 "GET / HTTP/1.1" 200 20160
+INFO 2025-07-11 16:22:57,320 basehttp 68649 127380795422400 "GET /perfil/interesado/ HTTP/1.1" 200 86640
+INFO 2025-07-11 16:22:57,918 basehttp 68649 127380795422400 "GET /mis-postulaciones/ HTTP/1.1" 200 15102
+INFO 2025-07-11 16:22:58,409 basehttp 68649 127380795422400 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-11 16:22:58,422 basehttp 68649 127380795422400 "GET / HTTP/1.1" 200 20085
+INFO 2025-07-11 16:25:29,699 autoreload 68649 127380984815872 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:25:30,111 autoreload 69260 133954487144704 Watching for file changes with StatReloader
+INFO 2025-07-11 16:26:11,743 autoreload 69260 133954487144704 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:26:11,955 autoreload 69366 137168417595648 Watching for file changes with StatReloader
+INFO 2025-07-11 16:33:44,947 basehttp 69366 137168226875072 "GET / HTTP/1.1" 200 19938
+INFO 2025-07-11 16:34:00,852 basehttp 69366 137168226875072 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:02,274 basehttp 69366 137168226875072 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:02,484 basehttp 69366 137168226875072 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:21,305 autoreload 70245 134824898691328 Watching for file changes with StatReloader
+INFO 2025-07-11 16:34:23,644 basehttp 70245 134824709846720 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:24,237 basehttp 70245 134824709846720 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:24,422 basehttp 70245 134824709846720 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:26,482 basehttp 70245 134824709846720 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:26,499 basehttp 70245 134824683620032 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:34:26,499 basehttp 70245 134824692012736 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:34:26,500 basehttp 70245 134824709846720 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:34:26,500 basehttp 70245 134824675227328 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:34:26,500 basehttp 70245 134824325019328 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:34:26,500 basehttp 70245 134824700405440 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:34:26,504 basehttp 70245 134824683620032 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:34:26,504 basehttp 70245 134824325019328 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:34:26,505 basehttp 70245 134824675227328 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:34:26,858 basehttp 70245 134824325019328 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:26,870 basehttp 70245 134824325019328 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:34:26,870 basehttp 70245 134824683620032 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:34:26,870 basehttp 70245 134824700405440 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:34:26,870 basehttp 70245 134824692012736 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:34:26,870 basehttp 70245 134824709846720 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:34:26,871 basehttp 70245 134824675227328 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:34:26,873 basehttp 70245 134824700405440 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:34:26,873 basehttp 70245 134824709846720 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:34:26,873 basehttp 70245 134824692012736 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:34:27,039 basehttp 70245 134824709846720 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:27,049 basehttp 70245 134824675227328 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:34:27,050 basehttp 70245 134824325019328 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:34:27,050 basehttp 70245 134824683620032 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:34:27,050 basehttp 70245 134824709846720 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:34:27,050 basehttp 70245 134824700405440 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:34:27,050 basehttp 70245 134824692012736 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:34:27,054 basehttp 70245 134824675227328 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:34:27,055 basehttp 70245 134824325019328 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:34:27,055 basehttp 70245 134824683620032 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:34:27,199 basehttp 70245 134824325019328 "GET / HTTP/1.1" 200 19791
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824709846720 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824325019328 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824700405440 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824692012736 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824683620032 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:34:27,207 basehttp 70245 134824675227328 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:34:27,211 basehttp 70245 134824683620032 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-11 16:34:27,211 basehttp 70245 134824709846720 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:34:27,212 basehttp 70245 134824700405440 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-11 16:34:42,954 basehttp 70245 134824700405440 "GET / HTTP/1.1" 200 19771
+INFO 2025-07-11 16:34:46,257 basehttp 70245 134824700405440 "GET /?page=2 HTTP/1.1" 200 17924
+INFO 2025-07-11 16:41:07,106 autoreload 70245 134824898691328 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:41:07,343 autoreload 71193 126280854900992 Watching for file changes with StatReloader
+INFO 2025-07-11 16:41:37,778 autoreload 71193 126280854900992 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 16:41:38,024 autoreload 71301 126408949317888 Watching for file changes with StatReloader
+INFO 2025-07-11 16:41:43,365 autoreload 71301 126408949317888 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 16:41:43,619 autoreload 71392 139177456148736 Watching for file changes with StatReloader
+INFO 2025-07-11 16:43:12,986 basehttp 71392 139177267033792 "GET / HTTP/1.1" 200 19771
+INFO 2025-07-11 16:43:17,639 basehttp 71392 139177267033792 "GET /?page=2 HTTP/1.1" 200 17924
+INFO 2025-07-11 16:43:18,502 basehttp 71392 139177267033792 "GET /?page=1 HTTP/1.1" 200 19771
+INFO 2025-07-11 16:43:19,318 basehttp 71392 139177267033792 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 16:43:23,388 basehttp 71392 139177267033792 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 16:43:23,406 basehttp 71392 139177267033792 "GET /perfil/interesado/ HTTP/1.1" 200 89503
+INFO 2025-07-11 16:43:43,771 basehttp 71392 139177267033792 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 232
+INFO 2025-07-11 16:43:43,791 basehttp 71392 139177267033792 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:11,948 autoreload 71748 123945633050880 Watching for file changes with StatReloader
+INFO 2025-07-11 16:44:13,686 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:13,843 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:14,010 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:14,184 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:14,360 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:39,583 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:41,193 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:41,391 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:41,533 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:42,508 basehttp 71748 123945441294016 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:42,528 basehttp 71748 123945441294016 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:44:42,529 basehttp 71748 123945399330496 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:44:42,529 basehttp 71748 123945432901312 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:44:42,529 basehttp 71748 123945416115904 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:44:42,530 basehttp 71748 123945407723200 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:44:42,530 basehttp 71748 123945424508608 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:44:42,532 basehttp 71748 123945407723200 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:44:42,533 basehttp 71748 123945432901312 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:44:42,533 basehttp 71748 123945416115904 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:44:42,533 basehttp 71748 123945399330496 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:44:42,667 basehttp 71748 123945416115904 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:42,676 basehttp 71748 123945432901312 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:44:42,676 basehttp 71748 123945424508608 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:44:42,676 basehttp 71748 123945416115904 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:44:42,676 basehttp 71748 123945441294016 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:44:42,677 basehttp 71748 123945399330496 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:44:42,677 basehttp 71748 123945407723200 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:44:42,680 basehttp 71748 123945407723200 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:44:42,680 basehttp 71748 123945432901312 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:44:42,680 basehttp 71748 123945441294016 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:44:42,680 basehttp 71748 123945424508608 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:44:42,828 basehttp 71748 123945424508608 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:42,835 basehttp 71748 123945424508608 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:44:42,835 basehttp 71748 123945432901312 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:44:42,835 basehttp 71748 123945441294016 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:44:42,836 basehttp 71748 123945407723200 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:44:42,836 basehttp 71748 123945416115904 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:44:42,838 basehttp 71748 123945399330496 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:44:42,839 basehttp 71748 123945432901312 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:44:42,840 basehttp 71748 123945399330496 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:44:42,840 basehttp 71748 123945416115904 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:44:42,840 basehttp 71748 123945407723200 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:44:42,965 basehttp 71748 123945407723200 "GET /perfil/interesado/ HTTP/1.1" 200 91512
+INFO 2025-07-11 16:44:42,977 basehttp 71748 123945441294016 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 16:44:42,977 basehttp 71748 123945424508608 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 16:44:42,977 basehttp 71748 123945416115904 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 16:44:42,977 basehttp 71748 123945407723200 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 16:44:42,978 basehttp 71748 123945432901312 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 16:44:42,978 basehttp 71748 123945399330496 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 16:44:42,980 basehttp 71748 123945416115904 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 16:44:42,981 basehttp 71748 123945424508608 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 16:44:42,981 basehttp 71748 123945399330496 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 16:44:42,981 basehttp 71748 123945441294016 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 16:44:48,744 basehttp 71748 123945416115904 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-11 16:44:48,765 basehttp 71748 123945416115904 "GET /perfil/interesado/ HTTP/1.1" 200 91833
+INFO 2025-07-11 16:45:00,586 basehttp 71748 123945416115904 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 216
+INFO 2025-07-11 16:45:00,599 basehttp 71748 123945416115904 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 16:45:01,837 basehttp 71748 123945416115904 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 91807
+INFO 2025-07-11 16:45:01,856 basehttp 71748 123945416115904 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 16:46:29,833 autoreload 71748 123945633050880 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 16:46:30,105 autoreload 72113 136189972664576 Watching for file changes with StatReloader
+INFO 2025-07-11 16:46:40,449 autoreload 72113 136189972664576 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 16:46:40,793 autoreload 72209 126955554689280 Watching for file changes with StatReloader
+INFO 2025-07-11 16:46:43,327 basehttp 72209 126955432179392 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 88944
+INFO 2025-07-11 16:46:43,347 basehttp 72209 126955432179392 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 16:46:43,609 basehttp 72209 126955432179392 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 88944
+INFO 2025-07-11 16:46:50,670 basehttp 72209 126955432179392 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 88944
+INFO 2025-07-11 17:01:55,451 autoreload 72209 126955554689280 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:01:55,749 autoreload 74580 134107419160832 Watching for file changes with StatReloader
+INFO 2025-07-11 17:04:33,846 basehttp 74580 134107297216192 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:33,879 basehttp 74580 134107297216192 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:33,879 basehttp 74580 134107287774912 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:33,879 basehttp 74580 134107057088192 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:33,880 basehttp 74580 134107048695488 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:33,880 basehttp 74580 134107279382208 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:33,882 basehttp 74580 134107279382208 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:33,883 basehttp 74580 134107057088192 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:33,883 basehttp 74580 134107048695488 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:33,883 basehttp 74580 134107287774912 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:33,883 basehttp 74580 134107065480896 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:33,886 basehttp 74580 134107065480896 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:33,971 basehttp 74580 134107065480896 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:33,980 basehttp 74580 134107065480896 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:33,981 basehttp 74580 134107297216192 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:33,981 basehttp 74580 134107048695488 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:33,981 basehttp 74580 134107279382208 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:33,981 basehttp 74580 134107057088192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:33,985 basehttp 74580 134107057088192 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:33,985 basehttp 74580 134107279382208 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:33,985 basehttp 74580 134107297216192 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:33,985 basehttp 74580 134107048695488 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:33,987 basehttp 74580 134107287774912 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:33,989 basehttp 74580 134107287774912 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:34,130 basehttp 74580 134107287774912 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:34,140 basehttp 74580 134107065480896 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:34,140 basehttp 74580 134107287774912 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:34,141 basehttp 74580 134107057088192 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:34,141 basehttp 74580 134107048695488 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:34,141 basehttp 74580 134107279382208 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:34,144 basehttp 74580 134107048695488 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:34,144 basehttp 74580 134107065480896 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:34,144 basehttp 74580 134107279382208 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:34,144 basehttp 74580 134107057088192 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:34,150 basehttp 74580 134107297216192 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:34,152 basehttp 74580 134107297216192 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:34,330 basehttp 74580 134107297216192 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:34,339 basehttp 74580 134107297216192 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:34,339 basehttp 74580 134107279382208 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:34,339 basehttp 74580 134107065480896 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:34,340 basehttp 74580 134107057088192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:34,340 basehttp 74580 134107287774912 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:34,342 basehttp 74580 134107287774912 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:34,342 basehttp 74580 134107057088192 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:34,342 basehttp 74580 134107279382208 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:34,343 basehttp 74580 134107065480896 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:34,349 basehttp 74580 134107048695488 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:34,350 basehttp 74580 134107048695488 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:34,468 basehttp 74580 134107048695488 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:34,476 basehttp 74580 134107279382208 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:34,476 basehttp 74580 134107048695488 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:34,476 basehttp 74580 134107287774912 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:34,477 basehttp 74580 134107065480896 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:34,477 basehttp 74580 134107297216192 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:34,479 basehttp 74580 134107297216192 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:34,480 basehttp 74580 134107287774912 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:34,480 basehttp 74580 134107279382208 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:34,480 basehttp 74580 134107065480896 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:34,483 basehttp 74580 134107057088192 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:34,484 basehttp 74580 134107057088192 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:34,651 basehttp 74580 134107057088192 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:34,660 basehttp 74580 134107048695488 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:34,660 basehttp 74580 134107279382208 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:34,661 basehttp 74580 134107048695488 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:34,661 basehttp 74580 134107287774912 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:34,661 basehttp 74580 134107057088192 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:34,661 basehttp 74580 134107297216192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:34,664 basehttp 74580 134107297216192 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:34,664 basehttp 74580 134107279382208 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:34,664 basehttp 74580 134107287774912 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:34,668 basehttp 74580 134107065480896 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:34,669 basehttp 74580 134107065480896 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:34,828 basehttp 74580 134107065480896 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:34,836 basehttp 74580 134107057088192 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:34,837 basehttp 74580 134107048695488 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:34,837 basehttp 74580 134107297216192 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:34,837 basehttp 74580 134107065480896 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:34,837 basehttp 74580 134107287774912 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:34,839 basehttp 74580 134107297216192 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:34,839 basehttp 74580 134107057088192 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:34,839 basehttp 74580 134107048695488 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:34,847 basehttp 74580 134107279382208 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:34,848 basehttp 74580 134107279382208 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:34,878 basehttp 74580 134107287774912 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:35,033 basehttp 74580 134107287774912 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:35,041 basehttp 74580 134107279382208 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:35,041 basehttp 74580 134107287774912 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:35,042 basehttp 74580 134107057088192 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:35,042 basehttp 74580 134107065480896 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:35,042 basehttp 74580 134107279382208 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:35,042 basehttp 74580 134107297216192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:35,044 basehttp 74580 134107057088192 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:35,045 basehttp 74580 134107065480896 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:35,045 basehttp 74580 134107297216192 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:35,048 basehttp 74580 134107048695488 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:35,049 basehttp 74580 134107048695488 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:35,258 basehttp 74580 134107048695488 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:35,270 basehttp 74580 134107279382208 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:35,270 basehttp 74580 134107287774912 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:35,271 basehttp 74580 134107048695488 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:35,271 basehttp 74580 134107057088192 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:35,271 basehttp 74580 134107065480896 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:35,275 basehttp 74580 134107065480896 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:35,275 basehttp 74580 134107057088192 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:35,275 basehttp 74580 134107279382208 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:35,275 basehttp 74580 134107287774912 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:35,277 basehttp 74580 134107297216192 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:35,278 basehttp 74580 134107297216192 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:35,438 basehttp 74580 134107297216192 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:35,449 basehttp 74580 134107065480896 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:35,449 basehttp 74580 134107297216192 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:35,449 basehttp 74580 134107057088192 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:35,449 basehttp 74580 134107048695488 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:35,450 basehttp 74580 134107287774912 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:35,452 basehttp 74580 134107057088192 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:35,452 basehttp 74580 134107065480896 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:35,453 basehttp 74580 134107287774912 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:35,453 basehttp 74580 134107048695488 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:35,457 basehttp 74580 134107279382208 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:35,458 basehttp 74580 134107279382208 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:35,616 basehttp 74580 134107279382208 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:35,624 basehttp 74580 134107048695488 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:35,624 basehttp 74580 134107279382208 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:35,625 basehttp 74580 134107057088192 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:35,625 basehttp 74580 134107287774912 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:35,626 basehttp 74580 134107297216192 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:35,627 basehttp 74580 134107048695488 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:35,627 basehttp 74580 134107057088192 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:35,627 basehttp 74580 134107297216192 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:35,628 basehttp 74580 134107287774912 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:35,634 basehttp 74580 134107065480896 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:35,635 basehttp 74580 134107065480896 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:35,798 basehttp 74580 134107065480896 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 95137
+INFO 2025-07-11 17:04:35,809 basehttp 74580 134107287774912 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:04:35,809 basehttp 74580 134107065480896 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:04:35,810 basehttp 74580 134107279382208 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:04:35,810 basehttp 74580 134107048695488 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:04:35,810 basehttp 74580 134107057088192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:04:35,812 basehttp 74580 134107279382208 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:04:35,812 basehttp 74580 134107048695488 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:04:35,812 basehttp 74580 134107057088192 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:04:35,813 basehttp 74580 134107287774912 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:04:35,818 basehttp 74580 134107297216192 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:04:35,819 basehttp 74580 134107297216192 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:04:41,980 basehttp 74580 134107297216192 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 70
+INFO 2025-07-11 17:04:47,795 basehttp 74580 134107297216192 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 167
+INFO 2025-07-11 17:05:06,957 basehttp 74580 134107297216192 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 101
+INFO 2025-07-11 17:05:12,929 basehttp 74580 134107297216192 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 101
+INFO 2025-07-11 17:06:10,124 autoreload 74580 134107419160832 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:06:10,550 autoreload 75731 129999667835136 Watching for file changes with StatReloader
+INFO 2025-07-11 17:06:11,845 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 91468
+INFO 2025-07-11 17:06:11,949 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 91468
+INFO 2025-07-11 17:06:12,146 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 91468
+INFO 2025-07-11 17:06:24,252 basehttp 75731 129999546873536 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 139
+INFO 2025-07-11 17:06:24,272 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 92557
+INFO 2025-07-11 17:06:27,876 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 92557
+INFO 2025-07-11 17:06:48,947 basehttp 75731 129999546873536 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 184
+INFO 2025-07-11 17:06:48,968 basehttp 75731 129999546873536 "GET /perfil/interesado/?csrfmiddlewaretoken=Uj8uAbYqSClFHJ2i8uowdRIOPJrAHNVnFxXkSnW9dPwmnFay8DTrtWOuINPvC1lx&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=&apellido_paterno=&apellido_materno=&telefono=&fecha_nacimiento=&municipio=&codigo_postal= HTTP/1.1" 200 92956
+INFO 2025-07-11 17:06:48,984 basehttp 75731 129999546873536 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 17:11:59,466 autoreload 75731 129999667835136 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:11:59,698 autoreload 76722 137802101481728 Watching for file changes with StatReloader
+INFO 2025-07-11 17:12:05,995 autoreload 76722 137802101481728 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:12:06,400 autoreload 76800 136727152128256 Watching for file changes with StatReloader
+INFO 2025-07-11 17:12:17,840 autoreload 76800 136727152128256 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:12:18,314 autoreload 76886 129844888170752 Watching for file changes with StatReloader
+INFO 2025-07-11 17:12:44,973 autoreload 76886 129844888170752 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:12:45,234 autoreload 76990 135930624311552 Watching for file changes with StatReloader
+INFO 2025-07-11 17:12:49,686 autoreload 76990 135930624311552 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:12:50,075 autoreload 77079 126036389945600 Watching for file changes with StatReloader
+INFO 2025-07-11 17:13:41,888 autoreload 77079 126036389945600 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:13:42,325 autoreload 77328 137677754925312 Watching for file changes with StatReloader
+INFO 2025-07-11 17:14:00,090 autoreload 77431 130179391701248 Watching for file changes with StatReloader
+INFO 2025-07-11 17:14:03,688 basehttp 77431 130179269654208 "GET / HTTP/1.1" 200 19771
+ERROR 2025-07-11 17:14:05,748 log 77431 130179269654208 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1698, in get
+    if request.user.rol != 'interesado':
+       ^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/utils/functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'rol'
+ERROR 2025-07-11 17:14:05,750 basehttp 77431 130179269654208 "GET /perfil/interesado/ HTTP/1.1" 500 94610
+WARNING 2025-07-11 17:14:05,799 log 77431 130179269654208 Not Found: /favicon.ico
+WARNING 2025-07-11 17:14:05,799 basehttp 77431 130179269654208 "GET /favicon.ico HTTP/1.1" 404 13185
+INFO 2025-07-11 17:15:06,695 autoreload 77431 130179391701248 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 17:15:06,993 autoreload 77821 131528179065088 Watching for file changes with StatReloader
+INFO 2025-07-11 17:15:50,468 autoreload 77821 131528179065088 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 17:15:50,690 autoreload 77955 131855477686528 Watching for file changes with StatReloader
+INFO 2025-07-11 17:15:56,732 autoreload 77955 131855477686528 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 17:15:56,914 autoreload 77973 137535997767936 Watching for file changes with StatReloader
+INFO 2025-07-11 17:17:16,412 autoreload 77973 137535997767936 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 17:17:16,700 autoreload 78431 138263572734208 Watching for file changes with StatReloader
+INFO 2025-07-11 17:17:41,100 autoreload 78431 138263572734208 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-11 17:17:41,408 autoreload 78594 140311348273408 Watching for file changes with StatReloader
+INFO 2025-07-11 17:17:57,151 basehttp 78594 140311226480320 "GET / HTTP/1.1" 200 19771
+INFO 2025-07-11 17:18:01,261 basehttp 78594 140311226480320 "GET / HTTP/1.1" 200 19771
+ERROR 2025-07-11 17:18:05,964 log 78594 140311226480320 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1698, in get
+    if request.user.rol != 'interesado':
+       ^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/utils/functional.py", line 253, in inner
+    return func(_wrapped, *args)
+AttributeError: 'AnonymousUser' object has no attribute 'rol'
+ERROR 2025-07-11 17:18:05,965 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 500 94747
+INFO 2025-07-11 17:18:07,827 basehttp 78594 140311226480320 "GET /login/ HTTP/1.1" 200 10410
+INFO 2025-07-11 17:18:10,134 basehttp 78594 140311226480320 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:18:10,154 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-11 17:18:10,176 basehttp 78594 140311226480320 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:18:15,739 basehttp 78594 140311226480320 "DELETE /ajax/idioma/eliminar/60/ HTTP/1.1" 200 61
+INFO 2025-07-11 17:18:15,762 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 95970
+ERROR 2025-07-11 17:18:28,490 log 78594 140311226480320 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 839, in autoguardar_informacion_personal
+    data = json.loads(request.body)
+           ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'?
+ERROR 2025-07-11 17:18:28,491 basehttp 78594 140311226480320 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 89204
+INFO 2025-07-11 17:18:31,040 basehttp 78594 140311226480320 "POST /ajax/educacion/editar/70/ HTTP/1.1" 200 235
+INFO 2025-07-11 17:18:31,073 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 95970
+INFO 2025-07-11 17:18:33,744 basehttp 78594 140311226480320 "POST /ajax/educacion/editar/70/ HTTP/1.1" 200 235
+INFO 2025-07-11 17:18:33,767 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 95970
+ERROR 2025-07-11 17:18:41,153 log 78594 140311226480320 Internal Server Error: /ajax/autoguardar_resumen_profesional/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 829, in autoguardar_resumen_profesional
+    data = json.loads(request.body)
+           ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'?
+ERROR 2025-07-11 17:18:41,154 basehttp 78594 140311226480320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 500 89124
+INFO 2025-07-11 17:18:53,778 basehttp 78594 140311226480320 "POST /ajax/educacion/editar/70/ HTTP/1.1" 200 235
+INFO 2025-07-11 17:18:53,801 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 95980
+ERROR 2025-07-11 17:19:02,620 log 78594 140311226480320 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 839, in autoguardar_informacion_personal
+    data = json.loads(request.body)
+           ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'?
+ERROR 2025-07-11 17:19:02,620 basehttp 78594 140311226480320 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 89204
+ERROR 2025-07-11 17:19:40,434 log 78594 140311226480320 Internal Server Error: /ajax/autoguardar_resumen_profesional/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 829, in autoguardar_resumen_profesional
+    data = json.loads(request.body)
+           ^^^^
+NameError: name 'json' is not defined. Did you forget to import 'json'?
+ERROR 2025-07-11 17:19:40,435 basehttp 78594 140311226480320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 500 89124
+INFO 2025-07-11 17:19:49,135 basehttp 78594 140311226480320 "DELETE /ajax/idioma/eliminar/58/ HTTP/1.1" 200 61
+INFO 2025-07-11 17:19:49,156 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:22:17,948 basehttp 78594 140311226480320 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:22:17,971 basehttp 78594 140311226480320 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 304 0
+INFO 2025-07-11 17:23:57,256 autoreload 78594 140311348273408 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:23:57,706 autoreload 79674 131642613477632 Watching for file changes with StatReloader
+INFO 2025-07-11 17:23:58,666 basehttp 79674 131642425341632 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,289 basehttp 79674 131642425341632 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,313 basehttp 79674 131642414851776 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:00,313 basehttp 79674 131642425341632 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:00,314 basehttp 79674 131642406459072 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:00,314 basehttp 79674 131642380232384 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:00,314 basehttp 79674 131642398066368 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:00,317 basehttp 79674 131642398066368 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:00,317 basehttp 79674 131642380232384 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:00,318 basehttp 79674 131642414851776 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:00,318 basehttp 79674 131642406459072 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:00,320 basehttp 79674 131642389673664 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:00,323 basehttp 79674 131642389673664 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:00,459 basehttp 79674 131642389673664 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,472 basehttp 79674 131642425341632 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:00,472 basehttp 79674 131642398066368 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:00,472 basehttp 79674 131642389673664 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:00,473 basehttp 79674 131642406459072 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:00,473 basehttp 79674 131642380232384 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:00,476 basehttp 79674 131642425341632 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:00,476 basehttp 79674 131642380232384 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:00,476 basehttp 79674 131642398066368 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:00,476 basehttp 79674 131642406459072 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:00,480 basehttp 79674 131642414851776 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:00,481 basehttp 79674 131642414851776 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:00,626 basehttp 79674 131642414851776 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,639 basehttp 79674 131642414851776 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:00,639 basehttp 79674 131642406459072 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:00,639 basehttp 79674 131642398066368 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:00,639 basehttp 79674 131642389673664 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:00,639 basehttp 79674 131642380232384 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:00,644 basehttp 79674 131642406459072 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:00,644 basehttp 79674 131642398066368 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:00,644 basehttp 79674 131642389673664 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:00,645 basehttp 79674 131642380232384 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:00,646 basehttp 79674 131642425341632 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:00,647 basehttp 79674 131642425341632 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:00,777 basehttp 79674 131642425341632 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,791 basehttp 79674 131642389673664 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:00,791 basehttp 79674 131642425341632 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:00,791 basehttp 79674 131642414851776 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:00,791 basehttp 79674 131642380232384 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:00,791 basehttp 79674 131642398066368 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:00,796 basehttp 79674 131642380232384 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:00,796 basehttp 79674 131642414851776 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:00,796 basehttp 79674 131642398066368 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:00,796 basehttp 79674 131642389673664 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:00,798 basehttp 79674 131642406459072 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:00,799 basehttp 79674 131642406459072 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:00,958 basehttp 79674 131642406459072 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:00,968 basehttp 79674 131642414851776 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:00,968 basehttp 79674 131642406459072 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:00,969 basehttp 79674 131642425341632 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:00,969 basehttp 79674 131642380232384 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:00,970 basehttp 79674 131642414851776 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:00,970 basehttp 79674 131642389673664 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:00,971 basehttp 79674 131642389673664 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:00,971 basehttp 79674 131642425341632 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:00,971 basehttp 79674 131642380232384 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:00,976 basehttp 79674 131642398066368 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:00,978 basehttp 79674 131642398066368 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:01,136 basehttp 79674 131642398066368 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:01,146 basehttp 79674 131642425341632 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:01,146 basehttp 79674 131642406459072 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:01,147 basehttp 79674 131642389673664 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:01,147 basehttp 79674 131642398066368 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:01,147 basehttp 79674 131642380232384 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:01,150 basehttp 79674 131642425341632 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:01,150 basehttp 79674 131642389673664 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:01,150 basehttp 79674 131642380232384 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:01,150 basehttp 79674 131642406459072 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:01,157 basehttp 79674 131642414851776 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:01,159 basehttp 79674 131642414851776 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:01,302 basehttp 79674 131642414851776 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:01,315 basehttp 79674 131642406459072 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:01,315 basehttp 79674 131642389673664 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:01,316 basehttp 79674 131642414851776 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:01,316 basehttp 79674 131642398066368 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:01,316 basehttp 79674 131642380232384 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:01,318 basehttp 79674 131642389673664 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:01,319 basehttp 79674 131642406459072 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:01,319 basehttp 79674 131642398066368 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:01,319 basehttp 79674 131642380232384 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:01,323 basehttp 79674 131642425341632 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:01,324 basehttp 79674 131642425341632 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:01,777 basehttp 79674 131642425341632 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-11 17:24:16,411 autoreload 79674 131642613477632 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:24:17,222 autoreload 79807 127326064447744 Watching for file changes with StatReloader
+INFO 2025-07-11 17:24:37,773 autoreload 79807 127326064447744 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:24:38,146 autoreload 79923 124171145916672 Watching for file changes with StatReloader
+INFO 2025-07-11 17:24:39,318 basehttp 79923 124171024594624 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:39,342 basehttp 79923 124171015153344 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:39,343 basehttp 79923 124171024594624 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:39,343 basehttp 79923 124170784466624 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:39,343 basehttp 79923 124170776073920 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:39,343 basehttp 79923 124171006760640 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:39,347 basehttp 79923 124170784466624 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:39,347 basehttp 79923 124170776073920 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:39,348 basehttp 79923 124171006760640 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:39,348 basehttp 79923 124171015153344 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:39,350 basehttp 79923 124170792859328 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:39,353 basehttp 79923 124170792859328 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:39,419 basehttp 79923 124170776073920 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:39,434 basehttp 79923 124170792859328 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:39,435 basehttp 79923 124171024594624 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:39,435 basehttp 79923 124170776073920 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:39,436 basehttp 79923 124171015153344 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:39,436 basehttp 79923 124170784466624 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:39,441 basehttp 79923 124171024594624 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:39,441 basehttp 79923 124171015153344 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:39,441 basehttp 79923 124170784466624 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:39,446 basehttp 79923 124171006760640 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:39,448 basehttp 79923 124171006760640 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:39,481 basehttp 79923 124170792859328 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:39,533 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 94883
+INFO 2025-07-11 17:24:39,549 basehttp 79923 124170792859328 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-11 17:24:39,549 basehttp 79923 124171006760640 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-11 17:24:39,550 basehttp 79923 124170776073920 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-11 17:24:39,550 basehttp 79923 124170784466624 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-11 17:24:39,550 basehttp 79923 124171024594624 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-11 17:24:39,554 basehttp 79923 124170784466624 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-11 17:24:39,554 basehttp 79923 124171024594624 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-11 17:24:39,554 basehttp 79923 124170776073920 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19361
+INFO 2025-07-11 17:24:39,558 basehttp 79923 124171015153344 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:24:39,560 basehttp 79923 124171015153344 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-11 17:24:39,595 basehttp 79923 124171006760640 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-11 17:24:39,794 basehttp 79923 124171006760640 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+ERROR 2025-07-11 17:24:43,980 log 79923 124171006760640 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 849, in autoguardar_informacion_personal
+    interesado.save()
+    ~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/usuarios/models.py", line 260, in save
+    super().save(*args, **kwargs)
+    ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+    ~~~~~~~~~~~~~~^
+        using=using,
+        ^^^^^^^^^^^^
+    ...<2 lines>...
+        update_fields=update_fields,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+        raw,
+    ...<4 lines>...
+        update_fields,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+        base_qs, using, pk_val, values, update_fields, forced_update
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ~~~~~~~~~~~~~~~~^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/query.py", line 1284, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ~~~~~~~~~~~~~~^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+    ...<3 lines>...
+    )
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-11 17:24:43,983 basehttp 79923 124171006760640 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 157132
+INFO 2025-07-11 17:24:50,318 basehttp 79923 124171006760640 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 142
+INFO 2025-07-11 17:24:50,339 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 95967
+INFO 2025-07-11 17:24:57,484 basehttp 79923 124171006760640 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-11 17:25:02,434 basehttp 79923 124171006760640 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-11 17:25:08,600 basehttp 79923 124171006760640 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 134
+INFO 2025-07-11 17:25:08,623 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97244
+INFO 2025-07-11 17:25:52,769 basehttp 79923 124171006760640 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-11 17:26:04,564 basehttp 79923 124171006760640 "POST /ajax/experiencia/editar/25/ HTTP/1.1" 200 202
+INFO 2025-07-11 17:26:04,585 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:08,859 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:09,819 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:10,116 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:10,265 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:10,405 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:10,559 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:10,769 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97273
+INFO 2025-07-11 17:26:15,936 basehttp 79923 124171006760640 "DELETE /ajax/educacion/eliminar/70/ HTTP/1.1" 200 159
+INFO 2025-07-11 17:26:15,956 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 95254
+INFO 2025-07-11 17:26:29,944 basehttp 79923 124171006760640 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 236
+INFO 2025-07-11 17:26:29,963 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97283
+INFO 2025-07-11 17:26:46,152 basehttp 79923 124171006760640 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 164
+INFO 2025-07-11 17:26:46,174 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 97672
+INFO 2025-07-11 17:26:51,284 basehttp 79923 124171006760640 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 170
+INFO 2025-07-11 17:26:51,306 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:26:57,326 basehttp 79923 124170759288512 "GET /media/interesados/profile_og3hmVQ.jpg HTTP/1.1" 200 7070
+INFO 2025-07-11 17:26:57,511 basehttp 79923 124171006760640 "GET /cv/descargar/ HTTP/1.1" 200 18024
+INFO 2025-07-11 17:27:05,455 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:05,473 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:07,853 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:07,871 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:08,406 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:08,424 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:08,589 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:08,608 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:10,391 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:10,407 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:10,570 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:10,591 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:27:10,754 basehttp 79923 124171006760640 "POST /perfil/interesado/ HTTP/1.1" 302 0
+INFO 2025-07-11 17:27:10,773 basehttp 79923 124171006760640 "GET /perfil/interesado/ HTTP/1.1" 200 98064
+INFO 2025-07-11 17:31:37,527 autoreload 79923 124171145916672 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-11 17:31:37,986 autoreload 80906 127963944243456 Watching for file changes with StatReloader

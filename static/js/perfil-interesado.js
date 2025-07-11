@@ -445,8 +445,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-    // Si tu botón "Guardar CV Completo" tiene un id específico, usa ese id.
-    // Si no, puedes usar:
     var btnGuardar = document.querySelector('button[type="submit"].btn-primary'); // O ponle un id y usa getElementById
     var btnDescargar = document.getElementById('btnDescargarCV');
 

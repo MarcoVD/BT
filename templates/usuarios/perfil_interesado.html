@@ -827,7 +827,7 @@
                                 <option value="Indonesio">Indonesio</option>
                                 <option value="Aleman">Alemán</option>
                                 <option value="Japones">Japonés</option>
-                                <option value="Nigeriano">Nigeriano)</option>
+                                <option value="Nigeriano">Nigeriano</option>
                                 <option value="Turco">Turco</option>
                                 <option value="Vietnamita">Vietnamita</option>
                                 <option value="Italiano">Italiano</option>
@@ -1165,5 +1165,108 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
     });
 });
+
+function guardarEnLocalStorage(formulario) {
+    const campos = ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento', 'resumen_profesional'];
+    let datos = {};
+    campos.forEach(campo => {
+        let elem = formulario.elements[campo];
+        if (elem) datos[campo] = elem.value;
+    });
+    localStorage.setItem('cv_autoguardado', JSON.stringify(datos));
+}
+
+function cargarDeLocalStorage(formulario) {
+    let datos = JSON.parse(localStorage.getItem('cv_autoguardado') || '{}');
+    for (const [campo, valor] of Object.entries(datos)) {
+        if (formulario.elements[campo]) formulario.elements[campo].value = valor;
+    }
+}
+
+function autoguardarResumenProfesionalAJAX(valor, csrf) {
+    fetch('/ajax/autoguardar_resumen_profesional/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrf
+        },
+        body: JSON.stringify({ resumen_profesional: valor })
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            // Muestra feedback visual
+            document.getElementById('resumen_profesional').classList.add('is-valid');
+            setTimeout(() => document.getElementById('resumen_profesional').classList.remove('is-valid'), 1000);
+            limpiarLocalStorageSolo('resumen_profesional');
+        }
+    });
+}
+
+function autoguardarInformacionPersonalAJAX(datos, csrf) {
+    fetch('/ajax/autoguardar_informacion_personal/', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': csrf
+        },
+        body: JSON.stringify(datos)
+    })
+    .then(r => r.json())
+    .then(data => {
+        if (data.success) {
+            // Puedes mostrar feedback visual aquí
+            limpiarLocalStorageSolo('personal');
+        }
+    });
+}
+
+function limpiarLocalStorageSolo(tipo) {
+    let datos = JSON.parse(localStorage.getItem('cv_autoguardado') || '{}');
+    if (tipo === 'resumen_profesional') delete datos['resumen_profesional'];
+    if (tipo === 'personal') {
+        ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(c => delete datos[c]);
+    }
+    localStorage.setItem('cv_autoguardado', JSON.stringify(datos));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const formulario = document.getElementById('cvForm');
+    const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    // Al cargar, restaura datos de localStorage si existen
+    cargarDeLocalStorage(formulario);
+
+    // Detectar cambios en resumen profesional
+    let resumenTimeout;
+    formulario.elements['resumen_profesional'].addEventListener('input', function(e) {
+        guardarEnLocalStorage(formulario);
+        clearTimeout(resumenTimeout);
+        resumenTimeout = setTimeout(() => {
+            autoguardarResumenProfesionalAJAX(e.target.value, csrf);
+        }, 1200); // Espera 1.2 segundos tras dejar de escribir
+    });
+
+    // Detectar cambios en campos personales (autoguardar tras 1s sin escribir)
+    let personalTimeout;
+    ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(campo => {
+        formulario.elements[campo]?.addEventListener('input', function(e) {
+            guardarEnLocalStorage(formulario);
+            clearTimeout(personalTimeout);
+            personalTimeout = setTimeout(() => {
+                let datos = {};
+                ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(c => {
+                    datos[c] = formulario.elements[c]?.value || '';
+                });
+                autoguardarInformacionPersonalAJAX(datos, csrf);
+            }, 1000); // Espera 1s tras dejar de escribir
+        });
+    });
+
+    // (Opcional) Limpiar localStorage al guardar todo el CV
+    formulario.addEventListener('submit', function() {
+        localStorage.removeItem('cv_autoguardado');
+    });
+});
+
 </script>
 {% endblock %}

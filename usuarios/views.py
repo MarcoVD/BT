@@ -1,3 +1,4 @@
+import json
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -5,7 +6,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.decorators import method_decorator
 from django.views.generic import View
-from django.views.decorators.http import require_http_methods
+from django.views.decorators.http import require_http_methods, require_POST
 from django.views.decorators.csrf import csrf_exempt
 from django.db import transaction
 from django.db.models import Count, Q
@@ -16,7 +17,6 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
 from datetime import date
-
 # Verificacion de correo - IMPORTACIONES CORREGIDAS
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
@@ -471,7 +471,7 @@ class ReclutadorRegistroView(View):
 
         if secretaria_form.is_valid() and reclutador_form.is_valid():
             try:
-                with transaction.atomic():
+                # with transaction.atomic():
                     # Crear secretaría
                     secretaria = secretaria_form.save()
 
@@ -578,7 +578,7 @@ class LoginView(View):
 
         return render(request, 'usuarios/login.html', {'form': form})
 
-
+# primer error
 @method_decorator(login_required, name='dispatch')
 class CrearEditarCVView(View):
     """Vista para crear o editar el CV del interesado."""
@@ -634,7 +634,7 @@ class CrearEditarCVView(View):
 
         if curriculum_form.is_valid() and perfil_form.is_valid():
             try:
-                with transaction.atomic():
+                # with transaction.atomic():
                     perfil_form.save()
                     curriculum_form.save()
                     messages.success(request, 'CV actualizado exitosamente.')
@@ -823,7 +823,31 @@ def actualizar_foto_perfil_ajax(request):
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
+@require_POST
+@csrf_exempt
+def autoguardar_resumen_profesional(request):
+    data = json.loads(request.body)
+    resumen = data.get('resumen_profesional', '')
+    curriculum = request.user.interesado.curriculum
+    curriculum.resumen_profesional = resumen
+    curriculum.save()
+    return JsonResponse({'success': True})
 
+@require_POST
+@csrf_exempt
+def autoguardar_informacion_personal(request):
+    data = json.loads(request.body)
+    interesado = request.user.interesado
+
+    interesado.nombre = data.get('nombre', '')
+    interesado.apellido_paterno = data.get('apellido_paterno', '')
+    interesado.apellido_materno = data.get('apellido_materno', '')
+    interesado.telefono = data.get('telefono', '')
+    interesado.municipio = data.get('municipio', '')
+    interesado.codigo_postal = data.get('codigo_postal', '')
+    interesado.fecha_nacimiento = data.get('fecha_nacimiento', None)
+    interesado.save()
+    return JsonResponse({'success': True})
 
 @login_required
 def editar_experiencia_ajax(request, experiencia_id):
@@ -860,8 +884,6 @@ def editar_experiencia_ajax(request, experiencia_id):
             'success': False,
             'error': str(e)
         })
-
-
 @login_required
 def agregar_experiencia_ajax(request):
     """Vista AJAX para agregar experiencia laboral."""
@@ -897,8 +919,6 @@ def agregar_experiencia_ajax(request):
             'success': False,
             'error': str(e)
         })
-
-
 @login_required
 def agregar_educacion_ajax(request):
     """Vista AJAX para agregar educación."""
@@ -934,8 +954,6 @@ def agregar_educacion_ajax(request):
             'success': False,
             'error': str(e)
         })
-
-
 @login_required
 def agregar_idioma_ajax(request):
     """Vista AJAX para agregar idioma."""
@@ -970,8 +988,6 @@ def agregar_idioma_ajax(request):
             'success': False,
             'error': str(e)
         })
-
-
 @login_required
 def eliminar_experiencia_ajax(request, experiencia_id):
     """Vista AJAX para eliminar experiencia laboral."""
@@ -1095,8 +1111,6 @@ def eliminar_educacion_ajax(request, educacion_id):
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
-
-
 @login_required
 def eliminar_idioma_ajax(request, idioma_id):
     """Vista AJAX para eliminar idioma."""
@@ -1356,7 +1370,7 @@ class PublicarVacanteView(View):
 
         if vacante_form.is_valid() and requisito_form.is_valid():
             try:
-                with transaction.atomic():
+                # with transaction.atomic():
                     # Determinar la acción del usuario
                     accion = request.POST.get('accion')
 
@@ -1458,7 +1472,7 @@ class EditarVacanteView(View):
 
         if vacante_form.is_valid() and requisito_form.is_valid():
             try:
-                with transaction.atomic():
+                # with transaction.atomic():
                     # Determinar la acción del usuario
                     accion = request.POST.get('accion')
 
@@ -1617,8 +1631,8 @@ class PerfilInteresadoView(View):
         )
 
         try:
-            with transaction.atomic():
-                # Actualizar información personal del interesado
+            # with transaction.atomic():
+                # Actualizar    información personal del interesado
                 interesado.nombre = request.POST.get('nombre', '')
                 interesado.apellido_paterno = request.POST.get('apellido_paterno', '')
                 interesado.apellido_materno = request.POST.get('apellido_materno', '')
@@ -1662,6 +1676,52 @@ class PerfilInteresadoView(View):
         return render(request, 'usuarios/perfil_interesado.html', context)
 
 
+
+
+
+# Modificar la clase PerfilInteresadoView - solo el método post
+class PerfilInteresadoView(View):
+    """Vista para ver/editar perfil del interesado con CV integrado."""
+
+    def get(self, request):
+        # ... mantener el método get igual ...
+        if request.user.rol != 'interesado':
+            messages.error(request, 'No tienes permiso para acceder a esta página.')
+            return redirect('index')
+
+        interesado = request.user.interesado
+
+        # Obtener o crear curriculum
+        curriculum, created = Curriculum.objects.get_or_create(
+            interesado=interesado,
+            defaults={'resumen_profesional': ''}
+        )
+
+        # Obtener experiencias, educación, habilidades e idiomas existentes
+        experiencias = curriculum.experiencias.all()
+        educaciones = curriculum.educaciones.all()
+        habilidades = curriculum.habilidades.all()
+        idiomas = curriculum.idiomas.all()
+
+        # Verificar si existe CV completo
+        tiene_cv = hasattr(interesado, 'curriculum')
+
+        context = {
+            'interesado': interesado,
+            'curriculum': curriculum,
+            'experiencias': experiencias,
+            'educaciones': educaciones,
+            'habilidades': habilidades,
+            'idiomas': idiomas,
+            'tiene_cv': tiene_cv,
+            'es_nuevo': created,
+        }
+        return render(request, 'usuarios/perfil_interesado.html', context)
+
+    def post(self, request):
+        # ELIMINAR COMPLETAMENTE ESTE MÉTODO O DEJARLO VACÍO
+        # Ya no manejamos POST aquí, todo será por AJAX
+        return redirect('perfil_interesado')
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
     """Vista para dashboard del reclutador."""
@@ -1915,10 +1975,8 @@ def test_urls(request):
 
 
 # Agregar estas vistas al final de usuarios/views.py
-
-@method_decorator(login_required, name='dispatch')
 # Agregar estas vistas al final de usuarios/views.py
-
+#TODO VerPortlantesView es el correcto
 @method_decorator(login_required, name='dispatch')
 class VerPostulantesView(View):
     """
@@ -2097,55 +2155,55 @@ def cambiar_estado_postulacion(request, postulacion_id):
         }, status=500)
 
 
-@login_required
-def agregar_notas_postulacion(request, postulacion_id):
-    """
-    Vista AJAX para agregar notas del reclutador a una postulación.
-    """
-    if request.method != 'POST':
-        return JsonResponse({
-            'success': False,
-            'error': 'Método no permitido'
-        }, status=405)
-
-    if request.user.rol != 'reclutador':
-        return JsonResponse({
-            'success': False,
-            'error': 'No tienes permisos para esta acción'
-        }, status=403)
-
-    try:
-        import json
-        data = json.loads(request.body)
-        notas = data.get('notas', '').strip()
-
-        # Obtener la postulación
-        postulacion = get_object_or_404(
-            Postulacion,
-            id=postulacion_id,
-            vacante__reclutador=request.user.reclutador
-        )
-
-        # Actualizar las notas
-        postulacion.notas_reclutador = notas
-        postulacion.save()
-
-        return JsonResponse({
-            'success': True,
-            'message': 'Notas guardadas exitosamente'
-        })
-
-    except json.JSONDecodeError:
-        return JsonResponse({
-            'success': False,
-            'error': 'Datos JSON inválidos'
-        }, status=400)
-    except Exception as e:
-        print(f"Error en agregar_notas_postulacion: {str(e)}")
-        return JsonResponse({
-            'success': False,
-            'error': f'Error interno: {str(e)}'
-        }, status=500)
+# @login_required
+# def agregar_notas_postulacion(request, postulacion_id):
+#     """
+#     Vista AJAX para agregar notas del reclutador a una postulación.
+#     """
+#     if request.method != 'POST':
+#         return JsonResponse({
+#             'success': False,
+#             'error': 'Método no permitido'
+#         }, status=405)
+#
+#     if request.user.rol != 'reclutador':
+#         return JsonResponse({
+#             'success': False,
+#             'error': 'No tienes permisos para esta acción'
+#         }, status=403)
+#
+#     try:
+#         import json
+#         data = json.loads(request.body)
+#         notas = data.get('notas', '').strip()
+#
+#         # Obtener la postulación
+#         postulacion = get_object_or_404(
+#             Postulacion,
+#             id=postulacion_id,
+#             vacante__reclutador=request.user.reclutador
+#         )
+#
+#         # Actualizar las notas
+#         postulacion.notas_reclutador = notas
+#         postulacion.save()
+#
+#         return JsonResponse({
+#             'success': True,
+#             'message': 'Notas guardadas exitosamente'
+#         })
+#
+#     except json.JSONDecodeError:
+#         return JsonResponse({
+#             'success': False,
+#             'error': 'Datos JSON inválidos'
+#         }, status=400)
+#     except Exception as e:
+#         print(f"Error en agregar_notas_postulacion: {str(e)}")
+#         return JsonResponse({
+#             'success': False,
+#             'error': f'Error interno: {str(e)}'
+#         }, status=500)
 
 
 @login_required
@@ -2223,61 +2281,6 @@ def cambiar_estado_postulacion(request, postulacion_id):
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
-
-
-@login_required
-def agregar_notas_postulacion(request, postulacion_id):
-    """
-    Vista AJAX para agregar notas del reclutador a una postulación.
-    """
-    if request.method != 'POST':
-        return JsonResponse({
-            'success': False,
-            'error': 'Método no permitido'
-        }, status=405)
-
-    if request.user.rol != 'reclutador':
-        return JsonResponse({
-            'success': False,
-            'error': 'No tienes permisos para esta acción'
-        }, status=403)
-
-    try:
-        import json
-        data = json.loads(request.body)
-        notas = data.get('notas', '').strip()
-
-        # Obtener la postulación
-        postulacion = get_object_or_404(
-            Postulacion,
-            id=postulacion_id,
-            vacante__reclutador=request.user.reclutador
-        )
-
-        # Actualizar las notas
-        postulacion.notas_reclutador = notas
-        postulacion.save()
-
-        return JsonResponse({
-            'success': True,
-            'message': 'Notas guardadas exitosamente'
-        })
-
-    except json.JSONDecodeError:
-        return JsonResponse({
-            'success': False,
-            'error': 'Datos JSON inválidos'
-        }, status=400)
-    except Exception as e:
-        print(f"Error en agregar_notas_postulacion: {str(e)}")
-        return JsonResponse({
-            'success': False,
-            'error': f'Error interno: {str(e)}'
-        }, status=500)
-
-
-# Agregar esta vista también a usuarios/views.py
-
 @login_required
 def ver_perfil_candidato(request, interesado_id):
     """

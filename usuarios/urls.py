@@ -1,6 +1,7 @@
 # usuarios/urls.py - URLS ACTUALIZADAS CON VERIFICACIÓN DE EMAIL
 from django.urls import path
 from . import views
+from .views import autoguardar_resumen_profesional, autoguardar_informacion_personal
 
 urlpatterns = [
     # ===========================
@@ -32,6 +33,10 @@ urlpatterns = [
     # ===========================
     path('perfil/interesado/', views.PerfilInteresadoView.as_view(), name='perfil_interesado'),
     path('dashboard/reclutador/', views.DashboardReclutadorView.as_view(), name='dashboard_reclutador'),
+    path('ajax/autoguardar_resumen_profesional/', autoguardar_resumen_profesional,
+         name='autoguardar_resumen_profesional'),
+    path('ajax/autoguardar_informacion_personal/', autoguardar_informacion_personal,
+         name='autoguardar_informacion_personal'),
 
     # ===========================
     # URLs PARA GESTIÓN DE VACANTES (RECLUTADORES)
@@ -61,7 +66,6 @@ urlpatterns = [
     path('mi-cv/previsualizar/', views.previsualizar_cv, name='previsualizar_cv'),
     path('cv/descargar/', views.descargar_cv_pdf, name='descargar_cv_pdf'),
     path('cv/descarga/', views.descargar_cv_pdf_reclutador, name='descargar_cv_pdf_reclutador'),
-
     # ===========================
     # URLs AJAX PARA ACTUALIZACIÓN DE PERFIL
     # ===========================

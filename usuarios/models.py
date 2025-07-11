@@ -77,7 +77,7 @@ class Usuario(AbstractUser):
 
     def __str__(self):
         return self.email
-
+#Verificación de email
     def generate_verification_token(self):
         """Genera un nuevo token de verificación con expiración en 24 horas."""
         self.verification_token = uuid.uuid4()
@@ -114,7 +114,6 @@ class Usuario(AbstractUser):
         # Los demás usuarios necesitan verificar su email
         return self.email_verified
 
-# usuarios/models.py - SECCIÓN ACTUALIZADA PARA INTERESADO
 class Interesado(models.Model):
     """Modelo para el perfil de un interesado/candidato."""
 
