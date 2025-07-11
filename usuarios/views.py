@@ -454,55 +454,6 @@ class InteresadoRegistroView(View):
 
         return render(request, 'usuarios/registro_interesado.html', {'form': form})
 
-
-
-
-    def get(self, request):
-        form = InteresadoRegistroForm()
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-    def post(self, request):
-        form = InteresadoRegistroForm(request.POST)
-        if form.is_valid():
-            try:
-                # Crear usuario sin verificar
-                user = form.save(commit=False)
-                user.email_verified = False
-                user.save()
-
-                # Crear perfil de interesado
-                from .models import Interesado
-                Interesado.objects.get_or_create(
-                    usuario=user,
-                    defaults={
-                        'nombre': '',
-                        'apellido_paterno': '',
-                        'apellido_materno': ''
-                    }
-                )
-
-                # Enviar correo de verificación
-                if send_verification_email(request, user):
-                    messages.success(request,
-                                     '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
-                                     'Revisa tu bandeja de entrada y sigue las instrucciones para activar tu cuenta.')
-                else:
-                    messages.warning(request,
-                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                     'Puedes solicitar un nuevo enlace más tarde.')
-
-                return render(request, 'usuarios/registro_exitoso.html', {
-                    'user_email': user.email,
-                    'user_role': 'interesado'
-                })
-
-            except Exception as e:
-                logger.error(f"Error en registro de interesado: {str(e)}")
-                messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
-
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-
 class ReclutadorRegistroView(View):
     """Vista para registro de reclutadores - ACTUALIZADA CON VERIFICACIÓN."""
 
