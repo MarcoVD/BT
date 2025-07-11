@@ -251,16 +251,6 @@ def eliminar_habilidad_ajax(request, habilidad_id):
 # =========================================
 
 def send_verification_email(request, user):
-    """
-    Envía un correo de verificación al usuario.
-
-    Args:
-        request: HttpRequest object
-        user: Usuario object
-
-    Returns:
-        bool: True si se envió exitosamente, False en caso contrario
-    """
     try:
         # Generar token de verificación
         user.generate_verification_token()
@@ -370,9 +360,8 @@ class VerificarEmailView(View):
             })
 
 
-class ReenviarVerificacionView(View):
     """Vista para reenviar correo de verificación."""
-
+class ReenviarVerificacionView(View):
     def get(self, request):
         """Muestra formulario para reenviar verificación."""
         return render(request, 'usuarios/reenviar_verificacion.html')
@@ -384,22 +373,18 @@ class ReenviarVerificacionView(View):
         if not email:
             messages.error(request, 'Por favor ingresa tu correo electrónico.')
             return render(request, 'usuarios/reenviar_verificacion.html')
-
         try:
             # Buscar usuario con ese email
             user = Usuario.objects.filter(email=email).first()
-
             if not user:
                 # Por seguridad, no revelar si el email existe o no
                 messages.success(request,
                                  'Si existe una cuenta con ese correo, recibirás un enlace de verificación en breve.')
                 return render(request, 'usuarios/reenviar_verificacion.html')
-
             # Si ya está verificado
             if user.email_verified:
                 messages.info(request, 'Tu cuenta ya está verificada. Puedes iniciar sesión.')
                 return redirect('login')
-
             # Reenviar correo de verificación
             if send_verification_email(request, user):
                 messages.success(request,
@@ -407,9 +392,7 @@ class ReenviarVerificacionView(View):
             else:
                 messages.error(request,
                                'Error al enviar el correo. Inténtalo nuevamente en unos minutos.')
-
             return render(request, 'usuarios/reenviar_verificacion.html')
-
         except Exception as e:
             logger.error(f"Error reenviando verificación: {str(e)}")
             messages.error(request, 'Error interno del servidor.')
@@ -1632,53 +1615,6 @@ def logout_view(request):
     logout(request)
     messages.info(request, 'Has cerrado sesión exitosamente.')
     return redirect('index')
-
-
-class InteresadoRegistroView(View):
-    """Vista para registro de interesados."""
-
-    def get(self, request):
-        form = InteresadoRegistroForm()
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-    def post(self, request):
-        form = InteresadoRegistroForm(request.POST)
-        if form.is_valid():
-            user = form.save()
-            messages.success(request, 'Registro exitoso. Ahora puedes iniciar sesión.')
-            return redirect('login')
-        return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-
-class ReclutadorRegistroView(View):
-    """Vista para registro de reclutadores."""
-
-    def get(self, request):
-        secretaria_form = SecretariaRegistroForm()
-        reclutador_form = ReclutadorRegistroForm()
-        return render(request, 'usuarios/registro_reclutador.html', {
-            'secretaria_form': secretaria_form,
-            'reclutador_form': reclutador_form
-        })
-
-    def post(self, request):
-        secretaria_form = SecretariaRegistroForm(request.POST)
-        reclutador_form = ReclutadorRegistroForm(request.POST)
-
-        if secretaria_form.is_valid() and reclutador_form.is_valid():
-            secretaria = secretaria_form.save()
-            user = reclutador_form.save(commit=True, secretaria=secretaria)
-            messages.success(
-                request,
-                'Registro exitoso. Tu cuenta será revisada por un administrador. Te notificaremos por email cuando sea aprobada.'
-            )
-            return redirect('login')
-
-        return render(request, 'usuarios/registro_reclutador.html', {
-            'secretaria_form': secretaria_form,
-            'reclutador_form': reclutador_form
-        })
-
 
 @method_decorator(login_required, name='dispatch')
 class PerfilInteresadoView(View):
