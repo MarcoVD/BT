@@ -336,21 +336,56 @@ class ReclutadorRegistroForm(UserCreationForm):
             user.save()
         return user
 
+
+# usuarios/forms.py - Formulario VacanteForm actualizado con validaciones de salario
+
 class VacanteForm(forms.ModelForm):
-    """Formulario para crear/editar vacantes. Validar los campos las comas, espacios y numeros negativos """
+    """Formulario para crear/editar vacantes con validaciones de salario mejoradas."""
+
     def clean_salario_min(self):
+        """Validar salario mínimo."""
         valor = self.cleaned_data.get('salario_min')
-        if valor:
-            # Elimina comas y espacios
-            valor_str = str(valor).replace(',', '').replace('$', '').strip()
-            return float(valor_str)
+
+        if valor is not None:
+            # Limpiar formato si viene como string
+            if isinstance(valor, str):
+                valor_str = str(valor).replace(',', '').replace('$', '').strip()
+                try:
+                    valor = float(valor_str)
+                except ValueError:
+                    raise forms.ValidationError('Ingresa un valor numérico válido.')
+
+            # ✅ VALIDACIÓN: No puede ser cero o negativo
+            if valor <= 0:
+                raise forms.ValidationError('El salario mínimo debe ser mayor a $0.')
+
+            # ✅ VALIDACIÓN: Límite máximo razonable (10 millones)
+            if valor > 10000000:
+                raise forms.ValidationError('El salario ingresado es demasiado alto (máximo $10,000,000).')
+
         return valor
 
     def clean_salario_max(self):
+        """Validar salario máximo."""
         valor = self.cleaned_data.get('salario_max')
-        if valor:
-            valor_str = str(valor).replace(',', '').replace('$', '').strip()
-            return float(valor_str)
+
+        if valor is not None:
+            # Limpiar formato si viene como string
+            if isinstance(valor, str):
+                valor_str = str(valor).replace(',', '').replace('$', '').strip()
+                try:
+                    valor = float(valor_str)
+                except ValueError:
+                    raise forms.ValidationError('Ingresa un valor numérico válido.')
+
+            # ✅ VALIDACIÓN: No puede ser cero o negativo
+            if valor <= 0:
+                raise forms.ValidationError('El salario máximo debe ser mayor a $0.')
+
+            # ✅ VALIDACIÓN: Límite máximo razonable (10 millones)
+            if valor > 10000000:
+                raise forms.ValidationError('El salario ingresado es demasiado alto (máximo $10,000,000).')
+
         return valor
 
     class Meta:
@@ -376,6 +411,19 @@ class VacanteForm(forms.ModelForm):
                 'class': 'form-select',
                 'placeholder': 'Selecciona un municipio...'
             }),
+            # ✅ WIDGETS ACTUALIZADOS PARA SALARIOS
+            'salario_min': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': '25000.00',
+                'min': '1',
+                'step': '0.01'
+            }),
+            'salario_max': forms.NumberInput(attrs={
+                'class': 'form-control',
+                'placeholder': '35000.00',
+                'min': '1',
+                'step': '0.01'
+            }),
             'detalles_salario': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Ej: A tratar, Según aptitudes, Más bonos'
@@ -391,13 +439,15 @@ class VacanteForm(forms.ModelForm):
             'max_postulantes': forms.Select(attrs={'class': 'form-select'}),
             'modalidad': forms.Select(attrs={'class': 'form-select'}),
         }
-        #Etiqueta de publicar vacantes
+
         labels = {
             'titulo': 'Título de la Vacante',
             'categoria': 'Categoría de la Vacante',
             'tipo_empleo': 'Tipo de Empleo',
             'descripcion': 'Descripción Detallada de la Vacante',
             'municipio': 'Municipio del Estado de México',
+            'salario_min': 'Salario Mínimo (MXN)',  # ✅ ACTUALIZADO
+            'salario_max': 'Salario Máximo (MXN)',  # ✅ ACTUALIZADO
             'detalles_salario': 'Detalles Adicionales del Salario (opcional)',
             'fecha_inicio_estimada': 'Fecha Estimada de Inicio (opcional)',
             'fecha_limite': 'Fecha Límite de Postulación',
@@ -416,34 +466,46 @@ class VacanteForm(forms.ModelForm):
         self.fields['fecha_limite'].required = True
         self.fields['max_postulantes'].required = True
 
+        # ✅ HACER CAMPOS DE SALARIO OBLIGATORIOS
+        self.fields['salario_min'].required = True
+        self.fields['salario_max'].required = True
+
         # Configurar ayuda para campos de salario
-        self.fields['salario_min'].help_text = 'Ingresa el salario mínimo. Ejemplo: 25000.00 o 25,000.00'
-        self.fields['salario_max'].help_text = 'Ingresa el salario máximo. Ejemplo: 35000.00 o 35,000.00'
+        self.fields['salario_min'].help_text = 'Ingresa el salario mínimo. Debe ser mayor a $0. Ejemplo: 25000.00'
+        self.fields['salario_max'].help_text = 'Ingresa el salario máximo. Debe ser mayor al mínimo. Ejemplo: 35000.00'
 
         # Agregar opción vacía al select de municipio
         municipio_choices = [('', 'Selecciona un municipio...')] + list(self.fields['municipio'].choices)
         self.fields['municipio'].choices = municipio_choices
 
     def clean(self):
+        """Validaciones adicionales que requieren comparar múltiples campos."""
         cleaned_data = super().clean()
         salario_min = cleaned_data.get('salario_min')
         salario_max = cleaned_data.get('salario_max')
 
-        # Validar que el salario mínimo no sea mayor al máximo
+        # ✅ VALIDACIÓN: El salario mínimo no puede ser mayor o igual al máximo
         if salario_min and salario_max:
-            if salario_min > salario_max:
-                raise forms.ValidationError(
-                    "El salario mínimo no puede ser mayor al salario máximo."
-                )
+            if salario_min >= salario_max:
+                raise forms.ValidationError({
+                    'salario_min': 'El salario mínimo debe ser menor al salario máximo.',
+                    'salario_max': 'El salario máximo debe ser mayor al salario mínimo.'
+                })
+
+            # ✅ VALIDACIÓN ADICIONAL: Diferencia mínima razonable (al menos $1000)
+            if (salario_max - salario_min) < 1000:
+                raise forms.ValidationError({
+                    'salario_max': 'La diferencia entre salario mínimo y máximo debe ser de al menos $1,000.'
+                })
 
         # Validar que la fecha límite sea posterior a hoy
         fecha_limite = cleaned_data.get('fecha_limite')
         if fecha_limite:
             from datetime import date
             if fecha_limite <= date.today():
-                raise forms.ValidationError(
-                    "La fecha límite debe ser posterior a la fecha actual."
-                )
+                raise forms.ValidationError({
+                    'fecha_limite': 'La fecha límite debe ser posterior a la fecha actual.'
+                })
 
         return cleaned_data
 
