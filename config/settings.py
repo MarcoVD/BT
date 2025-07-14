@@ -150,8 +150,6 @@ THOUSAND_SEPARATOR = ','
 #  CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS CORREGIDA
 STATIC_URL = '/static/'
 
-#  DESARROLLO: Django servirá desde static/
-#  PRODUCCIÓN: Nginx servirá desde staticfiles/
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  #  ESTA LÍNEA ES CRUCIAL
 ]
