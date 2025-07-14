@@ -556,7 +556,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 </script>
-<!-- Cargar el validador desde archivo externo -->
-<script src="{% static 'js/validar_login.js' %}"></script>
+    {% block extra_js %}
+        <!-- Script específico para búsqueda en index -->
+            <script src="{% static 'js/validar_login.js' %}"></script>
+    {% endblock %}
 
 {% endblock %}
