@@ -1,8 +1,8 @@
 {% extends 'base.html' %}
-{%  load static %}
+{% load static %}
 {% block title %}Registro de Interesado - Bolsa de Trabajo{% endblock %}
 {% block content %}
-    <style>
+<style>
     .crearCuenta-container {
         max-width: 500px;
         margin: 4rem auto;
@@ -26,7 +26,115 @@
         padding: 0.75rem;
         font-weight: 600;
     }
-    /* Estilo para la alerta de error de credenciales */
+
+    /* Estilos para validación en tiempo real */
+    .form-field {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .validation-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .validation-icon.show {
+        opacity: 1;
+    }
+
+    .validation-icon.valid {
+        color: #28a745;
+    }
+
+    .validation-icon.invalid {
+        color: #dc3545;
+    }
+
+    .form-control.is-valid {
+        border-color: #28a745;
+        background-image: none;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-image: none;
+    }
+
+    /* Estilos para mensajes de validación */
+    .validation-feedback {
+        display: none;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .validation-feedback.show {
+        display: block;
+    }
+
+    .validation-feedback.valid {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid rgba(40, 167, 69, 0.2);
+        color: #155724;
+    }
+
+    .validation-feedback.invalid {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid rgba(220, 53, 69, 0.2);
+        color: #721c24;
+    }
+
+    /* Lista de requisitos de contraseña */
+    .password-requirements {
+        background-color: rgba(0, 123, 255, 0.05);
+        border: 1px solid rgba(0, 123, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .requirement-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .requirement-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .requirement-item i {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+    }
+
+    .requirement-item.met {
+        color: #28a745;
+    }
+
+    .requirement-item.met i {
+        color: #28a745;
+    }
+
+    .requirement-item.unmet {
+        color: #6c757d;
+    }
+
+    .requirement-item.unmet i {
+        color: #6c757d;
+    }
+
+    /* Estilo para la alerta de error de credenciales del servidor */
     .alert-credentials-error {
         background-color: rgba(220, 53, 69, 0.1);
         border: 1px solid rgba(220, 53, 69, 0.2);
@@ -37,68 +145,416 @@
         padding: 0.8rem 1rem;
         border-radius: 8px;
     }
+
     .alert-credentials-error i {
         font-size: 1.2rem;
         margin-right: 0.75rem;
     }
 
+    /* Progreso de fortaleza de contraseña */
+    .password-strength {
+        margin-top: 0.5rem;
+    }
+
+    .strength-bar {
+        height: 4px;
+        background-color: #e9ecef;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+
+    .strength-fill {
+        height: 100%;
+        transition: width 0.3s ease, background-color 0.3s ease;
+        width: 0%;
+    }
+
+    .strength-weak { background-color: #dc3545; }
+    .strength-fair { background-color: #fd7e14; }
+    .strength-good { background-color: #ffc107; }
+    .strength-strong { background-color: #28a745; }
+
+    .strength-text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    /* Botón de submit deshabilitado */
+    .btn-primary:disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        cursor: not-allowed;
+    }
 </style>
+
 <div class="row justify-content-center">
     <div class="col-md-6">
         <div class="crearCuenta-container">
-
-        <div class="card-body p-4 p-md-5">
+            <div class="card-body p-4 p-md-5">
                 <div class="text-center mb-3">
                     <i class="bi bi-person-plus-fill login-icon"></i>
                     <h2 class="text-primary fw-bold mt-2 mb-0">Crear Cuenta</h2>
-{#                    <p class="text-muted">Regístrate para buscar y postularte a trabajos</p>#}
                 </div>
-            <div class="card-body pt-0">
+                <div class="card-body pt-0">
+                    <form method="post" id="registroForm" novalidate>
+                        {% csrf_token %}
 
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="mb-3">
-                        <label for="{{ form.email.id_for_label }}" class="text-primary form-label fw-bold">Correo Electrónico</label>
-                        {{ form.email }}
-                        {% if form.email.errors %}
-                            <div class="alert alert-credentials-error mb-3" role="alert">
-{#                            <div class="invalid-feedback d-block">#}
-                                {{ form.email.errors }}
-{#                            </div>#}
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="{{ form.password1.id_for_label }}" class="text-primary form-label fw-bold">Contraseña</label>
-                        {{ form.password1 }}
-                        {% if form.password1.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.password1.errors }}
+                        <!-- Campo Email -->
+                        <div class="form-field">
+                            <label for="{{ form.email.id_for_label }}" class="text-primary form-label fw-bold">
+                                Correo Electrónico <span class="text-danger">*</span>
+                            </label>
+                            <div style="position: relative;">
+                                {{ form.email }}
+                                <i class="bi validation-icon" id="emailIcon"></i>
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="mb-3">
-                        <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">Confirmar Contraseña</label>
-                        {{ form.password2 }}
-                        {% if form.password2.errors %}
-                            <div class="invalid-feedback d-block">
-                                {{ form.password2.errors }}
+                            <div class="validation-feedback" id="emailFeedback"></div>
+                            {% if form.email.errors %}
+                                <div class="alert alert-credentials-error mb-3" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    {{ form.email.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo Contraseña -->
+                        <div class="form-field">
+                            <label for="{{ form.password1.id_for_label }}" class="text-primary form-label fw-bold">
+                                Contraseña <span class="text-danger">*</span>
+                            </label>
+                            <div style="position: relative;">
+                                {{ form.password1 }}
+                                <i class="bi validation-icon" id="password1Icon"></i>
                             </div>
-                        {% endif %}
-                    </div>
-                    <div class="alert alert-info" role="alert">
-                        <i class="bi bi-info-circle-fill"></i> <strong>Siguiente paso:</strong>Después del registro, podrás completar tu información personal y crear tu currículum para postularte a vacantes.
-                    </div>
-                    <div class="d-grid mt-2">
-                        <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-box-arrow-in-right me-2"></i> Registrarme</button>
-                    </div>
-                </form>
-            </div>
+                            <div class="validation-feedback" id="password1Feedback"></div>
+
+                            <!-- Barra de fortaleza de contraseña -->
+                            <div class="password-strength">
+                                <div class="strength-bar">
+                                    <div class="strength-fill" id="strengthFill"></div>
+                                </div>
+                                <div class="strength-text" id="strengthText"></div>
+                            </div>
+
+                            <!-- Requisitos de contraseña -->
+                            <div class="password-requirements">
+                                <strong class="text-primary">Requisitos de contraseña:</strong>
+                                <div class="requirement-item unmet" id="req-length">
+                                    <i class="bi bi-circle"></i>
+                                    <span>Al menos 8 caracteres</span>
+                                </div>
+                                <div class="requirement-item unmet" id="req-not-common">
+                                    <i class="bi bi-circle"></i>
+                                    <span>No debe ser muy común</span>
+                                </div>
+                                <div class="requirement-item unmet" id="req-not-numeric">
+                                    <i class="bi bi-circle"></i>
+                                    <span>No debe ser solo números</span>
+                                </div>
+                                <div class="requirement-item unmet" id="req-not-personal">
+                                    <i class="bi bi-circle"></i>
+                                    <span>No debe ser similar a tu información personal</span>
+                                </div>
+                            </div>
+
+                            {% if form.password1.errors %}
+                                <div class="alert alert-credentials-error mt-2" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    {{ form.password1.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Campo Confirmar Contraseña -->
+                        <div class="form-field">
+                            <label for="{{ form.password2.id_for_label }}" class="form-label fw-bold">
+                                Confirmar Contraseña <span class="text-danger">*</span>
+                            </label>
+                            <div style="position: relative;">
+                                {{ form.password2 }}
+                                <i class="bi validation-icon" id="password2Icon"></i>
+                            </div>
+                            <div class="validation-feedback" id="password2Feedback"></div>
+                            {% if form.password2.errors %}
+                                <div class="alert alert-credentials-error mt-2" role="alert">
+                                    <i class="bi bi-exclamation-triangle-fill"></i>
+                                    {{ form.password2.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+
+                        <!-- Información del siguiente paso -->
+{#                        <div class="alert alert-info" role="alert">#}
+{#                            <i class="bi bi-info-circle-fill"></i>#}
+{#                            <strong>Siguiente paso:</strong> Después del registro, podrás completar tu información personal y crear tu currículum para postularte a vacantes.#}
+{#                        </div>#}
+
+                        <!-- Botón de envío -->
+                        <div class="d-grid mt-2">
+                            <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
+                                <i class="bi bi-box-arrow-in-right me-2"></i> Registrarme
+                            </button>
+                        </div>
+                    </form>
+                </div>
                 <div class="text-center mt-2">
-                    <p class="text-muted">¿Ya tienes una cuenta? Inicia Sesión<a href="{% url 'login' %}" class="text-decoration-none text-primary"> aquí</a></p>
+                    <p class="text-muted">¿Ya tienes una cuenta?
+                        <a href="{% url 'login' %}" class="text-decoration-none text-primary">Inicia Sesión aquí</a>
+                    </p>
                 </div>
-
-        </div>
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('registroForm');
+    const emailInput = document.getElementById('{{ form.email.id_for_label }}');
+    const password1Input = document.getElementById('{{ form.password1.id_for_label }}');
+    const password2Input = document.getElementById('{{ form.password2.id_for_label }}');
+    const submitBtn = document.getElementById('submitBtn');
+
+    // Elementos de validación
+    const emailIcon = document.getElementById('emailIcon');
+    const password1Icon = document.getElementById('password1Icon');
+    const password2Icon = document.getElementById('password2Icon');
+
+    const emailFeedback = document.getElementById('emailFeedback');
+    const password1Feedback = document.getElementById('password1Feedback');
+    const password2Feedback = document.getElementById('password2Feedback');
+
+    // Elementos de requisitos de contraseña
+    const reqLength = document.getElementById('req-length');
+    const reqNotCommon = document.getElementById('req-not-common');
+    const reqNotNumeric = document.getElementById('req-not-numeric');
+    const reqNotPersonal = document.getElementById('req-not-personal');
+
+    // Elementos de fortaleza
+    const strengthFill = document.getElementById('strengthFill');
+    const strengthText = document.getElementById('strengthText');
+
+    // Lista de contraseñas comunes (muestra pequeña)
+    const commonPasswords = [
+        '123456', 'password', '123456789', '12345678', '12345', '1234567',
+        '1234567890', 'qwerty', 'abc123', 'password123', 'admin', 'letmein',
+        '123123', 'welcome', 'monkey', '1234', 'password1', '123', 'qwerty123'
+    ];
+
+    // Estado de validación
+    let validationState = {
+        email: false,
+        password1: false,
+        password2: false
+    };
+
+    // Función para validar email
+    function validateEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+
+    // Función para verificar si la contraseña es común
+    function isCommonPassword(password) {
+        return commonPasswords.includes(password.toLowerCase());
+    }
+
+    // Función para verificar si es solo numérica
+    function isNumericOnly(password) {
+        return /^\d+$/.test(password);
+    }
+
+    // Función para calcular fortaleza de contraseña
+    function calculatePasswordStrength(password) {
+        let score = 0;
+        let feedback = [];
+
+        if (password.length >= 8) score += 25;
+        if (password.length >= 12) score += 10;
+        if (/[a-z]/.test(password)) score += 15;
+        if (/[A-Z]/.test(password)) score += 15;
+        if (/[0-9]/.test(password)) score += 15;
+        if (/[^A-Za-z0-9]/.test(password)) score += 20;
+
+        // Penalizaciones
+        if (isCommonPassword(password)) score -= 30;
+        if (isNumericOnly(password)) score -= 25;
+        if (password.length < 8) score -= 20;
+
+        score = Math.max(0, Math.min(100, score));
+
+        return {
+            score: score,
+            level: score < 25 ? 'weak' : score < 50 ? 'fair' : score < 75 ? 'good' : 'strong'
+        };
+    }
+
+    // Función para actualizar el icono y feedback
+    function updateValidation(input, icon, feedback, isValid, message) {
+        input.classList.remove('is-valid', 'is-invalid');
+        icon.classList.remove('show', 'valid', 'invalid', 'bi-check-circle-fill', 'bi-x-circle-fill');
+        feedback.classList.remove('show', 'valid', 'invalid');
+
+        if (input.value.trim() === '') {
+            return;
+        }
+
+        if (isValid) {
+            input.classList.add('is-valid');
+            icon.classList.add('show', 'valid', 'bi-check-circle-fill');
+            if (message) {
+                feedback.textContent = message;
+                feedback.classList.add('show', 'valid');
+            }
+        } else {
+            input.classList.add('is-invalid');
+            icon.classList.add('show', 'invalid', 'bi-x-circle-fill');
+            if (message) {
+                feedback.textContent = message;
+                feedback.classList.add('show', 'invalid');
+            }
+        }
+    }
+
+    // Función para actualizar requisitos de contraseña
+    function updatePasswordRequirements(password) {
+        // Longitud
+        const hasLength = password.length >= 8;
+        updateRequirement(reqLength, hasLength);
+
+        // No común
+        const notCommon = !isCommonPassword(password);
+        updateRequirement(reqNotCommon, notCommon);
+
+        // No solo numérica
+        const notNumeric = !isNumericOnly(password);
+        updateRequirement(reqNotNumeric, notNumeric);
+
+        // No personal (básico - se podría mejorar)
+        const notPersonal = !password.toLowerCase().includes(emailInput.value.split('@')[0].toLowerCase());
+        updateRequirement(reqNotPersonal, notPersonal);
+
+        return hasLength && notCommon && notNumeric && notPersonal;
+    }
+
+    function updateRequirement(element, isMet) {
+        const icon = element.querySelector('i');
+        element.classList.remove('met', 'unmet');
+        icon.classList.remove('bi-check-circle-fill', 'bi-circle');
+
+        if (isMet) {
+            element.classList.add('met');
+            icon.classList.add('bi-check-circle-fill');
+        } else {
+            element.classList.add('unmet');
+            icon.classList.add('bi-circle');
+        }
+    }
+
+    // Función para actualizar fortaleza de contraseña
+    function updatePasswordStrength(password) {
+        if (password.length === 0) {
+            strengthFill.style.width = '0%';
+            strengthText.textContent = '';
+            strengthFill.className = 'strength-fill';
+            return;
+        }
+
+        const strength = calculatePasswordStrength(password);
+        strengthFill.style.width = strength.score + '%';
+        strengthFill.className = 'strength-fill strength-' + strength.level;
+
+        const strengthLabels = {
+            weak: 'Débil',
+            fair: 'Regular',
+            good: 'Buena',
+            strong: 'Fuerte'
+        };
+
+        strengthText.textContent = 'Fortaleza: ' + strengthLabels[strength.level];
+    }
+
+    // Función para actualizar el estado del botón
+    function updateSubmitButton() {
+        const allValid = Object.values(validationState).every(state => state);
+        submitBtn.disabled = !allValid;
+    }
+
+    // Event listeners
+    emailInput.addEventListener('input', function () {
+        const email = this.value.trim();
+        if (email === '') {
+            validationState.email = false;
+            updateValidation(this, emailIcon, emailFeedback, false, '');
+        } else if (validateEmail(email)) {
+            validationState.email = true;
+            updateValidation(this, emailIcon, emailFeedback, true, 'Correo electrónico válido');
+        } else {
+            validationState.email = false;
+            updateValidation(this, emailIcon, emailFeedback, false, 'Por favor, ingresa un correo electrónico válido');
+        }
+        updateSubmitButton();
+    });
+
+    password1Input.addEventListener('input', function () {
+        const password = this.value;
+
+        if (password === '') {
+            validationState.password1 = false;
+            updateValidation(this, password1Icon, password1Feedback, false, '');
+            updatePasswordStrength('');
+            updatePasswordRequirements('');
+        } else {
+            const allRequirementsMet = updatePasswordRequirements(password);
+            updatePasswordStrength(password);
+
+            if (allRequirementsMet) {
+                validationState.password1 = true;
+                updateValidation(this, password1Icon, password1Feedback, true, 'Contraseña segura');
+            } else {
+                validationState.password1 = false;
+                updateValidation(this, password1Icon, password1Feedback, false, 'La contraseña no cumple todos los requisitos');
+            }
+        }
+
+        // Revalidar confirmación de contraseña
+        if (password2Input.value) {
+            password2Input.dispatchEvent(new Event('input'));
+        }
+
+        updateSubmitButton();
+    });
+
+    password2Input.addEventListener('input', function () {
+        const password2 = this.value;
+        const password1 = password1Input.value;
+
+        if (password2 === '') {
+            validationState.password2 = false;
+            updateValidation(this, password2Icon, password2Feedback, false, '');
+        } else if (password2 === password1) {
+            validationState.password2 = true;
+            updateValidation(this, password2Icon, password2Feedback, true, 'Las contraseñas coinciden');
+        } else {
+            validationState.password2 = false;
+            updateValidation(this, password2Icon, password2Feedback, false, 'Las contraseñas no coinciden');
+        }
+        updateSubmitButton();
+    });
+
+    // Prevenir envío si la validación no es completa
+    form.addEventListener('submit', function (e) {
+        const allValid = Object.values(validationState).every(state => state);
+        if (!allValid) {
+            e.preventDefault();
+            alert('Por favor, corrige todos los errores antes de continuar.');
+        }
+    });
+
+</script>
+<!-- Cargar el validador desde archivo externo -->
+<script src="{% static 'js/validar_login.js' %}"></script>
+
 {% endblock %}
