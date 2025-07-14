@@ -288,8 +288,10 @@ class SecretariaRegistroForm(forms.ModelForm):
         if commit:
             secretaria.save()
         return secretaria
+# usuarios/forms.py - Formulario actualizado
+
 class ReclutadorRegistroForm(UserCreationForm):
-    """Formulario para registro de reclutadores."""
+    """Formulario para registro de reclutadores - SIN gestión de secretaría."""
 
     nombre = forms.CharField(
         max_length=50,
@@ -326,26 +328,13 @@ class ReclutadorRegistroForm(UserCreationForm):
         model = Usuario
         fields = ('email', 'password1', 'password2')
 
-    def save(self, commit=True, secretaria=None):
-        if not secretaria:
-            raise ValueError("Se requiere una secretaría para el registro de reclutador")
+    def save(self, commit=True):
+        """Guarda el usuario - La secretaría se asigna en la vista."""
         user = super().save(commit=False)
         user.rol = 'reclutador'
         if commit:
             user.save()
-            Reclutador.objects.create(
-                usuario=user,
-                secretaria=secretaria,
-                nombre=self.cleaned_data.get('nombre'),
-                apellido_paterno=self.cleaned_data.get('apellido_paterno'),
-                apellido_materno=self.cleaned_data.get('apellido_materno'),
-                cargo=self.cleaned_data.get('cargo'),
-                telefono=self.cleaned_data.get('telefono'),
-                aprobado=False
-            )
         return user
-
-# usuarios/forms.py - SECCIÓN ACTUALIZADA PARA VACANTES
 
 class VacanteForm(forms.ModelForm):
     """Formulario para crear/editar vacantes. Validar los campos las comas, espacios y numeros negativos """

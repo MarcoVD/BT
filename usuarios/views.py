@@ -454,77 +454,96 @@ class InteresadoRegistroView(View):
 
         return render(request, 'usuarios/registro_interesado.html', {'form': form})
 
+
+# usuarios/views.py - Vista actualizada para registro de reclutadores
+
 class ReclutadorRegistroView(View):
-    """Vista para registro de reclutadores - ACTUALIZADA CON VERIFICACIÓN."""
+    """Vista para registro de reclutadores - ACTUALIZADA PARA USAR SECRETARÍA FIJA."""
 
     def get(self, request):
-        secretaria_form = SecretariaRegistroForm()
+        # Solo necesitamos el formulario del reclutador, no de la secretaría
         reclutador_form = ReclutadorRegistroForm()
+
+        # Obtener la secretaría de movilidad para mostrar en el template
+        try:
+            secretaria_movilidad = Secretaria.objects.get(id=1)
+        except Secretaria.DoesNotExist:
+            messages.error(request, 'Error: La Secretaría de Movilidad no está configurada en el sistema.')
+            return redirect('index')
+
         return render(request, 'usuarios/registro_reclutador.html', {
-            'secretaria_form': secretaria_form,
-            'reclutador_form': reclutador_form
+            'reclutador_form': reclutador_form,
+            'secretaria_movilidad': secretaria_movilidad,  # Para mostrar info en el template
         })
 
     def post(self, request):
-        secretaria_form = SecretariaRegistroForm(request.POST)
         reclutador_form = ReclutadorRegistroForm(request.POST)
 
-        if secretaria_form.is_valid() and reclutador_form.is_valid():
+        if reclutador_form.is_valid():
             try:
-                # with transaction.atomic():
-                    # Crear secretaría
-                    secretaria = secretaria_form.save()
+                # Obtener la Secretaría de Movilidad (ID=1)
+                try:
+                    secretaria_movilidad = Secretaria.objects.get(id=1)
+                except Secretaria.DoesNotExist:
+                    messages.error(request, 'Error: La Secretaría de Movilidad no está configurada.')
+                    return render(request, 'usuarios/registro_reclutador.html', {
+                        'reclutador_form': reclutador_form
+                    })
 
-                    # Crear usuario sin verificar
-                    user = reclutador_form.save(commit=False)
-                    user.email_verified = False
-                    user.save()
+                # Crear usuario sin verificar
+                user = reclutador_form.save(commit=False)
+                user.email_verified = False
+                user.save()
 
-                    # Crear perfil de reclutador
-                    from .models import Reclutador
-                    Reclutador.objects.create(
-                        usuario=user,
-                        secretaria=secretaria,
-                        nombre=reclutador_form.cleaned_data.get('nombre'),
-                        apellido_paterno=reclutador_form.cleaned_data.get('apellido_paterno'),
-                        apellido_materno=reclutador_form.cleaned_data.get('apellido_materno'),
-                        cargo=reclutador_form.cleaned_data.get('cargo'),
-                        telefono=reclutador_form.cleaned_data.get('telefono'),
-                        aprobado=False
-                    )
+                # Crear perfil de reclutador asociado a la Secretaría de Movilidad
+                from .models import Reclutador
+                Reclutador.objects.create(
+                    usuario=user,
+                    secretaria=secretaria_movilidad,  # ✅ USAR LA SECRETARÍA FIJA
+                    nombre=reclutador_form.cleaned_data.get('nombre'),
+                    apellido_paterno=reclutador_form.cleaned_data.get('apellido_paterno'),
+                    apellido_materno=reclutador_form.cleaned_data.get('apellido_materno'),
+                    cargo=reclutador_form.cleaned_data.get('cargo'),
+                    telefono=reclutador_form.cleaned_data.get('telefono'),
+                    aprobado=False
+                )
 
-                    # ✅ ENVIAR CORREO CON MEJOR MANEJO DE ERRORES
-                    try:
-                        email_enviado = send_verification_email(request, user)
-                        if email_enviado:
-                            messages.success(request,
-                                             '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
-                                             'Después de verificar tu email, tu cuenta será revisada por un administrador.')
-                        else:
-                            messages.warning(request,
-                                             'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
-                                             'Puedes solicitar un nuevo enlace desde la página de login.')
-                    except Exception as e:
-                        logger.error(f"Error crítico enviando email: {str(e)}")
+                # Enviar correo de verificación
+                try:
+                    email_enviado = send_verification_email(request, user)
+                    if email_enviado:
+                        messages.success(request,
+                                         '¡Registro exitoso! Hemos enviado un enlace de verificación a tu correo electrónico. '
+                                         'Después de verificar tu email, tu cuenta será revisada por un administrador.')
+                    else:
                         messages.warning(request,
                                          'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
                                          'Puedes solicitar un nuevo enlace desde la página de login.')
+                except Exception as e:
+                    logger.error(f"Error crítico enviando email: {str(e)}")
+                    messages.warning(request,
+                                     'Registro exitoso, pero hubo un problema enviando el correo de verificación. '
+                                     'Puedes solicitar un nuevo enlace desde la página de login.')
 
-                    return render(request, 'usuarios/registro_exitoso.html', {
-                        'user_email': user.email,
-                        'user_role': 'reclutador'
-                    })
+                return render(request, 'usuarios/registro_exitoso.html', {
+                    'user_email': user.email,
+                    'user_role': 'reclutador'
+                })
 
             except Exception as e:
                 logger.error(f"Error en registro de reclutador: {str(e)}")
                 messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
 
-        return render(request, 'usuarios/registro_reclutador.html', {
-            'secretaria_form': secretaria_form,
-            'reclutador_form': reclutador_form
-        })
+        # Si hay errores, mostrar el formulario con errores
+        try:
+            secretaria_movilidad = Secretaria.objects.get(id=1)
+        except Secretaria.DoesNotExist:
+            secretaria_movilidad = None
 
-# ACTUALIZAR LA VISTA DE LOGIN
+        return render(request, 'usuarios/registro_reclutador.html', {
+            'reclutador_form': reclutador_form,
+            'secretaria_movilidad': secretaria_movilidad,
+        })
 
 class LoginView(View):
     """Vista para inicio de sesión de usuarios - ACTUALIZADA CON VERIFICACIÓN."""

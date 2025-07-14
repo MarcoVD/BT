@@ -78,9 +78,39 @@
         margin-top: 0.2rem;
     }
 
+    /* Estilos para la información de la secretaría */
+    .secretaria-info {
+        background-color: #f8f9fa;
+        border: 1px solid #dee2e6;
+        border-radius: 8px;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .secretaria-info h6 {
+        color: var(--primary);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .info-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+    }
+
+    .info-item i {
+        color: var(--primary);
+        width: 20px;
+        margin-right: 0.75rem;
+    }
+
+    .info-item:last-child {
+        margin-bottom: 0;
+    }
+
 </style>
 {% endblock %}
-
 
 {% block content %}
 <div class="container my-5">
@@ -92,106 +122,128 @@
                 <!-- Encabezado del Formulario -->
                 <div class="form-header text-center">
                     <h2 class="fw-bold">Registro para Reclutadores</h2>
-                    <p class="text-muted mb-0">Crea una cuenta para publicar vacantes en nombre de la Secretaría de Movilidad.</p>
+                    <p class="text-muted mb-0">Únete al equipo de reclutamiento de la Secretaría de Movilidad del Estado de México.</p>
                 </div>
 
                 <form method="post" class="needs-validation" novalidate>
                     {% csrf_token %}
 
-                    <!-- Sección 1: Información de la Secretaría -->
+                    <!-- Sección 1: Información de la Secretaría (Solo lectura) -->
                     <div class="form-section">
-                        <h5 class="form-section-title"><i class="bi bi-building-fill"></i>Información de la Secretaría</h5>
+                        <h5 class="form-section-title">
+                            <i class="bi bi-building-fill"></i>
+                            Organización
+                        </h5>
 
-                        <div class="alert alert-secondary mb-4">
-                            <strong>Organización:</strong> Secretaría de Movilidad del Estado de México
+                        {% if secretaria_movilidad %}
+                        <div class="secretaria-info">
+                            <h6><i class="bi bi-building"></i> {{ secretaria_movilidad.nombre }}</h6>
+
+                            <div class="info-item">
+                                <i class="bi bi-geo-alt"></i>
+                                <span>{{ secretaria_movilidad.direccion|default:"Dirección no disponible" }}</span>
+                            </div>
+
+                            {% if secretaria_movilidad.sitio_web %}
+                            <div class="info-item">
+                                <i class="bi bi-globe"></i>
+                                <a href="{{ secretaria_movilidad.sitio_web }}" target="_blank" class="text-decoration-none">
+                                    {{ secretaria_movilidad.sitio_web }}
+                                </a>
+                            </div>
+                            {% endif %}
+
+                            {% if secretaria_movilidad.descripcion %}
+                            <div class="info-item">
+                                <i class="bi bi-info-circle"></i>
+                                <span>{{ secretaria_movilidad.descripcion }}</span>
+                            </div>
+                            {% endif %}
                         </div>
 
-                        <div class="row g-3">
-                            <div class="col-12">
-                                <label for="{{ secretaria_form.rfc.id_for_label }}" class="form-label">RFC de la Secretaría</label>
-                                {{ secretaria_form.rfc }}
-                                {% if secretaria_form.rfc.errors %}
-                                    <div class="invalid-feedback d-block">{{ secretaria_form.rfc.errors|first }}</div>
-                                {% endif %}
-                            </div>
-
-                            <div class="col-12">
-                                <label for="{{ secretaria_form.direccion.id_for_label }}" class="form-label">Dirección Completa</label>
-                                {{ secretaria_form.direccion }}
-                                {% if secretaria_form.direccion.errors %}
-                                    <div class="invalid-feedback d-block">{{ secretaria_form.direccion.errors|first }}</div>
-                                {% endif %}
-                            </div>
-
-                            <div class="col-md-6">
-                                <label for="{{ secretaria_form.sitio_web.id_for_label }}" class="form-label">Sitio Web </label>
-                                {{ secretaria_form.sitio_web }}
-                                {% if secretaria_form.sitio_web.errors %}
-                                    <div class="invalid-feedback d-block">{{ secretaria_form.sitio_web.errors|first }}</div>
-                                {% endif %}
-                            </div>
-
-                            <div class="col-md-12">
-                                <label for="{{ secretaria_form.descripcion.id_for_label }}" class="form-label">Descripción Breve</label>
-                                {{ secretaria_form.descripcion }}
-                                {% if secretaria_form.descripcion.errors %}
-                                    <div class="invalid-feedback d-block">{{ secretaria_form.descripcion.errors|first }}</div>
-                                {% endif %}
-                            </div>
+                        <div class="alert alert-info">
+                            <i class="bi bi-info-circle me-2"></i>
+                            <strong>Información:</strong> Todos los reclutadores registrados formarán parte del equipo de la Secretaría de Movilidad del Estado de México.
                         </div>
+                        {% else %}
+                        <div class="alert alert-danger">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <strong>Error:</strong> La información de la Secretaría de Movilidad no está disponible. Contacta al administrador del sistema.
+                        </div>
+                        {% endif %}
                     </div>
 
                     <!-- Sección 2: Datos del Reclutador -->
                     <div class="form-section border-top">
-                        <h5 class="form-section-title"><i class="bi bi-person-badge-fill"></i>Datos del Contacto Reclutador</h5>
+                        <h5 class="form-section-title">
+                            <i class="bi bi-person-badge-fill"></i>
+                            Datos del Contacto Reclutador
+                        </h5>
 
                         <div class="row g-3">
                             <div class="col-md-12">
                                 <label for="{{ reclutador_form.nombre.id_for_label }}" class="form-label">Nombre(s)</label>
                                 {{ reclutador_form.nombre }}
-                                {% if reclutador_form.nombre.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.nombre.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.nombre.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.nombre.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.apellido_paterno.id_for_label }}" class="form-label">Apellido Paterno</label>
                                 {{ reclutador_form.apellido_paterno }}
-                                {% if reclutador_form.apellido_paterno.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.apellido_paterno.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.apellido_paterno.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.apellido_paterno.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.apellido_materno.id_for_label }}" class="form-label">Apellido Materno</label>
                                 {{ reclutador_form.apellido_materno }}
+                                {% if reclutador_form.apellido_materno.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.apellido_materno.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.cargo.id_for_label }}" class="form-label">Cargo</label>
                                 {{ reclutador_form.cargo }}
-                                {% if reclutador_form.cargo.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.cargo.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.cargo.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.cargo.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.telefono.id_for_label }}" class="form-label">Teléfono</label>
                                 {{ reclutador_form.telefono }}
-                                {% if reclutador_form.telefono.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.telefono.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.telefono.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.telefono.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-12">
                                 <label for="{{ reclutador_form.email.id_for_label }}" class="form-label">Correo Electrónico de la Cuenta</label>
                                 {{ reclutador_form.email }}
-                                {% if reclutador_form.email.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.email.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.email.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.email.errors|first }}</div>
+                                {% endif %}
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.password1.id_for_label }}" class="form-label">Contraseña</label>
                                 {{ reclutador_form.password1 }}
-                                {% if reclutador_form.password1.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.password1.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.password1.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.password1.errors|first }}</div>
+                                {% endif %}
                                 <div class="form-text">Debe tener al menos 8 caracteres.</div>
                             </div>
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.password2.id_for_label }}" class="form-label">Confirmar Contraseña</label>
                                 {{ reclutador_form.password2 }}
-                                {% if reclutador_form.password2.errors %}<div class="invalid-feedback d-block">{{ reclutador_form.password2.errors|first }}</div>{% endif %}
+                                {% if reclutador_form.password2.errors %}
+                                    <div class="invalid-feedback d-block">{{ reclutador_form.password2.errors|first }}</div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -201,17 +253,24 @@
                         <div class="approval-note mb-4" role="alert">
                             <i class="bi bi-shield-check"></i>
                             <div>
-                                <strong>Nota Importante:</strong> Todas las cuentas de reclutador requieren la aprobación de un administrador antes de ser activadas. Recibirás una notificación por correo electrónico una vez que tu cuenta haya sido revisada.
+                                <strong>Proceso de Aprobación:</strong> Después de registrarte y verificar tu correo electrónico, tu cuenta será revisada por un administrador. Recibirás una notificación por correo electrónico una vez que tu cuenta haya sido aprobada y puedas comenzar a publicar vacantes.
                             </div>
                         </div>
+
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg fw-bold">Crear Cuenta de Reclutador</button>
+                            <button type="submit" class="btn btn-primary btn-lg fw-bold">
+                                <i class="bi bi-person-plus me-2"></i>
+                                Crear Cuenta de Reclutador
+                            </button>
                         </div>
                     </div>
                 </form>
 
                 <div class="text-center pb-4">
-                    <p class="mb-0 text-muted">¿Ya tienes una cuenta? <a href="{% url 'login' %}" class="fw-bold text-primary text-decoration-none">Inicia Sesión</a></p>
+                    <p class="mb-0 text-muted">
+                        ¿Ya tienes una cuenta?
+                        <a href="{% url 'login' %}" class="fw-bold text-primary text-decoration-none">Inicia Sesión</a>
+                    </p>
                 </div>
             </div>
 
