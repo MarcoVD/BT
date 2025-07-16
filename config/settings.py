@@ -151,7 +151,7 @@ THOUSAND_SEPARATOR = ','
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',  #  ESTA LÍNEA ES CRUCIAL
+    BASE_DIR / 'static',
 ]
 
 #  Carpeta donde collectstatic reunirá todos los archivos

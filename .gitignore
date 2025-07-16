@@ -8,6 +8,7 @@ __pycache__/
 # Entorno virtual
 .venv/
 .env
+.env*
 .env.production
 venv/
 env/
@@ -16,9 +17,6 @@ ENV/
 env.bak/
 venv.bak/
 
- Otros archivos de sistema
-#.DS_Store
-#
 # Archivos de IDE
 .vscode/
 *.swp
@@ -30,6 +28,12 @@ Thumbs.db
 debug.log
 gemini.md
 config/settings.py
+config/settings_production.py
+.github
+sudo systemctl restart nginx
+sudo systemctl daemon-reload
+sudo systemctl restart  gunicorn_bt.service
+sudo systemctl status  gunicorn_bt.service
 
 
 # Byte-compiled / optimized / DLL files
@@ -84,6 +88,7 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+
 
 # Translations
 *.mo
