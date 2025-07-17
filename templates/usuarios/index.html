@@ -51,7 +51,7 @@
                                 <div class="col-md-9">
                                     <h5 class="card-title text-primary fw-bold">{{ vacante.titulo }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ vacante.secretaria.nombre }} - Estado de México, {{ vacante.get_municipio_display}}.</h6>
-                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.get_municipio_display}} Estado de México.</h6>
+{#                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.get_municipio_display}} Estado de México.</h6>#}
                                     <p class="card-text small">
                                         {{ vacante.descripcion|truncatewords:25 }}
                                     </p>
@@ -62,7 +62,7 @@
                                     {% else %}
                                         <p class="text-muted mb-1">Salario a convenir</p>
                                     {% endif %}
-                                   {{ vacante.get_municipio_display }}
+{#                                   {{ vacante.get_municipio_display }}#}
                                     <p class="small text-muted">Publicado: {{ vacante.fecha_publicacion|timesince }}</p>
                                     <a href="{% url 'detalle_vacante' vacante_id=vacante.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
                                 </div>
