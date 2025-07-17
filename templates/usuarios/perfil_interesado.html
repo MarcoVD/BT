@@ -1302,6 +1302,27 @@ document.addEventListener('DOMContentLoaded', function() {
     formulario.addEventListener('submit', function() {
         localStorage.removeItem('cv_autoguardado');
     });
+
+    // Solución para el refresco de la imagen de perfil
+    const cropperModalEl = document.getElementById('cropperModal');
+    const cropButton = document.getElementById('cropButton');
+    let imageCropped = false;
+
+    if (cropButton) {
+        cropButton.addEventListener('click', function() {
+            imageCropped = true;
+        });
+    }
+
+    if (cropperModalEl) {
+        cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
+            if (imageCropped) {
+                // Recargar la página para asegurar que la nueva foto de perfil se muestre,
+                // solucionando el problema de caché del navegador.
+                location.reload();
+            }
+        });
+    }
 });
 
 </script>
