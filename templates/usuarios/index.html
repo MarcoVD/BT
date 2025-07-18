@@ -62,7 +62,10 @@
                                     {% else %}
                                         <p class="text-muted mb-1">Salario a convenir</p>
                                     {% endif %}
-                                   {{ vacante.get_municipio_display }}
+                                    <p class="mb-1 small text-muted">
+                                        <i class="bi bi-geo-alt"></i>
+                                        {{ vacante.get_municipio_display }}
+                                            </p>
                                     <p class="small text-muted">Publicado: {{ vacante.fecha_publicacion|timesince }}</p>
                                     <a href="{% url 'detalle_vacante' vacante_id=vacante.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
                                 </div>
