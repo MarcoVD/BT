@@ -330,8 +330,9 @@
                         <div class="card-header">
                             <h5><i class="bi bi-file-person"></i> Resumen Profesional</h5>
                         </div>
+{#                    TODO borrar la prueba#}
                         <div class="card-body text-justify">
-                            <label for="resumen_profesional" class="form-label"></label>
+                            <label for="resumen_profesional" class="form-label">dentro</label> fuera
                             <textarea class="form-control is-invalid" id="resumen_profesional" name="resumen_profesional" rows="3"  placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..." required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>
                         </div>
                     </div>
@@ -383,7 +384,6 @@
                             </div>
                         </div>
                     </div>
-
                     <!-- Educación -->
                     <div class="card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center">
@@ -411,7 +411,7 @@
                                                         onclick="editarEducacion({{ educacion.id }}, '{{ educacion.titulo|escapejs }}', '{{ educacion.institucion|escapejs }}',
                                                                 '{{ educacion.fecha_inicio|date:"Y-m-d" }}',
                                                                 '{% if educacion.fecha_fin %}{{ educacion.fecha_fin|date:"Y-m-d" }}{% endif %}',
-                                                                '{{ educacion.descripcion|escapejs }}')">
+                                                                )">
                                                         <i class="bi bi-pencil text-black m-1"></i>
                                                     </button>
                                                     <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarEducacion({{ educacion.id }})">
@@ -429,7 +429,7 @@
                     </div>
 
                     <!-- Habilidades -->
-                    <div class="card mb-4">
+                    <div class="was-validated card mb-4">
                         <div class="card-header d-flex justify-content-between align-items-center" >
                             <h5><i class="bi bi-tools"></i> Habilidades Técnicas</h5>
                             <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalHabilidad()">
@@ -437,6 +437,7 @@
                             </button>
                         </div>
                         <div class="card-body">
+                            <label class="text-muted">hola</label>
                             <div id="habilidadesContainer">
                                 {% if habilidades %}
                                     {% for habilidad in habilidades %}
@@ -486,10 +487,6 @@
                     </div>
 
                     <div class="text-end mt-4 mb-5">
-{#                        <button type="submit" class="btn btn-primary btn-lg" id="btnGuardarCV">#}
-{#                        <button type="submit" class="btn btn-primary btn-lg" id="btnDescargarCV">btnGuardarCV#}
-{#                            <i class="bi bi-save"></i> Guardar CV Completo#}
-{#                        </button>#}
                         {% if tiene_cv %}
                             <a id="btnDescargarCV" href="{% url 'descargar_cv_pdf' %}" class=" text-white btn btn-primary" disabled>
                                 <i class="bi bi-download"></i> Descargar PDF
@@ -724,7 +721,7 @@
 </div>
 
 <!-- Modal para Educación -->
-<div class="modal fade" id="educacionModal" tabindex="-1">
+<div class="modal was-validated fade" id="educacionModal" tabindex="-1">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -749,12 +746,12 @@
                         </div>
                         <div class="col-md-6">
                             <label class="form-label">Fecha de Fin</label>
-                            <input type="date" class="form-control" name="fecha_fin">
+                            <input type="date" class="form-control" name="fecha_fin" required>
                         </div>
-                        <div class="col-12">
-                            <label class="form-label">Descripción (opcional)</label>
-                            <textarea class="form-control" name="descripcion" rows="2"></textarea>
-                        </div>
+{#                        <div class="col-12">#}
+{#                            <label class="form-label">Descripción (opcional)</label>#}
+{#                            <textarea class="form-control" name="descripcion" rows="2" required></textarea>#}
+{#                        </div>#}
                     </div>
                 </form>
             </div>
@@ -1003,14 +1000,14 @@ function guardarEducacion() {
         alert('Error al guardar la educación');
     });
 }
-function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin, descripcion) {
+function editarEducacion(id, titulo, institucion, fechaInicio, fechaFin) {
 
     educacionEditandoId = id;
     document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
     document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
     document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
     document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
-    document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';
+    {#document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';#}
 
     document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
     new bootstrap.Modal(document.getElementById('educacionModal')).show();
