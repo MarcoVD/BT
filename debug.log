@@ -4717,3 +4717,612 @@ INFO 2025-07-16 16:58:08,200 basehttp 49190 125295109588672 "DELETE /ajax/idioma
 INFO 2025-07-16 16:58:11,655 basehttp 49190 125295109588672 "POST /ajax/educacion/editar/66/ HTTP/1.1" 200 241
 INFO 2025-07-16 16:58:11,678 basehttp 49190 125295109588672 "GET /perfil/interesado/?csrfmiddlewaretoken=U1TyRsUNsvxKHgP0TDFlxdAXo5RIOnD7qRcwnTEAvpZa4yYH5HzTzO95ylzflgGA&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 95119
 INFO 2025-07-16 16:58:17,411 basehttp 49190 125295109588672 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-16 17:29:32,263 basehttp 49190 125295109588672 "GET / HTTP/1.1" 200 20059
+INFO 2025-07-16 17:36:13,916 basehttp 49190 125295134766784 "GET / HTTP/1.1" 200 19671
+INFO 2025-07-16 17:36:13,950 basehttp 49190 125295134766784 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-16 17:55:08,184 basehttp 49190 125295134766784 "GET /login/ HTTP/1.1" 200 10210
+INFO 2025-07-16 17:55:14,477 basehttp 49190 125295134766784 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-16 17:55:14,496 basehttp 49190 125295134766784 "GET /perfil/interesado/ HTTP/1.1" 200 95128
+INFO 2025-07-16 17:55:14,510 basehttp 49190 125295134766784 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-16 17:55:14,532 basehttp 49190 125295109588672 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-16 17:55:14,532 basehttp 49190 125295117981376 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-16 17:55:14,572 basehttp 49190 125295134766784 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6888
+INFO 2025-07-16 17:55:22,003 basehttp 49190 125295134766784 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-16 17:55:22,020 basehttp 49190 125295134766784 "GET / HTTP/1.1" 200 19984
+INFO 2025-07-16 17:55:23,335 basehttp 49190 125295117981376 "GET /login/ HTTP/1.1" 200 10210
+INFO 2025-07-16 17:55:26,083 basehttp 49190 125295109588672 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-16 17:55:26,104 basehttp 49190 125295109588672 "GET /perfil/interesado/ HTTP/1.1" 200 97749
+INFO 2025-07-16 17:55:26,126 basehttp 49190 125295109588672 "GET /media/interesados/profile_LTZZBYG.jpg HTTP/1.1" 200 6471
+INFO 2025-07-16 17:55:28,764 basehttp 49190 125295134766784 "GET /media/interesados/profile_LTZZBYG.jpg HTTP/1.1" 200 6471
+INFO 2025-07-16 17:55:28,908 basehttp 49190 125295109588672 "GET /cv/descargar/ HTTP/1.1" 200 17686
+INFO 2025-07-16 18:29:53,834 autoreload 49190 125295315255552 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-16 18:29:54,687 autoreload 65492 139118028067072 Watching for file changes with StatReloader
+INFO 2025-07-16 18:30:05,350 autoreload 65492 139118028067072 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-16 18:30:05,589 autoreload 65569 124678294855936 Watching for file changes with StatReloader
+INFO 2025-07-16 18:33:16,722 autoreload 65569 124678294855936 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-16 18:33:17,198 autoreload 66076 138075121168640 Watching for file changes with StatReloader
+INFO 2025-07-16 18:34:00,887 autoreload 66076 138075121168640 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-16 18:34:01,147 autoreload 66211 138130398556416 Watching for file changes with StatReloader
+INFO 2025-07-16 18:34:34,558 autoreload 66397 133521978511616 Watching for file changes with StatReloader
+INFO 2025-07-16 18:34:48,269 basehttp 66211 138130220906176 "GET / HTTP/1.1" 200 19671
+INFO 2025-07-16 18:34:48,285 basehttp 66211 138130220906176 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-16 18:34:48,289 basehttp 66211 138130211464896 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-16 18:34:48,289 basehttp 66211 138130203072192 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-16 18:34:48,289 basehttp 66211 138130194679488 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-16 18:34:48,334 basehttp 66211 138130203072192 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-16 18:34:48,335 basehttp 66211 138130194679488 "GET /static/img/logoColores.png HTTP/1.1" 200 6174
+INFO 2025-07-16 18:34:48,335 basehttp 66211 138130220906176 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-16 18:34:48,336 basehttp 66211 138130211464896 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-16 18:34:48,336 basehttp 66211 138130186286784 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-16 18:34:48,395 basehttp 66211 138130186286784 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-16 18:34:50,329 basehttp 66211 138130186286784 "GET /login/ HTTP/1.1" 200 10210
+INFO 2025-07-16 18:34:53,866 basehttp 66211 138130186286784 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-16 18:34:53,887 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 95128
+INFO 2025-07-16 18:34:53,898 basehttp 66211 138130186286784 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-16 18:34:53,917 basehttp 66211 138130220906176 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-16 18:34:53,917 basehttp 66211 138130194679488 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-16 18:34:53,948 basehttp 66211 138130220906176 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6888
+INFO 2025-07-16 18:35:09,409 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 25866
+INFO 2025-07-16 18:35:36,641 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 25866
+INFO 2025-07-16 18:35:37,731 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 25866
+INFO 2025-07-16 18:35:38,454 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 25866
+INFO 2025-07-16 18:35:39,178 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 25866
+INFO 2025-07-16 18:36:49,706 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 95128
+INFO 2025-07-16 18:38:30,433 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 75973
+INFO 2025-07-16 18:38:31,079 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 75973
+INFO 2025-07-16 18:38:38,300 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 77343
+INFO 2025-07-16 18:39:42,855 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 77343
+INFO 2025-07-16 18:40:09,960 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 95128
+INFO 2025-07-16 18:42:27,110 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 28686
+INFO 2025-07-16 18:43:15,699 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 28686
+INFO 2025-07-16 18:43:33,639 basehttp 66211 138130186286784 "GET /perfil/interesado/ HTTP/1.1" 200 95128
+INFO 2025-07-16 18:48:06,675 autoreload 68469 131957130539264 Watching for file changes with StatReloader
+INFO 2025-07-16 18:48:08,251 basehttp 68469 131956952004288 "GET /perfil/interesado/ HTTP/1.1" 200 81850
+INFO 2025-07-16 18:48:08,272 basehttp 68469 131956952004288 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6888
+INFO 2025-07-17 09:31:28,745 autoreload 12935 138267719061760 Watching for file changes with StatReloader
+INFO 2025-07-17 09:31:30,894 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 20060
+INFO 2025-07-17 09:32:33,737 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19840
+INFO 2025-07-17 09:32:49,299 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:32:50,030 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:32:50,190 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:32:50,348 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:32:50,519 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:32:58,103 basehttp 12935 138267541370560 "GET / HTTP/1.1" 200 19861
+INFO 2025-07-17 09:35:54,683 autoreload 14614 138412840272128 Watching for file changes with StatReloader
+INFO 2025-07-17 09:35:56,365 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:35:57,533 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:35:57,716 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:35:57,846 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:35:59,927 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:36:00,116 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:36:00,291 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:36:00,479 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19862
+INFO 2025-07-17 09:36:34,137 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19855
+INFO 2025-07-17 09:36:34,699 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19855
+INFO 2025-07-17 09:36:34,857 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19855
+INFO 2025-07-17 09:36:35,037 basehttp 14614 138412729300672 "GET / HTTP/1.1" 200 19855
+INFO 2025-07-17 09:36:41,629 basehttp 14614 138412719859392 "GET / HTTP/1.1" 200 19467
+INFO 2025-07-17 09:36:41,648 basehttp 14614 138412484974272 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 09:36:41,649 basehttp 14614 138412719859392 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 09:36:41,649 basehttp 14614 138412468188864 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 09:36:41,650 basehttp 14614 138412493366976 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 09:36:41,650 basehttp 14614 138412484974272 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-17 09:36:41,650 basehttp 14614 138412476581568 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 09:36:41,650 basehttp 14614 138412501759680 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 09:36:41,651 basehttp 14614 138412468188864 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-17 09:36:42,178 basehttp 14614 138412468188864 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-17 09:37:14,872 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+INFO 2025-07-17 09:37:15,098 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+INFO 2025-07-17 09:37:15,263 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+INFO 2025-07-17 09:37:31,175 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+INFO 2025-07-17 09:39:07,184 basehttp 14614 138412468188864 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 09:39:07,192 basehttp 14614 138412468188864 "GET /static/js/validar_login.js HTTP/1.1" 200 18318
+WARNING 2025-07-17 09:39:24,366 log 14614 138412468188864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-17 09:39:24,366 basehttp 14614 138412468188864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13918
+INFO 2025-07-17 09:39:38,801 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+WARNING 2025-07-17 09:39:38,826 log 14614 138412468188864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-17 09:39:38,826 basehttp 14614 138412468188864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13918
+WARNING 2025-07-17 09:39:50,363 log 14614 138412468188864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-17 09:39:50,363 basehttp 14614 138412468188864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 13918
+INFO 2025-07-17 09:39:55,453 basehttp 14614 138412468188864 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 09:40:21,880 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 19476
+INFO 2025-07-17 09:40:31,992 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19932
+INFO 2025-07-17 09:40:33,034 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 19476
+INFO 2025-07-17 09:41:09,558 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18915
+INFO 2025-07-17 09:41:14,079 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 19476
+INFO 2025-07-17 09:41:27,625 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18915
+INFO 2025-07-17 09:42:02,368 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18689
+INFO 2025-07-17 09:42:10,758 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18915
+INFO 2025-07-17 09:42:22,199 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18689
+INFO 2025-07-17 09:42:28,742 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19149
+INFO 2025-07-17 09:42:29,932 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18689
+INFO 2025-07-17 09:42:30,729 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19149
+INFO 2025-07-17 09:42:31,279 basehttp 14614 138412468188864 "GET /?page=1 HTTP/1.1" 200 18689
+INFO 2025-07-17 09:42:31,771 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19149
+INFO 2025-07-17 09:44:47,782 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19049
+INFO 2025-07-17 09:45:02,815 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 18985
+INFO 2025-07-17 09:45:08,607 basehttp 14614 138412468188864 "GET /?page=2 HTTP/1.1" 200 19209
+INFO 2025-07-17 09:45:12,881 basehttp 14614 138412468188864 "GET /vacante/5/ HTTP/1.1" 200 15555
+INFO 2025-07-17 09:45:20,665 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 09:45:42,169 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 09:45:42,860 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 09:45:43,044 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 09:45:54,773 basehttp 14614 138412468188864 "GET /vacante/8/ HTTP/1.1" 200 15161
+INFO 2025-07-17 09:45:56,898 basehttp 14614 138412468188864 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 09:46:02,566 basehttp 14614 138412468188864 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 09:46:05,453 basehttp 14614 138412468188864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 09:46:05,474 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 81654
+INFO 2025-07-17 09:46:05,483 basehttp 14614 138412468188864 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-17 09:46:05,486 basehttp 14614 138412484974272 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 09:46:05,486 basehttp 14614 138412493366976 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19257
+INFO 2025-07-17 09:46:05,494 basehttp 14614 138412476581568 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6888
+INFO 2025-07-17 09:55:24,619 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:24,970 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:25,137 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:25,310 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:25,468 basehttp 14614 138412468188864 "GET /perfil/interesado/ HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:34,320 basehttp 14614 138412468188864 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 256
+INFO 2025-07-17 09:55:37,260 basehttp 14614 138412468188864 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 259
+INFO 2025-07-17 09:55:37,274 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:38,619 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:39,335 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:39,490 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:39,655 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:55:39,843 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:01,750 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:01,937 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:02,114 basehttp 14614 138412476581568 "GET /perfil/interesado/?csrfmiddlewaretoken=CKfr6bHD5DKFzcpBjzOe7exbpTiLK5YkoztQxPBrPQGp1pYsv0eUHC8tLSbOaC4D&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:07,620 basehttp 14614 138412476581568 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 256
+INFO 2025-07-17 09:56:11,473 basehttp 14614 138412476581568 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 259
+INFO 2025-07-17 09:56:11,486 basehttp 14614 138412468188864 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:13,125 basehttp 14614 138412468188864 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:13,638 basehttp 14614 138412468188864 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:13,804 basehttp 14614 138412468188864 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:14,009 basehttp 14614 138412468188864 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:20,538 autoreload 19108 124621568786688 Watching for file changes with StatReloader
+INFO 2025-07-17 09:56:26,513 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:27,891 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:28,074 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:28,264 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,036 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,213 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,361 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,505 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,639 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:43,728 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=RQWu04JqZDw6PG8UqKlEemYd1Y9iQGWvDFaTrIDeJQsQhTHLCbLkOKzvnX2lgd2O&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:48,118 basehttp 19108 124621458241216 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 256
+INFO 2025-07-17 09:56:49,436 basehttp 19108 124621458241216 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 259
+INFO 2025-07-17 09:56:49,465 basehttp 19108 124621447751360 "GET /perfil/interesado/?csrfmiddlewaretoken=FLvoQTcI18KkLNXfarh54CYCEfPbJu4NrAJNhx6wLlG4d0w6mSHLE0zU0eIe91a6&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:56:55,395 basehttp 19108 124621447751360 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 256
+INFO 2025-07-17 09:56:57,320 basehttp 19108 124621447751360 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 259
+INFO 2025-07-17 09:56:57,332 basehttp 19108 124621458241216 "GET /perfil/interesado/?csrfmiddlewaretoken=HeTz37Uld3pcyiaaCKteDnUkZ6RvfAylt37YuLO9XglW0vJ1ObTUdLvCl5KyF7EE&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:57:44,474 autoreload 19108 124621568786688 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 09:57:44,696 autoreload 19365 137254339924224 Watching for file changes with StatReloader
+INFO 2025-07-17 09:57:46,036 basehttp 19365 137254228981440 "GET /perfil/interesado/?csrfmiddlewaretoken=HeTz37Uld3pcyiaaCKteDnUkZ6RvfAylt37YuLO9XglW0vJ1ObTUdLvCl5KyF7EE&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:57:47,297 basehttp 19365 137254228981440 "GET /perfil/interesado/?csrfmiddlewaretoken=HeTz37Uld3pcyiaaCKteDnUkZ6RvfAylt37YuLO9XglW0vJ1ObTUdLvCl5KyF7EE&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:57:47,469 basehttp 19365 137254228981440 "GET /perfil/interesado/?csrfmiddlewaretoken=HeTz37Uld3pcyiaaCKteDnUkZ6RvfAylt37YuLO9XglW0vJ1ObTUdLvCl5KyF7EE&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:57:47,630 basehttp 19365 137254228981440 "GET /perfil/interesado/?csrfmiddlewaretoken=HeTz37Uld3pcyiaaCKteDnUkZ6RvfAylt37YuLO9XglW0vJ1ObTUdLvCl5KyF7EE&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antonio&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94932
+INFO 2025-07-17 09:57:51,950 basehttp 19365 137254228981440 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 256
+INFO 2025-07-17 09:57:57,156 basehttp 19365 137254228981440 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 09:57:57,163 basehttp 19365 137254219540160 "GET /perfil/interesado/?csrfmiddlewaretoken=KipCByATt7k98OtgDCWmxtTVuUf3hNFMw7D12cuHdkgTA127P3m27RudQT86HkL5&foto_perfil=Retrato+profesional+de+rostro+masculino.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 09:58:07,897 basehttp 19365 137254219540160 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:01:17,930 autoreload 19365 137254339924224 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 10:01:18,318 autoreload 19807 128999825989888 Watching for file changes with StatReloader
+INFO 2025-07-17 10:01:24,872 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:01:27,329 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:01:27,350 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=PrmgELd7aA9eQ92oULdzdUahr69LI8ZrBgAF5p7VUN5YimBf6cDfNiLzN52O8F5K&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 10:03:40,636 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=PrmgELd7aA9eQ92oULdzdUahr69LI8ZrBgAF5p7VUN5YimBf6cDfNiLzN52O8F5K&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 10:03:41,076 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=PrmgELd7aA9eQ92oULdzdUahr69LI8ZrBgAF5p7VUN5YimBf6cDfNiLzN52O8F5K&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 10:03:41,234 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=PrmgELd7aA9eQ92oULdzdUahr69LI8ZrBgAF5p7VUN5YimBf6cDfNiLzN52O8F5K&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 10:03:45,991 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:03:48,026 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:03:48,040 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=k8ZEbFLtyrVl8g59M9jisxDdForOUIad6Xd3CjFhiER5AtE0YAJY2Vev1nkRkfgw&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 94938
+INFO 2025-07-17 10:04:02,409 basehttp 19807 128999705536192 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 148
+INFO 2025-07-17 10:04:02,429 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=k8ZEbFLtyrVl8g59M9jisxDdForOUIad6Xd3CjFhiER5AtE0YAJY2Vev1nkRkfgw&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 95964
+INFO 2025-07-17 10:04:09,052 basehttp 19807 128999705536192 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 165
+INFO 2025-07-17 10:04:09,071 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=k8ZEbFLtyrVl8g59M9jisxDdForOUIad6Xd3CjFhiER5AtE0YAJY2Vev1nkRkfgw&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:10,946 basehttp 19807 128999686862528 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7232
+INFO 2025-07-17 10:04:11,106 basehttp 19807 128999705536192 "GET /cv/descargar/ HTTP/1.1" 200 17526
+INFO 2025-07-17 10:04:18,084 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=k8ZEbFLtyrVl8g59M9jisxDdForOUIad6Xd3CjFhiER5AtE0YAJY2Vev1nkRkfgw&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:24,237 basehttp 19807 128999705536192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:04:25,663 basehttp 19807 128999705536192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:04:25,674 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:29,369 basehttp 19807 128999686862528 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-17 10:04:29,459 basehttp 19807 128999714977472 "GET /cv/descargar/ HTTP/1.1" 200 17548
+INFO 2025-07-17 10:04:32,282 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:34,870 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:35,027 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:35,344 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:35,480 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:35,594 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:04:37,791 basehttp 19807 128999467067072 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-17 10:04:37,897 basehttp 19807 128999714977472 "GET /cv/descargar/ HTTP/1.1" 200 17548
+INFO 2025-07-17 10:05:23,869 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 83075
+INFO 2025-07-17 10:06:31,939 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:06:32,312 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:06:32,450 basehttp 19807 128999714977472 "GET /perfil/interesado/?csrfmiddlewaretoken=9hZyZ2zcxRAyS7GQcCZjIVVtX7mhS1iGV6dXqGt0h4wikkfHo3pZijwLj6fkiyoZ&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:06:43,690 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:06:45,352 basehttp 19807 128999714977472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:06:45,361 basehttp 19807 128999705536192 "GET /perfil/interesado/?csrfmiddlewaretoken=oGMT0h9mrlNudGCZ2OCHpAHQaJM2k0kgav0irV3abyJeFTbQef2nZYi8wIF5Kxqz&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:07:49,566 autoreload 19807 128999825989888 /home/marco/PycharmProjects/BT/config/settings.py changed, reloading.
+INFO 2025-07-17 10:07:49,946 autoreload 21002 123958897778944 Watching for file changes with StatReloader
+INFO 2025-07-17 10:07:51,001 basehttp 21002 123958720460480 "GET /perfil/interesado/?csrfmiddlewaretoken=oGMT0h9mrlNudGCZ2OCHpAHQaJM2k0kgav0irV3abyJeFTbQef2nZYi8wIF5Kxqz&foto_perfil=Retrato+profesional+elegante+y+confiable.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:08:46,126 basehttp 21002 123958720460480 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:08:48,020 basehttp 21002 123958720460480 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:08:48,042 basehttp 21002 123958720460480 "GET /perfil/interesado/?csrfmiddlewaretoken=9UQSqkUANvKYNfbUEHwpoEnucQz5DvlHVJ4hRYOoxIGIfsKLQ8W5Y2YMyPs832r0&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:08:49,902 basehttp 21002 123958720460480 "GET /perfil/interesado/?csrfmiddlewaretoken=9UQSqkUANvKYNfbUEHwpoEnucQz5DvlHVJ4hRYOoxIGIfsKLQ8W5Y2YMyPs832r0&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:09:54,290 autoreload 22052 124700142264576 Watching for file changes with StatReloader
+INFO 2025-07-17 10:09:57,492 basehttp 22052 124700031186624 "GET /perfil/interesado/?csrfmiddlewaretoken=9UQSqkUANvKYNfbUEHwpoEnucQz5DvlHVJ4hRYOoxIGIfsKLQ8W5Y2YMyPs832r0&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:09:58,486 basehttp 22052 124700031186624 "GET / HTTP/1.1" 200 19137
+INFO 2025-07-17 10:09:59,377 basehttp 22052 124700031186624 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:09:59,387 basehttp 22052 124700031186624 "GET / HTTP/1.1" 200 19062
+INFO 2025-07-17 10:10:00,284 basehttp 22052 124700031186624 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 10:10:02,935 basehttp 22052 124700031186624 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:10:02,953 basehttp 22052 124700031186624 "GET /perfil/interesado/ HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:38,508 basehttp 22052 124700031186624 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:10:40,673 basehttp 22052 124700031186624 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:10:40,677 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:42,625 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:43,310 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:43,486 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:43,670 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:43,848 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:44,022 basehttp 22052 124699946251968 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:10:45,409 basehttp 22052 124699929466560 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7232
+INFO 2025-07-17 10:10:45,546 basehttp 22052 124699946251968 "GET /cv/descargar/ HTTP/1.1" 200 17526
+INFO 2025-07-17 10:18:16,596 autoreload 22052 124700142264576 /home/marco/PycharmProjects/BT/config/settings.py changed, reloading.
+INFO 2025-07-17 10:18:16,850 autoreload 23253 133599575421184 Watching for file changes with StatReloader
+INFO 2025-07-17 10:18:22,190 autoreload 23253 133599575421184 /home/marco/PycharmProjects/BT/config/settings.py changed, reloading.
+INFO 2025-07-17 10:18:22,412 autoreload 23329 133942879752448 Watching for file changes with StatReloader
+INFO 2025-07-17 10:18:26,991 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:27,124 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:27,277 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:27,414 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:27,553 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=lbh44xAMXsnoJL3qclqGTOgAXd4Ppo6BDE46gLRh40olCfhKeohC9ewVzLqCJFwz&foto_perfil=Retrato+profesional+de+hombre+confiado.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:33,885 basehttp 23329 133942702241472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:18:37,466 basehttp 23329 133942702241472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:18:37,482 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:18:42,563 basehttp 23329 133942674626240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-17 10:18:42,703 basehttp 23329 133942692800192 "GET /cv/descargar/ HTTP/1.1" 200 17548
+INFO 2025-07-17 10:19:53,320 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:19:53,611 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:19:53,772 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:21:31,371 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 3869
+WARNING 2025-07-17 10:21:31,396 log 23329 133942692800192 Not Found: /favicon.ico
+WARNING 2025-07-17 10:21:31,397 basehttp 23329 133942692800192 "GET /favicon.ico HTTP/1.1" 404 13807
+INFO 2025-07-17 10:21:46,743 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:22:38,954 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:22:39,138 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:22:39,308 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:22:39,471 basehttp 23329 133942692800192 "GET /perfil/interesado/?csrfmiddlewaretoken=Udear43cvWTaxrtBWM7nhr2uolHaTdI5cG1cDikHCuU7qVHVYPYjxRiP0T3Xdu83&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:22:48,215 basehttp 23329 133942692800192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:22:49,715 basehttp 23329 133942692800192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 261
+INFO 2025-07-17 10:22:49,718 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 96355
+INFO 2025-07-17 10:29:21,694 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:26,623 basehttp 23329 133942702241472 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:29:26,941 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:48,370 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:48,875 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:49,037 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:49,213 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:51,124 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:51,258 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:51,440 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:51,594 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:29:51,732 basehttp 23329 133942702241472 "GET /perfil/interesado/?csrfmiddlewaretoken=IK8rd2MIVhz73Xsd0kxaLpuQV6qHxlTy0dVtpg3d2PA4WrGx2no61PKbxEMuRCjw&foto_perfil=Retrato+con+cabello+rizado+y+mirada+intensa.jpg&nombre=Marco+Antoniodd&apellido_paterno=Vazquez&apellido_materno=Delgado&telefono=5656565&fecha_nacimiento=2000-01-01&municipio=tianguistenco&codigo_postal=56617 HTTP/1.1" 200 97071
+INFO 2025-07-17 10:30:15,630 basehttp 23329 133942702241472 "GET / HTTP/1.1" 200 18749
+INFO 2025-07-17 10:30:15,662 basehttp 23329 133942702241472 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 10:30:15,662 basehttp 23329 133942692800192 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 10:30:15,663 basehttp 23329 133942683018944 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-17 10:30:15,663 basehttp 23329 133942674626240 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-17 10:30:15,728 basehttp 23329 133942702241472 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 10:30:15,728 basehttp 23329 133942674626240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 10:30:15,728 basehttp 23329 133942683018944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 10:30:15,729 basehttp 23329 133942692800192 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 10:30:15,823 basehttp 23329 133942692800192 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-17 10:30:17,101 basehttp 23329 133942692800192 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 10:30:17,110 basehttp 23329 133942692800192 "GET /static/js/validar_login.js HTTP/1.1" 200 18318
+INFO 2025-07-17 10:30:17,510 basehttp 23329 133942692800192 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 10:30:21,211 basehttp 23329 133942692800192 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:30:21,229 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:30:21,242 basehttp 23329 133942692800192 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-17 10:30:21,244 basehttp 23329 133942674626240 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 10:30:21,244 basehttp 23329 133942702241472 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 10:30:21,297 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-17 10:30:29,058 basehttp 23329 133942692800192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:30:29,379 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:30:29,402 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9687
+INFO 2025-07-17 10:30:38,889 basehttp 23329 133942692800192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:30:39,205 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:30:39,224 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9142
+INFO 2025-07-17 10:30:42,454 basehttp 23329 133942439044800 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9142
+INFO 2025-07-17 10:30:42,573 basehttp 23329 133942692800192 "GET /cv/descargar/ HTTP/1.1" 200 17792
+INFO 2025-07-17 10:30:59,514 basehttp 23329 133942430652096 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9142
+INFO 2025-07-17 10:30:59,607 basehttp 23329 133942692800192 "GET /cv/descargar/ HTTP/1.1" 200 17792
+INFO 2025-07-17 10:31:21,296 basehttp 23329 133942692800192 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 10:31:21,610 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:31:21,627 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10880
+INFO 2025-07-17 10:31:27,030 basehttp 23329 133942692800192 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:31:27,043 basehttp 23329 133942692800192 "GET / HTTP/1.1" 200 19062
+INFO 2025-07-17 10:31:28,060 basehttp 23329 133942692800192 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 10:31:31,361 basehttp 23329 133942692800192 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:31:31,382 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:31:31,400 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+ERROR 2025-07-17 10:33:16,758 log 23329 133942692800192 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'endblock'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1730, in get
+    return render(request, 'usuarios/perfil_interesado.html', context)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+    ~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 577, in invalid_block_tag
+    raise self.error(
+    ...<3 lines>...
+    )
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 1330: 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-17 10:33:16,767 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 500 215168
+WARNING 2025-07-17 10:33:16,790 log 23329 133942692800192 Not Found: /favicon.ico
+WARNING 2025-07-17 10:33:16,790 basehttp 23329 133942692800192 "GET /favicon.ico HTTP/1.1" 404 13807
+INFO 2025-07-17 10:33:34,931 basehttp 23329 133942692800192 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 10:33:34,950 basehttp 23329 133942692800192 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10880
+INFO 2025-07-17 10:33:37,806 basehttp 23329 133942692800192 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-17 10:33:37,823 basehttp 23329 133942692800192 "GET / HTTP/1.1" 200 19062
+INFO 2025-07-17 10:33:38,112 basehttp 23329 133942692800192 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 10:42:05,183 basehttp 23329 133942692800192 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 10:47:07,534 basehttp 23329 133942447437504 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 10:47:07,716 basehttp 23329 133942447437504 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-17 12:19:34,837 autoreload 19514 129540110651648 Watching for file changes with StatReloader
+INFO 2025-07-17 12:19:37,628 basehttp 19514 129540000052928 "GET / HTTP/1.1" 200 19137
+INFO 2025-07-17 12:24:46,272 basehttp 19514 129540000052928 "GET / HTTP/1.1" 200 19127
+INFO 2025-07-17 12:44:36,176 basehttp 19514 129539990611648 "GET / HTTP/1.1" 200 19127
+INFO 2025-07-17 13:37:06,102 basehttp 19514 129539904632512 "GET / HTTP/1.1" 200 19143
+INFO 2025-07-17 13:37:14,357 basehttp 19514 129539896239808 "GET / HTTP/1.1" 200 19143
+INFO 2025-07-17 13:37:51,153 basehttp 19514 129540000052928 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-17 13:37:51,170 basehttp 19514 129540000052928 "GET / HTTP/1.1" 200 19068
+INFO 2025-07-17 14:52:32,144 basehttp 19514 129539879454400 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 14:52:35,053 basehttp 19514 129539871061696 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 14:52:38,652 basehttp 19514 129539871061696 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 14:52:38,689 basehttp 19514 129539871061696 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 14:52:38,712 basehttp 19514 129539871061696 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10880
+INFO 2025-07-17 14:52:38,726 basehttp 19514 129540000052928 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 14:52:44,287 basehttp 19514 129539871061696 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 14:52:44,602 basehttp 19514 129539871061696 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 14:52:53,722 basehttp 19514 129540000052928 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 14:52:54,047 basehttp 19514 129540000052928 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 14:52:56,307 basehttp 19514 129539871061696 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 14:52:58,427 basehttp 19514 129539879454400 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10449
+INFO 2025-07-17 14:52:58,570 basehttp 19514 129539871061696 "GET /cv/descargar/ HTTP/1.1" 200 18053
+INFO 2025-07-17 15:25:19,085 autoreload 19514 129540110651648 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:25:19,901 autoreload 46665 136063697498368 Watching for file changes with StatReloader
+INFO 2025-07-17 15:26:22,081 autoreload 46665 136063697498368 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:26:22,292 autoreload 46746 135992893518080 Watching for file changes with StatReloader
+INFO 2025-07-17 15:26:36,698 autoreload 46746 135992893518080 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:26:36,924 autoreload 46879 128373308821760 Watching for file changes with StatReloader
+INFO 2025-07-17 15:27:10,031 autoreload 46879 128373308821760 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:27:10,245 autoreload 46939 125316346257664 Watching for file changes with StatReloader
+INFO 2025-07-17 15:27:23,301 autoreload 46939 125316346257664 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:27:23,473 autoreload 46958 140306793201920 Watching for file changes with StatReloader
+INFO 2025-07-17 15:28:12,616 autoreload 46958 140306793201920 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:28:12,787 autoreload 47061 124493652115712 Watching for file changes with StatReloader
+INFO 2025-07-17 15:28:47,896 autoreload 47061 124493652115712 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 15:28:48,065 autoreload 47111 133326128726272 Watching for file changes with StatReloader
+INFO 2025-07-17 17:01:41,008 autoreload 47111 133326128726272 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 17:01:41,328 autoreload 58036 130817698283776 Watching for file changes with StatReloader
+INFO 2025-07-17 17:02:01,992 autoreload 58036 130817698283776 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 17:02:02,206 autoreload 58117 138385068380416 Watching for file changes with StatReloader
+INFO 2025-07-17 17:03:25,724 basehttp 58117 138384957765312 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:25,742 basehttp 58117 138384957765312 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 17:03:25,743 basehttp 58117 138384939931328 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-17 17:03:25,743 basehttp 58117 138384931538624 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-17 17:03:25,743 basehttp 58117 138384948324032 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 17:03:32,757 basehttp 58117 138384584472256 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:03:39,357 basehttp 58117 138384931538624 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 17:03:39,357 basehttp 58117 138384939931328 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 17:03:39,357 basehttp 58117 138384576079552 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 17:03:39,357 basehttp 58117 138384948324032 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 17:03:39,364 basehttp 58117 138384957765312 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:44,090 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:45,761 basehttp 58117 138384948324032 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-17 17:03:48,609 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:48,773 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:48,925 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:49,064 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:03:49,174 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:05:55,885 basehttp 58117 138384948324032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:06:23,489 autoreload 58117 138385068380416 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 17:06:23,711 autoreload 59082 132938931949824 Watching for file changes with StatReloader
+INFO 2025-07-17 17:09:51,455 basehttp 59082 132938753636032 "GET / HTTP/1.1" 200 18756
+INFO 2025-07-17 17:10:13,645 basehttp 59082 132938753636032 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 17:10:18,014 basehttp 59082 132938753636032 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 17:10:18,038 basehttp 59082 132938753636032 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 17:10:18,051 basehttp 59082 132938753636032 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-17 17:10:18,051 basehttp 59082 132938734753472 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 17:10:18,051 basehttp 59082 132938743146176 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 17:10:18,171 basehttp 59082 132938753636032 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10449
+INFO 2025-07-17 17:10:22,605 basehttp 59082 132938753636032 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 17:10:22,919 basehttp 59082 132938753636032 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 17:10:30,179 basehttp 59082 132938753636032 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 258
+INFO 2025-07-17 17:10:30,494 basehttp 59082 132938753636032 "GET /perfil/interesado/ HTTP/1.1" 200 97071
+INFO 2025-07-17 17:10:34,539 basehttp 59082 132938717501120 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8335
+INFO 2025-07-17 17:10:34,685 basehttp 59082 132938753636032 "GET /cv/descargar/ HTTP/1.1" 200 17187
+INFO 2025-07-17 17:11:47,744 basehttp 59082 132938753636032 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-17 17:11:51,844 basehttp 59082 132938753636032 "DELETE /ajax/idioma/eliminar/67/ HTTP/1.1" 200 61
+INFO 2025-07-17 17:11:56,697 basehttp 59082 132938753636032 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 252
+INFO 2025-07-17 17:11:57,013 basehttp 59082 132938753636032 "GET /perfil/interesado/ HTTP/1.1" 200 96027
+INFO 2025-07-17 17:12:04,251 basehttp 59082 132938753636032 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 142
+INFO 2025-07-17 17:12:04,272 basehttp 59082 132938753636032 "GET /perfil/interesado/ HTTP/1.1" 200 97056
+INFO 2025-07-17 17:12:05,689 basehttp 59082 132938498414272 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10905
+INFO 2025-07-17 17:12:05,792 basehttp 59082 132938753636032 "GET /cv/descargar/ HTTP/1.1" 200 18519
+INFO 2025-07-17 17:12:46,848 autoreload 59082 132938931949824 /home/marco/PycharmProjects/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-17 17:12:47,122 autoreload 60036 131117318058240 Watching for file changes with StatReloader
+INFO 2025-07-17 17:13:42,656 autoreload 60036 131117318058240 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 17:13:42,873 autoreload 60147 138570138382592 Watching for file changes with StatReloader
+INFO 2025-07-17 17:15:26,604 autoreload 60147 138570138382592 /home/marco/PycharmProjects/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-17 17:15:27,068 autoreload 60409 135041678700800 Watching for file changes with StatReloader
+INFO 2025-07-17 17:15:35,462 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:15:36,055 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:15:36,375 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:15:36,537 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:15:36,699 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19144
+INFO 2025-07-17 17:15:37,850 basehttp 60409 135041567946432 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-17 17:15:37,860 basehttp 60409 135041567946432 "GET / HTTP/1.1" 200 19069
+INFO 2025-07-17 17:15:38,574 basehttp 60409 135041567946432 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-17 17:15:43,862 basehttp 60409 135041567946432 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-17 17:15:43,881 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:15:43,899 basehttp 60409 135041567946432 "GET /media/interesados/profile_LTZZBYG.jpg HTTP/1.1" 200 6471
+INFO 2025-07-17 17:15:48,053 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:15:48,066 basehttp 60409 135041567946432 "GET /media/interesados/profile_hZ14szL.jpg HTTP/1.1" 200 9693
+INFO 2025-07-17 17:15:48,373 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:15:48,391 basehttp 60409 135041567946432 "GET /media/interesados/profile_hZ14szL.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:15:57,197 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:15:57,210 basehttp 60409 135041567946432 "GET /media/interesados/profile_OcmcbJe.jpg HTTP/1.1" 200 11001
+INFO 2025-07-17 17:15:57,516 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:15:57,536 basehttp 60409 135041567946432 "GET /media/interesados/profile_OcmcbJe.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:16:03,720 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:16:03,732 basehttp 60409 135041567946432 "GET /media/interesados/profile_QdzJIFO.jpg HTTP/1.1" 200 8478
+INFO 2025-07-17 17:16:04,039 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:16:04,057 basehttp 60409 135041567946432 "GET /media/interesados/profile_QdzJIFO.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:16:14,652 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:16:14,665 basehttp 60409 135041567946432 "GET /media/interesados/profile_E5syCRk.jpg HTTP/1.1" 200 5631
+INFO 2025-07-17 17:16:14,961 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:16:14,980 basehttp 60409 135041567946432 "GET /media/interesados/profile_E5syCRk.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:16:34,085 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:16:34,101 basehttp 60409 135041567946432 "GET /media/interesados/profile_E5syCRk.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:16:34,423 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:17:36,816 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:17:36,827 basehttp 60409 135041567946432 "GET /media/interesados/profile_RPPwXr6.jpg HTTP/1.1" 200 8313
+INFO 2025-07-17 17:17:37,134 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:17:37,155 basehttp 60409 135041567946432 "GET /media/interesados/profile_RPPwXr6.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:17:39,701 basehttp 60409 135041480910528 "GET /media/interesados/profile_RPPwXr6.jpg HTTP/1.1" 200 8313
+INFO 2025-07-17 17:17:39,838 basehttp 60409 135041567946432 "GET /cv/descargar/ HTTP/1.1" 200 17794
+INFO 2025-07-17 17:21:39,936 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:21:39,950 basehttp 60409 135041567946432 "GET /media/interesados/profile_lu04dPj.jpg HTTP/1.1" 200 5881
+INFO 2025-07-17 17:21:40,256 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98269
+INFO 2025-07-17 17:21:40,277 basehttp 60409 135041567946432 "GET /media/interesados/profile_lu04dPj.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:21:42,851 basehttp 60409 135041463539392 "GET /media/interesados/profile_lu04dPj.jpg HTTP/1.1" 200 5881
+INFO 2025-07-17 17:21:42,952 basehttp 60409 135041567946432 "GET /cv/descargar/ HTTP/1.1" 200 16560
+INFO 2025-07-17 17:28:27,863 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:28:27,875 basehttp 60409 135041567946432 "GET /media/interesados/profile_wUgDd0n.jpg HTTP/1.1" 200 10451
+INFO 2025-07-17 17:28:28,172 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98272
+INFO 2025-07-17 17:28:28,193 basehttp 60409 135041567946432 "GET /media/interesados/profile_wUgDd0n.jpg HTTP/1.1" 304 0
+INFO 2025-07-17 17:29:00,151 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98272
+INFO 2025-07-17 17:29:00,188 basehttp 60409 135041567946432 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 17:29:00,188 basehttp 60409 135041463539392 "GET /static/css/image-cropper.css HTTP/1.1" 200 3554
+INFO 2025-07-17 17:29:00,191 basehttp 60409 135041463539392 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 17:29:00,193 basehttp 60409 135041447659200 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 17:29:00,193 basehttp 60409 135041439266496 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 17:29:01,148 basehttp 60409 135041439266496 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 17:29:01,149 basehttp 60409 135041463539392 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 17:29:01,149 basehttp 60409 135041447659200 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 17:29:01,149 basehttp 60409 135041430873792 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 17:29:01,154 basehttp 60409 135041567946432 "GET /media/interesados/profile_wUgDd0n.jpg HTTP/1.1" 200 10451
+INFO 2025-07-17 17:29:01,509 basehttp 60409 135041567946432 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-17 17:29:09,201 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:29:09,215 basehttp 60409 135041567946432 "GET /media/interesados/profile_lWDd24j.jpg HTTP/1.1" 200 9803
+INFO 2025-07-17 17:29:09,526 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98272
+INFO 2025-07-17 17:29:09,549 basehttp 60409 135041567946432 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 17:29:09,549 basehttp 60409 135041430873792 "GET /static/css/image-cropper.css HTTP/1.1" 200 3554
+INFO 2025-07-17 17:29:09,556 basehttp 60409 135041430873792 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 17:29:09,557 basehttp 60409 135041439266496 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 17:29:09,557 basehttp 60409 135041447659200 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 17:29:11,549 basehttp 60409 135041447659200 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 17:29:11,549 basehttp 60409 135041567946432 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 17:29:11,550 basehttp 60409 135041439266496 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 17:29:11,550 basehttp 60409 135041430873792 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 17:29:11,558 basehttp 60409 135041463539392 "GET /media/interesados/profile_lWDd24j.jpg HTTP/1.1" 200 9803
+INFO 2025-07-17 17:29:11,886 basehttp 60409 135041567946432 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-17 17:29:21,807 basehttp 60409 135041567946432 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 281
+INFO 2025-07-17 17:29:21,823 basehttp 60409 135041567946432 "GET /media/interesados/profile_CJ9G05d.jpg HTTP/1.1" 200 10451
+INFO 2025-07-17 17:29:22,116 basehttp 60409 135041567946432 "GET /perfil/interesado/ HTTP/1.1" 200 98272
+INFO 2025-07-17 17:29:22,142 basehttp 60409 135041567946432 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-17 17:29:22,142 basehttp 60409 135041430873792 "GET /static/css/image-cropper.css HTTP/1.1" 200 3554
+INFO 2025-07-17 17:29:22,145 basehttp 60409 135041430873792 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-17 17:29:22,146 basehttp 60409 135041447659200 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-17 17:29:22,147 basehttp 60409 135041439266496 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19255
+INFO 2025-07-17 17:29:22,187 basehttp 60409 135041447659200 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-17 17:29:22,187 basehttp 60409 135041019541184 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-17 17:29:22,187 basehttp 60409 135041439266496 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-17 17:29:22,188 basehttp 60409 135041463539392 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-17 17:29:22,194 basehttp 60409 135041567946432 "GET /media/interesados/profile_CJ9G05d.jpg HTTP/1.1" 200 10451
+INFO 2025-07-17 17:29:23,856 basehttp 60409 135041567946432 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 10:05:44,702 autoreload 81629 135511025651968 Watching for file changes with StatReloader
+INFO 2025-07-18 10:05:47,851 basehttp 81629 135510847649472 "GET / HTTP/1.1" 200 19145
+INFO 2025-07-18 10:05:47,872 basehttp 81629 135510847649472 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-18 10:05:47,874 basehttp 81629 135510829815488 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-18 10:05:47,875 basehttp 81629 135510821422784 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-18 10:05:47,876 basehttp 81629 135510813030080 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-18 10:05:47,876 basehttp 81629 135510838208192 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-18 10:05:47,880 basehttp 81629 135510838208192 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-18 10:06:09,922 basehttp 81629 135510813030080 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-18 10:06:09,935 basehttp 81629 135510813030080 "GET / HTTP/1.1" 200 19070
+INFO 2025-07-18 10:06:11,181 basehttp 81629 135510813030080 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-18 10:06:13,103 basehttp 81629 135510813030080 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-18 10:06:13,123 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:06:13,139 basehttp 81629 135510813030080 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 10:06:13,139 basehttp 81629 135510847649472 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-18 10:06:13,139 basehttp 81629 135510838208192 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 10:06:13,148 basehttp 81629 135510821422784 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10905
+INFO 2025-07-18 10:06:24,255 basehttp 81629 135510813030080 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 252
+INFO 2025-07-18 10:06:24,573 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:06:24,581 basehttp 81629 135510813030080 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-18 10:06:24,628 basehttp 81629 135510813030080 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-18 10:22:41,951 basehttp 81629 135510813030080 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 252
+INFO 2025-07-18 10:22:42,267 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:22:42,274 basehttp 81629 135510813030080 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-18 10:22:44,738 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:22:44,923 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:22:45,054 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:22:45,169 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 10:22:50,177 basehttp 81629 135510813030080 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 252
+INFO 2025-07-18 10:22:50,501 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059

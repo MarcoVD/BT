@@ -53,8 +53,8 @@ MIDDLEWARE = [
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
 if not DEBUG:
     # SSL/HTTPS Settings
-    SECURE_SSL_REDIRECT = True
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    # SECURE_SSL_REDIRECT = True
+    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_HSTS_SECONDS = 31536000  # 1 año
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
@@ -65,10 +65,10 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
     # Cookie Security
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SESSION_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_HTTPONLY = True
+    # SESSION_COOKIE_SECURE = True
+    # CSRF_COOKIE_SECURE = True
+    # SESSION_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_HTTPONLY = True
 
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -109,8 +109,8 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'bolsa_trabajo_prod'),
-            'USER': os.getenv('DB_USER', 'bolsa_admin_prod'),
+            'NAME': os.getenv('DB_NAME', 'bolsa_trabajo'),
+            'USER': os.getenv('DB_USER', 'bolsa_admin'),
             'PASSWORD': os.getenv('DB_PASSWORD'),
             'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', '5432'),

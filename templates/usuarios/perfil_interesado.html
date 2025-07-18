@@ -1274,7 +1274,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Detectar cambios en resumen profesional
     let resumenTimeout;
-    formulario.elements['resumen_profesional'].addEventListener('input', function(e) {
+    formulario.elements['resumen_profesional'].addEventListener('input', function (e) {
         guardarEnLocalStorage(formulario);
         clearTimeout(resumenTimeout);
         resumenTimeout = setTimeout(() => {
@@ -1285,7 +1285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Detectar cambios en campos personales (autoguardar tras 1s sin escribir)
     let personalTimeout;
     ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(campo => {
-        formulario.elements[campo]?.addEventListener('input', function(e) {
+        formulario.elements[campo]?.addEventListener('input', function (e) {
             guardarEnLocalStorage(formulario);
             clearTimeout(personalTimeout);
             personalTimeout = setTimeout(() => {
@@ -1299,7 +1299,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // (Opcional) Limpiar localStorage al guardar todo el CV
-    formulario.addEventListener('submit', function() {
+    formulario.addEventListener('submit', function () {
         localStorage.removeItem('cv_autoguardado');
     });
 
@@ -1309,7 +1309,7 @@ document.addEventListener('DOMContentLoaded', function() {
     let imageCropped = false;
 
     if (cropButton) {
-        cropButton.addEventListener('click', function() {
+        cropButton.addEventListener('click', function () {
             imageCropped = true;
         });
     }
@@ -1324,6 +1324,5 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 });
-
 </script>
 {% endblock %}

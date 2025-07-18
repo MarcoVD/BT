@@ -301,12 +301,13 @@ function verificarEstadoBotonGuardarCV() {
         btnGuardarCV.title = 'Descargar CV - Todos los campos están completos';
         btnGuardarCV.innerHTML = '<i class="bi bi-save"></i> Descargar CV';
         btnGuardarCV.classList.remove('btn-secondary');
-        btnGuardarCV.classList.add('btn-primary text-white');
+        btnGuardarCV.classList.add('btn-primary');
+        btnGuardarCV.classList.add('text-white');
     } else {
         btnGuardarCV.disabled = true;
         btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
         btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>';
-        btnGuardarCV.classList.remove('btn-primary text-black');
+        btnGuardarCV.classList.remove('btn-primary');
         btnGuardarCV.classList.add('btn-secondary');
     }
 }
