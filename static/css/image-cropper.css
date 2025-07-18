@@ -178,16 +178,16 @@
     user-select: none;
 }
 
-.cropper-container img {
-    display: block;
-    height: 100%;
-    image-orientation: 0deg;
-    max-height: none;
-    max-width: none;
-    min-height: 0;
-    min-width: 0;
-    width: 100%;
-}
+/*.cropper-container img {*/
+/*    display: block;*/
+/*    height: 100%;*/
+/*    image-orientation: 0deg;*/
+/*    max-height: none;*/
+/*    max-width: none;*/
+/*    min-height: 0;*/
+/*    min-width: 0;*/
+/*    width: 100%;*/
+/*}*/
 
 /* Override cropper modal styles */
 .cropper-modal {

@@ -5326,3 +5326,944 @@ INFO 2025-07-18 10:22:45,054 basehttp 81629 135510813030080 "GET /perfil/interes
 INFO 2025-07-18 10:22:45,169 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
 INFO 2025-07-18 10:22:50,177 basehttp 81629 135510813030080 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 252
 INFO 2025-07-18 10:22:50,501 basehttp 81629 135510813030080 "GET /perfil/interesado/ HTTP/1.1" 200 97059
+INFO 2025-07-18 13:34:20,779 autoreload 113419 131025013965056 Watching for file changes with StatReloader
+ERROR 2025-07-18 13:34:23,646 log 113419 131024903206592 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1738, in get
+    return render(request, 'usuarios/perfil_interesado.html', context)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 706, in __init__
+    self.args_check(filter_name, filter_func, args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 768, in args_check
+    raise TemplateSyntaxError(
+        "%s requires %d arguments, %d provided" % (name, alen - dlen, plen)
+    )
+django.template.exceptions.TemplateSyntaxError: add requires 2 arguments, 1 provided
+ERROR 2025-07-18 13:34:23,649 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 500 386699
+ERROR 2025-07-18 13:34:23,790 log 113419 131024903206592 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1738, in get
+    return render(request, 'usuarios/perfil_interesado.html', context)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 706, in __init__
+    self.args_check(filter_name, filter_func, args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 768, in args_check
+    raise TemplateSyntaxError(
+        "%s requires %d arguments, %d provided" % (name, alen - dlen, plen)
+    )
+django.template.exceptions.TemplateSyntaxError: add requires 2 arguments, 1 provided
+ERROR 2025-07-18 13:34:23,792 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 500 386699
+ERROR 2025-07-18 13:34:23,927 log 113419 131024903206592 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1738, in get
+    return render(request, 'usuarios/perfil_interesado.html', context)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 706, in __init__
+    self.args_check(filter_name, filter_func, args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 768, in args_check
+    raise TemplateSyntaxError(
+        "%s requires %d arguments, %d provided" % (name, alen - dlen, plen)
+    )
+django.template.exceptions.TemplateSyntaxError: add requires 2 arguments, 1 provided
+ERROR 2025-07-18 13:34:23,929 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 500 386699
+ERROR 2025-07-18 13:34:24,037 log 113419 131024903206592 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+  File "/home/marco/PycharmProjects/BT/usuarios/views.py", line 1738, in get
+    return render(request, 'usuarios/perfil_interesado.html', context)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+        contents,
+    ...<2 lines>...
+        self.engine,
+    )
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ~~~~~~~~~~~~~~~~~~~~~^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1540, in do_with
+    nodelist = parser.parse(("endwith",))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 962, in do_if
+    nodelist = parser.parse(("elif", "else", "endif"))
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/defaulttags.py", line 1531, in do_with
+    extra_context = token_kwargs(remaining_bits, parser, support_legacy=True)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 1127, in token_kwargs
+    kwargs[key] = parser.compile_filter(value)
+                  ~~~~~~~~~~~~~~~~~~~~~^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 609, in compile_filter
+    return FilterExpression(token, self)
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 706, in __init__
+    self.args_check(filter_name, filter_func, args)
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/PycharmProjects/BT/venv/lib/python3.13/site-packages/django/template/base.py", line 768, in args_check
+    raise TemplateSyntaxError(
+        "%s requires %d arguments, %d provided" % (name, alen - dlen, plen)
+    )
+django.template.exceptions.TemplateSyntaxError: add requires 2 arguments, 1 provided
+ERROR 2025-07-18 13:34:24,039 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 500 386699
+INFO 2025-07-18 13:35:14,897 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95689
+INFO 2025-07-18 13:35:14,912 basehttp 113419 131024903206592 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 13:36:33,506 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95689
+INFO 2025-07-18 13:36:33,635 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95689
+INFO 2025-07-18 13:36:33,795 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95689
+INFO 2025-07-18 13:36:33,903 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95689
+INFO 2025-07-18 13:39:40,328 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 94699
+INFO 2025-07-18 13:39:40,350 basehttp 113419 131024903206592 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 13:39:40,912 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 94699
+INFO 2025-07-18 13:39:41,065 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 94699
+INFO 2025-07-18 13:39:48,929 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95412
+INFO 2025-07-18 13:39:49,343 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95412
+INFO 2025-07-18 13:39:49,459 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95412
+INFO 2025-07-18 13:39:49,591 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95412
+INFO 2025-07-18 13:39:55,901 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 164
+INFO 2025-07-18 13:39:55,922 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95632
+INFO 2025-07-18 13:40:03,159 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 169
+INFO 2025-07-18 13:40:03,179 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 95925
+INFO 2025-07-18 13:40:08,091 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 175
+INFO 2025-07-18 13:40:08,114 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96221
+INFO 2025-07-18 13:40:12,088 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 171
+INFO 2025-07-18 13:40:12,112 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-18 13:40:16,889 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-18 13:40:19,655 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 170
+INFO 2025-07-18 13:40:19,677 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96807
+INFO 2025-07-18 13:41:08,020 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:08,321 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:08,453 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:08,613 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:08,724 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:08,858 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97715
+INFO 2025-07-18 13:41:11,654 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/79/ HTTP/1.1" 200 76
+INFO 2025-07-18 13:41:11,673 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97423
+INFO 2025-07-18 13:41:15,810 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/78/ HTTP/1.1" 200 78
+INFO 2025-07-18 13:41:15,830 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97129
+INFO 2025-07-18 13:41:19,091 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/75/ HTTP/1.1" 200 73
+INFO 2025-07-18 13:41:19,110 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96840
+INFO 2025-07-18 13:41:20,804 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/76/ HTTP/1.1" 200 74
+INFO 2025-07-18 13:41:20,825 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96547
+INFO 2025-07-18 13:41:22,492 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/77/ HTTP/1.1" 200 77
+INFO 2025-07-18 13:41:22,520 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96320
+INFO 2025-07-18 13:41:34,983 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96320
+INFO 2025-07-18 13:41:49,011 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 160
+INFO 2025-07-18 13:41:49,034 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96538
+INFO 2025-07-18 13:42:07,179 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/80/ HTTP/1.1" 200 71
+INFO 2025-07-18 13:42:07,199 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96320
+INFO 2025-07-18 13:44:16,577 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96320
+INFO 2025-07-18 13:44:21,319 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 160
+INFO 2025-07-18 13:44:21,340 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96538
+INFO 2025-07-18 13:44:24,518 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-18 13:44:24,540 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 96828
+INFO 2025-07-18 13:44:24,557 basehttp 113419 131024903206592 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 13:44:27,374 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 64
+INFO 2025-07-18 13:44:31,142 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-18 13:44:31,166 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97118
+INFO 2025-07-18 13:44:35,837 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 103
+INFO 2025-07-18 13:44:40,541 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 160
+INFO 2025-07-18 13:44:40,566 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97405
+INFO 2025-07-18 13:44:44,609 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-18 13:44:44,634 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 13:44:48,063 basehttp 113419 131024814073536 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8434
+INFO 2025-07-18 13:44:48,196 basehttp 113419 131024903206592 "GET /cv/descargar/ HTTP/1.1" 200 16616
+INFO 2025-07-18 14:50:41,508 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:50:41,524 basehttp 113419 131024903206592 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8434
+INFO 2025-07-18 14:50:41,525 basehttp 113419 131024814073536 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 14:50:41,681 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:50:41,862 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:50:47,342 basehttp 113419 131024903206592 "DELETE /ajax/habilidad/eliminar/85/ HTTP/1.1" 200 71
+INFO 2025-07-18 14:50:47,367 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97405
+INFO 2025-07-18 14:51:01,030 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 64
+INFO 2025-07-18 14:51:04,684 basehttp 113419 131024903206592 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-18 14:51:04,711 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:51:20,247 basehttp 113419 131024903206592 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 14:51:20,564 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:51:26,801 basehttp 113419 131024903206592 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 14:51:27,118 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:42,612 basehttp 113419 131024903206592 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 14:53:42,937 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:45,887 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:46,052 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:47,662 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:47,844 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:47,957 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 14:53:54,328 basehttp 113419 131024903206592 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 14:53:54,646 basehttp 113419 131024903206592 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:32,081 autoreload 120279 131481681129728 Watching for file changes with StatReloader
+INFO 2025-07-18 15:00:34,789 basehttp 120279 131481498285760 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:34,819 basehttp 120279 131481498285760 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:34,819 basehttp 120279 131481489893056 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:34,822 basehttp 120279 131481489893056 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:34,823 basehttp 120279 131481481500352 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:34,823 basehttp 120279 131481473107648 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:34,836 basehttp 120279 131481473107648 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:34,837 basehttp 120279 131481464714944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:34,837 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:34,837 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:34,844 basehttp 120279 131481481500352 "GET /media/interesados/profile.jpg HTTP/1.1" 200 11189
+INFO 2025-07-18 15:00:34,888 basehttp 120279 131481498285760 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:34,941 basehttp 120279 131481498285760 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:34,941 basehttp 120279 131481456322240 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:34,950 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:34,951 basehttp 120279 131481464714944 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:34,952 basehttp 120279 131481464714944 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:34,968 basehttp 120279 131481481500352 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:34,968 basehttp 120279 131481489893056 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:34,969 basehttp 120279 131481447929536 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:34,969 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:34,977 basehttp 120279 131481095632576 "GET /media/interesados/profile.jpg HTTP/1.1" 200 11189
+INFO 2025-07-18 15:00:35,029 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:35,069 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:35,069 basehttp 120279 131481095632576 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:35,072 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:35,073 basehttp 120279 131481481500352 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:35,073 basehttp 120279 131481447929536 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:35,632 basehttp 120279 131481095632576 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:35,632 basehttp 120279 131481481500352 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:35,632 basehttp 120279 131481489893056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:35,633 basehttp 120279 131481447929536 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:35,642 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 11189
+INFO 2025-07-18 15:00:35,861 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:00:40,201 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:00:40,534 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:40,554 basehttp 120279 131481447929536 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:40,554 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:40,556 basehttp 120279 131481447929536 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:40,557 basehttp 120279 131481481500352 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:40,557 basehttp 120279 131481095632576 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:40,599 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:40,599 basehttp 120279 131481464714944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:40,599 basehttp 120279 131481481500352 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:40,599 basehttp 120279 131481489893056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:40,605 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:00:40,849 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:00:44,984 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:00:45,309 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:45,324 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:45,325 basehttp 120279 131481447929536 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:45,329 basehttp 120279 131481481500352 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:45,330 basehttp 120279 131481447929536 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:45,330 basehttp 120279 131481481500352 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:45,367 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:45,367 basehttp 120279 131481489893056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:45,368 basehttp 120279 131481464714944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:45,369 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:45,378 basehttp 120279 131481095632576 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9792
+INFO 2025-07-18 15:00:45,548 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:00:59,237 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:00:59,254 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:00:59,255 basehttp 120279 131481481500352 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:00:59,258 basehttp 120279 131481447929536 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:00:59,259 basehttp 120279 131481481500352 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:00:59,260 basehttp 120279 131481447929536 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:00:59,298 basehttp 120279 131481464714944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:00:59,298 basehttp 120279 131481489893056 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:00:59,299 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:00:59,299 basehttp 120279 131481489893056 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:00:59,307 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9792
+INFO 2025-07-18 15:01:00,053 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:01:00,075 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:01:00,075 basehttp 120279 131481481500352 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:01:00,076 basehttp 120279 131481447929536 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:01:00,077 basehttp 120279 131481481500352 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:01:00,077 basehttp 120279 131481489893056 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:01:00,118 basehttp 120279 131481489893056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:01:00,118 basehttp 120279 131481447929536 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:01:00,118 basehttp 120279 131481095632576 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:01:00,119 basehttp 120279 131481464714944 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:01:00,125 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9792
+INFO 2025-07-18 15:01:00,358 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:01:00,377 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:01:00,377 basehttp 120279 131481481500352 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:01:00,381 basehttp 120279 131481489893056 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:01:00,385 basehttp 120279 131481447929536 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:01:00,385 basehttp 120279 131481464714944 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:01:00,419 basehttp 120279 131481489893056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:01:00,421 basehttp 120279 131481447929536 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:01:00,421 basehttp 120279 131481481500352 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:01:00,421 basehttp 120279 131481464714944 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:01:00,427 basehttp 120279 131481095632576 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9792
+INFO 2025-07-18 15:01:00,780 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:08:54,153 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:08:54,494 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:08:54,515 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:08:54,516 basehttp 120279 131481095632576 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:08:54,522 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:08:54,524 basehttp 120279 131481498285760 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:08:54,524 basehttp 120279 131481456322240 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:08:54,898 basehttp 120279 131481473107648 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:08:54,898 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:08:54,899 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:08:54,899 basehttp 120279 131481456322240 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:08:54,909 basehttp 120279 131481095632576 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9014
+INFO 2025-07-18 15:08:55,065 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:09:04,740 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:09:05,104 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 97695
+INFO 2025-07-18 15:09:05,128 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:09:05,128 basehttp 120279 131481456322240 "GET /static/css/image-cropper.css HTTP/1.1" 200 3550
+INFO 2025-07-18 15:09:05,132 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:09:05,132 basehttp 120279 131481498285760 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:09:05,133 basehttp 120279 131481498285760 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:09:05,170 basehttp 120279 131481087239872 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:09:05,171 basehttp 120279 131481464714944 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:09:05,171 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:09:05,171 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:09:05,178 basehttp 120279 131481087239872 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8686
+INFO 2025-07-18 15:09:05,345 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:10:07,663 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30941
+INFO 2025-07-18 15:10:07,692 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:10:07,695 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:10:07,735 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:10:07,735 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:10:07,736 basehttp 120279 131481095632576 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:10:07,736 basehttp 120279 131481087239872 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:10:07,902 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:10:45,419 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 19136
+INFO 2025-07-18 15:11:26,999 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:27,022 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:27,025 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:27,065 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:27,066 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:27,066 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:27,066 basehttp 120279 131481095632576 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:27,229 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:28,362 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:28,379 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:28,380 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:28,421 basehttp 120279 131481456322240 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:28,421 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:28,421 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:28,422 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:28,470 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:28,497 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:28,582 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:28,583 basehttp 120279 131481473107648 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:28,584 basehttp 120279 131481498285760 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:28,585 basehttp 120279 131481095632576 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:28,585 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:28,585 basehttp 120279 131481087239872 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:28,764 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:28,970 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:28,986 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:28,987 basehttp 120279 131481498285760 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:29,028 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:29,028 basehttp 120279 131481456322240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:29,028 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:29,028 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:29,086 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:29,191 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:29,204 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:29,208 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:29,246 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:29,247 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:29,247 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:29,247 basehttp 120279 131481087239872 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:29,403 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:40,458 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:40,477 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:40,479 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:40,520 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:40,520 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:40,520 basehttp 120279 131481095632576 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:40,520 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:40,566 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:40,668 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:40,686 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:40,687 basehttp 120279 131481498285760 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:40,729 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:40,729 basehttp 120279 131481456322240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:40,729 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:40,729 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:40,766 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:40,825 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:40,827 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:40,868 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:40,868 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:40,868 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:40,868 basehttp 120279 131481095632576 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:40,897 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:40,953 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:40,958 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:40,995 basehttp 120279 131481456322240 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:40,995 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:40,995 basehttp 120279 131481498285760 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:40,995 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:41,126 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:55,036 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:55,053 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:55,054 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:55,096 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:55,096 basehttp 120279 131481456322240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:55,096 basehttp 120279 131481498285760 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:55,096 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:55,144 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:55,208 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:55,223 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:55,224 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:55,266 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:55,266 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:55,267 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:55,267 basehttp 120279 131481095632576 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:55,310 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:11:55,364 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30953
+INFO 2025-07-18 15:11:55,378 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:11:55,380 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:11:55,421 basehttp 120279 131481087239872 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:11:55,422 basehttp 120279 131481095632576 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:11:55,422 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:11:55,422 basehttp 120279 131481456322240 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:11:55,562 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:12:38,162 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20416
+INFO 2025-07-18 15:12:55,034 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:12:56,227 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:12:56,421 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:12:56,585 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:12:56,692 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:12:56,806 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20376
+INFO 2025-07-18 15:13:23,898 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20036
+INFO 2025-07-18 15:13:58,657 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30941
+INFO 2025-07-18 15:13:58,677 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:13:58,680 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:13:58,721 basehttp 120279 131481456322240 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:13:58,721 basehttp 120279 131481473107648 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:13:58,721 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:13:58,722 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:13:58,770 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:14:30,226 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20036
+INFO 2025-07-18 15:14:31,265 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20036
+INFO 2025-07-18 15:14:31,399 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20036
+INFO 2025-07-18 15:15:03,152 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20051
+INFO 2025-07-18 15:15:14,607 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:15:15,136 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:15:15,452 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:15:58,708 basehttp 120279 131481473107648 "GET /vacante/9/ HTTP/1.1" 200 15576
+INFO 2025-07-18 15:15:58,729 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:15:58,731 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:15:58,773 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:15:58,773 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:15:58,773 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:15:58,773 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:15:58,821 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+WARNING 2025-07-18 15:16:00,278 log 120279 131481473107648 Not Found: /favicon.ico
+WARNING 2025-07-18 15:16:00,278 basehttp 120279 131481473107648 "GET /favicon.ico HTTP/1.1" 404 13807
+INFO 2025-07-18 15:16:00,358 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:16:27,400 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30969
+INFO 2025-07-18 15:16:27,415 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:16:27,416 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:16:27,457 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:16:27,457 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:16:27,458 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:16:27,458 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:16:27,593 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:05,295 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30985
+INFO 2025-07-18 15:18:05,311 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:05,313 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:05,354 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:05,354 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:05,354 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:05,354 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:05,486 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:12,592 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30945
+INFO 2025-07-18 15:18:12,618 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:12,621 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:12,661 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:12,661 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:12,661 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:12,661 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:12,833 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:13,187 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30945
+INFO 2025-07-18 15:18:13,203 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:13,205 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:13,246 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:13,247 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:13,247 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:13,247 basehttp 120279 131481095632576 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:13,354 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30945
+INFO 2025-07-18 15:18:13,374 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:13,378 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:13,416 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:13,417 basehttp 120279 131481498285760 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:13,417 basehttp 120279 131481456322240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:13,417 basehttp 120279 131481087239872 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:13,475 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:22,196 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30973
+INFO 2025-07-18 15:18:22,216 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:22,218 basehttp 120279 131481095632576 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:22,258 basehttp 120279 131481087239872 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:22,258 basehttp 120279 131481456322240 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:22,259 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:22,259 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:22,305 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:33,490 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30993
+INFO 2025-07-18 15:18:33,510 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:33,511 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:33,552 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:33,552 basehttp 120279 131481498285760 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:33,552 basehttp 120279 131481095632576 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:33,553 basehttp 120279 131481456322240 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:33,684 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:18:44,132 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30973
+INFO 2025-07-18 15:18:44,146 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:18:44,148 basehttp 120279 131481498285760 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:18:44,189 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:18:44,189 basehttp 120279 131481456322240 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:18:44,190 basehttp 120279 131481095632576 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:18:44,190 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:18:44,237 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:19:53,524 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:19:53,543 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8686
+INFO 2025-07-18 15:19:55,336 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:19:55,490 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:19:55,644 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:19:55,786 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:19:55,898 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:22:37,125 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106983
+INFO 2025-07-18 15:22:37,145 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:23:32,792 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:23:33,099 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:23:39,174 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:23:39,484 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:24:50,117 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:24:50,140 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:24:50,141 basehttp 120279 131481456322240 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:24:50,144 basehttp 120279 131481456322240 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:24:50,145 basehttp 120279 131481498285760 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:24:50,145 basehttp 120279 131481087239872 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:24:50,250 basehttp 120279 131481489893056 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:24:50,250 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:24:50,250 basehttp 120279 131481498285760 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:24:50,250 basehttp 120279 131481473107648 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:24:50,258 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8494
+INFO 2025-07-18 15:24:50,292 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:24:50,332 basehttp 120279 131481087239872 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:24:50,332 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:24:50,334 basehttp 120279 131481087239872 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:24:50,335 basehttp 120279 131481456322240 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:24:50,335 basehttp 120279 131481498285760 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:24:50,639 basehttp 120279 131481087239872 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:24:50,640 basehttp 120279 131481498285760 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:24:50,640 basehttp 120279 131481473107648 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:24:50,640 basehttp 120279 131481489893056 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:24:50,650 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 8494
+INFO 2025-07-18 15:24:50,809 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:25:06,958 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:25:07,295 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:25:07,320 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:25:07,320 basehttp 120279 131481489893056 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:25:07,324 basehttp 120279 131481489893056 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:25:07,325 basehttp 120279 131481087239872 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:25:07,325 basehttp 120279 131481456322240 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:25:07,365 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:25:07,365 basehttp 120279 131481481500352 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:25:07,366 basehttp 120279 131481473107648 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:25:07,366 basehttp 120279 131481498285760 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:25:07,375 basehttp 120279 131481087239872 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9405
+INFO 2025-07-18 15:25:07,522 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:25:19,443 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:25:19,793 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:25:19,830 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:25:19,831 basehttp 120279 131481489893056 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:25:19,837 basehttp 120279 131481498285760 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:25:19,838 basehttp 120279 131481489893056 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:25:19,838 basehttp 120279 131481498285760 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:25:19,874 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:25:19,874 basehttp 120279 131481087239872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:25:19,874 basehttp 120279 131481481500352 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:25:19,875 basehttp 120279 131481456322240 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:25:19,881 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6794
+INFO 2025-07-18 15:25:20,029 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:25:37,261 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:26:16,760 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:26:18,798 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:26:18,930 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:26:19,067 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:26:19,201 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:26:21,135 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 86355
+INFO 2025-07-18 15:26:21,145 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:26:21,196 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9847
+INFO 2025-07-18 15:26:35,588 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:26:35,595 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-18 15:26:35,645 basehttp 120279 131481489893056 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:26:35,742 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:26:35,905 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:26:35,991 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:26:39,863 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:26:40,174 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106933
+INFO 2025-07-18 15:26:40,189 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:28:08,767 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106871
+INFO 2025-07-18 15:28:08,779 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:28:08,829 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:28:09,239 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106871
+INFO 2025-07-18 15:28:09,367 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106871
+INFO 2025-07-18 15:28:11,645 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106871
+INFO 2025-07-18 15:28:23,410 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106859
+INFO 2025-07-18 15:28:23,424 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:28:33,829 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:28:33,837 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-18 15:28:33,888 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:28:40,577 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106859
+INFO 2025-07-18 15:28:49,847 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:28:49,868 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:29:15,136 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:18,371 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:20,955 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:22,173 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:23,935 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:32,012 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:36,490 basehttp 120279 131481473107648 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-18 15:29:41,547 basehttp 120279 131481481500352 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:29:41,770 basehttp 120279 131481473107648 "GET /cv/descargar/ HTTP/1.1" 200 17316
+INFO 2025-07-18 15:29:48,549 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:48,562 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:29:48,611 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:29:49,247 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:49,378 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:49,513 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:49,647 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:49,787 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:51,655 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:51,784 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:51,922 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:29:52,056 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:01,411 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30973
+INFO 2025-07-18 15:30:02,495 basehttp 120279 131481473107648 "GET /mis-postulaciones/ HTTP/1.1" 200 30973
+INFO 2025-07-18 15:30:03,895 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:05,310 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:05,650 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:05,785 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:05,927 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:06,039 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:06,061 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:30:06,203 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:06,322 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:06,437 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:06,565 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:09,263 basehttp 120279 131481087239872 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:30:09,355 basehttp 120279 131481473107648 "GET /cv/descargar/ HTTP/1.1" 200 17316
+INFO 2025-07-18 15:30:12,603 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:12,754 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:30:14,058 basehttp 120279 131481473107648 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-18 15:30:14,078 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20031
+INFO 2025-07-18 15:30:15,311 basehttp 120279 131481473107648 "GET /login/ HTTP/1.1" 200 10014
+INFO 2025-07-18 15:30:18,311 basehttp 120279 131481473107648 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-18 15:30:18,340 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106767
+INFO 2025-07-18 15:31:21,063 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:31:23,203 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:31:23,360 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:31:23,496 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:31:23,629 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 20106
+INFO 2025-07-18 15:31:25,698 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106439
+INFO 2025-07-18 15:31:25,708 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:31:25,759 basehttp 120279 131481456322240 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10461
+INFO 2025-07-18 15:31:30,641 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:31:30,962 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106439
+INFO 2025-07-18 15:31:38,754 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:31:39,062 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106439
+INFO 2025-07-18 15:34:00,325 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:34:00,337 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10916
+INFO 2025-07-18 15:34:00,642 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106784
+INFO 2025-07-18 15:34:00,649 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-18 15:34:00,698 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:37:35,522 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 87638
+INFO 2025-07-18 15:37:35,530 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:37:35,581 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 10916
+INFO 2025-07-18 15:37:35,962 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 87638
+INFO 2025-07-18 15:37:36,098 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 87638
+INFO 2025-07-18 15:37:36,235 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 87638
+INFO 2025-07-18 15:38:10,758 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 87638
+INFO 2025-07-18 15:38:10,779 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:38:31,970 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:38:32,372 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:38:32,504 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:38:55,600 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:38:55,915 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:38:55,927 basehttp 120279 131481473107648 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-18 15:38:55,978 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 11083
+INFO 2025-07-18 15:39:14,025 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 15:39:14,345 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:39:14,370 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9514
+INFO 2025-07-18 15:39:16,719 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:39:16,735 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:39:16,874 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:39:16,894 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:39:17,011 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:39:17,031 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:39:17,151 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:39:17,170 basehttp 120279 131481473107648 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-18 15:42:10,276 basehttp 120279 131481473107648 "GET /perfil/interesado/ HTTP/1.1" 200 106603
+INFO 2025-07-18 15:42:10,319 basehttp 120279 131481473107648 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-18 15:42:10,319 basehttp 120279 131481456322240 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-18 15:42:10,322 basehttp 120279 131481473107648 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-18 15:42:10,323 basehttp 120279 131481456322240 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-18 15:42:10,324 basehttp 120279 131481481500352 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-18 15:42:10,699 basehttp 120279 131481473107648 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-18 15:42:10,700 basehttp 120279 131481456322240 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-18 15:42:10,701 basehttp 120279 131481087239872 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-18 15:42:10,701 basehttp 120279 131481481500352 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-18 15:42:10,708 basehttp 120279 131481498285760 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9514
+INFO 2025-07-18 15:42:10,872 basehttp 120279 131481473107648 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-18 15:42:30,363 basehttp 120279 131481473107648 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 242
+INFO 2025-07-18 16:04:50,299 basehttp 120279 131481473107648 "GET / HTTP/1.1" 200 19718
