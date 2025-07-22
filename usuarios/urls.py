@@ -16,6 +16,11 @@ urlpatterns = [
     path('login/', views.LoginView.as_view(), name='login'),
     path('logout/', views.logout_view, name='logout'),
 
+     path('recuperar-contrasena/', views.RecuperarContrasenaView.as_view(), name='recuperar_contrasena'),
+     path('restablecer-contrasena/<str:token>/', views.RestablecerContrasenaView.as_view(), name='restablecer_contrasena'),
+     path('reenviar-recuperacion/', views.ReenviarRecuperacionView.as_view(), name='reenviar_recuperacion'),
+
+    
     # ===========================
     # URLs DE REGISTRO
     # ===========================

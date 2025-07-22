@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperación de Contraseña - {{ site_name }}</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
+            color: #333333;
+            line-height: 1.6;
+        }
+        
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .email-header {
+            background: linear-gradient(135deg, #9f2241 0%, #721c32 100%);
+            color: #ffffff;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .email-header h1 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 700;
+        }
+        
+        .email-header p {
+            margin: 10px 0 0 0;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        .email-body {
+            padding: 40px 30px;
+        }
+        
+        .greeting {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 20px;
+        }
+        
+        .content {
+            font-size: 16px;
+            color: #555555;
+            margin-bottom: 30px;
+        }
+        
+        .action-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #9f2241 0%, #721c32 100%);
+            color: #ffffff !important;
+            text-decoration: none;
+            padding: 16px 32px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 16px;
+            text-align: center;
+            margin: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(159, 34, 65, 0.3);
+        }
+        
+        .button-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .security-info {
+            background-color: #f8f9fa;
+            border-left: 4px solid #9f2241;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .security-info h3 {
+            margin: 0 0 15px 0;
+            color: #9f2241;
+            font-size: 18px;
+            font-weight: 600;
+        }
+        
+        .security-info ul {
+            margin: 0;
+            padding-left: 20px;
+            color: #555555;
+        }
+        
+        .security-info li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+        
+        .expiry-warning {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        .expiry-warning strong {
+            color: #856404;
+            font-size: 16px;
+        }
+        
+        .expiry-warning p {
+            margin: 5px 0 0 0;
+            color: #856404;
+            font-size: 14px;
+        }
+        
+        .manual-link {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 30px 0;
+        }
+        
+        .manual-link h4 {
+            margin: 0 0 10px 0;
+            color: #333333;
+            font-size: 16px;
+        }
+        
+        .manual-link p {
+            margin: 0;
+            font-size: 14px;
+            color: #666666;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .email-footer {
+            background-color: #f8f9fa;
+            padding: 30px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        .email-footer p {
+            margin: 0 0 10px 0;
+            font-size: 14px;
+            color: #666666;
+        }
+        
+        .email-footer a {
+            color: #9f2241;
+            text-decoration: none;
+        }
+        
+        .email-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-links {
+            margin: 20px 0;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #9f2241;
+            font-size: 18px;
+            text-decoration: none;
+        }
+        
+        .divider {
+            height: 1px;
+            background-color: #dee2e6;
+            margin: 30px 0;
+        }
+        
+        /* Responsive */
+        @media only screen and (max-width: 600px) {
+            .email-container {
+                margin: 0;
+                border-radius: 0;
+            }
+            
+            .email-header,
+            .email-body,
+            .email-footer {
+                padding: 20px;
+            }
+            
+            .email-header h1 {
+                font-size: 24px;
+            }
+            
+            .action-button {
+                display: block;
+                width: 100%;
+                box-sizing: border-box;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <!-- Header -->
+        <div class="email-header">
+            <h1>🔐 Recuperación de Contraseña</h1>
+            <p>{{ site_name }}</p>
+        </div>
+        
+        <!-- Body -->
+        <div class="email-body">
+            <div class="greeting">
+                Hola {{ user.first_name|default:user.email }},
+            </div>
+            
+            <div class="content">
+                <p>Recibimos una solicitud para restablecer la contraseña de tu cuenta en la <strong>Bolsa de Trabajo del Estado de México</strong>.</p>
+                
+                <p>Si fuiste tú quien solicitó este cambio, haz clic en el botón de abajo para crear una nueva contraseña:</p>
+            </div>
+            
+            <!-- Action Button -->
+            <div class="button-container">
+                <a href="{{ reset_url }}" class="action-button">
+                    Restablecer Mi Contraseña
+                </a>
+            </div>
+            
+            <!-- Expiry Warning -->
+            <div class="expiry-warning">
+                <strong>⏰ Este enlace expirará en {{ expires_minutes }} minutos</strong>
+                <p>Por seguridad, debes usar este enlace antes de que expire.</p>
+            </div>
+            
+            <!-- Security Information -->
+            <div class="security-info">
+                <h3>🛡️ Información de Seguridad</h3>
+                <ul>
+                    <li><strong>Este enlace es de un solo uso</strong> - Se invalidará después de restablecer tu contraseña</li>
+                    <li><strong>Solo tú deberías tener acceso</strong> - No compartas este enlace con nadie</li>
+                    <li><strong>Límite de intentos:</strong> Te quedan {{ attempts_remaining }} intentos de recuperación en las próximas 24 horas</li>
+                    <li><strong>Revisa tu cuenta</strong> - Si no solicitaste este cambio, ignora este correo</li>
+                </ul>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <!-- Manual Link Section -->
+            <div class="manual-link">
+                <h4>🔗 ¿Tienes problemas con el botón?</h4>
+                <p>Copia y pega este enlace en tu navegador:</p>
+                <p>{{ reset_url }}</p>
+            </div>
+            
+            <div class="content">
+                <p><strong>¿No solicitaste este cambio?</strong></p>
+                <p>Si no fuiste tú quien solicitó restablecer la contraseña, puedes ignorar este correo con seguridad. Tu cuenta permanecerá protegida y no se realizarán cambios.</p>
+                
+                <p>Si crees que alguien más está intentando acceder a tu cuenta, te recomendamos:</p>
+                <ul>
+                    <li>Cambiar tu contraseña inmediatamente</li>
+                    <li>Revisar la actividad reciente de tu cuenta</li>
+                    <li>Contactarnos si detectas actividad sospechosa</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="email-footer">
+            <p><strong>Secretaría de Movilidad del Estado de México</strong></p>
+            <p>Av. Gustavo Baz #2160, La Loma Tlalnepantla de Baz</p>
+            <p>Tel. 55 53 668 200</p>
+            
+            <div class="social-links">
+                <a href="https://www.facebook.com/SEMOV.Edomex" title="Facebook">📘</a>
+                <a href="https://twitter.com/SEMOV_Edomex" title="Twitter">🐦</a>
+                <a href="https://www.instagram.com/semov.edomex" title="Instagram">📷</a>
+            </div>
+            
+            <div class="divider"></div>
+            
+            <p style="font-size: 12px; color: #999999;">
+                Este correo fue enviado automáticamente. Por favor, no respondas a este mensaje.<br>
+                Si tienes preguntas, visita nuestro sitio web: <a href="https://smovilidad.edomex.gob.mx">smovilidad.edomex.gob.mx</a>
+            </p>
+            
+            <p style="font-size: 12px; color: #999999; margin-top: 20px;">
+                © {{ "now"|date:"Y" }} Gobierno del Estado de México. Todos los derechos reservados.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

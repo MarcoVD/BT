@@ -6290,3 +6290,96 @@ INFO 2025-07-21 22:36:01,817 basehttp 26720 140525380474560 "GET /static/js/busq
 INFO 2025-07-21 22:36:01,821 basehttp 26720 140525155907264 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
 INFO 2025-07-21 22:47:56,405 autoreload 26720 140525484818496 /home/marco/BT/BT/usuarios/models.py changed, reloading.
 INFO 2025-07-21 22:47:56,902 autoreload 33763 140037653708864 Watching for file changes with StatReloader
+INFO 2025-07-21 22:51:45,244 autoreload 33763 140037653708864 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 22:51:45,621 autoreload 35036 140684802064448 Watching for file changes with StatReloader
+INFO 2025-07-21 22:53:33,769 autoreload 35036 140684802064448 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 22:53:34,230 autoreload 35367 140027422638144 Watching for file changes with StatReloader
+INFO 2025-07-21 22:57:45,482 autoreload 35367 140027422638144 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 22:57:45,927 autoreload 35745 140302514892864 Watching for file changes with StatReloader
+INFO 2025-07-21 23:00:23,956 autoreload 35745 140302514892864 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 23:00:24,446 autoreload 36014 139848463188032 Watching for file changes with StatReloader
+INFO 2025-07-21 23:00:30,105 autoreload 36014 139848463188032 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 23:00:30,604 autoreload 36135 140557283401792 Watching for file changes with StatReloader
+INFO 2025-07-21 23:01:07,895 autoreload 36135 140557283401792 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 23:01:08,331 autoreload 36292 139692438802496 Watching for file changes with StatReloader
+INFO 2025-07-21 23:11:02,129 autoreload 40254 140229973577792 Watching for file changes with StatReloader
+INFO 2025-07-21 23:11:05,117 basehttp 40254 140229802628800 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-21 23:11:05,149 basehttp 40254 140229802628800 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,151 basehttp 40254 140229793187520 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,151 basehttp 40254 140229776402112 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,154 basehttp 40254 140229776402112 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,155 basehttp 40254 140229784794816 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,155 basehttp 40254 140229793187520 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,157 basehttp 40254 140229768009408 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:11:05,158 basehttp 40254 140229759616704 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:12:09,625 autoreload 40254 140229973577792 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 23:12:10,120 autoreload 40706 140470616371264 Watching for file changes with StatReloader
+INFO 2025-07-21 23:14:47,988 autoreload 40706 140470616371264 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-21 23:14:48,382 autoreload 41182 140195053510720 Watching for file changes with StatReloader
+INFO 2025-07-21 23:19:18,304 autoreload 41182 140195053510720 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:19:18,732 autoreload 41951 140561945616448 Watching for file changes with StatReloader
+INFO 2025-07-21 23:22:23,060 autoreload 41951 140561945616448 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:22:23,489 autoreload 43274 139841510281280 Watching for file changes with StatReloader
+INFO 2025-07-21 23:23:39,984 autoreload 43274 139841510281280 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:23:40,357 autoreload 43446 140258336829504 Watching for file changes with StatReloader
+INFO 2025-07-21 23:23:41,964 autoreload 43446 140258336829504 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:23:42,385 autoreload 43542 139819644051520 Watching for file changes with StatReloader
+INFO 2025-07-21 23:23:59,175 autoreload 43542 139819644051520 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:23:59,757 autoreload 43690 140036767592512 Watching for file changes with StatReloader
+INFO 2025-07-21 23:24:20,717 autoreload 43690 140036767592512 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-21 23:24:21,112 autoreload 43825 140318610104384 Watching for file changes with StatReloader
+INFO 2025-07-21 23:28:03,165 autoreload 43825 140318610104384 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:28:03,586 autoreload 44369 140331950198848 Watching for file changes with StatReloader
+INFO 2025-07-21 23:28:27,648 autoreload 44369 140331950198848 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:28:28,031 autoreload 44510 140364325670976 Watching for file changes with StatReloader
+INFO 2025-07-21 23:28:29,625 autoreload 44510 140364325670976 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:28:30,030 autoreload 44610 140443919089728 Watching for file changes with StatReloader
+INFO 2025-07-21 23:29:11,323 autoreload 44610 140443919089728 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:29:11,710 autoreload 44757 139844031148096 Watching for file changes with StatReloader
+INFO 2025-07-21 23:29:14,342 autoreload 44757 139844031148096 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:29:14,879 autoreload 44864 140718412333120 Watching for file changes with StatReloader
+INFO 2025-07-21 23:30:47,981 autoreload 44864 140718412333120 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:30:48,426 autoreload 45105 140488234684480 Watching for file changes with StatReloader
+INFO 2025-07-21 23:31:39,679 autoreload 45105 140488234684480 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-21 23:31:40,110 autoreload 45290 140451077038144 Watching for file changes with StatReloader
+INFO 2025-07-21 23:34:07,051 autoreload 45290 140451077038144 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-21 23:34:07,453 autoreload 45823 139965016498240 Watching for file changes with StatReloader
+INFO 2025-07-21 23:39:02,907 autoreload 45823 139965016498240 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-21 23:39:03,354 autoreload 47226 139818231709760 Watching for file changes with StatReloader
+INFO 2025-07-21 23:40:53,228 basehttp 47226 139818127496896 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-21 23:40:53,286 basehttp 47226 139818127496896 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,288 basehttp 47226 139818127496896 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,293 basehttp 47226 139818109662912 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,295 basehttp 47226 139817895589568 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,296 basehttp 47226 139818118055616 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,298 basehttp 47226 139817887196864 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,299 basehttp 47226 139818118055616 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:53,300 basehttp 47226 139817878804160 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:40:54,709 basehttp 47226 139818127496896 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-21 23:40:57,337 log 47226 139818127496896 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:40:57,339 basehttp 47226 139818127496896 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219

@@ -26,6 +26,7 @@
         padding: 0.75rem;
         font-weight: 600;
     }
+    
     /* Estilo para la alerta de error de credenciales */
     .alert-credentials-error {
         background-color: rgba(220, 53, 69, 0.1);
@@ -42,9 +43,74 @@
         margin-right: 0.75rem;
     }
 
+    /* ✅ NUEVOS ESTILOS PARA ENLACES DE RECUPERACIÓN */
+    .forgot-password-link {
+        display: inline-block;
+        color: var(--primary);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.2s ease;
+        border-bottom: 1px solid transparent;
+    }
+
+    .forgot-password-link:hover {
+        color: #721c32;
+        border-bottom-color: #721c32;
+        text-decoration: none;
+    }
+
+    .forgot-password-section {
+        text-align: center;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e9ecef;
+    }
+
+    .divider-or {
+        position: relative;
+        text-align: center;
+        margin: 1.5rem 0;
+    }
+
+    .divider-or::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background-color: #dee2e6;
+    }
+
+    .divider-or span {
+        background-color: #ffffff;
+        color: #6c757d;
+        padding: 0 1rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+    }
+
+    /* Estilo para resend verification */
+    .verification-section {
+        background-color: #fff3cd;
+        border: 1px solid #ffeaa7;
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 1rem;
+    }
+
+    .verification-section .alert-link {
+        color: #856404;
+        font-weight: 600;
+    }
+
+    .verification-section .alert-link:hover {
+        color: #533f03;
+        text-decoration: underline;
+    }
 </style>
 {% endblock %}
-
 
 {% block content %}
 <div class="container">
@@ -81,7 +147,7 @@
                 </div>
 
                 <!-- Campo de Contraseña -->
-                <div class="mb-4">
+                <div class="mb-3">
                     <label for="{{ form.password.id_for_label }}" class="form-label fw-bold">Contraseña</label>
                     <div class="input-group">
                         <span class="input-group-text"><i class="bi bi-lock-fill"></i></span>
@@ -89,11 +155,24 @@
                     </div>
                     {% if form.password.errors %}<div class="invalid-feedback d-block">{{ form.password.errors|first }}</div>{% endif %}
                 </div>
-                <div class="d-grid">
-                    <button type="submit" class="btn btn-primary btn-lg"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar</button>
+
+                <!-- ✅ SECCIÓN DE RECUPERACIÓN DE CONTRASEÑA -->
+                <div class="forgot-password-section">
+                    <a href="{% url 'recuperar_contrasena' %}" class="forgot-password-link">
+                        <i class="bi bi-key me-1"></i>¿Olvidaste tu contraseña?
+                    </a>
                 </div>
 
-                <hr class="my-4">
+                <div class="d-grid mt-4">
+                    <button type="submit" class="btn btn-primary btn-lg">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Ingresar
+                    </button>
+                </div>
+
+                <!-- ✅ DIVIDER MEJORADO -->
+                <div class="divider-or">
+                    <span>o</span>
+                </div>
 
                 <!-- Enlaces a Registro y Verificación -->
                 <div class="text-center">
@@ -105,10 +184,10 @@
             
             <!-- Alerta para cuando el email no está verificado -->
             {% if show_resend_verification %}
-                <div class="alert alert-warning mt-4 text-center">
+                <div class="verification-section">
                     <i class="bi bi-exclamation-triangle-fill me-2"></i>
                     <strong>Tu email no ha sido verificado.</strong>
-                    <hr>
+                    <hr class="my-2">
                     <a href="{% url 'reenviar_verificacion' %}" class="alert-link">Solicita un nuevo enlace de activación aquí.</a>
                 </div>
             {% endif %}
