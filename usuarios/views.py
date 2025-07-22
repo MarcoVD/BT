@@ -250,7 +250,7 @@ def eliminar_habilidad_ajax(request, habilidad_id):
         })
 
 # =========================================
-#funcion que define la recuperacion de cuenta
+#funcion que define la recuperacion de contraseña
 def send_password_reset_email(request, user):
     """
     Envía el correo de recuperación de contraseña.
@@ -308,7 +308,8 @@ class RecuperarContrasenaView(View):
     """
     Vista para solicitar recuperación de contraseña.
     """
-    template_name = 'usuarios/recuperar_contraseña.html'
+    # template_name = 'usuarios/recuperar_contraseña.html'
+    template_name = 'emails/recuperar_contrasena.html'
     form_class = RecuperarContrasenaForm
 
     def get(self, request):
@@ -365,8 +366,8 @@ class RestablecerContrasenaView(View):
     """
     Vista para restablecer la contraseña usando el token.
     """
-    template_name = 'usuarios/restablecer_contraseña.html'
-    result_template = 'usuarios/resultado_restablecimiento.html'
+    template_name = 'emails/restablecer_contrasena.html'
+    result_template = 'emails/resultado_restablecimiento.html'
 
     def get(self, request, token):
         """Muestra el formulario de restablecimiento."""
@@ -463,7 +464,8 @@ class ReenviarRecuperacionView(View):
     """
     Vista para reenviar el correo de recuperación.
     """
-    template_name = 'usuarios/recuperar_contraseña.html'
+    # template_name = 'usuarios/recuperar_contraseña.html'
+    template_name = 'emails/recuperar_contrasena.html'
 
     def post(self, request):
         """Reenvía el correo de recuperación."""

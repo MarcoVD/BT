@@ -1,0 +1,232 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ title }} - Bolsa de Trabajo{% endblock %}
+{% block extra_css %}
+<style>
+    .result-container {
+        max-width: 500px;
+        margin: 4rem auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+        border: 1px solid #e9ecef;
+    }
+
+    .result-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+    }
+
+    .success-icon {
+        color: #198754;
+    }
+
+    .error-icon {
+        color: #dc3545;
+    }
+
+    .warning-icon {
+        color: #ffc107;
+    }
+
+    .result-title {
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .success-title {
+        color: #198754;
+    }
+
+    .error-title {
+        color: #dc3545;
+    }
+
+    .warning-title {
+        color: #856404;
+    }
+
+    .result-message {
+        color: #6c757d;
+        margin-bottom: 2rem;
+        line-height: 1.6;
+    }
+
+    .btn-group-custom {
+        gap: 0.5rem;
+    }
+
+    .btn-group-custom .btn {
+        min-width: 140px;
+    }
+
+    @media (max-width: 576px) {
+        .btn-group-custom {
+            flex-direction: column;
+        }
+        
+        .btn-group-custom .btn {
+            width: 100%;
+            margin-bottom: 0.5rem;
+        }
+    }
+
+    .alert-info-custom {
+        background-color: rgba(13, 202, 240, 0.1);
+        border: 1px solid rgba(13, 202, 240, 0.2);
+        color: #055160;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-start;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    .alert-info-custom i {
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+    }
+
+    .alert-warning-custom {
+        background-color: rgba(255, 193, 7, 0.1);
+        border: 1px solid rgba(255, 193, 7, 0.2);
+        color: #856404;
+        font-weight: 500;
+        display: flex;
+        align-items: flex-start;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+        margin-bottom: 1.5rem;
+    }
+
+    .alert-warning-custom i {
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+        margin-top: 0.1rem;
+        flex-shrink: 0;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="result-container">
+        <div class="card-body p-4 p-md-5 text-center">
+            
+            {% if success %}
+                <!-- Estado de éxito -->
+                <div class="mb-4">
+                    <i class="bi bi-check-circle-fill result-icon success-icon"></i>
+                </div>
+                <h2 class="result-title success-title">{{ title }}</h2>
+                <p class="result-message">{{ message }}</p>
+
+                <div class="alert-info-custom text-start">
+                    <i class="bi bi-lightbulb"></i>
+                    <div>
+                        <strong>¡Importante!</strong><br>
+                        <small>
+                            • Tu contraseña ha sido actualizada de forma segura<br>
+                            • Todos los enlaces de recuperación anteriores han sido invalidados<br>
+                            • Te recomendamos iniciar sesión inmediatamente para verificar el acceso
+                        </small>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-center btn-group-custom">
+                    <a href="{% url 'login' %}" class="btn btn-primary">
+                        <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                    </a>
+                    <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                        <i class="bi bi-house me-2"></i>Ir al Inicio
+                    </a>
+                </div>
+
+            {% elif warning %}
+                <!-- Estado de advertencia (token expirado, etc.) -->
+                <div class="mb-4">
+                    <i class="bi bi-exclamation-triangle-fill result-icon warning-icon"></i>
+                </div>
+                <h2 class="result-title warning-title">{{ title }}</h2>
+                <p class="result-message">{{ message }}</p>
+
+                {% if show_retry %}
+                    <div class="alert-warning-custom text-start">
+                        <i class="bi bi-info-circle"></i>
+                        <div>
+                            <strong>¿Qué puedes hacer?</strong><br>
+                            <small>
+                                • Solicitar un nuevo enlace de recuperación<br>
+                                • Verificar que copiaste correctamente el enlace del correo<br>
+                                • Revisar si el correo no se encuentra en spam
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center btn-group-custom">
+                        <a href="{% url 'recuperar_contrasena' %}" class="btn btn-warning">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Solicitar Nuevo Enlace
+                        </a>
+                        <a href="{% url 'login' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Ir al Login
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-flex justify-content-center btn-group-custom">
+                        <a href="{% url 'login' %}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-house me-2"></i>Ir al Inicio
+                        </a>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                <!-- Estado de error -->
+                <div class="mb-4">
+                    <i class="bi bi-x-circle-fill result-icon error-icon"></i>
+                </div>
+                <h2 class="result-title error-title">{{ title }}</h2>
+                <p class="result-message">{{ message }}</p>
+
+                {% if show_retry %}
+                    <div class="alert-info-custom text-start">
+                        <i class="bi bi-info-circle"></i>
+                        <div>
+                            <strong>¿Necesitas ayuda?</strong><br>
+                            <small>
+                                • Verifica que el enlace sea correcto y no esté expirado<br>
+                                • Intenta solicitar un nuevo enlace de recuperación<br>
+                                • Si el problema persiste, contacta al soporte técnico
+                            </small>
+                        </div>
+                    </div>
+
+                    <div class="d-flex justify-content-center btn-group-custom">
+                        <a href="{% url 'recuperar_contrasena' %}" class="btn btn-danger">
+                            <i class="bi bi-arrow-clockwise me-2"></i>Nuevo Enlace
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-house me-2"></i>Volver al Inicio
+                        </a>
+                    </div>
+                {% else %}
+                    <div class="d-flex justify-content-center btn-group-custom">
+                        <a href="{% url 'login' %}" class="btn btn-primary">
+                            <i class="bi bi-box-arrow-in-right me-2"></i>Ir al Login
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-house me-2"></i>Volver al Inicio
+                        </a>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+{% endblock %}

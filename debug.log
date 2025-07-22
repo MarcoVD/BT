@@ -6383,3 +6383,1025 @@ Traceback (most recent call last):
     raise TemplateDoesNotExist(template_name, chain=chain)
 django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
 ERROR 2025-07-21 23:40:57,339 basehttp 47226 139818127496896 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-21 23:46:18,739 autoreload 49051 140580666732608 Watching for file changes with StatReloader
+INFO 2025-07-21 23:46:25,721 basehttp 49051 140580562835136 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-21 23:46:26,717 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-21 23:46:28,062 log 49051 140580562835136 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:46:28,064 basehttp 49051 140580562835136 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+ERROR 2025-07-21 23:46:31,285 log 49051 140580562835136 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:46:31,286 basehttp 49051 140580562835136 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-21 23:46:32,666 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:46:32,861 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:46:32,979 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:46:33,099 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-21 23:48:28,750 log 49051 140580562835136 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:48:28,751 basehttp 49051 140580562835136 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-21 23:49:10,898 basehttp 49051 140580562835136 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-21 23:49:11,597 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:49:13,471 basehttp 49051 140580562835136 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-21 23:49:13,529 basehttp 49051 140580562835136 "GET /static/js/validar_login.js HTTP/1.1" 200 18318
+INFO 2025-07-21 23:49:19,318 basehttp 49051 140580562835136 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:49:23,269 basehttp 49051 140580562835136 "GET /reenviar-verificacion/ HTTP/1.1" 200 8491
+ERROR 2025-07-21 23:49:25,397 log 49051 140580562835136 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:49:25,399 basehttp 49051 140580562835136 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-21 23:50:46,784 autoreload 49051 140580666732608 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-21 23:50:47,286 autoreload 49638 140068291489856 Watching for file changes with StatReloader
+ERROR 2025-07-21 23:50:49,117 log 49638 140068187707072 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:50:49,119 basehttp 49638 140068187707072 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-21 23:52:34,781 autoreload 50098 140589649039424 Watching for file changes with StatReloader
+INFO 2025-07-21 23:52:59,429 basehttp 50098 140589544937152 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:52:59,453 basehttp 50098 140589544937152 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,454 basehttp 50098 140589535495872 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,500 basehttp 50098 140589311981248 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,501 basehttp 50098 140589535495872 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,502 basehttp 50098 140589527103168 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,502 basehttp 50098 140589303588544 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-21 23:52:59,553 basehttp 50098 140589544937152 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:52:59,669 basehttp 50098 140589544937152 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:52:59,799 basehttp 50098 140589544937152 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-21 23:52:59,934 basehttp 50098 140589544937152 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-21 23:53:00,812 log 50098 140589544937152 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:53:00,814 basehttp 50098 140589544937152 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+ERROR 2025-07-21 23:55:06,123 log 50098 140589544937152 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:55:06,124 basehttp 50098 140589544937152 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+ERROR 2025-07-21 23:55:06,262 log 50098 140589544937152 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-21 23:55:06,263 basehttp 50098 140589544937152 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-22 00:05:26,395 autoreload 51994 140137868734528 Watching for file changes with StatReloader
+INFO 2025-07-22 00:05:33,381 basehttp 51994 140137764918976 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:05:33,403 basehttp 51994 140137764918976 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,404 basehttp 51994 140137755477696 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,448 basehttp 51994 140137755477696 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,451 basehttp 51994 140137747084992 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,455 basehttp 51994 140137535108800 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,456 basehttp 51994 140137526716096 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:05:33,492 basehttp 51994 140137764918976 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:05:34,356 log 51994 140137764918976 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-22 00:05:34,364 basehttp 51994 140137764918976 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-22 00:07:17,714 basehttp 51994 140137764918976 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:07:17,841 basehttp 51994 140137764918976 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:08:37,679 autoreload 51994 140137868734528 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:08:38,183 autoreload 52360 140205007769664 Watching for file changes with StatReloader
+ERROR 2025-07-22 00:08:38,826 log 52360 140204836034240 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 317, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: usuarios/recuperar_contraseña.html
+ERROR 2025-07-22 00:08:38,828 basehttp 52360 140204836034240 "GET /recuperar-contrasena/ HTTP/1.1" 500 105219
+INFO 2025-07-22 00:10:00,095 autoreload 52360 140205007769664 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:10:00,491 autoreload 52561 140267728793664 Watching for file changes with StatReloader
+INFO 2025-07-22 00:10:46,825 autoreload 52561 140267728793664 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:10:47,327 autoreload 52722 139927460433984 Watching for file changes with StatReloader
+INFO 2025-07-22 00:10:49,140 basehttp 52722 139927283037888 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:10:49,253 basehttp 52722 139927283037888 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:10:49,371 basehttp 52722 139927283037888 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:10:49,491 basehttp 52722 139927283037888 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:10:50,431 log 52722 139927283037888 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:10:50,433 basehttp 52722 139927283037888 "GET /recuperar-contrasena/ HTTP/1.1" 500 105232
+INFO 2025-07-22 00:12:26,668 autoreload 52722 139927460433984 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:12:27,164 autoreload 52954 140305414643776 Watching for file changes with StatReloader
+INFO 2025-07-22 00:12:27,827 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:12:27,926 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:12:28,046 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:12:28,840 log 52954 140305240159936 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:12:28,843 basehttp 52954 140305240159936 "GET /recuperar-contrasena/ HTTP/1.1" 500 105232
+ERROR 2025-07-22 00:13:18,595 log 52954 140305240159936 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:13:18,596 basehttp 52954 140305240159936 "GET /recuperar-contrasena/ HTTP/1.1" 500 105232
+INFO 2025-07-22 00:13:45,813 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:13:45,952 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:13:46,095 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:13:46,217 basehttp 52954 140305240159936 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:13:46,937 log 52954 140305240159936 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:13:46,939 basehttp 52954 140305240159936 "GET /recuperar-contrasena/ HTTP/1.1" 500 105232
+ERROR 2025-07-22 00:14:34,186 log 52954 140305240159936 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:14:34,187 basehttp 52954 140305240159936 "GET /recuperar-contrasena/ HTTP/1.1" 500 105232
+INFO 2025-07-22 00:15:58,469 autoreload 52954 140305414643776 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:15:58,937 autoreload 53355 140013024694336 Watching for file changes with StatReloader
+INFO 2025-07-22 00:16:27,859 basehttp 53355 140012846839488 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:16:27,880 basehttp 53355 140012846839488 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-22 00:16:27,884 basehttp 53355 140012830054080 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-22 00:16:27,884 basehttp 53355 140012813268672 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-22 00:16:27,884 basehttp 53355 140012838446784 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-22 00:16:27,884 basehttp 53355 140012804875968 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-22 00:16:27,885 basehttp 53355 140012821661376 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-22 00:16:29,276 basehttp 53355 140012846839488 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+ERROR 2025-07-22 00:16:30,331 log 53355 140012846839488 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:16:30,333 basehttp 53355 140012846839488 "GET /recuperar-contrasena/ HTTP/1.1" 500 105733
+WARNING 2025-07-22 00:16:30,441 log 53355 140012804875968 Not Found: /favicon.ico
+WARNING 2025-07-22 00:16:30,442 basehttp 53355 140012804875968 "GET /favicon.ico HTTP/1.1" 404 14680
+INFO 2025-07-22 00:22:20,487 basehttp 53355 140012804875968 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:22:21,701 basehttp 53355 140012804875968 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:22:21,879 basehttp 53355 140012804875968 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:22:22,003 basehttp 53355 140012804875968 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:22:22,789 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:22,790 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105733
+ERROR 2025-07-22 00:22:28,536 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:28,537 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:28,702 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:28,703 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:28,823 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:28,824 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,039 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,039 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,218 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,219 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,395 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,396 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,568 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,569 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,742 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,743 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:31,902 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:31,903 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:32,061 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:32,062 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:32,215 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:32,216 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:32,375 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:32,378 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:22:32,499 log 53355 140012804875968 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:22:32,499 basehttp 53355 140012804875968 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+INFO 2025-07-22 00:23:10,749 autoreload 53355 140013024694336 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-22 00:23:11,138 autoreload 54500 140204732715072 Watching for file changes with StatReloader
+ERROR 2025-07-22 00:24:23,771 log 54500 140204560258752 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:24:23,772 basehttp 54500 140204560258752 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:24:23,934 log 54500 140204560258752 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:24:23,935 basehttp 54500 140204560258752 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+ERROR 2025-07-22 00:24:24,070 log 54500 140204560258752 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:24:24,070 basehttp 54500 140204560258752 "GET /recuperar-contrasena/ HTTP/1.1" 500 105870
+INFO 2025-07-22 00:24:28,070 autoreload 54500 140204732715072 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-22 00:24:28,463 autoreload 54703 140006036783168 Watching for file changes with StatReloader
+INFO 2025-07-22 00:24:30,156 basehttp 54703 140005865420480 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:24:30,233 basehttp 54703 140005865420480 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:24:39,135 basehttp 54703 140005865420480 "POST /login/ HTTP/1.1" 200 12555
+INFO 2025-07-22 00:24:53,509 basehttp 54703 140005865420480 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 00:24:55,012 log 54703 140005865420480 Internal Server Error: /recuperar-contrasena/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 318, in get
+    return render(request, self.template_name, {'form': form})
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: emails/recuperar_contraseña.html
+ERROR 2025-07-22 00:24:55,014 basehttp 54703 140005865420480 "GET /recuperar-contrasena/ HTTP/1.1" 500 105733
+INFO 2025-07-22 00:25:38,395 autoreload 54703 140006036783168 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 00:25:38,874 autoreload 54927 140109970939968 Watching for file changes with StatReloader
+INFO 2025-07-22 00:25:53,322 basehttp 54927 140109799397056 "GET /recuperar-contrasena/ HTTP/1.1" 200 20053
+INFO 2025-07-22 00:26:19,424 basehttp 54927 140109799397056 "POST /recuperar-contrasena/ HTTP/1.1" 200 20167
+INFO 2025-07-22 00:27:03,035 basehttp 54927 140109799397056 "POST /recuperar-contrasena/ HTTP/1.1" 200 20180
+INFO 2025-07-22 00:27:09,153 basehttp 54927 140109799397056 "POST /recuperar-contrasena/ HTTP/1.1" 200 20180
+INFO 2025-07-22 00:27:16,040 basehttp 54927 140109799397056 "GET /registro/interesado/ HTTP/1.1" 200 25721
+INFO 2025-07-22 00:27:16,055 basehttp 54927 140109799397056 "GET /static/js/validar_login.js HTTP/1.1" 200 18318
+INFO 2025-07-22 00:27:32,723 views 54927 140109799397056 Correo de verificación enviado exitosamente a marko.vadel@gmail.com
+INFO 2025-07-22 00:27:32,725 basehttp 54927 140109799397056 "POST /registro/interesado/ HTTP/1.1" 200 9706
+INFO 2025-07-22 00:27:46,092 basehttp 54927 140109787858624 "GET /verificar-email/7112f0e3-dd15-4f05-9e0e-cbc83ad9e617/ HTTP/1.1" 200 8012
+INFO 2025-07-22 00:27:46,140 basehttp 54927 140109787858624 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:46,143 basehttp 54927 140109779465920 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:46,149 basehttp 54927 140109771073216 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:46,149 basehttp 54927 140109762680512 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:46,154 basehttp 54927 140109408102080 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:46,155 basehttp 54927 140109416494784 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-22 00:27:55,543 basehttp 54927 140109799397056 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 00:28:07,013 basehttp 54927 140109799397056 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 00:28:07,043 basehttp 54927 140109799397056 "GET /perfil/interesado/ HTTP/1.1" 200 99152
+INFO 2025-07-22 00:28:07,057 basehttp 54927 140109799397056 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-22 00:28:07,057 basehttp 54927 140109399709376 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-22 00:28:07,063 basehttp 54927 140109399709376 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283

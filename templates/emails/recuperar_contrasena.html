@@ -1,0 +1,365 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Recuperar Contraseña - Bolsa de Trabajo{% endblock %}
+{% block extra_css %}
+<style>
+    .password-recovery-container {
+        max-width: 500px;
+        margin: 4rem auto;
+        background-color: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+        border: 1px solid #e9ecef;
+    }
+
+    .recovery-icon {
+        font-size: 4rem;
+        color: var(--primary);
+    }
+    
+    .form-control:focus, .form-select:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 0.25rem rgba(159, 34, 65, 0.15);
+    }
+
+    .btn-primary {
+        padding: 0.75rem;
+        font-weight: 600;
+    }
+
+    /* Estilo para la alerta de información */
+    .alert-info-custom {
+        background-color: rgba(13, 202, 240, 0.1);
+        border: 1px solid rgba(13, 202, 240, 0.2);
+        color: #055160;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        border-radius: 8px;
+    }
+
+    .alert-info-custom i {
+        font-size: 1.2rem;
+        margin-right: 0.75rem;
+    }
+
+    /* Estilos para el estado de éxito */
+    .success-state {
+        text-align: center;
+    }
+
+    .success-icon {
+        font-size: 4rem;
+        color: #198754;
+        margin-bottom: 1rem;
+    }
+
+    .success-title {
+        color: #198754;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .success-description {
+        color: #6c757d;
+        margin-bottom: 2rem;
+    }
+
+    /* Contador regresivo */
+    .countdown-container {
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        padding: 1rem;
+        margin: 1rem 0;
+        text-align: center;
+    }
+
+    .countdown-timer {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: var(--primary);
+    }
+
+    .countdown-text {
+        font-size: 0.9rem;
+        color: #6c757d;
+        margin-top: 0.5rem;
+    }
+
+    /* Estado de reenvío */
+    .resend-section {
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #dee2e6;
+    }
+
+    .btn-outline-secondary {
+        border-color: #6c757d;
+        color: #6c757d;
+    }
+
+    .btn-outline-secondary:hover {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        color: #fff;
+    }
+
+    /* Loading state */
+    .btn-loading {
+        position: relative;
+        pointer-events: none;
+    }
+
+    .btn-loading .btn-text {
+        opacity: 0;
+    }
+
+    .btn-loading .spinner-border {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="password-recovery-container">
+        <div class="card-body p-4 p-md-5">
+            
+            {% if not email_enviado %}
+                <!-- Estado inicial: Formulario para solicitar recuperación -->
+                <div class="text-center mb-4">
+                    <i class="bi bi-key recovery-icon"></i>
+                    <h2 class="mt-3 fw-bold text-primary">Recuperar Contraseña</h2>
+                    <p class="text-muted">Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.</p>
+                </div>
+
+                <form method="post" action="{% url 'recuperar_contrasena' %}" id="recoveryForm">
+                    {% csrf_token %}
+                    
+                    {% if form.non_field_errors %}
+                        <div class="alert alert-danger mb-3" role="alert">
+                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                            <div>
+                                {% for error in form.non_field_errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
+                    <!-- Campo de Correo Electrónico -->
+                    <div class="mb-4">
+                        <label for="{{ form.email.id_for_label }}" class="form-label fw-bold">Correo Electrónico</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+                            {{ form.email }}
+                        </div>
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback d-block">{{ form.email.errors|first }}</div>
+                        {% endif %}
+                        <div class="form-text">
+                            <i class="bi bi-info-circle me-1"></i>
+                            Debe ser el mismo correo con el que te registraste.
+                        </div>
+                    </div>
+
+                    <!-- Información adicional -->
+                    <div class="alert-info-custom mb-4">
+                        <i class="bi bi-lightbulb"></i>
+                        <div>
+                            <strong>¿Qué sucederá después?</strong><br>
+                            <small>Te enviaremos un correo con un enlace seguro para restablecer tu contraseña. El enlace será válido por 30 minutos.</small>
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg" id="submitBtn">
+                            <span class="btn-text">
+                                <i class="bi bi-send me-2"></i>Enviar Enlace de Recuperación
+                            </span>
+                            <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                        </button>
+                    </div>
+
+                    <hr class="my-4">
+
+                    <!-- Enlaces de navegación -->
+                    <div class="text-center">
+                        <p class="mb-2 text-muted">¿Recordaste tu contraseña? <a href="{% url 'login' %}" class="fw-bold text-primary text-decoration-none">Iniciar Sesión</a></p>
+                        <small class="text-muted">¿No tienes cuenta? <a href="{% url 'registro_interesado' %}" class="text-primary text-decoration-none">Regístrate aquí</a></small>
+                    </div>
+                </form>
+
+            {% else %}
+                <!-- Estado de éxito: Email enviado -->
+                <div class="success-state">
+                    <i class="bi bi-check-circle-fill success-icon"></i>
+                    <h2 class="success-title">¡Correo Enviado!</h2>
+                    <p class="success-description">
+                        Hemos enviado un enlace para restablecer tu contraseña a:<br>
+                        <strong>{{ email_destino }}</strong>
+                    </p>
+
+                    <!-- Contador regresivo -->
+                    <div class="countdown-container" id="countdownContainer">
+                        <div class="countdown-timer" id="countdownTimer">30:00</div>
+                        <div class="countdown-text">El enlace expirará en</div>
+                    </div>
+
+                    <!-- Instrucciones -->
+                    <div class="alert-info-custom mb-4">
+                        <i class="bi bi-info-circle"></i>
+                        <div>
+                            <strong>Instrucciones:</strong><br>
+                            <small>
+                                1. Revisa tu bandeja de entrada y spam<br>
+                                2. Haz clic en el enlace del correo<br>
+                                3. Sigue las instrucciones para crear una nueva contraseña
+                            </small>
+                        </div>
+                    </div>
+
+                    <!-- Sección de reenvío -->
+                    <div class="resend-section">
+                        <p class="text-muted mb-3">¿No recibiste el correo?</p>
+                        <form method="post" action="{% url 'reenviar_recuperacion' %}" id="resendForm">
+                            {% csrf_token %}
+                            <input type="hidden" name="email" value="{{ email_destino }}">
+                            <button type="submit" class="btn btn-outline-secondary" id="resendBtn" disabled>
+                                <span class="btn-text">
+                                    <i class="bi bi-arrow-clockwise me-2"></i>Reenviar Correo
+                                </span>
+                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                            </button>
+                            <div class="form-text mt-2" id="resendText">
+                                Podrás reenviar el correo en <span id="resendCountdown">60</span> segundos
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Enlaces de navegación -->
+                    <hr class="my-4">
+                    <div class="text-center">
+                        <a href="{% url 'login' %}" class="btn btn-outline-primary me-2">
+                            <i class="bi bi-arrow-left me-1 text-primary"></i>Volver al Login
+                        </a>
+                        <a href="{% url 'index' %}" class="btn btn-outline-secondary">
+                            <i class="bi bi-house me-1"></i>Ir al Inicio
+                        </a>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+    </div>
+</div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Manejar el envío del formulario inicial
+    const recoveryForm = document.getElementById('recoveryForm');
+    const submitBtn = document.getElementById('submitBtn');
+    
+    if (recoveryForm && submitBtn) {
+        recoveryForm.addEventListener('submit', function() {
+            // Mostrar estado de carga
+            submitBtn.classList.add('btn-loading');
+            submitBtn.querySelector('.btn-text').classList.add('d-none');
+            submitBtn.querySelector('.spinner-border').classList.remove('d-none');
+            submitBtn.disabled = true;
+        });
+    }
+
+    // Manejar el formulario de reenvío
+    const resendForm = document.getElementById('resendForm');
+    const resendBtn = document.getElementById('resendBtn');
+    
+    if (resendForm && resendBtn) {
+        resendForm.addEventListener('submit', function() {
+            // Mostrar estado de carga
+            resendBtn.classList.add('btn-loading');
+            resendBtn.querySelector('.btn-text').classList.add('d-none');
+            resendBtn.querySelector('.spinner-border').classList.remove('d-none');
+            resendBtn.disabled = true;
+        });
+    }
+
+    // Contador regresivo para la expiración del enlace (30 minutos)
+    const countdownTimer = document.getElementById('countdownTimer');
+    if (countdownTimer) {
+        let timeLeft = 30 * 60; // 30 minutos en segundos
+        
+        function updateCountdown() {
+            const minutes = Math.floor(timeLeft / 60);
+            const seconds = timeLeft % 60;
+            
+            countdownTimer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            if (timeLeft <= 0) {
+                document.getElementById('countdownContainer').innerHTML = 
+                    '<div class="text-danger"><i class="bi bi-exclamation-triangle"></i> El enlace ha expirado</div>';
+            } else {
+                timeLeft--;
+            }
+        }
+        
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    }
+
+    // Contador regresivo para habilitar el botón de reenvío (60 segundos)
+    const resendCountdown = document.getElementById('resendCountdown');
+    if (resendCountdown) {
+        let resendTimeLeft = 60;
+        
+        function updateResendCountdown() {
+            resendCountdown.textContent = resendTimeLeft;
+            
+            if (resendTimeLeft <= 0) {
+                document.getElementById('resendBtn').disabled = false;
+                document.getElementById('resendText').innerHTML = 
+                    '<span class="text-success"><i class="bi bi-check-circle"></i> Ya puedes reenviar el correo</span>';
+            } else {
+                resendTimeLeft--;
+            }
+        }
+        
+        updateResendCountdown();
+        const resendInterval = setInterval(updateResendCountdown, 1000);
+        
+        // Limpiar intervalo si el botón se presiona
+        if (resendBtn) {
+            resendBtn.addEventListener('click', function() {
+                clearInterval(resendInterval);
+            });
+        }
+    }
+
+    // Validación en tiempo real del email
+    const emailInput = document.querySelector('input[type="email"]');
+    if (emailInput) {
+        emailInput.addEventListener('input', function() {
+            const isValid = this.checkValidity() && this.value.trim().length > 0;
+            submitBtn.disabled = !isValid;
+            
+            if (isValid) {
+                this.classList.remove('is-invalid');
+                this.classList.add('is-valid');
+            } else if (this.value.trim().length > 0) {
+                this.classList.remove('is-valid');
+                this.classList.add('is-invalid');
+            } else {
+                this.classList.remove('is-valid', 'is-invalid');
+            }
+        });
+    }
+});
+</script>
+{% endblock %}
+
+{% endblock %}
