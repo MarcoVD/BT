@@ -7,6 +7,7 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils import timezone
 from datetime import timedelta
+import secrets
 import uuid
 
 
@@ -69,7 +70,28 @@ class Usuario(AbstractUser):
         null=True,
         help_text='Fecha de expiración del token'
     )
-
+    
+    #Recuperación de contraseña
+    password_reset_token = models.CharField(
+        max_length=100,
+        blank=True,
+        null=True,
+        help_text='Token para recuperación de contraseña'
+    )
+    password_reset_token_expires = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text='Fecha de expiración del token de recuperación'
+    )
+    password_reset_attempts = models.IntegerField(
+        default=0,
+        help_text='Número de intentos de recuperación en las últimas 24 horas'
+    )
+    last_password_reset_attempt = models.DateTimeField(
+        blank=True,
+        null=True,
+        help_text='Fecha del último intento de recuperación'
+    )
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []
 
@@ -103,7 +125,110 @@ class Usuario(AbstractUser):
         self.verification_token = None
         self.verification_token_expires = None
         self.save(update_fields=['email_verified', 'verification_token', 'verification_token_expires'])
+    def can_request_password_reset(self):
+        """
+        Verifica si el usuario puede solicitar recuperación de contraseña.
+        Limita a 3 intentos por 24 horas.
+        """
+        now = timezone.now()
+        
+        # Si nunca ha intentado, puede hacerlo
+        if not self.last_password_reset_attempt:
+            return True
+            
+        # Si han pasado más de 24 horas, reiniciar contador
+        if now - self.last_password_reset_attempt > timedelta(hours=24):
+            self.password_reset_attempts = 0
+            self.save(update_fields=['password_reset_attempts'])
+            return True
+            
+        # Verificar límite de intentos
+        return self.password_reset_attempts < 3
 
+    def generate_password_reset_token(self):
+        """
+        Genera un token seguro para recuperación de contraseña.
+        El token expira en 30 minutos.
+        """
+        # Verificar si puede solicitar
+        if not self.can_request_password_reset():
+            raise ValueError("Has excedido el límite de intentos de recuperación. Intenta en 24 horas.")
+        
+        # Generar token seguro
+        self.password_reset_token = secrets.token_urlsafe(32)
+        self.password_reset_token_expires = timezone.now() + timedelta(minutes=30)
+        
+        # Actualizar contador de intentos
+        now = timezone.now()
+        if (not self.last_password_reset_attempt or 
+            now - self.last_password_reset_attempt > timedelta(hours=24)):
+            self.password_reset_attempts = 1
+        else:
+            self.password_reset_attempts += 1
+            
+        self.last_password_reset_attempt = now
+        
+        self.save(update_fields=[
+            'password_reset_token', 
+            'password_reset_token_expires',
+            'password_reset_attempts',
+            'last_password_reset_attempt'
+        ])
+
+    def is_password_reset_token_valid(self, token):
+        """
+        Verifica si el token de recuperación es válido y no ha expirado.
+        """
+        if not self.password_reset_token or not self.password_reset_token_expires:
+            return False
+
+        if self.password_reset_token != token:
+            return False
+
+        if timezone.now() > self.password_reset_token_expires:
+            return False
+
+        return True
+
+    def reset_password_with_token(self, token, new_password):
+        """
+        Restablece la contraseña usando el token.
+        Invalida el token después del uso.
+        """
+        if not self.is_password_reset_token_valid(token):
+            raise ValueError("Token de recuperación inválido o expirado.")
+        
+        # Cambiar la contraseña
+        self.set_password(new_password)
+        
+        # Limpiar tokens de recuperación
+        self.clear_password_reset_tokens()
+        
+        # Guardar cambios
+        self.save()
+
+    def clear_password_reset_tokens(self):
+        """
+        Limpia todos los tokens de recuperación de contraseña.
+        Se llama después de un restablecimiento exitoso o por seguridad.
+        """
+        self.password_reset_token = None
+        self.password_reset_token_expires = None
+        self.save(update_fields=['password_reset_token', 'password_reset_token_expires'])
+
+    def get_remaining_reset_attempts(self):
+        """
+        Retorna el número de intentos de recuperación restantes.
+        """
+        if not self.last_password_reset_attempt:
+            return 3
+            
+        # Si han pasado más de 24 horas, reiniciar
+        if timezone.now() - self.last_password_reset_attempt > timedelta(hours=24):
+            return 3
+            
+        return max(0, 3 - self.password_reset_attempts)
+    
     @property
     def can_login(self):
         """Determina si el usuario puede iniciar sesión."""
