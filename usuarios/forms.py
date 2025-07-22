@@ -1,7 +1,8 @@
 # usuarios/forms.py
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
 from django.contrib.auth import get_user_model
+from django.core.exceptions import ValidationError
 from .fields import CurrencyField
 from .widgets import CurrencyInput
 from .models import Interesado, Reclutador, Secretaria, Vacante, RequisitoVacante, Curriculum, ExperienciaLaboral, Educacion, HabilidadInteresado, IdiomaInteresado, Categoria
@@ -48,8 +49,266 @@ class InteresadoRegistroForm(UserCreationForm):
                 }
             )
         return user
+#Creacion de clases para recuperacion de contraseña de perfil interesado
+class RecuperarContrasenaForm(forms.Form):
+    """
+    Formulario para solicitar recuperación de contraseña.
+    """
+    email = forms.EmailField(
+        label='Correo Electrónico',
+        max_length=254,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'tu@email.com',
+            'autocomplete': 'email'
+        }),
+        help_text='Ingresa el correo electrónico asociado a tu cuenta.'
+    )
+
+    def clean_email(self):
+        """
+        Valida que el email exista en el sistema.
+        """
+        email = self.cleaned_data.get('email')
+        
+        if not email:
+            return email
+            
+        # Normalizar email
+        email = email.lower().strip()
+        
+        try:
+            # Verificar que el usuario existe
+            user = Usuario.objects.get(email=email)
+            
+            # Verificar que el email esté verificado
+            if not user.email_verified:
+                raise ValidationError(
+                    'Tu correo electrónico no ha sido verificado. '
+                    'Primero debes verificar tu cuenta antes de poder recuperar la contraseña.'
+                )
+                
+            # Verificar que la cuenta esté activa
+            if not user.is_active:
+                raise ValidationError(
+                    'Tu cuenta está desactivada. Contacta al administrador.'
+                )
+                
+            # Verificar límite de intentos
+            if not user.can_request_password_reset():
+                attempts_remaining = user.get_remaining_reset_attempts()
+                if attempts_remaining == 0:
+                    raise ValidationError(
+                        'Has excedido el límite de intentos de recuperación de contraseña. '
+                        'Intenta nuevamente en 24 horas.'
+                    )
+                else:
+                    raise ValidationError(
+                        f'Has realizado demasiados intentos. '
+                        f'Te quedan {attempts_remaining} intentos antes de ser bloqueado por 24 horas.'
+                    )
+                    
+        except Usuario.DoesNotExist:
+            # Por seguridad, no revelar si el email existe o no
+            # Pero internamente lo manejamos
+            pass
+            
+        return email
+
+    def get_user(self):
+        """
+        Retorna el usuario asociado al email si existe.
+        """
+        email = self.cleaned_data.get('email')
+        if email:
+            try:
+                return Usuario.objects.get(email=email.lower().strip())
+            except Usuario.DoesNotExist:
+                return None
+        return None
 
 
+class RestablecerContrasenaForm(SetPasswordForm):
+    """
+    Formulario para restablecer contraseña con validaciones mejoradas.
+    Extiende el SetPasswordForm de Django pero con validaciones personalizadas.
+    """
+    
+    # Lista de contraseñas comunes
+    COMMON_PASSWORDS = [
+        '123456', 'password', '123456789', '12345678', '12345', '1234567',
+        '1234567890', 'qwerty', 'abc123', 'password123', 'admin', 'letmein',
+        '123123', 'welcome', 'monkey', '1234', 'password1', '123', 'qwerty123',
+        'football', 'iloveyou', 'princess', 'dragon', 'baseball', 'sunshine',
+        'superman', 'trustno1', 'starwars', 'whatever', '1qaz2wsx', 'shadow'
+    ]
+
+    new_password1 = forms.CharField(
+        label='Nueva Contraseña',
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Ingresa tu nueva contraseña',
+            'autocomplete': 'new-password',
+            'id': 'id_new_password1'
+        }),
+        help_text='Tu contraseña debe ser segura y cumplir todos los requisitos.'
+    )
+    
+    new_password2 = forms.CharField(
+        label='Confirmar Nueva Contraseña',
+        strip=False,
+        widget=forms.PasswordInput(attrs={
+            'class': 'form-control',
+            'placeholder': 'Confirma tu nueva contraseña',
+            'autocomplete': 'new-password',
+            'id': 'id_new_password2'
+        }),
+        help_text='Ingresa la misma contraseña para confirmar.'
+    )
+
+    def __init__(self, user, *args, **kwargs):
+        super().__init__(user, *args, **kwargs)
+        self.user = user
+
+    def clean_new_password1(self):
+        """
+        Validaciones personalizadas para la nueva contraseña.
+        """
+        password = self.cleaned_data.get('new_password1')
+        
+        if not password:
+            return password
+
+        # Validación de longitud mínima
+        if len(password) < 8:
+            raise ValidationError(
+                'La contraseña debe tener al menos 8 caracteres.'
+            )
+
+        # Validación de longitud máxima
+        if len(password) > 128:
+            raise ValidationError(
+                'La contraseña no puede tener más de 128 caracteres.'
+            )
+
+        # Validación contra contraseñas comunes
+        if password.lower() in self.COMMON_PASSWORDS:
+            raise ValidationError(
+                'Esta contraseña es demasiado común. Elige una contraseña más única.'
+            )
+
+        # Validación de contraseña completamente numérica
+        if password.isdigit():
+            raise ValidationError(
+                'La contraseña no puede ser completamente numérica.'
+            )
+
+        # Validación de similitud con información personal
+        if self.user:
+            user_info = [
+                self.user.email.split('@')[0].lower(),
+                self.user.first_name.lower() if self.user.first_name else '',
+                self.user.last_name.lower() if self.user.last_name else '',
+            ]
+            
+            for info in user_info:
+                if info and len(info) > 2 and info in password.lower():
+                    raise ValidationError(
+                        'La contraseña no puede contener información personal.'
+                    )
+
+        # Validación de complejidad básica (al menos 3 tipos de caracteres)
+        char_types = 0
+        if re.search(r'[a-z]', password):
+            char_types += 1
+        if re.search(r'[A-Z]', password):
+            char_types += 1
+        if re.search(r'\d', password):
+            char_types += 1
+        if re.search(r'[^A-Za-z0-9]', password):
+            char_types += 1
+
+        if char_types < 2:
+            raise ValidationError(
+                'La contraseña debe contener al menos dos tipos de caracteres diferentes '
+                '(letras minúsculas, mayúsculas, números o símbolos).'
+            )
+
+        return password
+
+    def clean_new_password2(self):
+        """
+        Valida que las contraseñas coincidan.
+        """
+        password1 = self.cleaned_data.get('new_password1')
+        password2 = self.cleaned_data.get('new_password2')
+        
+        if password1 and password2:
+            if password1 != password2:
+                raise ValidationError('Las contraseñas no coinciden.')
+        
+        return password2
+
+    def save(self, commit=True):
+        """
+        Guarda la nueva contraseña y limpia los tokens de recuperación.
+        """
+        password = self.cleaned_data["new_password1"]
+        self.user.set_password(password)
+        
+        # Limpiar tokens de recuperación
+        self.user.clear_password_reset_tokens()
+        
+        if commit:
+            self.user.save()
+        return self.user
+
+
+class ReenviarRecuperacionForm(forms.Form):
+    """
+    Formulario para reenviar el correo de recuperación.
+    """
+    email = forms.EmailField(
+        widget=forms.HiddenInput()
+    )
+
+    def clean_email(self):
+        """
+        Valida que el email sea válido para reenvío.
+        """
+        email = self.cleaned_data.get('email')
+        
+        if not email:
+            raise ValidationError('Email requerido.')
+            
+        try:
+            user = Usuario.objects.get(email=email.lower().strip())
+            
+            # Verificar que puede solicitar recuperación
+            if not user.can_request_password_reset():
+                raise ValidationError(
+                    'Has excedido el límite de intentos. Espera 24 horas antes de intentar nuevamente.'
+                )
+                
+        except Usuario.DoesNotExist:
+            raise ValidationError('Email no encontrado.')
+            
+        return email
+
+    def get_user(self):
+        """
+        Retorna el usuario asociado al email.
+        """
+        email = self.cleaned_data.get('email')
+        if email:
+            try:
+                return Usuario.objects.get(email=email.lower().strip())
+            except Usuario.DoesNotExist:
+                return None
+        return None
+
+#FIN recuperacion de contraseña
 class CurriculumForm(forms.ModelForm):
     """Formulario para la información básica del CV."""
 
