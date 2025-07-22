@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     # Apps de terceros
     'crispy_forms',
     #Protección contra fuerza Bruta
-    'axes'
+    # 'axes',
 ]
 
 MIDDLEWARE = [
@@ -50,8 +50,14 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middlewaer.AxesMiddleware',  # Protección contra fuerza brutapip 
+    # 'axes.middleware.AxesMiddleware',  # Protección contra fuerza bruta 
+    
 ]
+# AUTHENTICATION_BACKENDS = [
+#     'axes.backends.AxesStandaloneBackend',
+#     # 'django.contrib.auth.backends.ModelBackend',  # Si usas autenticación de Django normal
+# ]
+
 
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
 if not DEBUG:

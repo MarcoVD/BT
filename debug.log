@@ -7782,3 +7782,740 @@ INFO 2025-07-22 01:27:58,634 autoreload 65172 139692265410624 /home/marco/BT/BT/
 INFO 2025-07-22 01:27:59,006 autoreload 67509 140419519426624 Watching for file changes with StatReloader
 INFO 2025-07-22 01:30:57,571 autoreload 67509 140419519426624 /home/marco/BT/BT/config/settings.py changed, reloading.
 INFO 2025-07-22 01:30:57,993 autoreload 68240 140708797075520 Watching for file changes with StatReloader
+INFO 2025-07-22 14:04:20,317 autoreload 6230 140638043639872 Watching for file changes with StatReloader
+INFO 2025-07-22 14:05:01,622 autoreload 6527 140674371899456 Watching for file changes with StatReloader
+INFO 2025-07-22 14:12:00,245 autoreload 7484 140245677400128 Watching for file changes with StatReloader
+INFO 2025-07-22 14:12:05,013 basehttp 7484 140245506102976 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 14:12:05,069 basehttp 7484 140245496661696 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,071 basehttp 7484 140245488268992 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,072 basehttp 7484 140245496661696 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,073 basehttp 7484 140245506102976 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-22 14:12:05,074 basehttp 7484 140245479876288 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,077 basehttp 7484 140245488268992 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,077 basehttp 7484 140245463090880 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-22 14:12:05,078 basehttp 7484 140245471483584 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-22 14:12:07,528 basehttp 7484 140245471483584 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 14:12:11,929 basehttp 7484 140245506102976 "GET /recuperar-contrasena/ HTTP/1.1" 200 20053
+INFO 2025-07-22 14:13:41,787 basehttp 7484 140245506102976 "POST /recuperar-contrasena/ HTTP/1.1" 200 20316
+INFO 2025-07-22 14:14:09,884 views 7484 140245506102976 Correo de recuperación enviado exitosamente a marco@example.com
+INFO 2025-07-22 14:14:09,886 basehttp 7484 140245506102976 "POST /recuperar-contrasena/ HTTP/1.1" 200 20184
+INFO 2025-07-22 14:14:27,601 basehttp 7484 140245506102976 "GET /restablecer-contrasena/95EKd8-ne6onK4tyzHGe2CVG7xYqUeRVunHhpo4Tnkw/ HTTP/1.1" 200 33505
+INFO 2025-07-22 14:14:36,054 basehttp 7484 140245506102976 "GET /restablecer-contrasena/95EKd8-ne6onK4tyzHGe2CVG7xYqUeRVunHhpo4Tnkw/ HTTP/1.1" 200 33505
+INFO 2025-07-22 14:15:24,654 views 7484 140245506102976 Contraseña restablecida exitosamente para usuario marco@example.com
+INFO 2025-07-22 14:15:24,656 basehttp 7484 140245506102976 "POST /restablecer-contrasena/95EKd8-ne6onK4tyzHGe2CVG7xYqUeRVunHhpo4Tnkw/ HTTP/1.1" 200 10248
+INFO 2025-07-22 14:15:35,180 basehttp 7484 140245506102976 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 14:16:18,053 basehttp 7484 140245506102976 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 14:16:42,725 basehttp 7484 140245506102976 "GET /recuperar-contrasena HTTP/1.1" 301 0
+INFO 2025-07-22 14:16:42,730 basehttp 7484 140245506102976 "GET /recuperar-contrasena/ HTTP/1.1" 200 20053
+WARNING 2025-07-22 14:18:09,735 log 7484 140245506102976 Not Found: /mi-cv-previsualizar
+WARNING 2025-07-22 14:18:09,736 basehttp 7484 140245506102976 "GET /mi-cv-previsualizar HTTP/1.1" 404 14704
+WARNING 2025-07-22 14:18:41,507 log 7484 140245506102976 Not Found: /verificar-email/
+WARNING 2025-07-22 14:18:41,507 basehttp 7484 140245506102976 "GET /verificar-email/ HTTP/1.1" 404 14695
+WARNING 2025-07-22 14:19:01,524 log 7484 140245506102976 Not Found: /restablecer-contrasena
+WARNING 2025-07-22 14:19:01,524 basehttp 7484 140245506102976 "GET /restablecer-contrasena HTTP/1.1" 404 14713
+INFO 2025-07-22 14:19:10,424 basehttp 7484 140245506102976 "GET /reenviar-recuperacion HTTP/1.1" 301 0
+WARNING 2025-07-22 14:19:10,432 base 7484 140245506102976 Method Not Allowed (GET): /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:10,432 log 7484 140245506102976 Method Not Allowed: /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:10,433 basehttp 7484 140245506102976 "GET /reenviar-recuperacion/ HTTP/1.1" 405 0
+WARNING 2025-07-22 14:19:12,754 base 7484 140245506102976 Method Not Allowed (GET): /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:12,754 log 7484 140245506102976 Method Not Allowed: /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:12,755 basehttp 7484 140245506102976 "GET /reenviar-recuperacion/ HTTP/1.1" 405 0
+INFO 2025-07-22 14:19:18,503 autoreload 8741 139835102752832 Watching for file changes with StatReloader
+WARNING 2025-07-22 14:19:19,986 base 8741 139834931975872 Method Not Allowed (GET): /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:19,987 log 8741 139834931975872 Method Not Allowed: /reenviar-recuperacion/
+WARNING 2025-07-22 14:19:19,987 basehttp 8741 139834931975872 "GET /reenviar-recuperacion/ HTTP/1.1" 405 0
+INFO 2025-07-22 14:24:55,549 basehttp 8741 139834931975872 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 14:24:57,291 basehttp 8741 139834931975872 "GET /login/ HTTP/1.1" 200 12033
+ERROR 2025-07-22 14:25:01,038 log 8741 139834931975872 Internal Server Error: /login/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 861, in post
+    if form.is_valid():
+       ^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/forms/forms.py", line 206, in is_valid
+    return self.is_bound and not self.errors
+                                 ^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/forms/forms.py", line 201, in errors
+    self.full_clean()
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/forms/forms.py", line 338, in full_clean
+    self._clean_form()
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/forms/forms.py", line 354, in _clean_form
+    cleaned_data = self.clean()
+                   ^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/forms.py", line 366, in clean
+    self.user_cache = authenticate(
+                      ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/debug.py", line 75, in sensitive_variables_wrapper
+    return func(*func_args, **func_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/__init__.py", line 114, in authenticate
+    user = backend.authenticate(request, **credentials)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/axes/helpers.py", line 617, in inner
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/axes/backends.py", line 46, in authenticate
+    raise AxesBackendRequestParameterRequired(
+axes.exceptions.AxesBackendRequestParameterRequired: AxesBackend requires a request as an argument to authenticate
+ERROR 2025-07-22 14:25:01,040 basehttp 8741 139834931975872 "POST /login/ HTTP/1.1" 500 136347
+INFO 2025-07-22 14:26:23,381 basehttp 8741 139834920437440 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 14:26:55,757 autoreload 8741 139835102752832 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-22 14:26:56,154 autoreload 9768 140406075486272 Watching for file changes with StatReloader
+INFO 2025-07-22 14:27:06,915 autoreload 9768 140406075486272 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-22 14:27:07,315 autoreload 9895 140305494700096 Watching for file changes with StatReloader
+INFO 2025-07-22 14:27:10,209 basehttp 9895 140305390278336 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 14:27:11,927 basehttp 9895 140305390278336 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-22 14:27:17,734 basehttp 9895 140305390278336 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-22 14:27:18,523 basehttp 9895 140305390278336 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 14:27:24,433 basehttp 9895 140305390278336 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-22 14:27:30,236 basehttp 9895 140305390278336 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-22 14:27:32,753 basehttp 9895 140305390278336 "GET /recuperar-contrasena/ HTTP/1.1" 200 20068
+INFO 2025-07-22 14:27:32,804 basehttp 9895 140305390278336 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-22 14:27:36,920 views 9895 140305390278336 Correo de recuperación enviado exitosamente a marco@example.com
+INFO 2025-07-22 14:27:36,923 basehttp 9895 140305390278336 "POST /recuperar-contrasena/ HTTP/1.1" 200 20199
+INFO 2025-07-22 14:27:46,637 basehttp 9895 140305390278336 "GET /restablecer-contrasena/8Wsh7XZDbm3OULNQFoUb9qOytnxG6BlAt1-nSqT9a_M/ HTTP/1.1" 200 33505
+INFO 2025-07-22 14:27:58,799 views 9895 140305390278336 Contraseña restablecida exitosamente para usuario marco@example.com
+INFO 2025-07-22 14:27:58,801 basehttp 9895 140305390278336 "POST /restablecer-contrasena/8Wsh7XZDbm3OULNQFoUb9qOytnxG6BlAt1-nSqT9a_M/ HTTP/1.1" 200 10248
+INFO 2025-07-22 14:28:01,164 basehttp 9895 140305390278336 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 14:28:10,558 basehttp 9895 140305390278336 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 14:28:10,590 basehttp 9895 140305390278336 "GET /perfil/interesado/ HTTP/1.1" 200 99148
+INFO 2025-07-22 14:28:10,619 basehttp 9895 140305390278336 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-22 14:28:10,640 basehttp 9895 140305298876096 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 14:28:10,640 basehttp 9895 140305307268800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 14:30:08,941 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99157
+ERROR 2025-07-22 14:30:11,657 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:30:11,661 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155073
+ERROR 2025-07-22 14:30:12,939 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:30:12,941 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155017
+ERROR 2025-07-22 14:30:14,051 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:30:14,053 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155034
+ERROR 2025-07-22 14:30:15,638 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:30:15,639 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155044
+INFO 2025-07-22 14:31:05,029 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99158
+INFO 2025-07-22 14:31:05,580 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99158
+INFO 2025-07-22 14:31:05,683 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99158
+INFO 2025-07-22 14:31:05,889 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99158
+INFO 2025-07-22 14:31:45,455 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99167
+INFO 2025-07-22 14:31:54,258 basehttp 9895 140305298876096 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 159
+INFO 2025-07-22 14:31:54,291 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+INFO 2025-07-22 14:32:17,527 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:18,055 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:18,207 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:18,348 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:18,491 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:33,468 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99516
+INFO 2025-07-22 14:32:37,124 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:38,525 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:38,660 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:38,823 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:47,519 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+ERROR 2025-07-22 14:32:52,143 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:32:52,144 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155055
+INFO 2025-07-22 14:32:53,116 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:53,718 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:32:53,841 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99512
+INFO 2025-07-22 14:33:00,851 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+INFO 2025-07-22 14:33:01,200 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+INFO 2025-07-22 14:33:01,325 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+INFO 2025-07-22 14:33:10,363 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+INFO 2025-07-22 14:33:10,518 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 99503
+ERROR 2025-07-22 14:33:19,281 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:33:19,282 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155077
+ERROR 2025-07-22 14:33:22,878 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:33:22,879 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155176
+ERROR 2025-07-22 14:33:26,189 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:33:26,190 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155186
+ERROR 2025-07-22 14:33:29,995 log 9895 140305298876096 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1610, in execute_sql
+    sql, params = self.as_sql()
+                  ^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2023, in as_sql
+    val = field.get_db_prep_save(val, connection=self.connection)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1012, in get_db_prep_save
+    return self.get_db_prep_value(value, connection=connection, prepared=False)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1542, in get_db_prep_value
+    value = self.get_prep_value(value)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1537, in get_prep_value
+    return self.to_python(value)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/fields/__init__.py", line 1503, in to_python
+    raise exceptions.ValidationError(
+django.core.exceptions.ValidationError: ['“” : el valor tiene un formato de fecha inválido. Debería estar en el formato YYYY-MM-DD.']
+ERROR 2025-07-22 14:33:29,997 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 155216
+INFO 2025-07-22 14:33:52,093 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:34:45,024 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100641
+INFO 2025-07-22 14:34:45,783 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100641
+INFO 2025-07-22 14:34:45,955 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100641
+INFO 2025-07-22 14:34:46,074 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100641
+INFO 2025-07-22 14:34:46,212 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100641
+INFO 2025-07-22 14:35:36,247 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100627
+INFO 2025-07-22 14:35:43,948 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100627
+INFO 2025-07-22 14:35:44,093 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100627
+INFO 2025-07-22 14:35:44,231 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100627
+INFO 2025-07-22 14:35:44,335 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100627
+INFO 2025-07-22 14:35:48,370 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:35:49,208 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100621
+INFO 2025-07-22 14:35:49,321 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100621
+INFO 2025-07-22 14:36:03,259 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100628
+INFO 2025-07-22 14:36:07,141 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:36:08,658 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100669
+INFO 2025-07-22 14:36:15,644 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100669
+INFO 2025-07-22 14:36:15,734 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100669
+INFO 2025-07-22 14:36:15,858 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100669
+INFO 2025-07-22 14:36:43,677 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:36:54,456 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:37:10,753 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100632
+INFO 2025-07-22 14:37:10,883 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100632
+INFO 2025-07-22 14:37:33,309 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100623
+INFO 2025-07-22 14:37:33,402 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100623
+INFO 2025-07-22 14:37:35,606 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:37:36,380 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100619
+INFO 2025-07-22 14:37:36,721 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100619
+INFO 2025-07-22 14:37:36,835 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100619
+INFO 2025-07-22 14:37:47,788 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100628
+INFO 2025-07-22 14:37:48,416 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100628
+INFO 2025-07-22 14:37:48,548 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100628
+INFO 2025-07-22 14:37:54,718 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:38:37,712 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100645
+INFO 2025-07-22 14:38:38,234 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100645
+INFO 2025-07-22 14:38:38,340 basehttp 9895 140305298876096 "GET /perfil/interesado/ HTTP/1.1" 200 100645
+INFO 2025-07-22 14:38:40,951 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:38:49,676 basehttp 9895 140305298876096 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:38:58,552 basehttp 9895 140305298876096 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 14:42:32,211 autoreload 11291 139697042096192 Watching for file changes with StatReloader
+INFO 2025-07-22 14:44:45,859 autoreload 11291 139697042096192 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 14:44:46,286 autoreload 11575 140285657481280 Watching for file changes with StatReloader
+INFO 2025-07-22 14:45:13,322 basehttp 11575 140285553317568 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 141
+INFO 2025-07-22 14:45:13,381 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 101822
+INFO 2025-07-22 14:45:16,892 basehttp 11575 140285553317568 "DELETE /ajax/idioma/eliminar/1/ HTTP/1.1" 200 61
+INFO 2025-07-22 14:47:02,010 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 100662
+INFO 2025-07-22 14:47:02,103 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 100662
+INFO 2025-07-22 14:47:02,318 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 100662
+INFO 2025-07-22 14:47:57,222 basehttp 11575 140285553317568 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 78
+INFO 2025-07-22 14:48:33,389 basehttp 11575 140285553317568 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 169
+INFO 2025-07-22 14:48:33,437 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 103093
+INFO 2025-07-22 14:50:08,846 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 103073
+INFO 2025-07-22 14:50:37,525 basehttp 11575 140285553317568 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 173
+INFO 2025-07-22 14:50:37,566 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 104949
+INFO 2025-07-22 14:51:30,380 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 104957
+INFO 2025-07-22 14:51:30,511 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 104957
+INFO 2025-07-22 14:51:30,662 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 104957
+INFO 2025-07-22 14:51:30,780 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 104957
+INFO 2025-07-22 14:52:26,756 basehttp 11575 140285553317568 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 141
+INFO 2025-07-22 14:52:26,800 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 106022
+INFO 2025-07-22 14:52:33,885 basehttp 11575 140285553317568 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 162
+INFO 2025-07-22 14:52:33,934 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 106430
+INFO 2025-07-22 14:52:37,801 basehttp 11575 140285553317568 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 162
+INFO 2025-07-22 14:52:37,881 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 106838
+INFO 2025-07-22 14:52:43,317 basehttp 11575 140285553317568 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 159
+INFO 2025-07-22 14:52:43,387 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 107243
+INFO 2025-07-22 14:52:51,458 basehttp 11575 140285553317568 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 162
+INFO 2025-07-22 14:52:51,503 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 107651
+INFO 2025-07-22 14:53:53,173 basehttp 11575 140285553317568 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 253
+INFO 2025-07-22 14:53:53,208 basehttp 11575 140285553317568 "GET /media/interesados/profile_fVB46Xs.jpg HTTP/1.1" 200 8549
+INFO 2025-07-22 14:53:53,538 basehttp 11575 140285553317568 "GET /perfil/interesado/ HTTP/1.1" 200 107625
+INFO 2025-07-22 14:53:53,635 basehttp 11575 140285553317568 "GET /media/interesados/profile_fVB46Xs.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 14:54:35,624 basehttp 11575 140285308827328 "GET /media/interesados/profile_fVB46Xs.jpg HTTP/1.1" 200 8549
+INFO 2025-07-22 14:54:36,724 basehttp 11575 140285553317568 "GET /media/interesados/profile_fVB46Xs.jpg HTTP/1.1" 200 8549
+INFO 2025-07-22 14:54:37,027 basehttp 11575 140285542827712 "GET /cv/descargar/ HTTP/1.1" 200 17170
+INFO 2025-07-22 14:58:12,629 basehttp 11575 140285542827712 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-22 14:58:12,974 basehttp 11575 140285542827712 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-22 14:58:14,120 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107625
+INFO 2025-07-22 14:58:14,159 basehttp 11575 140285542827712 "GET /media/interesados/profile_fVB46Xs.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 14:58:23,419 basehttp 11575 140285542827712 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 253
+INFO 2025-07-22 14:58:23,443 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 14:58:23,746 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107625
+INFO 2025-07-22 14:58:23,777 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 14:59:17,855 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:17,889 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 14:59:19,150 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:19,235 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:25,990 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:26,047 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 14:59:26,347 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:26,521 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:26,635 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 14:59:26,793 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 107617
+INFO 2025-07-22 15:00:24,840 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106573
+INFO 2025-07-22 15:00:24,867 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 15:00:25,237 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106573
+INFO 2025-07-22 15:00:25,367 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106573
+INFO 2025-07-22 15:00:28,424 basehttp 11575 140285542827712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 15:00:29,720 basehttp 11575 140285542827712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 15:00:33,645 basehttp 11575 140285529192128 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 15:00:33,866 basehttp 11575 140285542827712 "GET /cv/descargar/ HTTP/1.1" 200 17297
+INFO 2025-07-22 15:01:24,511 basehttp 11575 140285553317568 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 15:02:32,668 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106633
+INFO 2025-07-22 15:02:32,707 basehttp 11575 140285542827712 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 15:02:32,783 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106633
+INFO 2025-07-22 15:02:32,930 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106633
+INFO 2025-07-22 15:02:33,081 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106633
+INFO 2025-07-22 15:02:33,241 basehttp 11575 140285542827712 "GET /perfil/interesado/ HTTP/1.1" 200 106633
+INFO 2025-07-22 15:02:37,998 basehttp 11575 140285542827712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17

@@ -257,7 +257,7 @@
                             {% endif %}
                         </div>
                         <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
-                        {#va el correo, num cel y lugar donde recide #}
+                        <!-- {#va el correo, num cel y lugar donde recide #} -->
                         <div class="flex-grow-1">
                             <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
                             <span class="text-muted">{{ user.email }}</span>
@@ -298,19 +298,19 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="apellido_materno" class="form-label">Apellido Materno</label>
-                                        <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}">
+                                        <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="telefono" class="form-label">Teléfono</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono" required value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}">
+                                        <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" min="1960-01-01" max="2017-12-31" id="fecha_nacimiento" name="fecha_nacimiento" required value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}">
+                                        <input type="date" class="form-control" min="1960-01-01" max="2017-12-31" id="fecha_nacimiento" name="fecha_nacimiento"  value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
                                     </div>
                                     <div class="col-md-6">
                                         <label for="municipio" class="form-label">Municipio</label>
-                                        <select class="form-select" id="municipio" name="municipio">
+                                        <select class="form-select" id="municipio" name="municipio" required>
                                             <option value="">Selecciona un municipio...</option>
                                             {% for value, label in interesado.MUNICIPIOS_ESTADO_MEXICO %}
                                                 <option value="{{ value }}" {% if interesado.municipio == value %}selected{% endif %}>{{ label }}</option>
@@ -319,7 +319,7 @@
                                     </div>
                                     <div class="col-md-6">
                                         <label for="codigo_postal" class="form-label">Código Postal</label>
-                                        <input type="text"  class="form-control" id="codigo_postal" name="codigo_postal" value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" placeholder="Ej: 50000">
+                                        <input type="text"  class="form-control" id="codigo_postal" name="codigo_postal" value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" placeholder="Ej: 50000" required>
                                     </div>
                                 </div>
                             </div>
@@ -674,11 +674,11 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">Puesto</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" name="puesto" required>
+                                <input type="text"  class="form-control" name="puesto" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Empresa</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" name="empresa" required>
+                                <input type="text"  class="form-control" name="empresa" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Fecha de Inicio</label>
@@ -725,19 +725,19 @@
                         <div class="row g-3">
                             <div class="col-md-6">
                                 <label class="form-label">Título Obtenido / Nivel</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" name="titulo" required>
+                                <input type="text"  class="form-control" name="titulo" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Institución Educativa</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" name="institucion" required>
+                                <input type="text"  class="form-control" name="institucion" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control" name="fecha_inicio" required>
+                                <input type="date" class="form-control" name="fecha_inicio" min="1970-01-01" max="2025-12-31" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Fecha de Fin</label>
-                                <input type="date" class="form-control" name="fecha_fin" required>
+                                <input type="date" class="form-control" name="fecha_fin" min="1970-01-01" max="2025-12-31" required>
                             </div>
                             {#                        <div class="col-12">#}
                             {#                            <label class="form-label">Descripción (opcional)</label>#}
@@ -803,7 +803,7 @@
                         {#                        <label class="form-label">Idioma</label>#}
                         <div class="mb-3">
                             <label class="form-label">Idioma</label>
-                            <select class="form-select" name="idioma" required>
+                            <select class="form-select" name="idioma">
                                 <option value="">Selecciona un idioma...</option>
                                 <option value="Inglés">Inglés</option>
                                 <option value="Mandarin">Mandarín</option>
@@ -873,6 +873,7 @@
             </div>
         </div>
     </div>
+
     <script>
         // JavaScript del CV (igual que en crear_editar_cv.html)
         // Variables globales para controlar edición
@@ -1112,6 +1113,8 @@
                     alert('Error al guardar el idioma');
                 });
         }
+
+
 
         {#function eliminarIdioma(id) {#}
         {#    if (confirm('¿Estás seguro de eliminar este idioma?')) {#}
