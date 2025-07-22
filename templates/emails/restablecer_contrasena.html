@@ -272,13 +272,13 @@
                     </button>
                 </div>
 
-                <hr class="my-4">
+                <!-- <hr class="my-4"> -->
 
                 <!-- Enlaces de navegación -->
-                <div class="text-center">
+                <!-- <div class="text-center">
                     <p class="mb-2 text-muted">¿Recordaste tu contraseña? <a href="{% url 'login' %}" class="fw-bold text-primary text-decoration-none">Iniciar Sesión</a></p>
                     <small class="text-muted">¿Problemas? <a href="{% url 'recuperar_contrasena' %}" class="text-primary text-decoration-none">Solicitar nuevo enlace</a></small>
-                </div>
+                </div> -->
 
             </form>
 
@@ -406,7 +406,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (allRequirementsMet) {
                 password1Input.classList.remove('is-invalid');
                 password1Input.classList.add('is-valid');
-                icon.className = 'validation-icon bi bi-check-circle-fill';
+                // icon.className = 'validation-icon bi bi-check-circle-fill';
                 validationState.password1 = true;
             } else {
                 password1Input.classList.remove('is-valid');
@@ -434,7 +434,7 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (password2 === password1 && password1 !== '') {
             password2Input.classList.remove('is-invalid');
             password2Input.classList.add('is-valid');
-            icon.className = 'validation-icon bi bi-check-circle-fill';
+            // icon.className = 'validation-icon bi bi-check-circle-fill';
             validationState.password2 = true;
         } else {
             password2Input.classList.remove('is-valid');

@@ -3,6 +3,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, SetPasswordForm
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
+import re
 from .fields import CurrencyField
 from .widgets import CurrencyInput
 from .models import Interesado, Reclutador, Secretaria, Vacante, RequisitoVacante, Curriculum, ExperienciaLaboral, Educacion, HabilidadInteresado, IdiomaInteresado, Categoria
