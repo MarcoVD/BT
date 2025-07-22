@@ -682,7 +682,7 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Fecha de Inicio</label>
-                                <input type="date" class="form-control" name="fecha_inicio" min="1970-01-01" max="2025-12-31" required>
+                                <input type="date" class="form-control" name="fecha_inicio" id="" required>
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">Fecha de Fin</label>
@@ -879,7 +879,6 @@
         // Variables globales para controlar edición
         let experienciaEditandoId = null;
         let educacionEditandoId = null;
-
         // =========================
         // EXPERIENCIA LABORAL
         // =========================
@@ -1338,4 +1337,6 @@
         // Actualiza el contador cuando se agreguen o eliminen habilidades
         // Asegúrate de llamar esta función después de agregar o eliminar habilidades.
     </script>
+
+    
 {% endblock %}
