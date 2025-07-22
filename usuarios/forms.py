@@ -193,6 +193,13 @@ class RestablecerContrasenaForm(SetPasswordForm):
                 'La contraseña no puede tener más de 128 caracteres.'
             )
 
+        # ✅ NUEVA VALIDACIÓN: La contraseña debe ser diferente a la actual
+        if self.user and self.user.check_password(password):
+            raise ValidationError(
+                'La nueva contraseña debe ser diferente a tu contraseña actual. '
+                'Por seguridad, elige una contraseña completamente nueva.'
+            )
+
         # Validación contra contraseñas comunes
         if password.lower() in self.COMMON_PASSWORDS:
             raise ValidationError(
@@ -219,7 +226,7 @@ class RestablecerContrasenaForm(SetPasswordForm):
                         'La contraseña no puede contener información personal.'
                     )
 
-        # Validación de complejidad básica (al menos 3 tipos de caracteres)
+        # Validación de complejidad básica (al menos 2 tipos de caracteres)
         char_types = 0
         if re.search(r'[a-z]', password):
             char_types += 1
@@ -308,7 +315,6 @@ class ReenviarRecuperacionForm(forms.Form):
             except Usuario.DoesNotExist:
                 return None
         return None
-
 #FIN recuperacion de contraseña
 class CurriculumForm(forms.ModelForm):
     """Formulario para la información básica del CV."""

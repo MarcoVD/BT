@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'usuarios',
     # Apps de terceros
     'crispy_forms',
+    #Protección contra fuerza Bruta
+    'axes'
 ]
 
 MIDDLEWARE = [
@@ -48,6 +50,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'axes.middlewaer.AxesMiddleware',  # Protección contra fuerza brutapip 
 ]
 
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
@@ -70,6 +73,8 @@ if not DEBUG:
     # SESSION_COOKIE_HTTPONLY = True
     # CSRF_COOKIE_HTTPONLY = True
 
+AXES_FAILURE_LIMIT = 5 #Bloquea tras 5 intentos fallidos
+AXES_COOLOFF_TIME = 1 #Tiempo en hrs
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 ROOT_URLCONF = 'config.urls'

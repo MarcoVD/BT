@@ -9,6 +9,7 @@ cssselect2==0.8.0
 cyclonedx-python-lib==9.1.0
 defusedxml==0.7.1
 Django==5.2.2
+django-axes==8.0.0
 django-crispy-forms==2.4
 django-formtools==2.5.1
 django-gunicorn==0.1.1
@@ -45,7 +46,6 @@ python-dotenv==1.1.0
 qrcode==7.4.2
 requests==2.32.4
 rich==14.0.0
-setuptools==80.9.0
 six==1.17.0
 sortedcontainers==2.4.0
 sqlparse==0.5.3
@@ -56,5 +56,4 @@ typing_extensions==4.14.0
 urllib3==2.5.0
 weasyprint==65.1
 webencodings==0.5.1
-wheel==0.45.1
 zopfli==0.2.3.post1

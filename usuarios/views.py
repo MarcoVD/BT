@@ -1,6 +1,6 @@
 import json
 from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
@@ -26,6 +26,7 @@ from django.urls import reverse
 from django.conf import settings
 import logging
 
+Usuario = get_user_model()
 # CONFIGURAR LOGGER
 logger = logging.getLogger(__name__)
 
@@ -308,7 +309,6 @@ class RecuperarContrasenaView(View):
     """
     Vista para solicitar recuperación de contraseña.
     """
-    # template_name = 'usuarios/recuperar_contraseña.html'
     template_name = 'emails/recuperar_contrasena.html'
     form_class = RecuperarContrasenaForm
 
@@ -430,18 +430,23 @@ class RestablecerContrasenaView(View):
             form = RestablecerContrasenaForm(user=user, data=request.POST)
 
             if form.is_valid():
-                # Guardar nueva contraseña
-                form.save()
+                try:
+                    # Guardar nueva contraseña
+                    form.save()
 
-                # Log de la acción
-                logger.info(f"Contraseña restablecida exitosamente para usuario {user.email}")
+                    # Log de la acción
+                    logger.info(f"Contraseña restablecida exitosamente para usuario {user.email}")
 
-                # Mostrar mensaje de éxito
-                return render(request, self.result_template, {
-                    'success': True,
-                    'title': 'Contraseña Restablecida',
-                    'message': 'Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.',
-                })
+                    # Mostrar mensaje de éxito
+                    return render(request, self.result_template, {
+                        'success': True,
+                        'title': 'Contraseña Restablecida',
+                        'message': 'Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.',
+                    })
+                    
+                except Exception as save_error:
+                    logger.error(f"Error al guardar nueva contraseña para {user.email}: {str(save_error)}")
+                    form.add_error('new_password1', 'Error al guardar la nueva contraseña. Inténtalo nuevamente.')
 
             # Si hay errores en el formulario, volver a mostrarlo
             return render(request, self.template_name, {
@@ -464,7 +469,6 @@ class ReenviarRecuperacionView(View):
     """
     Vista para reenviar el correo de recuperación.
     """
-    # template_name = 'usuarios/recuperar_contraseña.html'
     template_name = 'emails/recuperar_contrasena.html'
 
     def post(self, request):
@@ -547,8 +551,9 @@ def cleanup_expired_tokens():
         'reset_tokens_cleaned': reset_count,
         'attempts_reset': attempts_count
     }
-
+###################################
 #FIN DE RECUPERACION DE CONTRASEÑA 
+###################################
 
 def send_verification_email(request, user):
     try:
@@ -598,7 +603,6 @@ def send_verification_email(request, user):
         logger.error(f"Error enviando correo de verificación a {user.email}: {str(e)}")
         print(f"ERROR DETALLADO: {str(e)}")  # ✅ Para debugging
         return False
-
 
 
 
