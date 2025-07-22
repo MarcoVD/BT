@@ -5,6 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib import messages
 from django.utils.decorators import method_decorator
+from django.utils import timezone
 from django.views.generic import View
 from django.views.decorators.http import require_http_methods, require_POST
 from django.views.decorators.csrf import csrf_exempt
@@ -16,7 +17,7 @@ from django.forms import modelformset_factory
 from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.core.paginator import Paginator
-from datetime import date
+from datetime import timedelta, date
 # Verificacion de correo - IMPORTACIONES CORREGIDAS
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
@@ -72,7 +73,10 @@ from .forms import (
     ExperienciaLaboralForm,
     EducacionForm,
     HabilidadInteresadoForm,
-    IdiomaInteresadoForm
+    IdiomaInteresadoForm,
+    RecuperarContrasenaForm, 
+    RestablecerContrasenaForm, 
+    ReenviarRecuperacionForm
 )
 
 
@@ -245,10 +249,304 @@ def eliminar_habilidad_ajax(request, habilidad_id):
             'error': f'Error al eliminar la habilidad: {str(e)}'
         })
 
+# =========================================
+#funcion que define la recuperacion de cuenta
+def send_password_reset_email(request, user):
+    """
+    Envía el correo de recuperación de contraseña.
+    """
+    try:
+        # Generar token de recuperación
+        user.generate_password_reset_token()
 
-# =========================================
-# RESTO DE LAS VISTAS (mantener igual)
-# =========================================
+        # Obtener el dominio actual
+        current_site = get_current_site(request)
+        domain = current_site.domain
+
+        # Construir la URL de restablecimiento
+        reset_url = request.build_absolute_uri(
+            reverse('restablecer_contrasena', kwargs={'token': user.password_reset_token})
+        )
+
+        # Preparar el contexto para el template del correo
+        context = {
+            'user': user,
+            'reset_url': reset_url,
+            'domain': domain,
+            'site_name': 'Bolsa de Trabajo - Estado de México',
+            'expires_minutes': 30,
+            'attempts_remaining': user.get_remaining_reset_attempts(),
+        }
+
+        # Renderizar el contenido del correo
+        html_message = render_to_string('emails/recuperar_contrasena_email.html', context)
+        plain_message = strip_tags(html_message)
+
+        # Configurar el asunto
+        subject = 'Recuperación de Contraseña - Bolsa de Trabajo Estado de México'
+
+        # Enviar el correo
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[user.email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+
+        logger.info(f"Correo de recuperación enviado exitosamente a {user.email}")
+        return True
+
+    except Exception as e:
+        logger.error(f"Error enviando correo de recuperación a {user.email}: {str(e)}")
+        print(f"ERROR DETALLADO: {str(e)}")
+        return False
+
+
+class RecuperarContrasenaView(View):
+    """
+    Vista para solicitar recuperación de contraseña.
+    """
+    template_name = 'usuarios/recuperar_contraseña.html'
+    form_class = RecuperarContrasenaForm
+
+    def get(self, request):
+        """Muestra el formulario de recuperación."""
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request):
+        """Procesa la solicitud de recuperación."""
+        form = self.form_class(request.POST)
+        
+        if form.is_valid():
+            email = form.cleaned_data['email']
+            user = form.get_user()
+            
+            # Por seguridad, siempre mostramos mensaje de éxito
+            # independientemente de si el email existe o no
+            if user:
+                try:
+                    email_enviado = send_password_reset_email(request, user)
+                    
+                    if email_enviado:
+                        # Mostrar página de éxito
+                        context = {
+                            'email_enviado': True,
+                            'email_destino': email,
+                        }
+                        return render(request, self.template_name, context)
+                    else:
+                        messages.error(request, 
+                            'Error al enviar el correo. Inténtalo nuevamente en unos minutos.')
+                        
+                except ValueError as e:
+                    # Error por límite de intentos
+                    messages.error(request, str(e))
+                    
+                except Exception as e:
+                    logger.error(f"Error en recuperación de contraseña: {str(e)}")
+                    messages.error(request, 
+                        'Error interno del servidor. Inténtalo nuevamente más tarde.')
+            else:
+                # Usuario no existe, pero mostramos mensaje genérico por seguridad
+                context = {
+                    'email_enviado': True,
+                    'email_destino': email,
+                }
+                return render(request, self.template_name, context)
+
+        # Si hay errores en el formulario, volver a mostrarlo
+        return render(request, self.template_name, {'form': form})
+
+
+class RestablecerContrasenaView(View):
+    """
+    Vista para restablecer la contraseña usando el token.
+    """
+    template_name = 'usuarios/restablecer_contraseña.html'
+    result_template = 'usuarios/resultado_restablecimiento.html'
+
+    def get(self, request, token):
+        """Muestra el formulario de restablecimiento."""
+        try:
+            # Buscar usuario con el token
+            user = Usuario.objects.filter(password_reset_token=token).first()
+
+            if not user:
+                return render(request, self.result_template, {
+                    'success': False,
+                    'warning': True,
+                    'title': 'Token Inválido',
+                    'message': 'El enlace de recuperación no es válido.',
+                    'show_retry': True,
+                })
+
+            # Verificar si el token es válido y no ha expirado
+            if not user.is_password_reset_token_valid(token):
+                return render(request, self.result_template, {
+                    'success': False,
+                    'warning': True,
+                    'title': 'Enlace Expirado',
+                    'message': 'El enlace de recuperación ha expirado. Los enlaces son válidos por 30 minutos.',
+                    'show_retry': True,
+                })
+
+            # Token válido, mostrar formulario
+            form = RestablecerContrasenaForm(user=user)
+            return render(request, self.template_name, {
+                'form': form,
+                'token': token,
+                'user': user,
+            })
+
+        except Exception as e:
+            logger.error(f"Error en restablecimiento de contraseña: {str(e)}")
+            return render(request, self.result_template, {
+                'success': False,
+                'title': 'Error',
+                'message': 'Ocurrió un error al procesar tu solicitud. Inténtalo nuevamente.',
+                'show_retry': True,
+            })
+
+    def post(self, request, token):
+        """Procesa el restablecimiento de contraseña."""
+        try:
+            # Buscar usuario con el token
+            user = Usuario.objects.filter(password_reset_token=token).first()
+
+            if not user or not user.is_password_reset_token_valid(token):
+                return render(request, self.result_template, {
+                    'success': False,
+                    'warning': True,
+                    'title': 'Token Inválido o Expirado',
+                    'message': 'El enlace de recuperación no es válido o ha expirado.',
+                    'show_retry': True,
+                })
+
+            # Procesar formulario
+            form = RestablecerContrasenaForm(user=user, data=request.POST)
+
+            if form.is_valid():
+                # Guardar nueva contraseña
+                form.save()
+
+                # Log de la acción
+                logger.info(f"Contraseña restablecida exitosamente para usuario {user.email}")
+
+                # Mostrar mensaje de éxito
+                return render(request, self.result_template, {
+                    'success': True,
+                    'title': 'Contraseña Restablecida',
+                    'message': 'Tu contraseña ha sido restablecida exitosamente. Ahora puedes iniciar sesión con tu nueva contraseña.',
+                })
+
+            # Si hay errores en el formulario, volver a mostrarlo
+            return render(request, self.template_name, {
+                'form': form,
+                'token': token,
+                'user': user,
+            })
+
+        except Exception as e:
+            logger.error(f"Error procesando restablecimiento: {str(e)}")
+            return render(request, self.result_template, {
+                'success': False,
+                'title': 'Error',
+                'message': 'Ocurrió un error al restablecer tu contraseña. Inténtalo nuevamente.',
+                'show_retry': True,
+            })
+
+
+class ReenviarRecuperacionView(View):
+    """
+    Vista para reenviar el correo de recuperación.
+    """
+    template_name = 'usuarios/recuperar_contraseña.html'
+
+    def post(self, request):
+        """Reenvía el correo de recuperación."""
+        form = ReenviarRecuperacionForm(request.POST)
+        
+        if form.is_valid():
+            user = form.get_user()
+            
+            if user:
+                try:
+                    email_enviado = send_password_reset_email(request, user)
+                    
+                    if email_enviado:
+                        messages.success(request, 
+                            'Se ha reenviado el correo de recuperación exitosamente.')
+                        
+                        context = {
+                            'email_enviado': True,
+                            'email_destino': user.email,
+                        }
+                        return render(request, self.template_name, context)
+                    else:
+                        messages.error(request, 
+                            'Error al reenviar el correo. Inténtalo nuevamente.')
+                        
+                except ValueError as e:
+                    messages.error(request, str(e))
+                except Exception as e:
+                    logger.error(f"Error reenviando recuperación: {str(e)}")
+                    messages.error(request, 'Error interno del servidor.')
+            else:
+                messages.error(request, 'Usuario no encontrado.')
+
+        # Redirigir de vuelta al formulario
+        return redirect('recuperar_contrasena')
+
+
+# Función utilitaria para limpiar tokens expirados (opcional, para comando de mantenimiento)
+def cleanup_expired_tokens():
+    """
+    Limpia tokens de recuperación expirados.
+    Puede ejecutarse como tarea programada.
+    """
+    now = timezone.now()
+    
+    # Limpiar tokens de verificación expirados
+    expired_verification = Usuario.objects.filter(
+        verification_token_expires__lt=now,
+        verification_token__isnull=False
+    )
+    verification_count = expired_verification.update(
+        verification_token=None,
+        verification_token_expires=None
+    )
+    
+    # Limpiar tokens de recuperación expirados
+    expired_reset = Usuario.objects.filter(
+        password_reset_token_expires__lt=now,
+        password_reset_token__isnull=False
+    )
+    reset_count = expired_reset.update(
+        password_reset_token=None,
+        password_reset_token_expires=None
+    )
+    
+    # Reiniciar contadores de intentos antiguos (más de 24 horas)
+    old_attempts = Usuario.objects.filter(
+        last_password_reset_attempt__lt=now - timedelta(hours=24),
+        password_reset_attempts__gt=0
+    )
+    attempts_count = old_attempts.update(
+        password_reset_attempts=0
+    )
+    
+    logger.info(f"Tokens limpiados: {verification_count} verificación, {reset_count} recuperación, {attempts_count} intentos reiniciados")
+    
+    return {
+        'verification_tokens_cleaned': verification_count,
+        'reset_tokens_cleaned': reset_count,
+        'attempts_reset': attempts_count
+    }
+
+#FIN DE RECUPERACION DE CONTRASEÑA 
 
 def send_verification_email(request, user):
     try:
