@@ -480,7 +480,6 @@ class Categoria(models.Model):
     class Meta:
         verbose_name = "Categoría"
         verbose_name_plural = "Categorías"
-
 # usuarios/models.py - SECCIÓN ACTUALIZADA PARA VACANTES
 
 class Vacante(models.Model):
@@ -697,7 +696,6 @@ class Vacante(models.Model):
         ordering = ['-fecha_publicacion']
 
 
-# usuarios/models.py - SECCIÓN ACTUALIZADA PARA RequisitoVacante
 
 class RequisitoVacante(models.Model):
     """Modelo para los requisitos específicos de una vacante."""

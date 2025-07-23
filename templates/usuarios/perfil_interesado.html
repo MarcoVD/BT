@@ -331,7 +331,16 @@
                             </div>
                             <div class="card-body text-justify">
 {#                                <label for="resumen_profesional" class="form-label"></label>#}
-                                <textarea class="form-control is-invalid" id="resumen_profesional" name="resumen_profesional" rows="3"  placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..." required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>
+                                    <textarea 
+                                        class="form-control is-invalid" 
+                                        id="resumen_profesional" 
+                                        name="resumen_profesional" 
+                                        rows="3"  
+                                        placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..."
+                                        maxlength="400" 
+                                        required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}
+                                    </textarea>                                
+                                    <small id="contadorResumen" class="form-text text-muted">0/400 caracteres</small>
                             </div>
                         </div>
 
@@ -498,159 +507,75 @@
     </div>
 
     <!-- Modal para editar perfil con cropper integrado -->
-    <div class="modal fade" id="editarPerfilModal" tabindex="-1" aria-labelledby="editarPerfilModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header bg-primary ">
-                    <h5 class="modal-title h5 h-md-5 text-white fw-bold mb-0" id="editarPerfilModalLabel">Editar Perfil</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form id="editarPerfilForm" enctype="multipart/form-data" data-update-url="{% url 'actualizar_perfil_ajax' %}">
-                        {% csrf_token %}
-                        <!-- Preview de foto -->
-
-                        <div class="text-center mb-0">
-                            <div class="profile-photo-container mx-auto" id="photoPreviewContainer">
-                                {% if interesado.foto_perfil %}
-                                    <img src="{{ interesado.foto_perfil.url }}" alt="Foto de perfil" class="profile-photo" id="photoPreview">
-                                {% else %}
-                                    <i class="bi bi-person-circle profile-photo-placeholder" id="photoPlaceholder"></i>
-                                {% endif %}
-                            </div>
-                        </div>
-
-                        <div class="row g-3">
-                            <div class="col-12 mt-0" >
-                                <label for="foto_perfil" class="form-label"></label>
-                                <div class="d-flex gap-2 align-items-center">
-                                    <input type="file" class="form-control" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
-                                </div>
-                            </div>
-
-                            <div class="col-12">
-                                <label for="nombre" class="form-label">Nombre(s)</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="nombre" name="nombre" value="{{ interesado.nombre }}" required>
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_paterno" name="apellido_paterno" value="{{ interesado.apellido_paterno }}" required>
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <label for="apellido_materno" class="form-label">Apellido Materno</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}" required>
-                                {#                          <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_materno" name="apellido_materno" value="{{ interesado.apellido_materno }}" required>#}
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <label for="telefono" class="form-label">Teléfono</label>
-                                <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
-                            </div>
-
-                            <!-- Dentro del modal "editarPerfilModal" -->
-                            <div class="col-12 col-md-6">
-                                <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                                <input type="date" class="form-control" id="fecha_nacimiento" name="fecha_nacimiento"
-                                       min="1960-01-01" max="2017-12-31" required
-                                       value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}">
-                            </div>
-                            <div class="col-12 col-md-6">
-                                <label for="municipio" class="form-label">Municipio</label>
-                                <select class="form-select" id="municipio" name="municipio" required>
-                                    <option value="">Selecciona un municipio...</option>
-                                    {% for value, label in interesado.MUNICIPIOS_ESTADO_MEXICO %}
-                                        <option value="{{ value }}" {% if interesado.municipio == value %}selected{% endif %}>{{ label }}</option>
-                                    {% endfor %}
-                                </select>
-                            </div>
-
-                            <div class="col-12 col-md-6">
-                                <label for="codigo_postal" class="form-label">Código Postal</label>
-                                <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="codigo_postal" name="codigo_postal" value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" placeholder="Ej: 50000">
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="footer mb-3">
-                    <div class="row justify-content-center g-2">
-                        <div class="col-12 col-sm-auto">
-                            <button type="button"
-                                    class="btn btn-secondary w-100"
-                                    data-bs-dismiss="modal">
-                                Cancelar
-                            </button>
-                        </div>
-                        <div class="col-12 col-sm-auto">
-                            <button type="button"
-                                    class="btn btn-primary w-100"
-                                    id="guardarPerfilBtn">
-                                <span class="btn-text">Guardar Cambios</span>
-                                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
+    <!-- El modal editarPerfilModal ha sido eliminado.
+        Ahora la selección y recorte de imagen de perfil se realiza únicamente con el modal del Cropper (cropperModal).
+        Si no puedes guardar la imagen seleccionada en el CV, asegúrate de que el flujo de subida y guardado de la imagen
+        esté implementado en el JS de image-cropper.js y que el backend acepte la imagen recortada vía AJAX.
+        Ya no es necesario el modal editarPerfilModal para guardar la foto de perfil, todo debe hacerse con cropperModal.
+    -->
 
     <!-- Modal del Cropper -->
-    <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-xl modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cropperModalLabel">Recortar Imagen de Perfil</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body cropper-modal-body">
+ <!-- SECCIÓN MODIFICADA DEL TEMPLATE perfil_interesado.html -->
 
-                    <!-- Paso 1: Seleccionar imagen -->
-                    <div id="selectStep" class="cropper-step active">
-                        <div class="cropper-instructions">
-                            <h6><i class="bi bi-info-circle"></i> Instrucciones</h6>
-                            <p>Selecciona una imagen JPG para tu foto de perfil. Podrás recortarla en el siguiente paso.</p>
-                        </div>
+<!-- Reemplazar toda la sección de los modales con esto: -->
 
-                        <div class="drop-zone" id="dropZone">
-                            <i class="bi bi-cloud-upload"></i>
-                            <p class="mb-2"><strong>Seleccione </strong> o arrastre una imagen en formato compatible</p>
-                            <p class="small text-muted">Formatos permitidos: JPG y JPEG.• Tamaño Máximo 5MB</p>
-                        </div>
+<!-- Modal del Cropper SIMPLIFICADO - SOLO ESTE MODAL -->
+<div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="cropperModalLabel">
+                    <i class="bi bi-camera"></i> Seleccionar Foto de Perfil
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body cropper-modal-body">
+
+                <!-- Paso 1: Seleccionar imagen (Ya no se usa directamente, pero se mantiene por compatibilidad) -->
+                <div id="selectStep" class="cropper-step active">
+                    <div class="cropper-instructions">
+                        <h6><i class="bi bi-info-circle"></i> Instrucciones</h6>
+                        <p>Selecciona una imagen JPG para tu foto de perfil. Podrás recortarla en el siguiente paso.</p>
                     </div>
 
-                    <!-- Paso 2: MODAL - Recortar IMagen de Perfil -->
-                    <div id="cropStep" class="cropper-step">
-                        <div class="cropper-instructions">
-                            <h6><i class="bi bi-scissors"></i> Recortar Imagen</h6>
-                            <p>Ajusta el área de recorte para tu foto de perfil.</p>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <div class="image-cropper-container">
-                                    <img id="cropperImage" src="" alt="Imagen a recortar" style="max-width: 100%; display: none;">
-                                </div>
-                                <div class="cropper-controls">
-                                    <button type="button" class="btn btn-outline-secondary btn-sm" id="resetCropButton">
-                                        <i class="bi bi-arrow-clockwise"></i> Reiniciar
-                                    </button>
-                                    <button type="button" class="btn btn-outline-danger btn-sm" id="cancelCropButton">
-                                        <i class="bi bi-x-circle"></i> Cancelar
-                                    </button>
-                                    <button type="button" class="btn btn-success btn-sm" id="cropButton">
-                                        {#                                    guardarPerfilBtn#}
-                                        <i class="bi bi-check-circle"></i> Recortar y Usar
-                                    </button>
-                                </div>
-                            </div>
+                    <div class="drop-zone" id="dropZone">
+                        <i class="bi bi-cloud-upload"></i>
+                        <p class="mb-2"><strong>Seleccione</strong> o arrastre una imagen en formato compatible</p>
+                        <p class="small text-muted">Formatos permitidos: JPG y JPEG • Tamaño Máximo 5MB</p>
+                    </div>
+                </div>
 
-                            <div class="col-lg-4">
-                                <div class="text-center">
-                                    <h6>Vista Previa</h6>
-                                    <div class="crop-preview" id="cropPreview"></div>
-                                </div>
+                <!-- Paso 2: Recortar imagen -->
+                <div id="cropStep" class="cropper-step">
+                    <div class="cropper-instructions">
+                        <h6><i class="bi bi-scissors"></i> Recortar Imagen</h6>
+                        <p>Ajusta el área de recorte para tu foto de perfil. La imagen se guardará automáticamente al confirmar.</p>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <div class="image-cropper-container">
+                                <img id="cropperImage" src="" alt="Imagen a recortar" style="max-width: 100%; display: none;">
+                            </div>
+                            <div class="cropper-controls">
+                                <button type="button" class="btn btn-outline-secondary btn-sm" id="resetCropButton">
+                                    <i class="bi bi-arrow-clockwise"></i> Reiniciar
+                                </button>
+                                <button type="button" class="btn btn-outline-danger btn-sm" id="cancelCropButton">
+                                    <i class="bi bi-x-circle"></i> Cancelar
+                                </button>
+                                <button type="button" class="btn btn-success btn-sm" id="cropButton">
+                                    <i class="bi bi-check-circle"></i> Guardar Imagen
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-4">
+                            <div class="text-center">
+                                <h6>Vista Previa</h6>
+                                <div class="crop-preview" id="cropPreview"></div>
+                                <small class="text-muted">
+                                    Esta será tu foto de perfil
+                                </small>
                             </div>
                         </div>
                     </div>
@@ -658,6 +583,13 @@
             </div>
         </div>
     </div>
+</div>
+
+<!-- INPUT FILE HIDDEN -->
+<input type="file" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
+
+<!-- ELIMINAR COMPLETAMENTE EL MODAL editarPerfilModal -->
+<!-- Ya no se necesita porque el cropper guarda automáticamente -->
 
     <!-- Modales para CV (igual que en crear_editar_cv.html) -->
     <!-- Modal para Experiencia Laboral -->
@@ -1202,43 +1134,43 @@
             }
         }
 
-        function autoguardarResumenProfesionalAJAX(valor, csrf) {
-            fetch('/ajax/autoguardar_resumen_profesional/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrf
-                },
-                body: JSON.stringify({ resumen_profesional: valor })
-            })
-                .then(r => r.json())
-                .then(data => {
-                    if (data.success) {
-                        // Muestra feedback visual
-                        document.getElementById('resumen_profesional').classList.add('is-valid');
-                        setTimeout(() => document.getElementById('resumen_profesional').classList.remove('is-valid'), 1000);
-                        limpiarLocalStorageSolo('resumen_profesional');
-                    }
-                });
-        }
+         function autoguardarResumenProfesionalAJAX(valor, csrf) {
+             fetch('/ajax/autoguardar_resumen_profesional/', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'X-CSRFToken': csrf
+                 },
+                 body: JSON.stringify({ resumen_profesional: valor })
+             })
+                 .then(r => r.json())
+                 .then(data => {
+                     if (data.success) {
+                         // Muestra feedback visual
+                         document.getElementById('resumen_profesional').classList.add('is-valid');
+                         setTimeout(() => document.getElementById('resumen_profesional').classList.remove('is-valid'), 1000);
+                         limpiarLocalStorageSolo('resumen_profesional');
+                     }
+                 });
+         }
 
-        function autoguardarInformacionPersonalAJAX(datos, csrf) {
-            fetch('/ajax/autoguardar_informacion_personal/', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': csrf
-                },
-                body: JSON.stringify(datos)
-            })
-                .then(r => r.json())
-                .then(data => {
-                    if (data.success) {
-                        // Puedes mostrar feedback visual aquí
-                        limpiarLocalStorageSolo('personal');
-                    }
-                });
-        }
+         function autoguardarInformacionPersonalAJAX(datos, csrf) {
+             fetch('/ajax/autoguardar_informacion_personal/', {
+                 method: 'POST',
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'X-CSRFToken': csrf
+                 },
+                 body: JSON.stringify(datos)
+             })
+                 .then(r => r.json())
+                 .then(data => {
+                     if (data.success) {
+                         // Puedes mostrar feedback visual aquí
+                         limpiarLocalStorageSolo('personal');
+                     }
+                 });
+         }
 
         function limpiarLocalStorageSolo(tipo) {
             let datos = JSON.parse(localStorage.getItem('cv_autoguardado') || '{}');
@@ -1337,6 +1269,18 @@
         // Actualiza el contador cuando se agreguen o eliminen habilidades
         // Asegúrate de llamar esta función después de agregar o eliminar habilidades.
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const textarea = document.getElementById('resumen_profesional');
+        const counter  = document.getElementById('contadorResumen');
+        // Inicializa contador
+        counter.textContent = `${textarea.value.length}/400 caracteres`;
 
-    
+        textarea.addEventListener('input', () => {
+        const len = textarea.value.length;
+        counter.textContent = `${len}/400 caracteres`;
+        });
+    });
+    </script>
+ 
 {% endblock %}

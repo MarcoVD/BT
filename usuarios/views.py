@@ -153,7 +153,7 @@ def agregar_habilidad_ajax(request):
         habilidad_catalogo, created = Habilidad.objects.get_or_create(
             nombre=nombre_habilidad,
             defaults={
-                'descripcion': f'Habilidad: {nombre_habilidad}'
+                'descripcion': f'{nombre_habilidad}'
             }
         )
 
@@ -983,169 +983,82 @@ class CrearEditarCVView(View):
         }
         return render(request, 'usuarios/crear_editar_cv.html', context)
 
+# usuarios/views.py - FUNCIÓN ACTUALIZADA PARA MANEJAR SOLO IMAGEN
+
 @login_required
 def actualizar_perfil_ajax(request):
-    """Vista AJAX para actualizar perfil del interesado."""
+    """Vista AJAX para actualizar SOLO la foto de perfil del interesado."""
     if request.method != 'POST' or request.user.rol != 'interesado':
         return JsonResponse({'success': False, 'error': 'Método no permitido'})
 
     try:
         interesado = request.user.interesado
 
-        # Verificar si solo se está actualizando la foto
-        only_photo = 'foto_perfil' in request.FILES and len(request.POST) <= 2  # Solo CSRF y posiblemente un campo más
-
-        if not only_photo:
-            # Actualizar campos de texto solo si no es actualización de foto únicamente
-            interesado.nombre = request.POST.get('nombre', interesado.nombre)
-            interesado.apellido_paterno = request.POST.get('apellido_paterno', interesado.apellido_paterno)
-            interesado.apellido_materno = request.POST.get('apellido_materno', interesado.apellido_materno)
-            interesado.telefono = request.POST.get('telefono', interesado.telefono)
-            interesado.municipio = request.POST.get('municipio', interesado.municipio)
-            interesado.codigo_postal = request.POST.get('codigo_postal', interesado.codigo_postal)
-
-            # Fecha de nacimiento
-            fecha_nacimiento = request.POST.get('fecha_nacimiento')
-            if fecha_nacimiento:
-                interesado.fecha_nacimiento = fecha_nacimiento
-
+        # Esta vista ahora SOLO maneja la foto de perfil
+        # Los datos de texto se guardan por separado con autoguardado
+        
         # Validar y procesar foto de perfil
-        if 'foto_perfil' in request.FILES:
-            foto = request.FILES['foto_perfil']
-
-            # Validar tipo de archivo
-            if not foto.name.lower().endswith(('.jpg', '.jpeg')):
-                return JsonResponse({
-                    'success': False,
-                    'error': 'Solo se permiten archivos JPG'
-                })
-
-            # Validar tamaño (5MB máximo)
-            if foto.size > 5 * 1024 * 1024:
-                return JsonResponse({
-                    'success': False,
-                    'error': 'El archivo es demasiado grande. Máximo 5MB'
-                })
-
-            # Para imágenes ya recortadas (blob), no necesitan procesamiento adicional
-            # Ya vienen en el tamaño correcto de 160x160px
-            interesado.foto_perfil = foto
-
-        interesado.save()
-
-        return JsonResponse({
-            'success': True,
-            'message': 'Perfil actualizado exitosamente' if not only_photo else 'Imagen guardada exitosamente',
-            'data': {
-                'nombre_completo': interesado.nombre_completo,
-                'telefono': interesado.telefono or 'No especificado',
-                'ubicacion': interesado.ubicacion_completa,
-                'foto_url': interesado.foto_perfil.url if interesado.foto_perfil else None
-            }
-        })
-
-    except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'error': str(e)
-        })
-
-
-@login_required
-@require_http_methods(["POST"])
-def actualizar_foto_perfil_ajax(request):
-    """
-    Vista AJAX específica para actualizar solo la foto de perfil del interesado
-    """
-    try:
-        # Verificar que el usuario sea un interesado
-        if not hasattr(request.user, 'interesado'):
-            return JsonResponse({
-                'success': False,
-                'error': 'Usuario no autorizado'
-            }, status=403)
-
-        interesado = request.user.interesado
-
-        # Verificar que se envió una foto
         if 'foto_perfil' not in request.FILES:
             return JsonResponse({
                 'success': False,
                 'error': 'No se recibió ninguna imagen'
-            }, status=400)
-
-        foto_file = request.FILES['foto_perfil']
-
-        # Validar tipo de archivo
-        if not foto_file.content_type.startswith('image/'):
-            return JsonResponse({
-                'success': False,
-                'error': 'El archivo debe ser una imagen'
-            }, status=400)
-
-        # Validar tamaño del archivo (5MB máximo)
-        if foto_file.size > 5 * 1024 * 1024:  # 5MB
-            return JsonResponse({
-                'success': False,
-                'error': 'La imagen no debe superar los 5MB'
-            }, status=400)
-
-        # Procesar la imagen
-        try:
-            # Abrir la imagen con PIL para procesarla
-            image = Image.open(foto_file)
-
-            # Convertir a RGB si es necesario (para JPEGs)
-            if image.mode in ('RGBA', 'P'):
-                image = image.convert('RGB')
-
-            # Redimensionar si es muy grande (máximo 800x800 antes de guardar)
-            max_size = (800, 800)
-            image.thumbnail(max_size, Image.Resampling.LANCZOS)
-
-            # Guardar la imagen procesada en memoria
-            output = io.BytesIO()
-            image.save(output, format='JPEG', quality=85, optimize=True)
-            output.seek(0)
-
-            # Generar nombre único para el archivo
-            filename = f"perfil_{interesado.id}_{uuid.uuid4().hex[:8]}.jpg"
-
-            # Eliminar foto anterior si existe
-            if interesado.foto_perfil:
-                try:
-                    # Eliminar archivo físico anterior
-                    if default_storage.exists(interesado.foto_perfil.name):
-                        default_storage.delete(interesado.foto_perfil.name)
-                except Exception as e:
-                    # Log el error pero continúa (no es crítico)
-                    print(f"Error al eliminar foto anterior: {e}")
-
-            # Guardar nueva foto
-            foto_content = ContentFile(output.getvalue(), name=filename)
-            interesado.foto_perfil.save(filename, foto_content, save=True)
-
-            # Construir URL completa de la foto
-            foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
-
-            return JsonResponse({
-                'success': True,
-                'message': 'Foto de perfil actualizada correctamente',
-                'photo_url': foto_url,
-                'photo_name': filename
             })
 
-        except Exception as e:
+        foto = request.FILES['foto_perfil']
+
+        # Validar tipo de archivo
+        if not foto.name.lower().endswith(('.jpg', '.jpeg')):
             return JsonResponse({
                 'success': False,
-                'error': f'Error al procesar la imagen: {str(e)}'
-            }, status=500)
+                'error': 'Solo se permiten archivos JPG'
+            })
+
+        # Validar tamaño (5MB máximo)
+        if foto.size > 5 * 1024 * 1024:
+            return JsonResponse({
+                'success': False,
+                'error': 'El archivo es demasiado grande. Máximo 5MB'
+            })
+
+        # Para imágenes ya recortadas (blob), no necesitan procesamiento adicional
+        # Ya vienen en el tamaño correcto de 160x160px desde el cropper
+        
+        # Eliminar foto anterior si existe
+        if interesado.foto_perfil:
+            try:
+                # Eliminar archivo físico anterior
+                if default_storage.exists(interesado.foto_perfil.name):
+                    default_storage.delete(interesado.foto_perfil.name)
+            except Exception as e:
+                # Log el error pero continúa (no es crítico)
+                print(f"Error al eliminar foto anterior: {e}")
+
+        # Guardar nueva foto
+        interesado.foto_perfil = foto
+        interesado.save()
+
+        # Construir URL absoluta de la foto
+        foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Imagen guardada exitosamente',
+            'data': {
+                'foto_url': foto_url
+            }
+        })
 
     except Exception as e:
+        print(f"Error en actualizar_perfil_ajax: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
-        }, status=500)
+        })
+
+
+# ELIMINAR LA FUNCIÓN actualizar_foto_perfil_ajax PORQUE YA NO SE NECESITA
+# Solo usar actualizar_perfil_ajax
+
 @require_POST
 @csrf_exempt
 def autoguardar_resumen_profesional(request):
@@ -1241,7 +1154,7 @@ def agregar_experiencia_ajax(request):
         return JsonResponse({
             'success': False,
             'error': str(e)
-        })
+        })      
 @login_required
 def agregar_educacion_ajax(request):
     """Vista AJAX para agregar educación."""
