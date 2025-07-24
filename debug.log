@@ -8640,3 +8640,1453 @@ INFO 2025-07-22 15:42:13,433 basehttp 21613 140341929809600 "GET /perfil/interes
 INFO 2025-07-22 15:42:47,436 basehttp 21613 140341910927040 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
 INFO 2025-07-22 15:42:47,730 basehttp 21613 140341929809600 "GET /cv/descargar/ HTTP/1.1" 200 17274
 INFO 2025-07-22 20:00:14,638 autoreload 5808 140167386210368 Watching for file changes with StatReloader
+INFO 2025-07-22 20:16:17,922 basehttp 5808 140167282333376 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 20:17:26,692 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 107440
+INFO 2025-07-22 20:17:26,738 basehttp 5808 140167272892096 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-22 20:17:26,738 basehttp 5808 140167282333376 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-22 20:17:26,752 basehttp 5808 140167272892096 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-22 20:17:26,753 basehttp 5808 140167282333376 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 19283
+INFO 2025-07-22 20:17:26,755 basehttp 5808 140167063008960 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-22 20:17:28,020 basehttp 5808 140167063008960 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-22 20:17:28,022 basehttp 5808 140167272892096 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-22 20:17:28,023 basehttp 5808 140167282333376 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-22 20:17:28,030 basehttp 5808 140167053567680 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-22 20:17:28,050 basehttp 5808 140167045174976 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 20:17:28,181 basehttp 5808 140167053567680 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-22 20:17:29,563 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:17:29,890 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 107440
+INFO 2025-07-22 20:17:29,988 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 107440
+INFO 2025-07-22 20:17:33,096 basehttp 5808 140167282333376 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-22 20:17:33,144 basehttp 5808 140167282333376 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-22 20:17:33,234 basehttp 5808 140167053567680 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-22 20:17:33,235 basehttp 5808 140167063008960 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-22 20:17:37,297 basehttp 5808 140167282333376 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 20:17:37,457 basehttp 5808 140167282333376 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 20:17:37,586 basehttp 5808 140167282333376 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 20:17:38,434 basehttp 5808 140167282333376 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 20:17:41,949 basehttp 5808 140167282333376 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 20:17:41,983 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 107440
+INFO 2025-07-22 20:17:47,411 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:18:19,945 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151074
+INFO 2025-07-22 20:18:20,428 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151074
+INFO 2025-07-22 20:18:20,559 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151074
+INFO 2025-07-22 20:18:20,673 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151074
+INFO 2025-07-22 20:18:20,797 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151074
+INFO 2025-07-22 20:18:32,838 basehttp 5808 140167053567680 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:18:35,753 basehttp 5808 140167053567680 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:18:50,006 basehttp 5808 140167036782272 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 20:18:50,359 basehttp 5808 140167282333376 "GET /cv/descargar/ HTTP/1.1" 200 17276
+INFO 2025-07-22 20:19:38,335 basehttp 5808 140167053567680 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:19:59,537 basehttp 5808 140167053567680 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:20:31,637 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 150964
+INFO 2025-07-22 20:20:32,011 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 150964
+INFO 2025-07-22 20:20:32,112 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 150964
+INFO 2025-07-22 20:20:40,131 basehttp 5808 140167053567680 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:20:44,840 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:20:51,514 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:20:53,338 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 150842
+INFO 2025-07-22 20:21:04,455 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:21:06,451 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:21:08,897 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:21:15,353 basehttp 5808 140167053567680 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:22:24,240 basehttp 5808 140167282333376 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 171
+INFO 2025-07-22 20:22:24,286 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 153726
+INFO 2025-07-22 20:23:23,797 basehttp 5808 140167282333376 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 211
+INFO 2025-07-22 20:23:23,798 basehttp 5808 140167053567680 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 211
+INFO 2025-07-22 20:23:23,861 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 157732
+INFO 2025-07-22 20:24:15,001 basehttp 5808 140167053567680 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 187
+INFO 2025-07-22 20:24:15,008 basehttp 5808 140167282333376 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 187
+INFO 2025-07-22 20:24:15,061 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 161674
+INFO 2025-07-22 20:26:22,420 basehttp 5808 140167282333376 "DELETE /ajax/educacion/eliminar/7/ HTTP/1.1" 200 109
+INFO 2025-07-22 20:26:25,343 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 159703
+INFO 2025-07-22 20:26:35,012 basehttp 5808 140167282333376 "DELETE /ajax/educacion/eliminar/5/ HTTP/1.1" 200 133
+INFO 2025-07-22 20:26:36,834 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 157700
+INFO 2025-07-22 20:26:50,226 basehttp 5808 140167282333376 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 192
+INFO 2025-07-22 20:26:50,232 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 254
+INFO 2025-07-22 20:26:50,330 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158123
+INFO 2025-07-22 20:26:54,598 basehttp 5808 140167282333376 "DELETE /ajax/idioma/eliminar/2/ HTTP/1.1" 200 61
+INFO 2025-07-22 20:27:05,754 basehttp 5808 140167282333376 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 146
+INFO 2025-07-22 20:27:05,759 basehttp 5808 140167053567680 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 228
+INFO 2025-07-22 20:27:05,880 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:10,995 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:11,086 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:11,289 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:12,283 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:12,392 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:27:12,595 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158124
+INFO 2025-07-22 20:28:21,578 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158406
+INFO 2025-07-22 20:30:08,975 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158406
+INFO 2025-07-22 20:30:11,132 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158406
+INFO 2025-07-22 20:30:11,249 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 158406
+INFO 2025-07-22 20:30:15,472 basehttp 5808 140167282333376 "DELETE /ajax/educacion/eliminar/6/ HTTP/1.1" 200 109
+INFO 2025-07-22 20:30:19,851 basehttp 5808 140167282333376 "DELETE /ajax/educacion/eliminar/4/ HTTP/1.1" 200 133
+INFO 2025-07-22 20:30:21,449 basehttp 5808 140167282333376 "DELETE /ajax/educacion/eliminar/2/ HTTP/1.1" 200 88
+INFO 2025-07-22 20:30:24,429 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 152570
+INFO 2025-07-22 20:30:24,570 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 152570
+INFO 2025-07-22 20:30:24,699 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 152570
+INFO 2025-07-22 20:30:24,836 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 152570
+INFO 2025-07-22 20:30:29,135 basehttp 5808 140167282333376 "DELETE /ajax/habilidad/eliminar/9/ HTTP/1.1" 200 89
+INFO 2025-07-22 20:30:29,176 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 152147
+INFO 2025-07-22 20:30:30,906 basehttp 5808 140167282333376 "DELETE /ajax/habilidad/eliminar/8/ HTTP/1.1" 200 74
+INFO 2025-07-22 20:30:30,953 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151736
+INFO 2025-07-22 20:30:34,019 basehttp 5808 140167282333376 "DELETE /ajax/habilidad/eliminar/6/ HTTP/1.1" 200 72
+INFO 2025-07-22 20:30:34,096 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151327
+INFO 2025-07-22 20:30:37,150 basehttp 5808 140167282333376 "DELETE /ajax/habilidad/eliminar/5/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:30:37,225 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 150919
+INFO 2025-07-22 20:30:44,583 basehttp 5808 140167282333376 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 159
+INFO 2025-07-22 20:30:44,685 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 151327
+INFO 2025-07-22 20:31:04,121 basehttp 5808 140167282333376 "POST /ajax/educacion/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-22 20:31:04,225 basehttp 5808 140167282333376 "GET /perfil/interesado/ HTTP/1.1" 200 153177
+INFO 2025-07-22 20:31:19,296 basehttp 5808 140167282333376 "POST /ajax/educacion/editar/8/ HTTP/1.1" 200 170
+INFO 2025-07-22 20:31:19,298 basehttp 5808 140167053567680 "POST /ajax/educacion/editar/8/ HTTP/1.1" 200 170
+INFO 2025-07-22 20:31:19,347 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153191
+INFO 2025-07-22 20:31:23,017 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153191
+INFO 2025-07-22 20:31:23,176 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153191
+INFO 2025-07-22 20:31:23,320 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153191
+INFO 2025-07-22 20:32:01,302 basehttp 5808 140167282333376 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 20:32:01,563 basehttp 5808 140167053567680 "GET /cv/descargar/ HTTP/1.1" 200 17892
+INFO 2025-07-22 20:32:26,438 basehttp 5808 140167053567680 "DELETE /ajax/habilidad/eliminar/3/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:32:26,479 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:32:36,994 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 103
+INFO 2025-07-22 20:32:47,209 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:32:47,210 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-22 20:32:57,583 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153193
+INFO 2025-07-22 20:33:31,092 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-22 20:33:31,094 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-22 20:33:37,260 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-22 20:33:37,261 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-22 20:33:41,769 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153193
+INFO 2025-07-22 20:33:41,888 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153193
+INFO 2025-07-22 20:33:42,052 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153193
+INFO 2025-07-22 20:33:45,747 basehttp 5808 140167053567680 "DELETE /ajax/habilidad/eliminar/12/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:33:45,791 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:33:55,871 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 161
+INFO 2025-07-22 20:33:55,872 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:34:33,123 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:34:35,867 basehttp 5808 140167053567680 "DELETE /ajax/habilidad/eliminar/14/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:34:35,916 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:37,148 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:37,248 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:37,384 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:37,513 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:37,699 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:46,356 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 167
+INFO 2025-07-22 20:34:46,358 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:34:46,413 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:34:48,874 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:34:48,960 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:34:49,052 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:34:52,318 basehttp 5808 140167053567680 "DELETE /ajax/habilidad/eliminar/16/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:34:52,373 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:53,735 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:53,843 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:54,020 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:34:54,183 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:05,436 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:35:05,437 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 167
+INFO 2025-07-22 20:35:07,424 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,006 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,107 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,289 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,399 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,568 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:09,712 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153195
+INFO 2025-07-22 20:35:11,199 basehttp 5808 140167053567680 "DELETE /ajax/habilidad/eliminar/18/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:35:11,239 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,205 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,298 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,483 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,657 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,805 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:12,902 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:13,003 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 152783
+INFO 2025-07-22 20:35:19,661 basehttp 5808 140167053567680 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 161
+INFO 2025-07-22 20:35:19,666 basehttp 5808 140167063008960 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-22 20:35:19,755 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:35:22,126 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:35:22,220 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:35:22,331 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:35:22,472 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:35:22,610 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 153192
+INFO 2025-07-22 20:43:41,453 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 109398
+INFO 2025-07-22 20:43:41,806 basehttp 5808 140167053567680 "GET /perfil/interesado/ HTTP/1.1" 200 109398
+INFO 2025-07-22 20:43:42,069 basehttp 5808 140167063008960 "GET /perfil/interesado/ HTTP/1.1" 200 109398
+INFO 2025-07-22 20:43:54,816 basehttp 5808 140167063008960 "DELETE /ajax/habilidad/eliminar/20/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:43:54,868 basehttp 5808 140167063008960 "GET /perfil/interesado/ HTTP/1.1" 200 108989
+INFO 2025-07-22 20:43:59,782 autoreload 17357 140698783633472 Watching for file changes with StatReloader
+INFO 2025-07-22 20:44:01,092 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 108989
+INFO 2025-07-22 20:44:01,185 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 108989
+INFO 2025-07-22 20:44:01,370 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 108989
+INFO 2025-07-22 20:44:09,829 basehttp 17357 140698612569792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-22 20:44:09,887 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 109399
+INFO 2025-07-22 20:45:26,453 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154981
+INFO 2025-07-22 20:45:26,478 basehttp 17357 140698612569792 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 20:45:27,078 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154981
+INFO 2025-07-22 20:45:27,184 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154981
+INFO 2025-07-22 20:45:35,613 basehttp 17357 140698612569792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 70
+INFO 2025-07-22 20:45:40,894 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/21/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:45:40,946 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154571
+INFO 2025-07-22 20:45:46,677 basehttp 17357 140698612569792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 164
+INFO 2025-07-22 20:45:46,680 basehttp 17357 140698603128512 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:45:57,754 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154980
+INFO 2025-07-22 20:46:42,516 basehttp 17357 140698612569792 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:46:45,541 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154837
+INFO 2025-07-22 20:46:50,286 basehttp 17357 140698612569792 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:46:54,128 basehttp 17357 140698612569792 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 20:46:55,144 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154981
+INFO 2025-07-22 20:47:10,524 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/22/ HTTP/1.1" 200 73
+INFO 2025-07-22 20:47:10,566 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154572
+INFO 2025-07-22 20:47:12,293 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/2/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:47:12,396 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 154164
+INFO 2025-07-22 20:47:13,895 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/1/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:47:13,976 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 153759
+INFO 2025-07-22 20:47:16,359 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/4/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:47:16,455 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 153354
+INFO 2025-07-22 20:47:18,230 basehttp 17357 140698612569792 "DELETE /ajax/habilidad/eliminar/11/ HTTP/1.1" 200 71
+INFO 2025-07-22 20:47:18,306 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 153015
+INFO 2025-07-22 20:47:25,210 basehttp 17357 140698612569792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 167
+INFO 2025-07-22 20:47:25,214 basehttp 17357 140698603128512 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 255
+INFO 2025-07-22 20:47:26,367 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 153358
+INFO 2025-07-22 20:47:53,710 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 107766
+INFO 2025-07-22 20:47:53,818 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 107766
+INFO 2025-07-22 20:47:53,959 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 107766
+INFO 2025-07-22 20:47:54,143 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 107766
+INFO 2025-07-22 20:48:01,260 basehttp 17357 140698612569792 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 164
+INFO 2025-07-22 20:48:01,321 basehttp 17357 140698612569792 "GET /perfil/interesado/ HTTP/1.1" 200 108175
+INFO 2025-07-22 20:49:01,001 autoreload 17357 140698783633472 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 20:49:01,469 autoreload 18201 140092922572864 Watching for file changes with StatReloader
+INFO 2025-07-22 20:49:23,914 autoreload 18531 139908275068992 Watching for file changes with StatReloader
+INFO 2025-07-22 20:49:27,203 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 108175
+INFO 2025-07-22 20:49:27,241 basehttp 18531 139908170815168 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 20:49:27,310 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108175
+INFO 2025-07-22 20:49:27,430 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 108175
+INFO 2025-07-22 20:49:27,608 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108175
+INFO 2025-07-22 20:49:35,360 basehttp 18531 139908170815168 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 165
+INFO 2025-07-22 20:49:35,399 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108586
+INFO 2025-07-22 20:50:27,567 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108586
+INFO 2025-07-22 20:50:28,197 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108586
+INFO 2025-07-22 20:50:28,311 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108586
+INFO 2025-07-22 20:50:35,667 basehttp 18531 139908089902784 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-22 20:50:35,707 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 108996
+INFO 2025-07-22 20:50:39,741 basehttp 18531 139908089902784 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 64
+INFO 2025-07-22 20:50:44,125 basehttp 18531 139908089902784 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 163
+INFO 2025-07-22 20:50:44,176 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109406
+INFO 2025-07-22 20:51:17,805 basehttp 18531 139908089902784 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 177
+INFO 2025-07-22 20:51:17,856 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:19,517 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:19,618 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:46,094 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:46,590 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:46,740 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:51:46,851 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:58:17,991 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:58:18,140 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:58:22,609 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 20:58:23,044 basehttp 18531 139908089902784 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-22 20:58:24,879 basehttp 18531 139908089902784 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-22 21:23:18,075 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 109823
+INFO 2025-07-22 21:23:18,178 basehttp 18531 139908089902784 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 21:28:07,250 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 110222
+INFO 2025-07-22 21:28:07,322 basehttp 18531 139908089902784 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:28:07,776 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 110222
+INFO 2025-07-22 21:28:07,918 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 110222
+INFO 2025-07-22 21:28:08,013 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 110222
+INFO 2025-07-22 21:28:08,108 basehttp 18531 139908089902784 "GET /perfil/interesado/ HTTP/1.1" 200 110222
+INFO 2025-07-22 21:28:11,052 basehttp 18531 139908089902784 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:28:24,973 basehttp 18531 139908089902784 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:28:28,101 basehttp 18531 139908089902784 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:28:32,983 basehttp 18531 139908089902784 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:28:35,701 basehttp 18531 139908089902784 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:29:25,802 basehttp 18531 139908065777344 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 21:29:32,783 basehttp 18531 139908089902784 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 21:29:33,098 basehttp 18531 139908170815168 "GET /cv/descargar/ HTTP/1.1" 200 18522
+INFO 2025-07-22 21:29:42,102 basehttp 18531 139908065777344 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 21:29:42,394 basehttp 18531 139908077315776 "GET /cv/descargar/ HTTP/1.1" 200 18524
+INFO 2025-07-22 21:37:45,770 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:45,899 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:46,086 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:46,236 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:46,342 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:52,106 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:52,243 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:52,362 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:52,474 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110825
+INFO 2025-07-22 21:37:56,047 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:37:58,652 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:38:25,621 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110253
+INFO 2025-07-22 21:38:25,718 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110253
+INFO 2025-07-22 21:38:25,894 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110253
+INFO 2025-07-22 21:38:26,105 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110253
+INFO 2025-07-22 21:38:29,603 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:38:30,460 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110259
+INFO 2025-07-22 21:38:30,591 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110259
+INFO 2025-07-22 21:38:30,759 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110259
+INFO 2025-07-22 21:38:30,924 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110259
+INFO 2025-07-22 21:38:35,274 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:38:39,648 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110198
+INFO 2025-07-22 21:38:39,755 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110198
+INFO 2025-07-22 21:38:39,875 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110198
+INFO 2025-07-22 21:38:43,771 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:38:45,098 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:39:10,887 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110754
+INFO 2025-07-22 21:39:11,067 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110754
+INFO 2025-07-22 21:39:11,230 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110754
+INFO 2025-07-22 21:39:11,346 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110754
+INFO 2025-07-22 21:39:11,519 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110754
+INFO 2025-07-22 21:39:18,964 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:39:24,200 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:39:26,741 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:39:32,007 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:40:49,380 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:40:49,477 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110714
+INFO 2025-07-22 21:40:49,584 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110714
+INFO 2025-07-22 21:40:49,729 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 110714
+INFO 2025-07-22 21:40:52,650 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:40:57,703 basehttp 18531 139908170815168 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:41:15,759 basehttp 18531 139908077315776 "GET /media/interesados/profile_HlxJavL.jpg HTTP/1.1" 200 8473
+INFO 2025-07-22 21:41:16,047 basehttp 18531 139908170815168 "GET /cv/descargar/ HTTP/1.1" 200 18114
+INFO 2025-07-22 21:43:09,443 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:09,649 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:09,817 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:13,170 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:13,302 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:13,386 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:13,492 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+INFO 2025-07-22 21:43:13,642 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 111240
+ERROR 2025-07-22 21:43:21,690 log 18531 139908170815168 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: el valor es demasiado largo para el tipo character varying(15)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: el valor es demasiado largo para el tipo character varying(15)
+
+ERROR 2025-07-22 21:43:21,693 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 171398
+INFO 2025-07-22 21:43:23,190 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+ERROR 2025-07-22 21:43:33,095 log 18531 139908170815168 Internal Server Error: /ajax/autoguardar_informacion_personal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+psycopg2.errors.StringDataRightTruncation: el valor es demasiado largo para el tipo character varying(50)
+
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/http.py", line 64, in inner
+    return func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/decorators/csrf.py", line 65, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1172, in autoguardar_informacion_personal
+    interesado.save()
+  File "/home/marco/BT/BT/usuarios/models.py", line 385, in save
+    super().save(*args, **kwargs)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1138, in _save_table
+    updated = self._do_update(
+              ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1203, in _do_update
+    return filtered._update(values) > 0
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/query.py", line 1286, in _update
+    return query.get_compiler(self.db).execute_sql(ROW_COUNT)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 2060, in execute_sql
+    row_count = super().execute_sql(result_type)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/sql/compiler.py", line 1623, in execute_sql
+    cursor.execute(sql, params)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 122, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 79, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 92, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 100, in _execute
+    with self.db.wrap_database_errors:
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/backends/utils.py", line 105, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+django.db.utils.DataError: el valor es demasiado largo para el tipo character varying(50)
+
+ERROR 2025-07-22 21:43:33,097 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 500 173044
+INFO 2025-07-22 21:43:35,389 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:46:25,195 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 107197
+INFO 2025-07-22 21:46:25,704 basehttp 18531 139908170815168 "GET /perfil/interesado/ HTTP/1.1" 200 107197
+INFO 2025-07-22 21:46:25,906 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 107197
+INFO 2025-07-22 21:46:48,168 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:46:48,299 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:46:48,446 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:46:48,554 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:46:59,066 basehttp 18531 139908077315776 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 257
+INFO 2025-07-22 21:46:59,122 basehttp 18531 139908077315776 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 200 8576
+INFO 2025-07-22 21:46:59,466 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:46:59,568 basehttp 18531 139908077315776 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:47:06,356 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:47:06,389 basehttp 18531 139908077315776 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:47:06,619 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:47:06,728 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:47:06,789 basehttp 18531 139908170815168 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:47:06,876 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111219
+INFO 2025-07-22 21:47:06,929 basehttp 18531 139908170815168 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:47:09,800 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:47:11,019 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111229
+INFO 2025-07-22 21:47:11,103 basehttp 18531 139908170815168 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:47:11,190 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111229
+INFO 2025-07-22 21:47:15,777 basehttp 18531 139908170815168 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-22 21:47:17,447 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:47:17,481 basehttp 18531 139908170815168 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:48:10,728 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:48:10,813 basehttp 18531 139908170815168 "GET /media/interesados/profile_cUj6wvq.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:48:10,888 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:48:11,003 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:48:11,096 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:48:18,287 basehttp 18531 139908170815168 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 248
+INFO 2025-07-22 21:48:18,319 basehttp 18531 139908170815168 "GET /media/interesados/profile_6HD5744.jpg HTTP/1.1" 200 8619
+INFO 2025-07-22 21:48:18,702 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 21:48:18,765 basehttp 18531 139908170815168 "GET /media/interesados/profile_6HD5744.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:48:21,978 basehttp 18531 139908170815168 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-22 21:48:43,220 basehttp 18531 139908077315776 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 248
+INFO 2025-07-22 21:48:43,284 basehttp 18531 139908077315776 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 200 8677
+INFO 2025-07-22 21:49:37,375 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:37,446 basehttp 18531 139908077315776 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:49:38,512 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:38,657 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:38,781 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:38,903 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:39,047 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:45,323 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:49:45,375 basehttp 18531 139908077315776 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:49:52,942 basehttp 18531 139908065777344 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 200 8677
+INFO 2025-07-22 21:49:53,248 basehttp 18531 139908077315776 "GET /cv/descargar/ HTTP/1.1" 200 18210
+INFO 2025-07-22 21:50:18,532 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:50:18,746 basehttp 18531 139908077315776 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:51:03,805 basehttp 18531 139908077315776 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:51:04,013 basehttp 18531 139908077315776 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:54:27,808 autoreload 18531 139908275068992 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:54:28,313 autoreload 33019 140531994857536 Watching for file changes with StatReloader
+INFO 2025-07-22 21:55:02,444 autoreload 33019 140531994857536 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 21:55:02,923 autoreload 33193 139695279956032 Watching for file changes with StatReloader
+INFO 2025-07-22 21:55:10,824 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:10,860 basehttp 33193 139695175669440 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 21:55:11,262 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:11,380 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:11,484 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:11,665 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:11,798 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:11,912 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:12,026 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:23,019 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:25,251 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:25,749 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:25,904 basehttp 33193 139695175669440 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 21:55:52,072 basehttp 33193 139695166228160 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 200 8677
+INFO 2025-07-22 21:55:52,383 basehttp 33193 139695175669440 "GET /cv/descargar/ HTTP/1.1" 200 16728
+INFO 2025-07-22 21:57:51,246 autoreload 33193 139695279956032 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:57:51,716 autoreload 33586 140109757087808 Watching for file changes with StatReloader
+INFO 2025-07-22 21:58:30,975 autoreload 33586 140109757087808 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:58:31,401 autoreload 33729 139864406847552 Watching for file changes with StatReloader
+INFO 2025-07-22 21:58:33,095 autoreload 33729 139864406847552 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:58:33,597 autoreload 33838 139725878177856 Watching for file changes with StatReloader
+INFO 2025-07-22 21:58:39,323 autoreload 33838 139725878177856 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:58:39,785 autoreload 33963 140032681193536 Watching for file changes with StatReloader
+INFO 2025-07-22 21:59:58,698 autoreload 33963 140032681193536 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 21:59:59,165 autoreload 34142 140342889664576 Watching for file changes with StatReloader
+INFO 2025-07-22 22:00:47,431 autoreload 34142 140342889664576 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:00:47,873 autoreload 34325 140699614261312 Watching for file changes with StatReloader
+INFO 2025-07-22 22:01:31,238 autoreload 34325 140699614261312 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:01:31,709 autoreload 34484 140553705242688 Watching for file changes with StatReloader
+INFO 2025-07-22 22:01:36,504 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:36,544 basehttp 34484 140553533691584 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23137
+INFO 2025-07-22 22:01:36,554 basehttp 34484 140553524250304 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:01:36,635 basehttp 34484 140553524250304 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:36,662 basehttp 34484 140553524250304 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23137
+INFO 2025-07-22 22:01:36,752 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:36,781 basehttp 34484 140553533691584 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23137
+INFO 2025-07-22 22:01:36,912 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:37,057 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:37,220 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:45,342 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:49,840 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:50,055 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:01:50,196 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:04:56,755 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:04:56,797 basehttp 34484 140553533691584 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:04:56,831 basehttp 34484 140553524250304 "GET /media/interesados/profile_G4KCox7.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:04:56,868 basehttp 34484 140553524250304 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-22 22:04:56,950 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:04:57,053 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:04:57,214 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:04,862 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:06,837 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:06,991 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,194 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,296 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,393 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,597 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,712 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:07,791 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:14,003 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 90526
+INFO 2025-07-22 22:05:32,159 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:32,310 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:32,441 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:32,561 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:39,999 basehttp 34484 140553533691584 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-22 22:05:40,023 basehttp 34484 140553533691584 "GET /media/interesados/profile_6xOXZx6.jpg HTTP/1.1" 200 8273
+INFO 2025-07-22 22:05:40,335 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:40,390 basehttp 34484 140553533691584 "GET /media/interesados/profile_6xOXZx6.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:05:45,456 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:45,487 basehttp 34484 140553533691584 "GET /media/interesados/profile_6xOXZx6.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:05:45,582 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:45,605 basehttp 34484 140553533691584 "GET /media/interesados/profile_6xOXZx6.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:05:55,193 basehttp 34484 140553533691584 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-22 22:05:55,222 basehttp 34484 140553533691584 "GET /media/interesados/profile_jJ1chgP.jpg HTTP/1.1" 200 3507
+INFO 2025-07-22 22:05:55,519 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:05:55,567 basehttp 34484 140553533691584 "GET /media/interesados/profile_jJ1chgP.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:06:10,034 basehttp 34484 140553533691584 "POST /ajax/actualizar-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-22 22:06:10,065 basehttp 34484 140553533691584 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:06:26,701 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:06:26,849 basehttp 34484 140553533691584 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:10:04,006 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:10:04,204 basehttp 34484 140553533691584 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:10:04,306 basehttp 34484 140553524250304 "GET /perfil/interesado/ HTTP/1.1" 200 111247
+INFO 2025-07-22 22:10:04,436 basehttp 34484 140553524250304 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:12:27,865 basehttp 34484 140553524250304 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:12:27,937 basehttp 34484 140553524250304 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:12:27,952 basehttp 34484 140553533691584 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:12:28,076 basehttp 34484 140553524250304 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:12:28,320 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:12:36,055 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:12:47,291 basehttp 34484 140553533691584 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:06,293 basehttp 34484 140553524250304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-22 22:14:06,405 basehttp 34484 140553524250304 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-22 22:14:06,408 basehttp 34484 140553140303552 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-22 22:14:06,408 basehttp 34484 140553498023616 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-22 22:14:06,408 basehttp 34484 140553489630912 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-22 22:14:07,228 basehttp 34484 140553140303552 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-22 22:14:07,229 basehttp 34484 140553498023616 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-22 22:14:07,232 basehttp 34484 140553506416320 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-22 22:14:07,234 basehttp 34484 140553489630912 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-22 22:14:07,568 basehttp 34484 140553506416320 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-22 22:14:08,726 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:14:13,209 basehttp 34484 140553506416320 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:14:13,235 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:13,254 basehttp 34484 140553506416320 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-22 22:14:13,277 basehttp 34484 140553498023616 "GET /static/js/image-cropper.js HTTP/1.1" 200 11960
+INFO 2025-07-22 22:14:13,278 basehttp 34484 140553489630912 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23137
+INFO 2025-07-22 22:14:14,689 basehttp 34484 140553506416320 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:14:28,375 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:28,375 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:50,287 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:50,289 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:52,589 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:52,594 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:14:54,515 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:54,574 basehttp 34484 140553506416320 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:14:54,884 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:55,038 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:55,243 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:55,383 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:55,560 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:14:56,937 basehttp 34484 140553506416320 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:14:56,998 basehttp 34484 140553506416320 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-22 22:15:00,722 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:15:01,772 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:15:01,910 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:15:02,035 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:15:02,159 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:15:06,559 basehttp 34484 140553506416320 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:15:06,595 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 91067
+INFO 2025-07-22 22:15:06,620 basehttp 34484 140553506416320 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:15:06,640 basehttp 34484 140553489630912 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:16:00,144 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:00,216 basehttp 34484 140553506416320 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 304 0
+INFO 2025-07-22 22:16:00,221 basehttp 34484 140553489630912 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:16:03,977 basehttp 34484 140553506416320 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:16:04,035 basehttp 34484 140553506416320 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-22 22:16:05,077 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:16:08,835 basehttp 34484 140553506416320 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:16:08,870 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,162 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,317 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,422 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,513 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,638 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:11,769 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:23,388 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:23,428 basehttp 34484 140553506416320 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:16:23,547 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:23,674 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:23,796 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:23,931 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:29,570 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:16:29,573 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:16:31,467 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:16:31,470 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:16:31,956 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:32,120 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:32,262 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:32,412 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:16:33,326 basehttp 34484 140553506416320 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:16:33,377 basehttp 34484 140553506416320 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-22 22:16:34,417 basehttp 34484 140553506416320 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-22 22:16:37,817 basehttp 34484 140553506416320 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-22 22:16:37,851 basehttp 34484 140553506416320 "GET /perfil/interesado/ HTTP/1.1" 200 90940
+INFO 2025-07-22 22:18:56,882 basehttp 34484 140553506416320 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:18:56,882 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:19:00,349 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:19:00,356 basehttp 34484 140553498023616 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:19:14,078 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 90996
+INFO 2025-07-22 22:19:14,103 basehttp 34484 140553489630912 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:19:14,110 basehttp 34484 140553498023616 "GET /static/js/image-cropper.js HTTP/1.1" 200 12454
+INFO 2025-07-22 22:19:14,111 basehttp 34484 140553140303552 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22631
+INFO 2025-07-22 22:19:14,229 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 90996
+INFO 2025-07-22 22:19:14,349 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 90996
+INFO 2025-07-22 22:19:14,462 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 90996
+INFO 2025-07-22 22:19:20,968 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:19:20,972 basehttp 34484 140553140303552 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:19:24,712 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:24,798 basehttp 34484 140553140303552 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:19:24,799 basehttp 34484 140553489630912 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:19:24,897 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:24,979 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:26,253 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:26,375 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:26,487 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:47,829 basehttp 34484 140553524250304 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:19:48,351 basehttp 34484 140553489630912 "GET /cv/descargar/ HTTP/1.1" 200 15817
+INFO 2025-07-22 22:19:58,786 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:58,827 basehttp 34484 140553489630912 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:19:58,827 basehttp 34484 140553140303552 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:19:59,009 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:59,121 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:59,231 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:19:59,351 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91444
+INFO 2025-07-22 22:20:00,797 basehttp 34484 140553514809024 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:20:08,335 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:20:08,341 basehttp 34484 140553140303552 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:20:47,907 basehttp 34484 140553489630912 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:20:47,911 basehttp 34484 140553140303552 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-22 22:20:49,700 basehttp 34484 140553489630912 "GET /perfil/interesado/ HTTP/1.1" 200 91392
+INFO 2025-07-22 22:20:49,741 basehttp 34484 140553489630912 "GET /static/js/image-cropper.js HTTP/1.1" 200 12454
+INFO 2025-07-22 22:20:49,750 basehttp 34484 140553489630912 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22631
+INFO 2025-07-22 22:20:49,764 basehttp 34484 140553140303552 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:20:49,957 basehttp 34484 140553140303552 "GET /perfil/interesado/ HTTP/1.1" 200 91392
+INFO 2025-07-22 22:20:50,131 basehttp 34484 140553140303552 "GET /perfil/interesado/ HTTP/1.1" 200 91392
+INFO 2025-07-22 22:21:34,870 basehttp 34484 140553498023616 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:21:35,435 basehttp 34484 140553140303552 "GET /cv/descargar/ HTTP/1.1" 200 16794
+INFO 2025-07-22 22:22:03,082 basehttp 34484 140553140303552 "GET /perfil/interesado/ HTTP/1.1" 200 91392
+INFO 2025-07-22 22:22:03,161 basehttp 34484 140553140303552 "GET /static/js/image-cropper.js HTTP/1.1" 200 12454
+INFO 2025-07-22 22:22:03,167 basehttp 34484 140553140303552 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22631
+INFO 2025-07-22 22:22:03,403 basehttp 34484 140553140303552 "GET /perfil/interesado/ HTTP/1.1" 200 91392
+INFO 2025-07-22 22:22:03,447 basehttp 34484 140553140303552 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22631
+INFO 2025-07-22 22:23:38,440 autoreload 34484 140553705242688 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:23:39,000 autoreload 40497 139735005691968 Watching for file changes with StatReloader
+INFO 2025-07-22 22:23:42,868 autoreload 40497 139735005691968 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:23:43,394 autoreload 40605 139715900796992 Watching for file changes with StatReloader
+INFO 2025-07-22 22:24:42,962 autoreload 40605 139715900796992 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:24:43,585 autoreload 40781 139847076974656 Watching for file changes with StatReloader
+INFO 2025-07-22 22:24:51,800 autoreload 40781 139847076974656 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:24:52,228 autoreload 40841 140434960482368 Watching for file changes with StatReloader
+INFO 2025-07-22 22:26:45,762 autoreload 40841 140434960482368 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:26:46,297 autoreload 41035 140315590971456 Watching for file changes with StatReloader
+INFO 2025-07-22 22:29:09,758 autoreload 41405 140238351306816 Watching for file changes with StatReloader
+INFO 2025-07-22 22:29:24,450 autoreload 41405 140238351306816 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:29:24,908 autoreload 41533 140272878792768 Watching for file changes with StatReloader
+INFO 2025-07-22 22:30:20,374 autoreload 41721 139739633250368 Watching for file changes with StatReloader
+INFO 2025-07-22 22:30:23,886 autoreload 41721 139739633250368 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:30:24,330 autoreload 41830 140623316869184 Watching for file changes with StatReloader
+INFO 2025-07-22 22:30:28,913 autoreload 41830 140623316869184 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:30:29,446 autoreload 41950 140568032624704 Watching for file changes with StatReloader
+INFO 2025-07-22 22:31:44,117 autoreload 41950 140568032624704 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:31:44,584 autoreload 42160 140097384968256 Watching for file changes with StatReloader
+INFO 2025-07-22 22:32:22,654 autoreload 42160 140097384968256 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:32:24,344 autoreload 42347 140284889911360 Watching for file changes with StatReloader
+INFO 2025-07-22 22:33:02,820 autoreload 42516 140294271311936 Watching for file changes with StatReloader
+INFO 2025-07-22 22:33:43,183 autoreload 42706 139941051818048 Watching for file changes with StatReloader
+INFO 2025-07-22 22:34:21,194 autoreload 42706 139941051818048 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-22 22:34:21,702 autoreload 42876 140122259763264 Watching for file changes with StatReloader
+INFO 2025-07-22 22:34:28,320 autoreload 42876 140122259763264 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-22 22:34:28,767 autoreload 43002 140114091765824 Watching for file changes with StatReloader
+INFO 2025-07-22 22:35:06,855 autoreload 43002 140114091765824 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:35:07,341 autoreload 43154 139766246711360 Watching for file changes with StatReloader
+INFO 2025-07-22 22:37:13,659 autoreload 43154 139766246711360 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:37:14,122 autoreload 43402 139683231948864 Watching for file changes with StatReloader
+INFO 2025-07-22 22:37:17,945 autoreload 43402 139683231948864 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-22 22:37:18,490 autoreload 43509 139650509135936 Watching for file changes with StatReloader
+INFO 2025-07-22 22:37:35,469 autoreload 43509 139650509135936 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:37:35,925 autoreload 43665 139813893386304 Watching for file changes with StatReloader
+INFO 2025-07-22 22:37:41,917 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:41,961 basehttp 43665 139813703546560 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-22 22:37:41,963 basehttp 43665 139813711939264 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-22 22:37:41,963 basehttp 43665 139813721380544 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 22:37:42,063 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:42,183 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:55,396 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:55,415 basehttp 43665 139813703546560 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-22 22:37:57,183 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:57,420 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:37:57,528 basehttp 43665 139813721380544 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 22:38:19,341 autoreload 43665 139813893386304 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-22 22:38:19,879 autoreload 43872 140205673017408 Watching for file changes with StatReloader
+INFO 2025-07-22 23:49:22,959 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 23:49:22,986 basehttp 43872 140205501880000 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-22 23:49:22,987 basehttp 43872 140205492438720 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-22 23:49:22,989 basehttp 43872 140205492438720 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-22 23:49:23,087 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-22 23:49:23,202 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:01:34,843 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:01:34,867 basehttp 43872 140205501880000 "GET /media/interesados/profile_dYzzXOa.jpg HTTP/1.1" 200 4245
+INFO 2025-07-23 00:01:34,868 basehttp 43872 140205492438720 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-23 00:01:34,870 basehttp 43872 140205492438720 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-23 00:01:34,871 basehttp 43872 140205482997440 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-23 00:01:34,951 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:01:34,972 basehttp 43872 140205482997440 "GET /static/js/image-cropper.js HTTP/1.1" 200 12294
+INFO 2025-07-23 00:01:35,145 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:01:35,621 basehttp 43872 140205482997440 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-23 00:01:52,987 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:01:57,103 basehttp 43872 140205482997440 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-23 00:02:02,372 basehttp 43872 140205501880000 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:02:02,675 basehttp 43872 140205482997440 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:02:13,073 basehttp 43872 140205482997440 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:07:45,470 autoreload 43872 140205673017408 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-23 00:07:45,993 autoreload 51982 139923248107584 Watching for file changes with StatReloader
+INFO 2025-07-23 00:08:49,792 autoreload 51982 139923248107584 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-23 00:08:50,357 autoreload 52178 140503331930176 Watching for file changes with StatReloader
+INFO 2025-07-23 00:11:17,515 autoreload 52178 140503331930176 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-23 00:11:17,983 autoreload 52452 140007305834560 Watching for file changes with StatReloader
+INFO 2025-07-23 00:11:20,631 autoreload 52452 140007305834560 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-23 00:11:21,205 autoreload 52557 140431756988480 Watching for file changes with StatReloader
+INFO 2025-07-23 00:11:57,935 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:57,964 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 200 11983
+INFO 2025-07-23 00:11:57,965 basehttp 52557 140431575910080 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-23 00:11:58,080 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:58,112 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:11:58,235 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:58,260 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:11:58,356 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:58,400 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:11:58,472 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:58,499 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:11:59,759 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:59,781 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:11:59,933 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:11:59,975 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:12:14,201 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:12:14,223 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 200 11983
+INFO 2025-07-23 00:12:14,299 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:12:14,425 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:12:28,386 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:12:28,758 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:12:28,774 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:12:28,785 basehttp 52557 140431575910080 "GET /media/interesados/profile_x41J9al.jpg HTTP/1.1" 200 8055
+INFO 2025-07-23 00:12:57,788 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:13:11,503 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:13:11,539 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 200 11983
+INFO 2025-07-23 00:13:11,552 basehttp 52557 140431575910080 "GET /media/interesados/profile_BYbauTz.jpg HTTP/1.1" 200 8387
+INFO 2025-07-23 00:13:21,894 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:13:22,286 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:13:22,312 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:13:22,313 basehttp 52557 140431575910080 "GET /media/interesados/profile_B9y6x8W.jpg HTTP/1.1" 200 6661
+INFO 2025-07-23 00:13:30,606 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:13:30,984 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:13:31,015 basehttp 52557 140431575910080 "GET /media/interesados/profile_oi74eK2.jpg HTTP/1.1" 200 5860
+INFO 2025-07-23 00:13:31,016 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:14:48,681 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:14:48,710 basehttp 52557 140431585351360 "GET /static/js/image-cropper.js HTTP/1.1" 200 11989
+INFO 2025-07-23 00:14:48,711 basehttp 52557 140431575910080 "GET /media/interesados/profile_oi74eK2.jpg HTTP/1.1" 200 5860
+INFO 2025-07-23 00:14:48,865 basehttp 52557 140431585351360 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:14:48,918 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:14:49,041 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:14:49,076 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:14:51,894 basehttp 52557 140431585351360 "GET /media/interesados/profile_oi74eK2.jpg HTTP/1.1" 200 5860
+INFO 2025-07-23 00:14:52,271 basehttp 52557 140431575910080 "GET /cv/descargar/ HTTP/1.1" 200 17350
+INFO 2025-07-23 00:15:00,517 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:15:00,886 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:15:00,905 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:15:00,910 basehttp 52557 140431575910080 "GET /media/interesados/profile_qkKmrRc.jpg HTTP/1.1" 200 8677
+INFO 2025-07-23 00:15:21,195 basehttp 52557 140431575910080 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:15:21,576 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:15:21,602 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 11990
+INFO 2025-07-23 00:15:21,603 basehttp 52557 140431575910080 "GET /media/interesados/profile_2x8LisT.jpg HTTP/1.1" 200 8677
+INFO 2025-07-23 00:17:14,970 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:15,003 basehttp 52557 140431575910080 "GET /media/interesados/profile_2x8LisT.jpg HTTP/1.1" 200 8677
+INFO 2025-07-23 00:17:15,005 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 11989
+INFO 2025-07-23 00:17:15,103 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:15,128 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:17:15,265 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:15,318 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:17:15,392 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:15,428 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:17:15,499 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:15,525 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:17:21,559 basehttp 52557 140431566468800 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:17:21,937 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:17:21,960 basehttp 52557 140431337715392 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:17:21,966 basehttp 52557 140431566468800 "GET /media/interesados/profile_2TuaQO6.jpg HTTP/1.1" 200 3852
+INFO 2025-07-23 00:18:55,681 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:18:55,696 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:18:55,711 basehttp 52557 140431337715392 "GET /media/interesados/profile_2TuaQO6.jpg HTTP/1.1" 200 3852
+INFO 2025-07-23 00:18:55,860 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:18:55,899 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:18:55,961 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:18:55,978 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:18:56,071 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:18:56,087 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:19:02,648 basehttp 52557 140431566468800 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:19:03,025 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:19:03,050 basehttp 52557 140431566468800 "GET /media/interesados/profile_0eqWy1J.jpg HTTP/1.1" 200 6212
+INFO 2025-07-23 00:19:03,054 basehttp 52557 140431337715392 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:19:31,525 basehttp 52557 140431566468800 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:19:45,505 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:19:45,615 basehttp 52557 140431566468800 "GET /media/interesados/profile_ESTdlBK.jpg HTTP/1.1" 200 8677
+INFO 2025-07-23 00:19:45,623 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:19:53,176 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:19:53,211 basehttp 52557 140431566468800 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-23 00:19:53,241 basehttp 52557 140431337715392 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:19:53,256 basehttp 52557 140431566468800 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-23 00:19:53,259 basehttp 52557 140431575910080 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-23 00:19:53,264 basehttp 52557 140431551784640 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-23 00:19:53,266 basehttp 52557 140431329322688 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-23 00:19:53,269 basehttp 52557 140431337715392 "GET /media/interesados/profile_ESTdlBK.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 00:19:55,131 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:19:55,165 basehttp 52557 140431566468800 "GET /media/interesados/profile_ESTdlBK.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 00:19:55,231 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:20:03,956 basehttp 52557 140431566468800 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 00:20:04,325 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:20:04,353 basehttp 52557 140431566468800 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:20:04,356 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 00:20:40,938 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:20:40,994 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:20:41,014 basehttp 52557 140431566468800 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:22:22,192 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:22:22,221 basehttp 52557 140431575910080 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:22:22,221 basehttp 52557 140431566468800 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:22:22,224 basehttp 52557 140431329322688 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-23 00:23:37,076 basehttp 52557 140431566468800 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 00:23:37,101 basehttp 52557 140431575910080 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:23:37,104 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:25:31,100 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91437
+INFO 2025-07-23 00:25:31,177 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 00:25:31,186 basehttp 52557 140431575910080 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:25:31,259 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91437
+INFO 2025-07-23 00:25:31,335 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91437
+INFO 2025-07-23 00:25:31,427 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91437
+INFO 2025-07-23 00:27:04,012 basehttp 52557 140431575910080 "GET /perfil/interesado/ HTTP/1.1" 200 91437
+INFO 2025-07-23 00:27:04,049 basehttp 52557 140431575910080 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 00:27:04,053 basehttp 52557 140431566468800 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-23 23:49:31,205 autoreload 10767 140461067239488 Watching for file changes with StatReloader
+INFO 2025-07-23 23:49:33,317 basehttp 10767 140460963305152 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-23 23:49:33,413 basehttp 10767 140460963305152 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-23 23:49:33,417 basehttp 10767 140460963305152 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-23 23:49:33,422 basehttp 10767 140460953863872 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-23 23:49:33,430 basehttp 10767 140460953863872 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-23 23:49:33,433 basehttp 10767 140460723005120 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-23 23:49:33,435 basehttp 10767 140460714612416 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-23 23:49:33,440 basehttp 10767 140460731397824 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-23 23:49:33,442 basehttp 10767 140460945471168 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-23 23:49:33,485 basehttp 10767 140460731397824 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-23 23:50:35,248 basehttp 10767 140460731397824 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-23 23:50:41,323 basehttp 10767 140460731397824 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-23 23:50:41,364 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:50:41,394 basehttp 10767 140460953863872 "GET /static/css/image-cropper.css HTTP/1.1" 200 3590
+INFO 2025-07-23 23:50:41,397 basehttp 10767 140460953863872 "GET /static/js/image-cropper.js HTTP/1.1" 200 12408
+INFO 2025-07-23 23:50:41,398 basehttp 10767 140460723005120 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-23 23:50:41,404 basehttp 10767 140460731397824 "GET /media/interesados/profile_EmBVk6W.jpg HTTP/1.1" 200 7030
+INFO 2025-07-23 23:50:54,784 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:50:55,183 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:50:55,213 basehttp 10767 140460731397824 "GET /media/interesados/profile_NBsY1kH.jpg HTTP/1.1" 200 6459
+INFO 2025-07-23 23:50:57,934 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:50:57,967 basehttp 10767 140460731397824 "GET /media/interesados/profile_NBsY1kH.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 23:50:58,114 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:50:58,149 basehttp 10767 140460731397824 "GET /media/interesados/profile_NBsY1kH.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 23:50:58,193 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:50:58,225 basehttp 10767 140460731397824 "GET /media/interesados/profile_NBsY1kH.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 23:51:06,446 basehttp 10767 140460723005120 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:51:06,834 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:51:06,864 basehttp 10767 140460723005120 "GET /media/interesados/profile_jfzQkB9.jpg HTTP/1.1" 200 6152
+INFO 2025-07-23 23:51:29,948 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:51:37,502 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:51:37,638 basehttp 10767 140460731397824 "GET /media/interesados/profile_me4EO72.jpg HTTP/1.1" 200 4379
+INFO 2025-07-23 23:53:04,925 basehttp 10767 140460723005120 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:53:35,444 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 91428
+INFO 2025-07-23 23:53:35,567 basehttp 10767 140460723005120 "GET /media/interesados/profile_Bnr9Z6n.jpg HTTP/1.1" 200 3927
+INFO 2025-07-23 23:57:48,152 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:57:48,185 basehttp 10767 140460723005120 "GET /media/interesados/profile_Bnr9Z6n.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 23:57:48,288 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:57:48,416 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:58:15,937 basehttp 10767 140460723005120 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:58:16,357 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:58:16,444 basehttp 10767 140460723005120 "GET /media/interesados/profile_CUU0QBD.jpg HTTP/1.1" 200 6751
+INFO 2025-07-23 23:59:09,080 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:59:09,115 basehttp 10767 140460723005120 "GET /media/interesados/profile_CUU0QBD.jpg HTTP/1.1" 304 0
+INFO 2025-07-23 23:59:09,225 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:59:09,344 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:59:22,753 basehttp 10767 140460723005120 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:59:23,129 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:59:23,160 basehttp 10767 140460723005120 "GET /media/interesados/profile_jX0Gqau.jpg HTTP/1.1" 200 8163
+INFO 2025-07-23 23:59:34,676 basehttp 10767 140460723005120 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-23 23:59:35,056 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 97224
+INFO 2025-07-23 23:59:35,086 basehttp 10767 140460723005120 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 200 6757
+INFO 2025-07-24 00:00:11,072 basehttp 10767 140460953863872 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 200 6757
+INFO 2025-07-24 00:00:33,094 basehttp 10767 140460723005120 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 200 6757
+INFO 2025-07-24 00:00:33,412 basehttp 10767 140460731397824 "GET /cv/descargar/ HTTP/1.1" 200 18240
+INFO 2025-07-24 00:00:42,606 basehttp 10767 140460731397824 "DELETE /ajax/habilidad/eliminar/30/ HTTP/1.1" 200 78
+INFO 2025-07-24 00:00:42,657 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 96807
+INFO 2025-07-24 00:00:42,689 basehttp 10767 140460731397824 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:00:48,822 basehttp 10767 140460953863872 "DELETE /ajax/habilidad/eliminar/29/ HTTP/1.1" 200 71
+INFO 2025-07-24 00:00:48,863 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96397
+INFO 2025-07-24 00:00:48,899 basehttp 10767 140460953863872 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:01:12,324 basehttp 10767 140460706219712 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 200 6757
+INFO 2025-07-24 00:02:09,710 basehttp 10767 140460953863872 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 105
+INFO 2025-07-24 00:02:16,900 basehttp 10767 140460953863872 "POST /ajax/habilidad/agregar/ HTTP/1.1" 200 168
+INFO 2025-07-24 00:02:16,949 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96825
+INFO 2025-07-24 00:02:16,986 basehttp 10767 140460953863872 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:02:20,251 basehttp 10767 140460723005120 "GET /media/interesados/profile_64SP2Yn.jpg HTTP/1.1" 200 6757
+INFO 2025-07-24 00:02:20,537 basehttp 10767 140460953863872 "GET /cv/descargar/ HTTP/1.1" 200 18235
+INFO 2025-07-24 00:02:28,046 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96825
+INFO 2025-07-24 00:02:28,172 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96825
+INFO 2025-07-24 00:02:35,008 basehttp 10767 140460953863872 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:02:35,380 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96825
+INFO 2025-07-24 00:02:35,410 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:02:43,290 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96809
+INFO 2025-07-24 00:02:43,329 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:02:43,375 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 96809
+INFO 2025-07-24 00:02:43,401 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:02:43,571 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 96809
+INFO 2025-07-24 00:02:43,638 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:05:21,310 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:05:21,353 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:05:21,418 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:05:21,503 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:05:52,837 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:05:52,881 basehttp 10767 140460953863872 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:05:53,387 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:05:53,479 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97205
+INFO 2025-07-24 00:07:35,028 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:35,057 basehttp 10767 140460731397824 "GET /media/interesados/profile_psdmQ2i.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:07:35,129 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:35,314 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:35,435 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:45,365 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:07:45,739 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:45,768 basehttp 10767 140460731397824 "GET /media/interesados/profile_QHsIuyK.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:07:57,783 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:07:58,172 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:07:58,301 basehttp 10767 140460731397824 "GET /media/interesados/profile_52GXBW7.jpg HTTP/1.1" 200 8677
+INFO 2025-07-24 00:08:12,040 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:08:12,413 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:12,513 basehttp 10767 140460731397824 "GET /media/interesados/profile_OdtppOD.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:08:41,193 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:08:41,563 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:41,647 basehttp 10767 140460731397824 "GET /media/interesados/profile_surUecw.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:08:47,833 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:47,912 basehttp 10767 140460731397824 "GET /media/interesados/profile_surUecw.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:08:48,040 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:48,150 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:48,291 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:48,333 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:08:48,434 basehttp 10767 140460731397824 "GET /media/interesados/profile_surUecw.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:09:07,151 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:07,291 basehttp 10767 140460731397824 "GET /media/interesados/profile_surUecw.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:09:07,349 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:14,548 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:09:14,938 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:15,020 basehttp 10767 140460731397824 "GET /media/interesados/profile_KQEjKEb.jpg HTTP/1.1" 200 7956
+INFO 2025-07-24 00:09:48,106 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:48,200 basehttp 10767 140460731397824 "GET /media/interesados/profile_KQEjKEb.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:09:48,349 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:48,474 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:55,195 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:09:55,583 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97214
+INFO 2025-07-24 00:09:55,656 basehttp 10767 140460731397824 "GET /media/interesados/profile_9uCSTQR.jpg HTTP/1.1" 200 7956
+INFO 2025-07-24 00:12:03,530 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97219
+INFO 2025-07-24 00:12:03,663 basehttp 10767 140460731397824 "GET /media/interesados/profile_9uCSTQR.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:12:03,752 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97219
+INFO 2025-07-24 00:15:19,554 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:19,637 basehttp 10767 140460731397824 "GET /media/interesados/profile_9uCSTQR.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:15:19,732 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:19,834 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:20,126 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:25,208 basehttp 10767 140460953863872 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:15:25,594 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:25,623 basehttp 10767 140460953863872 "GET /media/interesados/profile_GV5sZgp.jpg HTTP/1.1" 200 7956
+INFO 2025-07-24 00:15:29,339 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:29,373 basehttp 10767 140460731397824 "GET /media/interesados/profile_GV5sZgp.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:15:29,613 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:29,681 basehttp 10767 140460731397824 "GET /media/interesados/profile_GV5sZgp.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:15:29,738 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 97237
+INFO 2025-07-24 00:15:29,784 basehttp 10767 140460731397824 "GET /media/interesados/profile_GV5sZgp.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:16:40,765 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:40,849 basehttp 10767 140460731397824 "GET /media/interesados/profile_GV5sZgp.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:16:40,920 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:41,001 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:41,122 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:41,244 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:46,929 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:16:47,305 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93251
+INFO 2025-07-24 00:16:47,333 basehttp 10767 140460731397824 "GET /media/interesados/profile_BnPwI4A.jpg HTTP/1.1" 200 7956
+INFO 2025-07-24 00:22:51,495 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:22:51,887 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:22:51,971 basehttp 10767 140460731397824 "GET /media/interesados/profile_GgZgFs2.jpg HTTP/1.1" 200 8203
+INFO 2025-07-24 00:26:16,277 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:26:16,311 basehttp 10767 140460731397824 "GET /media/interesados/profile_GgZgFs2.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:26:16,473 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:26:16,632 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:26:16,704 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:06,559 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:06,610 basehttp 10767 140460731397824 "GET /media/interesados/profile_GgZgFs2.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:27:06,657 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:06,757 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:10,011 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:27:10,402 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:10,437 basehttp 10767 140460731397824 "GET /media/interesados/profile_RzbZ7pi.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:27:31,387 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:31,433 basehttp 10767 140460731397824 "GET /media/interesados/profile_RzbZ7pi.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:27:31,503 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:34,603 basehttp 10767 140460731397824 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:27:35,031 basehttp 10767 140460953863872 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:27:35,111 basehttp 10767 140460731397824 "GET /media/interesados/profile_gIMI8ZT.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:33:40,572 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:33:40,666 basehttp 10767 140460731397824 "GET /media/interesados/profile_gIMI8ZT.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:33:40,771 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:33:40,883 basehttp 10767 140460953863872 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-24 00:33:40,910 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:33:41,005 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:33:53,051 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:33:53,179 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 97243
+INFO 2025-07-24 00:34:10,537 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:34:10,660 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:34:10,759 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93305
+INFO 2025-07-24 00:36:01,054 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:01,384 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:01,545 basehttp 10767 140460731397824 "GET /media/interesados/profile_gIMI8ZT.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:36:01,596 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:02,202 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:08,720 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:08,847 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:36:08,964 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:37:14,560 basehttp 10767 140460953863872 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:37:14,579 basehttp 10767 140460963305152 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-24 00:37:14,589 basehttp 10767 140460953863872 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-24 00:37:14,590 basehttp 10767 140460723005120 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-24 00:37:14,590 basehttp 10767 140460697827008 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-24 00:37:14,590 basehttp 10767 140460963305152 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-24 00:37:14,591 basehttp 10767 140460689434304 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-24 00:37:14,591 basehttp 10767 140460706219712 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-24 00:37:14,595 basehttp 10767 140460723005120 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-24 00:37:15,348 basehttp 10767 140460723005120 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-24 00:37:17,456 basehttp 10767 140460723005120 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:37:28,052 basehttp 10767 140460723005120 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:37:33,832 basehttp 10767 140460723005120 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:38:05,747 basehttp 10767 140460731397824 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 00:38:08,025 basehttp 10767 140460731397824 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:38:08,061 basehttp 10767 140460731397824 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-24 00:38:10,085 basehttp 10767 140460731397824 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:38:20,252 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:38:30,902 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:38:47,311 basehttp 10767 140460731397824 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:38:48,894 basehttp 10767 140460731397824 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:38:54,081 basehttp 10767 140460731397824 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:38:54,106 basehttp 10767 140460731397824 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:38:54,141 basehttp 10767 140460731397824 "GET /media/interesados/profile_gIMI8ZT.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:38:55,554 basehttp 10767 140460731397824 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:38:55,599 basehttp 10767 140460731397824 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-24 00:38:56,535 basehttp 10767 140460731397824 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:39:09,756 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:39:12,335 basehttp 10767 140460689434304 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:39:18,012 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:39:23,606 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 200 12556
+INFO 2025-07-24 00:39:28,429 basehttp 10767 140460731397824 "GET /recuperar-contrasena/ HTTP/1.1" 200 20068
+INFO 2025-07-24 00:39:42,359 views 10767 140460731397824 Correo de recuperación enviado exitosamente a marco@example.com
+INFO 2025-07-24 00:39:42,361 basehttp 10767 140460731397824 "POST /recuperar-contrasena/ HTTP/1.1" 200 20199
+INFO 2025-07-24 00:39:47,299 basehttp 10767 140460731397824 "GET /restablecer-contrasena/kZaoOJd1zdqeOvYR4Vxm_zZ8zvmDYwX2lwzlVhFcZKE/ HTTP/1.1" 200 33505
+INFO 2025-07-24 00:40:00,977 views 10767 140460731397824 Contraseña restablecida exitosamente para usuario marco@example.com
+INFO 2025-07-24 00:40:00,979 basehttp 10767 140460731397824 "POST /restablecer-contrasena/kZaoOJd1zdqeOvYR4Vxm_zZ8zvmDYwX2lwzlVhFcZKE/ HTTP/1.1" 200 10248
+INFO 2025-07-24 00:40:18,425 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:40:18,454 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:40:18,470 basehttp 10767 140460689434304 "GET /static/css/image-cropper.css HTTP/1.1" 200 4583
+INFO 2025-07-24 00:40:18,474 basehttp 10767 140460963305152 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 22662
+INFO 2025-07-24 00:40:18,474 basehttp 10767 140460723005120 "GET /static/js/image-cropper.js HTTP/1.1" 200 13875
+INFO 2025-07-24 00:40:18,482 basehttp 10767 140460697827008 "GET /media/interesados/profile_gIMI8ZT.jpg HTTP/1.1" 200 6751
+INFO 2025-07-24 00:40:28,868 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:40:28,970 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:41:47,719 basehttp 10767 140460689434304 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:41:48,150 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:41:48,200 basehttp 10767 140460697827008 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:41:48,202 basehttp 10767 140460723005120 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:41:48,226 basehttp 10767 140460689434304 "GET /media/interesados/profile_Ga6VAQ9.jpg HTTP/1.1" 200 7313
+INFO 2025-07-24 00:41:52,826 basehttp 10767 140460953863872 "GET /media/interesados/profile_Ga6VAQ9.jpg HTTP/1.1" 200 7313
+INFO 2025-07-24 00:41:53,102 basehttp 10767 140460689434304 "GET /cv/descargar/ HTTP/1.1" 200 19000
+INFO 2025-07-24 00:43:31,088 basehttp 10767 140460689434304 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+WARNING 2025-07-24 00:43:31,139 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:43:31,140 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:43:58,761 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+WARNING 2025-07-24 00:43:58,847 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:43:58,847 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:43:58,877 basehttp 10767 140460689434304 "GET /media/interesados/profile_Ga6VAQ9.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:43:58,886 basehttp 10767 140460723005120 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:44:34,228 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:44:34,252 basehttp 10767 140460689434304 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:44:34,270 basehttp 10767 140460723005120 "GET /media/interesados/profile_Ga6VAQ9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:44:34,277 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:44:34,278 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:44:56,319 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:44:56,353 basehttp 10767 140460689434304 "GET /media/interesados/profile_Ga6VAQ9.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:44:56,437 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:44:56,602 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:45:20,321 basehttp 10767 140460689434304 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:45:20,700 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:45:20,712 basehttp 10767 140460697827008 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:45:20,723 basehttp 10767 140460689434304 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 200 6788
+INFO 2025-07-24 00:46:03,272 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:46:03,287 basehttp 10767 140460723005120 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:46:03,298 basehttp 10767 140460697827008 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:46:03,429 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:46:03,587 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:46:08,569 basehttp 10767 140460697827008 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:08,572 basehttp 10767 140460723005120 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:09,794 basehttp 10767 140460723005120 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:09,796 basehttp 10767 140460697827008 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:12,851 basehttp 10767 140460697827008 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:12,852 basehttp 10767 140460723005120 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:46:33,951 basehttp 10767 140460963305152 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 200 6788
+INFO 2025-07-24 00:46:41,207 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:46:41,229 basehttp 10767 140460697827008 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:46:41,243 basehttp 10767 140460689434304 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:47:07,949 basehttp 10767 140460963305152 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 200 6788
+INFO 2025-07-24 00:47:19,027 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:47:19,049 basehttp 10767 140460697827008 "GET /media/interesados/profile_Rf2ibYU.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:47:19,151 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:47:19,324 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:47:19,395 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:47:33,566 basehttp 10767 140460697827008 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:47:33,936 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:47:33,957 basehttp 10767 140460697827008 "GET /media/interesados/profile_1xfyG7G.jpg HTTP/1.1" 200 7828
+INFO 2025-07-24 00:47:56,268 basehttp 10767 140460689434304 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:47:56,288 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-24 00:47:58,574 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:47:58,735 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:47:58,877 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:47:58,999 basehttp 10767 140460689434304 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 00:48:00,028 basehttp 10767 140460689434304 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 00:48:02,712 basehttp 10767 140460689434304 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 00:48:02,738 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:48:02,749 basehttp 10767 140460689434304 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:48:02,753 basehttp 10767 140460712515264 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:48:02,758 basehttp 10767 140460723005120 "GET /media/interesados/profile_1xfyG7G.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:48:21,186 basehttp 10767 140460689434304 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:48:21,556 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:48:21,579 basehttp 10767 140460689434304 "GET /media/interesados/profile_oJzCe0O.jpg HTTP/1.1" 200 6452
+WARNING 2025-07-24 00:48:25,761 log 10767 140460963305152 Not Found: /media/interesados/profile_1xfyG7G.jpg
+WARNING 2025-07-24 00:48:25,766 basehttp 10767 140460963305152 "GET /media/interesados/profile_1xfyG7G.jpg HTTP/1.1" 404 14800
+WARNING 2025-07-24 00:48:26,041 log 10767 140460697827008 The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.: /cv/descargar/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/sessions/backends/db.py", line 127, in save
+    obj.save(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 902, in save
+    self.save_base(
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1008, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/db/models/base.py", line 1142, in _save_table
+    raise DatabaseError("Forced update did not affect any rows.")
+django.db.utils.DatabaseError: Forced update did not affect any rows.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/sessions/middleware.py", line 59, in process_response
+    request.session.save()
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/sessions/backends/db.py", line 136, in save
+    raise UpdateError
+django.contrib.sessions.backends.base.UpdateError
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/deprecation.py", line 122, in __call__
+    response = self.process_response(request, response)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/sessions/middleware.py", line 61, in process_response
+    raise SessionInterrupted(
+django.contrib.sessions.exceptions.SessionInterrupted: The request's session was deleted before the request completed. The user may have logged out in a concurrent request, for example.
+INFO 2025-07-24 00:49:01,406 basehttp 10767 140460697827008 "GET /media/interesados/profile_oJzCe0O.jpg HTTP/1.1" 200 6452
+INFO 2025-07-24 00:49:54,430 basehttp 10767 140460689434304 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:49:54,787 basehttp 10767 140460681041600 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:49:54,840 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:49:54,854 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:49:54,854 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:49:54,900 basehttp 10767 140460689434304 "GET /media/interesados/profile_aap3zN3.jpg HTTP/1.1" 200 7046
+WARNING 2025-07-24 00:49:54,957 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:49:54,957 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+WARNING 2025-07-24 00:50:04,271 log 10767 140460697827008 Not Found: /media/interesados/profile_oJzCe0O.jpg
+WARNING 2025-07-24 00:50:04,276 basehttp 10767 140460697827008 "GET /media/interesados/profile_oJzCe0O.jpg HTTP/1.1" 404 14800
+WARNING 2025-07-24 00:50:15,285 log 10767 140460723005120 Not Found: /media/interesados/profile_oJzCe0O.jpg
+WARNING 2025-07-24 00:50:15,286 basehttp 10767 140460723005120 "GET /media/interesados/profile_oJzCe0O.jpg HTTP/1.1" 404 14800
+INFO 2025-07-24 00:50:15,592 basehttp 10767 140460712515264 "GET /cv/descargar/ HTTP/1.1" 200 14539
+INFO 2025-07-24 00:50:38,750 basehttp 10767 140460712515264 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:50:38,754 basehttp 10767 140460689434304 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-24 00:50:51,464 basehttp 10767 140460697827008 "GET /media/interesados/profile_aap3zN3.jpg HTTP/1.1" 200 7046
+INFO 2025-07-24 00:51:39,437 basehttp 10767 140460697827008 "GET /media/interesados/profile_aap3zN3.jpg HTTP/1.1" 200 7046
+INFO 2025-07-24 00:51:53,671 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:51:53,689 basehttp 10767 140460681041600 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:51:53,708 basehttp 10767 140460689434304 "GET /media/interesados/profile_aap3zN3.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 00:51:53,711 basehttp 10767 140460723005120 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+WARNING 2025-07-24 00:51:53,730 log 10767 140460723005120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:51:53,730 basehttp 10767 140460723005120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:51:53,840 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:51:53,919 log 10767 140460723005120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:51:53,919 basehttp 10767 140460723005120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:51:54,124 basehttp 10767 140460723005120 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:51:54,208 log 10767 140460723005120 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:51:54,210 basehttp 10767 140460723005120 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:51:54,215 basehttp 10767 140460723005120 - Broken pipe from ('127.0.0.1', 48690)
+INFO 2025-07-24 00:52:05,211 basehttp 10767 140460723005120 "GET /media/interesados/profile_aap3zN3.jpg HTTP/1.1" 200 7046
+INFO 2025-07-24 00:52:08,321 basehttp 10767 140460681041600 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:52:31,510 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:52:31,549 basehttp 10767 140460681041600 "GET /media/interesados/profile_DEeyalU.jpg HTTP/1.1" 200 6915
+WARNING 2025-07-24 00:52:31,590 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:52:31,592 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:04,357 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:53:04,390 basehttp 10767 140460689434304 "GET /media/interesados/profile_DEeyalU.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:53:04,419 log 10767 140460712515264 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:04,419 basehttp 10767 140460712515264 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:04,520 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:53:04,613 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:04,616 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:04,667 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:53:04,739 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:04,739 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:26,476 basehttp 10767 140460723005120 "GET /media/interesados/profile_DEeyalU.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 00:53:26,951 basehttp 10767 140460689434304 "GET /cv/descargar/ HTTP/1.1" 200 17238
+INFO 2025-07-24 00:53:29,379 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:53:29,398 basehttp 10767 140460689434304 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:53:29,418 basehttp 10767 140460712515264 "GET /media/interesados/profile_DEeyalU.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:53:29,422 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:29,423 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:29,503 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+WARNING 2025-07-24 00:53:29,542 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:29,543 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:29,674 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+WARNING 2025-07-24 00:53:29,722 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:29,723 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:29,808 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+WARNING 2025-07-24 00:53:29,873 log 10767 140460689434304 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:29,874 basehttp 10767 140460689434304 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:53:44,700 basehttp 10767 140460689434304 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:53:52,219 basehttp 10767 140460689434304 "GET /perfil/interesado/ HTTP/1.1" 200 93528
+INFO 2025-07-24 00:53:52,259 basehttp 10767 140460689434304 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 200 6915
+WARNING 2025-07-24 00:53:52,281 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:53:52,283 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+WARNING 2025-07-24 00:53:52,507 log 10767 140460731397824 Not Found: /media/interesados/profile_DEeyalU.jpg
+WARNING 2025-07-24 00:53:52,513 basehttp 10767 140460731397824 "GET /media/interesados/profile_DEeyalU.jpg HTTP/1.1" 404 14800
+INFO 2025-07-24 00:54:16,271 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:54:16,315 basehttp 10767 140460697827008 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:54:16,350 log 10767 140460712515264 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:16,352 basehttp 10767 140460712515264 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:16,410 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:16,489 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:16,490 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:16,628 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:16,748 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:16,749 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:16,847 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:16,956 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:16,957 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:20,936 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:54:20,954 basehttp 10767 140460697827008 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:54:20,975 basehttp 10767 140460712515264 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:54:20,980 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:20,981 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:21,148 basehttp 10767 140460697827008 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:21,199 log 10767 140460697827008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:21,200 basehttp 10767 140460697827008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:31,296 basehttp 10767 140460379068096 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 00:54:37,133 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:54:37,173 basehttp 10767 140460681041600 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:54:37,181 log 10767 140460712515264 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:37,183 basehttp 10767 140460712515264 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:37,567 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:37,602 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:37,603 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:54:37,710 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:54:37,779 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:54:37,781 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:55:09,545 basehttp 10767 140460689434304 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 00:55:31,940 basehttp 10767 140460697827008 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 00:55:32,271 basehttp 10767 140460681041600 "GET /cv/descargar/ HTTP/1.1" 200 18722
+INFO 2025-07-24 00:57:18,276 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:57:18,314 basehttp 10767 140460681041600 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:57:18,319 basehttp 10767 140460697827008 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 00:57:18,330 basehttp 10767 140460712515264 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:57:18,340 log 10767 140460387460800 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:57:18,341 basehttp 10767 140460387460800 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:57:18,415 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:57:18,574 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:57:18,578 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:57:18,666 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:57:18,772 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:57:18,772 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:57:18,854 basehttp 10767 140460681041600 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:57:18,952 log 10767 140460681041600 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:57:18,954 basehttp 10767 140460681041600 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:57:56,102 basehttp 10767 140460387460800 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 00:58:29,443 basehttp 10767 140460387460800 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:58:29,508 basehttp 10767 140460387460800 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 00:58:39,412 log 10767 140460387460800 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:58:39,415 basehttp 10767 140460387460800 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:58:49,483 basehttp 10767 140460712515264 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:58:49,568 log 10767 140460712515264 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:58:49,569 basehttp 10767 140460712515264 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:58:49,663 basehttp 10767 140460712515264 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+WARNING 2025-07-24 00:58:49,725 log 10767 140460712515264 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:58:49,726 basehttp 10767 140460712515264 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:58:56,967 basehttp 10767 140460697827008 "GET /media/interesados/profile_f90jGB9.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 00:59:15,618 basehttp 10767 140460712515264 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 00:59:22,905 basehttp 10767 140460712515264 "GET /perfil/interesado/ HTTP/1.1" 200 93537
+INFO 2025-07-24 00:59:22,941 basehttp 10767 140460387460800 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 00:59:22,952 basehttp 10767 140460712515264 "GET /media/interesados/profile_dSFMCz6.jpg HTTP/1.1" 200 4440
+WARNING 2025-07-24 00:59:22,990 log 10767 140460387460800 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 00:59:22,991 basehttp 10767 140460387460800 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 00:59:59,209 basehttp 10767 140460681041600 "GET /media/interesados/profile_dSFMCz6.jpg HTTP/1.1" 200 4440
+INFO 2025-07-24 00:59:59,484 basehttp 10767 140460387460800 "GET /cv/descargar/ HTTP/1.1" 200 17186
+INFO 2025-07-24 01:03:57,615 autoreload 10767 140461067239488 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-24 01:03:58,275 autoreload 21562 139681315074112 Watching for file changes with StatReloader
+INFO 2025-07-24 01:07:02,136 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:02,156 basehttp 21562 139681210734272 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 01:07:02,168 basehttp 21562 139681127724736 "GET /media/interesados/profile_dSFMCz6.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 01:07:02,173 basehttp 21562 139681127724736 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 01:07:02,231 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:02,378 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:02,532 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:02,693 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:04,353 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:04,517 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:13,066 basehttp 21562 139681210734272 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 01:07:13,441 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:13,468 basehttp 21562 139681210734272 "GET /media/interesados/profile_nVFiECl.jpg HTTP/1.1" 200 6752
+INFO 2025-07-24 01:07:32,706 basehttp 21562 139681210734272 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 01:07:33,073 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:33,107 basehttp 21562 139681210734272 "GET /media/interesados/profile_9d0S1qh.jpg HTTP/1.1" 200 5956
+INFO 2025-07-24 01:07:40,220 basehttp 21562 139681119332032 "GET /media/interesados/profile_9d0S1qh.jpg HTTP/1.1" 200 5956
+INFO 2025-07-24 01:07:40,525 basehttp 21562 139681210734272 "GET /cv/descargar/ HTTP/1.1" 200 18203
+WARNING 2025-07-24 01:07:44,898 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:07:44,899 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:07:51,135 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:07:51,189 basehttp 21562 139681210734272 "GET /media/interesados/profile_9d0S1qh.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 01:07:51,202 log 21562 139681127724736 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:07:51,203 basehttp 21562 139681127724736 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:07:51,323 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+WARNING 2025-07-24 01:07:51,397 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:07:51,399 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:07:51,463 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+WARNING 2025-07-24 01:07:51,538 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:07:51,542 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:07:51,595 basehttp 21562 139681127724736 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+WARNING 2025-07-24 01:07:51,663 log 21562 139681127724736 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:07:51,664 basehttp 21562 139681127724736 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:07:56,912 basehttp 21562 139681119332032 "GET /media/interesados/profile_9d0S1qh.jpg HTTP/1.1" 200 5956
+INFO 2025-07-24 01:07:57,168 basehttp 21562 139681127724736 "GET /cv/descargar/ HTTP/1.1" 200 18199
+INFO 2025-07-24 01:08:17,333 basehttp 21562 139681127724736 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 01:08:22,369 basehttp 21562 139681127724736 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:08:22,404 basehttp 21562 139681127724736 "GET /media/interesados/profile_jTa8hY0.jpg HTTP/1.1" 200 7276
+WARNING 2025-07-24 01:08:22,429 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:22,431 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:08:36,393 basehttp 21562 139681127724736 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:08:36,438 basehttp 21562 139681127724736 "GET /media/interesados/profile_jTa8hY0.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 01:08:36,449 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:36,449 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:08:36,600 basehttp 21562 139681127724736 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+WARNING 2025-07-24 01:08:36,666 log 21562 139681127724736 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:36,669 basehttp 21562 139681127724736 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:08:36,727 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:08:36,838 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+WARNING 2025-07-24 01:08:36,878 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:36,878 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+WARNING 2025-07-24 01:08:36,959 log 21562 139681210734272 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:36,960 basehttp 21562 139681210734272 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:08:46,022 basehttp 21562 139681210734272 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 01:08:46,442 basehttp 21562 139681210734272 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 01:08:46,520 basehttp 21562 139681210734272 "GET /media/interesados/profile_rePVwYe.jpg HTTP/1.1" 200 6915
+WARNING 2025-07-24 01:08:46,526 log 21562 139681127724736 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 01:08:46,528 basehttp 21562 139681127724736 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 01:08:59,025 basehttp 21562 139681119332032 "GET /media/interesados/profile_rePVwYe.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 01:08:59,293 basehttp 21562 139681127724736 "GET /cv/descargar/ HTTP/1.1" 200 18723

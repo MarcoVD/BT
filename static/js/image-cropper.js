@@ -1,4 +1,4 @@
-// static/js/image-cropper.js
+// static/js/image-cropper.js - VERSIÓN SIMPLIFICADA
 class ImageCropper {
     constructor() {
         this.cropper = null;
@@ -12,26 +12,50 @@ class ImageCropper {
     }
 
     setupEventListeners() {
-        const fileInput = document.getElementById('foto_perfil');
+        // Event listeners para los contenedores de foto de perfil
+        const profileContainers = document.querySelectorAll('.profile-photo-container, .clickeable-photo');
+        profileContainers.forEach(container => {
+            container.addEventListener('click', () => this.abrirModalCropper());
+        });
+
+        // Event listener para el drop zone
         const dropZone = document.getElementById('dropZone');
-
-        if (fileInput) {
-            fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
-        }
-
         if (dropZone) {
-            dropZone.addEventListener('click', () => fileInput?.click());
+            dropZone.addEventListener('click', () => this.abrirSelectorArchivo());
             dropZone.addEventListener('dragover', (e) => this.handleDragOver(e));
             dropZone.addEventListener('dragleave', (e) => this.handleDragLeave(e));
             dropZone.addEventListener('drop', (e) => this.handleDrop(e));
         }
 
+        // Event listener para el input file hidden
+        const fileInput = document.getElementById('foto_perfil');
+        if (fileInput) {
+            fileInput.addEventListener('change', (e) => this.handleFileSelect(e));
+        }
+
         // Botones del cropper
         document.addEventListener('click', (e) => {
-            if (e.target.id === 'cropButton') this.cropImage();
+            if (e.target.id === 'cropButton') this.cropAndSaveImage();
             if (e.target.id === 'resetCropButton') this.resetCropper();
             if (e.target.id === 'cancelCropButton') this.cancelCrop();
         });
+    }
+
+    abrirModalCropper() {
+        // Abrir modal del cropper en el paso de selección
+        const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+        cropperModal.show();
+        
+        // Asegurar que esté en el paso de selección
+        document.getElementById('cropStep').classList.remove('active');
+        document.getElementById('selectStep').classList.add('active');
+    }
+
+    abrirSelectorArchivo() {
+        const fileInput = document.getElementById('foto_perfil');
+        if (fileInput) {
+            fileInput.click();
+        }
     }
 
     handleFileSelect(event) {
@@ -80,26 +104,27 @@ class ImageCropper {
     loadImageForCropping(file) {
         const reader = new FileReader();
         reader.onload = (e) => {
-            this.showCropperStep();
+            // Ir directamente al paso de recorte
+            this.showCropperModal();
             this.initializeCropper(e.target.result);
         };
         reader.readAsDataURL(file);
     }
 
-    showCropperStep() {
+    showCropperModal() {
+        // Mostrar solo el modal del cropper
+        const cropperModal = new bootstrap.Modal(document.getElementById('cropperModal'));
+        cropperModal.show();
+        
+        // Ir directamente al paso de recorte
         document.getElementById('selectStep').classList.remove('active');
         document.getElementById('cropStep').classList.add('active');
-    }
-
-    showSelectStep() {
-        document.getElementById('cropStep').classList.remove('active');
-        document.getElementById('selectStep').classList.add('active');
-        this.destroyCropper();
     }
 
     initializeCropper(imageSrc) {
         const imageElement = document.getElementById('cropperImage');
         imageElement.src = imageSrc;
+        imageElement.style.display = 'block';
 
         // Destruir cropper existente si hay uno
         this.destroyCropper();
@@ -144,22 +169,27 @@ class ImageCropper {
         });
 
         const previewContainer = document.getElementById('cropPreview');
-        const previewImg = previewContainer.querySelector('img');
+        if (!previewContainer) return;
 
-        if (previewImg) {
-            previewImg.src = canvas.toDataURL('image/jpeg', 0.9);
-        } else {
-            const img = document.createElement('img');
-            img.src = canvas.toDataURL('image/jpeg', 0.9);
-            img.alt = 'Preview';
-            previewContainer.appendChild(img);
-        }
-
+        // Limpiar preview anterior
+        previewContainer.innerHTML = '';
+        
+        // Crear nueva imagen de preview
+        const img = document.createElement('img');
+        img.src = canvas.toDataURL('image/jpeg', 0.9);
+        img.alt = 'Preview';
+        previewContainer.appendChild(img);
         previewContainer.style.display = 'block';
     }
 
-    cropImage() {
+    cropAndSaveImage() {
         if (!this.cropper) return;
+
+        // Mostrar loading en el botón
+        const cropButton = document.getElementById('cropButton');
+        const originalText = cropButton.innerHTML;
+        cropButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...';
+        cropButton.disabled = true;
 
         const canvas = this.cropper.getCroppedCanvas({
             width: 160,
@@ -172,30 +202,75 @@ class ImageCropper {
         canvas.toBlob((blob) => {
             this.croppedBlob = blob;
             const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
-            this.updateMainPreview(dataUrl);
-            this.closeCropperModal();
-
-            // Guardar automáticamente la imagen recortada
-            this.saveImageAutomatically(blob, dataUrl);
+            
+            // Guardar la imagen inmediatamente
+            this.saveImageToServer(blob, dataUrl)
+                .then(() => {
+                    // Cerrar modal del cropper
+                    this.closeCropperModal();
+                    
+                    // Actualizar todas las imágenes en la página
+                    this.updateAllProfileImages(dataUrl);
+                    
+                    // Mostrar mensaje de éxito
+                    this.showMessage('Imagen guardada exitosamente', 'success');
+                })
+                .catch((error) => {
+                    console.error('Error:', error);
+                    this.showMessage('Error al guardar la imagen', 'error');
+                })
+                .finally(() => {
+                    // Restaurar botón
+                    cropButton.innerHTML = originalText;
+                    cropButton.disabled = false;
+                });
         }, 'image/jpeg', 0.9);
     }
 
-    updateMainPreview(dataUrl) {
-        // Actualizar preview en el modal principal
-        const mainPreviewContainer = document.getElementById('photoPreviewContainer');
-        const mainPhotoPreview = document.getElementById('photoPreview');
-        const mainPhotoPlaceholder = document.getElementById('photoPlaceholder');
+    async saveImageToServer(blob, dataUrl) {
+        // Crear FormData solo con la imagen
+        const formData = new FormData();
+        formData.append('foto_perfil', blob, 'profile.jpg');
 
-        if (mainPhotoPreview) {
-            mainPhotoPreview.src = dataUrl;
-        } else if (mainPhotoPlaceholder) {
+        // Obtener token CSRF
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+        const updateUrl = '/ajax/actualizar-foto-perfil/'; // URL específica para fotos
+
+        const response = await fetch(updateUrl, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'X-CSRFToken': csrfToken
+            }
+        });
+
+        const data = await response.json();
+
+        if (!data.success) {
+            throw new Error(data.error || 'Error desconocido');
+        }
+
+        return data;
+    }
+
+    updateAllProfileImages(imageUrl) {
+        // Actualizar imagen en el card principal del perfil
+        const mainProfileImages = document.querySelectorAll('.profile-photo');
+        const mainProfilePlaceholders = document.querySelectorAll('.profile-photo-placeholder');
+
+        // Actualizar imágenes existentes
+        mainProfileImages.forEach(img => {
+            img.src = imageUrl;
+        });
+
+        // Reemplazar placeholders con imágenes
+        mainProfilePlaceholders.forEach(placeholder => {
             const imgElement = document.createElement('img');
-            imgElement.src = dataUrl;
+            imgElement.src = imageUrl;
             imgElement.alt = 'Foto de perfil';
             imgElement.className = 'profile-photo';
-            imgElement.id = 'photoPreview';
-            mainPreviewContainer.replaceChild(imgElement, mainPhotoPlaceholder);
-        }
+            placeholder.parentNode.replaceChild(imgElement, placeholder);
+        });
     }
 
     resetCropper() {
@@ -206,9 +281,37 @@ class ImageCropper {
     }
 
     cancelCrop() {
-        this.showSelectStep();
-        document.getElementById('foto_perfil').value = '';
-        document.getElementById('cropPreview').style.display = 'none';
+        // Resetear el input file
+        const fileInput = document.getElementById('foto_perfil');
+        if (fileInput) {
+            fileInput.value = '';
+        }
+        
+        // Limpiar la imagen del cropper
+        const cropperImage = document.getElementById('cropperImage');
+        if (cropperImage) {
+            cropperImage.src = '';
+            cropperImage.style.display = 'none';
+        }
+        
+        // Destruir el cropper
+        this.destroyCropper();
+        
+        // Limpiar preview
+        const previewContainer = document.getElementById('cropPreview');
+        if (previewContainer) {
+            previewContainer.style.display = 'none';
+            previewContainer.innerHTML = '';
+        }
+        
+        // Volver al paso de selección
+        document.getElementById('cropStep').classList.remove('active');
+        document.getElementById('selectStep').classList.add('active');
+        
+        // NO cerrar el modal, solo regresar al paso 1
+        // El usuario puede volver a seleccionar una imagen o cerrar manualmente
+        
+        this.showMessage('Operación cancelada. Puedes seleccionar otra imagen.', 'info');
     }
 
     destroyCropper() {
@@ -223,89 +326,14 @@ class ImageCropper {
         if (modal) {
             modal.hide();
         }
-
-        // Regresar al modal principal después de cerrar el cropper
-        setTimeout(() => {
-            const mainModal = new bootstrap.Modal(document.getElementById('editarPerfilModal'));
-            mainModal.show();
-        }, 300);
-    }
-
-    saveImageAutomatically(blob, dataUrl) {
-        // Mostrar mensaje de guardando
-        this.showMessage('Guardando imagen...', 'info');
-
-        // Crear FormData solo con la imagen
-        const formData = new FormData();
-        formData.append('foto_perfil', blob, 'profile.jpg');
-
-        // Obtener token CSRF
-        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        const updateUrl = document.getElementById('editarPerfilForm').dataset.updateUrl || '/ajax/actualizar-perfil/';
-
-        // Enviar solo la imagen
-        fetch(updateUrl, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': csrfToken
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                // Actualizar todas las imágenes en la página con la nueva URL
-                this.updateAllProfileImages(data.data.foto_url || dataUrl);
-                this.showMessage('Imagen guardada exitosamente', 'success');
-            } else {
-                this.showMessage('Error al guardar: ' + (data.error || 'Error desconocido'), 'error');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            this.showMessage('Error de conexión al guardar la imagen', 'error');
-        });
-    }
-
-    // static/js/image-cropper.js - Función updateAllProfileImages corregida
-
-updateAllProfileImages(imageUrl) {
-    // Actualizar imagen en el card principal del perfil
-    const mainProfileImages = document.querySelectorAll('.profile-photo');
-    const mainProfilePlaceholders = document.querySelectorAll('.profile-photo-placeholder');
-
-    // Actualizar imágenes existentes
-    mainProfileImages.forEach(img => {
-        img.src = imageUrl;
-    });
-
-    // Reemplazar placeholders con imágenes
-    mainProfilePlaceholders.forEach(placeholder => {
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl;
-        imgElement.alt = 'Foto de perfil';
-        imgElement.className = 'profile-photo';
-        placeholder.parentNode.replaceChild(imgElement, placeholder);
-    });
-
-    // También actualizar en el modal si está abierto
-    const modalPreview = document.getElementById('photoPreview');
-    const modalPlaceholder = document.getElementById('photoPlaceholder');
-
-    if (modalPreview) {
-        modalPreview.src = imageUrl;
-    } else if (modalPlaceholder) {
-        const imgElement = document.createElement('img');
-        imgElement.src = imageUrl;
-        imgElement.alt = 'Foto de perfil';
-        imgElement.className = 'profile-photo';
-        imgElement.id = 'photoPreview';
-        modalPlaceholder.parentNode.replaceChild(imgElement, modalPlaceholder);
-    }
-}
-
-    getCroppedFile() {
-        return this.croppedBlob;
+        
+        // Limpiar el estado
+        this.destroyCropper();
+        document.getElementById('cropPreview').style.display = 'none';
+        
+        // Resetear pasos del modal
+        document.getElementById('cropStep').classList.remove('active');
+        document.getElementById('selectStep').classList.add('active');
     }
 
     showMessage(mensaje, tipo) {
@@ -359,10 +387,20 @@ updateAllProfileImages(imageUrl) {
 
         toastContainer.appendChild(toastDiv);
 
-        // Mostrar toast
+        // Determinar duración específica según el mensaje
+        let delay = 4000; // Por defecto 4 segundos
+        
+        if (mensaje === 'Imagen guardada exitosamente') {
+            delay = 3000; // 3 segundos específicamente para este mensaje
+        } else if (tipo === 'success') {
+            delay = 3000; // 3 segundos para otros mensajes de éxito
+        } else if (tipo === 'info') {
+            delay = 2000; // 2 segundos para info
+        }
+        
         const toast = new bootstrap.Toast(toastDiv, {
             autohide: true,
-            delay: tipo === 'info' ? 2000 : 4000
+            delay: delay
         });
         toast.show();
 

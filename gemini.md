@@ -2,7 +2,8 @@ El proyecto va encaminado a el uso de un sitio web en el cual las personas pueda
 Debe de ser muy practico, amigable y muy funcional desde las respuestas y peticiones que existan de por medio por parte de las personas registradas en el sistema e incluso desde que la visiten desde la WEB.
 Las clases, metodos, variables deben de estar en español y usando buenas practicas de programación.
 En el frontend debe de estar implementado el uso de WebResponsive.
-Cada template de HTML debe de separarse en su .css y .js den cual tendran su mismo nombre y que sea más manejable.
+Cada template de HTML debe de separarse en su .css y .js den cual tendran su mismo nombre y que sea más manejable
+
 
 
    # Instrucciones del Proyecto para Gemini

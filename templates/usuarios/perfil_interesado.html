@@ -110,7 +110,11 @@
         .contact-item span {
             color: var(--titulo-pag);
         }
-
+        .image-cropper-container {
+            width: 100%;
+            min-height: 50vh; /* Ocupa el 50% de la altura de la ventana */
+            max-height: 600px; /* Límite para no ser excesivamente grande */
+        }
         /* ==========================================================================
            Columna Derecha: Formulario de CV
            ========================================================================== */
@@ -223,6 +227,108 @@
             display: none !important;
         }
     </style>
+    <!-- <style>
+.profile-photo-container {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.profile-photo-container:hover {
+    transform: scale(1.05);
+}
+
+.photo-overlay {
+    position: absolute;
+    top: 0; 
+    left: 0; 
+    right: 0; 
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: 50%;
+    font-size: 1.2rem;
+}
+
+.profile-photo-container:hover .photo-overlay {
+    opacity: 1;
+}
+
+.photo-overlay i {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Estilos mejorados para el drop zone */
+.drop-zone {
+    border: 2px dashed #9e9e9e;
+    border-radius: 8px;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: #fafafa;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.drop-zone:hover,
+.drop-zone.dragover {
+    border-color: #2196f3;
+    background-color: #e3f2fd;
+    transform: scale(1.02);
+}
+
+.drop-zone i {
+    font-size: 3rem;
+    color: #9e9e9e;
+    margin-bottom: 15px;
+}
+
+.drop-zone p {
+    margin: 5px 0;
+    color: #666;
+}
+
+/* Estilos para los pasos del cropper */
+.cropper-step {
+    display: none;
+    min-height: 400px;
+}
+
+.cropper-step.active {
+    display: block;
+}
+
+.cropper-instructions {
+    background-color: #e3f2fd;
+    border: 1px solid #bbdefb;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.cropper-instructions h6 {
+    color: #1976d2;
+    margin-bottom: 10px;
+}
+
+.cropper-instructions p {
+    color: #424242;
+    margin: 0;
+    font-size: 14px;
+}
+</style> -->
 {% endblock %}
 
 {% block extra_js %}
@@ -237,27 +343,34 @@
     <div class="container-fluid px-2 px-sm-3">
         <div class="row g-3 g-md-4">
             <!-- Columna del perfil - MANTENER TAL COMO ESTÁ -->
+            <!-- ÁREA DE FOTO EN EL PERFIL -->
             <div class="col-12 col-lg-4 order-1">
                 <!-- Card de foto y datos básicos -->
                 <div class="card mb-3 mb-md-4">
                     <div class="card-body text-center p-3 p-md-4">
-                        <div class="profile-photo-container mb-3">
+                        <!-- ÁREA DE FOTO CLICKEABLE -->
+                        <div class="profile-photo-container mb-3" 
+                             title="Haz clic para cambiar tu foto de perfil">
                             {% if interesado.foto_perfil %}
                                 <img src="{{ interesado.foto_perfil.url }}"
-                                     class="profile-photo img-fluid rounded-circle clickeable-photo"
-                                     data-bs-toggle="modal"
-                                     data-bs-target="#cropperModal"
-                                     id="fotoPerfil">
+                                     class="profile-photo img-fluid rounded-circle "
+                                     alt="Foto de perfil">
                             {% else %}
-                                <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center clickeable-photo"
-                                     data-bs-toggle="modal"
-                                     data-bs-target="#cropperModal">
+                                <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center">
                                     <i class="bi bi-person-fill profile-icon"></i>
                                 </div>
                             {% endif %}
+                            
+                            <!-- Overlay que aparece al hacer hover -->
+                            <div class="photo-overlay">
+                                <i class="bi bi-camera-fill"></i><br>
+                                <small>Cambiar foto</small>
+                            </div>
                         </div>
+
                         <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
-                        <!-- {#va el correo, num cel y lugar donde recide #} -->
+
+                        <!-- Información de contacto -->
                         <div class="flex-grow-1">
                             <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
                             <span class="text-muted">{{ user.email }}</span>
@@ -268,7 +381,6 @@
                             <i class="bi bi-geo-alt me-2 mt-1 text-primary"></i>
                             <span class="text-muted">{{ interesado.ubicacion_completa }}</span>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -493,11 +605,25 @@
                             </div>
                         </div>
 
+                        <!-- BOTÓN DE DESCARGA CORREGIDO EN EL TEMPLATE perfil_interesado.html -->
+
                         <div class="text-end mt-4 mb-5">
                             {% if tiene_cv %}
-                                <a id="btnDescargarCV" href="{% url 'descargar_cv_pdf' %}" class=" text-white btn btn-primary" disabled>
-                                    <i class="bi bi-download"></i> Descargar PDF
+                                <a id="btnDescargarCV" 
+                                href="{% url 'descargar_cv_pdf' %}" 
+                                class="btn btn-secondary" 
+                                disabled>
+                                    <i class="bi bi-exclamation-circle"></i> 
+                                    <span class="fw-bold">CV Incompleto</span>
                                 </a>
+                            {% else %}
+                                <button type="button" 
+                                        class="btn btn-secondary" 
+                                        disabled 
+                                        title="Completa tu CV para poder descargarlo">
+                                    <i class="bi bi-exclamation-circle"></i> 
+                                    <span class="fw-bold">CV Incompleto</span>
+                                </button>
                             {% endif %}
                         </div>
                     </form>
@@ -514,12 +640,7 @@
         Ya no es necesario el modal editarPerfilModal para guardar la foto de perfil, todo debe hacerse con cropperModal.
     -->
 
-    <!-- Modal del Cropper -->
- <!-- SECCIÓN MODIFICADA DEL TEMPLATE perfil_interesado.html -->
-
-<!-- Reemplazar toda la sección de los modales con esto: -->
-
-<!-- Modal del Cropper SIMPLIFICADO - SOLO ESTE MODAL -->
+<!-- MODAL DEL CROPPER MEJORADO -->
 <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl modal-dialog-centered">
         <div class="modal-content">
@@ -531,7 +652,7 @@
             </div>
             <div class="modal-body cropper-modal-body">
 
-                <!-- Paso 1: Seleccionar imagen (Ya no se usa directamente, pero se mantiene por compatibilidad) -->
+                <!-- Paso 1: Seleccionar imagen -->
                 <div id="selectStep" class="cropper-step active">
                     <div class="cropper-instructions">
                         <h6><i class="bi bi-info-circle"></i> Instrucciones</h6>
@@ -540,8 +661,11 @@
 
                     <div class="drop-zone" id="dropZone">
                         <i class="bi bi-cloud-upload"></i>
-                        <p class="mb-2"><strong>Seleccione</strong> o arrastre una imagen en formato compatible</p>
+                        <p class="mb-2"><strong>Haz clic aquí</strong> o arrastra una imagen en formato compatible</p>
                         <p class="small text-muted">Formatos permitidos: JPG y JPEG • Tamaño Máximo 5MB</p>
+                        <button type="button" class="btn btn-primary mt-3" onclick="document.getElementById('foto_perfil').click()">
+                            <!-- <i class="bi bi-folder2-open"></i> Seleccionar Imagen -->
+                        </button>
                     </div>
                 </div>
 
@@ -560,8 +684,8 @@
                                 <button type="button" class="btn btn-outline-secondary btn-sm" id="resetCropButton">
                                     <i class="bi bi-arrow-clockwise"></i> Reiniciar
                                 </button>
-                                <button type="button" class="btn btn-outline-danger btn-sm" id="cancelCropButton">
-                                    <i class="bi bi-x-circle"></i> Cancelar
+                                <button type="button" class="btn btn-outline-warning btn-sm" id="cancelCropButton">
+                                    <i class="bi bi-arrow-left"></i> Volver a Seleccionar
                                 </button>
                                 <button type="button" class="btn btn-success btn-sm" id="cropButton">
                                     <i class="bi bi-check-circle"></i> Guardar Imagen
@@ -805,7 +929,36 @@
             </div>
         </div>
     </div>
-
+<!-- SCRIPT ADICIONAL PARA DEBUG -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Página cargada, verificando estado inicial del botón...');
+    
+    // Verificar elementos clave
+    const btnDescarga = document.getElementById('btnDescargarCV');
+    const fotoProfile = document.querySelector('.profile-photo');
+    const fotoPlaceholder = document.querySelector('.profile-photo-placeholder');
+    
+    console.log('Botón descarga encontrado:', !!btnDescarga);
+    console.log('Foto profile encontrada:', !!fotoProfile);
+    console.log('Foto placeholder encontrada:', !!fotoPlaceholder);
+    
+    if (fotoProfile) {
+        console.log('URL de foto:', fotoProfile.src);
+    }
+    
+    // Verificar otros elementos
+    const experiencias = document.querySelectorAll('#experienciaContainer .experiencia-item');
+    const educaciones = document.querySelectorAll('#educacionContainer .educacion-item');
+    const habilidades = document.querySelectorAll('#habilidadesContainer .badge');
+    const idiomas = document.querySelectorAll('#idiomasContainer .idioma-item');
+    
+    console.log('Experiencias:', experiencias.length);
+    console.log('Educaciones:', educaciones.length);
+    console.log('Habilidades:', habilidades.length);
+    console.log('Idiomas:', idiomas.length);
+});
+</script>
     <script>
         // JavaScript del CV (igual que en crear_editar_cv.html)
         // Variables globales para controlar edición
@@ -1047,24 +1200,24 @@
 
 
 
-        {#function eliminarIdioma(id) {#}
-        {#    if (confirm('¿Estás seguro de eliminar este idioma?')) {#}
-        {#        fetch(`/ajax/idioma/eliminar/${id}/`, {#}
-        {#            method: 'DELETE',#}
-        {#            headers: {#}
-        {#                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value#}
-        {#            }#}
-        {#        })#}
-        {#        .then(response => response.json())#}
-        {#        .then(data => {#}
-        {#            if (data.success) {#}
-        {#                location.reload();#}
-        {#            } else {#}
-        {#                alert('Error al eliminar: ' + data.error);#}
-        {#            }#}
-        {#        });#}
-        {#    }#}
-        {#}#}
+        // {#function eliminarIdioma(id) {#}
+        // {#    if (confirm('¿Estás seguro de eliminar este idioma?')) {#}
+        // {#        fetch(`/ajax/idioma/eliminar/${id}/`, {#}
+        // {#            method: 'DELETE',#}
+        // {#            headers: {#}
+        // {#                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value#}
+        // {#            }#}
+        // {#        })#}
+        // {#        .then(response => response.json())#}
+        // {#        .then(data => {#}
+        // {#            if (data.success) {#}
+        // {#                location.reload();#}
+        // {#            } else {#}
+        // {#                alert('Error al eliminar: ' + data.error);#}
+        // {#            }#}
+        // {#        });#}
+        // {#    }#}
+        // {#}#}
 
         function eliminarIdioma(id) {
             if (confirm('¿Estás seguro de eliminar este idioma?')) {

@@ -30,10 +30,10 @@ debug.log
 config/settings.py
 config/settings_production.py
 .github
-sudo systemctl restart nginx
-sudo systemctl daemon-reload
-sudo systemctl restart  gunicorn_bt.service
-sudo systemctl status  gunicorn_bt.service
+# sudo systemctl restart nginx
+# sudo systemctl daemon-reload
+# sudo systemctl restart  gunicorn_bt.service
+# sudo systemctl status  gunicorn_bt.service
 
 
 # Byte-compiled / optimized / DLL files

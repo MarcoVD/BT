@@ -985,19 +985,18 @@ class CrearEditarCVView(View):
 
 # usuarios/views.py - FUNCIÓN ACTUALIZADA PARA MANEJAR SOLO IMAGEN
 
+# usuarios/views.py - AGREGAR ESTA NUEVA VISTA
+
 @login_required
-def actualizar_perfil_ajax(request):
-    """Vista AJAX para actualizar SOLO la foto de perfil del interesado."""
+def actualizar_foto_perfil_ajax(request):
+    """Vista AJAX específica SOLO para actualizar foto de perfil."""
     if request.method != 'POST' or request.user.rol != 'interesado':
         return JsonResponse({'success': False, 'error': 'Método no permitido'})
 
     try:
         interesado = request.user.interesado
 
-        # Esta vista ahora SOLO maneja la foto de perfil
-        # Los datos de texto se guardan por separado con autoguardado
-        
-        # Validar y procesar foto de perfil
+        # Validar que se envió una foto
         if 'foto_perfil' not in request.FILES:
             return JsonResponse({
                 'success': False,
@@ -1020,17 +1019,12 @@ def actualizar_perfil_ajax(request):
                 'error': 'El archivo es demasiado grande. Máximo 5MB'
             })
 
-        # Para imágenes ya recortadas (blob), no necesitan procesamiento adicional
-        # Ya vienen en el tamaño correcto de 160x160px desde el cropper
-        
         # Eliminar foto anterior si existe
         if interesado.foto_perfil:
             try:
-                # Eliminar archivo físico anterior
                 if default_storage.exists(interesado.foto_perfil.name):
                     default_storage.delete(interesado.foto_perfil.name)
             except Exception as e:
-                # Log el error pero continúa (no es crítico)
                 print(f"Error al eliminar foto anterior: {e}")
 
         # Guardar nueva foto
@@ -1049,15 +1043,54 @@ def actualizar_perfil_ajax(request):
         })
 
     except Exception as e:
-        print(f"Error en actualizar_perfil_ajax: {str(e)}")
+        print(f"Error en actualizar_foto_perfil_ajax: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         })
 
 
-# ELIMINAR LA FUNCIÓN actualizar_foto_perfil_ajax PORQUE YA NO SE NECESITA
-# Solo usar actualizar_perfil_ajax
+# MANTENER LA VISTA ORIGINAL PARA OTROS CAMPOS
+@login_required
+def actualizar_perfil_ajax(request):
+    """Vista AJAX para actualizar campos de texto del perfil (sin foto)."""
+    if request.method != 'POST' or request.user.rol != 'interesado':
+        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+    try:
+        interesado = request.user.interesado
+
+        # Solo actualizar campos de texto (no foto)
+        interesado.nombre = request.POST.get('nombre', interesado.nombre)
+        interesado.apellido_paterno = request.POST.get('apellido_paterno', interesado.apellido_paterno)
+        interesado.apellido_materno = request.POST.get('apellido_materno', interesado.apellido_materno)
+        interesado.telefono = request.POST.get('telefono', interesado.telefono)
+        interesado.municipio = request.POST.get('municipio', interesado.municipio)
+        interesado.codigo_postal = request.POST.get('codigo_postal', interesado.codigo_postal)
+
+        # Fecha de nacimiento
+        fecha_nacimiento = request.POST.get('fecha_nacimiento')
+        if fecha_nacimiento:
+            interesado.fecha_nacimiento = fecha_nacimiento
+
+        interesado.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Perfil actualizado exitosamente',
+            'data': {
+                'nombre_completo': interesado.nombre_completo,
+                'telefono': interesado.telefono or 'No especificado',
+                'ubicacion': interesado.ubicacion_completa,
+            }
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': str(e)
+        })
+
 
 @require_POST
 @csrf_exempt
@@ -1393,78 +1426,117 @@ def previsualizar_cv(request):
         messages.warning(request, 'Primero debes crear tu CV.')
         return redirect('crear_editar_cv')
 
-
-# usuarios/views.py - VISTAS CORREGIDAS PARA PDFs
+# usuarios/views.py - VISTA CORREGIDA PARA DESCARGA DE PDF
 
 @login_required
 def descargar_cv_pdf(request):
-    """Vista para generar y descargar CV en PDF con URLs de imagen corregidas."""
+    """Vista para generar y descargar CV en PDF - VERSIÓN CORREGIDA."""
     if request.user.rol != 'interesado':
         messages.error(request, 'No tienes permiso para acceder a esta página.')
         return redirect('index')
 
-    interesado = request.user.interesado
-
     try:
+        interesado = request.user.interesado
+        
+        # Verificar que existe el curriculum
+        if not hasattr(interesado, 'curriculum'):
+            messages.warning(request, 'Primero debes crear tu CV.')
+            return redirect('perfil_interesado')
+            
         curriculum = interesado.curriculum
-    except Curriculum.DoesNotExist:
-        messages.warning(request, 'Primero debes crear tu CV.')
-        return redirect('crear_editar_cv')
 
-    # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE
-    foto_url = None
-    if interesado.foto_perfil:
+        # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE CON MANEJO DE ERRORES
+        foto_url = None
+        if interesado.foto_perfil:
+            try:
+                # Verificar que el archivo existe
+                if hasattr(interesado.foto_perfil, 'url') and interesado.foto_perfil.url:
+                    foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+                    print(f"URL de imagen construida: {foto_url}")  # Debug
+            except Exception as e:
+                print(f"Error al construir URL de imagen: {e}")
+                foto_url = None
+
+        # Preparar datos para el PDF
+        context = {
+            'interesado': interesado,
+            'curriculum': curriculum,
+            'experiencias': curriculum.experiencias.all().order_by('-fecha_inicio'),
+            'educaciones': curriculum.educaciones.all().order_by('-fecha_inicio'),
+            'habilidades': curriculum.habilidades.select_related('habilidad').all(),
+            'idiomas': curriculum.idiomas.all(),
+            'foto_url': foto_url,
+            'request': request,
+        }
+
+        print(f"Generando PDF para: {interesado.nombre_completo}")  # Debug
+
+        # Renderizar HTML
         try:
-            # Construir URL absoluta de la imagen
-            foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+            html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
+            print("HTML renderizado exitosamente")  # Debug
         except Exception as e:
-            print(f"Error al construir URL de imagen: {e}")
-            foto_url = None
+            print(f"Error al renderizar HTML: {str(e)}")
+            messages.error(request, f'Error al preparar el CV: {str(e)}')
+            return redirect('perfil_interesado')
 
-    # Preparar datos para el PDF
-    context = {
-        'interesado': interesado,
-        'curriculum': curriculum,
-        'experiencias': curriculum.experiencias.all(),
-        'educaciones': curriculum.educaciones.all(),
-        'habilidades': curriculum.habilidades.all(),
-        'idiomas': curriculum.idiomas.all(),
-        'foto_url': foto_url,  # ✅ PASAR URL CONSTRUIDA
-        'request': request,
-    }
+        # Generar PDF
+        try:
+            from weasyprint import HTML
+            import tempfile
+            import os
 
-    # Renderizar HTML
-    html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
+            print("Iniciando generación de PDF...")  # Debug
 
-    # Generar PDF
-    try:
-        from weasyprint import HTML
-        from django.conf import settings
+            # ✅ CONFIGURACIÓN MEJORADA PARA WEASYPRINT
+            html_doc = HTML(
+                string=html_string,
+                base_url=request.build_absolute_uri('/'),
+                encoding='utf-8'
+            )
 
-        # ✅ CONFIGURACIÓN MEJORADA PARA WEASYPRINT
-        html_doc = HTML(
-            string=html_string,
-            base_url=request.build_absolute_uri('/'),
-            encoding='utf-8'
-        )
+            # Generar PDF en memoria
+            pdf_bytes = html_doc.write_pdf(
+                optimize_images=True,
+                presentational_hints=True
+            )
 
-        pdf_bytes = html_doc.write_pdf(
-            optimize_images=True,
-            presentational_hints=True
-        )
+            print("PDF generado exitosamente")  # Debug
 
-        # Preparar respuesta
-        response = HttpResponse(pdf_bytes, content_type='application/pdf')
-        filename = f"CV_{interesado.nombre}_{interesado.apellido_paterno}.pdf"
-        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            # Preparar respuesta
+            response = HttpResponse(pdf_bytes, content_type='application/pdf')
+            
+            # Nombre del archivo seguro (sin caracteres especiales)
+            nombre_limpio = f"{interesado.nombre}_{interesado.apellido_paterno}".replace(' ', '_')
+            filename = f"CV_{nombre_limpio}.pdf"
+            
+            response['Content-Disposition'] = f'attachment; filename="{filename}"'
+            response['Content-Length'] = len(pdf_bytes)
 
-        return response
+            print(f"Enviando PDF: {filename} ({len(pdf_bytes)} bytes)")  # Debug
+
+            return response
+
+        except ImportError:
+            print("ERROR: WeasyPrint no está instalado")
+            messages.error(request, 'Error: WeasyPrint no está disponible en el servidor.')
+            return redirect('perfil_interesado')
+            
+        except Exception as e:
+            print(f"Error al generar PDF: {str(e)}")
+            import traceback
+            traceback.print_exc()  # Imprimir stack trace completo
+            
+            messages.error(request, f'Error al generar PDF. Por favor, contacta al administrador.')
+            return redirect('perfil_interesado')
 
     except Exception as e:
-        print(f"Error al generar PDF: {str(e)}")
-        messages.error(request, f'Error al generar PDF: {str(e)}')
+        print(f"Error general en descargar_cv_pdf: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        
+        messages.error(request, f'Error interno del servidor. Por favor, inténtalo nuevamente.')
         return redirect('perfil_interesado')
-
 
 @login_required
 def descargar_cv_pdf_reclutador(request):
