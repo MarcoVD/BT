@@ -59,6 +59,7 @@ MIDDLEWARE = [
 # ]
 
 
+
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
 if not DEBUG:
     # SSL/HTTPS Settings
@@ -74,10 +75,23 @@ if not DEBUG:
     X_FRAME_OPTIONS = 'DENY'
 
     # Cookie Security
-    # SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_SECURE = True
+    SESSION_COOKIE_HTTPONLY = True
+    SESSION_COOKIE_SAMESITE = 'Strict' #proteccion csrf
     # CSRF_COOKIE_SECURE = True
-    # SESSION_COOKIE_HTTPONLY = True
-    # CSRF_COOKIE_HTTPONLY = True
+    # CSRF_COOKIE_SAMESITE
+    # Asegurar que las peticiones AJAX funcionen correctamente
+    CSRF_COOKIE_HTTPONLY = False  # Permitir acceso desde JavaScript para peticiones AJAX
+    # CSRF_COOKIE_SAMESITE = 'Lax'  # Permitir peticiones AJAX desde el mismo sitio
+    
+# Configuración personalizada para timeout de sesión
+SESSION_TIMEOUT_SETTINGS = {
+    'TIMEOUT_MINUTES': 15,           # Tiempo total de inactividad
+    'WARNING_MINUTES': 2,            # Advertencia antes del logout
+    'CHECK_INTERVAL_SECONDS': 30,    # Frecuencia de verificación
+    'ENABLE_SERVER_SIDE_TIMEOUT': True,  # Habilitar middleware de timeout
+}
+    
 
 AXES_FAILURE_LIMIT = 5 #Bloquea tras 5 intentos fallidos
 AXES_COOLOFF_TIME = 1 #Tiempo en hrs
@@ -339,5 +353,10 @@ if not DEBUG:
 
 #  CONFIGURACIÓN DE SESIONES
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-SESSION_COOKIE_AGE = 86400  # 24 horas
+# 15 minutos
+SESSION_COOKIE_AGE = 900
+# Cierra sesión cuando el navegador es cerrado
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
+# Guarda la sesión  en cada peticion para manetener el timeout actualizado
 SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_NAME = 'bolsa_trabajo_sessionid'

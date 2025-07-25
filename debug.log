@@ -10090,3 +10090,387 @@ WARNING 2025-07-24 01:08:46,526 log 21562 139681127724736 Not Found: /.well-know
 WARNING 2025-07-24 01:08:46,528 basehttp 21562 139681127724736 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
 INFO 2025-07-24 01:08:59,025 basehttp 21562 139681119332032 "GET /media/interesados/profile_rePVwYe.jpg HTTP/1.1" 200 6915
 INFO 2025-07-24 01:08:59,293 basehttp 21562 139681127724736 "GET /cv/descargar/ HTTP/1.1" 200 18723
+INFO 2025-07-24 22:59:09,151 autoreload 12530 140514235260992 Watching for file changes with StatReloader
+INFO 2025-07-24 22:59:12,540 basehttp 12530 140514064242368 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 22:59:12,634 basehttp 12530 140514064242368 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-24 22:59:12,637 basehttp 12530 140514064242368 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,645 basehttp 12530 140514054801088 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,647 basehttp 12530 140514046408384 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,651 basehttp 12530 140514054801088 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,652 basehttp 12530 140514038015680 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,653 basehttp 12530 140514029622976 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:12,654 basehttp 12530 140513680291520 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,838 basehttp 12530 140513671898816 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 22:59:23,882 basehttp 12530 140513671898816 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,885 basehttp 12530 140513663506112 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,886 basehttp 12530 140513655113408 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,891 basehttp 12530 140513663506112 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,893 basehttp 12530 140513671898816 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,894 basehttp 12530 140513655113408 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,895 basehttp 12530 140513663506112 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:23,897 basehttp 12530 140513655113408 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:26,994 basehttp 12530 140513655113408 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 22:59:27,020 basehttp 12530 140513655113408 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:27,144 basehttp 12530 140513655113408 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 22:59:27,276 basehttp 12530 140513655113408 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 22:59:27,399 basehttp 12530 140513655113408 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 22:59:29,067 basehttp 12530 140513655113408 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-24 22:59:29,109 basehttp 12530 140513655113408 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-24 22:59:30,028 basehttp 12530 140513655113408 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 22:59:33,131 basehttp 12530 140513655113408 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 22:59:33,172 basehttp 12530 140513655113408 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 22:59:33,186 basehttp 12530 140513655113408 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:33,193 basehttp 12530 140513671898816 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:33,194 basehttp 12530 140513646720704 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23618
+INFO 2025-07-24 22:59:33,200 basehttp 12530 140513663506112 "GET /media/interesados/profile_rePVwYe.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 22:59:44,163 basehttp 12530 140513655113408 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 22:59:44,164 basehttp 12530 140513663506112 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 22:59:48,470 basehttp 12530 140513663506112 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 22:59:48,472 basehttp 12530 140513655113408 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 22:59:48,668 basehttp 12530 140513655113408 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 22:59:48,828 basehttp 12530 140513655113408 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 22:59:48,988 basehttp 12530 140513655113408 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 22:59:49,077 basehttp 12530 140513655113408 "GET /perfil/interesado/ HTTP/1.1" 200 95134
+INFO 2025-07-24 23:00:01,355 basehttp 12530 140513655113408 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:00:01,357 basehttp 12530 140513663506112 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:00:06,805 basehttp 12530 140513663506112 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:00:06,807 basehttp 12530 140513655113408 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:00:21,511 basehttp 12530 140513655113408 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:00:21,513 basehttp 12530 140513663506112 "POST /ajax/autoguardar_resumen_profesional/ HTTP/1.1" 200 17
+INFO 2025-07-24 23:01:29,729 basehttp 12530 140513663506112 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 171
+INFO 2025-07-24 23:01:29,770 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:01:36,992 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:01:37,148 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:01:37,273 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:01:37,409 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:02:01,594 basehttp 12530 140513663506112 "POST /ajax/experiencia/editar/2/ HTTP/1.1" 200 174
+INFO 2025-07-24 23:02:01,639 basehttp 12530 140513663506112 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:40,222 autoreload 16026 140122357985344 Watching for file changes with StatReloader
+INFO 2025-07-24 23:04:53,743 basehttp 16026 140122253334208 "POST /ajax/experiencia/editar/1/ HTTP/1.1" 200 172
+INFO 2025-07-24 23:04:53,808 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:55,524 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:55,903 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:56,034 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:56,166 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:04:56,555 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 97284
+INFO 2025-07-24 23:05:52,473 basehttp 16026 140122253334208 "POST /ajax/experiencia/agregar/ HTTP/1.1" 200 171
+INFO 2025-07-24 23:05:52,514 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99747
+INFO 2025-07-24 23:06:10,515 basehttp 16026 140122253334208 "POST /ajax/experiencia/editar/3/ HTTP/1.1" 200 177
+INFO 2025-07-24 23:06:10,555 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99741
+INFO 2025-07-24 23:06:45,158 basehttp 16026 140122253334208 "POST /ajax/experiencia/editar/1/ HTTP/1.1" 200 174
+INFO 2025-07-24 23:06:45,196 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99757
+INFO 2025-07-24 23:06:57,136 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99757
+INFO 2025-07-24 23:06:57,392 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99757
+INFO 2025-07-24 23:06:57,582 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99757
+INFO 2025-07-24 23:07:04,738 basehttp 16026 140122253334208 "POST /ajax/educacion/editar/8/ HTTP/1.1" 200 175
+INFO 2025-07-24 23:07:04,787 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99767
+INFO 2025-07-24 23:07:06,717 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99767
+INFO 2025-07-24 23:07:06,861 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99767
+INFO 2025-07-24 23:07:07,011 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99767
+INFO 2025-07-24 23:07:10,566 basehttp 16026 140122253334208 "DELETE /ajax/idioma/eliminar/3/ HTTP/1.1" 200 61
+INFO 2025-07-24 23:07:11,987 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 98693
+INFO 2025-07-24 23:07:12,138 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 98693
+INFO 2025-07-24 23:07:20,958 basehttp 16026 140122253334208 "POST /ajax/idioma/agregar/ HTTP/1.1" 200 136
+INFO 2025-07-24 23:07:21,001 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:07:31,731 basehttp 16026 140122032961216 "GET /media/interesados/profile_rePVwYe.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:07:32,059 basehttp 16026 140122253334208 "GET /cv/descargar/ HTTP/1.1" 200 18173
+INFO 2025-07-24 23:08:28,361 basehttp 16026 140122253334208 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 23:08:28,746 basehttp 16026 140122253334208 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:08:28,792 basehttp 16026 140122253334208 "GET /media/interesados/profile_5mWdlmz.jpg HTTP/1.1" 200 6891
+WARNING 2025-07-24 23:09:01,986 log 16026 140122253334208 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:01,988 basehttp 16026 140122253334208 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:01,989 basehttp 16026 140122253334208 - Broken pipe from ('127.0.0.1', 54744)
+INFO 2025-07-24 23:09:45,020 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+INFO 2025-07-24 23:09:45,080 basehttp 16026 140122009884352 "GET /media/interesados/profile_5mWdlmz.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:09:45,088 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:45,088 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:45,169 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:45,250 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:45,251 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:45,845 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:45,890 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:45,890 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:45,990 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,052 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,052 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:46,171 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,204 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,205 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:46,311 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,348 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,349 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:46,425 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,489 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,490 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:46,542 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,584 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,584 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:09:46,659 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+WARNING 2025-07-24 23:09:46,711 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:09:46,712 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:10:00,055 basehttp 16026 140122018277056 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 23:10:00,492 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99791
+INFO 2025-07-24 23:10:00,547 basehttp 16026 140122009884352 "GET /media/interesados/profile_ZwGHvQu.jpg HTTP/1.1" 200 6472
+WARNING 2025-07-24 23:10:00,550 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:10:00,550 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:10:11,832 basehttp 16026 140122253334208 "GET /media/interesados/profile_ZwGHvQu.jpg HTTP/1.1" 200 6472
+INFO 2025-07-24 23:10:12,140 basehttp 16026 140122018277056 "GET /cv/descargar/ HTTP/1.1" 200 18077
+INFO 2025-07-24 23:10:41,489 basehttp 16026 140122244941504 "GET /media/interesados/profile_ZwGHvQu.jpg HTTP/1.1" 200 6472
+INFO 2025-07-24 23:10:41,756 basehttp 16026 140122018277056 "GET /cv/descargar/ HTTP/1.1" 200 18077
+INFO 2025-07-24 23:12:43,002 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+INFO 2025-07-24 23:12:43,064 basehttp 16026 140122018277056 "GET /media/interesados/profile_ZwGHvQu.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:12:43,108 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:12:43,108 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:12:43,198 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+WARNING 2025-07-24 23:12:43,261 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:12:43,262 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:12:43,338 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+WARNING 2025-07-24 23:12:43,458 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:12:43,458 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:12:54,604 basehttp 16026 140122009884352 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 23:12:55,020 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+INFO 2025-07-24 23:12:55,107 basehttp 16026 140122009884352 "GET /media/interesados/profile_hKearSa.jpg HTTP/1.1" 200 7690
+WARNING 2025-07-24 23:12:55,114 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:12:55,115 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:34,649 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+INFO 2025-07-24 23:13:34,690 basehttp 16026 140122009884352 "GET /media/interesados/profile_hKearSa.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:13:34,699 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:34,699 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:34,775 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+WARNING 2025-07-24 23:13:34,897 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:34,899 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:35,006 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99764
+WARNING 2025-07-24 23:13:35,071 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:35,073 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:47,115 basehttp 16026 140122253334208 "GET /media/interesados/profile_hKearSa.jpg HTTP/1.1" 200 7690
+INFO 2025-07-24 23:13:51,499 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:13:51,538 basehttp 16026 140122009884352 "GET /media/interesados/profile_hKearSa.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:13:51,543 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:51,544 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:51,687 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:13:51,747 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:51,748 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:51,845 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:13:51,921 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:51,928 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:52,017 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:13:52,103 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:52,104 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:52,155 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:13:52,207 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:13:52,332 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:52,333 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+WARNING 2025-07-24 23:13:52,481 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:52,481 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:58,430 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:13:58,465 basehttp 16026 140122009884352 "GET /media/interesados/profile_hKearSa.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:13:58,472 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:58,473 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:13:59,938 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:13:59,981 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:13:59,981 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:00,111 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:14:00,159 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:00,160 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:00,315 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:14:00,379 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:00,380 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:07,303 basehttp 16026 140122009884352 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 145
+INFO 2025-07-24 23:14:07,696 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:14:07,773 basehttp 16026 140122009884352 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+WARNING 2025-07-24 23:14:07,778 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:07,781 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:25,265 basehttp 16026 140122018277056 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:14:25,573 basehttp 16026 140122009884352 "GET /cv/descargar/ HTTP/1.1" 200 18171
+INFO 2025-07-24 23:14:43,629 basehttp 16026 140121990457024 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:14:43,911 basehttp 16026 140122009884352 "GET /cv/descargar/ HTTP/1.1" 200 18169
+INFO 2025-07-24 23:14:47,586 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:14:47,620 basehttp 16026 140122009884352 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:14:47,627 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:47,629 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:47,799 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:14:47,870 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:47,871 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:14:47,961 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:14:48,054 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:14:48,057 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:15:05,860 basehttp 16026 140122018277056 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:15:06,130 basehttp 16026 140122009884352 "GET /cv/descargar/ HTTP/1.1" 200 18168
+INFO 2025-07-24 23:16:02,591 basehttp 16026 140122244941504 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:16:02,883 basehttp 16026 140122009884352 "GET /cv/descargar/ HTTP/1.1" 200 18171
+INFO 2025-07-24 23:16:08,771 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:16:08,808 basehttp 16026 140122009884352 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:16:08,818 log 16026 140121998849728 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:16:08,818 basehttp 16026 140121998849728 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:16:08,914 basehttp 16026 140122009884352 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:16:08,992 log 16026 140122009884352 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:16:08,993 basehttp 16026 140122009884352 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+ERROR 2025-07-24 23:16:16,077 log 16026 140122244941504 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1996, in get
+    if request.user.rol != 'interesado':
+       ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/functional.py", line 253, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'rol'
+ERROR 2025-07-24 23:16:16,080 basehttp 16026 140122244941504 "GET /perfil/interesado/ HTTP/1.1" 500 94291
+WARNING 2025-07-24 23:16:16,158 log 16026 140122244941504 Not Found: /favicon.ico
+WARNING 2025-07-24 23:16:16,160 basehttp 16026 140122244941504 "GET /favicon.ico HTTP/1.1" 404 14680
+INFO 2025-07-24 23:16:21,217 basehttp 16026 140122244941504 "GET / HTTP/1.1" 200 7767
+INFO 2025-07-24 23:16:21,228 basehttp 16026 140122244941504 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-24 23:16:21,523 basehttp 16026 140122244941504 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-24 23:16:21,528 basehttp 16026 140122018277056 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-24 23:16:21,532 basehttp 16026 140122244941504 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-24 23:16:21,533 basehttp 16026 140122018277056 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-24 23:16:21,564 basehttp 16026 140121982064320 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-24 23:16:21,565 basehttp 16026 140121990457024 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-24 23:16:21,566 basehttp 16026 140121764525760 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-24 23:16:22,603 basehttp 16026 140122018277056 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-24 23:16:23,332 basehttp 16026 140122018277056 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 23:16:26,760 basehttp 16026 140122018277056 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 23:16:26,790 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:16:26,807 basehttp 16026 140122018277056 "GET /static/css/image-cropper.css HTTP/1.1" 200 4583
+INFO 2025-07-24 23:16:26,810 basehttp 16026 140121990457024 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23618
+INFO 2025-07-24 23:16:26,810 basehttp 16026 140121764525760 "GET /static/js/image-cropper.js HTTP/1.1" 200 13875
+INFO 2025-07-24 23:16:26,817 basehttp 16026 140122244941504 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+WARNING 2025-07-24 23:16:34,408 log 16026 140122018277056 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:16:34,409 basehttp 16026 140122018277056 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:16:44,135 basehttp 16026 140122018277056 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:16:44,179 basehttp 16026 140122018277056 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+WARNING 2025-07-24 23:16:44,232 log 16026 140122244941504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:16:44,235 basehttp 16026 140122244941504 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:16:44,298 basehttp 16026 140122244941504 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+WARNING 2025-07-24 23:16:44,398 log 16026 140122244941504 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-24 23:16:44,399 basehttp 16026 140122244941504 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 14791
+INFO 2025-07-24 23:16:53,246 basehttp 16026 140121756133056 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-24 23:16:53,560 basehttp 16026 140122244941504 "GET /cv/descargar/ HTTP/1.1" 200 18173
+INFO 2025-07-24 23:27:00,463 autoreload 16026 140122357985344 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:27:01,063 autoreload 19644 140151600742464 Watching for file changes with StatReloader
+INFO 2025-07-24 23:27:08,981 autoreload 19799 139804700643392 Watching for file changes with StatReloader
+INFO 2025-07-24 23:27:19,565 basehttp 19799 139804528514752 "GET / HTTP/1.1" 200 8155
+INFO 2025-07-24 23:27:21,021 basehttp 19799 139804528514752 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-24 23:27:21,055 basehttp 19799 139804528514752 "GET / HTTP/1.1" 200 8080
+INFO 2025-07-24 23:27:22,125 basehttp 19799 139804528514752 "GET /login/ HTTP/1.1" 200 12033
+INFO 2025-07-24 23:27:25,018 basehttp 19799 139804528514752 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 23:27:25,051 basehttp 19799 139804528514752 "GET /perfil/interesado/ HTTP/1.1" 200 99773
+INFO 2025-07-24 23:27:25,079 basehttp 19799 139804528514752 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+ERROR 2025-07-24 23:29:35,538 log 19799 139804528514752 Internal Server Error: /perfil/interesado/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1996, in get
+    if request.user.rol != 'interesado':
+       ^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/functional.py", line 253, in inner
+    return func(_wrapped, *args)
+           ^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'AnonymousUser' object has no attribute 'rol'
+ERROR 2025-07-24 23:29:35,539 basehttp 19799 139804528514752 "GET /perfil/interesado/ HTTP/1.1" 500 95207
+WARNING 2025-07-24 23:29:35,655 log 19799 139804528514752 Not Found: /favicon.ico
+WARNING 2025-07-24 23:29:35,658 basehttp 19799 139804528514752 "GET /favicon.ico HTTP/1.1" 404 14680
+INFO 2025-07-24 23:29:50,675 autoreload 19799 139804700643392 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:29:51,157 autoreload 20220 140135271100480 Watching for file changes with StatReloader
+INFO 2025-07-24 23:35:38,554 autoreload 20220 140135271100480 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-24 23:35:39,057 autoreload 21837 140524720590912 Watching for file changes with StatReloader
+INFO 2025-07-24 23:35:50,894 autoreload 21837 140524720590912 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-24 23:35:51,350 autoreload 21963 140070131855424 Watching for file changes with StatReloader
+INFO 2025-07-24 23:36:16,411 autoreload 21963 140070131855424 /home/marco/BT/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-24 23:36:16,810 autoreload 22175 140655421087808 Watching for file changes with StatReloader
+INFO 2025-07-24 23:37:49,428 autoreload 22175 140655421087808 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-24 23:37:49,875 autoreload 22972 139909661614144 Watching for file changes with StatReloader
+INFO 2025-07-24 23:37:55,578 autoreload 22972 139909661614144 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-24 23:37:56,079 autoreload 23091 140516084363328 Watching for file changes with StatReloader
+INFO 2025-07-24 23:39:15,346 autoreload 23344 140296484954176 Watching for file changes with StatReloader
+INFO 2025-07-24 23:39:23,008 basehttp 23344 140296313632448 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:39:26,605 basehttp 23344 140296313632448 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:39:26,757 basehttp 23344 140296313632448 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:39:26,910 basehttp 23344 140296313632448 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:39:27,052 basehttp 23344 140296313632448 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:39:29,855 basehttp 23344 140296313632448 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-24 23:41:29,259 autoreload 23344 140296484954176 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:41:29,800 autoreload 24042 140109265068096 Watching for file changes with StatReloader
+INFO 2025-07-24 23:42:38,589 autoreload 24042 140109265068096 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:42:39,040 autoreload 24233 139730017046592 Watching for file changes with StatReloader
+INFO 2025-07-24 23:42:43,908 basehttp 24233 139729845614272 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-24 23:42:46,746 basehttp 24233 139729845614272 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-24 23:42:46,779 basehttp 24233 139729845614272 "GET /perfil/interesado/ HTTP/1.1" 200 101757
+INFO 2025-07-24 23:42:46,806 basehttp 24233 139729845614272 "GET /static/js/session-timeout.js HTTP/1.1" 200 13524
+INFO 2025-07-24 23:42:46,814 basehttp 24233 139729837221568 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+INFO 2025-07-24 23:42:53,508 basehttp 24233 139729845614272 "GET / HTTP/1.1" 200 10114
+INFO 2025-07-24 23:43:00,831 basehttp 24233 139729845614272 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:46:25,934 autoreload 24233 139730017046592 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:46:26,376 autoreload 24755 140467617054784 Watching for file changes with StatReloader
+INFO 2025-07-24 23:47:30,172 autoreload 24755 140467617054784 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:47:30,609 autoreload 24937 139733931130944 Watching for file changes with StatReloader
+INFO 2025-07-24 23:49:30,540 autoreload 24937 139733931130944 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:49:30,995 autoreload 25131 140192081190976 Watching for file changes with StatReloader
+INFO 2025-07-24 23:50:15,459 autoreload 25131 140192081190976 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-24 23:59:43,600 autoreload 28003 140417842946112 Watching for file changes with StatReloader
+INFO 2025-07-24 23:59:46,999 basehttp 28003 140417738905280 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:59:49,337 basehttp 28003 140417738905280 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:59:49,485 basehttp 28003 140417738905280 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-24 23:59:49,629 basehttp 28003 140417738905280 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:01:29,946 autoreload 28003 140417842946112 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:01:30,431 autoreload 28343 139823888052288 Watching for file changes with StatReloader
+INFO 2025-07-25 00:02:11,763 autoreload 28343 139823888052288 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:02:12,192 autoreload 28493 139992021364800 Watching for file changes with StatReloader
+INFO 2025-07-25 00:02:16,883 autoreload 28493 139992021364800 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:02:17,346 autoreload 28597 139777383710784 Watching for file changes with StatReloader
+INFO 2025-07-25 00:04:00,692 autoreload 28597 139777383710784 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:04:01,141 autoreload 28802 140605940772928 Watching for file changes with StatReloader
+INFO 2025-07-25 00:04:14,051 autoreload 28802 140605940772928 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:04:14,491 autoreload 28929 140303607873600 Watching for file changes with StatReloader
+INFO 2025-07-25 00:04:18,180 autoreload 28929 140303607873600 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:04:18,735 autoreload 29033 139814599925824 Watching for file changes with StatReloader
+INFO 2025-07-25 00:05:28,759 autoreload 29033 139814599925824 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:05:29,245 autoreload 29215 139640107204672 Watching for file changes with StatReloader
+INFO 2025-07-25 00:05:32,991 basehttp 29215 139640002746048 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:05:33,123 basehttp 29215 139640002746048 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:05:33,266 basehttp 29215 139640002746048 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:05:33,366 basehttp 29215 139640002746048 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:05:34,696 basehttp 29215 139640002746048 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:05:37,649 basehttp 29215 139640002746048 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-25 00:05:37,684 basehttp 29215 139640002746048 "GET /perfil/interesado/ HTTP/1.1" 200 101757
+INFO 2025-07-25 00:05:37,706 basehttp 29215 139639922882240 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-25 00:05:37,716 basehttp 29215 139640002746048 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+INFO 2025-07-25 00:05:54,839 basehttp 29215 139640002746048 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:05:56,340 basehttp 29215 139640002746048 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:06:42,440 autoreload 29215 139640107204672 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:06:42,911 autoreload 29412 140104584351808 Watching for file changes with StatReloader
+INFO 2025-07-25 00:06:52,764 autoreload 29412 140104584351808 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:06:53,246 autoreload 29538 140090868334656 Watching for file changes with StatReloader
+INFO 2025-07-25 00:07:32,685 autoreload 29538 140090868334656 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:07:33,155 autoreload 29682 140457227542592 Watching for file changes with StatReloader
+INFO 2025-07-25 00:07:34,832 autoreload 29682 140457227542592 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-25 00:07:35,288 autoreload 29779 140216562569280 Watching for file changes with StatReloader
+INFO 2025-07-25 00:07:38,850 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:39,212 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:39,339 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:39,474 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:39,607 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:39,739 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649
+INFO 2025-07-25 00:07:40,458 basehttp 29779 140216388024000 "GET / HTTP/1.1" 200 8383
+INFO 2025-07-25 00:07:43,062 basehttp 29779 140216388024000 "GET /login/ HTTP/1.1" 200 12649

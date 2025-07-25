@@ -19,6 +19,10 @@ urlpatterns = [
      path('recuperar-contrasena/', views.RecuperarContrasenaView.as_view(), name='recuperar_contrasena'),
      path('restablecer-contrasena/<str:token>/', views.RestablecerContrasenaView.as_view(), name='restablecer_contrasena'),
      path('reenviar-recuperacion/', views.ReenviarRecuperacionView.as_view(), name='reenviar_recuperacion'),
+     
+     # En la sección de URLs AJAX, agregar:
+     path('ajax/extend-session/', views.extend_session_ajax, name='extend_session_ajax'),
+     path('ajax/session-status/', views.session_status_ajax, name='session_status_ajax'),
 
     
     # ===========================

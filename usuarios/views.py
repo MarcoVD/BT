@@ -80,6 +80,148 @@ from .forms import (
     ReenviarRecuperacionForm
 )
 
+@login_required
+@require_http_methods(["POST"])
+def extend_session_ajax(request):
+    """
+    Vista AJAX para extender la sesión del usuario activo.
+    """
+    try:
+        # Validar que la petición sea AJAX
+        if not request.headers.get('Content-Type') == 'application/json':
+            return JsonResponse({
+                'success': False,
+                'error': 'Petición inválida'
+            }, status=400)
+
+        # Parsear datos JSON
+        try:
+            data = json.loads(request.body)
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'success': False,
+                'error': 'Datos JSON inválidos'
+            }, status=400)
+
+        # Verificar que el usuario esté autenticado
+        if not request.user.is_authenticated:
+            return JsonResponse({
+                'success': False,
+                'error': 'Usuario no autenticado'
+            }, status=401)
+
+        # Extender la sesión
+        request.session.modified = True
+        
+        # Opcional: Actualizar última actividad en el modelo de usuario
+        try:
+            request.user.ultimo_acceso = timezone.now()
+            request.user.save(update_fields=['ultimo_acceso'])
+        except Exception as e:
+            # Log el error pero no fallar la petición
+            logger.warning(f"No se pudo actualizar ultimo_acceso para usuario {request.user.id}: {e}")
+
+        # Log de la acción
+        logger.info(f"Sesión extendida para usuario {request.user.email} ({request.user.id})")
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Sesión extendida exitosamente',
+            'timestamp': timezone.now().isoformat(),
+            'user': {
+                'id': request.user.id,
+                'email': request.user.email,
+                'rol': request.user.rol
+            }
+        })
+
+    except Exception as e:
+        logger.error(f"Error en extend_session_ajax: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Error interno del servidor'
+        }, status=500)
+
+
+@login_required
+def session_status_ajax(request):
+    """
+    Vista AJAX para verificar el estado de la sesión.
+    Útil para verificar si la sesión sigue activa.
+    """
+    try:
+        # Información básica de la sesión
+        session_info = {
+            'authenticated': request.user.is_authenticated,
+            'user_id': request.user.id if request.user.is_authenticated else None,
+            'session_key': request.session.session_key,
+            'session_age': request.session.get_expiry_age(),  # Segundos hasta expiración
+            'session_expires_at': request.session.get_expiry_date().isoformat() if hasattr(request.session, 'get_expiry_date') else None,
+            'timestamp': timezone.now().isoformat()
+        }
+
+        # Si el usuario está autenticado, agregar más información
+        if request.user.is_authenticated:
+            session_info.update({
+                'user': {
+                    'email': request.user.email,
+                    'rol': request.user.rol,
+                    'ultimo_acceso': request.user.ultimo_acceso.isoformat() if request.user.ultimo_acceso else None,
+                    'fecha_registro': request.user.fecha_registro.isoformat() if hasattr(request.user, 'fecha_registro') else None
+                }
+            })
+
+        return JsonResponse({
+            'success': True,
+            'session': session_info
+        })
+
+    except Exception as e:
+        logger.error(f"Error en session_status_ajax: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Error al obtener estado de sesión'
+        }, status=500)
+
+
+# Opcional: Middleware personalizado para timeout de sesión
+class SessionTimeoutMiddleware:
+    """
+    Middleware para manejar timeout de sesión a nivel del servidor.
+    """
+    
+    def __init__(self, get_response):
+        self.get_response = get_response
+        # Timeout en segundos (15 minutos = 900 segundos)
+        self.session_timeout = 900
+
+    def __call__(self, request):
+        # Procesar la petición antes de la vista
+        if request.user.is_authenticated:
+            last_activity = request.session.get('last_activity')
+            now = timezone.now().timestamp()
+
+            if last_activity:
+                # Verificar si ha pasado el tiempo límite
+                if now - last_activity > self.session_timeout:
+                    # Cerrar sesión automáticamente
+                    from django.contrib.auth import logout
+                    logout(request)
+                    logger.info(f"Sesión cerrada automáticamente por timeout para usuario {request.user.email}")
+                    
+                    # Si es petición AJAX, devolver respuesta JSON
+                    if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                        return JsonResponse({
+                            'success': False,
+                            'error': 'Sesión expirada',
+                            'redirect': '/login/'
+                        }, status=401)
+
+            # Actualizar última actividad
+            request.session['last_activity'] = now
+
+        response = self.get_response(request)
+        return response
 
 # =========================================
 # VISTAS AJAX PARA HABILIDADES - CORREGIDAS

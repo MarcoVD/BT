@@ -154,5 +154,76 @@
             <script src="{% static 'js/cards-responsive.js' %}"></script>
         {% endif %}
     {% endblock %}
+<!-- EN EL template base.html, AGREGAR ANTES DEL CIERRE DE </body> -->
+
+{% if user.is_authenticated %}
+    <!-- Indicador para JavaScript de que el usuario está autenticado -->
+    <div data-user-authenticated="true" style="display: none;"></div>
+    
+    <!-- Token CSRF para peticiones AJAX -->
+    {% csrf_token %}
+    
+    <!-- Script de session timeout -->
+    <script src="{% static 'js/session-timeout.js' %}"></script>
+    
+    <!-- Configuración personalizada del timeout -->
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Configuración específica según el rol del usuario
+        let timeoutConfig = {
+            timeoutMinutes: 15,     // 15 minutos por defecto
+            warningMinutes: 2,      // Advertencia 2 minutos antes
+            checkInterval: 30000,   // Verificar cada 30 segundos
+            logoutUrl: '{% url "logout" %}',
+            extendUrl: '{% url "extend_session_ajax" %}'
+        };
+
+        {% comment %}
+        // Opcional: Diferentes timeouts según el rol
+        {% if user.rol == 'administrador' %}
+            timeoutConfig.timeoutMinutes = 30; // 30 minutos para administradores
+        {% elif user.rol == 'reclutador' %}
+            timeoutConfig.timeoutMinutes = 20; // 20 minutos para reclutadores
+        {% endif %}
+        {% endcomment %}
+
+        // Inicializar sistema de timeout
+        if (window.sessionTimeout) {
+            window.sessionTimeout.destroy(); // Destruir instancia anterior si existe
+        }
+        
+        window.sessionTimeout = new SessionTimeout(timeoutConfig);
+        
+        // Log de inicialización
+        console.log('Sistema de auto-logout configurado:', timeoutConfig);
+    });
+    </script>
+{% endif %}
+
+<!-- Estilos adicionales para el modal de timeout -->
+<style>
+#sessionTimeoutModal .modal-content {
+    animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+#sessionTimeoutModal .modal-header {
+    border-bottom: 2px solid #ffc107;
+}
+
+#sessionTimeoutModal .btn {
+    min-width: 150px;
+}
+
+/* Toast container específico para session timeout */
+#toast-container-timeout {
+    z-index: 9999 !important;
+}
+</style>
 </body>
 </html>
