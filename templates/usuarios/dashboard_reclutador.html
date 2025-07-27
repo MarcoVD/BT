@@ -86,7 +86,7 @@
 </div>
 {#fin de kpi#}
 
-{#    inicio de car de últimas vacantes publicadas#}
+{#    inicio de card de últimas vacantes publicadas#}
 
 <div class="row">
     <div class="col-lg-7 mb-4">
@@ -102,7 +102,19 @@
                             <a href="{% url 'detalle_vacante' vacante.pk %}" class="list-group-item list-group-item-action px-0">
                                 <div class="d-flex w-100 justify-content-between">
                                     <div>
-                                        <h6 class="mb-1">{{ vacante.titulo }}</h6>
+                                        <h6 class="mb-1">
+                                            {{ vacante.titulo }}
+                                            <!-- ✅ AGREGADO: Indicador visual del estado -->
+                                            {% if vacante.estado_vacante == 'borrador' %}
+                                                <span class="badge bg-warning text-dark ms-1">
+                                                    <i class="bi bi-pencil-square me-1"></i>Borrador
+                                                </span>
+                                            {% elif vacante.estado_vacante == 'cerrada' %}
+                                                <span class="badge bg-danger ms-1">
+                                                    <i class="bi bi-lock-fill me-1"></i>Cerrada
+                                                </span>
+                                            {% endif %}
+                                        </h6>
                                         <small class="text-muted">
                                             {% if vacante.estado_vacante == 'borrador' %} Creada: {% else %} Publicada: {% endif %}
                                             {{ vacante.fecha_publicacion|date:"d/m/Y" }}
@@ -228,7 +240,8 @@
                 </div>
             </div>
         </div>
-{#Resumen de Actividad#}
+
+        <!-- Resumen de Actividad -->
         <div class="card shadow-sm">
             <div class="card-header text-primary">
                 <h5 class="mb-0"><i class="bi bi-bar-chart-line-fill me-2"></i>Resumen de Actividad</h5>

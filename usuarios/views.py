@@ -1782,9 +1782,11 @@ def descargar_cv_pdf_reclutador(request):
         return redirect('mis_vacantes')
 
 
+# usuarios/views.py - Vista PublicarVacanteView actualizada con validación de título
+
 @method_decorator(login_required, name='dispatch')
 class PublicarVacanteView(View):
-    """Vista para publicar una nueva vacante."""
+    """Vista para publicar una nueva vacante - ACTUALIZADA con validación de título."""
 
     def get(self, request):
         if request.user.rol != 'reclutador':
@@ -1815,31 +1817,120 @@ class PublicarVacanteView(View):
             return redirect('dashboard_reclutador')
 
         reclutador = request.user.reclutador
-        vacante_form = VacanteForm(request.POST)
-        requisito_form = RequisitoVacanteForm(request.POST)
-
-        if vacante_form.is_valid() and requisito_form.is_valid():
+        
+        # Determinar la acción del usuario
+        accion = request.POST.get('accion')
+        
+        # ✅ VALIDACIÓN ESPECÍFICA PARA BORRADORES
+        if accion == 'guardar_borrador':
+            # Para borradores, solo validar que tenga título
+            titulo = request.POST.get('titulo', '').strip()
+            
+            if not titulo:
+                messages.error(request, 'El título de la vacante es obligatorio, incluso para borradores.')
+                
+                # Mantener los datos del formulario
+                vacante_form = VacanteForm(request.POST)
+                requisito_form = RequisitoVacanteForm(request.POST)
+                
+                context = {
+                    'vacante_form': vacante_form,
+                    'requisito_form': requisito_form,
+                    'accion': 'crear'
+                }
+                return render(request, 'usuarios/publicar_vacante.html', context)
+            
+            # Para borradores, crear vacante sin validación completa
             try:
-                # with transaction.atomic():
-                    # Determinar la acción del usuario
-                    accion = request.POST.get('accion')
+                # Crear la vacante directamente
+                vacante = Vacante.objects.create(
+                    secretaria=reclutador.secretaria,
+                    reclutador=reclutador,
+                    titulo=titulo,
+                    descripcion=request.POST.get('descripcion', ''),
+                    categoria_id=request.POST.get('categoria') or None,
+                    tipo_empleo=request.POST.get('tipo_empleo', ''),
+                    modalidad=request.POST.get('modalidad', 'presencial'),
+                    municipio=request.POST.get('municipio', ''),
+                    detalles_salario=request.POST.get('detalles_salario', ''),
+                    max_postulantes=int(request.POST.get('max_postulantes', 20)),
+                    estado_vacante='borrador',
+                    aprobada=False
+                )
+                
+                # Campos de salario (pueden estar vacíos en borradores)
+                salario_min = request.POST.get('salario_min', '').strip()
+                salario_max = request.POST.get('salario_max', '').strip()
+                
+                if salario_min:
+                    try:
+                        vacante.salario_min = float(salario_min)
+                    except ValueError:
+                        pass
+                        
+                if salario_max:
+                    try:
+                        vacante.salario_max = float(salario_max)
+                    except ValueError:
+                        pass
+                
+                # Fechas (pueden estar vacías en borradores)
+                fecha_inicio = request.POST.get('fecha_inicio_estimada')
+                if fecha_inicio:
+                    vacante.fecha_inicio_estimada = fecha_inicio
+                    
+                fecha_limite = request.POST.get('fecha_limite')
+                if fecha_limite:
+                    vacante.fecha_limite = fecha_limite
+                
+                vacante.save()
+                
+                # Crear los requisitos
+                RequisitoVacante.objects.create(
+                    vacante=vacante,
+                    descripcion_requisitos=request.POST.get('descripcion_requisitos', ''),
+                    educacion_minima=request.POST.get('educacion_minima', ''),
+                    experiencia_minima=request.POST.get('experiencia_minima') or None
+                )
+                
+                messages.success(request, f'Borrador "{titulo}" guardado exitosamente. Puedes continuar editándolo después.')
+                return redirect('mis_vacantes')
+                
+            except Exception as e:
+                logger.error(f"Error guardando borrador: {str(e)}")
+                messages.error(request, f'Error al guardar el borrador: {str(e)}')
+                
+                # Mostrar formulario con errores
+                vacante_form = VacanteForm(request.POST)
+                requisito_form = RequisitoVacanteForm(request.POST)
+                
+                context = {
+                    'vacante_form': vacante_form,
+                    'requisito_form': requisito_form,
+                    'accion': 'crear'
+                }
+                return render(request, 'usuarios/publicar_vacante.html', context)
+        
+        else:
+            # ✅ PARA PUBLICAR, USAR VALIDACIÓN COMPLETA DE FORMULARIOS
+            vacante_form = VacanteForm(request.POST)
+            requisito_form = RequisitoVacanteForm(request.POST)
 
+            if vacante_form.is_valid() and requisito_form.is_valid():
+                try:
                     # Crear la vacante
                     vacante = vacante_form.save(commit=False)
                     vacante.secretaria = reclutador.secretaria
                     vacante.reclutador = reclutador
 
                     # Establecer el estado según la acción
-                    if accion == 'guardar_borrador':
-                        vacante.estado_vacante = 'borrador'
-                        mensaje = 'Vacante guardada como borrador exitosamente.'
-                    elif accion == 'publicar':
+                    if accion == 'publicar':
                         vacante.estado_vacante = 'publicada'
-                        vacante.aprobada = True  # Puedes cambiar esto si requieres aprobación admin
-                        mensaje = 'Vacante publicada exitosamente.'
+                        vacante.aprobada = True
+                        mensaje = f'Vacante "{vacante.titulo}" publicada exitosamente.'
                     else:
                         vacante.estado_vacante = 'borrador'
-                        mensaje = 'Vacante guardada como borrador exitosamente.'
+                        mensaje = f'Vacante "{vacante.titulo}" guardada como borrador exitosamente.'
 
                     vacante.save()
 
@@ -1851,20 +1942,73 @@ class PublicarVacanteView(View):
                     messages.success(request, mensaje)
                     return redirect('mis_vacantes')
 
-            except Exception as e:
-                messages.error(request, f'Error al guardar la vacante: {str(e)}')
+                except Exception as e:
+                    logger.error(f"Error guardando vacante: {str(e)}")
+                    messages.error(request, f'Error al guardar la vacante: {str(e)}')
+            else:
+                # Mostrar errores de validación
+                errores = []
+                for field, errors in vacante_form.errors.items():
+                    for error in errors:
+                        errores.append(f"{field}: {error}")
+                for field, errors in requisito_form.errors.items():
+                    for error in errors:
+                        errores.append(f"{field}: {error}")
+                
+                if errores:
+                    messages.error(request, f"Errores de validación: {', '.join(errores)}")
 
+        # Si llegamos aquí, mostrar el formulario con errores
         context = {
             'vacante_form': vacante_form,
             'requisito_form': requisito_form,
             'accion': 'crear'
         }
         return render(request, 'usuarios/publicar_vacante.html', context)
-
+    
+# def convertir_fecha_input(fecha_str):
+#     """
+#     Convierte fecha de formato DD/MM/YYYY a YYYY-MM-DD o valida formato YYYY-MM-DD.
+#     Returns: fecha en formato YYYY-MM-DD o None si no es válida
+#     """
+#     if not fecha_str or not fecha_str.strip():
+#         return None
+    
+#     fecha_str = fecha_str.strip()
+    
+#     try:
+#         # Intentar formato YYYY-MM-DD (correcto para HTML input date)
+#         if '-' in fecha_str and len(fecha_str) == 10:
+#             datetime.strptime(fecha_str, '%Y-%m-%d')
+#             return fecha_str
+        
+#         # Intentar formato DD/MM/YYYY (formato que puede venir del frontend)
+#         elif '/' in fecha_str:
+#             fecha_obj = datetime.strptime(fecha_str, '%d/%m/%Y')
+#             return fecha_obj.strftime('%Y-%m-%d')
+        
+#         # Intentar formato DD-MM-YYYY
+#         elif '-' in fecha_str and len(fecha_str) == 10:
+#             # Verificar si es DD-MM-YYYY
+#             partes = fecha_str.split('-')
+#             if len(partes) == 3 and len(partes[0]) == 2:  # DD-MM-YYYY
+#                 fecha_obj = datetime.strptime(fecha_str, '%d-%m-%Y')
+#                 return fecha_obj.strftime('%Y-%m-%d')
+#             else:  # Ya es YYYY-MM-DD
+#                 datetime.strptime(fecha_str, '%Y-%m-%d')
+#                 return fecha_str
+        
+#         else:
+#             logger.warning(f"Formato de fecha no reconocido: {fecha_str}")
+#             return None
+            
+#     except ValueError as e:
+#         logger.error(f"Error al convertir fecha '{fecha_str}': {str(e)}")
+#         return None
 
 @method_decorator(login_required, name='dispatch')
 class EditarVacanteView(View):
-    """Vista para editar una vacante existente."""
+    """Vista para editar una vacante existente - ACTUALIZADA con validación de título."""
 
     def get(self, request, vacante_id):
         if request.user.rol != 'reclutador':
@@ -1917,30 +2061,128 @@ class EditarVacanteView(View):
             defaults={'descripcion_requisitos': ''}
         )
 
-        vacante_form = VacanteForm(request.POST, instance=vacante)
-        requisito_form = RequisitoVacanteForm(request.POST, instance=requisito)
-
-        if vacante_form.is_valid() and requisito_form.is_valid():
+        # Determinar la acción del usuario
+        accion = request.POST.get('accion')
+        
+        # ✅ VALIDACIÓN ESPECÍFICA PARA BORRADORES
+        if accion == 'guardar_borrador':
+            # Para borradores, solo validar que tenga título
+            titulo = request.POST.get('titulo', '').strip()
+            
+            if not titulo:
+                messages.error(request, 'El título de la vacante es obligatorio, incluso para borradores.')
+                
+                # Mantener los datos del formulario
+                vacante_form = VacanteForm(request.POST, instance=vacante)
+                requisito_form = RequisitoVacanteForm(request.POST, instance=requisito)
+                
+                context = {
+                    'vacante_form': vacante_form,
+                    'requisito_form': requisito_form,
+                    'vacante': vacante,
+                    'accion': 'editar'
+                }
+                return render(request, 'usuarios/publicar_vacante.html', context)
+            
+            # Para borradores, crear formularios sin validación completa
             try:
-                # with transaction.atomic():
-                    # Determinar la acción del usuario
-                    accion = request.POST.get('accion')
+                # Actualizar campos básicos directamente
+                vacante.titulo = titulo
+                vacante.descripcion = request.POST.get('descripcion', '')
+                vacante.categoria_id = request.POST.get('categoria') or None
+                vacante.tipo_empleo = request.POST.get('tipo_empleo', '')
+                vacante.modalidad = request.POST.get('modalidad', '')
+                vacante.municipio = request.POST.get('municipio', '')
+                
+                # Campos de salario (pueden estar vacíos en borradores)
+                salario_min = request.POST.get('salario_min', '').strip()
+                salario_max = request.POST.get('salario_max', '').strip()
+                
+                if salario_min:
+                    try:
+                        vacante.salario_min = float(salario_min)
+                    except ValueError:
+                        vacante.salario_min = None
+                else:
+                    vacante.salario_min = None
+                    
+                if salario_max:
+                    try:
+                        vacante.salario_max = float(salario_max)
+                    except ValueError:
+                        vacante.salario_max = None
+                else:
+                    vacante.salario_max = None
+                
+                vacante.detalles_salario = request.POST.get('detalles_salario', '')
+                
+                # Fechas (pueden estar vacías en borradores)
+                fecha_inicio = request.POST.get('fecha_inicio_estimada')
+                if fecha_inicio:
+                    vacante.fecha_inicio_estimada = fecha_inicio
+                else:
+                    vacante.fecha_inicio_estimada = None
+                    
+                fecha_limite = request.POST.get('fecha_limite')
+                if fecha_limite:
+                    vacante.fecha_limite = fecha_limite
+                else:
+                    vacante.fecha_limite = None
+                
+                max_postulantes = request.POST.get('max_postulantes')
+                if max_postulantes:
+                    vacante.max_postulantes = int(max_postulantes)
+                else:
+                    vacante.max_postulantes = 20  # Valor por defecto
+                
+                # Establecer estado como borrador
+                vacante.estado_vacante = 'borrador'
+                vacante.save()
+                
+                # Actualizar requisitos
+                requisito.descripcion_requisitos = request.POST.get('descripcion_requisitos', '')
+                requisito.educacion_minima = request.POST.get('educacion_minima', '')
+                requisito.experiencia_minima = request.POST.get('experiencia_minima') or None
+                requisito.save()
+                
+                messages.success(request, f'Borrador "{titulo}" guardado exitosamente.')
+                return redirect('mis_vacantes')
+                
+            except Exception as e:
+                logger.error(f"Error guardando borrador: {str(e)}")
+                messages.error(request, f'Error al guardar el borrador: {str(e)}')
+                
+                # Mostrar formulario con errores
+                vacante_form = VacanteForm(request.POST, instance=vacante)
+                requisito_form = RequisitoVacanteForm(request.POST, instance=requisito)
+                
+                context = {
+                    'vacante_form': vacante_form,
+                    'requisito_form': requisito_form,
+                    'vacante': vacante,
+                    'accion': 'editar'
+                }
+                return render(request, 'usuarios/publicar_vacante.html', context)
+        
+        else:
+            # ✅ PARA PUBLICAR, USAR VALIDACIÓN COMPLETA DE FORMULARIOS
+            vacante_form = VacanteForm(request.POST, instance=vacante)
+            requisito_form = RequisitoVacanteForm(request.POST, instance=requisito)
 
+            if vacante_form.is_valid() and requisito_form.is_valid():
+                try:
                     # Actualizar la vacante
-                    vacante = vacante_form.save(commit=False)
+                    vacante_actualizada = vacante_form.save(commit=False)
 
                     # Establecer el estado según la acción
-                    if accion == 'guardar_borrador':
-                        vacante.estado_vacante = 'borrador'
-                        mensaje = 'Vacante actualizada y guardada como borrador.'
-                    elif accion == 'publicar':
-                        vacante.estado_vacante = 'publicada'
-                        vacante.aprobada = True  # Puedes cambiar esto si requieres aprobación admin
-                        mensaje = 'Vacante actualizada y publicada exitosamente.'
+                    if accion == 'publicar':
+                        vacante_actualizada.estado_vacante = 'publicada'
+                        vacante_actualizada.aprobada = True
+                        mensaje = f'Vacante "{vacante_actualizada.titulo}" actualizada y publicada exitosamente.'
                     else:
-                        mensaje = 'Vacante actualizada exitosamente.'
+                        mensaje = f'Vacante "{vacante_actualizada.titulo}" actualizada exitosamente.'
 
-                    vacante.save()
+                    vacante_actualizada.save()
 
                     # Actualizar los requisitos
                     requisito_form.save()
@@ -1948,9 +2190,23 @@ class EditarVacanteView(View):
                     messages.success(request, mensaje)
                     return redirect('mis_vacantes')
 
-            except Exception as e:
-                messages.error(request, f'Error al actualizar la vacante: {str(e)}')
+                except Exception as e:
+                    logger.error(f"Error actualizando vacante: {str(e)}")
+                    messages.error(request, f'Error al actualizar la vacante: {str(e)}')
+            else:
+                # Mostrar errores de validación
+                errores = []
+                for field, errors in vacante_form.errors.items():
+                    for error in errors:
+                        errores.append(f"{field}: {error}")
+                for field, errors in requisito_form.errors.items():
+                    for error in errors:
+                        errores.append(f"{field}: {error}")
+                
+                if errores:
+                    messages.error(request, f"Errores de validación: {', '.join(errores)}")
 
+        # Si llegamos aquí, mostrar el formulario con errores
         context = {
             'vacante_form': vacante_form,
             'requisito_form': requisito_form,
@@ -2172,29 +2428,49 @@ class PerfilInteresadoView(View):
         # ELIMINAR COMPLETAMENTE ESTE MÉTODO O DEJARLO VACÍO
         # Ya no manejamos POST aquí, todo será por AJAX
         return redirect('perfil_interesado')
+
+# usuarios/views.py - DashboardReclutadorView actualizada
+
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
-    """Vista para dashboard del reclutador."""
+    """Vista para dashboard del reclutador - ACTUALIZADA."""
 
     def get(self, request):
         if request.user.rol != 'reclutador':
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
 
+        if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+            messages.error(request, 'Tu cuenta de reclutador debe estar aprobada para acceder al dashboard.')
+            return redirect('index')
+
         reclutador = request.user.reclutador
 
-        # Calcular estadísticas de vacantes
+        # Calcular estadísticas de vacantes por estado
         vacantes_activas = reclutador.vacantes.filter(estado_vacante='publicada').count()
         vacantes_borradores = reclutador.vacantes.filter(estado_vacante='borrador').count()
         vacantes_cerradas = reclutador.vacantes.filter(estado_vacante='cerrada').count()
         total_vacantes = reclutador.vacantes.count()
 
         # Obtener las últimas 3 vacantes para mostrar en el dashboard
+        # ✅ INCLUIR TODOS LOS ESTADOS para que aparezcan borradores también
         ultimas_vacantes = reclutador.vacantes.all().order_by('-fecha_actualizacion')[:3]
 
-        # TODO: Cuando implementemos postulaciones, calcular estas estadísticas
-        postulaciones_recibidas = 0  # Placeholder
-        postulaciones_nuevas = 0  # Placeholder
+        # Calcular estadísticas de postulaciones solo para vacantes publicadas
+        vacantes_publicadas = reclutador.vacantes.filter(estado_vacante='publicada')
+        
+        # Total de postulaciones recibidas
+        postulaciones_recibidas = Postulacion.objects.filter(
+            vacante__in=vacantes_publicadas
+        ).count()
+
+        # Postulaciones nuevas (últimas 24 horas)
+        from datetime import datetime, timedelta
+        hace_24_horas = timezone.now() - timedelta(hours=24)
+        postulaciones_nuevas = Postulacion.objects.filter(
+            vacante__in=vacantes_publicadas,
+            fecha_postulacion__gte=hace_24_horas
+        ).count()
 
         context = {
             'reclutador': reclutador,
@@ -2206,43 +2482,108 @@ class DashboardReclutadorView(View):
             'postulaciones_recibidas': postulaciones_recibidas,
             'postulaciones_nuevas': postulaciones_nuevas,
         }
-        # return render(request, 'usuarios/dashboard_reclutador.html', context)'usuarios/dashboard_reclutador.html', context)
 
         return render(request, 'usuarios/dashboard_reclutador.html', context)
 
+# usuarios/views.py - Vista corregida para detalle_vacante_view
+
+# Agregar al final del archivo o reemplazar la función existente
 
 def detalle_vacante_view(request, vacante_id):
     """
     Muestra los detalles de una vacante específica.
+    Permite acceso a reclutadores propietarios para ver sus borradores.
     """
-    vacante = get_object_or_404(
-        Vacante.objects.select_related('secretaria', 'categoria', 'requisitos'),
-        id=vacante_id,
-        estado_vacante='publicada',
-        aprobada=True
-    )
-
     try:
-        requisitos = vacante.requisitos
-    except RequisitoVacante.DoesNotExist:
-        requisitos = None
-    except AttributeError:
-        requisitos = None
+        # Obtener la vacante con sus relaciones
+        vacante = get_object_or_404(
+            Vacante.objects.select_related('secretaria', 'categoria', 'reclutador'),
+            id=vacante_id
+        )
+        
+        # Verificar permisos de acceso según el estado de la vacante
+        if vacante.estado_vacante == 'borrador':
+            # Solo el reclutador propietario puede ver sus borradores
+            if not request.user.is_authenticated:
+                messages.error(request, 'Debes iniciar sesión para ver esta vacante.')
+                return redirect('login')
+            
+            if request.user.rol != 'reclutador':
+                messages.error(request, 'No tienes permiso para ver esta vacante.')
+                return redirect('index')
+            
+            # Verificar que sea el reclutador propietario
+            if not hasattr(request.user, 'reclutador') or vacante.reclutador != request.user.reclutador:
+                messages.error(request, 'No tienes permiso para ver esta vacante.')
+                return redirect('mis_vacantes')
+                
+        elif vacante.estado_vacante == 'publicada':
+            # Las vacantes publicadas deben estar aprobadas para el público general
+            if not vacante.aprobada:
+                # Solo el reclutador propietario puede ver vacantes publicadas no aprobadas
+                if (not request.user.is_authenticated or 
+                    request.user.rol != 'reclutador' or
+                    not hasattr(request.user, 'reclutador') or
+                    vacante.reclutador != request.user.reclutador):
+                    messages.error(request, 'Esta vacante no está disponible.')
+                    return redirect('index')
+                    
+        elif vacante.estado_vacante in ['cerrada', 'eliminada']:
+            # Solo el reclutador propietario puede ver vacantes cerradas o eliminadas
+            if (not request.user.is_authenticated or 
+                request.user.rol != 'reclutador' or
+                not hasattr(request.user, 'reclutador') or
+                vacante.reclutador != request.user.reclutador):
+                messages.error(request, 'Esta vacante no está disponible.')
+                return redirect('index')
+        
+        # Obtener requisitos de la vacante
+        try:
+            requisitos = vacante.requisitos
+        except RequisitoVacante.DoesNotExist:
+            requisitos = None
+        except AttributeError:
+            requisitos = None
 
-    # Verificar si el usuario ya se postuló
-    ya_postulado = False
-    if request.user.is_authenticated and request.user.rol == 'interesado':
-        ya_postulado = Postulacion.objects.filter(
-            interesado=request.user.interesado,
-            vacante=vacante
-        ).exists()
+        # Verificar si el usuario ya se postuló (solo para vacantes publicadas)
+        ya_postulado = False
+        puede_postularse = False
+        
+        if request.user.is_authenticated and request.user.rol == 'interesado':
+            # Solo se puede postular a vacantes publicadas y aprobadas
+            if vacante.estado_vacante == 'publicada' and vacante.aprobada:
+                ya_postulado = Postulacion.objects.filter(
+                    interesado=request.user.interesado,
+                    vacante=vacante
+                ).exists()
+                puede_postularse = True
 
-    context = {
-        'vacante': vacante,
-        'requisitos': requisitos,
-        'ya_postulado': ya_postulado,
-    }
-    return render(request, 'usuarios/detalle_vacante.html', context)
+        # Determinar si es vista de propietario (reclutador viendo su propia vacante)
+        es_propietario = (
+            request.user.is_authenticated and 
+            request.user.rol == 'reclutador' and
+            hasattr(request.user, 'reclutador') and
+            vacante.reclutador == request.user.reclutador
+        )
+
+        context = {
+            'vacante': vacante,
+            'requisitos': requisitos,
+            'ya_postulado': ya_postulado,
+            'puede_postularse': puede_postularse,
+            'es_propietario': es_propietario,
+            'estado_vacante': vacante.estado_vacante,
+        }
+        
+        return render(request, 'usuarios/detalle_vacante.html', context)
+        
+    except Vacante.DoesNotExist:
+        messages.error(request, 'La vacante solicitada no existe.')
+        return redirect('index')
+    except Exception as e:
+        logger.error(f"Error en detalle_vacante_view: {str(e)}")
+        messages.error(request, 'Error al cargar la vacante.')
+        return redirect('index')
 
 
 @login_required

@@ -76,11 +76,70 @@
     .footer, .footer-bottom {
         display: none !important;
     }
+    
+    /* Estilos específicos para borradores */
+    .borrador-alert {
+        background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%);
+        border: 1px solid #ffc107;
+        border-radius: 0.5rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+        animation: pulse-warning 2s infinite;
+    }
+    
+    @keyframes pulse-warning {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+    }
+    
+    .borrador-badge {
+        background: linear-gradient(135deg, #ffc107, #ffb300);
+        color: #212529;
+        font-weight: 600;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 50px;
+        box-shadow: 0 2px 4px rgba(255, 193, 7, 0.3);
+    }
+    
+    .estado-cerrada {
+        background: linear-gradient(135deg, #dc3545, #c82333);
+        color: white;
+    }
+    
+    .estado-eliminada {
+        background: linear-gradient(135deg, #6c757d, #5a6268);
+        color: white;
+    }
 </style>
 {% endblock %}
 
 {% block content %}
 <div class="container job-detail-container">
+    
+    <!-- Alerta para estados especiales -->
+    {% if vacante.estado_vacante == 'borrador' %}
+        <div class="borrador-alert text-center">
+            <div class="d-flex align-items-center justify-content-center">
+                <i class="bi bi-exclamation-triangle-fill text-warning me-2" style="font-size: 1.5rem;"></i>
+                <div>
+                    <h5 class="mb-1 text-warning">Esta es una vista previa de tu borrador</h5>
+                    <p class="mb-0">Esta vacante aún no está publicada. Solo tú puedes verla.</p>
+                </div>
+            </div>
+        </div>
+    {% elif vacante.estado_vacante == 'cerrada' %}
+        <div class="alert alert-danger text-center">
+            <i class="bi bi-lock-fill me-2"></i>
+            <strong>Vacante Cerrada:</strong> Esta vacante ya no acepta más postulaciones.
+        </div>
+    {% elif vacante.estado_vacante == 'eliminada' %}
+        <div class="alert alert-secondary text-center">
+            <i class="bi bi-trash-fill me-2"></i>
+            <strong>Vacante Eliminada:</strong> Esta vacante ha sido eliminada del sistema.
+        </div>
+    {% endif %}
+
     <div class="row">
         <div class="col-lg-8">
             <div class="job-header">
@@ -89,7 +148,22 @@
                         <img src="{{ vacante.secretaria.logo.url }}" class="company-logo" alt="Logo {{ vacante.secretaria.nombre }}">
                     {% endif %}
                     <div>
-                        <h1>{{ vacante.titulo }}</h1>
+                        <h1>
+                            {{ vacante.titulo }}
+                            {% if vacante.estado_vacante == 'borrador' %}
+                                <span class="borrador-badge ms-2">
+                                    <i class="bi bi-pencil-square me-1"></i>BORRADOR
+                                </span>
+                            {% elif vacante.estado_vacante == 'cerrada' %}
+                                <span class="badge estado-cerrada ms-2">
+                                    <i class="bi bi-lock-fill me-1"></i>CERRADA
+                                </span>
+                            {% elif vacante.estado_vacante == 'eliminada' %}
+                                <span class="badge estado-eliminada ms-2">
+                                    <i class="bi bi-trash-fill me-1"></i>ELIMINADA
+                                </span>
+                            {% endif %}
+                        </h1>
                         <a href="{{ vacante.secretaria.sitio_web|default:'#' }}" target="_blank" class="company-name">{{ vacante.secretaria.nombre }}</a>
                     </div>
                 </div>
@@ -97,7 +171,11 @@
                     <span><i class="bi bi-geo-alt-fill"></i>{{ vacante.get_municipio_display }}, Estado de México</span>
                     <span><i class="bi bi-briefcase-fill"></i> {{ vacante.get_tipo_empleo_display }}</span>
                     <span><i class="bi bi-cash-stack"></i> {{ vacante.salario_formateado|default:"Salario a convenir" }}</span>
-                    <span><i class="bi bi-calendar3"></i> Publicado: {{ vacante.fecha_publicacion|timesince }}</span>
+                    {% if vacante.estado_vacante == 'borrador' %}
+                        <span><i class="bi bi-calendar3"></i> Creado: {{ vacante.fecha_publicacion|timesince }}</span>
+                    {% else %}
+                        <span><i class="bi bi-calendar3"></i> Publicado: {{ vacante.fecha_publicacion|timesince }}</span>
+                    {% endif %}
                 </div>
                 <div>
                     <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span>
@@ -130,31 +208,68 @@
         <div class="col-lg-4">
             <div class="sticky-sidebar">
                 <div class="actions-card text-center">
-                    <h5>¿Te interesa esta vacante?</h5>
-                    <div class="d-grid gap-2">
-                        {% if user.is_authenticated and user.rol == 'interesado' %}
-                            {% if ya_postulado %}
-                                <button type="button" class="btn btn-success btn-lg" disabled>
-                                    <i class="bi bi-check-circle-fill"></i> Ya te postulaste
+                    {% if es_propietario %}
+                        <!-- Vista del propietario (reclutador) -->
+                        <h5>Gestión de tu Vacante</h5>
+                        <div class="d-grid gap-2">
+                            {% if vacante.estado_vacante == 'borrador' %}
+                                <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-pencil-square"></i> Continuar Editando
+                                </a>
+                                <small class="text-muted">Publica tu vacante cuando esté lista</small>
+                            {% elif vacante.estado_vacante == 'publicada' %}
+                                <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-success btn-lg">
+                                    <i class="bi bi-people-fill"></i> Ver Postulantes
+                                </a>
+                                <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-primary text-primary">
+                                    <i class="bi bi-pencil-square"></i> Editar Vacante
+                                </a>
+                            {% elif vacante.estado_vacante == 'cerrada' %}
+                                <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                    <i class="bi bi-lock-fill"></i> Vacante Cerrada
                                 </button>
-                            {% else %}
-                                <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
-                                    <i class="bi bi-send-fill"></i> Postularme Ahora
-                                </button>
+                                <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-outline-primary text-primary">
+                                    <i class="bi bi-people-fill"></i> Ver Postulantes
+                                </a>
                             {% endif %}
-                        {% elif not user.is_authenticated %}
-                            <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
-                                <i class="bi bi-send-fill"></i> Postularme Ahora
+                            <a href="{% url 'mis_vacantes' %}" class="btn btn-outline-secondary">
+                                <i class="bi bi-arrow-left"></i> Volver a Mis Vacantes
                             </a>
-                        {% else %}
-                            <button type="button" class="btn btn-secondary btn-lg" disabled>
-                                <i class="bi bi-send-fill"></i> Postularme Ahora
-                            </button>
-                        {% endif %}
-{#                        <button type="button" class="btn btn-outline-primary text-primary">#}
-{#                            <i class="bi bi-bookmark-plus"></i> Guardar Vacante#}
-{#                        </button>#}
-                    </div>
+                        </div>
+                    {% else %}
+                        <!-- Vista de candidatos -->
+                        <h5>¿Te interesa esta vacante?</h5>
+                        <div class="d-grid gap-2">
+                            {% if user.is_authenticated and user.rol == 'interesado' %}
+                                {% if puede_postularse %}
+                                    {% if ya_postulado %}
+                                        <button type="button" class="btn btn-success btn-lg" disabled>
+                                            <i class="bi bi-check-circle-fill"></i> Ya te postulaste
+                                        </button>
+                                    {% else %}
+                                        <button type="button" class="btn btn-primary btn-lg" id="postularseBtn" onclick="postularseDirect()">
+                                            <i class="bi bi-send-fill"></i> Postularme Ahora
+                                        </button>
+                                    {% endif %}
+                                {% else %}
+                                    <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                        <i class="bi bi-lock-fill"></i> No Disponible
+                                    </button>
+                                    <small class="text-muted">Esta vacante no acepta postulaciones</small>
+                                {% endif %}
+                            {% elif not user.is_authenticated %}
+                                <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
+                                    <i class="bi bi-send-fill"></i> Postularme Ahora
+                                </a>
+                                <small class="text-muted">Necesitas una cuenta para postularte</small>
+                            {% else %}
+                                <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                    <i class="bi bi-send-fill"></i> No Disponible
+                                </button>
+                                <small class="text-muted">Solo los candidatos pueden postularse</small>
+                            {% endif %}
+                        </div>
+                    {% endif %}
                 </div>
 
                 <div class="company-info-card">
@@ -171,6 +286,8 @@
     </div>
 </div>
 
+<!-- Script para postulaciones (solo si es candidato y puede postularse) -->
+{% if user.is_authenticated and user.rol == 'interesado' and puede_postularse and not ya_postulado %}
 <script>
 function postularseDirect() {
     const postularBtn = document.getElementById('postularseBtn');
@@ -225,7 +342,6 @@ function postularseDirect() {
     });
 }
 
-
 function mostrarMensaje(mensaje, tipo) {
     // Crear contenedor de toasts si no existe
     let toastContainer = document.getElementById('toast-container');
@@ -271,4 +387,5 @@ function mostrarMensaje(mensaje, tipo) {
     });
 }
 </script>
+{% endif %}
 {% endblock %}

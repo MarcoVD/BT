@@ -1,0 +1,460 @@
+/* validaciones_vacante.css */
+/* Estilos específicos para validaciones de fechas en formulario de vacantes */
+
+/* Variables CSS */
+:root {
+    --primary-color: #9F2241;
+    --danger-color: #dc3545;
+    --success-color: #28a745;
+    --warning-color: #ffc107;
+    --info-color: #17a2b8;
+    --border-radius: 8px;
+    --transition: all 0.3s ease;
+}
+
+/* Estilos para campos de fecha con validación */
+input[type="date"].is-invalid {
+    border-color: var(--danger-color);
+    box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25);
+    animation: shake 0.5s ease-in-out;
+}
+
+input[type="date"].is-valid {
+    border-color: var(--success-color);
+    box-shadow: 0 0 0 0.25rem rgba(40, 167, 69, 0.25);
+}
+
+/* Animación de error */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+/* Mensajes de error específicos para fechas */
+.fecha-validation-error {
+    background-color: rgba(220, 53, 69, 0.1);
+    border: 1px solid rgba(220, 53, 69, 0.3);
+    border-left: 4px solid var(--danger-color);
+    color: #721c24;
+    font-weight: 500;
+    padding: 0.75rem 1rem;
+    border-radius: var(--border-radius);
+    margin-top: 0.5rem;
+    animation: slideDown 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.fecha-validation-error i {
+    color: var(--danger-color);
+    margin-right: 0.5rem;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+        max-height: 0;
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+        max-height: 100px;
+    }
+}
+
+/* Estilos para alertas de validación temporal */
+.fecha-validation-alert {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-radius: var(--border-radius);
+    backdrop-filter: blur(10px);
+    animation: slideInRight 0.4s ease;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Estilos para botones con estado dinámico */
+.btn-primary:disabled,
+.btn-secondary.btn-disabled {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    border-color: #6c757d;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary-color) 0%, #721c32 100%);
+    border: none;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(159, 34, 65, 0.3);
+}
+
+.btn-primary:not(:disabled):hover {
+    background: linear-gradient(135deg, #721c32 0%, var(--primary-color) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(159, 34, 65, 0.4);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #6c757d 0%, #5a6268 100%);
+    border: none;
+    transition: var(--transition);
+}
+
+.btn-secondary:hover:not(:disabled) {
+    background: linear-gradient(135deg, #5a6268 0%, #6c757d 100%);
+    transform: translateY(-1px);
+}
+
+/* Estilos para campos de fecha mejorados */
+input[type="date"] {
+    transition: var(--transition);
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+}
+
+input[type="date"]:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(159, 34, 65, 0.15);
+    outline: none;
+}
+
+/* Hover effect para campos de fecha */
+input[type="date"]:hover:not(:disabled) {
+    border-color: #bbb;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para labels de campos obligatorios */
+.form-label.required::after {
+    content: " *";
+    color: var(--danger-color);
+    font-weight: bold;
+}
+
+/* Estilos para información contextual */
+.fecha-info-card {
+    background: linear-gradient(135deg, rgba(23, 162, 184, 0.05) 0%, rgba(159, 34, 65, 0.05) 100%);
+    border: 1px solid rgba(23, 162, 184, 0.2);
+    border-left: 4px solid var(--info-color);
+    border-radius: var(--border-radius);
+    padding: 1.25rem;
+    margin: 1rem 0;
+}
+
+.fecha-info-card h6 {
+    color: var(--info-color);
+    font-weight: 600;
+    margin-bottom: 0.75rem;
+}
+
+.fecha-info-card ul {
+    margin-bottom: 0;
+    color: #495057;
+}
+
+.fecha-info-card ul li {
+    margin-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.fecha-info-card ul li:last-child {
+    margin-bottom: 0;
+}
+
+/* Estilos para tooltips informativos */
+.fecha-tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: help;
+    color: var(--info-color);
+}
+
+.fecha-tooltip .tooltip-text {
+    visibility: hidden;
+    width: 250px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 8px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -125px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-size: 0.875rem;
+}
+
+.fecha-tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Indicador visual para días no permitidos */
+input[type="date"]:invalid {
+    border-color: var(--warning-color);
+    background-color: rgba(255, 193, 7, 0.05);
+}
+
+/* Estilos para estado de carga */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    backdrop-filter: blur(3px);
+}
+
+.loading-spinner {
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .fecha-validation-error {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    
+    .fecha-validation-alert {
+        left: 10px;
+        right: 10px;
+        width: auto;
+        min-width: auto;
+        max-width: none;
+    }
+    
+    input[type="date"] {
+        padding: 0.625rem 0.875rem;
+        font-size: 0.9rem;
+    }
+    
+    .fecha-info-card {
+        padding: 1rem;
+        margin: 0.75rem 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .fecha-tooltip .tooltip-text {
+        width: 200px;
+        margin-left: -100px;
+        font-size: 0.8rem;
+    }
+}
+
+/* Mejoras en accesibilidad */
+input[type="date"]:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+.fecha-validation-error:focus-within {
+    outline: 1px solid var(--danger-color);
+    outline-offset: 1px;
+}
+
+/* Estados de hover para elementos interactivos */
+.btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(159, 34, 65, 0.25);
+}
+
+/* Animación sutil para transiciones de estado */
+.form-control, .btn {
+    transition: all 0.2s ease-in-out;
+}
+
+/* Estilo para campos con valor válido */
+input[type="date"].is-valid {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%2328a745' d='m2.3 6.73.76-.4 2.46-2.46-.2-.2-2.26 2.26-.81-.81-.2.2z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Estilo para campos con valor inválido */
+input[type="date"].is-invalid {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='m5.8 4.2 4 4M9.8 4.2l-4 4'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right calc(0.375em + 0.1875rem) center;
+    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+/* Estilos para mejorar la experiencia visual */
+.card {
+    transition: var(--transition);
+}
+
+.card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* Indicadores de progreso en el formulario */
+.form-progress {
+    background-color: #f8f9fa;
+    border-radius: var(--border-radius);
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #dee2e6;
+}
+
+.progress-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.progress-item:last-child {
+    margin-bottom: 0;
+}
+
+.progress-item i {
+    margin-right: 0.75rem;
+    width: 16px;
+    text-align: center;
+}
+
+.progress-item.completed {
+    color: var(--success-color);
+}
+
+.progress-item.error {
+    color: var(--danger-color);
+}
+
+.progress-item.pending {
+    color: #6c757d;
+}
+
+/* Estilos para notificaciones toast */
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1055;
+}
+
+.toast {
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: none;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+    border-radius: var(--border-radius);
+}
+
+.toast-header {
+    background-color: transparent;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para dark mode (futuro) */
+@media (prefers-color-scheme: dark) {
+    .fecha-validation-error {
+        background-color: rgba(220, 53, 69, 0.2);
+        border-color: rgba(220, 53, 69, 0.4);
+        color: #f8d7da;
+    }
+    
+    .fecha-info-card {
+        background: rgba(23, 162, 184, 0.1);
+        border-color: rgba(23, 162, 184, 0.3);
+        color: #e3f2fd;
+    }
+}
+
+/* Animaciones adicionales para feedback positivo */
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.success-feedback {
+    animation: bounceIn 0.6s ease;
+}
+
+/* Estilos para campos bloqueados temporalmente */
+input[type="date"]:disabled {
+    background-color: #f8f9fa;
+    border-color: #e9ecef;
+    color: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Mejoras en el contraste para accesibilidad */
+@media (prefers-contrast: high) {
+    input[type="date"].is-invalid {
+        border-width: 3px;
+        border-color: #b02a37;
+    }
+    
+    input[type="date"].is-valid {
+        border-width: 3px;
+        border-color: #1e7e34;
+    }
+    
+    .fecha-validation-error {
+        border-width: 2px;
+        font-weight: 600;
+    }
+}
+
+/* Estilos para impresión */
+@media print {
+    .fecha-validation-error,
+    .fecha-validation-alert,
+    .btn {
+        display: none !important;
+    }
+    
+    input[type="date"] {
+        border: 1px solid #000 !important;
+        background: none !important;
+    }
+}

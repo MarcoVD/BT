@@ -604,9 +604,10 @@ class ReclutadorRegistroForm(UserCreationForm):
 
 
 # usuarios/forms.py - Formulario VacanteForm actualizado con validaciones de salario
+# usuarios/forms.py - VacanteForm actualizado con manejo correcto de fechas
 
 class VacanteForm(forms.ModelForm):
-    """Formulario para crear/editar vacantes con validaciones de salario mejoradas."""
+    """Formulario para crear/editar vacantes con validaciones de salario y fechas mejoradas."""
 
     def clean_salario_min(self):
         """Validar salario mínimo."""
@@ -654,6 +655,28 @@ class VacanteForm(forms.ModelForm):
 
         return valor
 
+    # def clean_fecha_limite(self):
+    #     """Validar fecha límite de postulación."""
+    #     fecha_limite = self.cleaned_data.get('fecha_limite')
+        
+    #     if fecha_limite:
+    #         from datetime import date
+    #         if fecha_limite <= date.today():
+    #             raise forms.ValidationError('La fecha límite debe ser posterior a la fecha actual.')
+        
+    #     return fecha_limite
+
+    # def clean_fecha_inicio_estimada(self):
+    #     """Validar fecha de inicio estimada."""
+    #     fecha_inicio = self.cleaned_data.get('fecha_inicio_estimada')
+        
+    #     if fecha_inicio:
+    #         from datetime import date
+    #         if fecha_inicio <= date.today():
+    #             raise forms.ValidationError('La fecha de inicio debe ser futura.')
+        
+    #     return fecha_inicio
+
     class Meta:
         model = Vacante
         fields = [
@@ -694,6 +717,7 @@ class VacanteForm(forms.ModelForm):
                 'class': 'form-control',
                 'placeholder': 'Ej: A tratar, Según aptitudes, Más bonos'
             }),
+            # ✅ WIDGETS CORREGIDOS PARA FECHAS
             'fecha_inicio_estimada': forms.DateInput(attrs={
                 'class': 'form-control',
                 'type': 'date'
@@ -712,8 +736,8 @@ class VacanteForm(forms.ModelForm):
             'tipo_empleo': 'Tipo de Empleo',
             'descripcion': 'Descripción Detallada de la Vacante',
             'municipio': 'Municipio del Estado de México',
-            'salario_min': 'Salario Mínimo (MXN)',  # ✅ ACTUALIZADO
-            'salario_max': 'Salario Máximo (MXN)',  # ✅ ACTUALIZADO
+            'salario_min': 'Salario Mínimo (MXN)',
+            'salario_max': 'Salario Máximo (MXN)',
             'detalles_salario': 'Detalles Adicionales del Salario (opcional)',
             'fecha_inicio_estimada': 'Fecha Estimada de Inicio (opcional)',
             'fecha_limite': 'Fecha Límite de Postulación',
@@ -740,6 +764,14 @@ class VacanteForm(forms.ModelForm):
         self.fields['salario_min'].help_text = 'Ingresa el salario mínimo. Debe ser mayor a $0. Ejemplo: 25000.00'
         self.fields['salario_max'].help_text = 'Ingresa el salario máximo. Debe ser mayor al mínimo. Ejemplo: 35000.00'
 
+        # ✅ CONFIGURAR FORMATO DE FECHA CORRECTO
+        # self.fields['fecha_limite'].help_text = 'Selecciona la fecha límite para recibir postulaciones'
+        # self.fields['fecha_inicio_estimada'].help_text = 'Fecha estimada de inicio del trabajo (opcional)'
+        
+        # # Configurar input_formats para fechas
+        # self.fields['fecha_limite'].input_formats = ['%Y-%m-%d']
+        # self.fields['fecha_inicio_estimada'].input_formats = ['%Y-%m-%d']
+
         # Agregar opción vacía al select de municipio
         municipio_choices = [('', 'Selecciona un municipio...')] + list(self.fields['municipio'].choices)
         self.fields['municipio'].choices = municipio_choices
@@ -749,6 +781,8 @@ class VacanteForm(forms.ModelForm):
         cleaned_data = super().clean()
         salario_min = cleaned_data.get('salario_min')
         salario_max = cleaned_data.get('salario_max')
+        # fecha_limite = cleaned_data.get('fecha_limite')
+        # fecha_inicio = cleaned_data.get('fecha_inicio_estimada')
 
         # ✅ VALIDACIÓN: El salario mínimo no puede ser mayor o igual al máximo
         if salario_min and salario_max:
@@ -774,7 +808,6 @@ class VacanteForm(forms.ModelForm):
                 })
 
         return cleaned_data
-
 
 
 class RequisitoVacanteForm(forms.ModelForm):
