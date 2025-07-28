@@ -12027,3 +12027,1348 @@ INFO 2025-07-27 01:46:42,992 basehttp 17480 140624946788032 "GET /vacante/3/ HTT
 INFO 2025-07-27 01:46:44,445 basehttp 17480 140624946788032 "GET /editar-vacante/3/ HTTP/1.1" 200 56059
 INFO 2025-07-27 01:46:52,696 autoreload 17480 140625122893888 /home/marco/BT/BT/usuarios/views.py changed, reloading.
 INFO 2025-07-27 01:46:53,177 autoreload 17686 140218204577856 Watching for file changes with StatReloader
+INFO 2025-07-27 01:48:10,789 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 14005
+INFO 2025-07-27 01:48:38,168 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 01:48:38,197 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 26029
+INFO 2025-07-27 01:48:42,162 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56073
+INFO 2025-07-27 02:03:20,115 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:03:20,669 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:03:20,767 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:11:04,731 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:11:04,800 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 26029
+INFO 2025-07-27 02:11:07,797 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56073
+INFO 2025-07-27 02:11:48,273 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 200 56738
+INFO 2025-07-27 02:20:40,767 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 200 56741
+INFO 2025-07-27 02:20:47,906 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 15990
+INFO 2025-07-27 02:20:49,913 basehttp 17686 140218100520640 "GET /dashboard/reclutador/ HTTP/1.1" 200 18884
+INFO 2025-07-27 02:20:53,616 basehttp 17686 140218100520640 "GET /vacante/3/ HTTP/1.1" 200 15128
+INFO 2025-07-27 02:20:55,325 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:21:25,296 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:22:03,018 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:22:03,333 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:22:03,474 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:22:19,897 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16006
+INFO 2025-07-27 02:22:24,568 basehttp 17686 140218100520640 "GET /dashboard/reclutador/ HTTP/1.1" 200 18884
+INFO 2025-07-27 02:22:26,859 basehttp 17686 140218100520640 "GET /vacante/3/ HTTP/1.1" 200 15128
+INFO 2025-07-27 02:22:28,409 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56076
+INFO 2025-07-27 02:22:40,070 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16006
+INFO 2025-07-27 02:23:13,348 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:23:13,410 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 26038
+INFO 2025-07-27 02:23:22,629 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56079
+INFO 2025-07-27 02:24:21,371 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56082
+INFO 2025-07-27 02:24:21,505 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56082
+INFO 2025-07-27 02:24:21,627 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56082
+INFO 2025-07-27 02:24:21,798 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56082
+INFO 2025-07-27 02:24:39,884 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:24:39,953 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 25740
+INFO 2025-07-27 02:24:45,631 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 14021
+INFO 2025-07-27 02:24:53,282 basehttp 17686 140218100520640 "GET /dashboard/reclutador/ HTTP/1.1" 200 19187
+INFO 2025-07-27 02:24:57,652 basehttp 17686 140218100520640 "GET /vacante/3/ HTTP/1.1" 200 15738
+INFO 2025-07-27 02:24:59,365 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56082
+INFO 2025-07-27 02:25:08,438 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:25:08,496 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 25740
+INFO 2025-07-27 02:25:51,574 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 14021
+INFO 2025-07-27 02:25:53,559 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 25380
+INFO 2025-07-27 02:25:58,754 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56072
+INFO 2025-07-27 02:26:10,359 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:26:10,423 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 25740
+INFO 2025-07-27 02:26:13,012 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56072
+INFO 2025-07-27 02:26:25,397 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:26:25,447 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 26038
+INFO 2025-07-27 02:28:34,703 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:36,090 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:36,207 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:36,367 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:36,518 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:36,676 basehttp 17686 140218100520640 "GET / HTTP/1.1" 200 16009
+INFO 2025-07-27 02:28:37,750 basehttp 17686 140218100520640 "GET /dashboard/reclutador/ HTTP/1.1" 200 18887
+INFO 2025-07-27 02:28:39,052 basehttp 17686 140218100520640 "GET /vacante/3/ HTTP/1.1" 200 15134
+INFO 2025-07-27 02:28:40,841 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56273
+INFO 2025-07-27 02:29:12,357 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:29:12,417 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 25758
+INFO 2025-07-27 02:29:16,969 basehttp 17686 140218100520640 "GET /editar-vacante/3/ HTTP/1.1" 200 56279
+INFO 2025-07-27 02:29:26,488 basehttp 17686 140218100520640 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 02:29:26,564 basehttp 17686 140218100520640 "GET /mis-vacantes/ HTTP/1.1" 200 26056
+INFO 2025-07-27 23:11:12,086 autoreload 5388 140448271196224 Watching for file changes with StatReloader
+INFO 2025-07-27 23:11:20,955 basehttp 5388 140448100226752 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:11:20,989 basehttp 5388 140448082392768 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:20,991 basehttp 5388 140448074000064 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:20,992 basehttp 5388 140448091834048 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10623
+INFO 2025-07-27 23:11:20,992 basehttp 5388 140448100226752 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:20,998 basehttp 5388 140448091834048 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:21,000 basehttp 5388 140448074000064 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:21,002 basehttp 5388 140448057214656 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:21,002 basehttp 5388 140448082392768 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:11:21,003 basehttp 5388 140448065607360 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:13:26,522 basehttp 5388 140448091834048 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:13:26,549 basehttp 5388 140448091834048 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-27 23:13:26,711 basehttp 5388 140448091834048 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:13:26,785 basehttp 5388 140448091834048 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:13:26,956 basehttp 5388 140448091834048 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:13:27,080 basehttp 5388 140448091834048 "GET / HTTP/1.1" 200 14599
+INFO 2025-07-27 23:13:28,194 basehttp 5388 140448091834048 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-27 23:13:33,673 basehttp 5388 140448082392768 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:13:33,704 basehttp 5388 140448082392768 "GET /dashboard/reclutador/ HTTP/1.1" 200 19043
+INFO 2025-07-27 23:13:33,778 basehttp 5388 140448082392768 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:13:35,230 basehttp 5388 140448082392768 "GET /vacante/3/ HTTP/1.1" 200 15298
+ERROR 2025-07-27 23:13:37,503 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:13:37,507 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 248129
+WARNING 2025-07-27 23:13:37,627 log 5388 140448082392768 Not Found: /favicon.ico
+WARNING 2025-07-27 23:13:37,627 basehttp 5388 140448082392768 "GET /favicon.ico HTTP/1.1" 404 15242
+ERROR 2025-07-27 23:15:55,438 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:15:55,440 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 248129
+INFO 2025-07-27 23:15:57,982 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+ERROR 2025-07-27 23:16:00,013 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:16:00,015 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 248132
+ERROR 2025-07-27 23:16:02,097 log 5388 140448082392768 Internal Server Error: /editar-vacante/2/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:16:02,099 basehttp 5388 140448082392768 "GET /editar-vacante/2/ HTTP/1.1" 500 248002
+INFO 2025-07-27 23:16:03,391 basehttp 5388 140448082392768 "GET /vacante/2/postulantes/ HTTP/1.1" 200 39832
+INFO 2025-07-27 23:16:03,446 basehttp 5388 140448082392768 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+ERROR 2025-07-27 23:16:12,149 log 5388 140448082392768 Internal Server Error: /publicar-vacante/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1808, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:16:12,152 basehttp 5388 140448082392768 "GET /publicar-vacante/ HTTP/1.1" 500 246814
+ERROR 2025-07-27 23:16:30,287 log 5388 140448082392768 Internal Server Error: /publicar-vacante/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 1808, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:16:30,289 basehttp 5388 140448082392768 "GET /publicar-vacante/ HTTP/1.1" 500 248000
+INFO 2025-07-27 23:16:32,423 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:32,602 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:32,716 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:32,879 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:33,777 basehttp 5388 140448082392768 "GET /vacante/3/postulantes/ HTTP/1.1" 200 33614
+ERROR 2025-07-27 23:16:35,514 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 428: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:16:35,517 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 249318
+INFO 2025-07-27 23:16:55,759 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:55,914 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:56,052 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:56,162 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:16:57,407 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 200 36354
+ERROR 2025-07-27 23:17:16,730 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 11: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:17:16,732 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 314674
+INFO 2025-07-27 23:17:25,076 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:17:25,377 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:17:25,516 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:17:25,621 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+ERROR 2025-07-27 23:17:26,671 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 11: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:17:26,673 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 314507
+INFO 2025-07-27 23:17:59,454 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:17:59,694 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:17:59,823 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+ERROR 2025-07-27 23:18:00,718 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 9: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:18:00,720 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 281474
+ERROR 2025-07-27 23:18:02,525 log 5388 140448082392768 Internal Server Error: /editar-vacante/3/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 510, in parse
+    compile_func = self.tags[command]
+                   ~~~~~~~~~^^^^^^^^^
+KeyError: 'static'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 104, in view
+    return self.dispatch(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/utils/decorators.py", line 48, in _wrapper
+    return bound_method(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/contrib/auth/decorators.py", line 59, in _view_wrapper
+    return view_func(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/views/generic/base.py", line 143, in dispatch
+    return handler(request, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 2042, in get
+    return render(request, 'usuarios/publicar_vacante.html', context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/shortcuts.py", line 25, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader.py", line 15, in get_template
+    return engine.get_template(template_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/backends/django.py", line 79, in get_template
+    return Template(self.engine.get_template(template_name), self)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 177, in get_template
+    template, origin = self.find_template(template_name)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/engine.py", line 159, in find_template
+    template = loader.get_template(name, skip=skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/cached.py", line 57, in get_template
+    template = super().get_template(template_name, skip)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loaders/base.py", line 28, in get_template
+    return Template(
+           ^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 154, in __init__
+    self.nodelist = self.compile_nodelist()
+                    ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 196, in compile_nodelist
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 299, in do_extends
+    nodelist = parser.parse()
+               ^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 518, in parse
+    raise self.error(token, e)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 516, in parse
+    compiled_result = compile_func(self, token)
+                      ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/loader_tags.py", line 234, in do_block
+    nodelist = parser.parse(("endblock",))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 512, in parse
+    self.invalid_block_tag(token, command, parse_until)
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/template/base.py", line 567, in invalid_block_tag
+    raise self.error(
+django.template.exceptions.TemplateSyntaxError: Invalid block tag on line 9: 'static', expected 'endblock'. Did you forget to register or load this tag?
+ERROR 2025-07-27 23:18:02,527 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 500 281474
+INFO 2025-07-27 23:19:30,611 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:19:30,944 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:19:31,152 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:19:31,249 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:19:31,335 basehttp 5388 140448082392768 "GET /mis-vacantes/ HTTP/1.1" 200 25826
+INFO 2025-07-27 23:19:32,317 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 200 36466
+INFO 2025-07-27 23:19:32,337 basehttp 5388 140448082392768 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 20838
+INFO 2025-07-27 23:19:36,282 basehttp 5388 140448082392768 "GET /dashboard/reclutador/ HTTP/1.1" 200 19043
+INFO 2025-07-27 23:19:40,128 basehttp 5388 140448082392768 "GET /publicar-vacante/ HTTP/1.1" 200 36677
+INFO 2025-07-27 23:19:45,580 basehttp 5388 140448082392768 "GET /vacante/3/ HTTP/1.1" 200 15298
+INFO 2025-07-27 23:19:47,683 basehttp 5388 140448082392768 "GET /editar-vacante/3/ HTTP/1.1" 200 36466
+INFO 2025-07-27 23:21:21,389 autoreload 5388 140448271196224 /home/marco/BT/BT/usuarios/forms.py changed, reloading.
+INFO 2025-07-27 23:21:21,997 autoreload 9402 140158294163520 Watching for file changes with StatReloader
+INFO 2025-07-27 23:22:40,054 basehttp 9402 140158123022016 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:22:40,091 basehttp 9402 140158123022016 "GET /mis-vacantes/ HTTP/1.1" 200 25884
+INFO 2025-07-27 23:22:44,547 basehttp 9402 140158123022016 "GET /editar-vacante/3/ HTTP/1.1" 200 36442
+INFO 2025-07-27 23:22:44,573 basehttp 9402 140158123022016 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+WARNING 2025-07-27 23:22:51,062 log 9402 140158123022016 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:22:51,064 basehttp 9402 140158123022016 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:23:38,851 basehttp 9402 140158123022016 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:23:39,349 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:23:57,874 basehttp 9402 140158114629312 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:23:57,962 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-27 23:24:04,356 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:24:04,384 basehttp 9402 140158114629312 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+WARNING 2025-07-27 23:24:43,799 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:24:43,801 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:25:37,325 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36443
+INFO 2025-07-27 23:25:37,375 basehttp 9402 140158114629312 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+WARNING 2025-07-27 23:25:37,423 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:25:37,423 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:36:00,044 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:00,076 basehttp 9402 140158104139456 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:36:13,816 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:13,928 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:14,023 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:14,166 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:14,316 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:36:14,445 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:37:23,426 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:37:26,409 log 9402 140158104139456 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:37:26,410 basehttp 9402 140158104139456 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:27,641 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:38:27,696 basehttp 9402 140158114629312 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+WARNING 2025-07-27 23:38:27,705 log 9402 140158104139456 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:27,706 basehttp 9402 140158104139456 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:28,285 basehttp 9402 140158104139456 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:38:28,316 log 9402 140158104139456 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:28,316 basehttp 9402 140158104139456 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:28,370 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:38:28,420 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:28,420 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:35,300 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:38:35,387 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:35,390 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:35,668 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:38:35,723 log 9402 140158104139456 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:35,730 basehttp 9402 140158104139456 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:35,763 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:38:35,857 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+WARNING 2025-07-27 23:38:35,941 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:38:35,941 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:38:57,775 basehttp 9402 140158104139456 "GET / HTTP/1.1" 200 14596
+INFO 2025-07-27 23:38:57,802 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 0
+INFO 2025-07-27 23:38:57,804 basehttp 9402 140158104139456 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-27 23:38:57,804 basehttp 9402 140158095746752 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-27 23:38:57,807 basehttp 9402 140158086305472 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-27 23:38:57,807 basehttp 9402 140158114629312 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-27 23:38:57,807 basehttp 9402 140157734876864 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-27 23:38:57,807 basehttp 9402 140158095746752 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-27 23:38:57,808 basehttp 9402 140158123022016 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-27 23:38:57,809 basehttp 9402 140157734876864 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-27 23:38:59,718 basehttp 9402 140157734876864 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-27 23:39:00,590 basehttp 9402 140157734876864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-27 23:39:00,619 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:04,040 basehttp 9402 140157734876864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:39:04,074 basehttp 9402 140157734876864 "GET /perfil/interesado/ HTTP/1.1" 200 101907
+INFO 2025-07-27 23:39:04,087 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:04,090 basehttp 9402 140158095746752 "GET /static/css/image-cropper.css HTTP/1.1" 200 4583
+INFO 2025-07-27 23:39:04,094 basehttp 9402 140158104139456 "GET /static/js/image-cropper.js HTTP/1.1" 200 13875
+INFO 2025-07-27 23:39:04,096 basehttp 9402 140158086305472 "GET /static/js/session-timeout.js HTTP/1.1" 200 13524
+INFO 2025-07-27 23:39:04,097 basehttp 9402 140158123022016 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23618
+INFO 2025-07-27 23:39:04,101 basehttp 9402 140158114629312 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 200 6915
+INFO 2025-07-27 23:39:05,988 basehttp 9402 140157734876864 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:39:06,020 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 14909
+INFO 2025-07-27 23:39:07,113 basehttp 9402 140157734876864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-27 23:39:07,133 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:11,093 basehttp 9402 140157734876864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:39:11,121 basehttp 9402 140157734876864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-27 23:39:11,192 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:12,489 basehttp 9402 140157734876864 "GET /vacante/3/ HTTP/1.1" 200 15287
+INFO 2025-07-27 23:39:14,126 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:39:14,138 basehttp 9402 140157734876864 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 20838
+INFO 2025-07-27 23:39:35,221 basehttp 9402 140157734876864 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:39:35,253 basehttp 9402 140157734876864 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-27 23:39:35,325 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:41,543 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:39:41,558 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:47,797 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:39:47,818 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10623
+INFO 2025-07-27 23:39:47,937 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:39:47,948 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:48,102 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:39:48,136 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:39:48,213 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:39:48,277 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:40:01,909 basehttp 9402 140157734876864 "GET / HTTP/1.1" 200 16168
+INFO 2025-07-27 23:40:01,922 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-27 23:40:06,439 basehttp 9402 140157734876864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-27 23:40:06,471 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:40:09,517 basehttp 9402 140157734876864 "GET /vacante/3/ HTTP/1.1" 200 15287
+INFO 2025-07-27 23:40:09,537 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:40:10,913 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 36447
+INFO 2025-07-27 23:40:10,927 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:40:49,192 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+WARNING 2025-07-27 23:40:49,250 log 9402 140157734876864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:40:49,252 basehttp 9402 140157734876864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:41:38,962 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:41:39,009 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+WARNING 2025-07-27 23:41:39,034 log 9402 140157734876864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:41:39,034 basehttp 9402 140157734876864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:41:39,157 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+WARNING 2025-07-27 23:41:39,213 log 9402 140157734876864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:41:39,215 basehttp 9402 140157734876864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:41:39,261 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+WARNING 2025-07-27 23:41:39,362 log 9402 140157734876864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:41:39,363 basehttp 9402 140157734876864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:41:39,440 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+WARNING 2025-07-27 23:41:39,495 log 9402 140158114629312 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-27 23:41:39,496 basehttp 9402 140158114629312 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-27 23:41:51,126 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:41:51,143 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:41:51,149 basehttp 9402 140157734876864 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:41:51,237 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:41:51,399 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:42:56,206 basehttp 9402 140158114629312 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:42:56,232 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25884
+INFO 2025-07-27 23:42:56,286 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:42:59,148 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:43:06,202 basehttp 9402 140158114629312 "GET / HTTP/1.1" 200 14175
+INFO 2025-07-27 23:43:42,539 basehttp 9402 140158114629312 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:43:42,566 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25884
+INFO 2025-07-27 23:43:42,643 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:43:57,421 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:45:30,306 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:45:30,320 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:45:30,323 basehttp 9402 140157734876864 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:45:30,592 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:45:30,681 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:45:30,880 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:45:30,999 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:45:31,104 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:46:26,600 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:46:26,613 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:46:26,894 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:46:26,988 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:46:27,175 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:48:33,340 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57271
+INFO 2025-07-27 23:48:33,359 basehttp 9402 140157734876864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:48:46,815 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:48:46,828 basehttp 9402 140157734876864 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 20838
+INFO 2025-07-27 23:49:24,019 basehttp 9402 140157734876864 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:49:24,055 basehttp 9402 140157734876864 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:49:24,108 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:49:24,227 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 57298
+INFO 2025-07-27 23:50:23,333 basehttp 9402 140158114629312 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:50:23,381 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-27 23:50:23,453 basehttp 9402 140158114629312 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:50:51,002 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,283 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,424 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,560 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,710 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,841 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:51,973 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:52,093 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:52,757 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:52,903 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:53,037 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:53,130 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:50:56,784 basehttp 9402 140158114629312 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-27 23:51:00,211 basehttp 9402 140158114629312 "GET /editar-vacante/3/ HTTP/1.1" 200 36437
+INFO 2025-07-27 23:51:00,223 basehttp 9402 140158114629312 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 20838
+INFO 2025-07-27 23:52:49,233 autoreload 9402 140158294163520 /home/marco/BT/BT/config/settings.py changed, reloading.
+INFO 2025-07-27 23:52:49,705 autoreload 13188 140226282278976 Watching for file changes with StatReloader
+INFO 2025-07-27 23:54:59,105 basehttp 13188 140226110592704 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:54:59,138 basehttp 13188 140226110592704 "GET /mis-vacantes/ HTTP/1.1" 200 25884
+INFO 2025-07-27 23:54:59,195 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:55:01,377 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:55:01,389 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:56:00,332 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:56:00,344 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:56:00,474 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:56:00,660 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:56:46,813 basehttp 13188 140226110592704 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:56:46,835 basehttp 13188 140226110592704 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-27 23:56:46,896 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:57:39,195 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:57:39,208 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-27 23:57:40,378 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:57:40,511 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:58:25,311 basehttp 13188 140226110592704 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-27 23:58:25,349 basehttp 13188 140226110592704 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-27 23:58:29,932 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36435
+INFO 2025-07-27 23:58:29,947 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-27 23:58:29,950 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:00:43,283 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:00:43,295 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-28 00:00:43,297 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:00:43,559 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:00:43,727 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:00:43,814 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:00:43,988 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:00:44,077 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 30837
+INFO 2025-07-28 00:01:11,960 basehttp 13188 140226110592704 "POST /editar-vacante/3/ HTTP/1.1" 200 31734
+INFO 2025-07-28 00:01:39,123 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36426
+INFO 2025-07-28 00:01:40,986 basehttp 13188 140226110592704 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:01:42,074 basehttp 13188 140226110592704 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:01:42,210 basehttp 13188 140226110592704 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:01:43,077 basehttp 13188 140226110592704 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-28 00:01:44,232 basehttp 13188 140226110592704 "GET /vacante/3/ HTTP/1.1" 200 15467
+INFO 2025-07-28 00:01:45,519 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36426
+INFO 2025-07-28 00:01:45,534 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:02:02,427 basehttp 13188 140226110592704 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-28 00:02:02,461 basehttp 13188 140226110592704 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-28 00:02:06,223 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36426
+WARNING 2025-07-28 00:02:26,164 log 13188 140226110592704 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-28 00:02:26,165 basehttp 13188 140226110592704 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-28 00:04:36,373 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:04:36,390 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-28 00:04:36,396 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:24,790 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:24,802 basehttp 13188 140226110592704 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:24,806 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 22955
+INFO 2025-07-28 00:08:25,177 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,191 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:25,294 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,306 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:25,465 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,478 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:25,556 basehttp 13188 140226100102848 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,567 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:25,702 basehttp 13188 140226100102848 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,730 basehttp 13188 140226100102848 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:08:25,821 basehttp 13188 140226110592704 "GET /editar-vacante/3/ HTTP/1.1" 200 36373
+INFO 2025-07-28 00:08:25,840 basehttp 13188 140226110592704 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-28 00:09:23,361 basehttp 13188 140226100102848 "POST /editar-vacante/3/ HTTP/1.1" 302 0
+INFO 2025-07-28 00:09:23,388 basehttp 13188 140226100102848 "GET /mis-vacantes/ HTTP/1.1" 200 26182
+INFO 2025-07-28 00:09:25,928 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:09:30,615 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:09:30,830 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:09:30,972 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:10:03,412 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169
+INFO 2025-07-28 00:10:03,571 basehttp 13188 140226100102848 "GET / HTTP/1.1" 200 16169

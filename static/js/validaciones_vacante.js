@@ -1,376 +1,435 @@
 /**
- * validaciones_vacante.js
- * Script de validaciones para formulario de publicar/editar vacantes
- * Ubicación: BT/static/js/validaciones_vacante.js
+ * validador_fechas_vacante.js
+ * Script mejorado para validaciones de fechas en formulario de vacantes
+ * Ubicación: BT/static/js/validador_fechas_vacante.js
  *
- * Funcionalidades:
- * - Validación de fechas (inicio estimada y límite)
- * - Prevención de selección de domingos
- * - Validación de fechas futuras
- * - Validación de diferencia entre fechas
- * - Control de estado del formulario
+ * Restricciones implementadas:
+ * I) Las fechas se almacenan en BD como YYYY-MM-DD
+ * II) fechaInicio y fechaLimite NUNCA pueden ser el mismo día
+ * III) Ninguna fecha puede ser en el pasado (ayer, antier, etc.)
+ * IV) fechaInicio siempre debe ser al menos un día después que fechaLimite
  */
 
-class ValidadorVacante {
+class ValidadorFechasVacante {
     constructor() {
-        // Elementos del DOM
-        this.elements = {};
+        // Referencias a elementos del DOM
+        this.elementosDOM = {};
         
         // Estado de validación
-        this.validationState = {
-            fechaInicio: false,
-            fechaLimite: false,
-            fechasValidas: false
+        this.estadoValidacion = {
+            fechaInicioValida: false,
+            fechaLimiteValida: false,
+            relacionFechasValida: false,
+            formularioListo: false
+        };
+
+        // Configuración de mensajes de error
+        this.mensajesError = {
+            fechaPasada: 'No se pueden seleccionar fechas pasadas. La fecha debe ser posterior a hoy.',
+            fechasDuplicadas: 'La fecha de inicio y la fecha límite no pueden ser el mismo día.',
+            fechaInicioAnterior: 'La fecha de inicio debe ser al menos un día después de la fecha límite.',
+            fechaLimiteRequerida: 'La fecha límite de postulación es obligatoria.',
+            fechaInvalida: 'Por favor, selecciona una fecha válida.',
+            domingoNoPermitido: 'No se pueden seleccionar domingos. Las postulaciones no están disponibles los domingos.'
         };
 
         // Inicializar cuando el DOM esté listo
         if (document.readyState === 'loading') {
-            document.addEventListener('DOMContentLoaded', () => this.init());
+            document.addEventListener('DOMContentLoaded', () => this.inicializar());
         } else {
-            this.init();
+            this.inicializar();
         }
     }
 
     /**
-     * Inicializa el validador
+     * Inicializa el validador de fechas
      */
-    init() {
+    inicializar() {
         try {
-            this.setupElements();
-            this.setupEventListeners();
-            this.setMinDates();
-            this.validateInitialValues();
-            console.log('✅ ValidadorVacante inicializado correctamente');
+            this.configurarElementosDOM();
+            this.configurarEventos();
+            this.establecerFechasMinimas();
+            this.validarValoresIniciales();
+            console.log('✅ ValidadorFechasVacante inicializado correctamente');
         } catch (error) {
-            console.error('❌ Error al inicializar ValidadorVacante:', error);
+            console.error('❌ Error al inicializar ValidadorFechasVacante:', error);
         }
     }
 
     /**
      * Configura las referencias a elementos del DOM
      */
-    setupElements() {
-        // Campos de fecha
-        this.elements.fechaInicio = document.getElementById('id_fecha_inicio_estimada');
-        this.elements.fechaLimite = document.getElementById('id_fecha_limite');
+    configurarElementosDOM() {
+        // Campos de fecha principales
+        this.elementosDOM.campoFechaInicio = document.getElementById('id_fecha_inicio_estimada');
+        this.elementosDOM.campoFechaLimite = document.getElementById('id_fecha_limite');
         
         // Contenedores para mensajes de error
-        this.elements.fechaInicioContainer = this.elements.fechaInicio?.closest('.col-md-6') || this.elements.fechaInicio?.parentElement;
-        this.elements.fechaLimiteContainer = this.elements.fechaLimite?.closest('.col-md-6') || this.elements.fechaLimite?.parentElement;
+        this.elementosDOM.contenedorFechaInicio = this.elementosDOM.campoFechaInicio?.closest('.col-md-6') || 
+                                                  this.elementosDOM.campoFechaInicio?.parentElement;
+        this.elementosDOM.contenedorFechaLimite = this.elementosDOM.campoFechaLimite?.closest('.col-md-6') || 
+                                                  this.elementosDOM.campoFechaLimite?.parentElement;
         
-        // Botones del formulario
-        this.elements.btnPublicar = document.getElementById('btn-publicar');
-        this.elements.btnBorrador = document.querySelector('button[name="accion"][value="guardar_borrador"]');
-        this.elements.form = document.getElementById('vacanteForm');
+        // Elementos del formulario
+        this.elementosDOM.botonPublicar = document.getElementById('btn-publicar');
+        this.elementosDOM.botonBorrador = document.querySelector('button[name="accion"][value="guardar_borrador"]');
+        this.elementosDOM.formulario = document.getElementById('vacanteForm');
 
-        // Verificar que los elementos necesarios existen
-        if (!this.elements.fechaInicio || !this.elements.fechaLimite) {
-            throw new Error('No se encontraron los campos de fecha requeridos');
+        // Verificar elementos críticos
+        if (!this.elementosDOM.campoFechaLimite) {
+            throw new Error('No se encontró el campo de fecha límite (requerido)');
         }
     }
 
     /**
-     * Configura los event listeners
+     * Configura los event listeners para validación en tiempo real
      */
-    setupEventListeners() {
-        // Validación de fecha de inicio
-        if (this.elements.fechaInicio) {
-            this.elements.fechaInicio.addEventListener('change', () => this.validateFechaInicio());
-            this.elements.fechaInicio.addEventListener('input', () => this.validateFechaInicio());
+    configurarEventos() {
+        // Eventos para fecha de inicio (opcional)
+        if (this.elementosDOM.campoFechaInicio) {
+            this.elementosDOM.campoFechaInicio.addEventListener('change', () => this.validarFechaInicio());
+            this.elementosDOM.campoFechaInicio.addEventListener('input', () => this.validarFechaInicio());
         }
 
-        // Validación de fecha límite
-        if (this.elements.fechaLimite) {
-            this.elements.fechaLimite.addEventListener('change', () => this.validateFechaLimite());
-            this.elements.fechaLimite.addEventListener('input', () => this.validateFechaLimite());
-        }
+        // Eventos para fecha límite (obligatoria)
+        this.elementosDOM.campoFechaLimite.addEventListener('change', () => this.validarFechaLimite());
+        this.elementosDOM.campoFechaLimite.addEventListener('input', () => this.validarFechaLimite());
 
         // Validación antes de enviar el formulario
-        if (this.elements.form) {
-            this.elements.form.addEventListener('submit', (e) => this.handleSubmit(e));
+        if (this.elementosDOM.formulario) {
+            this.elementosDOM.formulario.addEventListener('submit', (evento) => this.manejarEnvioFormulario(evento));
         }
     }
 
     /**
-     * Establece las fechas mínimas permitidas
+     * Establece las fechas mínimas permitidas (mañana)
      */
-    setMinDates() {
-        const hoy = new Date();
-        const manana = new Date(hoy.getTime() + 24 * 60 * 60 * 1000);
-        const fechaMinima = this.formatDateForInput(manana);
+    establecerFechasMinimas() {
+        const fechaHoy = new Date();
+        const fechaManana = new Date(fechaHoy.getTime() + 24 * 60 * 60 * 1000);
+        const fechaMinimaFormateada = this.formatearFechaParaInput(fechaManana);
 
         // Establecer fecha mínima para ambos campos
-        if (this.elements.fechaInicio) {
-            this.elements.fechaInicio.setAttribute('min', fechaMinima);
+        if (this.elementosDOM.campoFechaInicio) {
+            this.elementosDOM.campoFechaInicio.setAttribute('min', fechaMinimaFormateada);
         }
         
-        if (this.elements.fechaLimite) {
-            this.elements.fechaLimite.setAttribute('min', fechaMinima);
-        }
+        this.elementosDOM.campoFechaLimite.setAttribute('min', fechaMinimaFormateada);
     }
 
     /**
      * Valida los valores iniciales (útil para modo edición)
      */
-    validateInitialValues() {
-        if (this.elements.fechaInicio.value) {
-            this.validateFechaInicio();
+    validarValoresIniciales() {
+        if (this.elementosDOM.campoFechaInicio?.value) {
+            this.validarFechaInicio();
         }
-        if (this.elements.fechaLimite.value) {
-            this.validateFechaLimite();
+        if (this.elementosDOM.campoFechaLimite.value) {
+            this.validarFechaLimite();
         }
     }
 
     /**
      * Valida la fecha de inicio estimada
      */
-    validateFechaInicio() {
-        const fechaInicio = this.elements.fechaInicio.value;
+    validarFechaInicio() {
+        const valorFechaInicio = this.elementosDOM.campoFechaInicio?.value;
         
-        if (!fechaInicio) {
-            this.validationState.fechaInicio = true; // Campo opcional
-            this.clearFieldError(this.elements.fechaInicio);
-            this.validateRelacionFechas();
+        if (!valorFechaInicio) {
+            // Campo opcional - si está vacío es válido
+            this.estadoValidacion.fechaInicioValida = true;
+            this.limpiarErroresCampo(this.elementosDOM.campoFechaInicio);
+            this.validarRelacionEntreFechas();
+            this.actualizarEstadoBotones();
             return;
         }
 
-        const fecha = new Date(fechaInicio);
-        const hoy = new Date();
-        
-        // Resetear horas para comparación precisa
-        hoy.setHours(0, 0, 0, 0);
-        fecha.setHours(0, 0, 0, 0);
+        const fechaInicioSeleccionada = new Date(valorFechaInicio + 'T00:00:00');
+        let esFechaValida = true;
+        let mensajeError = '';
 
-        let esValida = true;
-        let mensaje = '';
+        console.log(`Validando fecha inicio: ${valorFechaInicio} - Objeto Date: ${fechaInicioSeleccionada.toDateString()}`);
 
-        // 1. No puede ser fecha pasada
-        if (fecha <= hoy) {
-            esValida = false;
-            mensaje = 'La fecha de inicio no puede ser hoy o una fecha anterior.';
+        // Validación I: Verificar formato y fecha válida
+        if (isNaN(fechaInicioSeleccionada.getTime())) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.fechaInvalida;
         }
-        // 2. No puede ser domingo
-        else if (this.esDomingo(fecha)) {
-            esValida = false;
-            mensaje = 'No se puede seleccionar domingo como fecha de inicio.';
+        // Validación III: No puede ser fecha pasada
+        else if (this.esFechaPasada(fechaInicioSeleccionada)) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.fechaPasada;
+        }
+        // Validación adicional: No domingos
+        else if (this.esDomingo(fechaInicioSeleccionada)) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.domingoNoPermitido;
         }
 
-        this.validationState.fechaInicio = esValida;
+        this.estadoValidacion.fechaInicioValida = esFechaValida;
 
-        if (esValida) {
-            this.clearFieldError(this.elements.fechaInicio);
+        if (esFechaValida) {
+            this.limpiarErroresCampo(this.elementosDOM.campoFechaInicio);
         } else {
-            this.showFieldError(this.elements.fechaInicio, mensaje);
+            this.mostrarErrorCampo(this.elementosDOM.campoFechaInicio, mensajeError);
         }
 
         // Validar relación entre fechas
-        this.validateRelacionFechas();
-        this.updateSubmitButtons();
+        this.validarRelacionEntreFechas();
+        this.actualizarEstadoBotones();
     }
 
     /**
-     * Valida la fecha límite
+     * Valida la fecha límite de postulación
      */
-    validateFechaLimite() {
-        const fechaLimite = this.elements.fechaLimite.value;
+    validarFechaLimite() {
+        const valorFechaLimite = this.elementosDOM.campoFechaLimite.value;
         
-        if (!fechaLimite) {
-            this.validationState.fechaLimite = false;
-            this.showFieldError(this.elements.fechaLimite, 'La fecha límite es obligatoria.');
-            this.validateRelacionFechas();
-            this.updateSubmitButtons();
+        if (!valorFechaLimite) {
+            // Campo obligatorio
+            this.estadoValidacion.fechaLimiteValida = false;
+            this.mostrarErrorCampo(this.elementosDOM.campoFechaLimite, this.mensajesError.fechaLimiteRequerida);
+            this.validarRelacionEntreFechas();
+            this.actualizarEstadoBotones();
             return;
         }
 
-        const fecha = new Date(fechaLimite);
-        const hoy = new Date();
-        
-        // Resetear horas para comparación precisa
-        hoy.setHours(0, 0, 0, 0);
-        fecha.setHours(0, 0, 0, 0);
+        const fechaLimiteSeleccionada = new Date(valorFechaLimite + 'T00:00:00');
+        let esFechaValida = true;
+        let mensajeError = '';
 
-        let esValida = true;
-        let mensaje = '';
+        console.log(`Validando fecha límite: ${valorFechaLimite} - Objeto Date: ${fechaLimiteSeleccionada.toDateString()}`);
 
-        // 1. No puede ser fecha pasada
-        if (fecha <= hoy) {
-            esValida = false;
-            mensaje = 'La fecha límite no puede ser hoy o una fecha anterior.';
+        // Validación I: Verificar formato y fecha válida
+        if (isNaN(fechaLimiteSeleccionada.getTime())) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.fechaInvalida;
         }
-        // 2. No puede ser domingo
-        else if (this.esDomingo(fecha)) {
-            esValida = false;
-            mensaje = 'No se puede seleccionar domingo como fecha límite.';
+        // Validación III: No puede ser fecha pasada
+        else if (this.esFechaPasada(fechaLimiteSeleccionada)) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.fechaPasada;
+        }
+        // Validación adicional: No domingos
+        else if (this.esDomingo(fechaLimiteSeleccionada)) {
+            esFechaValida = false;
+            mensajeError = this.mensajesError.domingoNoPermitido;
         }
 
-        this.validationState.fechaLimite = esValida;
+        this.estadoValidacion.fechaLimiteValida = esFechaValida;
 
-        if (esValida) {
-            this.clearFieldError(this.elements.fechaLimite);
+        if (esFechaValida) {
+            this.limpiarErroresCampo(this.elementosDOM.campoFechaLimite);
         } else {
-            this.showFieldError(this.elements.fechaLimite, mensaje);
+            this.mostrarErrorCampo(this.elementosDOM.campoFechaLimite, mensajeError);
         }
 
         // Validar relación entre fechas
-        this.validateRelacionFechas();
-        this.updateSubmitButtons();
+        this.validarRelacionEntreFechas();
+        this.actualizarEstadoBotones();
     }
 
     /**
-     * Valida la relación entre las fechas de inicio y límite
+     * Valida la relación entre fechas según las restricciones
      */
-    validateRelacionFechas() {
-        const fechaInicio = this.elements.fechaInicio.value;
-        const fechaLimite = this.elements.fechaLimite.value;
+    validarRelacionEntreFechas() {
+        const valorFechaInicio = this.elementosDOM.campoFechaInicio?.value;
+        const valorFechaLimite = this.elementosDOM.campoFechaLimite.value;
 
-        // Si no hay ambas fechas, no hay relación que validar
-        if (!fechaInicio || !fechaLimite) {
-            this.validationState.fechasValidas = !fechaLimite ? false : true; // fechaLimite es obligatoria
+        // Si no hay fecha límite, no hay relación que validar
+        if (!valorFechaLimite) {
+            this.estadoValidacion.relacionFechasValida = false;
             return;
         }
 
-        const inicio = new Date(fechaInicio);
-        const limite = new Date(fechaLimite);
+        // Si no hay fecha de inicio, la relación es válida (campo opcional)
+        if (!valorFechaInicio) {
+            this.estadoValidacion.relacionFechasValida = true;
+            return;
+        }
+
+        const fechaInicioObj = new Date(valorFechaInicio + 'T00:00:00');
+        const fechaLimiteObj = new Date(valorFechaLimite + 'T00:00:00');
         
-        // Resetear horas para comparación precisa
-        inicio.setHours(0, 0, 0, 0);
-        limite.setHours(0, 0, 0, 0);
+        console.log(`Comparando fechas - Inicio: ${fechaInicioObj.toDateString()} vs Límite: ${fechaLimiteObj.toDateString()}`);
 
         let relacionValida = true;
-        let mensaje = '';
+        let mensajeError = '';
 
-        // 1. Las fechas no pueden ser el mismo día
-        if (inicio.getTime() === limite.getTime()) {
+        // Validación II: Las fechas no pueden ser el mismo día
+        if (fechaInicioObj.getTime() === fechaLimiteObj.getTime()) {
             relacionValida = false;
-            mensaje = 'La fecha de inicio y la fecha límite no pueden ser el mismo día.';
-            this.showFieldError(this.elements.fechaLimite, mensaje);
+            mensajeError = this.mensajesError.fechasDuplicadas;
+            console.log('Error: Fechas son el mismo día');
         }
-        // 2. La fecha límite no puede ser posterior a la fecha de inicio
-        else if (limite >= inicio) {
+        // Validación IV: fecha inicio debe ser al menos un día después de fecha límite
+        else if (fechaInicioObj.getTime() <= fechaLimiteObj.getTime()) {
             relacionValida = false;
-            mensaje = 'La fecha límite debe ser anterior a la fecha de inicio estimada.';
-            this.showFieldError(this.elements.fechaLimite, mensaje);
+            mensajeError = this.mensajesError.fechaInicioAnterior;
+            console.log('Error: Fecha inicio no es posterior a fecha límite');
         }
-        // 3. Debe haber al menos un día de diferencia
+        // Verificar que haya al menos un día de diferencia
         else {
-            const diferenciaDias = Math.ceil((inicio.getTime() - limite.getTime()) / (1000 * 60 * 60 * 24));
+            const diferenciaMilisegundos = fechaInicioObj.getTime() - fechaLimiteObj.getTime();
+            const diferenciaDias = Math.ceil(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
+            
+            console.log(`Diferencia en días: ${diferenciaDias}`);
+            
             if (diferenciaDias < 1) {
                 relacionValida = false;
-                mensaje = 'Debe haber al menos un día de diferencia entre la fecha límite y la fecha de inicio.';
-                this.showFieldError(this.elements.fechaLimite, mensaje);
+                mensajeError = this.mensajesError.fechaInicioAnterior;
+                console.log('Error: Diferencia menor a 1 día');
+            } else {
+                console.log('✅ Relación entre fechas válida');
             }
         }
 
-        this.validationState.fechasValidas = relacionValida;
+        this.estadoValidacion.relacionFechasValida = relacionValida;
 
-        if (relacionValida && fechaLimite) {
-            this.clearFieldError(this.elements.fechaLimite);
+        if (relacionValida) {
+            // Limpiar errores de relación en ambos campos
+            this.limpiarErroresRelacion();
+        } else {
+            // Mostrar error en el campo de fecha inicio principalmente
+            if (this.elementosDOM.campoFechaInicio) {
+                this.mostrarErrorCampo(this.elementosDOM.campoFechaInicio, mensajeError);
+            }
         }
+    }
+
+    /**
+     * Verifica si una fecha es del pasado
+     */
+    esFechaPasada(fechaAComparar) {
+        const fechaHoy = new Date();
+        fechaHoy.setHours(0, 0, 0, 0);
+        
+        const fechaParaValidar = new Date(fechaAComparar);
+        fechaParaValidar.setHours(0, 0, 0, 0);
+        
+        const esDelPasado = fechaParaValidar <= fechaHoy;
+        console.log(`Verificando si es fecha pasada - Fecha: ${fechaParaValidar.toDateString()}, Hoy: ${fechaHoy.toDateString()}, ¿Es pasada?: ${esDelPasado}`);
+        
+        return esDelPasado;
     }
 
     /**
      * Verifica si una fecha es domingo
+     * En JavaScript: 0=Domingo, 1=Lunes, 2=Martes, 3=Miércoles, 4=Jueves, 5=Viernes, 6=Sábado
      */
-    esDomingo(fecha) {
-        return fecha.getDay() === 0; // 0 = Domingo
+    esDomingo(fechaAValidar) {
+        const diaDeLaSemana = fechaAValidar.getDay();
+        console.log(`Verificando si es domingo - Fecha: ${fechaAValidar.toDateString()}, Día: ${diaDeLaSemana} (0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb)`);
+        return diaDeLaSemana === 0; // 0 = Domingo en JavaScript
     }
 
     /**
-     * Formatea una fecha para input type="date"
+     * Formatea una fecha para input type="date" (YYYY-MM-DD)
      */
-    formatDateForInput(fecha) {
+    formatearFechaParaInput(fecha) {
         return fecha.toISOString().split('T')[0];
     }
 
     /**
      * Muestra un error en un campo específico
      */
-    showFieldError(field, mensaje) {
+    mostrarErrorCampo(campo, mensaje) {
         // Limpiar errores anteriores
-        this.clearFieldError(field);
+        this.limpiarErroresCampo(campo);
 
-        // Agregar clase de error al campo
-        field.classList.add('is-invalid');
+        // Agregar clase de error
+        campo.classList.add('is-invalid');
 
         // Crear mensaje de error
-        const errorDiv = document.createElement('div');
-        errorDiv.className = 'invalid-feedback fecha-validation-error';
-        errorDiv.style.display = 'block';
-        errorDiv.innerHTML = `<i class="bi bi-exclamation-circle me-1"></i>${mensaje}`;
+        const elementoError = document.createElement('div');
+        elementoError.className = 'invalid-feedback validacion-fecha-error';
+        elementoError.style.display = 'block';
+        elementoError.innerHTML = `<i class="bi bi-exclamation-circle me-1"></i>${mensaje}`;
 
         // Insertar después del campo
-        field.parentNode.insertBefore(errorDiv, field.nextSibling);
+        campo.parentNode.insertBefore(elementoError, campo.nextSibling);
     }
 
     /**
      * Limpia los errores de un campo específico
      */
-    clearFieldError(field) {
-        field.classList.remove('is-invalid');
+    limpiarErroresCampo(campo) {
+        if (!campo) return;
+        
+        campo.classList.remove('is-invalid');
         
         // Remover mensajes de error existentes
-        const errorMessages = field.parentNode.querySelectorAll('.fecha-validation-error');
-        errorMessages.forEach(msg => msg.remove());
+        const mensajesError = campo.parentNode.querySelectorAll('.validacion-fecha-error');
+        mensajesError.forEach(mensaje => mensaje.remove());
+    }
+
+    /**
+     * Limpia errores de relación entre fechas
+     */
+    limpiarErroresRelacion() {
+        if (this.elementosDOM.campoFechaInicio) {
+            this.limpiarErroresCampo(this.elementosDOM.campoFechaInicio);
+        }
+        this.limpiarErroresCampo(this.elementosDOM.campoFechaLimite);
     }
 
     /**
      * Actualiza el estado de los botones del formulario
      */
-    updateSubmitButtons() {
-        const todasLasValidacionesOk = this.validationState.fechaInicio && 
-                                      this.validationState.fechaLimite && 
-                                      this.validationState.fechasValidas;
+    actualizarEstadoBotones() {
+        const todasLasValidacionesCorrectas = this.estadoValidacion.fechaInicioValida && 
+                                             this.estadoValidacion.fechaLimiteValida && 
+                                             this.estadoValidacion.relacionFechasValida;
+
+        this.estadoValidacion.formularioListo = todasLasValidacionesCorrectas;
 
         // Actualizar botón de publicar
-        if (this.elements.btnPublicar) {
-            this.elements.btnPublicar.disabled = !todasLasValidacionesOk;
+        if (this.elementosDOM.botonPublicar) {
+            this.elementosDOM.botonPublicar.disabled = !todasLasValidacionesCorrectas;
             
-            if (todasLasValidacionesOk) {
-                this.elements.btnPublicar.classList.remove('btn-secondary');
-                this.elements.btnPublicar.classList.add('btn-primary');
-                this.elements.btnPublicar.innerHTML = '<i class="bi bi-send-check-fill"></i> Publicar Vacante';
-                this.elements.btnPublicar.title = 'Listo para publicar';
+            if (todasLasValidacionesCorrectas) {
+                this.elementosDOM.botonPublicar.classList.remove('btn-secondary');
+                this.elementosDOM.botonPublicar.classList.add('btn-primary');
+                this.elementosDOM.botonPublicar.innerHTML = '<i class="bi bi-send-check-fill"></i> Publicar Vacante';
+                this.elementosDOM.botonPublicar.title = 'Listo para publicar';
             } else {
-                this.elements.btnPublicar.classList.remove('btn-primary');
-                this.elements.btnPublicar.classList.add('btn-secondary');
-                this.elements.btnPublicar.innerHTML = '<i class="bi bi-exclamation-circle"></i> Revisar Fechas';
-                this.elements.btnPublicar.title = 'Corrige las fechas antes de publicar';
+                this.elementosDOM.botonPublicar.classList.remove('btn-primary');
+                this.elementosDOM.botonPublicar.classList.add('btn-secondary');
+                this.elementosDOM.botonPublicar.innerHTML = '<i class="bi bi-exclamation-circle"></i> Revisar Fechas';
+                this.elementosDOM.botonPublicar.title = 'Corrige las fechas antes de publicar';
             }
         }
 
-        // El botón de borrador siempre está habilitado (permite guardar borradores con fechas pendientes)
-        if (this.elements.btnBorrador) {
-            this.elements.btnBorrador.disabled = false;
+        // El botón de borrador siempre está habilitado
+        if (this.elementosDOM.botonBorrador) {
+            this.elementosDOM.botonBorrador.disabled = false;
         }
     }
 
     /**
      * Maneja el envío del formulario
      */
-    handleSubmit(event) {
-        const accion = event.submitter?.value || '';
+    manejarEnvioFormulario(evento) {
+        const accionFormulario = evento.submitter?.value || 'publicar';
         
         // Si es para guardar borrador, permitir el envío sin validar fechas
-        if (accion === 'guardar_borrador') {
+        if (accionFormulario === 'guardar_borrador') {
             console.log('💾 Guardando como borrador - validaciones de fecha omitidas');
             return true;
         }
 
         // Para publicar, validar todas las fechas
-        if (accion === 'publicar') {
-            this.validateFechaInicio();
-            this.validateFechaLimite();
+        if (accionFormulario === 'publicar') {
+            // Re-validar todo antes de enviar
+            this.validarFechaInicio();
+            this.validarFechaLimite();
 
-            const todasValidasParaPublicar = this.validationState.fechaInicio && 
-                                           this.validationState.fechaLimite && 
-                                           this.validationState.fechasValidas;
-
-            if (!todasValidasParaPublicar) {
-                event.preventDefault();
-                event.stopPropagation();
+            if (!this.estadoValidacion.formularioListo) {
+                evento.preventDefault();
+                evento.stopPropagation();
 
                 // Mostrar alerta general
-                this.showAlert(
+                this.mostrarAlertaGeneral(
                     'No se puede publicar la vacante. Por favor, corrige los errores en las fechas.',
                     'error'
                 );
@@ -378,7 +437,10 @@ class ValidadorVacante {
                 // Enfocar el primer campo con error
                 const primerCampoConError = document.querySelector('.is-invalid');
                 if (primerCampoConError) {
-                    primerCampoConError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    primerCampoConError.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'center' 
+                    });
                     primerCampoConError.focus();
                 }
 
@@ -387,21 +449,21 @@ class ValidadorVacante {
             }
         }
 
-        console.log('✅ Formulario válido - Permitiendo envío');
+        console.log('✅ Validación de fechas completada - Permitiendo envío');
         return true;
     }
 
     /**
      * Muestra una alerta temporal
      */
-    showAlert(mensaje, tipo) {
+    mostrarAlertaGeneral(mensaje, tipo) {
         // Eliminar alertas anteriores
-        const alertasAnteriores = document.querySelectorAll('.fecha-validation-alert');
+        const alertasAnteriores = document.querySelectorAll('.alerta-validacion-fechas');
         alertasAnteriores.forEach(alerta => alerta.remove());
 
         // Crear nueva alerta
         const alerta = document.createElement('div');
-        alerta.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show fecha-validation-alert`;
+        alerta.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show alerta-validacion-fechas`;
         alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 300px; max-width: 500px;';
 
         alerta.innerHTML = `
@@ -421,59 +483,96 @@ class ValidadorVacante {
     }
 
     /**
-     * Método público para validar manualmente
+     * Método público para validar manualmente todo
      */
-    validarTodo() {
-        this.validateFechaInicio();
-        this.validateFechaLimite();
-        return this.validationState.fechaInicio && 
-               this.validationState.fechaLimite && 
-               this.validationState.fechasValidas;
+    validarTodoManualmente() {
+        this.validarFechaInicio();
+        this.validarFechaLimite();
+        return this.estadoValidacion.formularioListo;
     }
 
     /**
      * Método público para obtener el estado de validación
      */
-    obtenerEstadoValidacion() {
+    obtenerEstadoValidacionCompleto() {
         return {
-            ...this.validationState,
-            puedePublicar: this.validationState.fechaInicio && 
-                          this.validationState.fechaLimite && 
-                          this.validationState.fechasValidas
+            ...this.estadoValidacion,
+            puedePublicar: this.estadoValidacion.formularioListo,
+            resumenValidaciones: {
+                fechaInicio: this.estadoValidacion.fechaInicioValida ? 'Válida' : 'Inválida',
+                fechaLimite: this.estadoValidacion.fechaLimiteValida ? 'Válida' : 'Inválida',
+                relacionFechas: this.estadoValidacion.relacionFechasValida ? 'Válida' : 'Inválida'
+            }
         };
+    }
+
+    /**
+     * Método para limpiar todas las validaciones
+     */
+    limpiarTodasLasValidaciones() {
+        this.limpiarErroresCampo(this.elementosDOM.campoFechaInicio);
+        this.limpiarErroresCampo(this.elementosDOM.campoFechaLimite);
+        
+        // Resetear estado
+        this.estadoValidacion = {
+            fechaInicioValida: false,
+            fechaLimiteValida: false,
+            relacionFechasValida: false,
+            formularioListo: false
+        };
+        
+        this.actualizarEstadoBotones();
     }
 }
 
-// Auto-inicializar cuando el DOM esté listo
+// Auto-inicialización cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {
     // Solo inicializar si estamos en la página de publicar/editar vacante
     if (document.getElementById('vacanteForm')) {
-        window.validadorVacante = new ValidadorVacante();
-        console.log('🚀 Validador de vacantes iniciado');
+        // Destruir instancia anterior si existe
+        if (window.validadorFechasVacante) {
+            window.validadorFechasVacante.limpiarTodasLasValidaciones();
+        }
+        
+        // Crear nueva instancia
+        window.validadorFechasVacante = new ValidadorFechasVacante();
+        console.log('🚀 ValidadorFechasVacante iniciado con restricciones mejoradas');
 
-        // Mensaje informativo para el usuario
-        const mensaje = document.createElement('div');
-        mensaje.className = 'alert alert-info mt-3';
-        mensaje.innerHTML = `
+        // Script de prueba para depuración (solo en desarrollo)
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            console.log('=== PRUEBA DE VALIDACIÓN DE DOMINGOS ===');
+            const fechasPrueba = ['2025-08-03', '2025-08-04', '2025-08-05', '2025-08-06'];
+            fechasPrueba.forEach(fechaStr => {
+                const fechaObj = new Date(fechaStr + 'T00:00:00');
+                const nombresDias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+                console.log(`${fechaStr} (${nombresDias[fechaObj.getDay()]}) - getDay(): ${fechaObj.getDay()}`);
+            });
+        }
+
+        // Agregar mensaje informativo para el usuario
+        const mensajeInfo = document.createElement('div');
+        mensajeInfo.className = 'alert alert-info mt-3';
+        mensajeInfo.innerHTML = `
             <i class="bi bi-info-circle me-2"></i>
-            <strong>Recordatorio:</strong> 
+            <strong>Restricciones de fechas:</strong> 
             <ul class="mb-0 mt-2">
-                <li>No se pueden seleccionar fechas pasadas o domingos</li>
-                <li>La fecha límite debe ser anterior a la fecha de inicio</li>
-                <li>Debe haber al menos un día de diferencia entre ambas fechas</li>
-                <li>La vacante se cerrará automáticamente al llegar a la fecha límite o al máximo de postulantes</li>
+                <li>No se pueden seleccionar fechas pasadas (ayer, antier, etc.)</li>
+                <li>No se pueden seleccionar domingos</li>
+                <li>La fecha de inicio y límite no pueden ser el mismo día</li>
+                <li>La fecha de inicio debe ser al menos un día después de la fecha límite</li>
+                <li>La fecha límite es obligatoria para publicar</li>
             </ul>
         `;
 
         // Insertar el mensaje después de la sección de fechas
-        const fechasSection = document.querySelector('.card:has(#id_fecha_limite)');
-        if (fechasSection) {
-            fechasSection.after(mensaje);
+        const seccionFechas = document.querySelector('.card:has(#id_fecha_limite)');
+        if (seccionFechas) {
+            seccionFechas.after(mensajeInfo);
         }
     }
 });
 
 // Exportar para uso en módulos (si es necesario)
 if (typeof module !== 'undefined' && module.exports) {
-    module.exports = { ValidadorVacante };
+    module.exports = { ValidadorFechasVacante };
 }
