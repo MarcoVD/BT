@@ -442,16 +442,8 @@
                                 <h5><i class="bi bi-file-person"></i> Resumen Profesional</h5>
                             </div>
                             <div class="card-body text-justify">
-{#                                <label for="resumen_profesional" class="form-label"></label>#}
-                                    <textarea 
-                                        class="form-control is-invalid" 
-                                        id="resumen_profesional" 
-                                        name="resumen_profesional" 
-                                        rows="3"  
-                                        placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..."
-                                        maxlength="400" 
-                                        required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}
-                                    </textarea>                                
+<!-- {#                                <label for="resumen_profesional" class="form-label"></label>#} -->
+                                    <textarea class="form-control is-invalid" id="resumen_profesional" name="resumen_profesional" rows="3" placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..." maxlength="400" required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>                                
                                     <small id="contadorResumen" class="form-text text-muted">0/400 caracteres</small>
                             </div>
                         </div>
