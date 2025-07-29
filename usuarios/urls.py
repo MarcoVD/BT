@@ -116,6 +116,11 @@ urlpatterns = [
     # path('ajax/agregar-notas-postulacion/<int:postulacion_id>/', views.agregar_notas_postulacion,
     #      name='agregar_notas_postulacion'),
     path('ajax/buscar-vacantes/', views.busqueda_vacantes_ajax, name='busqueda_vacantes_ajax'),
+    # ===========================
+     # URLs AJAX PARA CÓDIGO POSTAL
+     # ===========================
+     path('ajax/consultar-codigo-postal/', views.consultar_codigo_postal_ajax, name='consultar_codigo_postal_ajax'),
+     path('ajax/actualizar-codigo-postal/', views.actualizar_codigo_postal_ajax, name='actualizar_codigo_postal_ajax'),
 
     # ===========================
     # URL DE PRUEBA (TEMPORAL)

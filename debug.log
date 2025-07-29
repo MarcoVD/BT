@@ -13393,3 +13393,290 @@ INFO 2025-07-28 00:13:54,305 basehttp 13188 140226084370112 "GET /perfil/interes
 INFO 2025-07-28 00:13:54,408 basehttp 13188 140226084370112 "GET /perfil/interesado/ HTTP/1.1" 200 101947
 INFO 2025-07-28 00:13:54,544 basehttp 13188 140226084370112 "GET /perfil/interesado/ HTTP/1.1" 200 101947
 INFO 2025-07-28 00:13:54,657 basehttp 13188 140226084370112 "GET /perfil/interesado/ HTTP/1.1" 200 101947
+INFO 2025-07-29 00:00:36,828 autoreload 5298 140568957820992 Watching for file changes with StatReloader
+INFO 2025-07-29 00:02:00,749 basehttp 5298 140568853386944 "GET / HTTP/1.1" 200 14593
+INFO 2025-07-29 00:02:00,763 basehttp 5298 140568853386944 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,775 basehttp 5298 140568776668864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-29 00:02:00,778 basehttp 5298 140568759883456 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,778 basehttp 5298 140568768276160 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,784 basehttp 5298 140568776668864 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,786 basehttp 5298 140568768276160 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,810 basehttp 5298 140568853386944 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,832 basehttp 5298 140568768276160 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:00,832 basehttp 5298 140568776668864 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:07,805 basehttp 5298 140568776668864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-29 00:02:11,073 basehttp 5298 140568776668864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-29 00:02:11,105 basehttp 5298 140568776668864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-29 00:02:11,165 basehttp 5298 140568776668864 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:02:16,849 basehttp 5298 140568776668864 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-29 00:02:19,377 basehttp 5298 140568776668864 "GET /vacante/3/ HTTP/1.1" 200 15463
+INFO 2025-07-29 00:02:20,924 basehttp 5298 140568776668864 "GET /vacante/2/ HTTP/1.1" 200 15618
+INFO 2025-07-29 00:02:22,391 basehttp 5298 140568776668864 "GET /vacante/3/ HTTP/1.1" 200 15463
+INFO 2025-07-29 00:02:25,867 basehttp 5298 140568776668864 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-29 00:02:31,152 basehttp 5298 140568776668864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-29 00:02:48,270 basehttp 5298 140568776668864 "GET /vacante/3/ HTTP/1.1" 200 15463
+INFO 2025-07-29 00:02:50,094 basehttp 5298 140568776668864 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-29 00:02:53,462 basehttp 5298 140568776668864 "GET /vacante/3/postulantes/ HTTP/1.1" 200 33526
+INFO 2025-07-29 00:02:55,937 basehttp 5298 140568776668864 "GET /vacante/2/postulantes/ HTTP/1.1" 200 39915
+INFO 2025-07-29 00:02:55,997 basehttp 5298 140568776668864 "GET /media/interesados/profile_np74wwj.jpg HTTP/1.1" 304 0
+INFO 2025-07-29 00:03:03,173 basehttp 5298 140568776668864 "POST /ajax/cambiar-estado-postulacion/1/ HTTP/1.1" 200 113
+INFO 2025-07-29 00:03:05,819 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22791
+INFO 2025-07-29 00:04:15,454 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22810
+INFO 2025-07-29 00:04:15,488 basehttp 5298 140568776668864 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-29 00:04:26,342 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22790
+INFO 2025-07-29 00:04:38,607 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:04:38,974 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:04:39,091 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:04:49,448 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22797
+INFO 2025-07-29 00:04:49,950 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22797
+INFO 2025-07-29 00:04:50,120 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22797
+INFO 2025-07-29 00:04:50,274 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22797
+INFO 2025-07-29 00:04:50,395 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22797
+INFO 2025-07-29 00:05:09,991 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22798
+INFO 2025-07-29 00:05:10,549 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22798
+INFO 2025-07-29 00:05:10,706 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22798
+INFO 2025-07-29 00:05:10,846 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22798
+WARNING 2025-07-29 00:05:16,255 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:05:16,256 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:06:18,203 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22800
+WARNING 2025-07-29 00:06:18,315 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:06:18,317 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:06:33,704 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:06:36,187 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:06:36,306 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:06:36,511 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22796
+INFO 2025-07-29 00:07:51,841 basehttp 5298 140568776668864 "GET /mis-vacantes/ HTTP/1.1" 200 25810
+INFO 2025-07-29 00:07:52,653 basehttp 5298 140568776668864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-29 00:07:53,915 basehttp 5298 140568776668864 "GET / HTTP/1.1" 200 16165
+INFO 2025-07-29 00:09:02,541 basehttp 5298 140568776668864 "GET /dashboard/reclutador/ HTTP/1.1" 200 19035
+INFO 2025-07-29 00:09:05,674 basehttp 5298 140568776668864 "GET /vacante/2/ HTTP/1.1" 200 15618
+INFO 2025-07-29 00:09:10,933 basehttp 5298 140568776668864 "GET /vacante/2/postulantes/ HTTP/1.1" 200 39913
+INFO 2025-07-29 00:09:19,388 basehttp 5298 140568776668864 "GET /candidato/3/perfil/ HTTP/1.1" 200 22944
+INFO 2025-07-29 00:22:28,293 basehttp 5298 140568776668864 "GET / HTTP/1.1" 200 16165
+INFO 2025-07-29 00:22:31,355 basehttp 5298 140568776668864 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-29 00:22:31,399 basehttp 5298 140568776668864 "GET / HTTP/1.1" 200 14906
+INFO 2025-07-29 00:22:36,805 basehttp 5298 140568776668864 "GET /registro/reclutador/ HTTP/1.1" 200 17556
+INFO 2025-07-29 00:24:27,985 basehttp 5298 140568776668864 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-29 00:24:28,018 basehttp 5298 140568776668864 "GET / HTTP/1.1" 200 14906
+INFO 2025-07-29 00:24:28,969 basehttp 5298 140568776668864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-29 00:24:35,133 basehttp 5298 140568776668864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-29 00:24:35,168 basehttp 5298 140568776668864 "GET /perfil/interesado/ HTTP/1.1" 200 101947
+INFO 2025-07-29 00:24:35,189 basehttp 5298 140568776668864 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-29 00:24:35,195 basehttp 5298 140568853386944 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:24:35,198 basehttp 5298 140568853386944 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-29 00:26:45,943 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 103965
+INFO 2025-07-29 00:26:46,386 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 103965
+INFO 2025-07-29 00:26:46,530 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 103965
+INFO 2025-07-29 00:26:46,618 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 103965
+INFO 2025-07-29 00:26:46,786 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 103965
+INFO 2025-07-29 00:26:51,934 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:26:51,935 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:26:53,288 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:26:53,289 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:27:00,727 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:27:00,729 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:27:42,694 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:43,895 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:44,042 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:44,133 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:44,291 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:44,410 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95619
+INFO 2025-07-29 00:27:50,845 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:27:50,859 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:27:59,997 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:28:00,001 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:28:03,711 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:28:03,712 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:28:07,113 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:28:07,117 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+WARNING 2025-07-29 00:28:33,562 log 5298 140568853386944 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:28:33,564 basehttp 5298 140568853386944 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:30:04,617 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:04,618 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:06,669 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:06,671 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:09,676 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:09,677 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:22,095 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:22,100 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:29,569 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:30:29,572 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:03,702 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95571
+WARNING 2025-07-29 00:31:03,870 log 5298 140568853386944 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:03,870 basehttp 5298 140568853386944 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:04,121 basehttp 5298 140568853386944 "GET /perfil/interesado/ HTTP/1.1" 200 95571
+WARNING 2025-07-29 00:31:04,413 log 5298 140568853386944 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:04,414 basehttp 5298 140568853386944 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:04,468 basehttp 5298 140568776668864 "GET /perfil/interesado/ HTTP/1.1" 200 95571
+WARNING 2025-07-29 00:31:04,609 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:04,610 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:10,877 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:10,884 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:12,961 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:12,981 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:22,535 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:22,536 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:29,877 basehttp 5298 140568776668864 "GET /perfil/interesado/ HTTP/1.1" 200 95574
+WARNING 2025-07-29 00:31:30,014 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:30,017 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:30,085 basehttp 5298 140568776668864 "GET /perfil/interesado/ HTTP/1.1" 200 95574
+WARNING 2025-07-29 00:31:30,191 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:30,194 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:30,307 basehttp 5298 140568776668864 "GET /perfil/interesado/ HTTP/1.1" 200 95574
+WARNING 2025-07-29 00:31:30,488 log 5298 140568776668864 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:31:30,488 basehttp 5298 140568776668864 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15353
+INFO 2025-07-29 00:31:33,535 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:33,537 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:35,976 basehttp 5298 140568853386944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:31:35,985 basehttp 5298 140568776668864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:34:00,829 autoreload 5298 140568957820992 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:34:01,299 autoreload 15200 139737284919360 Watching for file changes with StatReloader
+INFO 2025-07-29 00:34:10,243 autoreload 15200 139737284919360 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:34:10,684 autoreload 15356 140027998621760 Watching for file changes with StatReloader
+INFO 2025-07-29 00:35:00,290 autoreload 15356 140027998621760 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:35:00,762 autoreload 15529 139797792440384 Watching for file changes with StatReloader
+INFO 2025-07-29 00:35:24,889 autoreload 15529 139797792440384 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:35:25,344 autoreload 15683 139776883454016 Watching for file changes with StatReloader
+INFO 2025-07-29 00:35:34,211 autoreload 15683 139776883454016 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:35:34,667 autoreload 15806 140163798110272 Watching for file changes with StatReloader
+INFO 2025-07-29 00:36:52,919 basehttp 15806 140163623851712 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:36:52,981 log 15806 140163623851712 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:36:52,982 basehttp 15806 140163623851712 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:36:53,043 basehttp 15806 140163615459008 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:36:53,098 log 15806 140163615459008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:36:53,099 basehttp 15806 140163615459008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:36:53,121 basehttp 15806 140163623851712 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:36:53,170 log 15806 140163615459008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:36:53,171 basehttp 15806 140163615459008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:36:53,301 basehttp 15806 140163615459008 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:36:53,358 log 15806 140163615459008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:36:53,359 basehttp 15806 140163615459008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:36:53,383 basehttp 15806 140163623851712 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:36:53,449 log 15806 140163615459008 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:36:53,449 basehttp 15806 140163615459008 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:36:57,507 basehttp 15806 140163615459008 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:36:57,508 basehttp 15806 140163623851712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+ERROR 2025-07-29 00:36:59,051 log 15806 140163623851712 Internal Server Error: /api/codigo-postal/
+ERROR 2025-07-29 00:36:59,051 basehttp 15806 140163623851712 "GET /api/codigo-postal/?cp=56616 HTTP/1.1" 500 55
+INFO 2025-07-29 00:37:05,988 basehttp 15806 140163623851712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:05,990 basehttp 15806 140163615459008 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:21,631 basehttp 15806 140163615459008 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:21,633 basehttp 15806 140163623851712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:24,374 basehttp 15806 140163623851712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:24,375 basehttp 15806 140163615459008 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+ERROR 2025-07-29 00:37:25,468 log 15806 140163615459008 Internal Server Error: /api/codigo-postal/
+ERROR 2025-07-29 00:37:25,468 basehttp 15806 140163615459008 "GET /api/codigo-postal/?cp=56617 HTTP/1.1" 500 55
+INFO 2025-07-29 00:37:28,408 basehttp 15806 140163623851712 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:37:28,414 basehttp 15806 140163615459008 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:39:14,702 autoreload 15806 140163798110272 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:39:15,241 autoreload 16223 139934941782080 Watching for file changes with StatReloader
+INFO 2025-07-29 00:40:04,779 autoreload 16223 139934941782080 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:40:05,265 autoreload 16392 140195886243904 Watching for file changes with StatReloader
+INFO 2025-07-29 00:40:10,532 basehttp 16392 140195712374464 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:40:10,625 log 16392 140195712374464 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:40:10,626 basehttp 16392 140195712374464 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:40:10,966 basehttp 16392 140195712374464 "GET /perfil/interesado/ HTTP/1.1" 200 94924
+WARNING 2025-07-29 00:40:11,182 log 16392 140195712374464 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 00:40:11,187 basehttp 16392 140195712374464 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15623
+INFO 2025-07-29 00:40:15,388 basehttp 16392 140195703981760 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:15,390 basehttp 16392 140195712374464 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:21,200 basehttp 16392 140195712374464 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:21,201 basehttp 16392 140195703981760 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:25,237 basehttp 16392 140195703981760 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:25,238 basehttp 16392 140195712374464 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:30,556 basehttp 16392 140195703981760 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:40:30,557 basehttp 16392 140195694540480 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+ERROR 2025-07-29 00:40:39,117 log 16392 140195712374464 Internal Server Error: /api/codigo-postal/
+Traceback (most recent call last):
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/exception.py", line 55, in inner
+    response = get_response(request)
+               ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/venv/lib/python3.11/site-packages/django/core/handlers/base.py", line 197, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 251, in obtener_cp
+    colonias = [c["colonia"] for c in codigo.get("colonias", [])]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/marco/BT/BT/usuarios/views.py", line 251, in <listcomp>
+    colonias = [c["colonia"] for c in codigo.get("colonias", [])]
+                ~^^^^^^^^^^^
+TypeError: string indices must be integers, not 'str'
+ERROR 2025-07-29 00:40:39,119 basehttp 16392 140195712374464 "GET /api/codigo-postal/?cp=56616 HTTP/1.1" 500 87246
+INFO 2025-07-29 00:41:14,692 autoreload 16392 140195886243904 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:41:15,255 autoreload 16615 139688024887360 Watching for file changes with StatReloader
+INFO 2025-07-29 00:41:54,762 basehttp 16615 139687918474944 "GET /perfil/interesado/ HTTP/1.1" 200 93211
+INFO 2025-07-29 00:41:55,399 basehttp 16615 139687918474944 "GET /perfil/interesado/ HTTP/1.1" 200 93211
+INFO 2025-07-29 00:41:55,557 basehttp 16615 139687918474944 "GET /perfil/interesado/ HTTP/1.1" 200 93211
+INFO 2025-07-29 00:41:59,677 basehttp 16615 139687838611136 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:41:59,678 basehttp 16615 139687918474944 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:55:54,748 autoreload 16615 139688024887360 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:55:55,457 autoreload 18940 139708964646976 Watching for file changes with StatReloader
+INFO 2025-07-29 00:56:19,632 autoreload 18940 139708964646976 /home/marco/BT/BT/usuarios/views.py changed, reloading.
+INFO 2025-07-29 00:56:20,133 autoreload 19106 140299825676352 Watching for file changes with StatReloader
+INFO 2025-07-29 00:57:30,849 autoreload 19106 140299825676352 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:57:31,379 autoreload 19837 140395967385664 Watching for file changes with StatReloader
+INFO 2025-07-29 00:57:38,175 autoreload 19837 140395967385664 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:57:38,759 autoreload 19985 140531709812800 Watching for file changes with StatReloader
+INFO 2025-07-29 00:57:42,513 autoreload 19985 140531709812800 /home/marco/BT/BT/usuarios/urls.py changed, reloading.
+INFO 2025-07-29 00:57:43,015 autoreload 20088 140235657486400 Watching for file changes with StatReloader
+INFO 2025-07-29 00:59:16,763 autoreload 20882 139746277244992 Watching for file changes with StatReloader
+INFO 2025-07-29 00:59:40,684 basehttp 20882 139746173163200 "GET / HTTP/1.1" 200 14584
+INFO 2025-07-29 00:59:42,232 basehttp 20882 139746173163200 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-29 00:59:45,130 basehttp 20882 139746173163200 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-29 00:59:45,159 basehttp 20882 139746173163200 "GET /perfil/interesado/ HTTP/1.1" 200 94277
+INFO 2025-07-29 00:59:45,176 basehttp 20882 139746173163200 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 200 10639
+INFO 2025-07-29 00:59:56,619 basehttp 20882 139746173163200 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 00:59:56,620 basehttp 20882 139746164770496 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:00:06,761 autoreload 21119 140453784318016 Watching for file changes with StatReloader
+INFO 2025-07-29 01:00:10,692 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 94277
+INFO 2025-07-29 01:00:10,707 basehttp 21119 140453612787392 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-29 01:00:11,011 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 94277
+INFO 2025-07-29 01:00:11,185 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 94277
+INFO 2025-07-29 01:00:11,324 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 94277
+INFO 2025-07-29 01:01:22,651 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 85389
+INFO 2025-07-29 01:01:22,685 basehttp 21119 140453612787392 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-29 01:01:23,343 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 85389
+INFO 2025-07-29 01:01:23,465 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 85389
+INFO 2025-07-29 01:02:08,699 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 87285
+INFO 2025-07-29 01:02:08,731 basehttp 21119 140453612787392 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-29 01:02:09,134 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 87285
+INFO 2025-07-29 01:02:09,261 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 87285
+INFO 2025-07-29 01:02:09,353 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 87285
+INFO 2025-07-29 01:02:18,317 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:02:18,322 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:02:23,194 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:02:23,195 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:02:30,315 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 87247
+INFO 2025-07-29 01:03:46,027 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104496
+INFO 2025-07-29 01:03:46,053 basehttp 21119 140453612787392 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-29 01:03:51,159 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:03:51,161 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:03:53,489 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:03:53,490 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:04:02,306 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:04:02,309 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:04:12,581 basehttp 21119 140453604394688 "GET /perfil/interesado/ HTTP/1.1" 200 104496
+INFO 2025-07-29 01:04:12,907 basehttp 21119 140453604394688 "GET /perfil/interesado/ HTTP/1.1" 200 104496
+INFO 2025-07-29 01:04:13,095 basehttp 21119 140453604394688 "GET /perfil/interesado/ HTTP/1.1" 200 104496
+INFO 2025-07-29 01:04:20,710 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:04:20,712 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:22,376 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104594
+INFO 2025-07-29 01:05:22,419 basehttp 21119 140453612787392 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-29 01:05:22,506 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104594
+INFO 2025-07-29 01:05:22,605 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104594
+INFO 2025-07-29 01:05:22,767 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104594
+INFO 2025-07-29 01:05:22,912 basehttp 21119 140453612787392 "GET /perfil/interesado/ HTTP/1.1" 200 104594
+INFO 2025-07-29 01:05:27,926 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:27,926 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:31,461 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:31,462 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:47,353 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:05:47,354 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+WARNING 2025-07-29 01:05:59,812 log 21119 140453604394688 Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-29 01:05:59,814 basehttp 21119 140453604394688 "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 15953
+INFO 2025-07-29 01:06:04,322 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:06:04,324 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:06:08,818 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:06:08,820 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:06:21,211 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-29 01:06:21,212 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17

@@ -223,6 +223,41 @@ class SessionTimeoutMiddleware:
         response = self.get_response(request)
         return response
 
+def obtener_cp(request):
+    cp = request.GET.get('cp')
+
+    if not cp or len(cp) != 5 or not cp.isdigit():
+        return JsonResponse({'error': 'Código postal inválido'}, status=400)
+
+    url = f"https://api.tau.com.mx/dipomex/v1/codigo_postal?cp={cp}"
+    headers = {"APIKEY": "c378e976bc21341d90b8dfdb28ffc93bc9082f1f"}
+
+    try:
+        response = requests.get(url, headers=headers, timeout=5)
+
+        if response.status_code != 200:
+            return JsonResponse({'error': f'Error de DIPOMEX ({response.status_code})'}, status=response.status_code)
+
+        try:
+            data = response.json()
+        except ValueError:
+            return JsonResponse({'error': 'Respuesta inválida de DIPOMEX'}, status=502)
+
+        if data.get("error") or "codigo_postal" not in data:
+            return JsonResponse({'error': 'Código postal no encontrado'}, status=404)
+
+        codigo = data["codigo_postal"]
+        colonias = [c["colonia"] for c in codigo.get("colonias", [])]
+
+        return JsonResponse({
+            "estado": codigo.get("estado", ""),
+            "municipio": codigo.get("municipio", ""),
+            "colonias": colonias
+        })
+
+    except requests.RequestException as e:
+        return JsonResponse({'error': f'Error al conectar con DIPOMEX: {str(e)}'}, status=500)
+
 # =========================================
 # VISTAS AJAX PARA HABILIDADES - CORREGIDAS
 # =========================================
@@ -991,6 +1026,199 @@ class ReclutadorRegistroView(View):
             'secretaria_movilidad': secretaria_movilidad,
         })
 
+# usuarios/views.py - Agregar esta vista al archivo existente
+
+@login_required
+@require_http_methods(["GET"])
+def consultar_codigo_postal_ajax(request):
+    """
+    Vista AJAX para consultar información de código postal usando API DIPOMEX.
+    Solo permite consultas a usuarios autenticados con rol de interesado.
+    """
+    
+    # Verificar permisos
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'exito': False,
+            'error': 'Solo los interesados pueden consultar códigos postales',
+            'codigo_error': 'PERMISOS_INSUFICIENTES'
+        }, status=403)
+    
+    # Obtener código postal de los parámetros GET
+    codigo_postal = request.GET.get('codigo_postal', '').strip()
+    
+    if not codigo_postal:
+        return JsonResponse({
+            'exito': False,
+            'error': 'El código postal es requerido',
+            'codigo_error': 'PARAMETRO_FALTANTE'
+        }, status=400)
+    
+    try:
+        # Importar el servicio DIPOMEX
+        from .servicios.api_dipomex import ServicioDipomex
+        
+        # Crear instancia del servicio
+        servicio_dipomex = ServicioDipomex()
+        
+        # Realizar consulta
+        resultado = servicio_dipomex.consultar_codigo_postal(codigo_postal)
+        
+        # Si la consulta fue exitosa, verificar que sea del Estado de México
+        if resultado.get('exito'):
+            estado = resultado.get('estado', '')
+            
+            # Verificar si es del Estado de México
+            if not servicio_dipomex.es_estado_mexico(estado):
+                return JsonResponse({
+                    'exito': False,
+                    'error': f'Este sistema solo acepta códigos postales del Estado de México. El código {codigo_postal} pertenece a {estado}.',
+                    'codigo_error': 'ESTADO_NO_VALIDO',
+                    'estado_encontrado': estado
+                }, status=400)
+            
+            # Log de consulta exitosa
+            logger.info(f"Consulta exitosa de CP {codigo_postal} por usuario {request.user.email}")
+            
+            # Formatear respuesta para el frontend
+            respuesta = {
+                'exito': True,
+                'datos': {
+                    'codigo_postal': resultado['codigo_postal'],
+                    'estado': resultado['estado'],
+                    'municipio': resultado['municipio'],
+                    'ciudad': resultado.get('ciudad', ''),
+                    'colonias': resultado.get('colonias', []),
+                    'total_colonias': resultado.get('total_colonias', 0)
+                },
+                'mensaje': f'Código postal {codigo_postal} encontrado: {resultado["municipio"]}, {resultado["estado"]}'
+            }
+            
+            return JsonResponse(respuesta)
+        
+        else:
+            # La consulta falló, retornar el error
+            return JsonResponse({
+                'exito': False,
+                'error': resultado.get('error', 'Error desconocido'),
+                'codigo_error': resultado.get('codigo_error', 'UNKNOWN_ERROR')
+            }, status=400)
+    
+    except ImportError:
+        logger.error("No se pudo importar el servicio DIPOMEX")
+        return JsonResponse({
+            'exito': False,
+            'error': 'Servicio de códigos postales no disponible',
+            'codigo_error': 'SERVICIO_NO_DISPONIBLE'
+        }, status=500)
+    
+    except Exception as e:
+        logger.error(f"Error inesperado en consulta_codigo_postal_ajax: {str(e)}")
+        return JsonResponse({
+            'exito': False,
+            'error': 'Error interno del servidor al consultar el código postal',
+            'codigo_error': 'ERROR_INTERNO'
+        }, status=500)
+
+
+@login_required
+@require_POST
+def actualizar_codigo_postal_ajax(request):
+    """
+    Vista AJAX para actualizar el código postal del interesado en la BD.
+    Incluye validación automática usando DIPOMEX.
+    """
+    
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'exito': False,
+            'error': 'Solo los interesados pueden actualizar su código postal'
+        }, status=403)
+    
+    try:
+        import json
+        
+        # Obtener datos del request
+        data = json.loads(request.body)
+        codigo_postal = data.get('codigo_postal', '').strip()
+        
+        if not codigo_postal:
+            return JsonResponse({
+                'exito': False,
+                'error': 'El código postal es requerido'
+            }, status=400)
+        
+        # Validar con DIPOMEX antes de guardar
+        from .servicios.api_dipomex import ServicioDipomex
+        
+        servicio_dipomex = ServicioDipomex()
+        resultado_dipomex = servicio_dipomex.consultar_codigo_postal(codigo_postal)
+        
+        if not resultado_dipomex.get('exito'):
+            return JsonResponse({
+                'exito': False,
+                'error': f'Código postal inválido: {resultado_dipomex.get("error", "Error desconocido")}',
+                'codigo_error': resultado_dipomex.get('codigo_error')
+            }, status=400)
+        
+        # Verificar que sea del Estado de México
+        estado = resultado_dipomex.get('estado', '')
+        if not servicio_dipomex.es_estado_mexico(estado):
+            return JsonResponse({
+                'exito': False,
+                'error': f'Solo se aceptan códigos postales del Estado de México. Este código pertenece a {estado}.',
+                'codigo_error': 'ESTADO_NO_VALIDO'
+            }, status=400)
+        
+        # Actualizar el interesado
+        interesado = request.user.interesado
+        interesado.codigo_postal = codigo_postal
+        
+        # También actualizar el municipio si coincide con alguno de nuestros choices
+        municipio_dipomex = resultado_dipomex.get('municipio', '').lower()
+        
+        # Buscar coincidencia en nuestros municipios
+        municipio_encontrado = None
+        for valor, etiqueta in interesado.MUNICIPIOS_ESTADO_MEXICO:
+            if municipio_dipomex in etiqueta.lower():
+                municipio_encontrado = valor
+                break
+        
+        if municipio_encontrado:
+            interesado.municipio = municipio_encontrado
+        
+        interesado.save()
+        
+        logger.info(f"Código postal actualizado para usuario {request.user.email}: {codigo_postal}")
+        
+        respuesta = {
+            'exito': True,
+            'mensaje': 'Código postal actualizado exitosamente',
+            'datos': {
+                'codigo_postal': codigo_postal,
+                'estado': resultado_dipomex['estado'],
+                'municipio': resultado_dipomex['municipio'],
+                'municipio_actualizado': municipio_encontrado is not None,
+                'ubicacion_completa': interesado.ubicacion_completa
+            }
+        }
+        
+        return JsonResponse(respuesta)
+        
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'exito': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    
+    except Exception as e:
+        logger.error(f"Error en actualizar_codigo_postal_ajax: {str(e)}")
+        return JsonResponse({
+            'exito': False,
+            'error': 'Error interno del servidor'
+        }, status=500)
+
+
 class LoginView(View):
     """Vista para inicio de sesión de usuarios - ACTUALIZADA CON VERIFICACIÓN."""
 
@@ -1124,10 +1352,6 @@ class CrearEditarCVView(View):
             'es_nuevo': created,
         }
         return render(request, 'usuarios/crear_editar_cv.html', context)
-
-# usuarios/views.py - FUNCIÓN ACTUALIZADA PARA MANEJAR SOLO IMAGEN
-
-# usuarios/views.py - AGREGAR ESTA NUEVA VISTA
 
 @login_required
 def actualizar_foto_perfil_ajax(request):

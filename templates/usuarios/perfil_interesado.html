@@ -333,10 +333,33 @@
 
 {% block extra_js %}
     <!-- Cropper.js JavaScript -->
+         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <!-- Scripts personalizados -->
     <script src="{% static 'js/image-cropper.js' %}"></script>
     <script src="{% static 'js/perfil-interesado.js' %}"></script>
+    <script src="{% static 'js/validador_codigo_postal.js' %}"></script>
+        <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Inicializar tooltips de Bootstrap
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+        
+        // Log de inicialización
+        console.log('📍 Sistema de validación de código postal listo');
+        
+        // Mostrar información adicional si hay código postal existente
+        const codigoPostalInput = document.getElementById('codigo_postal');
+        if (codigoPostalInput && codigoPostalInput.value && window.validadorCP) {
+            // Validar código postal existente después de 2 segundos
+            setTimeout(() => {
+                window.validadorCP.validarManualmente();
+            }, 2000);
+        }
+    });
+    </script>
 {% endblock %}
 {% block content %}
 
@@ -420,7 +443,7 @@
                                         <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
                                         <input type="date" class="form-control" min="1960-01-01" max="2017-12-31" id="fecha_nacimiento" name="fecha_nacimiento"  value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
                                     </div>
-                                    <div class="col-md-6">
+                                                                        <div class="col-md-6">
                                         <label for="municipio" class="form-label">Municipio</label>
                                         <select class="form-select" id="municipio" name="municipio" required>
                                             <option value="">Selecciona un municipio...</option>
@@ -429,10 +452,31 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    <div class="col-md-6">
-                                        <label for="codigo_postal" class="form-label">Código Postal</label>
-                                        <input type="text"  class="form-control" id="codigo_postal" name="codigo_postal" value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" placeholder="Ej: 50000" required>
-                                    </div>
+                                        <!-- REEMPLAZAR con esta versión mejorada: -->
+                                        <div class="col-md-6">
+                                            <label for="codigo_postal" class="form-label">
+                                                Código Postal 
+                                                <span class="text-danger">*</span>
+                                                <i class="bi bi-info-circle" 
+                                                data-bs-toggle="tooltip" 
+                                                data-bs-placement="top" 
+                                                title="Ingresa tu código postal de 5 dígitos. Se validará automáticamente."></i>
+                                            </label>
+                                            <input type="text" 
+                                                class="form-control" 
+                                                id="codigo_postal" 
+                                                name="codigo_postal" 
+                                                value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" 
+                                                placeholder="Ej: 50000" 
+                                                maxlength="5"
+                                                pattern="[0-9]{5}"
+                                                title="Código postal de 5 dígitos"
+                                                required>
+                                            <small class="form-text text-muted">
+                                                Solo códigos postales del Estado de México. La información se validará automáticamente.
+                                            </small>
+                                            <!-- Los mensajes de validación se insertan aquí automáticamente por JavaScript -->
+                                        </div>
                                 </div>
                             </div>
                         </div>
@@ -952,7 +996,7 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('Idiomas:', idiomas.length);
 });
 </script>
-    <script>
+<script>
         // JavaScript del CV (igual que en crear_editar_cv.html)
         // Variables globales para controlar edición
         let experienciaEditandoId = null;
@@ -1414,8 +1458,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Actualiza el contador cuando se agreguen o eliminen habilidades
         // Asegúrate de llamar esta función después de agregar o eliminar habilidades.
-    </script>
-    <script>
+</script>
+
+<script>
     document.addEventListener('DOMContentLoaded', () => {
         const textarea = document.getElementById('resumen_profesional');
         const counter  = document.getElementById('contadorResumen');
@@ -1427,6 +1472,6 @@ document.addEventListener('DOMContentLoaded', function() {
         counter.textContent = `${len}/400 caracteres`;
         });
     });
-    </script>
+</script>
  
 {% endblock %}
