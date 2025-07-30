@@ -13680,3 +13680,231 @@ INFO 2025-07-29 01:06:08,818 basehttp 21119 140453604394688 "POST /ajax/autoguar
 INFO 2025-07-29 01:06:08,820 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
 INFO 2025-07-29 01:06:21,211 basehttp 21119 140453612787392 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
 INFO 2025-07-29 01:06:21,212 basehttp 21119 140453604394688 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-30 09:45:29,189 autoreload 17302 139051766538496 Watching for file changes with StatReloader
+INFO 2025-07-30 09:46:11,089 autoreload 17564 127963890921728 Watching for file changes with StatReloader
+INFO 2025-07-30 09:46:13,966 basehttp 17564 127963713500864 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:46:13,989 basehttp 17564 127963713500864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-30 09:46:13,991 basehttp 17564 127963704059584 "GET /static/css/styles.css HTTP/1.1" 200 14006
+INFO 2025-07-30 09:46:13,991 basehttp 17564 127963687274176 "GET /static/img/facebook.png HTTP/1.1" 200 823
+INFO 2025-07-30 09:46:13,991 basehttp 17564 127963678881472 "GET /static/img/x.png HTTP/1.1" 200 1275
+INFO 2025-07-30 09:46:13,992 basehttp 17564 127963670488768 "GET /static/img/instagram.png HTTP/1.1" 200 1206
+INFO 2025-07-30 09:46:13,992 basehttp 17564 127963695666880 "GET /static/img/Mobilidad1.png HTTP/1.1" 200 78065
+INFO 2025-07-30 09:46:13,994 basehttp 17564 127963704059584 "GET /static/js/main.js HTTP/1.1" 200 1441
+INFO 2025-07-30 09:46:13,996 basehttp 17564 127963695666880 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 200 9860
+INFO 2025-07-30 09:46:13,996 basehttp 17564 127963670488768 "GET /static/js/cards-responsive.js HTTP/1.1" 200 13109
+INFO 2025-07-30 09:46:14,083 basehttp 17564 127963670488768 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-30 09:46:16,836 basehttp 17564 127963687274176 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 09:46:21,024 basehttp 17564 127963713500864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 09:46:23,888 basehttp 17564 127963713500864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:46:23,906 basehttp 17564 127963713500864 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:46:23,914 basehttp 17564 127963713500864 "GET /static/css/image-cropper.css HTTP/1.1" 200 4583
+INFO 2025-07-30 09:46:23,918 basehttp 17564 127963704059584 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 200 10639
+INFO 2025-07-30 09:46:23,918 basehttp 17564 127963695666880 "GET /static/js/session-timeout.js HTTP/1.1" 200 13524
+INFO 2025-07-30 09:46:23,918 basehttp 17564 127963670488768 "GET /static/js/image-cropper.js HTTP/1.1" 200 13875
+INFO 2025-07-30 09:46:23,918 basehttp 17564 127963678881472 "GET /static/js/perfil-interesado.js HTTP/1.1" 200 23618
+INFO 2025-07-30 09:46:23,922 basehttp 17564 127963687274176 "GET /media/interesados/profile.jpg HTTP/1.1" 200 9847
+INFO 2025-07-30 09:46:46,000 basehttp 17564 127963713500864 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:46:46,321 basehttp 17564 127963713500864 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963678881472 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963670488768 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963687274176 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963713500864 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963695666880 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,330 basehttp 17564 127963704059584 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,333 basehttp 17564 127963695666880 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:46,387 basehttp 17564 127963695666880 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,258 basehttp 17564 127963695666880 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:46:49,268 basehttp 17564 127963695666880 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,268 basehttp 17564 127963704059584 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,268 basehttp 17564 127963687274176 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,269 basehttp 17564 127963670488768 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,269 basehttp 17564 127963678881472 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:49,275 basehttp 17564 127963713500864 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-30 09:46:51,331 basehttp 17564 127963695666880 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:46:51,344 basehttp 17564 127963695666880 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:46:51,488 basehttp 17564 127963695666880 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:47:05,497 basehttp 17564 127963713500864 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:47:05,507 basehttp 17564 127963713500864 "GET / HTTP/1.1" 200 20779
+INFO 2025-07-30 09:47:05,555 basehttp 17564 127963713500864 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:05,556 basehttp 17564 127963670488768 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:08,757 basehttp 17564 127963713500864 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:47:08,895 basehttp 17564 127963713500864 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:47:09,030 basehttp 17564 127963713500864 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:47:10,309 basehttp 17564 127963713500864 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 09:47:12,151 basehttp 17564 127963713500864 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:47:12,167 basehttp 17564 127963713500864 "GET /perfil/interesado/ HTTP/1.1" 200 96515
+INFO 2025-07-30 09:47:12,183 basehttp 17564 127963713500864 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:16,269 basehttp 17564 127963678881472 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-30 09:47:16,403 basehttp 17564 127963713500864 "GET /cv/descargar/ HTTP/1.1" 200 16805
+INFO 2025-07-30 09:47:25,823 basehttp 17564 127963713500864 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-30 09:47:25,824 basehttp 17564 127963670488768 "POST /ajax/autoguardar_informacion_personal/ HTTP/1.1" 200 17
+INFO 2025-07-30 09:47:40,016 basehttp 17564 127963670488768 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:47:40,023 basehttp 17564 127963670488768 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,024 basehttp 17564 127963713500864 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,026 basehttp 17564 127963713500864 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,027 basehttp 17564 127963678881472 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,027 basehttp 17564 127963661047488 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,027 basehttp 17564 127963307697856 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,030 basehttp 17564 127963307697856 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,030 basehttp 17564 127963661047488 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,030 basehttp 17564 127963678881472 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,037 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,038 basehttp 17564 127963316090560 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,066 basehttp 17564 127963670488768 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,068 basehttp 17564 127963713500864 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,114 basehttp 17564 127963713500864 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 09:47:40,150 basehttp 17564 127963670488768 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:47:40,175 basehttp 17564 127963670488768 "GET /static/img/colibri.ico HTTP/1.1" 200 1150
+INFO 2025-07-30 09:47:56,643 basehttp 17564 127963670488768 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:47:56,977 basehttp 17564 127963670488768 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:47:56,996 basehttp 17564 127963670488768 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6352
+INFO 2025-07-30 09:48:06,836 basehttp 17564 127963670488768 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:48:07,168 basehttp 17564 127963670488768 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:07,185 basehttp 17564 127963670488768 "GET /media/interesados/profile.jpg HTTP/1.1" 200 5602
+INFO 2025-07-30 09:48:13,456 basehttp 17564 127963670488768 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:48:13,787 basehttp 17564 127963670488768 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:13,795 basehttp 17564 127963316090560 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,795 basehttp 17564 127963670488768 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,796 basehttp 17564 127963678881472 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,796 basehttp 17564 127963316090560 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,797 basehttp 17564 127963661047488 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,797 basehttp 17564 127963713500864 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,799 basehttp 17564 127963661047488 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,799 basehttp 17564 127963713500864 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,799 basehttp 17564 127963678881472 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,803 basehttp 17564 127963307697856 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7819
+INFO 2025-07-30 09:48:13,804 basehttp 17564 127963307697856 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,836 basehttp 17564 127963670488768 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,839 basehttp 17564 127963316090560 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:13,886 basehttp 17564 127963316090560 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:17,457 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:17,473 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:17,681 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:17,696 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:17,796 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:17,813 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:48:25,077 basehttp 17564 127963316090560 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:48:25,412 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:25,427 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 200 7434
+INFO 2025-07-30 09:48:29,936 basehttp 17564 127963316090560 "POST /ajax/actualizar-foto-perfil/ HTTP/1.1" 200 137
+INFO 2025-07-30 09:48:30,265 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96543
+INFO 2025-07-30 09:48:30,281 basehttp 17564 127963316090560 "GET /media/interesados/profile.jpg HTTP/1.1" 200 6888
+INFO 2025-07-30 09:49:16,726 basehttp 17564 127963316090560 "GET /perfil/interesado/ HTTP/1.1" 200 96271
+INFO 2025-07-30 09:49:16,738 basehttp 17564 127963316090560 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,738 basehttp 17564 127963307697856 "GET /static/css/image-cropper.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,738 basehttp 17564 127963713500864 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,738 basehttp 17564 127963670488768 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,738 basehttp 17564 127963661047488 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,741 basehttp 17564 127963307697856 "GET /static/js/image-cropper.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,741 basehttp 17564 127963661047488 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,741 basehttp 17564 127963713500864 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,741 basehttp 17564 127963670488768 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,745 basehttp 17564 127963678881472 "GET /media/interesados/profile.jpg HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,747 basehttp 17564 127963678881472 "GET /static/js/perfil-interesado.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,778 basehttp 17564 127963316090560 "GET /static/js/validador_codigo_postal.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,784 basehttp 17564 127963670488768 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:16,831 basehttp 17564 127963670488768 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:30,715 basehttp 17564 127963670488768 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:49:30,726 basehttp 17564 127963670488768 "GET / HTTP/1.1" 200 20779
+INFO 2025-07-30 09:49:30,775 basehttp 17564 127963670488768 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:49:30,775 basehttp 17564 127963316090560 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,192 basehttp 17564 127963670488768 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963316090560 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963670488768 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963307697856 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963661047488 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963713500864 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,203 basehttp 17564 127963678881472 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,204 basehttp 17564 127963316090560 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,206 basehttp 17564 127963661047488 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,206 basehttp 17564 127963678881472 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,252 basehttp 17564 127963661047488 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 09:52:19,417 basehttp 17564 127963661047488 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:52:19,571 basehttp 17564 127963661047488 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 09:56:33,258 basehttp 17564 127963299305152 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:56:33,279 basehttp 17564 127963299305152 "GET / HTTP/1.1" 200 20779
+INFO 2025-07-30 09:56:33,341 basehttp 17564 127963299305152 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-30 09:56:35,577 basehttp 17564 127963299305152 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 09:56:39,464 basehttp 17564 127963299305152 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-30 09:56:39,487 basehttp 17564 127963299305152 "GET /dashboard/reclutador/ HTTP/1.1" 200 19048
+INFO 2025-07-30 09:56:39,544 basehttp 17564 127963299305152 "GET /static/js/session-timeout.js HTTP/1.1" 200 13524
+INFO 2025-07-30 09:56:40,838 basehttp 17564 127963299305152 "GET /publicar-vacante/ HTTP/1.1" 200 36966
+INFO 2025-07-30 09:56:40,858 basehttp 17564 127963299305152 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 22955
+ERROR 2025-07-30 09:58:57,207 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (11, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 15:58:57.205882+00, null, 2025-07-30 15:58:57.205892+00, borrador, f, f, 20, 1, 12, 1, 1, toluca).
+
+INFO 2025-07-30 09:58:57,220 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 37747
+INFO 2025-07-30 09:58:57,232 basehttp 17564 127963299305152 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-30 09:58:57,233 basehttp 17564 127963290912448 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+INFO 2025-07-30 09:58:57,234 basehttp 17564 127963282519744 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+ERROR 2025-07-30 09:59:34,807 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (12, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 15:59:34.806872+00, null, 2025-07-30 15:59:34.806883+00, borrador, f, f, 20, 1, 12, 1, 1, toluca).
+
+INFO 2025-07-30 09:59:34,818 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 37747
+ERROR 2025-07-30 10:00:13,529 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (13, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 16:00:13.524994+00, null, 2025-07-30 16:00:13.525004+00, borrador, f, f, 20, 1, 12, 1, 1, toluca).
+
+INFO 2025-07-30 10:00:13,540 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 37783
+ERROR 2025-07-30 10:00:38,947 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (14, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 16:00:38.947604+00, null, 2025-07-30 16:00:38.947613+00, borrador, f, f, 50, 1, 12, 1, 1, toluca).
+
+INFO 2025-07-30 10:00:38,960 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 37783
+INFO 2025-07-30 10:00:38,972 basehttp 17564 127963299305152 "GET /static/css/validaciones_vacante.css HTTP/1.1" 200 10628
+INFO 2025-07-30 10:00:38,972 basehttp 17564 127963282519744 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:00:38,972 basehttp 17564 127963290912448 "GET /static/js/validaciones_vacante.js HTTP/1.1" 304 0
+ERROR 2025-07-30 10:01:07,096 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (15, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 16:01:07.095804+00, null, 2025-07-30 16:01:07.095813+00, borrador, f, f, 50, 1, 12, 1, 1, toluca).
+
+INFO 2025-07-30 10:01:07,107 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 38027
+ERROR 2025-07-30 10:01:21,999 views 17564 127963299305152 Error guardando borrador: null value in column "fecha_limite" of relation "usuarios_vacante" violates not-null constraint
+DETAIL:  Failing row contains (16, vacante borrador, descripcion breve, tiempo_completo, presencial, null, null, , null, 2025-07-30 16:01:21.998968+00, null, 2025-07-30 16:01:21.998978+00, borrador, f, f, 50, 1, 12, 1, 1, temascaltepec).
+
+INFO 2025-07-30 10:01:22,009 basehttp 17564 127963299305152 "POST /publicar-vacante/ HTTP/1.1" 200 37788
+INFO 2025-07-30 10:16:57,813 basehttp 17564 127963274127040 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:16:57,829 basehttp 17564 127963274127040 "GET / HTTP/1.1" 200 20779
+INFO 2025-07-30 10:16:57,893 basehttp 17564 127963274127040 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:43,654 autoreload 17564 127963890921728 /home/marco/PycharmProjects/BT/usuarios/models.py changed, reloading.
+INFO 2025-07-30 10:23:43,907 autoreload 21517 138946872807680 Watching for file changes with StatReloader
+INFO 2025-07-30 10:23:57,019 basehttp 21517 138946688317120 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 10:23:57,031 basehttp 21517 138946688317120 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,033 basehttp 21517 138946671531712 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,033 basehttp 21517 138946679924416 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,034 basehttp 21517 138946663139008 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,034 basehttp 21517 138946654746304 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,034 basehttp 21517 138946646353600 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,036 basehttp 21517 138946646353600 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,036 basehttp 21517 138946663139008 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,036 basehttp 21517 138946654746304 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,086 basehttp 21517 138946654746304 "GET /static/img/colibri.ico HTTP/1.1" 304 0
+INFO 2025-07-30 10:23:57,432 basehttp 21517 138946654746304 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 10:23:57,566 basehttp 21517 138946654746304 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 10:23:57,697 basehttp 21517 138946654746304 "GET / HTTP/1.1" 200 20466
+INFO 2025-07-30 10:26:27,894 basehttp 21517 138946654746304 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 10:26:33,888 basehttp 21517 138946654746304 "POST /login/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:26:33,908 basehttp 21517 138946654746304 "GET /dashboard/reclutador/ HTTP/1.1" 200 19048
+INFO 2025-07-30 10:26:33,957 basehttp 21517 138946654746304 "GET /static/js/session-timeout.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:26:36,728 basehttp 21517 138946654746304 "GET /publicar-vacante/ HTTP/1.1" 200 36966
+INFO 2025-07-30 10:26:36,739 basehttp 21517 138946654746304 "GET /static/js/validaciones_vacante.js HTTP/1.1" 200 22955
+INFO 2025-07-30 10:27:35,890 basehttp 21517 138946654746304 "POST /publicar-vacante/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:27:35,908 basehttp 21517 138946654746304 "GET /mis-vacantes/ HTTP/1.1" 200 36067
+INFO 2025-07-30 10:27:54,016 basehttp 21517 138946654746304 "GET /mis-vacantes/ HTTP/1.1" 200 35676
+INFO 2025-07-30 10:27:56,818 basehttp 21517 138946654746304 "GET /editar-vacante/17/ HTTP/1.1" 200 36768
+INFO 2025-07-30 10:28:35,377 basehttp 21517 138946654746304 "POST /editar-vacante/17/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:28:35,391 basehttp 21517 138946654746304 "GET /mis-vacantes/ HTTP/1.1" 200 36028
+INFO 2025-07-30 10:28:35,441 basehttp 21517 138946654746304 "GET /static/css/styles.css HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,443 basehttp 21517 138946646353600 "GET /static/css/validaciones_vacante.css HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,443 basehttp 21517 138946679924416 "GET /static/img/x.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,444 basehttp 21517 138946688317120 "GET /static/img/facebook.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,444 basehttp 21517 138946671531712 "GET /static/img/instagram.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,444 basehttp 21517 138946663139008 "GET /static/img/Mobilidad1.png HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:35,446 basehttp 21517 138946688317120 "GET /static/js/main.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:28:38,814 basehttp 21517 138946688317120 "GET /editar-vacante/17/ HTTP/1.1" 200 36768
+INFO 2025-07-30 10:28:56,233 basehttp 21517 138946688317120 "POST /editar-vacante/17/ HTTP/1.1" 200 37410
+INFO 2025-07-30 10:29:18,479 basehttp 21517 138946688317120 "POST /editar-vacante/17/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:29:18,495 basehttp 21517 138946688317120 "GET /mis-vacantes/ HTTP/1.1" 200 36327
+INFO 2025-07-30 10:29:20,948 basehttp 21517 138946688317120 "GET /logout/ HTTP/1.1" 302 0
+INFO 2025-07-30 10:29:20,960 basehttp 21517 138946688317120 "GET / HTTP/1.1" 200 20800
+INFO 2025-07-30 10:29:21,009 basehttp 21517 138946688317120 "GET /static/js/busqueda-vacantes.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:29:21,009 basehttp 21517 138946654746304 "GET /static/js/cards-responsive.js HTTP/1.1" 304 0
+INFO 2025-07-30 10:29:21,847 basehttp 21517 138946688317120 "GET /login/ HTTP/1.1" 200 12799
+INFO 2025-07-30 10:29:23,199 basehttp 21517 138946688317120 "GET / HTTP/1.1" 200 20487

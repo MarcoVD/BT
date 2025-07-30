@@ -648,7 +648,8 @@ class Vacante(models.Model):
     # Fechas
     fecha_inicio_estimada = models.DateField(blank=True, null=True)
     fecha_publicacion = models.DateTimeField(auto_now_add=True)
-    fecha_limite = models.DateField()
+    fecha_limite = models.DateField(null=True, blank=True)
+    # fecha_limite = models.DateField()
     fecha_actualizacion = models.DateTimeField(auto_now=True)
 
     # Control de estado
