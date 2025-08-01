@@ -206,9 +206,9 @@
                             <span class="input-group-text"><i class="bi bi-lock"></i></span>
                             {{ form.new_password1 }}
                         </div>
-                        <button type="button" class="password-toggle" data-target="{{ form.new_password1.id_for_label }}" title="Mostrar/Ocultar contraseña">
+                        <!-- <button type="button" class="password-toggle" data-target="{{ form.new_password1.id_for_label }}" title="Mostrar/Ocultar contraseña">
                             <i class="bi bi-eye"></i>
-                        </button>
+                        </button> -->
                         <i class="validation-icon d-none"></i>
                     </div>
                     {% if form.new_password1.errors %}
@@ -232,9 +232,9 @@
                             <span class="input-group-text"><i class="bi bi-shield-check"></i></span>
                             {{ form.new_password2 }}
                         </div>
-                        <button type="button" class="password-toggle" data-target="{{ form.new_password2.id_for_label }}" title="Mostrar/Ocultar contraseña">
+                        <!-- <button type="button" class="password-toggle" data-target="{{ form.new_password2.id_for_label }}" title="Mostrar/Ocultar contraseña">
                             <i class="bi bi-eye"></i>
-                        </button>
+                        </button> -->
                         <i class="validation-icon d-none"></i>
                     </div>
                     {% if form.new_password2.errors %}
@@ -352,11 +352,11 @@ document.addEventListener('DOMContentLoaded', function() {
             const icon = element.querySelector('i');
             
             element.classList.remove('met', 'unmet');
-            icon.classList.remove('bi-check-circle-fill', 'bi-circle');
+            //icon.classList.remove('bi-check-circle-fill', 'bi-circle');
             
             if (isMet) {
                 element.classList.add('met');
-                icon.classList.add('bi-check-circle-fill');
+                // icon.classList.add('bi-check-circle-fill');
             } else {
                 element.classList.add('unmet');
                 icon.classList.add('bi-circle');
@@ -411,12 +411,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (allRequirementsMet) {
                 password1Input.classList.remove('is-invalid');
                 password1Input.classList.add('is-valid');
-                icon.className = 'validation-icon bi bi-check-circle-fill';
+                // icon.className = 'validation-icon bi bi-check-circle-fill';
                 validationState.password1 = true;
             } else {
                 password1Input.classList.remove('is-valid');
                 password1Input.classList.add('is-invalid');
-                icon.className = 'validation-icon bi bi-x-circle-fill';
+                // icon.className = 'validation-icon bi bi-x-circle-fill';
                 validationState.password1 = false;
             }
         }
@@ -439,12 +439,12 @@ document.addEventListener('DOMContentLoaded', function() {
         } else if (password2 === password1 && password1 !== '') {
             password2Input.classList.remove('is-invalid');
             password2Input.classList.add('is-valid');
-            icon.className = 'validation-icon bi bi-check-circle-fill';
+            // icon.className = 'validation-icon bi bi-check-circsle-fill';
             validationState.password2 = true;
         } else {
             password2Input.classList.remove('is-valid');
             password2Input.classList.add('is-invalid');
-            icon.className = 'validation-icon bi bi-x-circle-fill';
+            // icon.className = 'validation-icon bi bi-x-circle-fill';
             validationState.password2 = false;
         }
 
