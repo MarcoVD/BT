@@ -1,4 +1,3 @@
-<!-- templates/usuarios/cv_pdf_template.html - VERSIÓN ROBUSTA -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -210,11 +209,11 @@
         <!-- ===== COLUMNA IZQUIERDA ===== -->
         <div class="columna-izquierda">
             <div class="profile-pic-container">
-                {% if foto_url %}
-                    <!-- Mostrar imagen si existe -->
-                    <img src="{{ foto_url }}"
-                         alt="Foto de {{ interesado.nombre_completo }}"
-                         class="profile-pic">
+                {% if imagen_base64 %}
+                    <!-- Mostrar imagen en base64 -->
+                    <img src="{{ imagen_base64 }}"
+                        alt="Foto de {{ interesado.nombre_completo }}"
+                        class="profile-pic">
                 {% else %}
                     <!-- Placeholder elegante cuando no hay imagen -->
                     <div class="profile-pic-placeholder">

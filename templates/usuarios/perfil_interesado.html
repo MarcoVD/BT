@@ -333,7 +333,6 @@
 
 {% block extra_js %}
     <!-- Cropper.js JavaScript -->
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <!-- Scripts personalizados -->
     <script src="{% static 'js/image-cropper.js' %}"></script>
@@ -668,13 +667,7 @@
         </div>
     </div>
 
-    <!-- Modal para editar perfil con cropper integrado -->
-    <!-- El modal editarPerfilModal ha sido eliminado.
-        Ahora la selección y recorte de imagen de perfil se realiza únicamente con el modal del Cropper (cropperModal).
-        Si no puedes guardar la imagen seleccionada en el CV, asegúrate de que el flujo de subida y guardado de la imagen
-        esté implementado en el JS de image-cropper.js y que el backend acepte la imagen recortada vía AJAX.
-        Ya no es necesario el modal editarPerfilModal para guardar la foto de perfil, todo debe hacerse con cropperModal.
-    -->
+</div>
 
 <!-- MODAL DEL CROPPER MEJORADO -->
 <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
@@ -1236,25 +1229,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
 
-
-        // {#function eliminarIdioma(id) {#}
-        // {#    if (confirm('¿Estás seguro de eliminar este idioma?')) {#}
-        // {#        fetch(`/ajax/idioma/eliminar/${id}/`, {#}
-        // {#            method: 'DELETE',#}
-        // {#            headers: {#}
-        // {#                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value#}
-        // {#            }#}
-        // {#        })#}
-        // {#        .then(response => response.json())#}
-        // {#        .then(data => {#}
-        // {#            if (data.success) {#}
-        // {#                location.reload();#}
-        // {#            } else {#}
-        // {#                alert('Error al eliminar: ' + data.error);#}
-        // {#            }#}
-        // {#        });#}
-        // {#    }#}
-        // {#}#}
+        // soluciona el problema del porque al tratar de seleccionar la imagen para el CV este no lo selecciona, esto ocurre solamente en produccion
 
         function eliminarIdioma(id) {
             if (confirm('¿Estás seguro de eliminar este idioma?')) {

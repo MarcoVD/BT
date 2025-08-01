@@ -25,6 +25,10 @@ from django.contrib.sites.shortcuts import get_current_site  # AGREGADO
 from django.urls import reverse
 from django.conf import settings
 import logging
+import base64
+import os
+from PIL import Image
+from io import BytesIO
 
 Usuario = get_user_model()
 # CONFIGURAR LOGGER
@@ -1792,121 +1796,119 @@ def previsualizar_cv(request):
         messages.warning(request, 'Primero debes crear tu CV.')
         return redirect('crear_editar_cv')
 
-# usuarios/views.py - VISTA CORREGIDA PARA DESCARGA DE PDF
+
+def convertir_imagen_a_base64(ruta_imagen):
+    """
+    Convierte una imagen a formato base64 para embederla en HTML.
+    """
+    try:
+        # Verificar que el archivo existe
+        if not os.path.exists(ruta_imagen):
+            print(f"Archivo no encontrado: {ruta_imagen}")
+            return None
+        
+        # Abrir y procesar la imagen
+        with Image.open(ruta_imagen) as img:
+            # Convertir a RGB si es necesario (para JPEGs)
+            if img.mode != 'RGB':
+                img = img.convert('RGB')
+            
+            # Redimensionar si es muy grande (máximo 300x300 para CV)
+            img.thumbnail((300, 300), Image.Resampling.LANCZOS)
+            
+            # Guardar en buffer como JPEG
+            buffer = BytesIO()
+            img.save(buffer, format='JPEG', quality=85)
+            buffer.seek(0)
+            
+            # Convertir a base64
+            imagen_base64 = base64.b64encode(buffer.getvalue()).decode('utf-8')
+            return f"data:image/jpeg;base64,{imagen_base64}"
+            
+    except Exception as e:
+        print(f"Error al convertir imagen a base64: {str(e)}")
+        return None
 
 @login_required
 def descargar_cv_pdf(request):
-    """Vista para generar y descargar CV en PDF - VERSIÓN CORREGIDA."""
+    """Vista para generar y descargar CV en PDF con imágenes en base64."""
     if request.user.rol != 'interesado':
         messages.error(request, 'No tienes permiso para acceder a esta página.')
         return redirect('index')
 
+    interesado = request.user.interesado
+
     try:
-        interesado = request.user.interesado
-        
-        # Verificar que existe el curriculum
-        if not hasattr(interesado, 'curriculum'):
-            messages.warning(request, 'Primero debes crear tu CV.')
-            return redirect('perfil_interesado')
-            
         curriculum = interesado.curriculum
+    except Curriculum.DoesNotExist:
+        messages.warning(request, 'Primero debes crear tu CV.')
+        return redirect('perfil_interesado')
 
-        # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE CON MANEJO DE ERRORES
-        foto_url = None
-        if interesado.foto_perfil:
-            try:
-                # Verificar que el archivo existe
-                if hasattr(interesado.foto_perfil, 'url') and interesado.foto_perfil.url:
-                    foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
-                    print(f"URL de imagen construida: {foto_url}")  # Debug
-            except Exception as e:
-                print(f"Error al construir URL de imagen: {e}")
-                foto_url = None
-
-        # Preparar datos para el PDF
-        context = {
-            'interesado': interesado,
-            'curriculum': curriculum,
-            'experiencias': curriculum.experiencias.all().order_by('-fecha_inicio'),
-            'educaciones': curriculum.educaciones.all().order_by('-fecha_inicio'),
-            'habilidades': curriculum.habilidades.select_related('habilidad').all(),
-            'idiomas': curriculum.idiomas.all(),
-            'foto_url': foto_url,
-            'request': request,
-        }
-
-        print(f"Generando PDF para: {interesado.nombre_completo}")  # Debug
-
-        # Renderizar HTML
+    # ✅ CONVERTIR IMAGEN A BASE64 PARA EMBEDERLA EN HTML
+    imagen_base64 = None
+    if interesado.foto_perfil and interesado.foto_perfil.name:
         try:
-            html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
-            print("HTML renderizado exitosamente")  # Debug
+            # Construir ruta completa del archivo
+            ruta_completa = os.path.join(settings.MEDIA_ROOT, interesado.foto_perfil.name)
+            print(f"Buscando imagen en: {ruta_completa}")  # Debug
+            
+            # Convertir a base64
+            imagen_base64 = convertir_imagen_a_base64(ruta_completa)
+            
+            if imagen_base64:
+                print("✅ Imagen convertida a base64 exitosamente")
+            else:
+                print("❌ No se pudo convertir la imagen a base64")
+                
         except Exception as e:
-            print(f"Error al renderizar HTML: {str(e)}")
-            messages.error(request, f'Error al preparar el CV: {str(e)}')
-            return redirect('perfil_interesado')
+            print(f"Error al procesar imagen: {e}")
+            imagen_base64 = None
 
-        # Generar PDF
-        try:
-            from weasyprint import HTML
-            import tempfile
-            import os
+    # Preparar datos para el PDF
+    context = {
+        'interesado': interesado,
+        'curriculum': curriculum,
+        'experiencias': curriculum.experiencias.all(),
+        'educaciones': curriculum.educaciones.all(),
+        'habilidades': curriculum.habilidades.all(),
+        'idiomas': curriculum.idiomas.all(),
+        'imagen_base64': imagen_base64,  # ✅ PASAR IMAGEN EN BASE64
+        'request': request,
+    }
 
-            print("Iniciando generación de PDF...")  # Debug
+    # Renderizar HTML
+    html_string = render_to_string('usuarios/cv_pdf_template.html', context, request=request)
 
-            # ✅ CONFIGURACIÓN MEJORADA PARA WEASYPRINT
-            html_doc = HTML(
-                string=html_string,
-                base_url=request.build_absolute_uri('/'),
-                encoding='utf-8'
-            )
+    # Generar PDF
+    try:
+        from weasyprint import HTML
 
-            # Generar PDF en memoria
-            pdf_bytes = html_doc.write_pdf(
-                optimize_images=True,
-                presentational_hints=True
-            )
+        html_doc = HTML(
+            string=html_string,
+            base_url=request.build_absolute_uri('/'),
+            encoding='utf-8'
+        )
 
-            print("PDF generado exitosamente")  # Debug
+        pdf_bytes = html_doc.write_pdf(
+            optimize_images=True,
+            presentational_hints=True
+        )
 
-            # Preparar respuesta
-            response = HttpResponse(pdf_bytes, content_type='application/pdf')
-            
-            # Nombre del archivo seguro (sin caracteres especiales)
-            nombre_limpio = f"{interesado.nombre}_{interesado.apellido_paterno}".replace(' ', '_')
-            filename = f"CV_{nombre_limpio}.pdf"
-            
-            response['Content-Disposition'] = f'attachment; filename="{filename}"'
-            response['Content-Length'] = len(pdf_bytes)
+        # Preparar respuesta
+        response = HttpResponse(pdf_bytes, content_type='application/pdf')
+        filename = f"CV_{interesado.nombre}_{interesado.apellido_paterno}.pdf"
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
 
-            print(f"Enviando PDF: {filename} ({len(pdf_bytes)} bytes)")  # Debug
-
-            return response
-
-        except ImportError:
-            print("ERROR: WeasyPrint no está instalado")
-            messages.error(request, 'Error: WeasyPrint no está disponible en el servidor.')
-            return redirect('perfil_interesado')
-            
-        except Exception as e:
-            print(f"Error al generar PDF: {str(e)}")
-            import traceback
-            traceback.print_exc()  # Imprimir stack trace completo
-            
-            messages.error(request, f'Error al generar PDF. Por favor, contacta al administrador.')
-            return redirect('perfil_interesado')
+        return response
 
     except Exception as e:
-        print(f"Error general en descargar_cv_pdf: {str(e)}")
-        import traceback
-        traceback.print_exc()
-        
-        messages.error(request, f'Error interno del servidor. Por favor, inténtalo nuevamente.')
+        print(f"Error al generar PDF: {str(e)}")
+        messages.error(request, f'Error al generar PDF: {str(e)}')
         return redirect('perfil_interesado')
 
 @login_required
 def descargar_cv_pdf_reclutador(request):
-    """Vista para que reclutadores descarguen CV - URLs corregidas."""
+    """Vista para que reclutadores descarguen CV con imágenes en base64."""
 
     # Verificaciones de permisos
     if request.user.rol != 'reclutador':
@@ -1944,16 +1946,25 @@ def descargar_cv_pdf_reclutador(request):
 
         curriculum = interesado.curriculum
 
-        # ✅ CONSTRUIR URL DE IMAGEN CORRECTAMENTE
-        foto_url = None
-        if interesado.foto_perfil:
+        # ✅ CONVERTIR IMAGEN A BASE64 PARA EMBEDERLA EN HTML
+        imagen_base64 = None
+        if interesado.foto_perfil and interesado.foto_perfil.name:
             try:
-                # Construir URL absoluta de la imagen
-                foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
-                print(f"URL de imagen construida: {foto_url}")  # Debug
+                # Construir ruta completa del archivo
+                ruta_completa = os.path.join(settings.MEDIA_ROOT, interesado.foto_perfil.name)
+                print(f"Buscando imagen en: {ruta_completa}")  # Debug
+                
+                # Convertir a base64
+                imagen_base64 = convertir_imagen_a_base64(ruta_completa)
+                
+                if imagen_base64:
+                    print("✅ Imagen convertida a base64 exitosamente")
+                else:
+                    print("❌ No se pudo convertir la imagen a base64")
+                    
             except Exception as e:
-                print(f"Error al construir URL de imagen: {e}")
-                foto_url = None
+                print(f"Error al procesar imagen: {e}")
+                imagen_base64 = None
 
         # Preparar datos para el PDF
         context = {
@@ -1963,7 +1974,7 @@ def descargar_cv_pdf_reclutador(request):
             'educaciones': curriculum.educaciones.all(),
             'habilidades': curriculum.habilidades.all(),
             'idiomas': curriculum.idiomas.all(),
-            'foto_url': foto_url,  # ✅ PASAR URL CONSTRUIDA
+            'imagen_base64': imagen_base64,  # ✅ PASAR IMAGEN EN BASE64
             'request': request,
         }
 
@@ -2003,11 +2014,9 @@ def descargar_cv_pdf_reclutador(request):
     except Exception as e:
         print(f"Error interno: {str(e)}")
         messages.error(request, f'Error interno: {str(e)}')
-        return redirect('mis_vacantes')
-
-
-# usuarios/views.py - Vista PublicarVacanteView actualizada con validación de título
-
+        return redirect('mis_vacantes')  
+    
+    
 @method_decorator(login_required, name='dispatch')
 class PublicarVacanteView(View):
     """Vista para publicar una nueva vacante - ACTUALIZADA con validación de título."""

@@ -1,11 +1,13 @@
 import os
 from pathlib import Path
 from dotenv import load_dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
 # Load environment variables
-load_dotenv()
+load_dotenv(os.path.join(BASE_DIR,'.env.production'))
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-!8==@fr40w4j1g=0(i!rn!qwtxp2lewg5$lwjr-gsz#069kfrg')
@@ -18,19 +20,24 @@ if DEBUG:
     ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 else:
     ALLOWED_HOSTS = [
-        os.getenv('DOMAIN', 'localhost'),
+        os.getenv('DOMAIN'),
         f"www.{os.getenv('DOMAIN', 'localhost')}",
-        '127.0.0.1',
-        'localhost'
-    ]
-
+    	'bolsadetrabajo.movimex.gob.mx',
+        'www.bolsadetrabajo.movimex.gob.mx',
+	'127.0.0.1',
+        'localhost',
+        '10.10.90.112',
+    ] 
+CSRF_TRUSTED_ORIGINS = [ 
+	"https://bolsadetrabajo.movimex.gob.mx",
+]
 INSTALLED_APPS = [
     'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
-    'django.contrib.messages',
+    'django.contrib.messages', 
     'django.contrib.staticfiles',
     'django.contrib.humanize',
     'django.contrib.sites',
@@ -38,8 +45,6 @@ INSTALLED_APPS = [
     'usuarios',
     # Apps de terceros
     'crispy_forms',
-    #Protección contra fuerza Bruta
-    # 'axes',
 ]
 
 MIDDLEWARE = [
@@ -50,22 +55,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'axes.middleware.AxesMiddleware',  # Protección contra fuerza bruta 
-    
-]
-# AUTHENTICATION_BACKENDS = [
-#     'axes.backends.AxesStandaloneBackend',
-#     # 'django.contrib.auth.backends.ModelBackend',  # Si usas autenticación de Django normal
-# ]
-
-
+] 
 
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
 if not DEBUG:
-    # SSL/HTTPS Settings
+    #SSL/HTTPS Settings
+    
     # SECURE_SSL_REDIRECT = True
-    # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_HSTS_SECONDS = 31536000  # 1 año
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_HSTS_SECONDS = 31536000 
     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
     SECURE_HSTS_PRELOAD = True
 
@@ -77,13 +75,11 @@ if not DEBUG:
     # Cookie Security
     SESSION_COOKIE_SECURE = True
     SESSION_COOKIE_HTTPONLY = True
-    SESSION_COOKIE_SAMESITE = 'Strict' #proteccion csrf
-    # CSRF_COOKIE_SECURE = True
-    # CSRF_COOKIE_SAMESITE
-    # Asegurar que las peticiones AJAX funcionen correctamente
-    CSRF_COOKIE_HTTPONLY = False  # Permitir acceso desde JavaScript para peticiones AJAX
-    # CSRF_COOKIE_SAMESITE = 'Lax'  # Permitir peticiones AJAX desde el mismo sitio
-    
+    SESSION_COOKIE_SAMESITE = 'Strict' 
+    CSRF_COOKIE_SECURE = True
+    CSRF_COOKIE_HTTPONLY = True
+    CSRF_COOKIE_SAMESITE = 'Lax'
+
 # Configuración personalizada para timeout de sesión
 SESSION_TIMEOUT_SETTINGS = {
     'TIMEOUT_MINUTES': 15,           # Tiempo total de inactividad
@@ -91,7 +87,6 @@ SESSION_TIMEOUT_SETTINGS = {
     'CHECK_INTERVAL_SECONDS': 30,    # Frecuencia de verificación
     'ENABLE_SERVER_SIDE_TIMEOUT': True,  # Habilitar middleware de timeout
 }
-    
 
 AXES_FAILURE_LIMIT = 5 #Bloquea tras 5 intentos fallidos
 AXES_COOLOFF_TIME = 1 #Tiempo en hrs
@@ -124,7 +119,7 @@ if DEBUG:
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': 'bolsa_trabajo',
             'USER': 'bolsa_admin',
-            'PASSWORD': '//BT29042025&&',
+            'PASSWORD':'//BT29042025&&',
             'HOST': 'localhost',
             'PORT': '5432',
         }
@@ -175,10 +170,11 @@ THOUSAND_SEPARATOR = ','
 #  CONFIGURACIÓN DE ARCHIVOS ESTÁTICOS CORREGIDA
 STATIC_URL = '/static/'
 
+#  DESARROLLO: Django servirá desde static/
+#  PRODUCCIÓN: Nginx servirá desde staticfiles/
 STATICFILES_DIRS = [
-    BASE_DIR / 'static',
+    BASE_DIR / 'static',  
 ]
-
 #  Carpeta donde collectstatic reunirá todos los archivos
 if DEBUG:
     STATIC_ROOT = BASE_DIR / 'staticfiles'
@@ -198,6 +194,7 @@ if DEBUG:
     MEDIA_ROOT = BASE_DIR / 'media'
 else:
     MEDIA_ROOT = '/var/www/bolsa-trabajo/media'
+                # /var/www/bolsa-trabajo/media/interesados/
 
 #  EMAIL CONFIGURATION
 if DEBUG:
@@ -206,12 +203,12 @@ if DEBUG:
 else:
     EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'marcovazquezdelgado.movilidad@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'jufg zcao sdzs hsof')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Bolsa de Trabajo <marcovazquezdelgado.movilidad@gmail.com>')
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'marcovazquezdelgado.movilidad@gmail.com')
+# EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'jufg zcao sdzs hsof')
+# DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Bolsa de Trabajo <marcovazquezdelgado.movilidad@gmail.com>')
 
 SITE_ID = 1
 
@@ -261,7 +258,7 @@ LOGGING = {
 
 #  JAZZMIN SETTINGS (mantener igual)
 JAZZMIN_SETTINGS = {
-    "site_title": "Bolsa de Trabajo Admin",
+    "site_title": "Bolsa de Trabajo",
     "site_header": "Bolsa de Trabajo",
     "site_brand": "Administración",
     "site_logo": None,
@@ -353,10 +350,8 @@ if not DEBUG:
 
 #  CONFIGURACIÓN DE SESIONES
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-# 15 minutos
-SESSION_COOKIE_AGE = 900
+SESSION_COOKIE_AGE = 900  # 15 min
+SESSION_SAVE_EVERY_REQUEST = True
 # Cierra sesión cuando el navegador es cerrado
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True 
-# Guarda la sesión  en cada peticion para manetener el timeout actualizado
-SESSION_SAVE_EVERY_REQUEST = True
 SESSION_COOKIE_NAME = 'bolsa_trabajo_sessionid'
