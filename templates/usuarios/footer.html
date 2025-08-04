@@ -1,11 +1,11 @@
-    
+    {% load static %}
     <footer class="footer">
         <div class="container m-3">
             <div class="row text-center text-lg-start">
-                <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center">
-                    <img src="#" alt="Estado de México" class="img-fluid" style="max-width: 150px;">
-                </div>
-                <div class="col-12 col-lg-3">
+                <!-- <div class="col-12 col-lg-3 mb-3 mb-lg-0 text-center">
+                    <img src="{% static 'img/edomex_logo.png' %}" alt="Estado de México" class="img-fluid" style="max-width: 150px;">
+                </div> -->
+                <div class="col-12 col-lg-4">
                     <h6 class="fw-bold">SITIOS DE INTERÉS</h6>
                     <ul class="list-unstyled">
                         <li>
@@ -22,7 +22,7 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-12 col-lg-3">
+                <div class="col-12 col-lg-4">
                     <h6 class="fw-bold">MAPA DEL SITIO</h6>
                     <ul class="list-unstyled">
                         <li>
@@ -36,17 +36,18 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-12 col-lg-3 text-center text-lg-start">
+                <div class="col-12 col-lg-4 text-center text-lg-start">
                     <h6 class="fw-bold">SÍGUENOS</h6>
                     <div class="social-icons">
                         <a href="https://www.facebook.com/SEMOV.Edomex">
-                            <ion-icon name="logo-facebook"></ion-icon>
-                        </a>
-                        <a href="https://twitter.com/SEMOV_Edomex">
-                            <ion-icon name="logo-twitter"></ion-icon>
-                        </a>
-                        <a href="https://www.instagram.com/semov.edomex">
-                            <ion-icon name="logo-instagram"></ion-icon>
+                            <!-- <ion-icon name="logo-facebook"></ion-icon> -->
+                             <img src="{% static 'img/facebook.png' %}">
+                            </a>
+                            <a href="https://twitter.com/SEMOV_Edomex">
+                                <img src="{% static 'img/x.png' %}">
+                            </a>
+                            <a href="https://www.instagram.com/semov.edomex">
+                            <img src="{% static 'img/instagram.png' %}">
                         </a>
                     </div>
                     <p class="m-2">
