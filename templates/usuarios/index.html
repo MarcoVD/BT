@@ -2,7 +2,10 @@
 {% load static %}
 
 {% block title %}Inicio - Bolsa de Trabajo{% endblock %}
+
+{% block extra_head %}
     <link rel="stylesheet" href="{% static 'css/' %}">
+{% endblock %}
 
 {% block content %}
 <div class="text-center">
@@ -29,6 +32,7 @@
     </div>
 </div>
 <!--fin busqueda-->
+
 {% if vacantes %}
     <div class="container mb-5">
         <div class="d-flex justify-content-between align-items-center mb-4">
@@ -51,7 +55,6 @@
                                 <div class="col-md-9">
                                     <h5 class="card-title text-primary fw-bold">{{ vacante.titulo }}</h5>
                                     <h6 class="card-subtitle mb-2 text-muted">{{ vacante.secretaria.nombre }}</h6>
-{#                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.get_municipio_display}} Estado de México.</h6>#}
                                     <p class="card-text small">
                                         {{ vacante.descripcion|truncatewords:25 }}
                                     </p>
@@ -65,15 +68,15 @@
                                     <p class="mb-1 small text-muted">
                                         <i class="bi bi-geo-alt"></i>
                                         {{ vacante.get_municipio_display }}
-                                            </p>
+                                    </p>
                                     <p class="small text-muted">Publicado: {{ vacante.fecha_publicacion|timesince }}</p>
                                     <a href="{% url 'detalle_vacante' vacante_id=vacante.id %}" class="btn btn-primary btn-sm">Ver Detalles</a>
                                 </div>
                             </div>
                             <div class="mt-2">
                                 <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span>
-                                <span class="badge  rounded-pill  border border-danger text-dark">{{ vacante.get_tipo_empleo_display }}</span>
-                                <span class="badge  rounded-pill  border border-success text-dark">{{ vacante.get_modalidad_display }}</span>
+                                <span class="badge rounded-pill border border-danger text-dark">{{ vacante.get_tipo_empleo_display }}</span>
+                                <span class="badge rounded-pill border border-success text-dark">{{ vacante.get_modalidad_display }}</span>
                             </div>
                         </div>
                     </div>
@@ -166,6 +169,6 @@
         </div>
     </div>
 {% endif %}
-
-
 {% endblock %}
+
+{# El footer se incluye automáticamente desde base.html #}
