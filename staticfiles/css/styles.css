@@ -117,7 +117,24 @@ a:hover {
     gap: 1.5rem;
     padding: 1rem 0;
 }
+.footer {
+    background-color: var(--fondofooter);
+    padding: 10px 0;
+}
 
+.footer-bottom {
+    background-color: #4a192c;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.social-icons a {
+    color: #4a192c;
+    font-size: 20px;
+    margin: 0 10px;
+    text-decoration: none;
+}
 /* Móviles: 3 cards por fila */
 @media (max-width: 767px) {
     .cards-container {
@@ -354,93 +371,90 @@ h6 {
     }
 }
 
-/*!* Footer *!*/
-/* ==========================================================================
-   Footer Mejorado
-   ========================================================================== */
-/* Estilo principal del contenedor del footer */
-.site-footer {
-    background-color: var(--colorfooter); /* Usando el color de footer oscuro definido */
-    color: var(--letrablanca);
-    padding: 4rem 0 0 0; /* Más espaciado superior */
-    font-size: 0.95rem;
-    margin-top: 50px;
-    border-top: 4px solid var(--primary); /* Borde superior con el color primario */
-}
+
+/*.site-footer {*/
+/*    !*background-color: var(--colorfooter); !* Usando el color de footer oscuro definido *!*!*/
+/*    background-color: green; !* Usando el color de footer oscuro definido *!*/
+/*    color: var(--letrablanca);*/
+/*    padding: 4rem 0 0 0; !* Más espaciado superior *!*/
+/*    font-size: 0.95rem;*/
+/*    margin-top: 50px;*/
+/*    border-top: 4px solid var(--primary); !* Borde superior con el color primario *!*/
+/*}*/
 
 /* Títulos dentro del footer (Ej: "Enlaces Rápidos", "Contacto") */
-.site-footer h5 {
-    color: var(--secondary); /* Color dorado para resaltar los títulos */
-    font-weight: var(--peso700);
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    position: relative;
-    padding-bottom: 0.75rem;
-}
+/*.site-footer h5 {*/
+/*    color: var(--secondary); !* Color dorado para resaltar los títulos *!*/
+/*    font-weight: var(--peso700);*/
+/*    font-size: 1.2rem;*/
+/*    margin-bottom: 1.5rem;*/
+/*    position: relative;*/
+/*    padding-bottom: 0.75rem;*/
+/*}*/
 
 /* Línea decorativa debajo de los títulos del footer */
-.site-footer h5::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 45px;
-    height: 3px;
-    background-color: var(--secondary);
-    opacity: 0.5;
-}
+/*.site-footer h5::after {*/
+/*    content: '';*/
+/*    position: absolute;*/
+/*    bottom: 0;*/
+/*    left: 0;*/
+/*    width: 45px;*/
+/*    height: 3px;*/
+/*    background-color: var(--secondary);*/
+/*    opacity: 0.5;*/
+/*}*/
 /* Barra inferior del footer */
-.footer-bottom {
-    background-color: var(--black); /* Un negro sutil para la barra final */
-    color: var(--letrablanca);
-    text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 3rem;
-    font-size: 0.9rem;
-}
+/*.footer-bottom {*/
+/*    background-color: var(--black); !* Un negro sutil para la barra final *!*/
+/*    color: var(--letrablanca);*/
+/*    text-align: center;*/
+/*    padding: 1.5rem 0;*/
+/*    margin-top: 3rem;*/
+/*    font-size: 0.9rem;*/
+/*}*/
 
-.footer-bottom p {
-    margin: 0;
-    color: rgba(255, 255, 255, 0.6);
-}
+/*.footer-bottom p {*/
+/*    margin: 0;*/
+/*    color: rgba(255, 255, 255, 0.6);*/
+/*}*/
 
-.footer-bottom a {
-    color: var(--secondary); /* Dorado para enlaces en la barra inferior */
-    text-decoration: none;
-    font-weight: 500;
-}
+/*.footer-bottom a {*/
+/*    color: var(--secondary); !* Dorado para enlaces en la barra inferior *!*/
+/*    text-decoration: none;*/
+/*    font-weight: 500;*/
+/*}*/
 
-.footer-bottom a:hover {
-    text-decoration: underline;
-}
+/*.footer-bottom a:hover {*/
+/*    text-decoration: underline;*/
+/*}*/
 
-        .footer-bottom {
-            background-color: #4a192c;
-            color: white;
-            text-align: center;
-            padding: 5px 0;
-        }
-        @media (max-width: 992px) {
-            .logo-movilidad {
-                max-width: 400px; /* Ajuste para laptops y tablets grandes */
-            }
-        }
-        @media (max-width: 768px) {
-            .logo-movilidad {
-                width: 400px; /*Ajuste  para tablets en modo vertical*/
-            }
-        }
+/*        .footer-bottom {*/
+/*            background-color: #4a192c;*/
+/*            color: white;*/
+/*            text-align: center;*/
+/*            padding: 5px 0;*/
+/*        }*/
+/*        @media (max-width: 992px) {*/
+/*            .logo-movilidad {*/
+/*                max-width: 400px; !* Ajuste para laptops y tablets grandes *!*/
+/*            }*/
+/*        }*/
+/*        @media (max-width: 768px) {*/
+/*            .logo-movilidad {*/
+/*                width: 400px; !*Ajuste  para tablets en modo vertical*!*/
+/*            }*/
+/*        }*/
 
-        @media (max-width: 576px) {
-            .logo-movilidad {
-                width: 288px; /* para telefonos celulares*/
-            }
-        }
+/*        @media (max-width: 576px) {*/
+/*            .logo-movilidad {*/
+/*                width: 288px; !* para telefonos celulares*!*/
+/*            }*/
+/*        }*/
 
-.pagination {
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-}
+/*.pagination {*/
+/*    margin-top: 2rem;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
 
 .pagination .page-link {
     color: var(--primary);

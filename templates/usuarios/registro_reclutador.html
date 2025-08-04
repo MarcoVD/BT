@@ -1,6 +1,5 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Registro de Reclutador - Bolsa de Trabajo{% endblock %}
 
 {% block extra_css %}
@@ -277,8 +276,11 @@
         </div>
     </div>
 </div>
-    {% block extra_js %}
-            <script src="{% static 'js/validar_login.js' %}"></script>
-    {% endblock %}
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'js/validar_login.js' %}"></script>
+{% endblock %}
+{% block include_footer %}
     {% include 'usuarios/footer.html' %}
 {% endblock %}
