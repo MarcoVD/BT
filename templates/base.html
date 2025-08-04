@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="h-100">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,87 +8,128 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <!-- Nuevo (Inter y Mulish - ajusta los pesos según necesites): -->
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mulish:wght@400;700&display=swap">
-<!-- {#    <link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;500;700&display=swap" rel="stylesheet">#} -->
-<!-- {#    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">#} -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Mulish:wght@400;700&display=swap" rel="stylesheet">
+
     <!-- Estilos personalizados -->
     {% load static %}
     <link rel="icon" href="{% static 'img/colibri.ico' %}" type="">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'css/validaciones_vacante.css' %}">
     {% block extra_css %}{% endblock %}
+
+    <!-- Estilos base para sticky footer -->
+    <style>
+        /* Sticky Footer Configuration */
+        html, body {
+            height: 100%;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .main-content {
+            flex: 1 0 auto;
+            padding-bottom: 2rem;
+        }
+
+        .site-footer {
+            flex-shrink: 0;
+        }
+
+        /* Contenedor principal con padding responsive */
+        .container-main {
+            margin-top: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .container-main {
+                margin-top: 1rem;
+                margin-bottom: 1rem;
+            }
+        }
+    </style>
 </head>
 
-<body class="d-flex flex-column min-vh-100">
- <!-- Reemplazar la sección del navbar en base.html para usuarios interesados -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-    <div class="container">
-        <a class="navbar-brand" href="{% url 'index' %}">
-            <!-- <img src="{% static 'img/Mobilidad1.png' %}" alt="Logo Mobilidad" class="me-2 logo-movilidad"> -->
-            <img src="{% static 'img/Mobilidad1.png' %}" alt="Logo Mobilidad" class="m-2 p-0 m-0" style="width: 253px;">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                    {% if user.rol == 'interesado' %}
+<body class="h-100">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'index' %}">
+                <img src="{% static 'img/Mobilidad1.png' %}" alt="Logo Mobilidad" class="me-2 logo-movilidad">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    {% if user.is_authenticated %}
+                        {% if user.rol == 'interesado' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'index' %}">Buscar Empleos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'perfil_interesado' %}">Mi Cuenta</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'mis_postulaciones' %}">Mis Postulaciones</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                            </li>
+                        {% elif user.rol == 'reclutador' %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'dashboard_reclutador' %}">Dashboard</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'mis_vacantes' %}">Mis Vacantes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                            </li>
+                        {% endif %}
+                    {% else %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'index' %}">Buscar Empleos</a>
+                            <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'perfil_interesado' %}">Mi Cuenta</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'mis_postulaciones' %}">Mis Postulaciones</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
-                        </li>
-
-                    {% elif user.rol == 'reclutador' %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'dashboard_reclutador' %}">Dashboard</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'mis_vacantes' %}">Mis Vacantes</a>
-                        </li>
-                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Cerrar Sesión</a>
+                            <a class="nav-link" href="{% url 'registro_interesado' %}">Registrarse</a>
                         </li>
                     {% endif %}
-                {% else %}
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'login' %}">Iniciar Sesión</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="{% url 'registro_interesado' %}">Registrarse</a>
-                    </li>
-                {% endif %}
-            </ul>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
-    <div class="container mt-4">
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                    {{ message }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>
-            {% endfor %}
-        {% endif %}
+    <!-- Main Content Area -->
+    <main class="main-content">
+        <div class="container container-main">
+            <!-- Messages -->
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        {{ message }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endif %}
 
-        {% block content %}{% endblock %}
-    </div>
+            <!-- Page Content -->
+            {% block content %}{% endblock %}
+        </div>
+    </main>
 
-    <!-- Bootstrap Bundle with Popper -->
+    <!-- Footer condicional -->
+    {% block include_footer %}
+        <!-- El footer se incluirá solo si se define este bloque en el template hijo -->
+    {% endblock %}
+
+    <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Scripts personalizados -->
     <script src="{% static 'js/main.js' %}"></script>
 
     {% block extra_js %}
@@ -99,73 +140,54 @@
         {% endif %}
     {% endblock %}
 
-{% if user.is_authenticated %}
-    <!-- Indicador para JavaScript de que el usuario está autenticado -->
-    <div data-user-authenticated="true" style="display: none;"></div>
-    
-    <!-- Token CSRF para peticiones AJAX -->
-    {% csrf_token %}
-    
-    <!-- Script de session timeout -->
-    <script src="{% static 'js/session-timeout.js' %}"></script>
-    
-    <!-- Configuración personalizada del timeout -->
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Configuración específica según el rol del usuario
-        let timeoutConfig = {
-            timeoutMinutes: 15,     // 15 minutos por defecto
-            warningMinutes: 2,      // Advertencia 2 minutos antes
-            checkInterval: 30000,   // Verificar cada 30 segundos
-            logoutUrl: '{% url "logout" %}',
-            extendUrl: '{% url "extend_session_ajax" %}'
-        };
+    <!-- Session Management Scripts -->
+    {% if user.is_authenticated %}
+        <div data-user-authenticated="true" style="display: none;"></div>
+        {% csrf_token %}
+        <script src="{% static 'js/session-timeout.js' %}"></script>
+        <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let timeoutConfig = {
+                timeoutMinutes: 15,
+                warningMinutes: 2,
+                checkInterval: 30000,
+                logoutUrl: '{% url "logout" %}',
+                extendUrl: '{% url "extend_session_ajax" %}'
+            };
 
-        {% comment %}
-        // Opcional: Diferentes timeouts según el rol
-        {% if user.rol == 'administrador' %}
-            timeoutConfig.timeoutMinutes = 30; // 30 minutos para administradores
-        {% elif user.rol == 'reclutador' %}
-            timeoutConfig.timeoutMinutes = 20; // 20 minutos para reclutadores
-        {% endif %}
-        {% endcomment %}
+            if (window.sessionTimeout) {
+                window.sessionTimeout.destroy();
+            }
 
-        // Inicializar sistema de timeout
-        if (window.sessionTimeout) {
-            window.sessionTimeout.destroy(); // Destruir instancia anterior si existe
-        }
-        
-        window.sessionTimeout = new SessionTimeout(timeoutConfig);
-        
-        // Log de inicialización
-        console.log('Sistema de auto-logout configurado:', timeoutConfig);
-    });
-    </script>
-{% endif %}
-    <!-- Estilos adicionales para el modal de timeout -->
-<style>
-#sessionTimeoutModal .modal-content {
-    animation: shake 0.5s ease-in-out;
-}
+            window.sessionTimeout = new SessionTimeout(timeoutConfig);
+            console.log('Sistema de auto-logout configurado:', timeoutConfig);
+        });
+        </script>
+    {% endif %}
 
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    25% { transform: translateX(-5px); }
-    75% { transform: translateX(5px); }
-}
+    <!-- Modal styles -->
+    <style>
+    #sessionTimeoutModal .modal-content {
+        animation: shake 0.5s ease-in-out;
+    }
 
-#sessionTimeoutModal .modal-header {
-    border-bottom: 2px solid #ffc107;
-}
+    @keyframes shake {
+        0%, 100% { transform: translateX(0); }
+        25% { transform: translateX(-5px); }
+        75% { transform: translateX(5px); }
+    }
 
-#sessionTimeoutModal .btn {
-    min-width: 150px;
-}
+    #sessionTimeoutModal .modal-header {
+        border-bottom: 2px solid #ffc107;
+    }
 
-/* Toast container específico para session timeout */
-#toast-container-timeout {
-    z-index: 9999 !important;
-}
-</style>
+    #sessionTimeoutModal .btn {
+        min-width: 150px;
+    }
+
+    #toast-container-timeout {
+        z-index: 9999 !important;
+    }
+    </style>
 </body>
 </html>

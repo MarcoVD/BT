@@ -40,7 +40,8 @@ body {
   color: var(--primary);
   background-color: var(--grey);
 }
-.footer {
+/* FIXME */
+/* .footer {
     background-color: greenyellow;
     padding: 10px 0;
 }
@@ -50,7 +51,7 @@ body {
     color: white;
     text-align: center;
     padding: 10px 0;
-}
+} */
 
 .social-icons a {
     color: #4a192c;
@@ -369,11 +370,7 @@ h6 {
   }
 }
 
-/*!* Footer *!*/
-/* ==========================================================================
-   Footer Mejorado
-   ========================================================================== */
-/* Estilo principal del contenedor del footer */
+
 .site-footer {
   background-color: var(
     --colorfooter

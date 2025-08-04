@@ -310,7 +310,15 @@
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'js/validar_registro.js' %}"></script>
+    <script src="{% static 'js/validar_login.js' %}"></script>
+{% endblock %}
+{% block include_footer %}
+    {% include 'usuarios/footer.html' %}
+{% endblock %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('registroForm');
@@ -556,8 +564,3 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
 </script>
-    {% block extra_js %}
-            <script src="{% static 'js/validar_login.js' %}"></script>
-    {% endblock %}
-{% include 'usuarios/footer.html' %}
-{% endblock %}
