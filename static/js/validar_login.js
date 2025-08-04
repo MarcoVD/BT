@@ -23,13 +23,18 @@ class ValidadorRegistro {
             ...options
         };
 
-        // Lista de contraseñas comunes
+        // Lista de contraseñas comunes expandida
         this.commonPasswords = [
             '123456', 'password', '123456789', '12345678', '12345', '1234567',
             '1234567890', 'qwerty', 'abc123', 'password123', 'admin', 'letmein',
             '123123', 'welcome', 'monkey', '1234', 'password1', '123', 'qwerty123',
             'football', 'iloveyou', 'princess', 'dragon', 'baseball', 'sunshine',
-            'superman', 'trustno1', 'starwars', 'whatever', '1qaz2wsx', 'shadow'
+            'superman', 'trustno1', 'starwars', 'whatever', '1qaz2wsx', 'shadow',
+            'master', 'michael', 'superman', 'jennifer', 'jordan', 'michelle',
+            'daniel', 'anthony', 'andrew', 'joshua', 'matthew', 'abcdef',
+            'computer', 'maverick', 'buster', 'tiger', 'charlie', 'answer',
+            'rainbow', 'jackson', 'enter', 'honda', 'guitar', 'united',
+            'michelle', 'lovers', 'flower', 'playboy', 'monkey', 'killer'
         ];
 
         // Estado de validación
@@ -100,6 +105,15 @@ class ValidadorRegistro {
         // Elementos de fortaleza
         this.elements.strengthFill = document.getElementById('strengthFill');
         this.elements.strengthText = document.getElementById('strengthText');
+
+        // Log de elementos encontrados para debugging
+        console.log('🔍 Elementos encontrados:', {
+            form: !!this.elements.form,
+            email: !!this.elements.emailInput,
+            password1: !!this.elements.password1Input,
+            password2: !!this.elements.password2Input,
+            submitBtn: !!this.elements.submitBtn
+        });
     }
 
     /**
@@ -107,12 +121,14 @@ class ValidadorRegistro {
      */
     findInput(specificId, fallbackSelectors) {
         if (specificId) {
-            return document.getElementById(specificId);
+            const element = document.getElementById(specificId);
+            if (element) return element;
         }
 
         // Buscar por selectores comunes
         for (const selector of fallbackSelectors) {
-            const input = document.querySelector(`input[name*="${selector}"], input[id*="${selector}"]`);
+            // Buscar por name, id o type
+            const input = document.querySelector(`input[name*="${selector}"], input[id*="${selector}"], input[type="${selector}"]`);
             if (input) return input;
         }
 
@@ -295,6 +311,42 @@ class ValidadorRegistro {
     }
 
     /**
+     * Verifica si la contraseña contiene información personal
+     */
+    containsPersonalInfo(password) {
+        if (!this.elements.emailInput) return false;
+        
+        const email = this.elements.emailInput.value.toLowerCase();
+        const passwordLower = password.toLowerCase();
+        
+        // Obtener la parte antes del @ del email
+        const emailUser = email.split('@')[0];
+        
+        // Verificar si la contraseña contiene el nombre de usuario del email
+        if (emailUser.length >= 3 && passwordLower.includes(emailUser)) {
+            return true;
+        }
+        
+        // Verificar otros campos del formulario si existen (nombre, apellidos, etc.)
+        const personalFields = [
+            'nombre', 'apellido', 'apellido_paterno', 'apellido_materno',
+            'first_name', 'last_name', 'telefono', 'phone'
+        ];
+        
+        for (const fieldName of personalFields) {
+            const field = this.elements.form.querySelector(`input[name*="${fieldName}"], input[id*="${fieldName}"]`);
+            if (field && field.value) {
+                const fieldValue = field.value.toLowerCase().trim();
+                if (fieldValue.length >= 3 && passwordLower.includes(fieldValue)) {
+                    return true;
+                }
+            }
+        }
+        
+        return false;
+    }
+
+    /**
      * Calcula la fortaleza de la contraseña
      */
     calculatePasswordStrength(password) {
@@ -311,6 +363,7 @@ class ValidadorRegistro {
         // Penalizaciones
         if (this.isCommonPassword(password)) score -= 30;
         if (this.isNumericOnly(password)) score -= 25;
+        if (this.containsPersonalInfo(password)) score -= 20;
         if (password.length < 8) score -= 20;
 
         score = Math.max(0, Math.min(100, score));
@@ -383,10 +436,8 @@ class ValidadorRegistro {
         const notNumeric = !this.isNumericOnly(password);
         this.updateRequirement(this.elements.reqNotNumeric, notNumeric);
 
-        // Verificar que no sea personal (básico)
-        const emailUser = this.elements.emailInput ?
-            this.elements.emailInput.value.split('@')[0].toLowerCase() : '';
-        const notPersonal = !password.toLowerCase().includes(emailUser);
+        // Verificar que no contenga información personal
+        const notPersonal = !this.containsPersonalInfo(password);
         this.updateRequirement(this.elements.reqNotPersonal, notPersonal);
 
         return hasLength && notCommon && notNumeric && notPersonal;
@@ -447,7 +498,14 @@ class ValidadorRegistro {
     updateSubmitButton() {
         if (!this.elements.submitBtn) return;
 
-        const allValid = Object.values(this.validationState).every(state => state);
+        // Verificar solo los campos que existen
+        const requiredFields = [];
+        if (this.elements.emailInput) requiredFields.push('email');
+        if (this.elements.password1Input) requiredFields.push('password1');
+        if (this.elements.password2Input) requiredFields.push('password2');
+
+        const allValid = requiredFields.every(field => this.validationState[field]);
+        
         this.elements.submitBtn.disabled = !allValid;
 
         // Agregar clase visual si es necesario
@@ -462,16 +520,22 @@ class ValidadorRegistro {
      * Maneja el envío del formulario
      */
     handleSubmit(event) {
-        const allValid = Object.values(this.validationState).every(state => state);
+        // Verificar solo los campos que existen
+        const requiredFields = [];
+        if (this.elements.emailInput) requiredFields.push('email');
+        if (this.elements.password1Input) requiredFields.push('password1');
+        if (this.elements.password2Input) requiredFields.push('password2');
+
+        const allValid = requiredFields.every(field => this.validationState[field]);
 
         if (!allValid) {
             event.preventDefault();
 
-            // Mostrar mensaje de error más amigable
+            // Mostrar mensaje de error personalizado
             const invalidFields = [];
-            if (!this.validationState.email) invalidFields.push('correo electrónico');
-            if (!this.validationState.password1) invalidFields.push('contraseña');
-            if (!this.validationState.password2) invalidFields.push('confirmación de contraseña');
+            if (this.elements.emailInput && !this.validationState.email) invalidFields.push('correo electrónico');
+            if (this.elements.password1Input && !this.validationState.password1) invalidFields.push('contraseña');
+            if (this.elements.password2Input && !this.validationState.password2) invalidFields.push('confirmación de contraseña');
 
             const message = `Por favor, corrige los siguientes campos: ${invalidFields.join(', ')}`;
 
@@ -482,7 +546,7 @@ class ValidadorRegistro {
                 alert(message);
             }
 
-            console.warn('❌ Envío de formulario bloqueado - Validación incompleta');
+            console.warn('❌ Envío de formulario bloqueado - Validación incompleta:', invalidFields);
         } else {
             console.log('✅ Formulario válido - Permitiendo envío');
         }
@@ -496,7 +560,12 @@ class ValidadorRegistro {
         if (this.elements.password1Input) this.validatePassword1({ target: this.elements.password1Input });
         if (this.elements.password2Input) this.validatePassword2({ target: this.elements.password2Input });
 
-        return Object.values(this.validationState).every(state => state);
+        const requiredFields = [];
+        if (this.elements.emailInput) requiredFields.push('email');
+        if (this.elements.password1Input) requiredFields.push('password1');
+        if (this.elements.password2Input) requiredFields.push('password2');
+
+        return requiredFields.every(field => this.validationState[field]);
     }
 
     /**
@@ -518,6 +587,15 @@ class ValidadorRegistro {
             }
         });
 
+        // Limpiar elementos de fortaleza
+        if (this.elements.strengthFill) {
+            this.elements.strengthFill.style.width = '0%';
+            this.elements.strengthFill.className = 'strength-fill';
+        }
+        if (this.elements.strengthText) {
+            this.elements.strengthText.textContent = '';
+        }
+
         this.updateSubmitButton();
         console.log('🔄 ValidadorRegistro reseteado');
     }
@@ -530,9 +608,10 @@ function initValidadorRegistro(options = {}) {
 
 // Auto-inicializar si los elementos están presentes
 document.addEventListener('DOMContentLoaded', function() {
-    // Solo inicializar si existe el formulario de registro
-    if (document.getElementById('registroForm')) {
+    // Solo inicializar automáticamente para el formulario de registro de interesado
+    if (document.getElementById('registroForm') && !document.getElementById('registroReclutadorForm')) {
         window.validadorRegistro = new ValidadorRegistro();
+        console.log('✅ ValidadorRegistro auto-inicializado para formulario de interesado');
     }
 });
 

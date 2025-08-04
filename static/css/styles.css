@@ -115,11 +115,11 @@ a:hover {
 .cards-container {
     display: grid;
     gap: 1.5rem;
-    padding: 1rem 0;
+    padding: 1rem;
 }
 .footer {
     background-color: var(--fondofooter);
-    padding: 10px 0;
+    padding: 1rem 0;
 }
 
 .footer-bottom {
