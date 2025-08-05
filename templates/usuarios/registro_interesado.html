@@ -230,8 +230,6 @@
                             </div>
                             <div class="validation-feedback" id="password1Feedback"></div>
 
-
-
                             {% if form.password1.errors %}
                                 <div class="alert alert-credentials-error mt-2" role="alert">
                                     <i class="bi bi-exclamation-triangle-fill"></i>
@@ -257,7 +255,7 @@
                                 </div>
                             {% endif %}
 
-                                                    <!-- Barra de fortaleza de contraseña -->
+                            <!-- Barra de fortaleza de contraseña -->
                             <div class="password-strength">
                                 <div class="strength-bar">
                                     <div class="strength-fill" id="strengthFill"></div>
@@ -287,12 +285,6 @@
                             </div>
                         </div>
 
-                        <!-- Información del siguiente paso -->
-{#                        <div class="alert alert-info" role="alert">#}
-{#                            <i class="bi bi-info-circle-fill"></i>#}
-{#                            <strong>Siguiente paso:</strong> Después del registro, podrás completar tu información personal y crear tu currículum para postularte a vacantes.#}
-{#                        </div>#}
-
                         <!-- Botón de envío -->
                         <div class="d-grid mt-2">
                             <button type="submit" class="btn btn-primary btn-lg" id="submitBtn" disabled>
@@ -310,256 +302,284 @@
         </div>
     </div>
 </div>
-{% endblock %}
 
-{% block extra_js %}
-    <script src="{% static 'js/validar_login.js' %}"></script>
-{% endblock %}
-{% block include_footer %}
-    {% include 'usuarios/footer.html' %}
-{% endblock %}
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('registroForm');
-    const emailInput = document.getElementById('{{ form.email.id_for_label }}');
-    const password1Input = document.getElementById('{{ form.password1.id_for_label }}');
-    const password2Input = document.getElementById('{{ form.password2.id_for_label }}');
-    const submitBtn = document.getElementById('submitBtn');
+    const formulario = document.getElementById('registroForm');
+    const campoEmail = document.getElementById('{{ form.email.id_for_label }}');
+    const campoContrasena1 = document.getElementById('{{ form.password1.id_for_label }}');
+    const campoContrasena2 = document.getElementById('{{ form.password2.id_for_label }}');
+    const botonEnviar = document.getElementById('submitBtn');
 
-    // Elementos de validación
-    const emailIcon = document.getElementById('emailIcon');
-    const password1Icon = document.getElementById('password1Icon');
-    const password2Icon = document.getElementById('password2Icon');
+    // Elementos de validación visual
+    const iconoEmail = document.getElementById('emailIcon');
+    const iconoContrasena1 = document.getElementById('password1Icon');
+    const iconoContrasena2 = document.getElementById('password2Icon');
 
-    const emailFeedback = document.getElementById('emailFeedback');
-    const password1Feedback = document.getElementById('password1Feedback');
-    const password2Feedback = document.getElementById('password2Feedback');
+    const mensajeEmail = document.getElementById('emailFeedback');
+    const mensajeContrasena1 = document.getElementById('password1Feedback');
+    const mensajeContrasena2 = document.getElementById('password2Feedback');
 
     // Elementos de requisitos de contraseña
-    const reqLength = document.getElementById('req-length');
-    const reqNotCommon = document.getElementById('req-not-common');
-    const reqNotNumeric = document.getElementById('req-not-numeric');
-    const reqNotPersonal = document.getElementById('req-not-personal');
+    const requisitoLongitud = document.getElementById('req-length');
+    const requisitoNoComun = document.getElementById('req-not-common');
+    const requisitoNoNumerico = document.getElementById('req-not-numeric');
+    const requisitoNoPersonal = document.getElementById('req-not-personal');
 
     // Elementos de fortaleza
-    const strengthFill = document.getElementById('strengthFill');
-    const strengthText = document.getElementById('strengthText');
+    const barraFortaleza = document.getElementById('strengthFill');
+    const textoFortaleza = document.getElementById('strengthText');
 
-    // Lista de contraseñas comunes (muestra pequeña)
-    const commonPasswords = [
+    // Lista de contraseñas comunes
+    const contrasenasComunes = [
         '123456', 'password', '123456789', '12345678', '12345', '1234567',
         '1234567890', 'qwerty', 'abc123', 'password123', 'admin', 'letmein',
         '123123', 'welcome', 'monkey', '1234', 'password1', '123', 'qwerty123'
     ];
 
     // Estado de validación
-    let validationState = {
+    let estadoValidacion = {
         email: false,
-        password1: false,
-        password2: false
+        contrasena1: false,
+        contrasena2: false
     };
 
     // Función para validar email
-    function validateEmail(email) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
+    function esEmailValido(email) {
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regexEmail.test(email);
     }
 
     // Función para verificar si la contraseña es común
-    function isCommonPassword(password) {
-        return commonPasswords.includes(password.toLowerCase());
+    function esContrasenaComun(contrasena) {
+        return contrasenasComunes.includes(contrasena.toLowerCase());
     }
 
     // Función para verificar si es solo numérica
-    function isNumericOnly(password) {
-        return /^\d+$/.test(password);
+    function esSoloNumeros(contrasena) {
+        return /^\d+$/.test(contrasena);
     }
 
     // Función para calcular fortaleza de contraseña
-    function calculatePasswordStrength(password) {
-        let score = 0;
-        let feedback = [];
+    function calcularFortalezaContrasena(contrasena) {
+        let puntuacion = 0;
 
-        if (password.length >= 8) score += 25;
-        if (password.length >= 12) score += 10;
-        if (/[a-z]/.test(password)) score += 15;
-        if (/[A-Z]/.test(password)) score += 15;
-        if (/[0-9]/.test(password)) score += 15;
-        if (/[^A-Za-z0-9]/.test(password)) score += 20;
+        if (contrasena.length >= 8) puntuacion += 25;
+        if (contrasena.length >= 12) puntuacion += 10;
+        if (/[a-z]/.test(contrasena)) puntuacion += 15;
+        if (/[A-Z]/.test(contrasena)) puntuacion += 15;
+        if (/[0-9]/.test(contrasena)) puntuacion += 15;
+        if (/[^A-Za-z0-9]/.test(contrasena)) puntuacion += 20;
 
         // Penalizaciones
-        if (isCommonPassword(password)) score -= 30;
-        if (isNumericOnly(password)) score -= 25;
-        if (password.length < 8) score -= 20;
+        if (esContrasenaComun(contrasena)) puntuacion -= 30;
+        if (esSoloNumeros(contrasena)) puntuacion -= 25;
+        if (contrasena.length < 8) puntuacion -= 20;
 
-        score = Math.max(0, Math.min(100, score));
+        puntuacion = Math.max(0, Math.min(100, puntuacion));
 
         return {
-            score: score,
-            level: score < 25 ? 'weak' : score < 50 ? 'fair' : score < 75 ? 'good' : 'strong'
+            puntuacion: puntuacion,
+            nivel: puntuacion < 25 ? 'weak' : puntuacion < 50 ? 'fair' : puntuacion < 75 ? 'good' : 'strong'
         };
     }
 
-    // Función para actualizar el icono y feedback
-    function updateValidation(input, icon, feedback, isValid, message) {
-        input.classList.remove('is-valid', 'is-invalid');
-        icon.classList.remove('show', 'valid', 'invalid', 'bi-check-circle-fill', 'bi-x-circle-fill');
-        feedback.classList.remove('show', 'valid', 'invalid');
+    // Función para actualizar validación visual
+    function actualizarValidacion(campo, icono, mensaje, esValido, textoMensaje) {
+        campo.classList.remove('is-valid', 'is-invalid');
+        icono.classList.remove('show', 'valid', 'invalid', 'bi-check-circle-fill', 'bi-x-circle-fill');
+        mensaje.classList.remove('show', 'valid', 'invalid');
 
-        if (input.value.trim() === '') {
+        if (campo.value.trim() === '') {
             return;
         }
 
-        if (isValid) {
-            input.classList.add('is-valid');
-            icon.classList.add('show', 'valid', 'bi-check-circle-fill');
-            if (message) {
-                feedback.textContent = message;
-                feedback.classList.add('show', 'valid');
+        if (esValido) {
+            campo.classList.add('is-valid');
+            icono.classList.add('show', 'valid', 'bi-check-circle-fill');
+            if (textoMensaje) {
+                mensaje.textContent = textoMensaje;
+                mensaje.classList.add('show', 'valid');
             }
         } else {
-            input.classList.add('is-invalid');
-            icon.classList.add('show', 'invalid', 'bi-x-circle-fill');
-            if (message) {
-                feedback.textContent = message;
-                feedback.classList.add('show', 'invalid');
+            campo.classList.add('is-invalid');
+            icono.classList.add('show', 'invalid', 'bi-x-circle-fill');
+            if (textoMensaje) {
+                mensaje.textContent = textoMensaje;
+                mensaje.classList.add('show', 'invalid');
             }
         }
     }
 
-    // Función para actualizar requisitos de contraseña
-    function updatePasswordRequirements(password) {
-        // Longitud
-        const hasLength = password.length >= 8;
-        updateRequirement(reqLength, hasLength);
+    // Función para resetear todos los requisitos a estado inicial
+    function resetearRequisitos() {
+        const todosLosRequisitos = [requisitoLongitud, requisitoNoComun, requisitoNoNumerico, requisitoNoPersonal];
 
-        // No común
-        const notCommon = !isCommonPassword(password);
-        updateRequirement(reqNotCommon, notCommon);
+        todosLosRequisitos.forEach(requisito => {
+            if (requisito) {
+                const icono = requisito.querySelector('i');
+                requisito.classList.remove('met', 'unmet');
+                requisito.classList.add('unmet');
 
-        // No solo numérica
-        const notNumeric = !isNumericOnly(password);
-        updateRequirement(reqNotNumeric, notNumeric);
-
-        // No personal (básico - se podría mejorar)
-        const notPersonal = !password.toLowerCase().includes(emailInput.value.split('@')[0].toLowerCase());
-        updateRequirement(reqNotPersonal, notPersonal);
-
-        return hasLength && notCommon && notNumeric && notPersonal;
+                icono.classList.remove('bi-check-circle-fill', 'bi-circle');
+                icono.classList.add('bi-circle');
+            }
+        });
     }
 
-    function updateRequirement(element, isMet) {
-        const icon = element.querySelector('i');
-        element.classList.remove('met', 'unmet');
-        icon.classList.remove('bi-check-circle-fill', 'bi-circle');
+    // Función para actualizar requisitos de contraseña
+    function actualizarRequisitosContrasena(contrasena) {
+        // Si la contraseña está vacía, resetear todos los requisitos
+        if (contrasena === '') {
+            resetearRequisitos();
+            return false;
+        }
 
-        if (isMet) {
-            element.classList.add('met');
-            icon.classList.add('bi-check-circle-fill');
+        // Verificar longitud
+        const tieneLongitud = contrasena.length >= 8;
+        actualizarRequisito(requisitoLongitud, tieneLongitud);
+
+        // Verificar que no sea común
+        const noEsComun = !esContrasenaComun(contrasena);
+        actualizarRequisito(requisitoNoComun, noEsComun);
+
+        // Verificar que no sea solo numérica
+        const noEsNumerico = !esSoloNumeros(contrasena);
+        actualizarRequisito(requisitoNoNumerico, noEsNumerico);
+
+        // Verificar que no sea personal (básico)
+        const usuarioEmail = campoEmail.value.split('@')[0].toLowerCase();
+        const noEsPersonal = !contrasena.toLowerCase().includes(usuarioEmail);
+        actualizarRequisito(requisitoNoPersonal, noEsPersonal);
+
+        return tieneLongitud && noEsComun && noEsNumerico && noEsPersonal;
+    }
+
+    function actualizarRequisito(elemento, estaCumplido) {
+        if (!elemento) return;
+
+        const icono = elemento.querySelector('i');
+        elemento.classList.remove('met', 'unmet');
+        icono.classList.remove('bi-check-circle-fill', 'bi-circle');
+
+        if (estaCumplido) {
+            elemento.classList.add('met');
+            icono.classList.add('bi-check-circle-fill');
         } else {
-            element.classList.add('unmet');
-            icon.classList.add('bi-circle');
+            elemento.classList.add('unmet');
+            icono.classList.add('bi-circle');
         }
     }
 
     // Función para actualizar fortaleza de contraseña
-    function updatePasswordStrength(password) {
-        if (password.length === 0) {
-            strengthFill.style.width = '0%';
-            strengthText.textContent = '';
-            strengthFill.className = 'strength-fill';
+    function actualizarFortalezaContrasena(contrasena) {
+        if (contrasena.length === 0) {
+            barraFortaleza.style.width = '0%';
+            textoFortaleza.textContent = '';
+            barraFortaleza.className = 'strength-fill';
             return;
         }
 
-        const strength = calculatePasswordStrength(password);
-        strengthFill.style.width = strength.score + '%';
-        strengthFill.className = 'strength-fill strength-' + strength.level;
+        const fortaleza = calcularFortalezaContrasena(contrasena);
+        barraFortaleza.style.width = fortaleza.puntuacion + '%';
+        barraFortaleza.className = 'strength-fill strength-' + fortaleza.nivel;
 
-        const strengthLabels = {
+        const etiquetasFortaleza = {
             weak: 'Débil',
             fair: 'Regular',
             good: 'Buena',
             strong: 'Fuerte'
         };
 
-        strengthText.textContent = 'Fortaleza: ' + strengthLabels[strength.level];
+        textoFortaleza.textContent = 'Fortaleza: ' + etiquetasFortaleza[fortaleza.nivel];
     }
 
     // Función para actualizar el estado del botón
-    function updateSubmitButton() {
-        const allValid = Object.values(validationState).every(state => state);
-        submitBtn.disabled = !allValid;
+    function actualizarBotonEnviar() {
+        const todosValidos = Object.values(estadoValidacion).every(estado => estado);
+        botonEnviar.disabled = !todosValidos;
     }
 
     // Event listeners
-    emailInput.addEventListener('input', function () {
+    campoEmail.addEventListener('input', function () {
         const email = this.value.trim();
         if (email === '') {
-            validationState.email = false;
-            updateValidation(this, emailIcon, emailFeedback, false, '');
-        } else if (validateEmail(email)) {
-            validationState.email = true;
-            updateValidation(this, emailIcon, emailFeedback, true, 'Correo electrónico válido');
+            estadoValidacion.email = false;
+            actualizarValidacion(this, iconoEmail, mensajeEmail, false, '');
+        } else if (esEmailValido(email)) {
+            estadoValidacion.email = true;
+            actualizarValidacion(this, iconoEmail, mensajeEmail, true, 'Correo electrónico válido');
         } else {
-            validationState.email = false;
-            updateValidation(this, emailIcon, emailFeedback, false, 'Por favor, ingresa un correo electrónico válido');
+            estadoValidacion.email = false;
+            actualizarValidacion(this, iconoEmail, mensajeEmail, false, 'Por favor, ingresa un correo electrónico válido');
         }
-        updateSubmitButton();
+        actualizarBotonEnviar();
     });
 
-    password1Input.addEventListener('input', function () {
-        const password = this.value;
+    campoContrasena1.addEventListener('input', function () {
+        const contrasena = this.value;
 
-        if (password === '') {
-            validationState.password1 = false;
-            updateValidation(this, password1Icon, password1Feedback, false, '');
-            updatePasswordStrength('');
-            updatePasswordRequirements('');
+        if (contrasena === '') {
+            estadoValidacion.contrasena1 = false;
+            actualizarValidacion(this, iconoContrasena1, mensajeContrasena1, false, '');
+            actualizarFortalezaContrasena('');
+            actualizarRequisitosContrasena(''); // AQUÍ ESTÁ LA SOLUCIÓN: Pasar string vacío para resetear
         } else {
-            const allRequirementsMet = updatePasswordRequirements(password);
-            updatePasswordStrength(password);
+            const todosLosCumplidos = actualizarRequisitosContrasena(contrasena);
+            actualizarFortalezaContrasena(contrasena);
 
-            if (allRequirementsMet) {
-                validationState.password1 = true;
-                updateValidation(this, password1Icon, password1Feedback, true, 'Contraseña segura');
+            if (todosLosCumplidos) {
+                estadoValidacion.contrasena1 = true;
+                actualizarValidacion(this, iconoContrasena1, mensajeContrasena1, true, 'Contraseña segura');
             } else {
-                validationState.password1 = false;
-                updateValidation(this, password1Icon, password1Feedback, false, 'La contraseña no cumple todos los requisitos');
+                estadoValidacion.contrasena1 = false;
+                actualizarValidacion(this, iconoContrasena1, mensajeContrasena1, false, 'La contraseña no cumple todos los requisitos');
             }
         }
 
         // Revalidar confirmación de contraseña
-        if (password2Input.value) {
-            password2Input.dispatchEvent(new Event('input'));
+        if (campoContrasena2.value) {
+            campoContrasena2.dispatchEvent(new Event('input'));
         }
 
-        updateSubmitButton();
+        actualizarBotonEnviar();
     });
 
-    password2Input.addEventListener('input', function () {
-        const password2 = this.value;
-        const password1 = password1Input.value;
+    campoContrasena2.addEventListener('input', function () {
+        const contrasena2 = this.value;
+        const contrasena1 = campoContrasena1.value;
 
-        if (password2 === '') {
-            validationState.password2 = false;
-            updateValidation(this, password2Icon, password2Feedback, false, '');
-        } else if (password2 === password1) {
-            validationState.password2 = true;
-            updateValidation(this, password2Icon, password2Feedback, true, 'Las contraseñas coinciden');
+        if (contrasena2 === '') {
+            estadoValidacion.contrasena2 = false;
+            actualizarValidacion(this, iconoContrasena2, mensajeContrasena2, false, '');
+        } else if (contrasena2 === contrasena1) {
+            estadoValidacion.contrasena2 = true;
+            actualizarValidacion(this, iconoContrasena2, mensajeContrasena2, true, 'Las contraseñas coinciden');
         } else {
-            validationState.password2 = false;
-            updateValidation(this, password2Icon, password2Feedback, false, 'Las contraseñas no coinciden');
+            estadoValidacion.contrasena2 = false;
+            actualizarValidacion(this, iconoContrasena2, mensajeContrasena2, false, 'Las contraseñas no coinciden');
         }
-        updateSubmitButton();
+        actualizarBotonEnviar();
     });
 
     // Prevenir envío si la validación no es completa
-    form.addEventListener('submit', function (e) {
-        const allValid = Object.values(validationState).every(state => state);
-        if (!allValid) {
+    formulario.addEventListener('submit', function (e) {
+        const todosValidos = Object.values(estadoValidacion).every(estado => estado);
+        if (!todosValidos) {
             e.preventDefault();
             alert('Por favor, corrige todos los errores antes de continuar.');
         }
     });
-
+});
 </script>
+
+{% block extra_js %}
+    <!-- Script específico para validación -->
+    <script src="{% static 'js/validar_login.js' %}"></script>
+{% endblock %}
+
+{% endblock %}
+
+<!-- {% block include_footer %}
+    {% include 'usuarios/footer.html' %}
+{% endblock %} -->

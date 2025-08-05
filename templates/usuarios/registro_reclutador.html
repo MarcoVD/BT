@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block title %}Registro de Reclutador - Bolsa de Trabajo{% endblock %}
 
 {% block extra_css %}
@@ -26,7 +27,7 @@
 
     /* Estilos para las secciones del formulario */
     .form-section {
-        padding: 2rem;
+        padding: 1rem;
     }
 
     .form-section-title {
@@ -108,6 +109,150 @@
         margin-bottom: 0;
     }
 
+    /* Estilos para validación en tiempo real */
+    .form-field {
+        position: relative;
+        margin-bottom: 1rem;
+    }
+
+    .validation-icon {
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: 1.2rem;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .validation-icon.show {
+        opacity: 1;
+    }
+
+    .validation-icon.valid {
+        color: #28a745;
+    }
+
+    .validation-icon.invalid {
+        color: #dc3545;
+    }
+
+    .form-control.is-valid {
+        border-color: #28a745;
+        background-image: none;
+    }
+
+    .form-control.is-invalid {
+        border-color: #dc3545;
+        background-image: none;
+    }
+
+    /* Estilos para mensajes de validación */
+    .validation-feedback {
+        display: none;
+        font-size: 0.875rem;
+        margin-top: 0.25rem;
+        padding: 0.5rem;
+        border-radius: 6px;
+        transition: all 0.3s ease;
+    }
+
+    .validation-feedback.show {
+        display: block;
+    }
+
+    .validation-feedback.valid {
+        background-color: rgba(40, 167, 69, 0.1);
+        border: 1px solid rgba(40, 167, 69, 0.2);
+        color: #155724;
+    }
+
+    .validation-feedback.invalid {
+        background-color: rgba(220, 53, 69, 0.1);
+        border: 1px solid rgba(220, 53, 69, 0.2);
+        color: #721c24;
+    }
+
+    /* Lista de requisitos de contraseña */
+    .password-requirements {
+        background-color: rgba(0, 123, 255, 0.05);
+        border: 1px solid rgba(0, 123, 255, 0.2);
+        border-radius: 8px;
+        padding: 1rem;
+        margin-top: 0.5rem;
+        font-size: 0.875rem;
+    }
+
+    .requirement-item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.5rem;
+        transition: color 0.3s ease;
+    }
+
+    .requirement-item:last-child {
+        margin-bottom: 0;
+    }
+
+    .requirement-item i {
+        margin-right: 0.5rem;
+        font-size: 1rem;
+        transition: color 0.3s ease;
+    }
+
+    .requirement-item.met {
+        color: #28a745;
+    }
+
+    .requirement-item.met i {
+        color: #28a745;
+    }
+
+    .requirement-item.unmet {
+        color: #6c757d;
+    }
+
+    .requirement-item.unmet i {
+        color: #6c757d;
+    }
+
+    /* Progreso de fortaleza de contraseña */
+    .password-strength {
+        margin-top: 0.5rem;
+    }
+
+    .strength-bar {
+        height: 4px;
+        background-color: #e9ecef;
+        border-radius: 2px;
+        overflow: hidden;
+        margin-bottom: 0.5rem;
+    }
+
+    .strength-fill {
+        height: 100%;
+        transition: width 0.3s ease, background-color 0.3s ease;
+        width: 0%;
+    }
+
+    .strength-weak { background-color: #dc3545; }
+    .strength-fair { background-color: #fd7e14; }
+    .strength-good { background-color: #ffc107; }
+    .strength-strong { background-color: #28a745; }
+
+    .strength-text {
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: center;
+    }
+
+    /* Botón de submit deshabilitado */
+    .btn-primary:disabled {
+        background-color: #6c757d;
+        border-color: #6c757d;
+        cursor: not-allowed;
+    }
+
 </style>
 {% endblock %}
 
@@ -124,7 +269,7 @@
                     <p class="text-muted mb-0">Únete al equipo de reclutamiento de la Secretaría de Movilidad del Estado de México.</p>
                 </div>
 
-                <form method="post" class="needs-validation" novalidate>
+                <form method="post" class="needs-validation" id="registroForm" novalidate>
                     {% csrf_token %}
 
                     <!-- Sección 1: Información de la Secretaría (Solo lectura) -->
@@ -221,8 +366,12 @@
                             </div>
 
                             <div class="col-md-12">
-                                <label for="{{ reclutador_form.email.id_for_label }}" class="form-label">Correo Electrónico de la Cuenta</label>
-                                {{ reclutador_form.email }}
+                                <label for="{{ reclutador_form.email.id_for_label }}" class="form-label">Correo Electrónico</label>
+                                <div style="position: relative;">
+                                    {{ reclutador_form.email }}
+                                    <i class="bi validation-icon" id="emailIcon"></i>
+                                </div>
+                                <div class="validation-feedback" id="emailFeedback"></div>
                                 {% if reclutador_form.email.errors %}
                                     <div class="invalid-feedback d-block">{{ reclutador_form.email.errors|first }}</div>
                                 {% endif %}
@@ -230,7 +379,11 @@
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.password1.id_for_label }}" class="form-label">Contraseña</label>
-                                {{ reclutador_form.password1 }}
+                                <div style="position: relative;">
+                                    {{ reclutador_form.password1 }}
+                                    <i class="bi validation-icon" id="password1Icon"></i>
+                                </div>
+                                <div class="validation-feedback" id="password1Feedback"></div>
                                 {% if reclutador_form.password1.errors %}
                                     <div class="invalid-feedback d-block">{{ reclutador_form.password1.errors|first }}</div>
                                 {% endif %}
@@ -239,11 +392,48 @@
 
                             <div class="col-md-6">
                                 <label for="{{ reclutador_form.password2.id_for_label }}" class="form-label">Confirmar Contraseña</label>
-                                {{ reclutador_form.password2 }}
+                                <div style="position: relative;">
+                                    {{ reclutador_form.password2 }}
+                                    <i class="bi validation-icon" id="password2Icon"></i>
+                                </div>
+                                <div class="validation-feedback" id="password2Feedback"></div>
                                 {% if reclutador_form.password2.errors %}
                                     <div class="invalid-feedback d-block">{{ reclutador_form.password2.errors|first }}</div>
                                 {% endif %}
+
+                                <!-- Barra de fortaleza de contraseña -->
+                                <div class="password-strength">
+                                    <div class="strength-bar">
+                                        <div class="strength-fill" id="strengthFill"></div>
+                                    </div>
+                                    <div class="strength-text" id="strengthText"></div>
+                                </div>
                             </div>
+
+                                <!-- Requisitos de contraseña -->
+                            <div class="col-md-12">
+
+                                <div class="password-requirements">
+                                    <strong class="text-primary">Requisitos de contraseña:</strong>
+                                    <div class="requirement-item unmet" id="req-length">
+                                        <i class="bi bi-circle"></i>
+                                        <span>Al menos 8 caracteres</span>
+                                    </div>
+                                    <div class="requirement-item unmet" id="req-not-common">
+                                        <i class="bi bi-circle"></i>
+                                        <span>No debe ser muy común</span>
+                                    </div>
+                                    <div class="requirement-item unmet" id="req-not-numeric">
+                                        <i class="bi bi-circle"></i>
+                                        <span>No debe ser solo números</span>
+                                    </div>
+                                    <div class="requirement-item unmet" id="req-not-personal">
+                                        <i class="bi bi-circle"></i>
+                                        <span>No debe ser similar a tu información personal</span>
+                                    </div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
 
@@ -257,7 +447,7 @@
                         </div>
 
                         <div class="d-grid">
-                            <button type="submit" class="btn btn-primary btn-lg fw-bold">
+                            <button type="submit" class="btn btn-primary btn-md fw-bold" id="submitBtn" disabled>
                                 <i class="bi bi-person-plus me-2"></i>
                                 Crear Cuenta de Reclutador
                             </button>
@@ -277,6 +467,316 @@
     </div>
 </div>
 {% endblock %}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const formulario = document.getElementById('registroForm');
+    const campoEmail = document.getElementById('{{ reclutador_form.email.id_for_label }}');
+    const campoPassword1 = document.getElementById('{{ reclutador_form.password1.id_for_label }}');
+    const campoPassword2 = document.getElementById('{{ reclutador_form.password2.id_for_label }}');
+    const botonEnvio = document.getElementById('submitBtn');
+
+    // Elementos de validación visual
+    const iconoEmail = document.getElementById('emailIcon');
+    const iconoPassword1 = document.getElementById('password1Icon');
+    const iconoPassword2 = document.getElementById('password2Icon');
+
+    const mensajeEmail = document.getElementById('emailFeedback');
+    const mensajePassword1 = document.getElementById('password1Feedback');
+    const mensajePassword2 = document.getElementById('password2Feedback');
+
+    // Elementos de requisitos de contraseña
+    const requisitoLongitud = document.getElementById('req-length');
+    const requisitoNoComun = document.getElementById('req-not-common');
+    const requisitoNoNumerico = document.getElementById('req-not-numeric');
+    const requisitoNoPersonal = document.getElementById('req-not-personal');
+
+    // Elementos de barra de fortaleza
+    const barraFortaleza = document.getElementById('strengthFill');
+    const textoFortaleza = document.getElementById('strengthText');
+
+    // Lista de contraseñas comunes
+    const contraseniasComunes = [
+        '123456', 'password', '123456789', '12345678', '12345', '1234567',
+        '1234567890', 'qwerty', 'abc123', 'password123', 'admin', 'letmein',
+        '123123', 'welcome', 'monkey', '1234', 'password1', '123', 'qwerty123',
+        'football', 'iloveyou', 'princess', 'dragon', 'baseball', 'sunshine',
+        'superman', 'trustno1', 'starwars', 'whatever', '1qaz2wsx', 'shadow'
+    ];
+
+    // Estado de validación
+    let estadoValidacion = {
+        email: false,
+        password1: false,
+        password2: false
+    };
+
+    // Función para validar formato de email
+    function validarEmail(email) {
+        const regexEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regexEmail.test(email);
+    }
+
+    // Función para verificar si la contraseña es común
+    function esContrasenaComun(contrasena) {
+        return contraseniasComunes.includes(contrasena.toLowerCase());
+    }
+
+    // Función para verificar si es solo numérica
+    function esSoloNumeros(contrasena) {
+        return /^\d+$/.test(contrasena);
+    }
+
+    // Función para calcular fortaleza de contraseña
+    function calcularFortalezaContrasena(contrasena) {
+        let puntuacion = 0;
+
+        // Puntos positivos
+        if (contrasena.length >= 8) puntuacion += 25;
+        if (contrasena.length >= 12) puntuacion += 10;
+        if (/[a-z]/.test(contrasena)) puntuacion += 15;
+        if (/[A-Z]/.test(contrasena)) puntuacion += 15;
+        if (/[0-9]/.test(contrasena)) puntuacion += 15;
+        if (/[^A-Za-z0-9]/.test(contrasena)) puntuacion += 20;
+
+        // Penalizaciones
+        if (esContrasenaComun(contrasena)) puntuacion -= 30;
+        if (esSoloNumeros(contrasena)) puntuacion -= 25;
+        if (contrasena.length < 8) puntuacion -= 20;
+
+        puntuacion = Math.max(0, Math.min(100, puntuacion));
+
+        return {
+            puntuacion: puntuacion,
+            nivel: puntuacion < 25 ? 'weak' : puntuacion < 50 ? 'fair' : puntuacion < 75 ? 'good' : 'strong'
+        };
+    }
+
+    // Función para actualizar la validación visual
+    function actualizarValidacionVisual(campo, icono, mensaje, esValido, textoMensaje) {
+        // Limpiar clases existentes
+        campo.classList.remove('is-valid', 'is-invalid');
+        icono.classList.remove('show', 'valid', 'invalid', 'bi-check-circle-fill', 'bi-x-circle-fill');
+        mensaje.classList.remove('show', 'valid', 'invalid');
+
+        // Si el campo está vacío, no mostrar validación
+        if (campo.value.trim() === '') {
+            return;
+        }
+
+        // Aplicar estilos según validación
+        if (esValido) {
+            campo.classList.add('is-valid');
+            icono.classList.add('show', 'valid', 'bi-check-circle-fill');
+            if (textoMensaje) {
+                mensaje.textContent = textoMensaje;
+                mensaje.classList.add('show', 'valid');
+            }
+        } else {
+            campo.classList.add('is-invalid');
+            icono.classList.add('show', 'invalid', 'bi-x-circle-fill');
+            if (textoMensaje) {
+                mensaje.textContent = textoMensaje;
+                mensaje.classList.add('show', 'invalid');
+            }
+        }
+    }
+
+    // Función para resetear todos los requisitos a estado inicial
+    function resetearRequisitos() {
+        const todosLosRequisitos = [requisitoLongitud, requisitoNoComun, requisitoNoNumerico, requisitoNoPersonal];
+
+        todosLosRequisitos.forEach(function(requisito) {
+            if (requisito) {
+                const icono = requisito.querySelector('i');
+                requisito.classList.remove('met', 'unmet');
+                requisito.classList.add('unmet');
+
+                if (icono) {
+                    icono.classList.remove('bi-check-circle-fill', 'bi-circle');
+                    icono.classList.add('bi-circle');
+                }
+            }
+        });
+    }
+
+    // Función para actualizar requisitos de contraseña
+    function actualizarRequisitos(contrasena) {
+        // Si la contraseña está vacía, resetear todos los requisitos
+        if (!contrasena || contrasena.length === 0) {
+            resetearRequisitos();
+            return false;
+        }
+
+        // Verificar longitud mínima
+        const tieneLongitud = contrasena.length >= 8;
+        actualizarRequisitoIndividual(requisitoLongitud, tieneLongitud);
+
+        // Verificar que no sea común
+        const noEsComun = !esContrasenaComun(contrasena);
+        actualizarRequisitoIndividual(requisitoNoComun, noEsComun);
+
+        // Verificar que no sea solo numérica
+        const noEsSoloNumeros = !esSoloNumeros(contrasena);
+        actualizarRequisitoIndividual(requisitoNoNumerico, noEsSoloNumeros);
+
+        // Verificar que no sea similar a información personal
+        const emailUsuario = campoEmail ? campoEmail.value.split('@')[0].toLowerCase() : '';
+        const noEsPersonal = !contrasena.toLowerCase().includes(emailUsuario);
+        actualizarRequisitoIndividual(requisitoNoPersonal, noEsPersonal);
+
+        return tieneLongitud && noEsComun && noEsSoloNumeros && noEsPersonal;
+    }
+
+    // Función para actualizar un requisito individual
+    function actualizarRequisitoIndividual(elemento, cumpleRequisito) {
+        if (!elemento) return;
+
+        const icono = elemento.querySelector('i');
+        elemento.classList.remove('met', 'unmet');
+
+        if (icono) {
+            icono.classList.remove('bi-check-circle-fill', 'bi-circle');
+        }
+
+        if (cumpleRequisito) {
+            elemento.classList.add('met');
+            if (icono) icono.classList.add('bi-check-circle-fill');
+        } else {
+            elemento.classList.add('unmet');
+            if (icono) icono.classList.add('bi-circle');
+        }
+    }
+
+    // Función para actualizar la barra de fortaleza
+    function actualizarBarraFortaleza(contrasena) {
+        if (!barraFortaleza || !textoFortaleza) return;
+
+        if (!contrasena || contrasena.length === 0) {
+            barraFortaleza.style.width = '0%';
+            textoFortaleza.textContent = '';
+            barraFortaleza.className = 'strength-fill';
+            return;
+        }
+
+        const fortaleza = calcularFortalezaContrasena(contrasena);
+        barraFortaleza.style.width = fortaleza.puntuacion + '%';
+        barraFortaleza.className = 'strength-fill strength-' + fortaleza.nivel;
+
+        const etiquetasFortaleza = {
+            weak: 'Débil',
+            fair: 'Regular',
+            good: 'Buena',
+            strong: 'Fuerte'
+        };
+
+        textoFortaleza.textContent = 'Fortaleza: ' + etiquetasFortaleza[fortaleza.nivel];
+    }
+
+    // Función para actualizar el estado del botón de envío
+    function actualizarBotonEnvio() {
+        if (!botonEnvio) return;
+
+        const todosValidos = Object.values(estadoValidacion).every(estado => estado);
+        botonEnvio.disabled = !todosValidos;
+    }
+
+    // Event Listener para validación de email
+    campoEmail.addEventListener('input', function() {
+        const email = this.value.trim();
+
+        if (email === '') {
+            estadoValidacion.email = false;
+            actualizarValidacionVisual(this, iconoEmail, mensajeEmail, false, '');
+        } else if (validarEmail(email)) {
+            estadoValidacion.email = true;
+            actualizarValidacionVisual(this, iconoEmail, mensajeEmail, true, 'Correo electrónico válido');
+        } else {
+            estadoValidacion.email = false;
+            actualizarValidacionVisual(this, iconoEmail, mensajeEmail, false, 'Por favor, ingresa un correo electrónico válido');
+        }
+
+        actualizarBotonEnvio();
+    });
+
+    // Event Listener para validación de contraseña principal
+    campoPassword1.addEventListener('input', function() {
+        const contrasena = this.value;
+
+        if (contrasena === '') {
+            estadoValidacion.password1 = false;
+            actualizarValidacionVisual(this, iconoPassword1, mensajePassword1, false, '');
+            actualizarBarraFortaleza('');
+            actualizarRequisitos('');
+        } else {
+            const todosRequisitorCumplen = actualizarRequisitos(contrasena);
+            actualizarBarraFortaleza(contrasena);
+
+            if (todosRequisitorCumplen) {
+                estadoValidacion.password1 = true;
+                actualizarValidacionVisual(this, iconoPassword1, mensajePassword1, true, 'Contraseña segura');
+            } else {
+                estadoValidacion.password1 = false;
+                actualizarValidacionVisual(this, iconoPassword1, mensajePassword1, false, 'La contraseña no cumple todos los requisitos');
+            }
+        }
+
+        // Revalidar confirmación de contraseña si existe
+        if (campoPassword2.value) {
+            campoPassword2.dispatchEvent(new Event('input'));
+        }
+
+        actualizarBotonEnvio();
+    });
+
+    // Event Listener para validación de confirmación de contraseña
+    campoPassword2.addEventListener('input', function() {
+        const confirmacion = this.value;
+        const contrasenaOriginal = campoPassword1.value;
+
+        if (confirmacion === '') {
+            estadoValidacion.password2 = false;
+            actualizarValidacionVisual(this, iconoPassword2, mensajePassword2, false, '');
+        } else if (confirmacion === contrasenaOriginal) {
+            estadoValidacion.password2 = true;
+            actualizarValidacionVisual(this, iconoPassword2, mensajePassword2, true, 'Las contraseñas coinciden');
+        } else {
+            estadoValidacion.password2 = false;
+            actualizarValidacionVisual(this, iconoPassword2, mensajePassword2, false, 'Las contraseñas no coinciden');
+        }
+
+        actualizarBotonEnvio();
+    });
+
+    // Event Listener para prevenir envío con validación incompleta
+    formulario.addEventListener('submit', function(evento) {
+        const todosValidos = Object.values(estadoValidacion).every(estado => estado);
+
+        if (!todosValidos) {
+            evento.preventDefault();
+
+            const camposInvalidos = [];
+            if (!estadoValidacion.email) camposInvalidos.push('correo electrónico');
+            if (!estadoValidacion.password1) camposInvalidos.push('contraseña');
+            if (!estadoValidacion.password2) camposInvalidos.push('confirmación de contraseña');
+
+            const mensajeError = `Por favor, corrige los siguientes campos: ${camposInvalidos.join(', ')}`;
+            alert(mensajeError);
+
+            console.warn('❌ Envío de formulario bloqueado - Campos inválidos:', camposInvalidos);
+        } else {
+            console.log('✅ Formulario válido - Permitiendo envío');
+        }
+    });
+
+    // Inicialización: resetear requisitos al cargar la página
+    resetearRequisitos();
+    actualizarBotonEnvio();
+
+    console.log('✅ Sistema de validación de registro inicializado correctamente');
+});
+</script>
 
 {% block extra_js %}
     <script src="{% static 'js/validar_login.js' %}"></script>
