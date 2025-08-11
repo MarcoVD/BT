@@ -12,8 +12,8 @@
         margin-bottom: 30px;
     }
     .profile-photo {
-        width: 240px;
-        height: 240px;
+        width: 160px;
+        height: 160px;
         border-radius: 50%;
         object-fit: cover;
         border: 4px solid white;
@@ -178,8 +178,8 @@
             <!-- Experiencia Laboral -->
             {% if experiencias %}
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="bi bi-briefcase me-2"></i>Experiencia Laboral
+                    <div class="info-card-header text-primary">
+                        <i class=" bi bi-briefcase-fill me-2"></i>Experiencia Laboral
                     </div>
                     <div class="info-card-body">
                         {% for experiencia in experiencias %}
@@ -197,8 +197,8 @@
             <!-- Educación -->
             {% if educaciones %}
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="bi bi-mortarboard me-2"></i>Educación y Formación
+                    <div class="text-primary info-card-header">
+                        <i class="bi bi-mortarboard-fill me-2"></i>Educación y Formación
                     </div>
                     <div class="info-card-body">
                         {% for educacion in educaciones %}
@@ -218,7 +218,7 @@
             <!-- Habilidades -->
             {% if habilidades %}
                 <div class="info-card">
-                    <div class="info-card-header">
+                    <div class="text-primary info-card-header">
                         <i class="bi bi-tools me-2"></i>Habilidades Técnicas
                     </div>
                     <div class="info-card-body">
@@ -234,7 +234,7 @@
             <!-- Idiomas -->
             {% if idiomas %}
                 <div class="info-card">
-                    <div class="info-card-header">
+                    <div class="text-primary info-card-header">
                         <i class="bi bi-translate me-2"></i>Idiomas
                     </div>
                     <div class="info-card-body">
@@ -260,8 +260,8 @@
             <!-- Postulaciones relacionadas -->
             {% if postulaciones_relacionadas %}
                 <div class="info-card">
-                    <div class="info-card-header">
-                        <i class="bi bi-file-earmark-person me-2"></i>Postulaciones a tus Vacantes
+                    <div class="text-primary info-card-header">
+                        <i class="bi bi-file-earmark-person-fill me-2"></i>Postulaciones a tus Vacantes
                     </div>
                     <div class="info-card-body">
                         {% for postulacion in postulaciones_relacionadas %}
@@ -293,8 +293,8 @@
 
             <!-- Acciones del reclutador -->
             <div class="info-card">
-                <div class="info-card-header">
-                    <i class="bi bi-gear me-2"></i>Acciones
+                <div class="text-primary info-card-header">
+                    <i class="bi bi-gear-fill me-2"></i>Acciones
                 </div>
                 <div class="info-card-body">
                     <div class="d-grid gap-2">
@@ -312,7 +312,7 @@
 
             <!-- Estadísticas rápidas -->
             <div class="info-card">
-                <div class="info-card-header">
+                <div class="text-primary info-card-header">
                     <i class="bi bi-graph-up me-2"></i>Resumen
                 </div>
                 <div class="info-card-body">

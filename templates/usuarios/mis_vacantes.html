@@ -1,14 +1,12 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Mis Vacantes - Bolsa de Trabajo{% endblock %}
 
 {% block content %}
 
 <div class="container">
     <div class="page-header d-flex justify-content-between align-items-center mb-4">
-
         <h1><i class="bi bi-list-ul"></i> Mis Vacantes Publicadas</h1>
-{#        aqui#}
         <a href="{% url 'publicar_vacante' %}" class="btn btn-primary">
             <i class="bi bi-plus-circle-fill"></i> Publicar Nueva Vacante
         </a>
@@ -17,11 +15,11 @@
     {% if vacantes %}
         <div class="row">
             {% for vacante in vacantes %}
-                <div class="col-12 mb-3">
+                <div class="col-12 mb-3" id="vacante-card-{{ vacante.id }}">
                     <div class="card vacancy-card
-                        {% if vacante.estado_vacante == 'publicada' %}
-                        {% elif vacante.estado_vacante == 'borrador' %}
-                        {% elif vacante.estado_vacante == 'cerrada' %}
+                        {% if vacante.estado_vacante == 'publicada' %}border-success
+                        {% elif vacante.estado_vacante == 'borrador' %}border-secondary
+                        {% elif vacante.estado_vacante == 'cerrada' %}border-danger
                         {% else %}border-warning{% endif %}">
 
                         <div class="card-body">
@@ -54,7 +52,6 @@
                                             </p>
                                         </div>
 
-{#                                    Aqui vemos el detalle de la vacante#}
                                         <div class="col-md-6">
                                             <p class="mb-1">
                                                 <i class="bi bi-geo-alt"></i> {{ vacante.get_municipio_display }}, Estado de México
@@ -62,9 +59,16 @@
                                             <p class="mb-1">
                                                 <i class="bi bi-briefcase"></i> {{ vacante.get_tipo_empleo_display }}
                                             </p>
-                                            <p class="mb-1">
+                                            <p class="mb-1" id="postulaciones-info-{{ vacante.id }}">
                                                 <i class="bi bi-people-fill"></i>
-                                                Postulantes: <span class="fw-bold"></span> {{ vacante.postulaciones.count }} / {{ vacante.max_postulantes }}
+                                                Postulantes: <span class="fw-bold">{{ vacante.postulaciones.count }}</span> / {{ vacante.max_postulantes }}
+
+                                                <!-- ✅ INDICADOR VISUAL DEL ESTADO DE LA VACANTE -->
+                                                {% if vacante.postulaciones.count >= vacante.max_postulantes %}
+                                                    <span class="badge bg-warning text-dark ms-1">LLENA</span>
+                                                {% elif vacante.estado_vacante == 'cerrada' %}
+                                                    <span class="badge bg-danger ms-1">CERRADA</span>
+                                                {% endif %}
                                             </p>
                                         </div>
                                     </div>
@@ -75,41 +79,64 @@
                                         </p>
                                     {% endif %}
                                 </div>
+
                                 <div class="col-md-5 col-lg-4 d-flex flex-column align-items-md-end justify-content-between">
+                                    <!-- ✅ BADGE DE ESTADO MEJORADO -->
                                     <div class="mb-2">
-                                        {% if vacante.estado_vacante == 'publicada' %}
-                                            <span class="badge bg-success">Activa</span>
-                                        {% elif vacante.estado_vacante == 'borrador' %}
-                                            <span class="badge bg-secondary">Borrador</span>
-                                        {% elif vacante.estado_vacante == 'cerrada' %}
-                                            <span class="badge bg-danger">Cerrada</span>
-                                        {% else %}
-                                            <span class="badge bg-warning text-dark">{{ vacante.get_estado_vacante_display }}</span>
-                                        {% endif %}
+                                        <span class="badge estado-badge" id="estado-badge-{{ vacante.id }}"
+                                              data-estado="{{ vacante.estado_vacante }}">
+                                            {% if vacante.estado_vacante == 'publicada' %}
+                                                <i class="bi bi-check-circle-fill"></i> Activa
+                                            {% elif vacante.estado_vacante == 'borrador' %}
+                                                <i class="bi bi-file-earmark-text"></i> Borrador
+                                            {% elif vacante.estado_vacante == 'cerrada' %}
+                                                <i class="bi bi-lock-fill"></i> Cerrada
+                                            {% else %}
+                                                {{ vacante.get_estado_vacante_display }}
+                                            {% endif %}
+                                        </span>
                                     </div>
-                                    <div class="btn-group-vertical btn-group-sm w-33" role="group">
+
+                                    <!-- ✅ BOTONES DE ACCIÓN MEJORADOS -->
+                                    <div class="btn-group-vertical btn-group-sm w-100" role="group" id="acciones-{{ vacante.id }}">
                                         {% if vacante.estado_vacante == 'publicada' %}
-                                                    <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-primary btn-sm">
+                                            <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-primary btn-sm">
                                                 <i class="bi bi-person-lines-fill"></i> Ver Postulantes
                                             </a>
-                                        {% endif %}
                                             <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                            {% if vacante.estado_vacante == 'borrador' %}Continuar Edición{% else %}Editar{% endif %}
-                                        </a>
-                                        {% if vacante.estado_vacante == 'publicada' %}
-                                                    <button type="button" class="btn btn-outline-danger btn-sm"
-                                                    onclick="confirmarAccion('cerrar', '{{ vacante.id }}', '{{ vacante.titulo }}')">
+                                                <i class="bi bi-pencil-square"></i> Editar
+                                            </a>
+                                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                                    onclick="ejecutarAccion('cerrar', {{ vacante.id }}, '{{ vacante.titulo|escapejs }}')">
                                                 <i class="bi bi-lock-fill"></i> Cerrar Vacante
                                             </button>
+
                                         {% elif vacante.estado_vacante == 'cerrada' %}
-                                                    <button type="button" class="btn btn-outline-success btn-sm"
-                                                    onclick="confirmarAccion('reabrir', '{{ vacante.id }}', '{{ vacante.titulo }}')">
-                                                <i class="bi bi-unlock-fill"></i> Reabrir Vacante
-                                            </button>
+                                            <a href="{% url 'ver_postulantes' vacante.id %}" class="btn btn-primary btn-sm">
+                                                <i class="bi bi-person-lines-fill"></i> Ver Postulantes
+                                            </a>
+                                            <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
+                                                <i class="bi bi-pencil-square"></i> Editar
+                                            </a>
+                                            <!-- ✅ BOTÓN DE REABRIR CON VALIDACIÓN CONDICIONAL -->
+                                            {% if vacante.postulaciones.count < vacante.max_postulantes %}
+                                                <button type="button" class="btn btn-outline-success btn-sm"
+                                                        onclick="ejecutarAccion('reabrir', {{ vacante.id }}, '{{ vacante.titulo|escapejs }}')">
+                                                    <i class="bi bi-unlock-fill"></i> Reabrir Vacante
+                                                </button>
+                                            {% else %}
+                                                <button type="button" class="btn btn-outline-secondary btn-sm" disabled
+                                                        title="No se puede reabrir: límite de postulaciones alcanzado">
+                                                    <i class="bi bi-exclamation-triangle"></i> Límite Alcanzado
+                                                </button>
+                                            {% endif %}
+
                                         {% elif vacante.estado_vacante == 'borrador' %}
-                                                    <button type="button" class="btn btn-outline-danger btn-sm"
-                                                    onclick="confirmarAccion('eliminar', '{{ vacante.id }}', '{{ vacante.titulo }}')">
+                                            <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-primary btn-sm">
+                                                <i class="bi bi-pencil-square"></i> Continuar Edición
+                                            </a>
+                                            <button type="button" class="btn btn-outline-danger btn-sm"
+                                                    onclick="ejecutarAccion('eliminar', {{ vacante.id }}, '{{ vacante.titulo|escapejs }}')">
                                                 <i class="bi bi-trash-fill"></i> Eliminar Borrador
                                             </button>
                                         {% endif %}
@@ -122,39 +149,44 @@
             {% endfor %}
         </div>
     {% else %}
-        <div class="text-center py-5">
+        <div class="text-center justify-content-center align-items-center vh-100">
             <i class="bi bi-briefcase" style="font-size: 64px; color: #6c757d;"></i>
             <h3 class="mt-3 text-muted">Aún no has publicado ninguna vacante</h3>
             <p class="text-muted">Comienza publicando tu primera vacante para atraer candidatos.</p>
-            <a href="{% url 'publicar_vacante' %}" class="btn btn-primary btn-lg mt-3">
-                <i class="bi bi-plus-circle-fill"></i> Publicar Primera Vacante
-            </a>
         </div>
     {% endif %}
 </div>
 
-<!-- Modal de confirmación -->
+<!-- ✅ MODAL DE CONFIRMACIÓN MEJORADO -->
 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="confirmModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="confirmModalLabel">Confirmar Acción</h5>
+                <h5 class="modal-title" id="confirmModalLabel">
+                    <i class="bi bi-exclamation-triangle-fill text-warning"></i>
+                    Confirmar Acción
+                </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <p id="confirmMessage"></p>
+                <div id="confirmMessage"></div>
+                <div id="confirmDetails" class="mt-3 small text-muted"></div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary" id="confirmButton">Confirmar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    <i class="bi bi-x-circle"></i> Cancelar
+                </button>
+                <button type="button" class="btn" id="confirmButton">
+                    <i class="bi bi-check-circle"></i> Confirmar
+                </button>
             </div>
         </div>
     </div>
 </div>
 
-    {% comment %} PAGINADOR {% endcomment %}
+<!-- PAGINADOR -->
 {% if page_obj.paginator.num_pages > 1 %}
-    <div class="mt-1">
+    <div class="mt-4">
         <nav aria-label="Navegación de mis vacantes">
             <ul class="pagination justify-content-center">
                 {% if page_obj.has_previous %}
@@ -166,6 +198,7 @@
                         <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Atrás</a>
                     </li>
                 {% endif %}
+
                 {% for num in page_obj.paginator.page_range %}
                     {% if page_obj.number == num %}
                         <li class="page-item active" aria-current="page">
@@ -215,39 +248,81 @@
         </div>
     </div>
 {% endif %}
+
+{% block include_footer %}
+    {#{% include 'usuarios/footer.html' %}#}
+{% endblock %}
+
 <style>
- .footer {
+.footer {
     display: none !important;
 }
 .footer-bottom {
     display: none !important;
 }
-.action-buttons {
-    min-width: 200px;
+
+/* ✅ ESTILOS MEJORADOS PARA ESTADOS */
+.estado-badge {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
 }
 
-.action-buttons .btn {
+.estado-badge[data-estado="publicada"] {
+    background-color: #198754;
+    color: white;
+}
+
+.estado-badge[data-estado="borrador"] {
+    background-color: #6c757d;
+    color: white;
+}
+
+.estado-badge[data-estado="cerrada"] {
+    background-color: #dc3545;
+    color: white;
+}
+
+/* ✅ ESTILOS PARA TARJETAS DE VACANTES */
+.vacancy-card {
     transition: all 0.3s ease;
-    border-width: 1.5px;
-    font-weight: 500;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
-.action-buttons .btn:hover {
-    transform: translateY(-1px);
+.vacancy-card:hover {
     box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
 }
 
-.action-buttons .btn i {
-    margin-right: 0.5rem;
+.vacancy-card.border-success {
+    border-left: 4px solid #198754 !important;
 }
 
+.vacancy-card.border-secondary {
+    border-left: 4px solid #6c757d !important;
+}
 
+.vacancy-card.border-danger {
+    border-left: 4px solid #dc3545 !important;
+}
+
+/* ✅ ESTILOS PARA BOTONES */
 .btn-group-vertical .btn {
     margin-bottom: 5px;
+    font-size: 0.875rem;
+    transition: all 0.2s ease;
 }
 
 .btn-group-vertical .btn:last-child {
     margin-bottom: 0;
+}
+
+.btn-group-vertical .btn:hover:not(:disabled) {
+    transform: translateX(2px);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 @media (max-width: 768px) {
@@ -256,47 +331,689 @@
         padding: 0.4rem 0.8rem;
     }
 }
+
+/* ✅ ANIMACIONES PARA ACTUALIZACIONES */
+.updating {
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.card-updated {
+    animation: highlight 1s ease-in-out;
+}
+
+@keyframes highlight {
+    0% { background-color: rgba(25, 135, 84, 0.1); }
+    100% { background-color: transparent; }
+}
 </style>
 
+<!-- ✅ JAVASCRIPT MEJORADO CON MODAL SIMPLIFICADO -->
 <script>
-function confirmarAccion(accion, vacanteId, titulo) {
-    let mensaje = '';
-    let botonTexto = '';
-    let botonClase = 'btn-primary';
+// Variable global para almacenar el token CSRF
+const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]')?.value ||
+                  document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
 
-    switch(accion) {
-        case 'cerrar':
-            mensaje = `¿Estás seguro de que deseas cerrar la vacante "${titulo}"? Los candidatos ya no podrán postularse.`;
-            botonTexto = 'Sí, Cerrar';
-            botonClase = 'btn-danger';
-            break;
-        case 'reabrir':
-            mensaje = `¿Estás seguro de que deseas reabrir la vacante "${titulo}"? Los candidatos podrán volver a postularse.`;
-            botonTexto = 'Sí, Reabrir';
-            botonClase = 'btn-success';
-            break;
-        case 'eliminar':
-            mensaje = `¿Estás seguro de que deseas eliminar permanentemente el borrador "${titulo}"? Esta acción no se puede deshacer.`;
-            botonTexto = 'Sí, Eliminar';
-            botonClase = 'btn-danger';
-            break;
+/**
+ * Función principal para ejecutar acciones sobre vacantes - VERSIÓN SIMPLIFICADA
+ */
+async function ejecutarAccion(accion, vacanteId, titulo) {
+    let configuracion = obtenerConfiguracionAccion(accion, titulo);
+
+    if (!configuracion) {
+        mostrarAlerta('Acción no válida', 'error');
+        return;
     }
 
-    document.getElementById('confirmMessage').textContent = mensaje;
-    const confirmButton = document.getElementById('confirmButton');
-    confirmButton.textContent = botonTexto;
-    confirmButton.className = `btn ${botonClase}`;
+    // Mostrar modal de confirmación
+    mostrarModalConfirmacion(configuracion, vacanteId, accion);
+}
 
-    confirmButton.onclick = function() {
-        // Aquí implementarías la lógica para ejecutar la acción
-        // Por ahora solo mostramos una alerta
-        alert(`Acción "${accion}" ejecutada para la vacante ID: ${vacanteId} (Simulación)`);
-        const modal = bootstrap.Modal.getInstance(document.getElementById('confirmModal'));
-        modal.hide();
+/**
+ * Obtiene la configuración específica para cada acción
+ */
+function obtenerConfiguracionAccion(accion, titulo) {
+    const configuraciones = {
+        'cerrar': {
+            titulo: 'Cerrar Vacante',
+            mensaje: `¿Estás seguro de que deseas cerrar la vacante "<strong>${titulo}</strong>"?`,
+            detalles: 'Los candidatos ya no podrán postularse. Podrás reabrirla si no ha alcanzado el límite.',
+            botonTexto: 'Sí, Cerrar Vacante',
+            botonClase: 'btn-danger',
+            icono: 'bi-lock-fill'
+        },
+        'reabrir': {
+            titulo: 'Reabrir Vacante',
+            mensaje: `¿Estás seguro de que deseas reabrir la vacante "<strong>${titulo}</strong>"?`,
+            detalles: 'Los candidatos podrán volver a postularse hasta alcanzar el límite máximo.',
+            botonTexto: 'Sí, Reabrir Vacante',
+            botonClase: 'btn-success',
+            icono: 'bi-unlock-fill'
+        },
+        'eliminar': {
+            titulo: 'Eliminar Borrador',
+            mensaje: `¿Estás seguro de que deseas eliminar permanentemente el borrador "<strong>${titulo}</strong>"?`,
+            detalles: '<strong>⚠️ Esta acción no se puede deshacer.</strong>',
+            botonTexto: 'Sí, Eliminar Permanentemente',
+            botonClase: 'btn-danger',
+            icono: 'bi-trash-fill'
+        }
     };
 
-    const modal = new bootstrap.Modal(document.getElementById('confirmModal'));
-    modal.show();
+    return configuraciones[accion] || null;
+}
+
+/**
+ * Muestra el modal de confirmación
+ */
+function mostrarModalConfirmacion(config, vacanteId, accion) {
+    // Configurar contenido del modal
+    document.getElementById('confirmModalLabel').innerHTML =
+        `<i class="bi bi-exclamation-triangle-fill text-warning"></i> ${config.titulo}`;
+    document.getElementById('confirmMessage').innerHTML = config.mensaje;
+    document.getElementById('confirmDetails').innerHTML = config.detalles;
+
+    // Configurar botón de confirmación
+    const confirmButton = document.getElementById('confirmButton');
+    confirmButton.innerHTML = `<i class="bi ${config.icono}"></i> ${config.botonTexto}`;
+    confirmButton.className = `btn ${config.botonClase}`;
+
+    // Configurar evento del botón
+    confirmButton.onclick = () => {
+        bootstrap.Modal.getInstance(document.getElementById('confirmModal')).hide();
+        procesarAccionSimplificada(accion, vacanteId);
+    };
+
+    // Mostrar modal
+    new bootstrap.Modal(document.getElementById('confirmModal')).show();
+}
+
+/**
+ * ✅ FUNCIÓN QUE ESPERA LA RESPUESTA REAL DEL SERVIDOR - ACTUALIZADA
+ */
+async function procesarAccionSimplificada(accion, vacanteId) {
+    // ✅ PREVENIR MÚLTIPLES OPERACIONES SIMULTÁNEAS
+    if (window.procesandoAccion) {
+        mostrarAlerta('Ya hay una operación en proceso. Espera un momento.', 'error');
+        return;
+    }
+
+    window.procesandoAccion = true;
+
+    // ✅ DESHABILITAR TODOS LOS BOTONES DE ESTA VACANTE
+    const botonesVacante = document.querySelectorAll(`#acciones-${vacanteId} button`);
+    const estadoOriginalBotones = [];
+
+    botonesVacante.forEach((btn, index) => {
+        estadoOriginalBotones[index] = {
+            disabled: btn.disabled,
+            innerHTML: btn.innerHTML
+        };
+        btn.disabled = true;
+        btn.innerHTML = '<i class="bi bi-hourglass-split"></i> Procesando...';
+    });
+
+    // Crear overlay de carga simple
+    const overlay = crearOverlayCarga();
+    document.body.appendChild(overlay);
+
+    // Agregar clase de actualización a la tarjeta
+    const tarjetaVacante = document.getElementById(`vacante-card-${vacanteId}`);
+    if (tarjetaVacante) {
+        tarjetaVacante.classList.add('updating');
+    }
+
+    let resultado = null;
+    let exitoso = false;
+
+    try {
+        // ✅ HACER PETICIÓN REAL Y ESPERAR RESPUESTA
+        const response = await realizarPeticionAjax(accion, vacanteId);
+
+        if (response && response.success) {
+            resultado = response;
+            exitoso = true;
+        } else {
+            resultado = response || { success: false, error: 'Error desconocido' };
+            exitoso = false;
+        }
+
+    } catch (err) {
+        console.error('Error en petición AJAX:', err);
+        resultado = { success: false, error: 'Error de conexión con el servidor' };
+        exitoso = false;
+    }
+
+    // ✅ SIEMPRE FINALIZAR DESPUÉS DE 1 SEGUNDO MÍNIMO (UX)
+    setTimeout(() => {
+        // Limpiar overlay
+        if (overlay.parentNode) {
+            overlay.remove();
+        }
+
+        // Remover clase de actualización
+        if (tarjetaVacante) {
+            tarjetaVacante.classList.remove('updating');
+        }
+
+        // ✅ PROCESAR RESULTADO SEGÚN RESPUESTA REAL DEL SERVIDOR
+        if (exitoso && resultado.success) {
+            // ✅ SOLO CAMBIAR UI SI EL SERVIDOR CONFIRMÓ EL CAMBIO
+            simularCambioEstado(accion, vacanteId);
+            mostrarAlerta(resultado.message || 'Acción completada exitosamente', 'success');
+        } else {
+            // ✅ MANEJAR CASO ESPECÍFICO DE FECHA LÍMITE VENCIDA
+            if (resultado.codigo_error === 'FECHA_LIMITE_PASADA' && resultado.requiere_edicion) {
+                mostrarAlertaConAccion(
+                    resultado.error || 'La fecha límite ya pasó. Edita la vacante si deseas publicarla.',
+                    'warning',
+                    'Editar Vacante',
+                    resultado.url_edicion || `/editar-vacante/${vacanteId}/`
+                );
+            } else {
+                // ✅ RESTAURAR BOTONES EN CASO DE ERROR NORMAL
+                botonesVacante.forEach((btn, index) => {
+                    if (estadoOriginalBotones[index]) {
+                        btn.disabled = estadoOriginalBotones[index].disabled;
+                        btn.innerHTML = estadoOriginalBotones[index].innerHTML;
+                    }
+                });
+                mostrarAlerta(resultado.error || 'Error procesando la acción', 'error');
+            }
+        }
+
+        // ✅ LIBERAR BLOQUEO GLOBAL
+        window.procesandoAccion = false;
+
+    }, 1000); // Mínimo 1 segundo para buena UX
+}
+
+/**
+ * ✅ NUEVA FUNCIÓN PARA MOSTRAR ALERTA CON BOTÓN DE ACCIÓN
+ */
+function mostrarAlertaConAccion(mensaje, tipo, textoBoton, urlAccion) {
+    // Remover alertas anteriores
+    const alertasAnteriores = document.querySelectorAll('.alerta-feedback');
+    alertasAnteriores.forEach(alerta => alerta.remove());
+
+    // Crear nueva alerta con botón
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo === 'warning' ? 'warning' : 'info'} alert-dismissible fade show alerta-feedback`;
+    alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 400px; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+
+    const icono = tipo === 'warning' ? 'bi-exclamation-triangle' : 'bi-info-circle';
+
+    alerta.innerHTML = `
+        <div class="d-flex align-items-start">
+            <i class="bi ${icono} me-2 mt-1"></i>
+            <div class="flex-grow-1">
+                <div class="mb-2">${mensaje}</div>
+                <div class="d-flex gap-2">
+                    <a href="${urlAccion}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil-square"></i> ${textoBoton}
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="this.closest('.alert').remove()">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 10 segundos (más tiempo porque tiene botón de acción)
+    setTimeout(() => {
+        if (alerta.parentNode) {
+            alerta.style.opacity = '0';
+            setTimeout(() => alerta.remove(), 150);
+        }
+    }, 10000);
+}
+
+/**
+ * Muestra alertas de feedback al usuario - FUNCIÓN EXISTENTE MANTENIDA
+ */
+function mostrarAlerta(mensaje, tipo) {
+    // Remover alertas anteriores
+    const alertasAnteriores = document.querySelectorAll('.alerta-feedback');
+    alertasAnteriores.forEach(alerta => alerta.remove());
+
+    // Crear nueva alerta
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show alerta-feedback`;
+    alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 350px; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+
+    const icono = tipo === 'error' ? 'bi-exclamation-triangle' : 'bi-check-circle';
+
+    alerta.innerHTML = `
+        <i class="bi ${icono} me-2"></i>
+        ${mensaje}
+        <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        if (alerta.parentNode) {
+            alerta.style.opacity = '0';
+            setTimeout(() => alerta.remove(), 150);
+        }
+    }, 4000);
+}
+/**
+ * ✅ NUEVA FUNCIÓN PARA MOSTRAR ALERTA CON BOTÓN DE ACCIÓN
+ */
+function mostrarAlertaConAccion(mensaje, tipo, textoBoton, urlAccion) {
+    // Remover alertas anteriores
+    const alertasAnteriores = document.querySelectorAll('.alerta-feedback');
+    alertasAnteriores.forEach(alerta => alerta.remove());
+
+    // Crear nueva alerta con botón
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo === 'warning' ? 'warning' : 'info'} alert-dismissible fade show alerta-feedback`;
+    alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 400px; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+
+    const icono = tipo === 'warning' ? 'bi-exclamation-triangle' : 'bi-info-circle';
+
+    alerta.innerHTML = `
+        <div class="d-flex align-items-start">
+            <i class="bi ${icono} me-2 mt-1"></i>
+            <div class="flex-grow-1">
+                <div class="mb-2">${mensaje}</div>
+                <div class="d-flex gap-2">
+                    <a href="${urlAccion}" class="btn btn-sm btn-outline-primary">
+                        <i class="bi bi-pencil-square"></i> ${textoBoton}
+                    </a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" onclick="this.closest('.alert').remove()">
+                        Cerrar
+                    </button>
+                </div>
+            </div>
+        </div>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 10 segundos (más tiempo porque tiene botón de acción)
+    setTimeout(() => {
+        if (alerta.parentNode) {
+            alerta.style.opacity = '0';
+            setTimeout(() => alerta.remove(), 150);
+        }
+    }, 10000);
+}
+
+/**
+ * Muestra alertas de feedback al usuario - FUNCIÓN EXISTENTE MANTENIDA
+ */
+function mostrarAlerta(mensaje, tipo) {
+    // Remover alertas anteriores
+    const alertasAnteriores = document.querySelectorAll('.alerta-feedback');
+    alertasAnteriores.forEach(alerta => alerta.remove());
+
+    // Crear nueva alerta
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show alerta-feedback`;
+    alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 350px; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+
+    const icono = tipo === 'error' ? 'bi-exclamation-triangle' : 'bi-check-circle';
+
+    alerta.innerHTML = `
+        <i class="bi ${icono} me-2"></i>
+        ${mensaje}
+        <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        if (alerta.parentNode) {
+            alerta.style.opacity = '0';
+            setTimeout(() => alerta.remove(), 150);
+        }
+    }, 4000);
+}
+
+
+function crearOverlayCarga() {
+    const overlay = document.createElement('div');
+    overlay.id = 'loading-overlay';
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+        backdrop-filter: blur(3px);
+    `;
+
+    overlay.innerHTML = `
+        <div style="background: white; padding: 2rem; border-radius: 10px; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+            <div class="spinner-border text-primary mb-3" role="status">
+                <span class="visually-hidden">Procesando...</span>
+            </div>
+            <p class="mb-0 fw-bold text-dark">Procesando acción...</p>
+            <small class="text-muted">Solo tomará un momento</small>
+        </div>
+    `;
+
+    return overlay;
+}
+
+/**
+ * ✅ SIMULACIÓN DE CAMBIO DE ESTADO MEJORADA
+ */
+function simularCambioEstado(accion, vacanteId) {
+    // ✅ VALIDAR QUE LA TARJETA EXISTE
+    const tarjeta = document.getElementById(`vacante-card-${vacanteId}`);
+    if (!tarjeta) {
+        console.warn(`Tarjeta ${vacanteId} no encontrada`);
+        return;
+    }
+
+    if (accion === 'eliminar') {
+        // Remover tarjeta del DOM con animación
+        tarjeta.style.transition = 'all 0.3s ease';
+        tarjeta.style.opacity = '0';
+        tarjeta.style.transform = 'translateX(-100%)';
+        setTimeout(() => {
+            if (tarjeta.parentNode) {
+                tarjeta.remove();
+                verificarVacantesRestantes();
+            }
+        }, 300);
+
+    } else if (accion === 'cerrar') {
+        // Cambiar a estado cerrada
+        actualizarEstadoVacante(vacanteId, 'cerrada', 'Cerrada', 'border-danger');
+        // ✅ PEQUEÑO DELAY PARA EVITAR CONFLICTOS
+        setTimeout(() => {
+            actualizarBotonesAccion(vacanteId, 'cerrada');
+        }, 100);
+
+    } else if (accion === 'reabrir') {
+        // Cambiar a estado activa
+        actualizarEstadoVacante(vacanteId, 'publicada', 'Activa', 'border-success');
+        // ✅ PEQUEÑO DELAY PARA EVITAR CONFLICTOS
+        setTimeout(() => {
+            actualizarBotonesAccion(vacanteId, 'publicada');
+        }, 100);
+    }
+
+    // ✅ AGREGAR EFECTO VISUAL DE ACTUALIZACIÓN
+    if (tarjeta && accion !== 'eliminar') {
+        tarjeta.classList.add('card-updated');
+        setTimeout(() => {
+            tarjeta.classList.remove('card-updated');
+        }, 1000);
+    }
+}
+
+/**
+ * Actualiza el badge de estado de la vacante
+ */
+function actualizarEstadoVacante(vacanteId, nuevoEstado, textoEstado, claseCard) {
+    const card = document.querySelector(`#vacante-card-${vacanteId} .card`);
+    const badge = document.getElementById(`estado-badge-${vacanteId}`);
+
+    if (card) {
+        card.className = `card vacancy-card ${claseCard}`;
+    }
+
+    if (badge) {
+        badge.setAttribute('data-estado', nuevoEstado);
+
+        const iconos = {
+            'publicada': 'bi-check-circle-fill',
+            'cerrada': 'bi-lock-fill',
+            'borrador': 'bi-file-earmark-text'
+        };
+
+        badge.innerHTML = `<i class="bi ${iconos[nuevoEstado]}"></i> ${textoEstado}`;
+    }
+}
+
+/**
+ * ✅ ACTUALIZACIÓN ROBUSTA DE BOTONES SIN CONFLICTOS
+ */
+function actualizarBotonesAccion(vacanteId, nuevoEstado) {
+    const contenedorAcciones = document.getElementById(`acciones-${vacanteId}`);
+    if (!contenedorAcciones) return;
+
+    // ✅ LIMPIAR EVENT LISTENERS ANTERIORES
+    const clonedContainer = contenedorAcciones.cloneNode(false);
+    contenedorAcciones.parentNode.replaceChild(clonedContainer, contenedorAcciones);
+
+    let botonesHTML = '';
+
+    if (nuevoEstado === 'publicada') {
+        botonesHTML = `
+            <a href="/vacante/${vacanteId}/postulantes/" class="btn btn-primary btn-sm">
+                <i class="bi bi-person-lines-fill"></i> Ver Postulantes
+            </a>
+            <a href="/editar-vacante/${vacanteId}/" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <button type="button" class="btn btn-outline-danger btn-sm btn-cerrar-${vacanteId}"
+                    data-vacante-id="${vacanteId}" data-accion="cerrar">
+                <i class="bi bi-lock-fill"></i> Cerrar Vacante
+            </button>
+        `;
+    } else if (nuevoEstado === 'cerrada') {
+        botonesHTML = `
+            <a href="/vacante/${vacanteId}/postulantes/" class="btn btn-primary btn-sm">
+                <i class="bi bi-person-lines-fill"></i> Ver Postulantes
+            </a>
+            <a href="/editar-vacante/${vacanteId}/" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-pencil-square"></i> Editar
+            </a>
+            <button type="button" class="btn btn-outline-success btn-sm btn-reabrir-${vacanteId}"
+                    data-vacante-id="${vacanteId}" data-accion="reabrir">
+                <i class="bi bi-unlock-fill"></i> Reabrir Vacante
+            </button>
+        `;
+    }
+
+    clonedContainer.innerHTML = botonesHTML;
+
+    // ✅ REASIGNAR EVENT LISTENERS DE FORMA ESPECÍFICA
+    const botonCerrar = clonedContainer.querySelector(`[data-accion="cerrar"]`);
+    const botonReabrir = clonedContainer.querySelector(`[data-accion="reabrir"]`);
+
+    if (botonCerrar) {
+        botonCerrar.addEventListener('click', function(e) {
+            e.preventDefault();
+            ejecutarAccion('cerrar', vacanteId, 'Vacante');
+        });
+    }
+
+    if (botonReabrir) {
+        botonReabrir.addEventListener('click', function(e) {
+            e.preventDefault();
+            ejecutarAccion('reabrir', vacanteId, 'Vacante');
+        });
+    }
+}
+
+/**
+ * Función para hacer la petición AJAX real - MEJORADA CON LOGS
+ */
+async function realizarPeticionAjax(accion, vacanteId) {
+    const urls = {
+        'cerrar': `/ajax/cerrar-vacante/${vacanteId}/`,
+        'reabrir': `/ajax/reabrir-vacante/${vacanteId}/`,
+        'eliminar': `/ajax/eliminar-borrador/${vacanteId}/`
+    };
+
+    const url = urls[accion];
+    if (!url) {
+        throw new Error(`URL no encontrada para acción: ${accion}`);
+    }
+
+    console.log(`🚀 Enviando petición ${accion} para vacante ${vacanteId} a: ${url}`);
+
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': csrfToken || getCookie('csrftoken'),
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            credentials: 'same-origin'
+        });
+
+        console.log(`📡 Respuesta recibida: Status ${response.status}`);
+
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error(`❌ Error HTTP ${response.status}: ${errorText}`);
+            throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(`✅ Respuesta JSON:`, result);
+
+        return result;
+
+    } catch (error) {
+        console.error(`❌ Error en petición AJAX:`, error);
+        throw error;
+    }
+}
+
+/**
+ * Verifica si quedan vacantes y recarga si no hay ninguna
+ */
+function verificarVacantesRestantes() {
+    const tarjetas = document.querySelectorAll('[id^="vacante-card-"]');
+    if (tarjetas.length === 0) {
+        window.location.reload();
+    }
+}
+
+/**
+ * Muestra alertas de feedback al usuario
+ */
+function mostrarAlerta(mensaje, tipo) {
+    // Remover alertas anteriores
+    const alertasAnteriores = document.querySelectorAll('.alerta-feedback');
+    alertasAnteriores.forEach(alerta => alerta.remove());
+
+    // Crear nueva alerta
+    const alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo === 'error' ? 'danger' : 'success'} alert-dismissible fade show alerta-feedback`;
+    alerta.style.cssText = 'position: fixed; top: 20px; right: 20px; z-index: 9999; min-width: 350px; max-width: 500px; box-shadow: 0 4px 12px rgba(0,0,0,0.15);';
+
+    const icono = tipo === 'error' ? 'bi-exclamation-triangle' : 'bi-check-circle';
+
+    alerta.innerHTML = `
+        <i class="bi ${icono} me-2"></i>
+        ${mensaje}
+        <button type="button" class="btn-close" onclick="this.parentElement.remove()"></button>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        if (alerta.parentNode) {
+            alerta.style.opacity = '0';
+            setTimeout(() => alerta.remove(), 150);
+        }
+    }, 4000);
+}
+
+/**
+ * Función auxiliar para obtener cookies (CSRF token)
+ */
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+// ✅ INICIALIZACIÓN MEJORADA AL CARGAR LA PÁGINA
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('✅ Sistema de gestión de vacantes cargado (versión sin conflictos)');
+
+    // ✅ LIMPIAR CUALQUIER ESTADO PREVIO
+    window.procesandoAccion = false;
+
+    // ✅ REMOVER OVERLAYS RESIDUALES
+    const overlaysExistentes = document.querySelectorAll('#loading-overlay');
+    overlaysExistentes.forEach(overlay => overlay.remove());
+
+    // ✅ CONFIGURAR EVENT LISTENERS GLOBALES PARA BOTONES EXISTENTES
+    configurarEventListenersIniciales();
+});
+
+
+/**
+ * ✅ CONFIGURAR EVENT LISTENERS PARA BOTONES EXISTENTES AL CARGAR
+ */
+function configurarEventListenersIniciales() {
+    // Buscar todos los botones de acción existentes
+    const botonesCerrar = document.querySelectorAll('[onclick*="cerrar"]');
+    const botonesReabrir = document.querySelectorAll('[onclick*="reabrir"]');
+    const botonesEliminar = document.querySelectorAll('[onclick*="eliminar"]');
+
+    // ✅ REEMPLAZAR ONCLICK CON EVENT LISTENERS APROPIADOS
+    botonesCerrar.forEach(btn => {
+        const match = btn.getAttribute('onclick').match(/ejecutarAccion\('cerrar',\s*(\d+),\s*'([^']+)'\)/);
+        if (match) {
+            const vacanteId = match[1];
+            const titulo = match[2];
+            btn.removeAttribute('onclick');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                ejecutarAccion('cerrar', vacanteId, titulo);
+            });
+        }
+    });
+
+    botonesReabrir.forEach(btn => {
+        const match = btn.getAttribute('onclick').match(/ejecutarAccion\('reabrir',\s*(\d+),\s*'([^']+)'\)/);
+        if (match) {
+            const vacanteId = match[1];
+            const titulo = match[2];
+            btn.removeAttribute('onclick');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                ejecutarAccion('reabrir', vacanteId, titulo);
+            });
+        }
+    });
+
+    botonesEliminar.forEach(btn => {
+        const match = btn.getAttribute('onclick').match(/ejecutarAccion\('eliminar',\s*(\d+),\s*'([^']+)'\)/);
+        if (match) {
+            const vacanteId = match[1];
+            const titulo = match[2];
+            btn.removeAttribute('onclick');
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                ejecutarAccion('eliminar', vacanteId, titulo);
+            });
+        }
+    });
 }
 </script>
 {% endblock %}

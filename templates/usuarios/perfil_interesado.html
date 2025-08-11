@@ -217,276 +217,380 @@
                 margin-bottom: 0.5rem;
             }
         }
-        /* Ocultar el footer completamente en esta página */
-        footer {
-            display: none !important;
-        }
-        /* Ocultar el footer completamente en esta página */
 
-        .footer-bottom {
-            display: none !important;
-        }
     </style>
-    <!-- <style>
-.profile-photo-container {
-    position: relative;
-    cursor: pointer;
-    transition: transform 0.3s ease;
-}
-
-.profile-photo-container:hover {
-    transform: scale(1.05);
-}
-
-.photo-overlay {
-    position: absolute;
-    top: 0; 
-    left: 0; 
-    right: 0; 
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    border-radius: 50%;
-    font-size: 1.2rem;
-}
-
-.profile-photo-container:hover .photo-overlay {
-    opacity: 1;
-}
-
-.photo-overlay i {
-    font-size: 2rem;
-    margin-bottom: 0.5rem;
-}
-
-/* Estilos mejorados para el drop zone */
-.drop-zone {
-    border: 2px dashed #9e9e9e;
-    border-radius: 8px;
-    padding: 40px 20px;
-    text-align: center;
-    background-color: #fafafa;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    min-height: 200px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.drop-zone:hover,
-.drop-zone.dragover {
-    border-color: #2196f3;
-    background-color: #e3f2fd;
-    transform: scale(1.02);
-}
-
-.drop-zone i {
-    font-size: 3rem;
-    color: #9e9e9e;
-    margin-bottom: 15px;
-}
-
-.drop-zone p {
-    margin: 5px 0;
-    color: #666;
-}
-
-/* Estilos para los pasos del cropper */
-.cropper-step {
-    display: none;
-    min-height: 400px;
-}
-
-.cropper-step.active {
-    display: block;
-}
-
-.cropper-instructions {
-    background-color: #e3f2fd;
-    border: 1px solid #bbdefb;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-.cropper-instructions h6 {
-    color: #1976d2;
-    margin-bottom: 10px;
-}
-
-.cropper-instructions p {
-    color: #424242;
-    margin: 0;
-    font-size: 14px;
-}
-</style> -->
 {% endblock %}
 
 {% block extra_js %}
+    <!-- ✅ SCRIPT PARA PREVENIR PROBLEMAS CON EL MODAL Y FORMULARIOS - AGREGAR PRIMERO -->
+    <script>
+    // ✅ SCRIPT PARA PREVENIR PROBLEMAS CON EL MODAL Y FORMULARIOS
+    document.addEventListener('DOMContentLoaded', function() {
+        console.log('🛡️ Configurando prevención de conflictos...');
+
+        // ✅ PREVENIR FORM SUBMISSIONS DEL INPUT FILE HIDDEN
+        const hiddenFileInput = document.getElementById('foto_perfil');
+        if (hiddenFileInput) {
+            // Asegurar que no esté dentro de un form que se pueda enviar
+            const form = hiddenFileInput.closest('form');
+            if (form) {
+                console.log('⚠️ Input file está dentro de un form, previniendo submission');
+                form.addEventListener('submit', function(e) {
+                    // Solo prevenir si es el input file el que disparó el evento
+                    if (e.submitter === hiddenFileInput) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        console.log('🚫 Form submission prevenido desde input file');
+                    }
+                });
+            }
+
+            // ✅ LIMPIAR EVENT LISTENERS DUPLICADOS DEL INPUT FILE
+            const newFileInput = hiddenFileInput.cloneNode(true);
+            hiddenFileInput.parentNode.replaceChild(newFileInput, hiddenFileInput);
+            console.log('🔄 Input file reinicializado para prevenir listeners duplicados');
+        }
+
+        // ✅ PREVENIR CLICKS ACCIDENTALES EN ELEMENTOS QUE PUEDAN CAUSAR PETICIONES
+        const preventClickElements = document.querySelectorAll('[data-prevent-double-click]');
+        preventClickElements.forEach(element => {
+            let clicked = false;
+            element.addEventListener('click', function(e) {
+                if (clicked) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('🚫 Click duplicado prevenido');
+                    return false;
+                }
+                clicked = true;
+                setTimeout(() => {
+                    clicked = false;
+                }, 2000); // 2 segundos de protección
+            });
+        });
+
+        // ✅ MONITOREO DE PETICIONES AJAX DUPLICADAS
+        const originalFetch = window.fetch;
+        let lastRequest = null;
+        let lastRequestTime = 0;
+
+        window.fetch = function(...args) {
+            const url = args[0];
+            const options = args[1] || {};
+            const currentTime = Date.now();
+
+            // Verificar si es una petición a la URL de foto y si es duplicada
+            if (typeof url === 'string' && url.includes('actualizar-foto-perfil')) {
+                const requestKey = url + JSON.stringify(options);
+
+                if (lastRequest === requestKey && (currentTime - lastRequestTime) < 2000) {
+                    console.log('🚫 Petición AJAX duplicada prevenida:', url);
+                    return Promise.resolve(new Response('{"success": true, "message": "Petición duplicada ignorada"}', {
+                        status: 200,
+                        headers: { 'Content-Type': 'application/json' }
+                    }));
+                }
+
+                lastRequest = requestKey;
+                lastRequestTime = currentTime;
+            }
+
+            return originalFetch.apply(this, args);
+        };
+
+        // ✅ LIMPIAR MODALES QUE QUEDEN ABIERTOS O EN ESTADO INCORRECTO
+        const modal = document.getElementById('cropperModal');
+        if (modal) {
+            // Limpiar cualquier estado anterior del modal
+            modal.addEventListener('hidden.bs.modal', function() {
+                console.log('🧹 Modal cerrado, limpiando estado...');
+
+                // Remover backdrop si queda residual
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach(backdrop => {
+                    if (backdrop.classList.contains('show')) {
+                        backdrop.remove();
+                    }
+                });
+
+                // Remover clase del body si queda residual
+                document.body.classList.remove('modal-open');
+                document.body.style.paddingRight = '';
+                document.body.style.overflow = '';
+            });
+
+            // ✅ FORZAR LIMPIEZA AL CARGAR LA PÁGINA
+            setTimeout(() => {
+                const modalInstance = bootstrap.Modal.getInstance(modal);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+
+                // Limpiar cualquier backdrop residual
+                const backdrops = document.querySelectorAll('.modal-backdrop');
+                backdrops.forEach(backdrop => backdrop.remove());
+
+                // Limpiar clases del body
+                document.body.classList.remove('modal-open');
+                document.body.style.paddingRight = '';
+                document.body.style.overflow = '';
+
+            }, 100);
+        }
+
+        console.log('✅ Configuración de prevención de conflictos completada');
+    });
+
+    // ✅ FUNCIÓN GLOBAL PARA DEBUGGING
+    window.debugCropperState = function() {
+        console.log('🔍 Estado del Cropper:');
+        console.log('- Modal element:', document.getElementById('cropperModal'));
+        console.log('- Modal instance:', bootstrap.Modal.getInstance(document.getElementById('cropperModal')));
+        console.log('- Backdrops:', document.querySelectorAll('.modal-backdrop'));
+        console.log('- Body classes:', document.body.className);
+        console.log('- Body style:', document.body.style.cssText);
+        console.log('- ImageCropper instance:', window.imageCropper);
+    };
+    </script>
+
     <!-- Cropper.js JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.6.1/cropper.min.js"></script>
     <!-- Scripts personalizados -->
     <script src="{% static 'js/image-cropper.js' %}"></script>
     <script src="{% static 'js/perfil-interesado.js' %}"></script>
+
+    <!-- ✅ NUEVO: Script para consulta de código postal -->
     <script src="{% static 'js/validador_codigo_postal.js' %}"></script>
-        <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Inicializar tooltips de Bootstrap
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-            return new bootstrap.Tooltip(tooltipTriggerEl);
-        });
-        
-        // Log de inicialización
-        console.log('📍 Sistema de validación de código postal listo');
-        
-        // Mostrar información adicional si hay código postal existente
-        const codigoPostalInput = document.getElementById('codigo_postal');
-        if (codigoPostalInput && codigoPostalInput.value && window.validadorCP) {
-            // Validar código postal existente después de 2 segundos
-            setTimeout(() => {
-                window.validadorCP.validarManualmente();
-            }, 2000);
-        }
-    });
-    </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 {% endblock %}
 {% block content %}
+<!-- EN EL TEMPLATE perfil_interesado.html - AGREGAR al inicio de los scripts -->
 
+<script>
+// ✅ CREAR VARIABLES JAVASCRIPT CON DATOS ACTUALES DEL INTERESADO
+window.datosInteresado = {
+    nombre: '{{ interesado.nombre|default:"" }}',
+    apellido_paterno: '{{ interesado.apellido_paterno|default:"" }}',
+    apellido_materno: '{{ interesado.apellido_materno|default:"" }}',
+    telefono: '{{ interesado.telefono|default:"" }}',
+    fecha_nacimiento: '{{ interesado.fecha_nacimiento|default:"" }}',
+    codigo_postal: '{{ interesado.codigo_postal|default:"" }}',
+    ubicacion_completa: '{{ interesado.ubicacion_completa|default:"" }}',
+    tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
+};
+
+console.log('📊 Datos iniciales del interesado:', window.datosInteresado);
+</script>
     <div class="container-fluid px-2 px-sm-3">
-        <div class="row g-3 g-md-4">
-            <!-- Columna del perfil - MANTENER TAL COMO ESTÁ -->
-            <!-- ÁREA DE FOTO EN EL PERFIL -->
-            <div class="col-12 col-lg-4 order-1">
-                <!-- Card de foto y datos básicos -->
-                <div class="card mb-3 mb-md-4">
-                    <div class="card-body text-center p-3 p-md-4">
-                        <!-- ÁREA DE FOTO CLICKEABLE -->
-                        <div class="profile-photo-container mb-3" 
-                             title="Haz clic para cambiar tu foto de perfil">
-                            {% if interesado.foto_perfil %}
-                                <img src="{{ interesado.foto_perfil.url }}"
-                                     class="profile-photo img-fluid rounded-circle "
-                                     alt="Foto de perfil">
-                            {% else %}
-                                <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center">
-                                    <i class="bi bi-person-fill profile-icon"></i>
-                                </div>
-                            {% endif %}
-                            
-                            <!-- Overlay que aparece al hacer hover -->
-                            <div class="photo-overlay">
-                                <i class="bi bi-camera-fill"></i><br>
-                                <small>Cambiar foto</small>
-                            </div>
-                        </div>
+        <div class="row g-3 g-lg-4">
+            <!-- REEMPLAZAR las dos cards existentes (foto + información personal) por esta card unificada -->
 
-                        <h4 class="h5 h-md-4 mb-2">{{ interesado.nombre_completo }}</h4>
-
-                        <!-- Información de contacto -->
-                        <div class="flex-grow-1">
-                            <i class="bi bi-envelope me-2 mt-1 text-primary"></i>
-                            <span class="text-muted">{{ user.email }}</span>
-                        </div>
-                        <i class="bi bi-telephone me-2 mt-1 text-primary"></i>
-                        <span class="text-muted">{{ interesado.telefono }}</span>
-                        <div>
-                            <i class="bi bi-geo-alt me-2 mt-1 text-primary"></i>
-                            <span class="text-muted">{{ interesado.ubicacion_completa }}</span>
-                        </div>
+<div class="col-12 col-lg-4 order-1 order-lg-1">
+    <!-- Card unificada de perfil -->
+    <div class="card mb-md-4">
+        <div class="card-header d-flex justify-content-between align-items-center">
+            <h5><i class="bi bi-person-fill"></i> Mi Perfil</h5>
+            <button type="button" class="btn btn-sm btn-outline-primary text-primary" onclick="mostrarModalPerfil()">
+                <i class="bi bi-pencil"></i> Editar
+            </button>
+        </div>
+        <div class="card-body text-center p-3 p-md-4">
+            <!-- ÁREA DE FOTO CLICKEABLE -->
+            <div class="profile-photo-container mb-3"
+                 title="Haz clic para cambiar tu foto de perfil">
+                {% if interesado.foto_perfil %}
+                    <img src="{{ interesado.foto_perfil.url }}"
+                         class="profile-photo img-fluid rounded-circle"
+                         alt="Foto de perfil">
+                {% else %}
+                    <div class="profile-photo-placeholder bg-light rounded-circle d-inline-flex justify-content-center align-items-center">
+                        <i class="bi bi-person-fill profile-icon"></i>
                     </div>
+                {% endif %}
+
+                <!-- Overlay que aparece al hacer hover -->
+                <div class="photo-overlay">
+                    <i class="bi bi-camera-fill"></i><br>
+                    <small>Cambiar foto</small>
                 </div>
             </div>
 
+            <!-- Información personal -->
+            <div class="text-start">
+                <h4 class="h5 mb-3 text-center">{{ interesado.nombre_completo }}</h4>
+
+                <!-- Email -->
+                <div class="contact-item">
+                    <i class="bi bi-envelope"></i>
+                    <span>{{ user.email }}</span>
+                </div>
+
+                <!-- Teléfono -->
+                {% if interesado.telefono %}
+                <div class="contact-item">
+                    <i class="bi bi-telephone"></i>
+                    <span>{{ interesado.telefono }}</span>
+                </div>
+                {% else %}
+                <div class="contact-item">
+                    <i class="bi bi-telephone text-muted"></i>
+                    <span class="text-muted">No especificado</span>
+                </div>
+                {% endif %}
+
+                <!-- Fecha de nacimiento -->
+                {% if interesado.fecha_nacimiento %}
+                <div class="contact-item">
+                    <i class="bi bi-calendar"></i>
+                    <span>{{ interesado.fecha_nacimiento|date:"d/m/Y" }}</span>
+                </div>
+                {% else %}
+                <div class="contact-item">
+                    <i class="bi bi-calendar text-muted"></i>
+                    <span class="text-muted">No especificado</span>
+                </div>
+                {% endif %}
+
+                <!-- Ubicación -->
+                <div class="contact-item">
+                    <i class="bi bi-geo-alt"></i>
+                    {% if interesado.ubicacion_completa %}
+                        <span>{{ interesado.ubicacion_completa }}</span>
+                    {% else %}
+                        <span class="text-muted">Ubicación no especificada</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para editar información personal -->
+<div class="modal fade" id="perfilModal" tabindex="-1" aria-labelledby="perfilModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xs">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title bi bi-person-fill"  id="perfilModalLabel">Editar Información Personal</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="perfilForm">
+                    {% csrf_token %}
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label for="modal_nombre" class="form-label">Nombre(s)</label>
+                            <input type="text" class="form-control" id="modal_nombre" name="nombre"
+                                   value="{{ interesado.nombre }}" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="modal_apellido_paterno" class="form-label">Apellido Paterno</label>
+                            <input type="text" class="form-control" id="modal_apellido_paterno" name="apellido_paterno"
+                                   value="{{ interesado.apellido_paterno }}" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="modal_apellido_materno" class="form-label">Apellido Materno</label>
+                            <input type="text" class="form-control" id="modal_apellido_materno" name="apellido_materno"
+                                   value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="modal_telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="modal_telefono" name="telefono"
+                                   value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="modal_fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
+                            <input type="date" class="form-control" id="modal_fecha_nacimiento" name="fecha_nacimiento"
+                                   min="1960-01-01" max="2017-12-31"
+                                   value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
+                        </div>
+
+                        <!-- Información de ubicación -->
+                        <div class="col-12">
+                            <hr class="my-3">
+                            <h6 class="text-primary mb-3">
+                                <i class="bi bi-geo-alt-fill"></i> Ubicación
+                            </h6>
+                        </div>
+
+                        <!-- Código Postal -->
+                        <div class="col-md-12">
+                            <label for="modal_codigo_postal" class="form-label">
+                                Código Postal
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" class="form-control" id="modal_codigo_postal" name="codigo_postal"
+                                   value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}"
+                                   placeholder="Ej: 50000" maxlength="5" pattern="[0-9]{5}" required>
+                            <small class="form-text text-muted">
+                                Los campos de ubicación se llenarán automáticamente.
+                            </small>
+                        </div>
+
+                        <!-- Estado -->
+                        <div class="col-md-12">
+                            <label for="modal_estado" class="form-label">Estado</label>
+                            <select class="form-select" id="modal_estado" name="estado" disabled>
+                                <option value="">Ingresa tu código postal primero</option>
+                            </select>
+                            <input type="hidden" id="modal_estado_id" name="estado_id" value="{{ interesado.estado_id|default:'' }}">
+                            <input type="hidden" id="modal_estado_nombre" name="estado_nombre" value="{{ interesado.estado_nombre|default:'' }}">
+                        </div>
+
+                        <!-- Municipio -->
+                        <div class="col-md-12">
+                            <label for="modal_municipio" class="form-label">Municipio</label>
+                            <select class="form-select" id="modal_municipio" name="municipio" disabled>
+                                <option value="">Ingresa tu código postal primero</option>
+                            </select>
+                            <input type="hidden" id="modal_municipio_id" name="municipio_id" value="{{ interesado.municipio_id|default:'' }}">
+                            <input type="hidden" id="modal_municipio_nombre" name="municipio_nombre" value="{{ interesado.municipio_nombre|default:'' }}">
+                        </div>
+
+                        <!-- Localidad -->
+                        <div class="col-md-12">
+                            <label for="modal_localidad" class="form-label">Colonia/Localidad</label>
+                            <select class="form-select" id="modal_localidad" name="localidad" disabled>
+                                <option value="">Ingresa tu código postal primero</option>
+                            </select>
+                            <input type="hidden" id="modal_localidad_id" name="localidad_id" value="{{ interesado.localidad_id|default:'' }}">
+                            <input type="hidden" id="modal_localidad_nombre" name="localidad_nombre" value="{{ interesado.localidad_nombre|default:'' }}">
+                        </div>
+
+                        <!-- Calle y número -->
+                        <div class="col-md-12">
+                            <label for="modal_calle_numero" class="form-label">Calle y Número (Opcional)</label>
+                            <input type="text" class="form-control" id="modal_calle_numero" name="calle_numero"
+                                   value="{{ interesado.calle_numero|default:'' }}"
+                                   placeholder="Ej: Av. Constitución #123, Col. Centro" maxlength="200">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" onclick="guardarPerfil()">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+</div>
             <!-- Columna del contenido principal - REEMPLAZAR CON CV -->
             <div class="col-12 col-lg-8 order-2">
                 <div class="cv-container">
-
                     <form class="was-validated" id="cvForm" method="post">
                         {% csrf_token %}
 
-                        <!-- Información de Contacto -->
-                        <div class="card mb-4">
-                            <div class="card-header">
-                                <h5><i class="bi bi-person-fill"></i> Información personal</h5>
-                            </div>
-                            <div class="card-body">
-                                <div class="row g-3">
-                                    <div class="col-md-6">
-                                        <label for="nombre" class="form-label">Nombre(s)</label>
-                                        <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="nombre" name="nombre" value="{{ interesado.nombre }}" required>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="apellido_paterno" class="form-label">Apellido Paterno</label>
-                                        <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_paterno" name="apellido_paterno" value="{{ interesado.apellido_paterno }}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="apellido_materno" class="form-label">Apellido Materno</label>
-                                        <input type="text" pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ ]+" class="form-control" id="apellido_materno" name="apellido_materno" value="{% if interesado.apellido_materno %}{{ interesado.apellido_materno }}{% endif %}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="telefono" class="form-label">Teléfono</label>
-                                        <input type="tel" class="form-control" id="telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <label for="fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                                        <input type="date" class="form-control" min="1960-01-01" max="2017-12-31" id="fecha_nacimiento" name="fecha_nacimiento"  value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
-                                    </div>
-                                                                        <div class="col-md-6">
-                                        <label for="municipio" class="form-label">Municipio</label>
-                                        <select class="form-select" id="municipio" name="municipio" required>
-                                            <option value="">Selecciona un municipio...</option>
-                                            {% for value, label in interesado.MUNICIPIOS_ESTADO_MEXICO %}
-                                                <option value="{{ value }}" {% if interesado.municipio == value %}selected{% endif %}>{{ label }}</option>
-                                            {% endfor %}
-                                        </select>
-                                    </div>
-                                        <!-- REEMPLAZAR con esta versión mejorada: -->
-                                        <div class="col-md-6">
-                                            <label for="codigo_postal" class="form-label">
-                                                Código Postal 
-                                                <span class="text-danger">*</span>
-                                                <i class="bi bi-info-circle" 
-                                                data-bs-toggle="tooltip" 
-                                                data-bs-placement="top" 
-                                                title="Ingresa tu código postal de 5 dígitos. Se validará automáticamente."></i>
-                                            </label>
-                                            <input type="text" 
-                                                class="form-control" 
-                                                id="codigo_postal" 
-                                                name="codigo_postal" 
-                                                value="{% if interesado.codigo_postal %}{{ interesado.codigo_postal }}{% endif %}" 
-                                                placeholder="Ej: 50000" 
-                                                maxlength="5"
-                                                pattern="[0-9]{5}"
-                                                title="Código postal de 5 dígitos"
-                                                required>
-{#                                            <small class="form-text text-muted">#}
-{#                                                Solo códigos postales del Estado de México. La información se validará automáticamente.#}
-{#                                            </small>#}
-                                            <!-- Los mensajes de validación se insertan aquí automáticamente por JavaScript -->
-                                        </div>
-                                </div>
-                            </div>
-                        </div>
                         <!-- Resumen Profesional -->
                         <div class="card mb-4">
                             <div class="card-header">
                                 <h5><i class="bi bi-file-person"></i> Resumen Profesional</h5>
                             </div>
                             <div class="card-body text-justify">
-<!-- {#                                <label for="resumen_profesional" class="form-label"></label>#} -->
-                                    <textarea class="form-control is-invalid" id="resumen_profesional" name="resumen_profesional" rows="3" placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..." maxlength="400" required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>                                
+                                    <textarea class="form-control is-invalid" id="resumen_profesional" name="resumen_profesional" rows="3" placeholder="Ej: Profesional con 5 años de experiencia en desarrollo web..." maxlength="400" required>{% if curriculum and curriculum.resumen_profesional %}{{ curriculum.resumen_profesional }}{% endif %}</textarea>
                                     <small id="contadorResumen" class="form-text text-muted">0/400 caracteres</small>
                             </div>
                         </div>
@@ -525,7 +629,6 @@
                                                             <i class="bi bi-pencil text-black"></i>
                                                         </button>
                                                         <button type="button" class="btn btn-sm btn-outline-danger" onclick="eliminarExperiencia({{ experiencia.id }})">
-                                                            {#                                                        <i class="bi bi-pencil text-black m-1"></i>#}
                                                             <i class="bi bi-trash text-black m-1"></i>
                                                         </button>
                                                     </div>
@@ -644,19 +747,19 @@
 
                         <div class="text-end mt-4 mb-5">
                             {% if tiene_cv %}
-                                <a id="btnDescargarCV" 
-                                href="{% url 'descargar_cv_pdf' %}" 
-                                class="btn btn-secondary" 
+                                <a id="btnDescargarCV"
+                                href="{% url 'descargar_cv_pdf' %}"
+                                class="btn btn-secondary"
                                 disabled>
-                                    <i class="bi bi-exclamation-circle"></i> 
+                                    <i class="bi bi-exclamation-circle"></i>
                                     <span class="fw-bold">CV Incompleto</span>
                                 </a>
                             {% else %}
-                                <button type="button" 
-                                        class="btn btn-secondary" 
-                                        disabled 
+                                <button type="button"
+                                        class="btn btn-secondary"
+                                        disabled
                                         title="Completa tu CV para poder descargarlo">
-                                    <i class="bi bi-exclamation-circle"></i> 
+                                    <i class="bi bi-exclamation-circle"></i>
                                     <span class="fw-bold">CV Incompleto</span>
                                 </button>
                             {% endif %}
@@ -667,14 +770,15 @@
         </div>
     </div>
 
-</div>
+
 
 <!-- MODAL DEL CROPPER MEJORADO -->
 <div class="modal fade" id="cropperModal" tabindex="-1" aria-labelledby="cropperModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-dialog modal-md modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="cropperModalLabel">
+{#                    FIX#}
                     <i class="bi bi-camera"></i> Seleccionar Foto de Perfil
                 </h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -692,7 +796,7 @@
                         <i class="bi bi-cloud-upload"></i>
                         <p class="mb-2"><strong>Haz clic aquí</strong> o arrastra una imagen en formato compatible</p>
                         <p class="small text-muted">Formatos permitidos: JPG y JPEG • Tamaño Máximo 5MB</p>
-                        
+
                         <!-- <button type="button" class="btn btn-primary mt-3" onclick="document.getElementById('foto_perfil').click()">
                             <i class="bi bi-folder2-open"></i> Seleccionar Imagen
                         </button> -->
@@ -717,7 +821,7 @@
                                 <button type="button" class="btn btn-outline-warning btn-sm" id="cancelCropButton">
                                     <i class="bi bi-arrow-left"></i> Volver a Seleccionar
                                 </button>
-                                <button type="button" class="btn btn-success btn-sm" id="cropButton">
+                                <button type="button" class="btn btn-success btn-sm" id="cropButton" data-prevent-double-click>
                                     <i class="bi bi-check-circle"></i> Guardar Imagen
                                 </button>
                             </div>
@@ -741,10 +845,6 @@
 
 <!-- INPUT FILE HIDDEN -->
 <input type="file" id="foto_perfil" name="foto_perfil" accept=".jpg,.jpeg" style="display: none;">
-
-<!-- ELIMINAR COMPLETAMENTE EL MODAL editarPerfilModal -->
-<!-- Ya no se necesita porque el cropper guarda automáticamente -->
-
     <!-- Modales para CV (igual que en crear_editar_cv.html) -->
     <!-- Modal para Experiencia Laboral -->
     <div class="modal fade was-validated" id="experienciaModal" tabindex="-1">
@@ -825,10 +925,6 @@
                                 <label class="form-label">Fecha de Fin</label>
                                 <input type="date" class="form-control" name="fecha_fin" min="1970-01-01" max="2025-12-31" required>
                             </div>
-                            {#                        <div class="col-12">#}
-                            {#                            <label class="form-label">Descripción (opcional)</label>#}
-                            {#                            <textarea class="form-control" name="descripcion" rows="2" required></textarea>#}
-                            {#                        </div>#}
                         </div>
                     </form>
                 </div>
@@ -885,8 +981,6 @@
                 <div class="modal-body">
                     <form id="idiomaForm">
                         {% csrf_token %}
-                        {#                    <div class="mb-3">#}
-                        {#                        <label class="form-label">Idioma</label>#}
                         <div class="mb-3">
                             <label class="form-label">Idioma</label>
                             <select class="form-select" name="idioma">
@@ -959,30 +1053,31 @@
             </div>
         </div>
     </div>
+
 <!-- SCRIPT ADICIONAL PARA DEBUG -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     console.log('Página cargada, verificando estado inicial del botón...');
-    
+
     // Verificar elementos clave
     const btnDescarga = document.getElementById('btnDescargarCV');
     const fotoProfile = document.querySelector('.profile-photo');
     const fotoPlaceholder = document.querySelector('.profile-photo-placeholder');
-    
+
     console.log('Botón descarga encontrado:', !!btnDescarga);
     console.log('Foto profile encontrada:', !!fotoProfile);
     console.log('Foto placeholder encontrada:', !!fotoPlaceholder);
-    
+
     if (fotoProfile) {
         console.log('URL de foto:', fotoProfile.src);
     }
-    
+
     // Verificar otros elementos
     const experiencias = document.querySelectorAll('#experienciaContainer .experiencia-item');
     const educaciones = document.querySelectorAll('#educacionContainer .educacion-item');
     const habilidades = document.querySelectorAll('#habilidadesContainer .badge');
     const idiomas = document.querySelectorAll('#idiomasContainer .idioma-item');
-    
+
     console.log('Experiencias:', experiencias.length);
     console.log('Educaciones:', educaciones.length);
     console.log('Habilidades:', habilidades.length);
@@ -1052,24 +1147,101 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         }
 
-        function eliminarExperiencia(id) {
-            if (confirm('¿Estás seguro de eliminar esta experiencia?')) {
-                fetch(`/ajax/experiencia/eliminar/${id}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar: ' + data.error);
+function eliminarExperiencia(id) {
+    if (!confirm('¿Estás seguro de eliminar esta experiencia laboral?')) {
+        return;
+    }
+
+    console.log('🗑️ Eliminando experiencia ID:', id);
+
+    // Mostrar indicador de carga
+    const experienciaElement = document.querySelector(`.experiencia-item[data-id="${id}"]`);
+    if (experienciaElement) {
+        experienciaElement.style.opacity = '0.5';
+        experienciaElement.style.pointerEvents = 'none';
+
+        const spinner = document.createElement('div');
+        spinner.className = 'text-center p-2';
+        spinner.innerHTML = '<i class="bi bi-hourglass-split"></i> Eliminando...';
+        spinner.id = `spinner-exp-${id}`;
+        experienciaElement.appendChild(spinner);
+    }
+
+    fetch(`/ajax/experiencia/eliminar/${id}/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Eliminar elemento del DOM dinámicamente
+            if (experienciaElement) {
+                experienciaElement.style.transition = 'all 0.3s ease';
+                experienciaElement.style.transform = 'translateX(-100%)';
+                experienciaElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    experienciaElement.remove();
+                    console.log('✅ Elemento de experiencia eliminado del DOM');
+
+                    // Verificar si quedan experiencias
+                    const experienciasRestantes = document.querySelectorAll('#experienciaContainer .experiencia-item');
+
+                    if (experienciasRestantes.length === 0) {
+                        const containerExperiencia = document.getElementById('experienciaContainer');
+                        if (containerExperiencia) {
+                            containerExperiencia.innerHTML = '<p class="text-muted text-center">No hay experiencias laborales registradas.</p>';
                         }
-                    });
+                    }
+
+                    // Verificar estado del botón
+                    setTimeout(() => {
+                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                            verificarEstadoBotonGuardarCV();
+                        }
+                    }, 300);
+
+                }, 300);
+            }
+
+            mostrarFeedback(data.message || 'Experiencia eliminada exitosamente', 'success');
+
+        } else {
+            // Restaurar elemento en caso de error
+            if (experienciaElement) {
+                experienciaElement.style.opacity = '1';
+                experienciaElement.style.pointerEvents = 'auto';
+
+                const spinner = document.getElementById(`spinner-exp-${id}`);
+                if (spinner) {
+                    spinner.remove();
+                }
+            }
+
+            mostrarFeedback(data.error || 'Error al eliminar la experiencia', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('💥 Error:', error);
+
+        // Restaurar elemento
+        if (experienciaElement) {
+            experienciaElement.style.opacity = '1';
+            experienciaElement.style.pointerEvents = 'auto';
+
+            const spinner = document.getElementById(`spinner-exp-${id}`);
+            if (spinner) {
+                spinner.remove();
             }
         }
+
+        mostrarFeedback('Error de conexión al eliminar la experiencia', 'danger');
+    });
+}
         // =========================
         // EDUCACIÓN
         // =========================
@@ -1113,34 +1285,117 @@ document.addEventListener('DOMContentLoaded', function() {
             document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
             document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
             document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
-            {#document.querySelector('#educacionForm textarea[name="descripcion"]').value = descripcion || '';#}
 
             document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
             new bootstrap.Modal(document.getElementById('educacionModal')).show();
         }
-        function eliminarEducacion(id) {
-            if (confirm('¿Estás seguro de eliminar esta educación?')) {
-                fetch(`/ajax/educacion/eliminar/${id}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Quitar el idioma eliminado del DOM
-                            const elem = document.querySelector(`.idioma-item[data-id="${id}"]`);
-                            if (elem) elem.remove();
+function eliminarEducacion(id) {
+    if (!confirm('¿Estás seguro de eliminar esta formación educativa?')) {
+        return;
+    }
 
-                            // Muestra feedback visual
-                            mostrarFeedback('Idioma eliminado', 'success');
-                        } else {
-                            mostrarFeedback('Error al eliminar: ' + data.error, 'danger');
+    console.log('🗑️ Eliminando educación ID:', id);
+
+    // Mostrar indicador de carga en el elemento
+    const educacionElement = document.querySelector(`.educacion-item[data-id="${id}"]`);
+    if (educacionElement) {
+        educacionElement.style.opacity = '0.5';
+        educacionElement.style.pointerEvents = 'none';
+
+        // Agregar spinner de carga
+        const spinner = document.createElement('div');
+        spinner.className = 'text-center p-2';
+        spinner.innerHTML = '<i class="bi bi-hourglass-split"></i> Eliminando...';
+        spinner.id = `spinner-${id}`;
+        educacionElement.appendChild(spinner);
+    }
+
+    fetch(`/ajax/educacion/eliminar/${id}/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
+        }
+    })
+    .then(response => {
+        console.log('📡 Respuesta recibida:', response.status);
+        return response.json();
+    })
+    .then(data => {
+        console.log('📄 Datos recibidos:', data);
+
+        if (data.success) {
+            // ✅ ELIMINAR ELEMENTO DEL DOM DINÁMICAMENTE
+            if (educacionElement) {
+                // Animación de salida
+                educacionElement.style.transition = 'all 0.3s ease';
+                educacionElement.style.transform = 'translateX(-100%)';
+                educacionElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    educacionElement.remove();
+                    console.log('✅ Elemento de educación eliminado del DOM');
+
+                    // ✅ VERIFICAR SI QUEDA ALGUNA EDUCACIÓN
+                    const educacionesRestantes = document.querySelectorAll('#educacionContainer .educacion-item');
+
+                    if (educacionesRestantes.length === 0) {
+                        // Mostrar mensaje de "no hay educación"
+                        const containerEducacion = document.getElementById('educacionContainer');
+                        if (containerEducacion) {
+                            containerEducacion.innerHTML = '<p class="text-muted text-center">No hay educación registrada.</p>';
                         }
-                    });
+                    }
+
+                    // ✅ VERIFICAR ESTADO DEL BOTÓN DESPUÉS DE ELIMINAR
+                    setTimeout(() => {
+                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                            console.log('🔄 Verificando estado del botón después de eliminar educación...');
+                            verificarEstadoBotonGuardarCV();
+                        }
+                    }, 300);
+
+                }, 300);
+            }
+
+            // Mostrar mensaje de éxito
+            mostrarFeedback(data.message || 'Educación eliminada exitosamente', 'success');
+
+        } else {
+            console.error('❌ Error del servidor:', data.error);
+
+            // Restaurar elemento en caso de error
+            if (educacionElement) {
+                educacionElement.style.opacity = '1';
+                educacionElement.style.pointerEvents = 'auto';
+
+                const spinner = document.getElementById(`spinner-${id}`);
+                if (spinner) {
+                    spinner.remove();
+                }
+            }
+
+            mostrarFeedback(data.error || 'Error al eliminar la educación', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('💥 Error en la petición:', error);
+
+        // Restaurar elemento en caso de error
+        if (educacionElement) {
+            educacionElement.style.opacity = '1';
+            educacionElement.style.pointerEvents = 'auto';
+
+            const spinner = document.getElementById(`spinner-${id}`);
+            if (spinner) {
+                spinner.remove();
             }
         }
+
+        mostrarFeedback('Error de conexión al eliminar la educación', 'danger');
+    });
+}
 
         // =========================
         // HABILIDADES
@@ -1176,24 +1431,91 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         }
 
-        function eliminarHabilidad(id) {
-            if (confirm('¿Estás seguro de eliminar esta habilidad?')) {
-                fetch(`/ajax/habilidad/eliminar/${id}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            location.reload();
-                        } else {
-                            alert('Error al eliminar: ' + data.error);
-                        }
-                    });
-            }
+function eliminarHabilidad(id) {
+    if (!confirm('¿Estás seguro de eliminar esta habilidad?')) {
+        return;
+    }
+
+    console.log('🗑️ Eliminando habilidad ID:', id);
+
+    // Encontrar el badge de la habilidad
+    const habilidadElement = document.querySelector(`#habilidadesContainer .badge[data-id="${id}"]`);
+    if (habilidadElement) {
+        habilidadElement.style.opacity = '0.5';
+        habilidadElement.style.pointerEvents = 'none';
+    }
+
+    fetch(`/ajax/habilidad/eliminar/${id}/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Eliminar elemento del DOM dinámicamente
+            if (habilidadElement) {
+                habilidadElement.style.transition = 'all 0.3s ease';
+                habilidadElement.style.transform = 'scale(0)';
+                habilidadElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    habilidadElement.remove();
+                    console.log('✅ Elemento de habilidad eliminado del DOM');
+
+                    // Verificar si quedan habilidades
+                    const habilidadesRestantes = document.querySelectorAll('#habilidadesContainer .badge');
+
+                    if (habilidadesRestantes.length === 0) {
+                        const containerHabilidades = document.getElementById('habilidadesContainer');
+                        if (containerHabilidades) {
+                            containerHabilidades.innerHTML = '<p class="text-muted text-center">No hay habilidades registradas.</p>';
+                        }
+                    }
+
+                    // Actualizar contador de habilidades
+                    if (typeof actualizarMensajeHabilidades === 'function') {
+                        actualizarMensajeHabilidades();
+                    }
+
+                    // Verificar estado del botón
+                    setTimeout(() => {
+                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                            verificarEstadoBotonGuardarCV();
+                        }
+                    }, 300);
+
+                }, 300);
+            }
+
+            mostrarFeedback(data.message || 'Habilidad eliminada exitosamente', 'success');
+
+        } else {
+            // Restaurar elemento en caso de error
+            if (habilidadElement) {
+                habilidadElement.style.opacity = '1';
+                habilidadElement.style.pointerEvents = 'auto';
+            }
+
+            mostrarFeedback(data.error || 'Error al eliminar la habilidad', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('💥 Error:', error);
+
+        // Restaurar elemento
+        if (habilidadElement) {
+            habilidadElement.style.opacity = '1';
+            habilidadElement.style.pointerEvents = 'auto';
+        }
+
+        mostrarFeedback('Error de conexión al eliminar la habilidad', 'danger');
+    });
+}
+
         // =========================
         // IDIOMAS
         // =========================
@@ -1228,30 +1550,85 @@ document.addEventListener('DOMContentLoaded', function() {
                 });
         }
 
+function eliminarIdioma(id) {
+    if (!confirm('¿Estás seguro de eliminar este idioma?')) {
+        return;
+    }
 
-        // soluciona el problema del porque al tratar de seleccionar la imagen para el CV este no lo selecciona, esto ocurre solamente en produccion
+    console.log('🗑️ Eliminando idioma ID:', id);
 
-        function eliminarIdioma(id) {
-            if (confirm('¿Estás seguro de eliminar este idioma?')) {
-                fetch(`/ajax/idioma/eliminar/${id}/`, {
-                    method: 'DELETE',
-                    headers: {
-                        'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                    }
-                })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            // Elimina solo el idioma del DOM, no recargues la página
-                            const elem = document.querySelector(`.idioma-item[data-id="${id}"]`);
-                            if (elem) elem.remove();
-                            mostrarFeedback('Idioma eliminado', 'success');
-                        } else {
-                            mostrarFeedback('Error al eliminar: ' + data.error, 'danger');
-                        }
-                    });
-            }
+    // Mostrar indicador de carga
+    const idiomaElement = document.querySelector(`.idioma-item[data-id="${id}"]`);
+    if (idiomaElement) {
+        idiomaElement.style.opacity = '0.5';
+        idiomaElement.style.pointerEvents = 'none';
+    }
+
+    fetch(`/ajax/idioma/eliminar/${id}/`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json'
         }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Eliminar elemento del DOM dinámicamente
+            if (idiomaElement) {
+                idiomaElement.style.transition = 'all 0.3s ease';
+                idiomaElement.style.transform = 'translateX(-100%)';
+                idiomaElement.style.opacity = '0';
+
+                setTimeout(() => {
+                    idiomaElement.remove();
+                    console.log('✅ Elemento de idioma eliminado del DOM');
+
+                    // Verificar si quedan idiomas
+                    const idiomasRestantes = document.querySelectorAll('#idiomasContainer .idioma-item');
+
+                    if (idiomasRestantes.length === 0) {
+                        const containerIdioma = document.getElementById('idiomasContainer');
+                        if (containerIdioma) {
+                            containerIdioma.innerHTML = '<p class="text-muted text-center">No hay idiomas registrados.</p>';
+                        }
+                    }
+
+                    // Verificar estado del botón
+                    setTimeout(() => {
+                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                            verificarEstadoBotonGuardarCV();
+                        }
+                    }, 300);
+
+                }, 300);
+            }
+
+            mostrarFeedback(data.message || 'Idioma eliminado exitosamente', 'success');
+
+        } else {
+            // Restaurar elemento en caso de error
+            if (idiomaElement) {
+                idiomaElement.style.opacity = '1';
+                idiomaElement.style.pointerEvents = 'auto';
+            }
+
+            mostrarFeedback(data.error || 'Error al eliminar el idioma', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('💥 Error:', error);
+
+        // Restaurar elemento
+        if (idiomaElement) {
+            idiomaElement.style.opacity = '1';
+            idiomaElement.style.pointerEvents = 'auto';
+        }
+
+        mostrarFeedback('Error de conexión al eliminar el idioma', 'danger');
+    });
+}
         // =========================
         // EVENT LISTENERS
         // =========================
@@ -1345,75 +1722,124 @@ document.addEventListener('DOMContentLoaded', function() {
             }
             localStorage.setItem('cv_autoguardado', JSON.stringify(datos));
         }
-        function mostrarFeedback(mensaje, tipo = 'success') {
-            let alerta = document.createElement('div');
-            alerta.className = `alert alert-${tipo} fixed-top m-3 fade show`;
-            alerta.style.zIndex = 9999;
-            alerta.style.right = '20px';
-            alerta.style.left = 'auto';
-            alerta.innerHTML = `<span>${mensaje} ✅</span>`;
-            document.body.appendChild(alerta);
-            setTimeout(() => alerta.remove(), 2000);
+function mostrarFeedback(mensaje, tipo = 'success') {
+    // Usar toasts de Bootstrap si están disponibles
+    if (typeof mostrarToast === 'function') {
+        mostrarToast(mensaje, tipo);
+        return;
+    }
+
+    // Fallback a alert simple
+    let alerta = document.createElement('div');
+    alerta.className = `alert alert-${tipo} alert-dismissible fade show position-fixed`;
+    alerta.style.cssText = `
+        top: 20px;
+        right: 20px;
+        z-index: 9999;
+        max-width: 400px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    `;
+
+    const icono = tipo === 'success' ? 'bi-check-circle' :
+                  tipo === 'danger' ? 'bi-exclamation-triangle' : 'bi-info-circle';
+
+    alerta.innerHTML = `
+        <i class="bi ${icono} me-2"></i>
+        <span>${mensaje}</span>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+
+    document.body.appendChild(alerta);
+
+    // Auto-remover después de 4 segundos
+    setTimeout(() => {
+        if (alerta && alerta.parentNode) {
+            alerta.remove();
         }
+    }, 4000);
+}
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const formulario = document.getElementById('cvForm');
-            const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
-            // Al cargar, restaura datos de localStorage si existen
-            cargarDeLocalStorage(formulario);
+// ✅ SCRIPT CORREGIDO PARA EL TEMPLATE - SIN RECARGA AUTOMÁTICA
+document.addEventListener('DOMContentLoaded', function() {
+    const formulario = document.getElementById('cvForm');
+    const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
 
-            // Detectar cambios en resumen profesional
-            let resumenTimeout;
-            formulario.elements['resumen_profesional'].addEventListener('input', function (e) {
+    // Al cargar, restaura datos de localStorage si existen
+    if (formulario) {
+        cargarDeLocalStorage(formulario);
+
+        // Detectar cambios en resumen profesional
+        let resumenTimeout;
+        const resumenField = formulario.elements['resumen_profesional'];
+        if (resumenField) {
+            resumenField.addEventListener('input', function (e) {
                 guardarEnLocalStorage(formulario);
                 clearTimeout(resumenTimeout);
                 resumenTimeout = setTimeout(() => {
                     autoguardarResumenProfesionalAJAX(e.target.value, csrf);
-                }, 1200); // Espera 1.2 segundos tras dejar de escribir
+                }, 1200);
             });
+        }
 
-            // Detectar cambios en campos personales (autoguardar tras 1s sin escribir)
-            let personalTimeout;
-            ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(campo => {
-                formulario.elements[campo]?.addEventListener('input', function (e) {
+        // Detectar cambios en campos personales
+        let personalTimeout;
+        ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(campo => {
+            const field = formulario.elements[campo];
+            if (field) {
+                field.addEventListener('input', function (e) {
                     guardarEnLocalStorage(formulario);
                     clearTimeout(personalTimeout);
                     personalTimeout = setTimeout(() => {
                         let datos = {};
                         ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(c => {
-                            datos[c] = formulario.elements[c]?.value || '';
+                            const elem = formulario.elements[c];
+                            datos[c] = elem ? elem.value : '';
                         });
                         autoguardarInformacionPersonalAJAX(datos, csrf);
-                    }, 1000); // Espera 1s tras dejar de escribir
-                });
-            });
-
-            // (Opcional) Limpiar localStorage al guardar todo el CV
-            formulario.addEventListener('submit', function () {
-                localStorage.removeItem('cv_autoguardado');
-            });
-
-            // Solución para el refresco de la imagen de perfil
-            const cropperModalEl = document.getElementById('cropperModal');
-            const cropButton = document.getElementById('cropButton');
-            let imageCropped = false;
-
-            if (cropButton) {
-                cropButton.addEventListener('click', function () {
-                    imageCropped = true;
-                });
-            }
-
-            if (cropperModalEl) {
-                cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
-                    if (imageCropped) {
-                        // Recargar la página para asegurar que la nueva foto de perfil se muestre,
-                        // solucionando el problema de caché del navegador.
-                        location.reload();
-                    }
+                    }, 1000);
                 });
             }
         });
+
+        // Limpiar localStorage al guardar todo el CV
+        formulario.addEventListener('submit', function () {
+            localStorage.removeItem('cv_autoguardado');
+        });
+    }
+
+    // ✅ MANEJO MEJORADO DE IMAGEN DE PERFIL - SIN RECARGA AUTOMÁTICA
+    const cropperModalEl = document.getElementById('cropperModal');
+
+    if (cropperModalEl) {
+        // Solo escuchar el evento de cerrado sin forzar recarga
+        cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
+            console.log('🔄 Modal de cropper cerrado - imagen actualizada automáticamente');
+
+            // Verificar que las imágenes se hayan actualizado
+            setTimeout(() => {
+                const profileImages = document.querySelectorAll('.profile-photo');
+                if (profileImages.length > 0) {
+                    console.log('✅ Imágenes de perfil actualizadas sin recarga');
+                } else {
+                    console.log('ℹ️ No hay imágenes de perfil para actualizar');
+                }
+            }, 500);
+        });
+    }
+
+    // ✅ EVENT LISTENER ADICIONAL PARA CONFIRMACIÓN DE GUARDADO
+    document.addEventListener('imagenActualizada', function(event) {
+        console.log('🎉 Evento: imagen actualizada exitosamente');
+        console.log('📷 Nueva imagen URL:', event.detail?.imageUrl || 'No disponible');
+
+        // Opcional: Mostrar confirmación adicional
+        if (event.detail?.imageUrl) {
+            console.log('✅ Imagen guardada y actualizada correctamente');
+        }
+    });
+});
+
+
         function actualizarMensajeHabilidades() {
             const maxHabilidades = 5;
             const container = document.getElementById('habilidadesContainer');
@@ -1434,7 +1860,6 @@ document.addEventListener('DOMContentLoaded', function() {
         // Actualiza el contador cuando se agreguen o eliminen habilidades
         // Asegúrate de llamar esta función después de agregar o eliminar habilidades.
 </script>
-
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const textarea = document.getElementById('resumen_profesional');
@@ -1448,5 +1873,161 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 </script>
- 
+    <!-- AGREGAR ESTE SCRIPT AL FINAL DEL TEMPLATE perfil_interesado.html, DESPUÉS DE TODOS LOS OTROS SCRIPTS -->
+
+<script>
+// ✅ SCRIPT ADICIONAL PARA GARANTIZAR FUNCIONAMIENTO CORRECTO
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Script adicional cargado');
+
+    // ✅ VERIFICAR QUE TODAS LAS VARIABLES ESTÉN DISPONIBLES
+    if (!window.datosInteresado) {
+        console.error('❌ ERROR CRÍTICO: window.datosInteresado no está definido');
+
+        // Intentar recrear las variables desde el DOM si es posible
+        console.log('🔄 Intentando recrear variables desde el DOM...');
+
+        window.datosInteresado = {
+            nombre: '{{ interesado.nombre|default:"" }}',
+            apellido_paterno: '{{ interesado.apellido_paterno|default:"" }}',
+            apellido_materno: '{{ interesado.apellido_materno|default:"" }}',
+            telefono: '{{ interesado.telefono|default:"" }}',
+            fecha_nacimiento: '{{ interesado.fecha_nacimiento|default:"" }}',
+            codigo_postal: '{{ interesado.codigo_postal|default:"" }}',
+            ubicacion_completa: '{{ interesado.ubicacion_completa|default:"" }}',
+            tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
+        };
+
+        console.log('✅ Variables recreadas:', window.datosInteresado);
+    }
+
+    // ✅ VERIFICACIÓN ADICIONAL DE ELEMENTOS CRÍTICOS
+    const elementosCriticos = [
+        'btnDescargarCV',
+        'resumen_profesional',
+        'experienciaContainer',
+        'educacionContainer',
+        'habilidadesContainer',
+        'idiomasContainer'
+    ];
+
+    let elementosFaltantes = [];
+    elementosCriticos.forEach(id => {
+        if (!document.getElementById(id)) {
+            elementosFaltantes.push(id);
+        }
+    });
+
+    if (elementosFaltantes.length > 0) {
+        console.error('❌ Elementos críticos faltantes:', elementosFaltantes);
+    } else {
+        console.log('✅ Todos los elementos críticos están presentes');
+    }
+
+    // ✅ CONFIGURAR OBSERVADORES PARA CAMBIOS DINÁMICOS
+    const observer = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            if (mutation.type === 'childList') {
+                const targetId = mutation.target.id;
+
+                // Si se modificaron las secciones de CV, re-verificar
+                if (['experienciaContainer', 'educacionContainer', 'habilidadesContainer', 'idiomasContainer'].includes(targetId)) {
+                    console.log(`🔄 Cambios detectados en ${targetId}, re-verificando...`);
+
+                    setTimeout(() => {
+                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                            verificarEstadoBotonGuardarCV();
+                        }
+                    }, 500);
+                }
+            }
+        });
+    });
+
+    // Observar cambios en los contenedores
+    ['experienciaContainer', 'educacionContainer', 'habilidadesContainer', 'idiomasContainer'].forEach(id => {
+        const elemento = document.getElementById(id);
+        if (elemento) {
+            observer.observe(elemento, { childList: true, subtree: true });
+        }
+    });
+
+    // ✅ EJECUTAR VERIFICACIÓN INICIAL DESPUÉS DE UN DELAY MÁS LARGO
+    setTimeout(() => {
+        console.log('⏰ Ejecutando verificación inicial tardía...');
+
+        if (typeof verificarEstadoBotonGuardarCV === 'function') {
+            verificarEstadoBotonGuardarCV();
+        } else {
+            console.error('❌ Función verificarEstadoBotonGuardarCV no está disponible');
+        }
+    }, 2000); // 2 segundos para asegurar que todo esté cargado
+
+    // ✅ CONFIGURAR VERIFICACIÓN PERIÓDICA (OPCIONAL - PARA DEBUG)
+    if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+        setInterval(() => {
+            console.log('🔄 Verificación periódica de debug...');
+            if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                verificarEstadoBotonGuardarCV();
+            }
+        }, 30000); // Cada 30 segundos solo en desarrollo
+    }
+
+    // ✅ MANEJAR RECARGAS DESPUÉS DE CAMBIOS AJAX
+    window.addEventListener('beforeunload', function() {
+        console.log('📄 Página se está recargando...');
+    });
+
+    // ✅ EVENT LISTENER PARA EL BOTÓN DE DESCARGA (PREVENIR CLICKS CUANDO ESTÁ DESHABILITADO)
+    const btnDescarga = document.getElementById('btnDescargarCV');
+    if (btnDescarga) {
+        btnDescarga.addEventListener('click', function(e) {
+            if (this.disabled) {
+                e.preventDefault();
+                e.stopPropagation();
+
+                console.log('🚫 Click en botón deshabilitado prevenido');
+
+                // Mostrar mensaje de campos faltantes
+                if (typeof validarFormularioCompleto === 'function') {
+                    const validacion = validarFormularioCompleto();
+                    if (!validacion.esValido) {
+                        alert('Tu CV está incompleto. Campos faltantes:\n\n' + validacion.camposFaltantes.join('\n'));
+                    }
+                }
+
+                return false;
+            }
+        });
+    }
+});
+
+// ✅ FUNCIÓN HELPER PARA DEBUGGING
+window.debugCV = function() {
+    console.log('🔍 DEBUG DE CV:');
+    console.log('📊 Datos del interesado:', window.datosInteresado);
+
+    if (typeof validarFormularioCompleto === 'function') {
+        const validacion = validarFormularioCompleto();
+        console.log('✅ Estado de validación:', validacion);
+    }
+
+    console.log('🔘 Estado del botón:', {
+        elemento: document.getElementById('btnDescargarCV'),
+        disabled: document.getElementById('btnDescargarCV')?.disabled,
+        classes: document.getElementById('btnDescargarCV')?.className,
+        innerHTML: document.getElementById('btnDescargarCV')?.innerHTML
+    });
+};
+
+// ✅ HACER FUNCIÓN DISPONIBLE GLOBALMENTE PARA DEBUGGING
+window.verificarCV = function() {
+    if (typeof verificarEstadoBotonGuardarCV === 'function') {
+        verificarEstadoBotonGuardarCV();
+        console.log('✅ Verificación manual ejecutada');
+    } else {
+        console.error('❌ Función no disponible');
+    }
+};
+</script>
 {% endblock %}

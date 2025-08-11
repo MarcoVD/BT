@@ -21,7 +21,6 @@ django-jazzmin==3.0.1
 django-model-utils==5.0.0
 django-otp==1.6.0
 django-phonenumber-field==8.1.0
-django-postalcodes-mexico==0.6.1
 django-two-factor-auth==1.17.0
 dotenv==0.9.9
 filelock==3.18.0
@@ -66,4 +65,5 @@ urllib3==2.5.0
 virtualenv==20.33.1
 weasyprint==65.1
 webencodings==0.5.1
+whitenoise==6.9.0
 zopfli==0.2.3.post1

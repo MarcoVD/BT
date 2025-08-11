@@ -21,7 +21,7 @@
         border-color: var(--primary);
         box-shadow: 0 0 0 0.25rem rgba(159, 34, 65, 0.15);
     }
-
+    {##}
     .btn-primary {
         padding: 0.75rem;
         font-weight: 600;
@@ -283,6 +283,12 @@
                                     <span>No debe ser similar a tu información personal</span>
                                 </div>
                             </div>
+                        </div>
+                        <div class="form-check">
+                          <input class="form-check-input" type="checkbox" value="" id="checkTerminos" />
+                          <label class="form-check-label" for="checkTerminos">
+                            Acepto los terminos y condiciones.
+                          </label>
                         </div>
 
                         <!-- Botón de envío -->
@@ -567,7 +573,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const todosValidos = Object.values(estadoValidacion).every(estado => estado);
         if (!todosValidos) {
             e.preventDefault();
-            alert('Por favor, corrige todos los errores antes de continuar.');
+            alert('Por favor valida los datos ingresados.');
         }
     });
 });
@@ -579,7 +585,3 @@ document.addEventListener('DOMContentLoaded', function() {
 {% endblock %}
 
 {% endblock %}
-
-<!-- {% block include_footer %}
-    {% include 'usuarios/footer.html' %}
-{% endblock %} -->

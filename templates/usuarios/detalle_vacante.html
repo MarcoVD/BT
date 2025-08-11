@@ -312,7 +312,7 @@ function postularseDirect() {
             // Mostrar mensaje de éxito
             mostrarMensaje('Postulación exitosa', 'success');
 
-            // Cambiar botón a estado "ya postulado"
+            // Cambiar botón ha estado "ya postulado"
             postularBtn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Ya te postulaste';
             postularBtn.classList.remove('btn-primary');
             postularBtn.classList.add('btn-success');
@@ -342,13 +342,14 @@ function postularseDirect() {
     });
 }
 
+// {# mensajes del toast #}
 function mostrarMensaje(mensaje, tipo) {
     // Crear contenedor de toasts si no existe
     let toastContainer = document.getElementById('toast-container');
     if (!toastContainer) {
         toastContainer = document.createElement('div');
         toastContainer.id = 'toast-container';
-        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.className = 'toast-container position-fixed top-50 start-50 translate-middle p-3';
         toastContainer.style.zIndex = '1055';
         document.body.appendChild(toastContainer);
     }
@@ -357,18 +358,19 @@ function mostrarMensaje(mensaje, tipo) {
     const toastId = 'toast-' + Date.now();
     const toastDiv = document.createElement('div');
     toastDiv.id = toastId;
-    toastDiv.className = `toast align-items-center text-bg-${tipo === 'success' ? 'success' : 'danger'} border-0`;
+    toastDiv.className = `toast text-white bg-${tipo === 'success' ? 'success' : 'danger'} border-0 shadow-lg rounded-4`;
     toastDiv.setAttribute('role', 'alert');
     toastDiv.setAttribute('aria-live', 'assertive');
     toastDiv.setAttribute('aria-atomic', 'true');
+    toastDiv.style.minWidth = '300px';
+    toastDiv.style.fontSize = '1.2rem';
+    toastDiv.style.animation = 'fadeInScale 0.4s ease-in-out';
 
     toastDiv.innerHTML = `
-        <div class="d-flex">
-            <div class="toast-body">
-                <i class="bi bi-${tipo === 'success' ? 'check-circle' : 'exclamation-circle'} me-2"></i>
-                ${mensaje}
-            </div>
-            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+        <div class="d-flex align-items-center p-3">
+            <i class="bi bi-${tipo === 'success' ? 'check-circle-fill' : 'exclamation-circle-fill'} fs-3 me-3"></i>
+            <div class="flex-grow-1">${mensaje}</div>
+            <button type="button" class="btn-close btn-close-white ms-2" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>
     `;
 
@@ -386,6 +388,17 @@ function mostrarMensaje(mensaje, tipo) {
         toastDiv.remove();
     });
 }
+
+// Animación CSS
+const style = document.createElement('style');
+style.textContent = `
+@keyframes fadeInScale {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+`;
+document.head.appendChild(style);
+
 </script>
 {% endif %}
 {% endblock %}

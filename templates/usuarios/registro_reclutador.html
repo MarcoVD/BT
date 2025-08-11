@@ -466,8 +466,6 @@
         </div>
     </div>
 </div>
-{% endblock %}
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -779,9 +777,8 @@ document.addEventListener('DOMContentLoaded', function() {
 </script>
 
 {% block extra_js %}
+    <!-- Script específico para validación -->
     <script src="{% static 'js/validar_login.js' %}"></script>
 {% endblock %}
-{% block include_footer %}
-    {% include 'usuarios/footer.html' %}
-{% endblock %}
 
+{% endblock %}

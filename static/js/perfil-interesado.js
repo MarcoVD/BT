@@ -1,592 +1,700 @@
-// static/js/perfil-interesado.js - VERSIÓN SIMPLIFICADA SIN MODAL DE DATOS
+// AGREGAR estas funciones en perfil-interesado.js o en el template
 
-document.addEventListener('DOMContentLoaded', function() {
-    // ===================================================================
-    // FUNCIONES PARA CV (mantener las existentes)
-    // ===================================================================
-    
-    // Variables globales para controlar edición
-    let experienciaEditandoId = null;
-    let educacionEditandoId = null;
+// =========================
+// MODAL DE PERFIL PERSONAL
+// =========================
+// En perfil-interesado.js - REEMPLAZAR la función validarFormularioCompleto()
+// EN perfil-interesado.js - AGREGAR verificación en las funciones AJAX existentes
 
-    // =========================
-    // EXPERIENCIA LABORAL (mantener igual)
-    // =========================
-    window.mostrarModalExperiencia = function() {
-        experienciaEditandoId = null;
-        document.querySelector('#experienciaModal .modal-title').textContent = 'Agregar Experiencia Laboral';
-        document.getElementById('experienciaForm').reset();
-        document.querySelector('#experienciaForm input[name="fecha_fin"]').disabled = false;
-        new bootstrap.Modal(document.getElementById('experienciaModal')).show();
-    }
+// ✅ MODIFICAR la función guardarExperiencia()
+window.guardarExperiencia = function() {
+    const form = document.getElementById('experienciaForm');
+    const formData = new FormData(form);
 
-    window.editarExperiencia = function(id, puesto, empresa, fechaInicio, fechaFin, actual, descripcion) {
-        experienciaEditandoId = id;
+    let url = experienciaEditandoId ?
+        `/ajax/experiencia/editar/${experienciaEditandoId}/` :
+        '/ajax/experiencia/agregar/';
 
-        document.querySelector('#experienciaForm input[name="puesto"]').value = puesto;
-        document.querySelector('#experienciaForm input[name="empresa"]').value = empresa;
-        document.querySelector('#experienciaForm input[name="fecha_inicio"]').value = fechaInicio;
-        document.querySelector('#experienciaForm input[name="fecha_fin"]').value = fechaFin || '';
-        document.querySelector('#experienciaForm input[name="actual"]').checked = actual;
-        document.querySelector('#experienciaForm textarea[name="descripcion"]').value = descripcion;
-
-        const fechaFinInput = document.querySelector('#experienciaForm input[name="fecha_fin"]');
-        fechaFinInput.disabled = actual;
-
-        document.querySelector('#experienciaModal .modal-title').textContent = 'Editar Experiencia Laboral';
-        new bootstrap.Modal(document.getElementById('experienciaModal')).show();
-    }
-
-    window.guardarExperiencia = function() {
-        const form = document.getElementById('experienciaForm');
-        const formData = new FormData(form);
-
-        let url = experienciaEditandoId ?
-            `/ajax/experiencia/editar/${experienciaEditandoId}/` :
-            '/ajax/experiencia/agregar/';
-
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                bootstrap.Modal.getInstance(document.getElementById('experienciaModal')).hide();
-                location.reload();
-            } else {
-                alert('Error: ' + JSON.stringify(data.errors || data.error));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al guardar la experiencia');
-        });
-    }
-
-    window.eliminarExperiencia = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta experiencia?')) {
-            fetch(`/ajax/experiencia/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error al eliminar: ' + data.error);
-                }
-            });
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
         }
-    }
-
-    // =========================
-    // EDUCACIÓN (mantener igual)
-    // =========================
-    window.mostrarModalEducacion = function() {
-        educacionEditandoId = null;
-        document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
-        document.getElementById('educacionForm').reset();
-        new bootstrap.Modal(document.getElementById('educacionModal')).show();
-    }
-
-    window.guardarEducacion = function() {
-        const form = document.getElementById('educacionForm');
-        const formData = new FormData(form);
-        let url = educacionEditandoId ?
-            `/ajax/educacion/editar/${educacionEditandoId}/` :
-            '/ajax/educacion/agregar/';
-        
-        fetch(url, {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                bootstrap.Modal.getInstance(document.getElementById('educacionModal')).hide();
-                location.reload();
-            } else {
-                alert('Error: ' + JSON.stringify(data.errors || data.error));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al guardar la educación');
-        });
-    }
-
-    window.editarEducacion = function(id, titulo, institucion, fechaInicio, fechaFin) {
-        educacionEditandoId = id;
-        document.querySelector('#educacionForm input[name="titulo"]').value = titulo;
-        document.querySelector('#educacionForm input[name="institucion"]').value = institucion;
-        document.querySelector('#educacionForm input[name="fecha_inicio"]').value = fechaInicio;
-        document.querySelector('#educacionForm input[name="fecha_fin"]').value = fechaFin || '';
-
-        document.querySelector('#educacionModal .modal-title').textContent = 'Editar Educación';
-        new bootstrap.Modal(document.getElementById('educacionModal')).show();
-    }
-
-    window.eliminarEducacion = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta educación?')) {
-            fetch(`/ajax/educacion/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error al eliminar: ' + data.error);
-                }
-            });
-        }
-    }
-
-    // =========================
-    // HABILIDADES (mantener igual)
-    // =========================
-    window.mostrarModalHabilidad = function() {
-        document.getElementById('habilidadForm').reset();
-        new bootstrap.Modal(document.getElementById('habilidadModal')).show();
-    }
-
-    window.guardarHabilidad = function() {
-        const form = document.getElementById('habilidadForm');
-        const formData = new FormData(form);
-
-        fetch('/ajax/habilidad/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                bootstrap.Modal.getInstance(document.getElementById('habilidadModal')).hide();
-                location.reload();
-            } else {
-                alert('Error: ' + JSON.stringify(data.errors || data.error));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al guardar la habilidad');
-        });
-    }
-
-    window.eliminarHabilidad = function(id) {
-        if (confirm('¿Estás seguro de eliminar esta habilidad?')) {
-            fetch(`/ajax/habilidad/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    location.reload();
-                } else {
-                    alert('Error al eliminar: ' + data.error);
-                }
-            });
-        }
-    }
-
-    // =========================
-    // IDIOMAS (mantener igual)
-    // =========================
-    window.mostrarModalIdioma = function() {
-        document.getElementById('idiomaForm').reset();
-        new bootstrap.Modal(document.getElementById('idiomaModal')).show();
-    }
-
-    window.guardarIdioma = function() {
-        const form = document.getElementById('idiomaForm');
-        const formData = new FormData(form);
-
-        fetch('/ajax/idioma/agregar/', {
-            method: 'POST',
-            body: formData,
-            headers: {
-                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-            }
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                bootstrap.Modal.getInstance(document.getElementById('idiomaModal')).hide();
-                location.reload();
-            } else {
-                alert('Error: ' + JSON.stringify(data.errors || data.error));
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error al guardar el idioma');
-        });
-    }
-
-    window.eliminarIdioma = function(id) {
-        if (confirm('¿Estás seguro de eliminar este idioma?')) {
-            fetch(`/ajax/idioma/eliminar/${id}/`, {
-                method: 'DELETE',
-                headers: {
-                    'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-                }
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Elimina solo el idioma del DOM, no recargues la página
-                    const elem = document.querySelector(`.idioma-item[data-id="${id}"]`);
-                    if (elem) elem.remove();
-                    mostrarFeedback('Idioma eliminado', 'success');
-                } else {
-                    mostrarFeedback('Error al eliminar: ' + data.error, 'danger');
-                }
-            });
-        }
-    }
-
-    // =========================
-    // EVENT LISTENERS PARA CV
-    // =========================
-    const actualCheck = document.getElementById('actualCheck');
-    if (actualCheck) {
-        actualCheck.addEventListener('change', function() {
-            const fechaFin = document.querySelector('#experienciaForm input[name="fecha_fin"]');
-            if (this.checked) {
-                fechaFin.disabled = true;
-                fechaFin.value = '';
-            } else {
-                fechaFin.disabled = false;
-            }
-        });
-    }
-
-    // Limpiar modales al cerrar
-    document.getElementById('experienciaModal')?.addEventListener('hidden.bs.modal', function () {
-        experienciaEditandoId = null;
-        document.querySelector('#experienciaModal .modal-title').textContent = 'Agregar Experiencia Laboral';
-    });
-
-    document.getElementById('educacionModal')?.addEventListener('hidden.bs.modal', function () {
-        educacionEditandoId = null;
-        document.querySelector('#educacionModal .modal-title').textContent = 'Agregar Educación';
-    });
-
-    // ===================================================================
-    // AUTOGUARDADO Y VALIDACIONES PARA EL FORMULARIO CV
-    // ===================================================================
-    
-    const formulario = document.getElementById('cvForm');
-    if (formulario) {
-        const csrf = document.querySelector('[name=csrfmiddlewaretoken]').value;
-        
-        // Detectar cambios en resumen profesional
-        let resumenTimeout;
-        const resumenInput = formulario.elements['resumen_profesional'];
-        if (resumenInput) {
-            resumenInput.addEventListener('input', function (e) {
-                clearTimeout(resumenTimeout);
-                resumenTimeout = setTimeout(() => {
-                    autoguardarResumenProfesionalAJAX(e.target.value, csrf);
-                }, 1200);
-            });
-        }
-
-        // Detectar cambios en campos personales
-        let personalTimeout;
-        ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(campo => {
-            const elemento = formulario.elements[campo];
-            if (elemento) {
-                elemento.addEventListener('input', function (e) {
-                    clearTimeout(personalTimeout);
-                    personalTimeout = setTimeout(() => {
-                        let datos = {};
-                        ['nombre', 'apellido_paterno', 'apellido_materno', 'telefono', 'municipio', 'codigo_postal', 'fecha_nacimiento'].forEach(c => {
-                            datos[c] = formulario.elements[c]?.value || '';
-                        });
-                        autoguardarInformacionPersonalAJAX(datos, csrf);
-                    }, 1000);
-                });
-            }
-        });
-    }
-
-    // ===================================================================
-    // FUNCIONES DE AUTOGUARDADO
-    // ===================================================================
-    
-    function autoguardarResumenProfesionalAJAX(valor, csrf) {
-        fetch('/ajax/autoguardar_resumen_profesional/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrf
-            },
-            body: JSON.stringify({ resumen_profesional: valor })
-        })
-        .then(r => r.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('resumen_profesional').classList.add('is-valid');
-                setTimeout(() => document.getElementById('resumen_profesional').classList.remove('is-valid'), 1000);
-            }
-        });
-    }
-
-    function autoguardarInformacionPersonalAJAX(datos, csrf) {
-        fetch('/ajax/autoguardar_informacion_personal/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': csrf
-            },
-            body: JSON.stringify(datos)
-        })
-        .then(r => r.json())
-        .then(data => {
-            if (data.success) {
-                // Feedback visual opcional
-            }
-        });
-    }
-
-    // ===================================================================
-    // VALIDACIONES PARA EL BOTÓN DE DESCARGA DE CV
-    // ===================================================================
-    
-    function validarFormularioCompleto() {
-        const camposFaltantes = [];
-        let esValido = true;
-
-        // 1. Validar información personal
-        const camposPersonales = [
-            { selector: '#nombre', nombre: 'Nombre' },
-            { selector: '#apellido_paterno', nombre: 'Apellido Paterno' },
-            { selector: '#apellido_materno', nombre: 'Apellido Materno' },
-            { selector: '#telefono', nombre: 'Teléfono' },
-            { selector: '#fecha_nacimiento', nombre: 'Fecha de Nacimiento' },
-            { selector: '#municipio', nombre: 'Municipio' },
-            { selector: '#codigo_postal', nombre: 'Código Postal' }
-        ];
-
-        camposPersonales.forEach(campo => {
-            const elemento = document.querySelector(campo.selector);
-            if (!elemento || !elemento.value.trim()) {
-                camposFaltantes.push(`- ${campo.nombre}`);
-                esValido = false;
-            }
-        });
-
-        // 2. Validar foto de perfil - CORREGIDO
-        const fotoPreview = document.querySelector('.profile-photo');
-        const fotoPlaceholder = document.querySelector('.profile-photo-placeholder');
-        
-        // Verificar si tiene foto: debe existir un elemento .profile-photo O si no hay placeholder
-        const tieneFoto = fotoPreview || !fotoPlaceholder;
-        
-        if (!tieneFoto) {
-            camposFaltantes.push('- Foto de perfil');
-            esValido = false;
-        }
-
-        // 3. Validar resumen profesional
-        const resumenProfesional = document.querySelector('#resumen_profesional');
-        if (!resumenProfesional || !resumenProfesional.value.trim()) {
-            camposFaltantes.push('- Resumen profesional');
-            esValido = false;
-        }
-
-        // 4. Validar experiencias laborales (mínimo 1)
-        const cantidadExperiencias = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
-        if (cantidadExperiencias < 1) {
-            camposFaltantes.push('- Al menos 1 experiencia laboral');
-            esValido = false;
-        }
-
-        // 5. Validar educación/formación (mínimo 1)
-        const cantidadEducacion = document.querySelectorAll('#educacionContainer .educacion-item').length;
-        if (cantidadEducacion < 1) {
-            camposFaltantes.push('- Al menos 1 formación educativa');
-            esValido = false;
-        }
-
-        // 6. Validar habilidades técnicas (mínimo 5)
-        const cantidadHabilidades = document.querySelectorAll('#habilidadesContainer .badge').length;
-        if (cantidadHabilidades < 5) {
-            camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
-            esValido = false;
-        }
-
-        // 7. Validar idiomas (mínimo 1)
-        const cantidadIdiomas = document.querySelectorAll('#idiomasContainer .idioma-item').length;
-        if (cantidadIdiomas < 1) {
-            camposFaltantes.push('- Al menos 1 idioma');
-            esValido = false;
-        }
-
-        return {
-            esValido: esValido,
-            camposFaltantes: camposFaltantes
-        };
-    }
-
-    function verificarEstadoBotonGuardarCV() {
-        const btnGuardarCV = document.getElementById('btnDescargarCV');
-        if (!btnGuardarCV) {
-            console.log('Botón de descarga no encontrado'); // Debug
-            return;
-        }
-
-        const validacionCompleta = validarFormularioCompleto();
-        
-        console.log('Estado de validación:', validacionCompleta); // Debug
-
-        if (validacionCompleta.esValido) {
-            btnGuardarCV.disabled = false;
-            btnGuardarCV.title = 'Descargar CV - Todos los campos están completos';
-            btnGuardarCV.innerHTML = '<i class="bi bi-download"></i> Descargar PDF';
-            btnGuardarCV.classList.remove('btn-secondary');
-            btnGuardarCV.classList.add('btn-primary');
-            btnGuardarCV.classList.add('text-white');
-            console.log('Botón habilitado'); // Debug
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('experienciaModal')).hide();
+            location.reload();
+            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EXPERIENCIA
+            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
         } else {
-            btnGuardarCV.disabled = true;
-            btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
-            btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>';
-            btnGuardarCV.classList.remove('btn-primary');
-            btnGuardarCV.classList.add('btn-secondary');
-            console.log('Botón deshabilitado. Campos faltantes:', validacionCompleta.camposFaltantes); // Debug
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
         }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la experiencia');
+    });
+}
+
+// ✅ MODIFICAR la función guardarEducacion()
+window.guardarEducacion = function() {
+    const form = document.getElementById('educacionForm');
+    const formData = new FormData(form);
+    let url = educacionEditandoId ?
+        `/ajax/educacion/editar/${educacionEditandoId}/` :
+        '/ajax/educacion/agregar/';
+
+    fetch(url, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('educacionModal')).hide();
+            location.reload();
+            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EDUCACIÓN
+            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la educación');
+    });
+}
+
+// ✅ MODIFICAR la función guardarHabilidad()
+window.guardarHabilidad = function() {
+    const form = document.getElementById('habilidadForm');
+    const formData = new FormData(form);
+
+    fetch('/ajax/habilidad/agregar/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('habilidadModal')).hide();
+            location.reload();
+            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR HABILIDAD
+            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar la habilidad');
+    });
+}
+
+// ✅ MODIFICAR la función guardarIdioma()
+window.guardarIdioma = function() {
+    const form = document.getElementById('idiomaForm');
+    const formData = new FormData(form);
+
+    fetch('/ajax/idioma/agregar/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            bootstrap.Modal.getInstance(document.getElementById('idiomaModal')).hide();
+            location.reload();
+            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR IDIOMA
+            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
+        } else {
+            alert('Error: ' + JSON.stringify(data.errors || data.error));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error al guardar el idioma');
+    });
+}
+
+// ✅ FUNCIÓN DE VALIDACIÓN MEJORADA
+function validarFormularioCompleto() {
+    const camposFaltantes = [];
+    let esValido = true;
+
+    console.log('🔍 Iniciando validación completa del CV...');
+    console.log('📊 Datos actuales del interesado:', window.datosInteresado);
+
+    // ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript
+    if (!window.datosInteresado.nombre.trim()) {
+        camposFaltantes.push('- Nombre');
+        esValido = false;
+        console.log('❌ Falta: Nombre');
     }
 
-    // Validación del botón de descarga
-    const btnDescargarCV = document.getElementById('btnDescargarCV');
-    if (btnDescargarCV) {
-        btnDescargarCV.addEventListener('click', function(e) {
-            console.log('Botón de descarga clickeado'); // Debug
-            
-            const validacionCompleta = validarFormularioCompleto();
-            
-            console.log('Validación completa:', validacionCompleta); // Debug
-
-            if (!validacionCompleta.esValido) {
-                e.preventDefault();
-                e.stopPropagation();
-
-                console.log('Validación falló:', validacionCompleta.camposFaltantes); // Debug
-
-                const mensajeError = 'No se puede descargar el CV. Faltan los siguientes campos:\n\n' +
-                                   validacionCompleta.camposFaltantes.join('\n') +
-                                   '\n\nPor favor, completa toda la información antes de continuar.';
-                alert(mensajeError);
-                return false;
-            }
-            
-            console.log('Validación exitosa, procediendo con descarga...'); // Debug
-        });
+    if (!window.datosInteresado.apellido_paterno.trim()) {
+        camposFaltantes.push('- Apellido Paterno');
+        esValido = false;
+        console.log('❌ Falta: Apellido Paterno');
     }
 
-    // Verificación inicial y observadores de cambios
+    if (!window.datosInteresado.apellido_materno.trim()) {
+        camposFaltantes.push('- Apellido Materno');
+        esValido = false;
+        console.log('❌ Falta: Apellido Materno');
+    }
+
+    if (!window.datosInteresado.telefono.trim()) {
+        camposFaltantes.push('- Teléfono');
+        esValido = false;
+        console.log('❌ Falta: Teléfono');
+    }
+
+    if (!window.datosInteresado.fecha_nacimiento.trim()) {
+        camposFaltantes.push('- Fecha de Nacimiento');
+        esValido = false;
+        console.log('❌ Falta: Fecha de Nacimiento');
+    }
+
+    if (!window.datosInteresado.codigo_postal.trim()) {
+        camposFaltantes.push('- Código Postal');
+        esValido = false;
+        console.log('❌ Falta: Código Postal');
+    }
+
+    // ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
+    if (!window.datosInteresado.ubicacion_completa.trim() ||
+        window.datosInteresado.ubicacion_completa.toLowerCase().includes('no especificada') ||
+        window.datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
+        camposFaltantes.push('- Ubicación completa (Estado, Municipio, Localidad)');
+        esValido = false;
+        console.log('❌ Falta: Ubicación completa válida');
+    }
+
+    // ✅ 2. VALIDAR FOTO DE PERFIL
+    if (!window.datosInteresado.tiene_foto) {
+        camposFaltantes.push('- Foto de perfil');
+        esValido = false;
+        console.log('❌ Falta: Foto de perfil');
+    }
+
+    // ✅ 3. VALIDAR RESUMEN PROFESIONAL
+    const resumenProfesional = document.querySelector('#resumen_profesional');
+    if (!resumenProfesional || !resumenProfesional.value.trim()) {
+        camposFaltantes.push('- Resumen profesional');
+        esValido = false;
+        console.log('❌ Falta: Resumen profesional');
+    }
+
+    // ✅ 4. VALIDAR EXPERIENCIAS LABORALES (mínimo 1)
+    const cantidadExperiencias = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
+    if (cantidadExperiencias < 1) {
+        camposFaltantes.push('- Al menos 1 experiencia laboral');
+        esValido = false;
+        console.log('❌ Falta: Al menos 1 experiencia laboral');
+    }
+
+    // ✅ 5. VALIDAR EDUCACIÓN/FORMACIÓN (mínimo 1)
+    const cantidadEducacion = document.querySelectorAll('#educacionContainer .educacion-item').length;
+    if (cantidadEducacion < 1) {
+        camposFaltantes.push('- Al menos 1 formación educativa');
+        esValido = false;
+        console.log('❌ Falta: Al menos 1 formación educativa');
+    }
+
+    // ✅ 6. VALIDAR HABILIDADES TÉCNICAS (mínimo 5)
+    const cantidadHabilidades = document.querySelectorAll('#habilidadesContainer .badge').length;
+    if (cantidadHabilidades < 5) {
+        camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
+        esValido = false;
+        console.log(`❌ Faltan habilidades: Solo tienes ${cantidadHabilidades}/5`);
+    }
+
+    // ✅ 7. VALIDAR IDIOMAS (mínimo 1)
+    const cantidadIdiomas = document.querySelectorAll('#idiomasContainer .idioma-item').length;
+    if (cantidadIdiomas < 1) {
+        camposFaltantes.push('- Al menos 1 idioma');
+        esValido = false;
+        console.log('❌ Falta: Al menos 1 idioma');
+    }
+
+    console.log('🔍 Resultado de validación:', {
+        esValido,
+        camposFaltantes: camposFaltantes.length,
+        experiencias: cantidadExperiencias,
+        educaciones: cantidadEducacion,
+        habilidades: cantidadHabilidades,
+        idiomas: cantidadIdiomas
+    });
+
+    return {
+        esValido: esValido,
+        camposFaltantes: camposFaltantes
+    };
+}
+
+// ✅ FUNCIÓN MEJORADA PARA ACTUALIZAR EL BOTÓN
+function verificarEstadoBotonGuardarCV() {
+    console.log('🚀 Verificando estado del botón de descarga...');
+
+    const btnGuardarCV = document.getElementById('btnDescargarCV');
+    if (!btnGuardarCV) {
+        console.log('❌ Botón de descarga no encontrado');
+        return;
+    }
+
+    // Verificar que las variables estén disponibles
+    if (!window.datosInteresado) {
+        console.log('❌ Variables de datos del interesado no están disponibles');
+        return;
+    }
+
+    const validacionCompleta = validarFormularioCompleto();
+
+    console.log('📊 Estado de validación:', validacionCompleta);
+
+    if (validacionCompleta.esValido) {
+        // ✅ CV COMPLETO - HABILITAR BOTÓN
+        btnGuardarCV.disabled = false;
+        btnGuardarCV.title = 'Descargar CV - Todos los campos están completos';
+        btnGuardarCV.innerHTML = '<i class="bi bi-download"></i> Descargar PDF';
+        btnGuardarCV.classList.remove('btn-secondary');
+        btnGuardarCV.classList.add('btn-primary', 'text-white');
+
+        console.log('✅ Botón habilitado - CV completo');
+    } else {
+        // ❌ CV INCOMPLETO - DESHABILITAR BOTÓN
+        btnGuardarCV.disabled = true;
+        btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
+        btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>';
+        btnGuardarCV.classList.remove('btn-primary', 'text-white');
+        btnGuardarCV.classList.add('btn-secondary');
+
+        console.log('❌ Botón deshabilitado. Campos faltantes:', validacionCompleta.camposFaltantes);
+    }
+}
+
+// ✅ FUNCIÓN PARA ACTUALIZAR VARIABLES JAVASCRIPT
+function actualizarDatosInteresado(nuevosDatos) {
+    console.log('🔄 Actualizando datos del interesado...', nuevosDatos);
+
+    if (!window.datosInteresado) {
+        window.datosInteresado = {};
+    }
+
+    // Actualizar solo los campos que vienen en nuevosDatos
+    Object.keys(nuevosDatos).forEach(key => {
+        if (nuevosDatos[key] !== undefined && nuevosDatos[key] !== null) {
+            window.datosInteresado[key] = nuevosDatos[key];
+        }
+    });
+
+    console.log('✅ Datos actualizados:', window.datosInteresado);
+
+    // Re-verificar estado del botón
     verificarEstadoBotonGuardarCV();
+}
 
-    const observerConfig = { childList: true, subtree: true };
-    const observerCallback = function(mutationsList) {
-        verificarEstadoBotonGuardarCV();
+// ✅ AGREGAR AL FINAL DE LA FUNCIÓN guardarPerfil() EN EL MODAL
+// Modificar la función guardarPerfil existente para que llame a la validación después de guardar:
+window.guardarPerfil = function() {
+    const form = document.getElementById('perfilForm');
+    const formData = new FormData(form);
+
+    // Mostrar loading en el botón
+    const guardarBtn = document.querySelector('#perfilModal .btn-primary');
+    const textoOriginal = guardarBtn.innerHTML;
+    guardarBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...';
+    guardarBtn.disabled = true;
+
+    fetch('/ajax/actualizar-perfil-completo/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // ✅ ACTUALIZAR LAS VARIABLES JAVASCRIPT CON LOS NUEVOS DATOS
+            actualizarDatosInteresado({
+                nombre: formData.get('nombre') || '',
+                apellido_paterno: formData.get('apellido_paterno') || '',
+                apellido_materno: formData.get('apellido_materno') || '',
+                telefono: formData.get('telefono') || '',
+                fecha_nacimiento: formData.get('fecha_nacimiento') || '',
+                codigo_postal: formData.get('codigo_postal') || '',
+                ubicacion_completa: data.datos.ubicacion_completa || '',
+                // Mantener estado de foto actual
+                tiene_foto: window.datosInteresado ? window.datosInteresado.tiene_foto : false
+            });
+
+            console.log('✅ Variables actualizadas después de guardar perfil');
+
+            // Cerrar modal
+            bootstrap.Modal.getInstance(document.getElementById('perfilModal')).hide();
+
+            // Actualizar la información en la card
+            actualizarCardPerfil(data.datos);
+
+            // ✅ IMPORTANTE: Re-verificar el estado del botón inmediatamente
+            setTimeout(() => {
+                verificarEstadoBotonGuardarCV();
+            }, 300);
+
+            // Mostrar mensaje de éxito
+            mostrarToast('Perfil actualizado exitosamente', 'success');
+
+        } else {
+            mostrarToast('Error: ' + (data.error || 'Error desconocido'), 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mostrarToast('Error al actualizar el perfil', 'error');
+    })
+    .finally(() => {
+        // Restaurar botón
+        guardarBtn.innerHTML = textoOriginal;
+        guardarBtn.disabled = false;
+    });
+}
+
+// ✅ FUNCIÓN PARA AUTOGUARDADO DE RESUMEN PROFESIONAL CON VERIFICACIÓN
+window.autoguardarResumenConVerificacion = function() {
+    const resumenTextarea = document.getElementById('resumen_profesional');
+    if (!resumenTextarea) return;
+
+    let timeoutResumen = null;
+
+    resumenTextarea.addEventListener('input', function() {
+        // Limpiar timeout anterior
+        clearTimeout(timeoutResumen);
+
+        // Configurar nuevo timeout
+        timeoutResumen = setTimeout(() => {
+            console.log('💾 Autoguardando resumen profesional...');
+            // Aquí puedes agregar lógica de autoguardado si la necesitas
+
+            // Re-verificar estado del botón después de cambio
+            verificarEstadoBotonGuardarCV();
+        }, 1500); // 1.5 segundos después de dejar de escribir
+    });
+}
+
+// ✅ INICIALIZACIÓN AL CARGAR LA PÁGINA
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 Página cargada, iniciando validación de CV...');
+
+    // Verificar que las variables estén disponibles
+    if (window.datosInteresado) {
+        console.log('📊 Datos del interesado disponibles:', window.datosInteresado);
+
+        // ✅ EJECUTAR VERIFICACIÓN INICIAL DEL BOTÓN
+        setTimeout(() => {
+            verificarEstadoBotonGuardarCV();
+        }, 1000); // Esperar 1 segundo para que todo se cargue
+
+        // Configurar autoguardado de resumen
+        autoguardarResumenConVerificacion();
+
+    } else {
+        console.error('❌ Variables del interesado no están disponibles');
+    }
+
+    // ✅ VERIFICAR ELEMENTOS EN LA PÁGINA PARA DEBUG
+    const elementos = {
+        btnDescarga: document.getElementById('btnDescargarCV'),
+        resumen: document.querySelector('#resumen_profesional'),
+        experiencias: document.querySelectorAll('#experienciaContainer .experiencia-item').length,
+        educaciones: document.querySelectorAll('#educacionContainer .educacion-item').length,
+        habilidades: document.querySelectorAll('#habilidadesContainer .badge').length,
+        idiomas: document.querySelectorAll('#idiomasContainer .idioma-item').length
     };
 
-    const observer = new MutationObserver(observerCallback);
-    const contenedoresObservar = [
-        '#experienciaContainer',
-        '#educacionContainer',
-        '#habilidadesContainer',
-        '#idiomasContainer'
-    ];
+    console.log('🔍 Elementos encontrados en la página:', elementos);
+});
 
-    contenedoresObservar.forEach(selector => {
-        const elemento = document.querySelector(selector);
-        if (elemento) {
-            observer.observe(elemento, observerConfig);
+// ✅ OTRAS FUNCIONES EXISTENTES SE MANTIENEN IGUAL...
+// [El resto de las funciones como mostrarModalPerfil, configurarValidadorModalPerfil, etc. se mantienen iguales]
+
+window.mostrarModalPerfil = function() {
+    // El modal ya tiene los valores pre-cargados desde el template
+    // Solo necesitamos configurar el validador de CP para el modal
+    configurarValidadorModalPerfil();
+
+    new bootstrap.Modal(document.getElementById('perfilModal')).show();
+}
+
+function configurarValidadorModalPerfil() {
+    const modalCP = document.getElementById('modal_codigo_postal');
+
+    if (!modalCP) return;
+
+    // Remover listeners existentes para evitar duplicados
+    modalCP.replaceWith(modalCP.cloneNode(true));
+    const nuevoModalCP = document.getElementById('modal_codigo_postal');
+
+    let timeoutCP = null;
+
+    // Event listener para el CP en el modal
+    nuevoModalCP.addEventListener('input', function(e) {
+        const valor = e.target.value.trim();
+
+        clearTimeout(timeoutCP);
+        limpiarSelectsModal();
+
+        if (valor.length === 5 && /^\d{5}$/.test(valor)) {
+            timeoutCP = setTimeout(() => {
+                consultarCPParaModal(valor);
+            }, 1000);
         }
     });
 
-    // Observar cambios en los inputs del formulario
-    const camposFormulario = [
-        '#nombre', '#apellido_paterno', '#apellido_materno',
-        '#telefono', '#fecha_nacimiento', '#municipio',
-        '#codigo_postal', '#resumen_profesional'
-    ];
+    // También validar al perder foco
+    nuevoModalCP.addEventListener('blur', function(e) {
+        const valor = e.target.value.trim();
 
-    camposFormulario.forEach(selector => {
-        const campo = document.querySelector(selector);
-        if (campo) {
-            campo.addEventListener('input', verificarEstadoBotonGuardarCV);
-            campo.addEventListener('change', verificarEstadoBotonGuardarCV);
-            campo.addEventListener('blur', verificarEstadoBotonGuardarCV);
+        if (valor.length === 5 && /^\d{5}$/.test(valor)) {
+            clearTimeout(timeoutCP);
+            consultarCPParaModal(valor);
         }
     });
+}
 
-    // ===================================================================
-    // FUNCIÓN DE FEEDBACK
-    // ===================================================================
-    
-    function mostrarFeedback(mensaje, tipo = 'success') {
-        let alerta = document.createElement('div');
-        alerta.className = `alert alert-${tipo} fixed-top m-3 fade show`;
-        alerta.style.zIndex = 9999;
-        alerta.style.right = '20px';
-        alerta.style.left = 'auto';
-        alerta.innerHTML = `<span>${mensaje} ✅</span>`;
-        document.body.appendChild(alerta);
-        setTimeout(() => alerta.remove(), 2000);
+function consultarCPParaModal(codigoPostal) {
+    console.log('Consultando CP para modal:', codigoPostal);
+
+    fetch(`/ajax/consultar-codigo-postal/?codigo_postal=${codigoPostal}`, {
+        method: 'GET',
+        headers: {
+            'X-Requested-With': 'XMLHttpRequest',
+            'Content-Type': 'application/json',
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            poblarSelectsModal(data);
+            mostrarMensajeModal('Código postal válido', 'success');
+        } else {
+            mostrarMensajeModal(data.message || 'Código postal no encontrado', 'error');
+        }
+    })
+    .catch(error => {
+        console.error('Error consultando CP:', error);
+        mostrarMensajeModal('Error de conexión', 'error');
+    });
+}
+
+function poblarSelectsModal(datos) {
+    // Poblar Estados
+    const selectEstado = document.getElementById('modal_estado');
+    if (selectEstado && datos.estados) {
+        selectEstado.innerHTML = '<option value="">Selecciona un estado</option>';
+        selectEstado.disabled = false;
+
+        datos.estados.forEach(estado => {
+            const option = document.createElement('option');
+            option.value = estado.id;
+            option.textContent = estado.nombre;
+            selectEstado.appendChild(option);
+        });
+
+        if (datos.estados.length === 1) {
+            selectEstado.value = datos.estados[0].id;
+            document.getElementById('modal_estado_id').value = datos.estados[0].id;
+            document.getElementById('modal_estado_nombre').value = datos.estados[0].nombre;
+        }
     }
 
-    // ===================================================================
-    // VALIDACIÓN DEL FORMULARIO CV AL ENVIAR
-    // ===================================================================
-    
-    const cvForm = document.getElementById('cvForm');
-    if (cvForm) {
-        cvForm.addEventListener('submit', function(e) {
-            const validacionCompleta = validarFormularioCompleto();
+    // Poblar Municipios
+    const selectMunicipio = document.getElementById('modal_municipio');
+    if (selectMunicipio && datos.municipios) {
+        selectMunicipio.innerHTML = '<option value="">Selecciona un municipio</option>';
+        selectMunicipio.disabled = false;
 
-            if (!validacionCompleta.esValido) {
-                e.preventDefault();
-                e.stopPropagation();
+        datos.municipios.forEach(municipio => {
+            const option = document.createElement('option');
+            option.value = municipio.id;
+            option.textContent = municipio.nombre;
+            selectMunicipio.appendChild(option);
+        });
 
-                const mensajeError = 'Por favor, completa todos los campos obligatorios:\n\n' +
-                                   validacionCompleta.camposFaltantes.join('\n');
-                alert(mensajeError);
+        if (datos.municipios.length === 1) {
+            selectMunicipio.value = datos.municipios[0].id;
+            document.getElementById('modal_municipio_id').value = datos.municipios[0].id;
+            document.getElementById('modal_municipio_nombre').value = datos.municipios[0].nombre;
+        }
+    }
 
-                this.classList.add('was-validated');
-                return false;
-            }
+    // Poblar Localidades
+    const selectLocalidad = document.getElementById('modal_localidad');
+    if (selectLocalidad && datos.localidades) {
+        selectLocalidad.innerHTML = '<option value="">Selecciona una localidad</option>';
+        selectLocalidad.disabled = false;
 
-            if (!this.checkValidity()) {
-                e.preventDefault();
-                e.stopPropagation();
-                alert('Por favor, revisa que todos los campos estén correctamente completados.');
-                this.classList.add('was-validated');
-                return false;
-            }
+        datos.localidades.forEach(localidad => {
+            const option = document.createElement('option');
+            option.value = localidad.id;
+            const nombreCompleto = localidad.tipo_asentamiento ?
+                `${localidad.nombre} (${localidad.tipo_asentamiento})` :
+                localidad.nombre;
+            option.textContent = nombreCompleto;
+            selectLocalidad.appendChild(option);
         });
     }
+}
+
+function limpiarSelectsModal() {
+    const selects = ['modal_estado', 'modal_municipio', 'modal_localidad'];
+
+    selects.forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (select) {
+            select.innerHTML = '<option value="">Ingresa tu código postal primero</option>';
+            select.disabled = true;
+        }
+    });
+}
+
+function mostrarMensajeModal(mensaje, tipo) {
+    // Crear mensaje temporal en el modal
+    const modalBody = document.querySelector('#perfilModal .modal-body');
+    let alertExistente = modalBody.querySelector('.alert-temp');
+
+    if (alertExistente) {
+        alertExistente.remove();
+    }
+
+    const alertClass = tipo === 'success' ? 'alert-success' : 'alert-danger';
+    const icono = tipo === 'success' ? 'bi-check-circle' : 'bi-exclamation-triangle';
+
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert ${alertClass} alert-dismissible fade show alert-temp`;
+    alertDiv.innerHTML = `
+        <i class="bi ${icono} me-2"></i>${mensaje}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+
+    modalBody.insertBefore(alertDiv, modalBody.firstChild);
+
+    // Auto-remover después de 3 segundos
+    setTimeout(() => {
+        if (alertDiv && alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 3000);
+}
+
+function actualizarCardPerfil(datos) {
+    // Actualizar nombre completo
+    const nombreElemento = document.querySelector('.card h4, .card .h5');
+    if (nombreElemento && datos.nombre_completo) {
+        nombreElemento.textContent = datos.nombre_completo;
+    }
+
+    // Actualizar teléfono
+    const telefonoSpan = document.querySelector('.bi-telephone').nextElementSibling;
+    if (telefonoSpan) {
+        telefonoSpan.textContent = datos.telefono || 'No especificado';
+        telefonoSpan.className = datos.telefono ? '' : 'text-muted';
+    }
+
+    // Actualizar ubicación
+    const ubicacionSpan = document.querySelector('.bi-geo-alt').nextElementSibling;
+    if (ubicacionSpan) {
+        ubicacionSpan.textContent = datos.ubicacion_completa || 'Ubicación no especificada';
+        ubicacionSpan.className = datos.ubicacion_completa ? '' : 'text-muted';
+    }
+}
+
+function mostrarToast(mensaje, tipo) {
+    // Crear contenedor de toasts si no existe
+    let toastContainer = document.getElementById('toast-container');
+    if (!toastContainer) {
+        toastContainer = document.createElement('div');
+        toastContainer.id = 'toast-container';
+        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
+        toastContainer.style.zIndex = '1055';
+        document.body.appendChild(toastContainer);
+    }
+
+    const toastId = 'toast-' + Date.now();
+    const toastDiv = document.createElement('div');
+    toastDiv.id = toastId;
+
+    let bgClass = 'success';
+    let icon = 'check-circle';
+
+    if (tipo === 'error') {
+        bgClass = 'danger';
+        icon = 'exclamation-circle';
+    }
+
+    toastDiv.className = `toast align-items-center text-bg-${bgClass} border-0`;
+    toastDiv.setAttribute('role', 'alert');
+    toastDiv.innerHTML = `
+        <div class="d-flex">
+            <div class="toast-body">
+                <i class="bi bi-${icon} me-2"></i>${mensaje}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
+        </div>
+    `;
+
+    toastContainer.appendChild(toastDiv);
+
+    const toast = new bootstrap.Toast(toastDiv, { autohide: true, delay: 4000 });
+    toast.show();
+
+    toastDiv.addEventListener('hidden.bs.toast', function() {
+        toastDiv.remove();
+    });
+}
+
+// =========================
+// EVENT LISTENERS DEL MODAL
+// =========================
+
+// Event listeners del modal ya existentes...
+document.addEventListener('DOMContentLoaded', function() {
+    // Configurar event listeners para los selects del modal
+    ['modal_estado', 'modal_municipio', 'modal_localidad'].forEach(selectId => {
+        const select = document.getElementById(selectId);
+        if (select) {
+            select.addEventListener('change', function() {
+                const selectedOption = this.options[this.selectedIndex];
+                const baseId = selectId.replace('modal_', '');
+                const idField = document.getElementById(`modal_${baseId}_id`);
+                const nameField = document.getElementById(`modal_${baseId}_nombre`);
+
+                if (selectedOption && selectedOption.value && idField && nameField) {
+                    idField.value = selectedOption.value;
+                    nameField.value = selectedOption.text;
+                }
+            });
+        }
+    });
+
+    // Limpiar modal al cerrar
+    document.getElementById('perfilModal')?.addEventListener('hidden.bs.modal', function() {
+        // Limpiar alertas temporales
+        const alertsTemp = this.querySelectorAll('.alert-temp');
+        alertsTemp.forEach(alert => alert.remove());
+    });
 });

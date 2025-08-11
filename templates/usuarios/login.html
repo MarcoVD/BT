@@ -176,8 +176,7 @@
 
                 <!-- Enlaces a Registro y Verificación -->
                 <div class="text-center">
-                    <p class="mb-2 text-muted">¿No tienes cuenta? <a href="{% url 'registro_interesado' %}" class="fw-bold text-primary text-decoration-none">Regístrate aquí</a></p>
-                    <small class="text-muted">¿Problemas para ingresar? <a href="{% url 'reenviar_verificacion' %}" class="text-primary text-decoration-none">Reenviar verificación</a></small>
+                    <p class="mb-0 text-muted">¿No tienes cuenta? <a href="{% url 'registro_interesado' %}" class="fw-bold text-primary text-decoration-none">Regístrate aquí</a></p>
                 </div>
 
             </form>
@@ -195,7 +194,9 @@
         </div>
     </div>
 </div>
+
 {% endblock %}
+{# Footer incluido solo en este template #}
 
 {% block include_footer %}
     {% include 'usuarios/footer.html' %}
