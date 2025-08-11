@@ -561,33 +561,33 @@ class ReclutadorRegistroForm(UserCreationForm):
 
     nombre = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su nombre'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     apellido_paterno = forms.CharField(
         max_length=50,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido paterno'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     apellido_materno = forms.CharField(
         max_length=50,
         required=False,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su apellido materno'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     cargo = forms.CharField(
         max_length=100,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su cargo'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     telefono = forms.CharField(
         max_length=15,
-        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su teléfono'})
+        widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     email = forms.EmailField(
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'})
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     password1 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
     password2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Confirme su contraseña'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': ''})
     )
 
     class Meta:

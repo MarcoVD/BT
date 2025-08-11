@@ -367,9 +367,29 @@ class Interesado(models.Model):
     apellido_paterno = models.CharField(max_length=50, blank=True)
     apellido_materno = models.CharField(max_length=50, blank=True, null=True)
     telefono = models.CharField(max_length=15, blank=True, null=True)
-    fecha_nacimiento = models. DateField(blank=True, null=True)
-    municipio = models.CharField(max_length=50, choices=MUNICIPIOS_ESTADO_MEXICO, blank=True, null=True, verbose_name="Municipio")
+    fecha_nacimiento = models.DateField(blank=True, null=True)
+
+    # CAMPOS DE UBICACIÓN EXISTENTES
+    municipio = models.CharField(
+        max_length=50,
+        choices=MUNICIPIOS_ESTADO_MEXICO,
+        blank=True,
+        null=True,
+        verbose_name="Municipio"
+    )
     codigo_postal = models.CharField(max_length=10, blank=True, null=True)
+
+    # NUEVOS CAMPOS DE UBICACIÓN DETALLADA
+    estado_id = models.IntegerField(blank=True, null=True, help_text="ID del estado desde catálogo")
+    municipio_id = models.IntegerField(blank=True, null=True, help_text="ID del municipio desde catálogo")
+    localidad_id = models.IntegerField(blank=True, null=True, help_text="ID de la localidad desde catálogo")
+    calle_numero = models.CharField(max_length=200, blank=True, null=True, verbose_name="Calle y número")
+
+    # CAMPOS PARA ALMACENAR NOMBRES LEGIBLES
+    estado_nombre = models.CharField(max_length=100, blank=True, null=True)
+    municipio_nombre = models.CharField(max_length=100, blank=True, null=True)
+    localidad_nombre = models.CharField(max_length=100, blank=True, null=True)
+
     foto_perfil = models.ImageField(upload_to='interesados/', blank=True, null=True)
 
     def save(self, *args, **kwargs):
@@ -400,12 +420,57 @@ class Interesado(models.Model):
 
     @property
     def ubicacion_completa(self):
+        """Retorna la ubicación completa formateada."""
+        partes = []
+
+        if self.calle_numero:
+            partes.append(self.calle_numero)
+
+        if self.localidad_nombre:
+            partes.append(self.localidad_nombre)
+        elif self.municipio_nombre:
+            partes.append(self.municipio_nombre)
+        elif self.municipio:
+            partes.append(self.get_municipio_display())
+
+        if self.codigo_postal:
+            partes.append(f'C.P. {self.codigo_postal}')
+
+        if self.estado_nombre:
+            partes.append(self.estado_nombre)
+        else:
+            partes.append('Estado de México')
+
+        return ', '.join(partes) if partes else ''
+
+    @property
+    def ubicacion_basica(self):
+        """Ubicación básica para compatibilidad con código existente."""
         if self.codigo_postal and self.municipio:
             return f'C.P. {self.codigo_postal}, {self.get_municipio_display()}, Estado de México'
         elif self.municipio:
             return f'{self.get_municipio_display()}, Estado de México'
         else:
             return ''
+
+    def actualizar_ubicacion_desde_catalogo(self, localidad_obj):
+        """
+        Actualiza los campos de ubicación basándose en un objeto Localidad.
+        """
+        if localidad_obj:
+            self.localidad_id = localidad_obj.id
+            self.localidad_nombre = localidad_obj.localidad
+
+            if localidad_obj.catalogo_municipio:
+                self.municipio_id = localidad_obj.catalogo_municipio.id
+                self.municipio_nombre = localidad_obj.catalogo_municipio.municipio
+
+            if localidad_obj.catalogo_estado:
+                self.estado_id = localidad_obj.catalogo_estado.id
+                self.estado_nombre = localidad_obj.catalogo_estado.estado
+
+            if localidad_obj.catalogo_codigo_postal:
+                self.codigo_postal = str(localidad_obj.catalogo_codigo_postal.codigo_postal)
 
     @property
     def tiene_cv_completo(self):
@@ -414,9 +479,9 @@ class Interesado(models.Model):
                 hasattr(self, 'curriculum') and
                 self.nombre and
                 self.apellido_paterno and
-                self.curriculum.resumen_profesional
+                self.curriculum.resumen_profesional and
+                self.codigo_postal  # Ahora también requiere código postal
         )
-
 
 class Secretaria(models.Model):
     """Modelo para las secretarías (organizaciones) que pueden publicar vacantes."""
@@ -997,3 +1062,187 @@ class Postulacion(models.Model):
         verbose_name_plural = "Postulaciones"
         unique_together = ['interesado', 'vacante']  # Un interesado solo puede postularse una vez por vacante
         ordering = ['-fecha_postulacion']
+
+
+# ====================================
+# MODELOS DE CATÁLOGOS GEOGRÁFICOS
+# ====================================
+
+class Codigos_Postales(models.Model):
+    """Catálogo de códigos postales."""
+    codigo_postal = models.IntegerField(unique=True)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.codigo_postal}"
+
+    class Meta:
+        verbose_name = "Código Postal"
+        verbose_name_plural = "Códigos Postales"
+        db_table = 'codigos_postales'
+
+
+class Estados(models.Model):
+    """Catálogo de estados."""
+    estado = models.CharField(max_length=100)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.estado
+
+    class Meta:
+        verbose_name = "Estado"
+        verbose_name_plural = "Estados"
+        db_table = 'estados'
+
+
+class Zonas_Regionales(models.Model):
+    """Catálogo de zonas regionales."""
+    zona_regional = models.CharField(max_length=50)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.zona_regional
+
+    class Meta:
+        verbose_name = "Zona Regional"
+        verbose_name_plural = "Zonas Regionales"
+        db_table = 'zonas_regionales'
+
+
+class Tipos_Asentamientos(models.Model):
+    """Catálogo de tipos de asentamientos."""
+    tipo_asentamiento = models.CharField(max_length=50)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.tipo_asentamiento
+
+    class Meta:
+        verbose_name = "Tipo de Asentamiento"
+        verbose_name_plural = "Tipos de Asentamientos"
+        db_table = 'tipos_asentamientos'
+
+
+class Zonas(models.Model):
+    """Catálogo de zonas."""
+    zona = models.CharField(max_length=50)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.zona
+
+    class Meta:
+        verbose_name = "Zona"
+        verbose_name_plural = "Zonas"
+        db_table = 'zonas'
+
+
+class Delegaciones(models.Model):
+    """Catálogo de delegaciones."""
+    catalogo_zona = models.ForeignKey('Zonas', on_delete=models.PROTECT)
+    delegacion = models.CharField(max_length=100)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.delegacion
+
+    class Meta:
+        verbose_name = "Delegación"
+        verbose_name_plural = "Delegaciones"
+        db_table = 'delegaciones'
+
+
+class Municipios(models.Model):
+    """Catálogo de municipios."""
+    catalogo_delegacion = models.ForeignKey('Delegaciones', on_delete=models.SET_NULL, null=True, blank=True)
+    municipio = models.CharField(max_length=100)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return self.municipio
+
+    class Meta:
+        verbose_name = "Municipio"
+        verbose_name_plural = "Municipios"
+        db_table = 'municipios'
+
+
+class Localidades(models.Model):
+    """Catálogo de localidades con todas sus relaciones."""
+    catalogo_municipio = models.ForeignKey('Municipios', on_delete=models.PROTECT)
+    catalogo_codigo_postal = models.ForeignKey('Codigos_Postales', on_delete=models.PROTECT)
+    catalogo_tipo_asentamiento = models.ForeignKey('Tipos_Asentamientos', on_delete=models.PROTECT)
+    catalogo_zona_regional = models.ForeignKey('Zonas_Regionales', on_delete=models.PROTECT)
+    catalogo_estado = models.ForeignKey('Estados', on_delete=models.PROTECT)
+    localidad = models.CharField(max_length=100)
+    estatus = models.SmallIntegerField(default=1)
+    alta_fecha = models.DateField(auto_now_add=True)
+    alta_hora = models.TimeField(auto_now_add=True)
+    modificacion_fecha = models.DateField(auto_now=True)
+    modificacion_hora = models.TimeField(auto_now=True)
+    id_capturo = models.SmallIntegerField(default=1)
+    id_modifico = models.SmallIntegerField(default=1)
+
+    def __str__(self):
+        return f"{self.localidad} - {self.catalogo_codigo_postal.codigo_postal}"
+
+    @property
+    def nombre_completo(self):
+        """Nombre completo con tipo de asentamiento."""
+        if self.catalogo_tipo_asentamiento:
+            return f"{self.localidad} ({self.catalogo_tipo_asentamiento.tipo_asentamiento})"
+        return self.localidad
+
+    class Meta:
+        verbose_name = "Localidad"
+        verbose_name_plural = "Localidades"
+        db_table = 'localidades'
+        # Índices para optimizar consultas
+        indexes = [
+            models.Index(fields=['catalogo_codigo_postal', 'estatus']),
+            models.Index(fields=['catalogo_municipio', 'estatus']),
+            models.Index(fields=['catalogo_estado', 'estatus']),
+        ]
