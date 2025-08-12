@@ -1,5 +1,6 @@
 # usuarios/urls.py - URLS ACTUALIZADAS CON VERIFICACIÓN DE EMAIL
 from django.urls import path
+from django.views.decorators.http import require_POST
 from . import views
 from .views import autoguardar_resumen_profesional, autoguardar_informacion_personal
 
@@ -56,6 +57,16 @@ urlpatterns = [
     path('vacante/<int:vacante_id>/postulantes/', views.VerPostulantesView.as_view(), name='ver_postulantes'),
     path('candidato/<int:interesado_id>/perfil/', views.ver_perfil_candidato, name='ver_perfil_candidato'),
 
+# usuarios/urls.py - AGREGAR ESTAS URLs AL ARCHIVO EXISTENTE
+# En la sección de URLs AJAX PARA GESTIÓN DE POSTULACIONES (RECLUTADORES)
+
+    # ===========================
+    # URLs AJAX PARA GESTIÓN DE VACANTES (RECLUTADORES)
+    # ===========================
+    path('ajax/cerrar-vacante/<int:vacante_id>/', views.cerrar_vacante_ajax, name='cerrar_vacante_ajax'),
+    path('ajax/reabrir-vacante/<int:vacante_id>/', views.reabrir_vacante_ajax, name='reabrir_vacante_ajax'),
+    path('ajax/eliminar-borrador/<int:vacante_id>/', views.eliminar_borrador_ajax, name='eliminar_borrador_ajax'),
+    path('ajax/estado-vacante/<int:vacante_id>/', views.obtener_estado_vacante_ajax, name='obtener_estado_vacante_ajax'),
     # ===========================
     # URLs PARA VACANTES (VISUALIZACIÓN)
     # ===========================
@@ -78,9 +89,17 @@ urlpatterns = [
     # ===========================
     # URLs AJAX PARA ACTUALIZACIÓN DE PERFIL
     # ===========================
-    path('ajax/actualizar-perfil/', views.actualizar_perfil_ajax, name='actualizar_perfil_ajax'),
-     path('ajax/actualizar-foto-perfil/', views.actualizar_foto_perfil_ajax, name='actualizar_foto_perfil_ajax'),
+    path('ajax/actualizar-foto-perfil/',
+         require_POST(views.actualizar_foto_perfil_ajax),
+         name='actualizar_foto_perfil_ajax'),
 
+    path('ajax/actualizar-perfil/',
+         require_POST(views.actualizar_perfil_ajax),
+         name='actualizar_perfil_ajax'),
+
+    path('ajax/actualizar-perfil-completo/',
+         require_POST(views.actualizar_perfil_completo_ajax),
+         name='actualizar_perfil_completo_ajax'),
     # ===========================
     # URLs AJAX PARA EXPERIENCIA LABORAL
     # ===========================
@@ -117,13 +136,28 @@ urlpatterns = [
     #      name='agregar_notas_postulacion'),
     path('ajax/buscar-vacantes/', views.busqueda_vacantes_ajax, name='busqueda_vacantes_ajax'),
     # ===========================
-     # URLs AJAX PARA CÓDIGO POSTAL
-     # ===========================
-     path('ajax/consultar-codigo-postal/', views.consultar_codigo_postal_ajax, name='consultar_codigo_postal_ajax'),
-     path('ajax/actualizar-codigo-postal/', views.actualizar_codigo_postal_ajax, name='actualizar_codigo_postal_ajax'),
 
     # ===========================
     # URL DE PRUEBA (TEMPORAL)
     # ===========================
     path('test-urls/', views.test_urls, name='test_urls'),
+
+    # ===========================
+    # URLs AJAX PARA CONSULTA DE CÓDIGO POSTAL
+    # ===========================
+    # usuarios/urls.py - Agregar estas URLs en la sección AJAX
+
+    # ===========================
+    # URLs AJAX PARA CONSULTA DE CÓDIGO POSTAL Y UBICACIÓN
+    # ===========================
+    path('ajax/obtener-datos-por-cp/', views.obtener_datos_por_cp, name='obtener_datos_por_cp'),
+    path('ajax/validar-codigo-postal/', views.validar_codigo_postal, name='validar_codigo_postal'),
+    path('ajax/guardar-ubicacion/', views.guardar_ubicacion_completa, name='guardar_ubicacion_completa'),
+    path('ajax/autoguardar-ubicacion/', views.autoguardar_ubicacion, name='autoguardar_ubicacion'),
+    path('ajax/municipios-por-estado/', views.obtener_municipios_por_estado, name='obtener_municipios_por_estado'),
+    path('ajax/localidades-por-municipio/', views.obtener_localidades_por_municipio,
+         name='obtener_localidades_por_municipio'),
+    path('ajax/consultar-codigo-postal/', views.obtener_datos_por_cp, name='consultar_codigo_postal'),
+    # URL para compatibilidad con el código existente
+    path('ajax/obtener_datos_por_cp/', views.obtener_datos_por_cp, name='obtener_datos_por_cp_legacy'),
 ]

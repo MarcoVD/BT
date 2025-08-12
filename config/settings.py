@@ -79,7 +79,7 @@ if not DEBUG:
     SESSION_COOKIE_SAMESITE = 'Strict' 
     CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_SAMESITE = 'Lax'
+    CSRF_COOKIE_SAMESITE = 'Lax'  # 'Lax' para permitir CSRF en enlaces seguros
 
 # Configuración personalizada para timeout de sesión
 SESSION_TIMEOUT_SETTINGS = {

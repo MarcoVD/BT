@@ -8,7 +8,7 @@ from django.utils.decorators import method_decorator
 from django.utils import timezone
 from django.views.generic import View
 from django.views.decorators.http import require_http_methods, require_POST
-from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.db import transaction
 from django.db.models import Count, Q
 from django.http import JsonResponse, HttpResponse, Http404
@@ -25,10 +25,7 @@ from django.contrib.sites.shortcuts import get_current_site  # AGREGADO
 from django.urls import reverse
 from django.conf import settings
 import logging
-import base64
-import os
-from PIL import Image
-from io import BytesIO
+import base64   #NECESARIO PARA PODER MANEJAR IMAGENES (DESCARGAR EL CV CON IMAGENES)
 
 Usuario = get_user_model()
 # CONFIGURAR LOGGER
@@ -61,7 +58,6 @@ from .models import (
     # Modelos de vacantes y postulaciones
     Vacante,
     RequisitoVacante,
-    Categoria,
     Postulacion
 )
 
@@ -69,7 +65,6 @@ from .models import (
 from .forms import (
     LoginForm,
     InteresadoRegistroForm,
-    SecretariaRegistroForm,
     ReclutadorRegistroForm,
     VacanteForm,
     RequisitoVacanteForm,
@@ -77,7 +72,6 @@ from .forms import (
     InteresadoPerfilForm,
     ExperienciaLaboralForm,
     EducacionForm,
-    HabilidadInteresadoForm,
     IdiomaInteresadoForm,
     RecuperarContrasenaForm, 
     RestablecerContrasenaForm, 
@@ -227,44 +221,7 @@ class SessionTimeoutMiddleware:
         response = self.get_response(request)
         return response
 
-def obtener_cp(request):
-    cp = request.GET.get('cp')
 
-    if not cp or len(cp) != 5 or not cp.isdigit():
-        return JsonResponse({'error': 'Código postal inválido'}, status=400)
-
-    url = f"https://api.tau.com.mx/dipomex/v1/codigo_postal?cp={cp}"
-    headers = {"APIKEY": "c378e976bc21341d90b8dfdb28ffc93bc9082f1f"}
-
-    try:
-        response = requests.get(url, headers=headers, timeout=5)
-
-        if response.status_code != 200:
-            return JsonResponse({'error': f'Error de DIPOMEX ({response.status_code})'}, status=response.status_code)
-
-        try:
-            data = response.json()
-        except ValueError:
-            return JsonResponse({'error': 'Respuesta inválida de DIPOMEX'}, status=502)
-
-        if data.get("error") or "codigo_postal" not in data:
-            return JsonResponse({'error': 'Código postal no encontrado'}, status=404)
-
-        codigo = data["codigo_postal"]
-        colonias = [c["colonia"] for c in codigo.get("colonias", [])]
-
-        return JsonResponse({
-            "estado": codigo.get("estado", ""),
-            "municipio": codigo.get("municipio", ""),
-            "colonias": colonias
-        })
-
-    except requests.RequestException as e:
-        return JsonResponse({'error': f'Error al conectar con DIPOMEX: {str(e)}'}, status=500)
-
-# =========================================
-# VISTAS AJAX PARA HABILIDADES - CORREGIDAS
-# =========================================
 
 @login_required
 def agregar_habilidad_ajax(request):
@@ -686,8 +643,6 @@ class ReenviarRecuperacionView(View):
 
         # Redirigir de vuelta al formulario
         return redirect('recuperar_contrasena')
-
-
 # Función utilitaria para limpiar tokens expirados (opcional, para comando de mantenimiento)
 def cleanup_expired_tokens():
     """
@@ -785,8 +740,6 @@ def send_verification_email(request, user):
         print(f"ERROR DETALLADO: {str(e)}")  # ✅ Para debugging
         return False
 
-
-
 class VerificarEmailView(View):
     """Vista para verificar el email del usuario mediante token."""
 
@@ -883,7 +836,6 @@ class ReenviarVerificacionView(View):
             messages.error(request, 'Error interno del servidor.')
             return render(request, 'usuarios/reenviar_verificacion.html')
 
-
 class InteresadoRegistroView(View):
     """Vista para registro de interesados - ACTUALIZADA CON VERIFICACIÓN."""
 
@@ -938,10 +890,7 @@ class InteresadoRegistroView(View):
                 messages.error(request, 'Error al crear la cuenta. Inténtalo nuevamente.')
 
         return render(request, 'usuarios/registro_interesado.html', {'form': form})
-
-
 # usuarios/views.py - Vista actualizada para registro de reclutadores
-
 class ReclutadorRegistroView(View):
     """Vista para registro de reclutadores - ACTUALIZADA PARA USAR SECRETARÍA FIJA."""
 
@@ -1030,100 +979,466 @@ class ReclutadorRegistroView(View):
             'secretaria_movilidad': secretaria_movilidad,
         })
 
-# usuarios/views.py - Agregar esta vista al archivo existente
 
 @login_required
 @require_http_methods(["GET"])
-def consultar_codigo_postal_ajax(request):
+def obtener_datos_por_cp(request):
     """
-    Vista AJAX para consultar información de código postal usando API DIPOMEX.
-    Solo permite consultas a usuarios autenticados con rol de interesado.
+    Vista AJAX para obtener datos de ubicación por código postal.
+    FUNCIONA PARA CUALQUIER CP DE MÉXICO.
     """
-    
-    # Verificar permisos
+    codigo_postal = request.GET.get('codigo_postal')
+
+    data = {
+        'estados': [],
+        'municipios': [],
+        'localidades': [],
+        'success': False,
+        'message': ''
+    }
+
+    if not codigo_postal:
+        data['message'] = 'Código postal requerido'
+        return JsonResponse(data)
+
+    # Validar formato (5 dígitos)
+    if not codigo_postal.isdigit() or len(codigo_postal) != 5:
+        data['message'] = 'El código postal debe tener exactamente 5 dígitos'
+        return JsonResponse(data)
+
+    try:
+        from .models import Codigos_Postales, Localidades
+
+        # Buscar código postal
+        try:
+            cp_obj = Codigos_Postales.objects.get(
+                codigo_postal=int(codigo_postal),
+                estatus=1
+            )
+        except Codigos_Postales.DoesNotExist:
+            data['message'] = f'El código postal {codigo_postal} no existe'
+            return JsonResponse(data)
+
+        # Buscar localidades
+        localidades = Localidades.objects.filter(
+            catalogo_codigo_postal=cp_obj,
+            estatus=1
+        ).select_related(
+            'catalogo_estado',
+            'catalogo_municipio',
+            'catalogo_tipo_asentamiento'
+        ).order_by('localidad')
+
+        if not localidades.exists():
+            data['message'] = f'No hay localidades para el código postal {codigo_postal}'
+            return JsonResponse(data)
+
+        # Extraer datos únicos
+        estados_dict = {}
+        municipios_dict = {}
+
+        for localidad in localidades:
+            # Estados
+            if localidad.catalogo_estado:
+                estado_id = localidad.catalogo_estado.id
+                if estado_id not in estados_dict:
+                    estados_dict[estado_id] = {
+                        'id': estado_id,
+                        'nombre': localidad.catalogo_estado.estado
+                    }
+
+            # Municipios
+            if localidad.catalogo_municipio:
+                municipio_id = localidad.catalogo_municipio.id
+                if municipio_id not in municipios_dict:
+                    municipios_dict[municipio_id] = {
+                        'id': municipio_id,
+                        'nombre': localidad.catalogo_municipio.municipio
+                    }
+
+            # Localidades
+            tipo_asentamiento = ''
+            if localidad.catalogo_tipo_asentamiento:
+                tipo_asentamiento = localidad.catalogo_tipo_asentamiento.tipo_asentamiento
+
+            data['localidades'].append({
+                'id': localidad.id,
+                'nombre': localidad.localidad,
+                'tipo_asentamiento': tipo_asentamiento
+            })
+
+        # Convertir a listas ordenadas
+        data['estados'] = sorted(estados_dict.values(), key=lambda x: x['nombre'])
+        data['municipios'] = sorted(municipios_dict.values(), key=lambda x: x['nombre'])
+
+        # Respuesta exitosa
+        data['success'] = True
+        data['message'] = f'Código postal {codigo_postal} válido'
+
+        return JsonResponse(data)
+
+    except Exception as e:
+        logger.error(f"Error en obtener_datos_por_cp: {str(e)}")
+        data['message'] = 'Error interno del servidor'
+        return JsonResponse(data)
+
+
+@login_required
+@require_http_methods(["POST"])
+def autoguardar_ubicacion(request):
+    """
+    Vista AJAX optimizada para autoguardar ubicación.
+    """
     if request.user.rol != 'interesado':
         return JsonResponse({
-            'exito': False,
-            'error': 'Solo los interesados pueden consultar códigos postales',
-            'codigo_error': 'PERMISOS_INSUFICIENTES'
-        }, status=403)
-    
-    # Obtener código postal de los parámetros GET
+            'success': False,
+            'error': 'Solo los interesados pueden actualizar su ubicación'
+        })
+
+    try:
+        data = json.loads(request.body)
+        interesado = request.user.interesado
+
+        # Lista de campos permitidos para actualizar
+        campos_permitidos = [
+            'codigo_postal', 'estado_id', 'municipio_id', 'localidad_id',
+            'estado_nombre', 'municipio_nombre', 'localidad_nombre',
+            'calle_numero'
+        ]
+
+        # Actualizar solo los campos que se envíen
+        campos_actualizados = []
+        for campo in campos_permitidos:
+            if campo in data:
+                valor = data[campo]
+
+                # Convertir strings vacías a None para campos opcionales
+                if isinstance(valor, str) and not valor.strip():
+                    valor = None
+                elif campo.endswith('_id') and valor:
+                    # Convertir IDs a enteros
+                    try:
+                        valor = int(valor) if valor else None
+                    except (ValueError, TypeError):
+                        valor = None
+
+                # Solo actualizar si el valor ha cambiado
+                valor_actual = getattr(interesado, campo)
+                if valor_actual != valor:
+                    setattr(interesado, campo, valor)
+                    campos_actualizados.append(campo)
+
+        # Guardar solo si hay cambios
+        if campos_actualizados:
+            interesado.save(update_fields=campos_actualizados)
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Ubicación actualizada exitosamente',
+            'ubicacion_completa': interesado.ubicacion_completa,
+            'campos_actualizados': campos_actualizados
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        })
+    except Exception as e:
+        logger.error(f"Error en autoguardar_ubicacion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Error interno del servidor'
+        })
+
+
+@login_required
+@require_http_methods(["GET"])
+def validar_codigo_postal(request):
+    """
+    Vista AJAX optimizada para validar código postal.
+    """
     codigo_postal = request.GET.get('codigo_postal', '').strip()
-    
+
     if not codigo_postal:
         return JsonResponse({
-            'exito': False,
-            'error': 'El código postal es requerido',
+            'success': False,
+            'message': 'Código postal requerido',
             'codigo_error': 'PARAMETRO_FALTANTE'
-        }, status=400)
-    
+        })
+
+    # Validar formato (5 dígitos)
+    if not codigo_postal.isdigit() or len(codigo_postal) != 5:
+        return JsonResponse({
+            'success': False,
+            'message': 'El código postal debe tener exactamente 5 dígitos numéricos',
+            'codigo_error': 'FORMATO_INVALIDO'
+        })
+
     try:
-        # Importar el servicio DIPOMEX
-        from .servicios.api_dipomex import ServicioDipomex
-        
-        # Crear instancia del servicio
-        servicio_dipomex = ServicioDipomex()
-        
-        # Realizar consulta
-        resultado = servicio_dipomex.consultar_codigo_postal(codigo_postal)
-        
-        # Si la consulta fue exitosa, verificar que sea del Estado de México
-        if resultado.get('exito'):
-            estado = resultado.get('estado', '')
-            
-            # Verificar si es del Estado de México
-            if not servicio_dipomex.es_estado_mexico(estado):
-                return JsonResponse({
-                    'exito': False,
-                    'error': f'Este sistema solo acepta códigos postales del Estado de México. El código {codigo_postal} pertenece a {estado}.',
-                    'codigo_error': 'ESTADO_NO_VALIDO',
-                    'estado_encontrado': estado
-                }, status=400)
-            
-            # Log de consulta exitosa
-            logger.info(f"Consulta exitosa de CP {codigo_postal} por usuario {request.user.email}")
-            
-            # Formatear respuesta para el frontend
-            respuesta = {
-                'exito': True,
-                'datos': {
-                    'codigo_postal': resultado['codigo_postal'],
-                    'estado': resultado['estado'],
-                    'municipio': resultado['municipio'],
-                    'ciudad': resultado.get('ciudad', ''),
-                    'colonias': resultado.get('colonias', []),
-                    'total_colonias': resultado.get('total_colonias', 0)
-                },
-                'mensaje': f'Código postal {codigo_postal} encontrado: {resultado["municipio"]}, {resultado["estado"]}'
-            }
-            
-            return JsonResponse(respuesta)
-        
-        else:
-            # La consulta falló, retornar el error
+        from .models import Codigos_Postales, Localidades
+
+        # Verificar si existe en la base de datos
+        cp_obj = Codigos_Postales.objects.filter(
+            codigo_postal=int(codigo_postal),
+            estatus=1
+        ).first()
+
+        if not cp_obj:
             return JsonResponse({
-                'exito': False,
-                'error': resultado.get('error', 'Error desconocido'),
-                'codigo_error': resultado.get('codigo_error', 'UNKNOWN_ERROR')
-            }, status=400)
-    
-    except ImportError:
-        logger.error("No se pudo importar el servicio DIPOMEX")
+                'success': False,
+                'message': f'El código postal {codigo_postal} no está registrado en nuestra base de datos',
+                'codigo_error': 'CP_NO_ENCONTRADO'
+            })
+
+        # Verificar que tenga localidades asociadas
+        tiene_localidades = Localidades.objects.filter(
+            catalogo_codigo_postal=cp_obj,
+            estatus=1
+        ).exists()
+
+        if not tiene_localidades:
+            return JsonResponse({
+                'success': False,
+                'message': f'El código postal {codigo_postal} no tiene localidades asociadas',
+                'codigo_error': 'SIN_LOCALIDADES'
+            })
+
+        # Verificar que sea del Estado de México
+        localidades_edomex = Localidades.objects.filter(
+            catalogo_codigo_postal=cp_obj,
+            catalogo_estado__estado__icontains='méxico',
+            estatus=1
+        ).exists()
+
+        if not localidades_edomex:
+            return JsonResponse({
+                'success': False,
+                'message': f'El código postal {codigo_postal} no pertenece al Estado de México',
+                'codigo_error': 'ESTADO_NO_VALIDO'
+            })
+
         return JsonResponse({
-            'exito': False,
-            'error': 'Servicio de códigos postales no disponible',
-            'codigo_error': 'SERVICIO_NO_DISPONIBLE'
-        }, status=500)
-    
+            'success': True,
+            'message': f'Código postal {codigo_postal} válido',
+            'codigo_postal': codigo_postal,
+            'cp_id': cp_obj.id
+        })
+
     except Exception as e:
-        logger.error(f"Error inesperado en consulta_codigo_postal_ajax: {str(e)}")
+        logger.error(f"Error en validar_codigo_postal: {str(e)}")
         return JsonResponse({
-            'exito': False,
-            'error': 'Error interno del servidor al consultar el código postal',
+            'success': False,
+            'message': 'Error interno del servidor al validar el código postal',
             'codigo_error': 'ERROR_INTERNO'
+        })
+
+
+@login_required
+@require_POST
+def actualizar_ubicacion_completa(request):
+    """
+    Vista AJAX para actualizar la información de ubicación completa del interesado.
+    """
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los interesados pueden actualizar su ubicación'
+        }, status=403)
+
+    try:
+        data = json.loads(request.body)
+
+        interesado = request.user.interesado
+
+        # Actualizar campos
+        codigo_postal = data.get('codigo_postal', '').strip()
+        estado_id = data.get('estado_id')
+        municipio_id = data.get('municipio_id')
+        localidad_id = data.get('localidad_id')
+        calle = data.get('calle', '').strip()
+
+        # Validar código postal
+        if codigo_postal:
+            if not codigo_postal.isdigit() or len(codigo_postal) != 5:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Código postal inválido'
+                })
+            interesado.codigo_postal = codigo_postal
+
+        # Actualizar campos adicionales si se proporcionan
+        if calle:
+            # Agregar campo calle al modelo si no existe
+            # interesado.calle = calle
+            pass
+
+        interesado.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Ubicación actualizada exitosamente',
+            'data': {
+                'codigo_postal': interesado.codigo_postal,
+                'ubicacion_completa': interesado.ubicacion_completa
+            }
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Exception as e:
+        logger.error(f"Error en actualizar_ubicacion_completa: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno: {str(e)}'
         }, status=500)
 
+
+# usuarios/views.py - Agregar estas vistas para manejo de ubicación
+
+@login_required
+@require_POST
+def guardar_ubicacion_completa(request):
+    """
+    Vista AJAX para guardar toda la información de ubicación del interesado.
+    """
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los interesados pueden actualizar su ubicación'
+        }, status=403)
+
+    try:
+        data = json.loads(request.body)
+        interesado = request.user.interesado
+
+        # Actualizar campos básicos
+        codigo_postal = data.get('codigo_postal', '').strip()
+        if codigo_postal:
+            if not codigo_postal.isdigit() or len(codigo_postal) != 5:
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Código postal inválido'
+                })
+            interesado.codigo_postal = codigo_postal
+
+        # Actualizar campos de catálogo
+        interesado.estado_id = data.get('estado_id') or None
+        interesado.municipio_id = data.get('municipio_id') or None
+        interesado.localidad_id = data.get('localidad_id') or None
+
+        # Actualizar nombres legibles
+        interesado.estado_nombre = data.get('estado_nombre', '').strip() or None
+        interesado.municipio_nombre = data.get('municipio_nombre', '').strip() or None
+        interesado.localidad_nombre = data.get('localidad_nombre', '').strip() or None
+
+        # Calle y número
+        interesado.calle_numero = data.get('calle_numero', '').strip() or None
+
+        interesado.save()
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Ubicación guardada exitosamente',
+            'data': {
+                'ubicacion_completa': interesado.ubicacion_completa,
+                'ubicacion_basica': interesado.ubicacion_basica
+            }
+        })
+
+    except json.JSONDecodeError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Datos JSON inválidos'
+        }, status=400)
+    except Exception as e:
+        logger.error(f"Error en guardar_ubicacion_completa: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno: {str(e)}'
+        }, status=500)
+
+
+def obtener_municipios_por_estado(request):
+    """
+    Vista AJAX para obtener municipios filtrados por estado.
+    Útil si se quiere implementar filtros en cascada adicionales.
+    """
+    estado_id = request.GET.get('estado_id')
+
+    if not estado_id:
+        return JsonResponse({
+            'success': False,
+            'error': 'ID de estado requerido'
+        })
+
+    try:
+        from .models import Municipios
+
+        municipios = Municipios.objects.filter(
+            # Aquí deberías agregar la relación correcta con estados
+            # Esto depende de cómo esté estructurada tu BD
+            estatus=1
+        ).values('id', 'municipio').order_by('municipio')
+
+        return JsonResponse({
+            'success': True,
+            'municipios': list(municipios)
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Error: {str(e)}'
+        })
+
+def obtener_localidades_por_municipio(request):
+    """
+    Vista AJAX para obtener localidades filtradas por municipio.
+    """
+    municipio_id = request.GET.get('municipio_id')
+
+    if not municipio_id:
+        return JsonResponse({
+            'success': False,
+            'error': 'ID de municipio requerido'
+        })
+
+    try:
+        from .models import Localidades
+
+        localidades = Localidades.objects.filter(
+            catalogo_municipio_id=municipio_id,
+            estatus=1
+        ).select_related(
+            'catalogo_tipo_asentamiento'
+        ).values(
+            'id',
+            'localidad',
+            'catalogo_tipo_asentamiento__tipo_asentamiento'
+        ).order_by('localidad')
+
+        localidades_data = []
+        for loc in localidades:
+            localidades_data.append({
+                'id': loc['id'],
+                'nombre': loc['localidad'],
+                'tipo_asentamiento': loc['catalogo_tipo_asentamiento__tipo_asentamiento'] or ''
+            })
+
+        return JsonResponse({
+            'success': True,
+            'localidades': localidades_data
+        })
+
+    except Exception as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Error: {str(e)}'
+        })
 
 @login_required
 @require_POST
@@ -1222,7 +1537,6 @@ def actualizar_codigo_postal_ajax(request):
             'error': 'Error interno del servidor'
         }, status=500)
 
-
 class LoginView(View):
     """Vista para inicio de sesión de usuarios - ACTUALIZADA CON VERIFICACIÓN."""
 
@@ -1274,7 +1588,6 @@ class LoginView(View):
                 messages.error(request, 'Correo o contraseña incorrectos. Intenta nuevamente.')
 
         return render(request, 'usuarios/login.html', {'form': form})
-
 # primer error
 @method_decorator(login_required, name='dispatch')
 class CrearEditarCVView(View):
@@ -1357,11 +1670,35 @@ class CrearEditarCVView(View):
         }
         return render(request, 'usuarios/crear_editar_cv.html', context)
 
+
+
+# foto de perfil
+# En usuarios/views.py - REEMPLAZAR la función actualizar_foto_perfil_ajax
+
 @login_required
 def actualizar_foto_perfil_ajax(request):
-    """Vista AJAX específica SOLO para actualizar foto de perfil."""
-    if request.method != 'POST' or request.user.rol != 'interesado':
-        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+    """Vista AJAX específica SOLO para actualizar foto de perfil - OPTIMIZADA."""
+
+    # ✅ VERIFICACIÓN ESTRICTA DE MÉTODO
+    if request.method != 'POST':
+        return JsonResponse({
+            'success': False,
+            'error': f'Método {request.method} no permitido. Solo se acepta POST.'
+        }, status=405)  # Method Not Allowed
+
+    # Verificación de usuario autenticado
+    if not request.user.is_authenticated:
+        return JsonResponse({
+            'success': False,
+            'error': 'Usuario no autenticado'
+        }, status=401)
+
+    # Verificación de rol
+    if not hasattr(request.user, 'rol') or request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': f'Acceso denegado. Rol requerido: interesado'
+        }, status=403)
 
     try:
         interesado = request.user.interesado
@@ -1371,7 +1708,7 @@ def actualizar_foto_perfil_ajax(request):
             return JsonResponse({
                 'success': False,
                 'error': 'No se recibió ninguna imagen'
-            })
+            }, status=400)
 
         foto = request.FILES['foto_perfil']
 
@@ -1380,47 +1717,72 @@ def actualizar_foto_perfil_ajax(request):
             return JsonResponse({
                 'success': False,
                 'error': 'Solo se permiten archivos JPG'
-            })
+            }, status=400)
 
         # Validar tamaño (5MB máximo)
         if foto.size > 5 * 1024 * 1024:
             return JsonResponse({
                 'success': False,
                 'error': 'El archivo es demasiado grande. Máximo 5MB'
-            })
+            }, status=400)
 
+        # ✅ PROCESO DE GUARDADO OPTIMIZADO
         # Eliminar foto anterior si existe
         if interesado.foto_perfil:
             try:
+                from django.core.files.storage import default_storage
                 if default_storage.exists(interesado.foto_perfil.name):
                     default_storage.delete(interesado.foto_perfil.name)
+                    print(f"✅ Foto anterior eliminada: {interesado.foto_perfil.name}")
             except Exception as e:
-                print(f"Error al eliminar foto anterior: {e}")
+                print(f"⚠️ Error al eliminar foto anterior: {e}")
 
         # Guardar nueva foto
         interesado.foto_perfil = foto
         interesado.save()
 
-        # Construir URL absoluta de la foto
-        foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+        # ✅ CONSTRUCCIÓN CORRECTA Y SEGURA DE URL
+        try:
+            foto_url = request.build_absolute_uri(interesado.foto_perfil.url)
+        except Exception as url_error:
+            print(f"❌ Error construyendo URL: {url_error}")
+            return JsonResponse({
+                'success': False,
+                'error': 'Error al generar URL de la imagen'
+            }, status=500)
 
-        return JsonResponse({
+        # ✅ RESPUESTA OPTIMIZADA Y LIMPIA
+        response_data = {
             'success': True,
             'message': 'Imagen guardada exitosamente',
             'data': {
                 'foto_url': foto_url
             }
-        })
+        }
 
-    except Exception as e:
-        print(f"Error en actualizar_foto_perfil_ajax: {str(e)}")
+        # ✅ HEADERS ADICIONALES PARA EVITAR CACHE
+        response = JsonResponse(response_data)
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+
+        return response
+
+    except AttributeError as e:
+        print(f"❌ Error de atributo (usuario sin interesado?): {e}")
         return JsonResponse({
             'success': False,
-            'error': f'Error interno del servidor: {str(e)}'
-        })
+            'error': 'Usuario no tiene perfil de interesado asociado'
+        }, status=403)
 
+    except Exception as e:
+        print(f"❌ Error general: {str(e)}")
+        logger.error(f"Error en actualizar_foto_perfil_ajax: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Error interno del servidor'
+        }, status=500)
 
-# MANTENER LA VISTA ORIGINAL PARA OTROS CAMPOS
 @login_required
 def actualizar_perfil_ajax(request):
     """Vista AJAX para actualizar campos de texto del perfil (sin foto)."""
@@ -1459,6 +1821,96 @@ def actualizar_perfil_ajax(request):
         return JsonResponse({
             'success': False,
             'error': str(e)
+        })
+
+
+# En usuarios/views.py - AGREGAR esta nueva vista
+
+# En usuarios/views.py - REEMPLAZAR la vista anterior con esta corregida
+
+@login_required
+def actualizar_perfil_completo_ajax(request):
+    """Vista AJAX para actualizar perfil completo desde el modal."""
+    if request.method != 'POST' or request.user.rol != 'interesado':
+        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+
+    try:
+        interesado = request.user.interesado
+
+        # Actualizar información básica
+        interesado.nombre = request.POST.get('nombre', '').strip()
+        interesado.apellido_paterno = request.POST.get('apellido_paterno', '').strip()
+        interesado.apellido_materno = request.POST.get('apellido_materno', '').strip()
+        interesado.telefono = request.POST.get('telefono', '').strip()
+
+        # ✅ CORRECCIÓN: Fecha de nacimiento con manejo de tipos
+        fecha_nacimiento = request.POST.get('fecha_nacimiento', '').strip()
+        if fecha_nacimiento:
+            try:
+                # Si viene como string desde el form, Django lo convierte automáticamente
+                interesado.fecha_nacimiento = fecha_nacimiento
+            except Exception as e:
+                logger.warning(f"Error al procesar fecha de nacimiento: {e}")
+                # Si hay error, mantener la fecha existente
+                pass
+
+        # Información de ubicación
+        codigo_postal = request.POST.get('codigo_postal', '').strip()
+        if codigo_postal:
+            interesado.codigo_postal = codigo_postal
+
+        # IDs de catálogos
+        estado_id = request.POST.get('estado_id', '').strip()
+        municipio_id = request.POST.get('municipio_id', '').strip()
+        localidad_id = request.POST.get('localidad_id', '').strip()
+
+        # Convertir a int o None
+        interesado.estado_id = int(estado_id) if estado_id and estado_id.isdigit() else None
+        interesado.municipio_id = int(municipio_id) if municipio_id and municipio_id.isdigit() else None
+        interesado.localidad_id = int(localidad_id) if localidad_id and localidad_id.isdigit() else None
+
+        # Nombres legibles
+        interesado.estado_nombre = request.POST.get('estado_nombre', '').strip() or None
+        interesado.municipio_nombre = request.POST.get('municipio_nombre', '').strip() or None
+        interesado.localidad_nombre = request.POST.get('localidad_nombre', '').strip() or None
+
+        # Calle y número
+        interesado.calle_numero = request.POST.get('calle_numero', '').strip() or None
+
+        interesado.save()
+
+        # ✅ CORRECCIÓN: Formateo seguro de fecha
+        fecha_nacimiento_formateada = None
+        if interesado.fecha_nacimiento:
+            try:
+                # Si es un objeto de fecha, usar strftime
+                if hasattr(interesado.fecha_nacimiento, 'strftime'):
+                    fecha_nacimiento_formateada = interesado.fecha_nacimiento.strftime('%d/%m/%Y')
+                else:
+                    # Si es string, intentar parsearlo
+                    from datetime import datetime
+                    fecha_obj = datetime.strptime(str(interesado.fecha_nacimiento), '%Y-%m-%d')
+                    fecha_nacimiento_formateada = fecha_obj.strftime('%d/%m/%Y')
+            except Exception as e:
+                logger.warning(f"Error formateando fecha: {e}")
+                fecha_nacimiento_formateada = str(interesado.fecha_nacimiento)
+
+        return JsonResponse({
+            'success': True,
+            'message': 'Perfil actualizado exitosamente',
+            'datos': {
+                'nombre_completo': interesado.nombre_completo,
+                'telefono': interesado.telefono or 'No especificado',
+                'ubicacion_completa': interesado.ubicacion_completa,
+                'fecha_nacimiento': fecha_nacimiento_formateada,
+            }
+        })
+
+    except Exception as e:
+        logger.error(f"Error actualizando perfil completo: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
         })
 
 
@@ -1627,26 +2079,68 @@ def agregar_idioma_ajax(request):
             'success': False,
             'error': str(e)
         })
-@login_required
+
+
 def eliminar_experiencia_ajax(request, experiencia_id):
-    """Vista AJAX para eliminar experiencia laboral."""
-    if request.method != 'DELETE' or request.user.rol != 'interesado':
-        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+    """Vista AJAX para eliminar experiencia laboral - VERSIÓN CORREGIDA."""
+
+    if request.method not in ['DELETE', 'POST']:
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido. Se requiere DELETE o POST.'
+        }, status=405)
+
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los interesados pueden eliminar experiencias.'
+        }, status=403)
 
     try:
+        if not hasattr(request.user, 'interesado') or not hasattr(request.user.interesado, 'curriculum'):
+            return JsonResponse({
+                'success': False,
+                'error': 'No tienes un curriculum creado.'
+            }, status=404)
+
         curriculum = request.user.interesado.curriculum
-        experiencia = get_object_or_404(ExperienciaLaboral, id=experiencia_id, curriculum=curriculum)
+
+        try:
+            experiencia = ExperienciaLaboral.objects.get(
+                id=experiencia_id,
+                curriculum=curriculum
+            )
+        except ExperienciaLaboral.DoesNotExist:
+            return JsonResponse({
+                'success': False,
+                'error': 'Experiencia no encontrada o no tienes permiso para eliminarla.'
+            }, status=404)
+
+        # Guardar info antes de eliminar
+        puesto = experiencia.puesto
+        empresa = experiencia.empresa
+
+        # Eliminar
         experiencia.delete()
+
+        logger.info(f"Experiencia {experiencia_id} eliminada exitosamente para usuario {request.user.email}")
 
         return JsonResponse({
             'success': True,
-            'message': 'Experiencia eliminada exitosamente'
+            'message': f'Experiencia "{puesto}" en {empresa} eliminada exitosamente.',
+            'experiencia_id': experiencia_id,
+            'puesto': puesto,
+            'empresa': empresa
         })
+
     except Exception as e:
+        logger.error(f"Error eliminando experiencia {experiencia_id}: {str(e)}")
         return JsonResponse({
             'success': False,
-            'error': str(e)
-        })
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
 @login_required
 def editar_educacion_ajax(request, educacion_id):
     """Vista AJAX para editar educación."""
@@ -1682,11 +2176,13 @@ def editar_educacion_ajax(request, educacion_id):
             'success': False,
             'error': str(e)
         })
+
+
 @login_required
 def eliminar_educacion_ajax(request, educacion_id):
     """Vista AJAX para eliminar educación - VERSIÓN CORREGIDA."""
 
-    # ✅ CORREGIDO: Aceptar tanto DELETE como POST
+    # ✅ ACEPTAR TANTO DELETE como POST para mayor compatibilidad
     if request.method not in ['DELETE', 'POST']:
         return JsonResponse({
             'success': False,
@@ -1701,7 +2197,7 @@ def eliminar_educacion_ajax(request, educacion_id):
         }, status=403)
 
     try:
-        # Verificar que el usuario tenga curriculum
+        # Verificar que el usuario tenga perfil de interesado
         if not hasattr(request.user, 'interesado'):
             return JsonResponse({
                 'success': False,
@@ -1710,6 +2206,7 @@ def eliminar_educacion_ajax(request, educacion_id):
 
         interesado = request.user.interesado
 
+        # Verificar que tenga curriculum
         if not hasattr(interesado, 'curriculum'):
             return JsonResponse({
                 'success': False,
@@ -1718,34 +2215,107 @@ def eliminar_educacion_ajax(request, educacion_id):
 
         curriculum = interesado.curriculum
 
-        # Buscar la educación que pertenece al curriculum del usuario
-        educacion = get_object_or_404(
-            Educacion,
-            id=educacion_id,
-            curriculum=curriculum
-        )
+        # ✅ LOGGING PARA DEBUG
+        logger.info(f"Intentando eliminar educación {educacion_id} para usuario {request.user.email}")
 
-        # Guardar información para el mensaje
+        # Buscar la educación que pertenece al curriculum del usuario
+        try:
+            educacion = Educacion.objects.get(
+                id=educacion_id,
+                curriculum=curriculum
+            )
+        except Educacion.DoesNotExist:
+            logger.warning(f"Educación {educacion_id} no encontrada para usuario {request.user.email}")
+            return JsonResponse({
+                'success': False,
+                'error': 'Educación no encontrada o no tienes permiso para eliminarla.'
+            }, status=404)
+
+        # Guardar información para el mensaje antes de eliminar
         titulo_educacion = educacion.titulo
         institucion = educacion.institucion
 
-        # Eliminar la educación
+        # ✅ ELIMINAR LA EDUCACIÓN
         educacion.delete()
+
+        # ✅ LOGGING DE ÉXITO
+        logger.info(f"Educación {educacion_id} eliminada exitosamente para usuario {request.user.email}")
+
+        # ✅ RESPUESTA EXITOSA CON INFORMACIÓN DETALLADA
+        return JsonResponse({
+            'success': True,
+            'message': f'Formación "{titulo_educacion}" de {institucion} eliminada exitosamente.',
+            'educacion_id': educacion_id,
+            'titulo': titulo_educacion,
+            'institucion': institucion
+        })
+
+    except Exception as e:
+        # ✅ LOGGING DE ERROR DETALLADO
+        logger.error(f"Error eliminando educación {educacion_id} para usuario {request.user.email}: {str(e)}")
+        print(f"Error detallado en eliminar_educacion_ajax: {str(e)}")  # Para debugging local
+
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
+@login_required
+def eliminar_idioma_ajax(request, idioma_id):
+    """Vista AJAX para eliminar idioma - VERSIÓN CORREGIDA."""
+
+    if request.method not in ['DELETE', 'POST']:
+        return JsonResponse({
+            'success': False,
+            'error': 'Método no permitido. Se requiere DELETE o POST.'
+        }, status=405)
+
+    if request.user.rol != 'interesado':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los interesados pueden eliminar idiomas.'
+        }, status=403)
+
+    try:
+        if not hasattr(request.user, 'interesado') or not hasattr(request.user.interesado, 'curriculum'):
+            return JsonResponse({
+                'success': False,
+                'error': 'No tienes un curriculum creado.'
+            }, status=404)
+
+        curriculum = request.user.interesado.curriculum
+
+        try:
+            idioma = IdiomaInteresado.objects.get(
+                id=idioma_id,
+                curriculum=curriculum
+            )
+        except IdiomaInteresado.DoesNotExist:
+            return JsonResponse({
+                'success': False,
+                'error': 'Idioma no encontrado o no tienes permiso para eliminarlo.'
+            }, status=404)
+
+        # Guardar info antes de eliminar
+        nombre_idioma = idioma.idioma
+        nivel = idioma.nivel_general
+
+        # Eliminar
+        idioma.delete()
+
+        logger.info(f"Idioma {idioma_id} eliminado exitosamente para usuario {request.user.email}")
 
         return JsonResponse({
             'success': True,
-            'message': f'Educación "{titulo_educacion}" de {institucion} eliminada exitosamente.'
+            'message': f'Idioma "{nombre_idioma}" ({nivel}) eliminado exitosamente.',
+            'idioma_id': idioma_id,
+            'idioma': nombre_idioma,
+            'nivel': nivel
         })
 
-    except Educacion.DoesNotExist:
-        return JsonResponse({
-            'success': False,
-            'error': 'Educación no encontrada o no tienes permiso para eliminarla.'
-        }, status=404)
     except Exception as e:
-        # Log del error para debugging
-        print(f"Error en eliminar_educacion_ajax: {str(e)}")
-
+        logger.error(f"Error eliminando idioma {idioma_id}: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
@@ -1828,7 +2398,6 @@ def convertir_imagen_a_base64(ruta_imagen):
     except Exception as e:
         print(f"Error al convertir imagen a base64: {str(e)}")
         return None
-
 @login_required
 def descargar_cv_pdf(request):
     """Vista para generar y descargar CV en PDF con imágenes en base64."""
@@ -2479,18 +3048,22 @@ class MisVacantesView(View):
 
         return render(request, 'usuarios/mis_vacantes.html', context)
 
-
 def index_view(request):
     """Vista de la página de inicio con vacantes publicadas y paginación."""
 
     # Obtener término de búsqueda
     busqueda = request.GET.get('q', '').strip()
 
-    # Filtro base
+    # ✅ FILTRO CORREGIDO PARA INCLUIR VACANTES REABIERTA
     vacantes_list = Vacante.objects.filter(
-        estado_vacante='publicada',
-        aprobada=True
-    ).select_related('secretaria', 'categoria').order_by('-fecha_publicacion')
+        estado_vacante='publicada',  # ✅ Estado debe ser 'publicada'
+        aprobada=True               # ✅ Y debe estar aprobada
+    ).select_related('secretaria', 'categoria', 'reclutador').order_by('-fecha_publicacion')
+
+    # ✅ DEBUGGING: Log para verificar vacantes
+    if request.user.is_authenticated and request.user.rol == 'reclutador':
+        total_publicadas = vacantes_list.count()
+        logger.info(f"Total vacantes publicadas y aprobadas: {total_publicadas}")
 
     # Aplicar búsqueda si existe
     if busqueda:
@@ -2520,9 +3093,12 @@ def logout_view(request):
     messages.info(request, 'Has cerrado sesión exitosamente.')
     return redirect('index')
 
+
+# usuarios/views.py - Actualizar la vista PerfilInteresadoView
+
 @method_decorator(login_required, name='dispatch')
 class PerfilInteresadoView(View):
-    """Vista para ver/editar perfil del interesado con CV integrado."""
+    """Vista para ver/editar perfil del interesado con CV integrado - ACTUALIZADA."""
 
     def get(self, request):
         if request.user.rol != 'interesado':
@@ -2546,6 +3122,9 @@ class PerfilInteresadoView(View):
         # Verificar si existe CV completo
         tiene_cv = hasattr(interesado, 'curriculum')
 
+        # ✅ VERIFICAR COMPLETITUD DEL CV INCLUYENDO UBICACIÓN
+        cv_completo = curriculum.is_cv_complete if curriculum else False
+
         context = {
             'interesado': interesado,
             'curriculum': curriculum,
@@ -2554,11 +3133,16 @@ class PerfilInteresadoView(View):
             'habilidades': habilidades,
             'idiomas': idiomas,
             'tiene_cv': tiene_cv,
+            'cv_completo': cv_completo,  # ✅ NUEVA VARIABLE
             'es_nuevo': created,
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
 
     def post(self, request):
+        """
+        Manejo de POST para guardar información completa del perfil.
+        Ahora incluye manejo de ubicación detallada.
+        """
         if request.user.rol != 'interesado':
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
@@ -2570,31 +3154,54 @@ class PerfilInteresadoView(View):
         )
 
         try:
-            # with transaction.atomic():
-                # Actualizar    información personal del interesado
-                interesado.nombre = request.POST.get('nombre', '')
-                interesado.apellido_paterno = request.POST.get('apellido_paterno', '')
-                interesado.apellido_materno = request.POST.get('apellido_materno', '')
-                interesado.telefono = request.POST.get('telefono', '')
-                interesado.municipio = request.POST.get('municipio', '')
-                interesado.codigo_postal = request.POST.get('codigo_postal', '')
+            with transaction.atomic():
+                # Actualizar información personal básica
+                interesado.nombre = request.POST.get('nombre', '').strip()
+                interesado.apellido_paterno = request.POST.get('apellido_paterno', '').strip()
+                interesado.apellido_materno = request.POST.get('apellido_materno', '').strip()
+                interesado.telefono = request.POST.get('telefono', '').strip()
 
                 # Fecha de nacimiento
                 fecha_nacimiento = request.POST.get('fecha_nacimiento')
                 if fecha_nacimiento:
                     interesado.fecha_nacimiento = fecha_nacimiento
 
+                # ✅ ACTUALIZAR INFORMACIÓN DE UBICACIÓN COMPLETA
+                # Código postal
+                codigo_postal = request.POST.get('codigo_postal', '').strip()
+                if codigo_postal:
+                    interesado.codigo_postal = codigo_postal
+
+                # IDs de catálogos
+                interesado.estado_id = request.POST.get('estado_id') or None
+                interesado.municipio_id = request.POST.get('municipio_id') or None
+                interesado.localidad_id = request.POST.get('localidad_id') or None
+
+                # Nombres legibles
+                interesado.estado_nombre = request.POST.get('estado_nombre', '').strip() or None
+                interesado.municipio_nombre = request.POST.get('municipio_nombre', '').strip() or None
+                interesado.localidad_nombre = request.POST.get('localidad_nombre', '').strip() or None
+
+                # Calle y número
+                interesado.calle_numero = request.POST.get('calle_numero', '').strip() or None
+
+                # Municipio legacy (para compatibilidad)
+                municipio_legacy = request.POST.get('municipio', '')
+                if municipio_legacy:
+                    interesado.municipio = municipio_legacy
+
                 interesado.save()
 
                 # Actualizar resumen profesional del curriculum
-                curriculum.resumen_profesional = request.POST.get('resumen_profesional', '')
+                curriculum.resumen_profesional = request.POST.get('resumen_profesional', '').strip()
                 curriculum.save()
 
-                messages.success(request, 'CV actualizado exitosamente.')
+                messages.success(request, 'Perfil actualizado exitosamente.')
                 return redirect('perfil_interesado')
 
         except Exception as e:
-            messages.error(request, f'Error al guardar el CV: {str(e)}')
+            logger.error(f"Error guardando perfil: {str(e)}")
+            messages.error(request, f'Error al guardar el perfil: {str(e)}')
 
         # Si hay errores, volver a mostrar el formulario con los datos
         experiencias = curriculum.experiencias.all()
@@ -2610,59 +3217,59 @@ class PerfilInteresadoView(View):
             'habilidades': habilidades,
             'idiomas': idiomas,
             'tiene_cv': True,
+            'cv_completo': curriculum.is_cv_complete,
             'es_nuevo': created,
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
 
 
-
-
-
-# Modificar la clase PerfilInteresadoView - solo el método post
-class PerfilInteresadoView(View):
-    """Vista para ver/editar perfil del interesado con CV integrado."""
-
-    def get(self, request):
-        # ... mantener el método get igual ...
-        if request.user.rol != 'interesado':
-            messages.error(request, 'No tienes permiso para acceder a esta página.')
-            return redirect('index')
-
+# ✅ ACTUALIZAR TAMBIÉN LA VISTA DE AUTOGUARDADO EXISTENTE
+@require_POST
+@csrf_exempt
+def autoguardar_informacion_personal(request):
+    """
+    Vista existente actualizada para incluir campos de ubicación.
+    """
+    try:
+        data = json.loads(request.body)
         interesado = request.user.interesado
 
-        # Obtener o crear curriculum
-        curriculum, created = Curriculum.objects.get_or_create(
-            interesado=interesado,
-            defaults={'resumen_profesional': ''}
-        )
+        # Campos básicos existentes
+        interesado.nombre = data.get('nombre', '')
+        interesado.apellido_paterno = data.get('apellido_paterno', '')
+        interesado.apellido_materno = data.get('apellido_materno', '')
+        interesado.telefono = data.get('telefono', '')
+        interesado.municipio = data.get('municipio', '')  # Campo legacy
+        interesado.codigo_postal = data.get('codigo_postal', '')
 
-        # Obtener experiencias, educación, habilidades e idiomas existentes
-        experiencias = curriculum.experiencias.all()
-        educaciones = curriculum.educaciones.all()
-        habilidades = curriculum.habilidades.all()
-        idiomas = curriculum.idiomas.all()
+        fecha_nacimiento = data.get('fecha_nacimiento')
+        if fecha_nacimiento:
+            interesado.fecha_nacimiento = fecha_nacimiento
 
-        # Verificar si existe CV completo
-        tiene_cv = hasattr(interesado, 'curriculum')
+        # ✅ NUEVOS CAMPOS DE UBICACIÓN DETALLADA
+        interesado.estado_id = data.get('estado_id') or None
+        interesado.municipio_id = data.get('municipio_id') or None
+        interesado.localidad_id = data.get('localidad_id') or None
+        interesado.estado_nombre = data.get('estado_nombre', '').strip() or None
+        interesado.municipio_nombre = data.get('municipio_nombre', '').strip() or None
+        interesado.localidad_nombre = data.get('localidad_nombre', '').strip() or None
+        interesado.calle_numero = data.get('calle_numero', '').strip() or None
 
-        context = {
-            'interesado': interesado,
-            'curriculum': curriculum,
-            'experiencias': experiencias,
-            'educaciones': educaciones,
-            'habilidades': habilidades,
-            'idiomas': idiomas,
-            'tiene_cv': tiene_cv,
-            'es_nuevo': created,
-        }
-        return render(request, 'usuarios/perfil_interesado.html', context)
+        interesado.save()
 
-    def post(self, request):
-        # ELIMINAR COMPLETAMENTE ESTE MÉTODO O DEJARLO VACÍO
-        # Ya no manejamos POST aquí, todo será por AJAX
-        return redirect('perfil_interesado')
+        return JsonResponse({
+            'success': True,
+            'message': 'Información personal autoguardada',
+            'ubicacion_completa': interesado.ubicacion_completa
+        })
 
-# usuarios/views.py - DashboardReclutadorView actualizada
+    except Exception as e:
+        logger.error(f"Error en autoguardar_informacion_personal: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Error al autoguardar información'
+        })
+
 
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
@@ -2718,14 +3325,13 @@ class DashboardReclutadorView(View):
 
         return render(request, 'usuarios/dashboard_reclutador.html', context)
 
-# usuarios/views.py - Vista corregida para detalle_vacante_view
 
-# Agregar al final del archivo o reemplazar la función existente
+# usuarios/views.py - REEMPLAZAR la función detalle_vacante_view existente
 
 def detalle_vacante_view(request, vacante_id):
     """
     Muestra los detalles de una vacante específica.
-    Permite acceso a reclutadores propietarios para ver sus borradores.
+    Las vacantes cerradas son visibles pero no permiten postulaciones.
     """
     try:
         # Obtener la vacante con sus relaciones
@@ -2733,43 +3339,45 @@ def detalle_vacante_view(request, vacante_id):
             Vacante.objects.select_related('secretaria', 'categoria', 'reclutador'),
             id=vacante_id
         )
-        
+
         # Verificar permisos de acceso según el estado de la vacante
         if vacante.estado_vacante == 'borrador':
             # Solo el reclutador propietario puede ver sus borradores
             if not request.user.is_authenticated:
                 messages.error(request, 'Debes iniciar sesión para ver esta vacante.')
                 return redirect('login')
-            
+
             if request.user.rol != 'reclutador':
                 messages.error(request, 'No tienes permiso para ver esta vacante.')
                 return redirect('index')
-            
+
             # Verificar que sea el reclutador propietario
             if not hasattr(request.user, 'reclutador') or vacante.reclutador != request.user.reclutador:
                 messages.error(request, 'No tienes permiso para ver esta vacante.')
                 return redirect('mis_vacantes')
-                
+
         elif vacante.estado_vacante == 'publicada':
             # Las vacantes publicadas deben estar aprobadas para el público general
             if not vacante.aprobada:
                 # Solo el reclutador propietario puede ver vacantes publicadas no aprobadas
-                if (not request.user.is_authenticated or 
+                if (not request.user.is_authenticated or
+                        request.user.rol != 'reclutador' or
+                        not hasattr(request.user, 'reclutador') or
+                        vacante.reclutador != request.user.reclutador):
+                    messages.error(request, 'Esta vacante no está disponible.')
+                    return redirect('index')
+
+        elif vacante.estado_vacante == 'eliminada':
+            # Solo el reclutador propietario puede ver vacantes eliminadas
+            if (not request.user.is_authenticated or
                     request.user.rol != 'reclutador' or
                     not hasattr(request.user, 'reclutador') or
                     vacante.reclutador != request.user.reclutador):
-                    messages.error(request, 'Esta vacante no está disponible.')
-                    return redirect('index')
-                    
-        elif vacante.estado_vacante in ['cerrada', 'eliminada']:
-            # Solo el reclutador propietario puede ver vacantes cerradas o eliminadas
-            if (not request.user.is_authenticated or 
-                request.user.rol != 'reclutador' or
-                not hasattr(request.user, 'reclutador') or
-                vacante.reclutador != request.user.reclutador):
                 messages.error(request, 'Esta vacante no está disponible.')
                 return redirect('index')
-        
+
+        # ✅ Las vacantes CERRADAS son visibles para todos (sin restricciones adicionales)
+
         # Obtener requisitos de la vacante
         try:
             requisitos = vacante.requisitos
@@ -2778,25 +3386,26 @@ def detalle_vacante_view(request, vacante_id):
         except AttributeError:
             requisitos = None
 
-        # Verificar si el usuario ya se postuló (solo para vacantes publicadas)
+        # Verificar si el usuario ya se postuló y si puede postularse
         ya_postulado = False
         puede_postularse = False
-        
+
         if request.user.is_authenticated and request.user.rol == 'interesado':
-            # Solo se puede postular a vacantes publicadas y aprobadas
+            # ✅ Solo se puede postular a vacantes publicadas, aprobadas Y que no estén cerradas
             if vacante.estado_vacante == 'publicada' and vacante.aprobada:
                 ya_postulado = Postulacion.objects.filter(
                     interesado=request.user.interesado,
                     vacante=vacante
                 ).exists()
                 puede_postularse = True
+            # Si está cerrada, puede_postularse permanece False
 
         # Determinar si es vista de propietario (reclutador viendo su propia vacante)
         es_propietario = (
-            request.user.is_authenticated and 
-            request.user.rol == 'reclutador' and
-            hasattr(request.user, 'reclutador') and
-            vacante.reclutador == request.user.reclutador
+                request.user.is_authenticated and
+                request.user.rol == 'reclutador' and
+                hasattr(request.user, 'reclutador') and
+                vacante.reclutador == request.user.reclutador
         )
 
         context = {
@@ -2807,9 +3416,9 @@ def detalle_vacante_view(request, vacante_id):
             'es_propietario': es_propietario,
             'estado_vacante': vacante.estado_vacante,
         }
-        
+
         return render(request, 'usuarios/detalle_vacante.html', context)
-        
+
     except Vacante.DoesNotExist:
         messages.error(request, 'La vacante solicitada no existe.')
         return redirect('index')
@@ -2817,7 +3426,6 @@ def detalle_vacante_view(request, vacante_id):
         logger.error(f"Error en detalle_vacante_view: {str(e)}")
         messages.error(request, 'Error al cargar la vacante.')
         return redirect('index')
-
 
 @login_required
 def postularse_vacante(request, vacante_id):
@@ -2903,6 +3511,7 @@ def mis_postulaciones(request):
         'page_obj': page_obj
     }
     return render(request, 'usuarios/mis_postulaciones.html', context)
+
 @login_required
 @require_http_methods(["POST", "DELETE"])
 def retirar_postulacion(request, postulacion_id):
@@ -2998,9 +3607,293 @@ def test_urls(request):
     })
 
 
-# Agregar estas vistas al final de usuarios/views.py
-# Agregar estas vistas al final de usuarios/views.py
-#TODO VerPortlantesView es el correcto
+@login_required
+@require_POST
+@csrf_protect
+def cerrar_vacante_ajax(request, vacante_id):
+    """
+    Vista AJAX para cerrar una vacante activa.
+    Solo el reclutador propietario puede cerrar sus vacantes.
+    """
+
+    # Verificar permisos básicos
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los reclutadores pueden cerrar vacantes.'
+        }, status=403)
+
+    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+        return JsonResponse({
+            'success': False,
+            'error': 'Tu cuenta de reclutador debe estar aprobada.'
+        }, status=403)
+
+    try:
+        # Obtener la vacante que pertenece al reclutador
+        vacante = get_object_or_404(
+            Vacante,
+            id=vacante_id,
+            reclutador=request.user.reclutador
+        )
+
+        # Verificar que la vacante esté en estado 'publicada'
+        if vacante.estado_vacante != 'publicada':
+            return JsonResponse({
+                'success': False,
+                'error': f'No se puede cerrar una vacante en estado "{vacante.get_estado_vacante_display()}".'
+            }, status=400)
+
+        # Obtener número actual de postulaciones
+        postulaciones_actuales = vacante.postulaciones.count()
+
+        # Cambiar estado a cerrada
+        vacante.estado_vacante = 'cerrada'
+        vacante.save()
+
+        # Log de la acción
+        logger.info(f"Vacante {vacante_id} cerrada por reclutador {request.user.email}")
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Vacante "{vacante.titulo}" cerrada exitosamente.',
+            'nuevo_estado': 'cerrada',
+            'nuevo_estado_display': 'Cerrada',
+            'postulaciones_actuales': postulaciones_actuales,
+            'limite_postulaciones': vacante.max_postulantes,
+            'puede_reabrir': postulaciones_actuales < vacante.max_postulantes
+        })
+
+    except Exception as e:
+        logger.error(f"Error cerrando vacante {vacante_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
+@login_required
+@require_POST
+@csrf_protect
+def reabrir_vacante_ajax(request, vacante_id):
+    """
+    Vista AJAX para reabrir una vacante cerrada.
+    Si la fecha límite ya pasó, automáticamente extiende la fecha por 30 días.
+    """
+
+    # Verificar permisos básicos
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los reclutadores pueden reabrir vacantes.'
+        }, status=403)
+
+    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+        return JsonResponse({
+            'success': False,
+            'error': 'Tu cuenta de reclutador debe estar aprobada.'
+        }, status=403)
+
+    try:
+        # Obtener la vacante que pertenece al reclutador
+        vacante = get_object_or_404(
+            Vacante,
+            id=vacante_id,
+            reclutador=request.user.reclutador
+        )
+
+        # Verificar que la vacante esté en estado 'cerrada'
+        if vacante.estado_vacante != 'cerrada':
+            return JsonResponse({
+                'success': False,
+                'error': f'No se puede reabrir una vacante en estado "{vacante.get_estado_vacante_display()}".'
+            }, status=400)
+
+        # ✅ VALIDACIÓN CRÍTICA: Verificar límite de postulaciones
+        postulaciones_actuales = vacante.postulaciones.count()
+
+        if postulaciones_actuales >= vacante.max_postulantes:
+            return JsonResponse({
+                'success': False,
+                'error': f'No se puede reabrir la vacante porque ya alcanzó el límite máximo de {vacante.max_postulantes} postulaciones ({postulaciones_actuales} recibidas).'
+            }, status=400)
+
+        # ✅ NUEVA LÓGICA: Verificar y extender fecha límite automáticamente
+        fecha_extendida = False
+        nueva_fecha_limite = None
+        mensaje_fecha = ""
+
+        if vacante.fecha_limite:
+            from datetime import date, timedelta
+            hoy = date.today()
+
+            if vacante.fecha_limite < hoy:
+                # ✅ EXTENDER AUTOMÁTICAMENTE LA FECHA LÍMITE POR 30 DÍAS
+                nueva_fecha_limite = hoy + timedelta(days=30)
+                vacante.fecha_limite = nueva_fecha_limite
+                fecha_extendida = True
+
+                # Formatear fecha para el mensaje
+                fecha_formateada = nueva_fecha_limite.strftime('%d de %B de %Y')
+                mensaje_fecha = f" La fecha límite se ha extendido automáticamente hasta el {fecha_formateada}."
+
+                logger.info(
+                    f"Fecha límite de vacante {vacante_id} extendida automáticamente hasta {nueva_fecha_limite}")
+
+        # Cambiar estado a publicada
+        vacante.estado_vacante = 'publicada'
+        vacante.save()
+
+        # ✅ MENSAJE PERSONALIZADO SEGÚN SI SE EXTENDIÓ LA FECHA O NO
+        if fecha_extendida:
+            mensaje_principal = f'Vacante "{vacante.titulo}" reabierta exitosamente.{mensaje_fecha}'
+        else:
+            mensaje_principal = f'Vacante "{vacante.titulo}" reabierta exitosamente.'
+
+        # Log de la acción
+        logger.info(f"Vacante {vacante_id} reabierta por reclutador {request.user.email}")
+
+        return JsonResponse({
+            'success': True,
+            'message': mensaje_principal,
+            'nuevo_estado': 'publicada',
+            'nuevo_estado_display': 'Activa',
+            'postulaciones_actuales': postulaciones_actuales,
+            'limite_postulaciones': vacante.max_postulantes,
+            'espacios_disponibles': vacante.max_postulantes - postulaciones_actuales,
+            # ✅ INFORMACIÓN ADICIONAL SOBRE LA EXTENSIÓN DE FECHA
+            'fecha_extendida': fecha_extendida,
+            'nueva_fecha_limite': nueva_fecha_limite.strftime('%Y-%m-%d') if nueva_fecha_limite else None,
+            'fecha_limite_formateada': nueva_fecha_limite.strftime('%d de %B de %Y') if nueva_fecha_limite else None
+        })
+
+    except Exception as e:
+        logger.error(f"Error reabriendo vacante {vacante_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+@login_required
+@require_POST
+@csrf_protect
+def eliminar_borrador_ajax(request, vacante_id):
+    """
+    Vista AJAX para eliminar permanentemente un borrador.
+    Solo se pueden eliminar vacantes en estado 'borrador'.
+    """
+
+    # Verificar permisos básicos
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los reclutadores pueden eliminar borradores.'
+        }, status=403)
+
+    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+        return JsonResponse({
+            'success': False,
+            'error': 'Tu cuenta de reclutador debe estar aprobada.'
+        }, status=403)
+
+    try:
+        # Obtener la vacante que pertenece al reclutador
+        vacante = get_object_or_404(
+            Vacante,
+            id=vacante_id,
+            reclutador=request.user.reclutador
+        )
+
+        # Verificar que la vacante esté en estado 'borrador'
+        if vacante.estado_vacante != 'borrador':
+            return JsonResponse({
+                'success': False,
+                'error': f'Solo se pueden eliminar borradores. Esta vacante está en estado "{vacante.get_estado_vacante_display()}".'
+            }, status=400)
+
+        # Verificar que no tenga postulaciones (por seguridad)
+        if vacante.postulaciones.exists():
+            return JsonResponse({
+                'success': False,
+                'error': 'No se puede eliminar un borrador que tiene postulaciones asociadas.'
+            }, status=400)
+
+        # Guardar información para el mensaje
+        titulo_vacante = vacante.titulo
+
+        # Eliminar la vacante (esto también elimina los requisitos por cascada)
+        vacante.delete()
+
+        # Log de la acción
+        logger.info(f"Borrador {vacante_id} eliminado por reclutador {request.user.email}")
+
+        return JsonResponse({
+            'success': True,
+            'message': f'Borrador "{titulo_vacante}" eliminado permanentemente.',
+            'vacante_eliminada': True
+        })
+
+    except Exception as e:
+        logger.error(f"Error eliminando borrador {vacante_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
+
+@login_required
+def obtener_estado_vacante_ajax(request, vacante_id):
+    """
+    Vista AJAX para obtener el estado actual de una vacante y sus estadísticas.
+    Útil para actualizar la interfaz después de acciones.
+    """
+
+    if request.user.rol != 'reclutador':
+        return JsonResponse({
+            'success': False,
+            'error': 'Solo los reclutadores pueden consultar el estado de vacantes.'
+        }, status=403)
+
+    try:
+        # Obtener la vacante que pertenece al reclutador
+        vacante = get_object_or_404(
+            Vacante,
+            id=vacante_id,
+            reclutador=request.user.reclutador
+        )
+
+        # Calcular estadísticas
+        postulaciones_actuales = vacante.postulaciones.count()
+        puede_reabrir = (
+                vacante.estado_vacante == 'cerrada' and
+                postulaciones_actuales < vacante.max_postulantes
+        )
+
+        # Verificar fecha límite
+        fecha_limite_pasada = False
+        if vacante.fecha_limite:
+            from datetime import date
+            fecha_limite_pasada = vacante.fecha_limite < date.today()
+
+        return JsonResponse({
+            'success': True,
+            'estado': vacante.estado_vacante,
+            'estado_display': vacante.get_estado_vacante_display(),
+            'postulaciones_actuales': postulaciones_actuales,
+            'limite_postulaciones': vacante.max_postulantes,
+            'espacios_disponibles': vacante.max_postulantes - postulaciones_actuales,
+            'puede_reabrir': puede_reabrir and not fecha_limite_pasada,
+            'fecha_limite_pasada': fecha_limite_pasada,
+            'titulo': vacante.titulo
+        })
+
+    except Exception as e:
+        logger.error(f"Error obteniendo estado de vacante {vacante_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Error interno del servidor: {str(e)}'
+        }, status=500)
+
 @method_decorator(login_required, name='dispatch')
 class VerPostulantesView(View):
     """
@@ -3076,7 +3969,6 @@ class VerPostulantesView(View):
             'enviadas': estado_counts.get('enviada', 0),
             'preseleccionados': estado_counts.get('preseleccionado', 0),
         }
-
 
 @login_required
 def cambiar_estado_postulacion(request, postulacion_id):
@@ -3177,57 +4069,6 @@ def cambiar_estado_postulacion(request, postulacion_id):
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
-
-
-# @login_required
-# def agregar_notas_postulacion(request, postulacion_id):
-#     """
-#     Vista AJAX para agregar notas del reclutador a una postulación.
-#     """
-#     if request.method != 'POST':
-#         return JsonResponse({
-#             'success': False,
-#             'error': 'Método no permitido'
-#         }, status=405)
-#
-#     if request.user.rol != 'reclutador':
-#         return JsonResponse({
-#             'success': False,
-#             'error': 'No tienes permisos para esta acción'
-#         }, status=403)
-#
-#     try:
-#         import json
-#         data = json.loads(request.body)
-#         notas = data.get('notas', '').strip()
-#
-#         # Obtener la postulación
-#         postulacion = get_object_or_404(
-#             Postulacion,
-#             id=postulacion_id,
-#             vacante__reclutador=request.user.reclutador
-#         )
-#
-#         # Actualizar las notas
-#         postulacion.notas_reclutador = notas
-#         postulacion.save()
-#
-#         return JsonResponse({
-#             'success': True,
-#             'message': 'Notas guardadas exitosamente'
-#         })
-#
-#     except json.JSONDecodeError:
-#         return JsonResponse({
-#             'success': False,
-#             'error': 'Datos JSON inválidos'
-#         }, status=400)
-#     except Exception as e:
-#         print(f"Error en agregar_notas_postulacion: {str(e)}")
-#         return JsonResponse({
-#             'success': False,
-#             'error': f'Error interno: {str(e)}'
-#         }, status=500)
 
 
 @login_required
@@ -3391,10 +4232,10 @@ def buscar_vacantes(request):
     tipo_empleo = request.GET.get('tipo_empleo', '')
     municipio = request.GET.get('municipio', '')
 
-    # Comenzar con todas las vacantes publicadas y aprobadas
+    # ✅ FILTRO CORREGIDO: INCLUIR VACANTES REABIERTA
     vacantes_list = Vacante.objects.filter(
-        estado_vacante='publicada',
-        aprobada=True
+        estado_vacante='publicada',  # ✅ Estado debe ser 'publicada'
+        aprobada=True               # ✅ Y debe estar aprobada
     ).select_related('secretaria', 'reclutador', 'categoria').order_by('-fecha_publicacion')
 
     # Aplicar filtro de búsqueda por texto
