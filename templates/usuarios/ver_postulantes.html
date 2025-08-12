@@ -4,13 +4,6 @@
 
 {% block extra_css %}
 <style>
-.footer {
-    display: none !important;
-}
-
-.footer-bottom {
-    display: none !important;
-}
     .applicants-container {
         margin-top: 20px;
         margin-bottom: 50px;
@@ -231,8 +224,11 @@
 
                                 <div>
                                     <h6 class="applicant-name mb-0">{{ postulacion.interesado.nombre_completo }}</h6>
-                                    {% if postulacion.interesado.municipio %}
-                                        <small class="text-muted">{{ postulacion.interesado.get_municipio_display }}, Edo. México</small>
+                                    {% if postulacion.interesado.municipio_nombre %}
+                                        <small class="text-muted">{{ postulacion.interesado.municipio_nombre }},</small>
+                                    {% endif %}
+                                    {% if postulacion.interesado.estado_nombre %}
+                                        <small class="text-muted">{{ postulacion.interesado.estado_nombre }}</small>
                                     {% endif %}
                                 </div>
                             </div>
@@ -348,29 +344,7 @@
             {% endfor %}
         </div>
 
-{#        <!-- Paginación (para futuro) -->#}
-{#        {% comment %}#}
-{#        <nav aria-label="Page navigation" class="mt-4">#}
-{#            <ul class="pagination justify-content-center">#}
-{#                <li class="page-item disabled">#}
-{#                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">#}
-{#                        <i class="bi bi-chevron-left"></i>#}
-{#                    </a>#}
-{#                </li>#}
-{#                <li class="page-item active" aria-current="page">#}
-{#                    <a class="page-link" href="#">1</a>#}
-{#                </li>#}
-{#                <li class="page-item">#}
-{#                    <a class="page-link" href="#">2</a>#}
-{#                </li>#}
-{#                <li class="page-item">#}
-{#                    <a class="page-link" href="#">#}
-{#                        <i class="bi bi-chevron-right"></i>#}
-{#                    </a>#}
-{#                </li>#}
-{#            </ul>#}
-{#        </nav>#}
-{#        {% endcomment %}#}
+
 
     {% else %}
         <!-- Estado vacío -->
