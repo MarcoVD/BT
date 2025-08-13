@@ -551,9 +551,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Agregar mensaje informativo para el usuario
         const mensajeInfo = document.createElement('div');
-        mensajeInfo.className = 'alert alert-info mt-3';
+        mensajeInfo.className = 'alert alert-info mt-0';
         mensajeInfo.innerHTML = `
-            <i class="bi bi-info-circle me-2"></i>
+            <i class="bi bi-info-circle me-0"></i>
             <strong>Restricciones de fechas:</strong> 
             <ul class="mb-0 mt-2">
                 <li>No se pueden seleccionar fechas pasadas (ayer, antier, etc.)</li>
