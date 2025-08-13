@@ -85,7 +85,7 @@ def extend_session_ajax(request):
     Vista AJAX para extender la sesión del usuario activo.
     """
     try:
-        # Validar que la petición sea AJAX
+        # Validar que la petición sea AJAX con contenido JSON
         if not request.headers.get('Content-Type') == 'application/json':
             return JsonResponse({
                 'success': False,
@@ -1924,22 +1924,6 @@ def autoguardar_resumen_profesional(request):
     curriculum.save()
     return JsonResponse({'success': True})
 
-@require_POST
-@csrf_exempt
-def autoguardar_informacion_personal(request):
-    data = json.loads(request.body)
-    interesado = request.user.interesado
-
-    interesado.nombre = data.get('nombre', '')
-    interesado.apellido_paterno = data.get('apellido_paterno', '')
-    interesado.apellido_materno = data.get('apellido_materno', '')
-    interesado.telefono = data.get('telefono', '')
-    interesado.municipio = data.get('municipio', '')
-    interesado.codigo_postal = data.get('codigo_postal', '')
-    interesado.fecha_nacimiento = data.get('fecha_nacimiento', None)
-    interesado.save()
-    return JsonResponse({'success': True})
-
 @login_required
 def editar_experiencia_ajax(request, experiencia_id):
     """Vista AJAX para editar experiencia laboral."""
@@ -3094,7 +3078,6 @@ def logout_view(request):
     return redirect('index')
 
 
-# usuarios/views.py - Actualizar la vista PerfilInteresadoView
 
 @method_decorator(login_required, name='dispatch')
 class PerfilInteresadoView(View):
@@ -3222,7 +3205,6 @@ class PerfilInteresadoView(View):
         }
         return render(request, 'usuarios/perfil_interesado.html', context)
 
-
 # ✅ ACTUALIZAR TAMBIÉN LA VISTA DE AUTOGUARDADO EXISTENTE
 @require_POST
 @csrf_exempt
@@ -3269,7 +3251,6 @@ def autoguardar_informacion_personal(request):
             'success': False,
             'error': 'Error al autoguardar información'
         })
-
 
 @method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
@@ -3428,13 +3409,24 @@ def detalle_vacante_view(request, vacante_id):
         return redirect('index')
 @login_required
 @require_POST
-# @ensuere_csrf_cookie
+@csrf_protect
 def postularse_vacante(request, vacante_id):
     """Vista para que un interesado se postule a una vacante."""
+    
     if request.method != 'POST':
-        return JsonResponse({'success': False, 'error': 'Método no permitido'})
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'error': 'Método no permitido'})
+        else:
+            messages.error(request, 'Método no permitido.')
+            return redirect('index')
+
     if request.user.rol != 'interesado':
-        return JsonResponse({'success': False, 'error': 'Solo los interesados pueden postularse'})
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'error': 'Solo los interesados pueden postularse'})
+        else:
+            messages.error(request, 'No tienes permisos para postularte.')
+            return redirect('index')
+
     try:
         # Verificar que la vacante existe y está activa
         vacante = get_object_or_404(
@@ -3443,33 +3435,84 @@ def postularse_vacante(request, vacante_id):
             estado_vacante='publicada',
             aprobada=True
         )
+
         interesado = request.user.interesado
+        
+        # ✅ VERIFICAR QUE EL INTERESADO TIENE CURRICULUM
+        if not hasattr(interesado, 'curriculum'):
+            error_msg = 'Debes crear tu curriculum antes de postularte.'
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': False,
+                    'error': error_msg,
+                    'redirect_url': '/perfil/interesado/'
+                })
+            else:
+                messages.error(request, error_msg)
+                return redirect('perfil_interesado')
+
         curriculum = interesado.curriculum
-        # Verificar que el interesado tiene CV completo
-        if not curriculum.is_cv_complete:
-            return JsonResponse({
-                'success': False,
-                'error': 'Tu perfil está incompleto. Por favor, completa todos los campos de tu CV antes de postularte.',
-                'missing_fields': curriculum.validation_errors,
-                # 'redirect_url': reverse('perfil_interesado')
-                'redirect_url': '/perfil/interesado/'
-            })
+        
+        # ✅ CAMBIO PRINCIPAL: USAR VALIDACIÓN BÁSICA EN LUGAR DE ESTRICTA
+        try:
+            # Intentar usar la nueva validación básica
+            errores_cv = curriculum.validation_errors_basic
+        except AttributeError:
+            # Fallback: Si no existe el método, usar validación más permisiva
+            errores_cv = []
+            
+            # Validaciones mínimas esenciales
+            if not interesado.nombre or not interesado.nombre.strip():
+                errores_cv.append('Nombre')
+            if not interesado.apellido_paterno or not interesado.apellido_paterno.strip():
+                errores_cv.append('Apellido Paterno')
+            if not interesado.telefono or not interesado.telefono.strip():
+                errores_cv.append('Teléfono')
+            if not interesado.fecha_nacimiento:
+                errores_cv.append('Fecha de Nacimiento')
+            if not interesado.codigo_postal or not interesado.codigo_postal.strip():
+                errores_cv.append('Código Postal')
+            if not curriculum.resumen_profesional or not curriculum.resumen_profesional.strip():
+                errores_cv.append('Resumen Profesional')
+            if not curriculum.habilidades.exists():
+                errores_cv.append('Al menos una habilidad')
+
+        if errores_cv:
+            error_msg = f'Tu perfil básico está incompleto. Campos faltantes: {", ".join(errores_cv)}'
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({
+                    'success': False,
+                    'error': error_msg,
+                    'missing_fields': errores_cv,
+                    'redirect_url': '/perfil/interesado/'
+                })
+            else:
+                messages.error(request, error_msg)
+                return redirect('perfil_interesado')
+
         # Verificar si ya se postuló
         if Postulacion.objects.filter(interesado=interesado, vacante=vacante).exists():
-            return JsonResponse({
-                'success': False,
-                'error': 'Ya te has postulado a esta vacante'
-            })
+            error_msg = 'Ya te has postulado a esta vacante'
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': error_msg})
+            else:
+                messages.warning(request, error_msg)
+                return redirect('detalle_vacante', vacante_id=vacante_id)
+
         # Verificar límite de postulantes
         postulaciones_actuales = vacante.postulaciones.count()
         if postulaciones_actuales >= vacante.max_postulantes:
-            return JsonResponse({
-                'success': False,
-                'error': 'Esta vacante ya alcanzó el límite máximo de postulantes'
-            })
-        # Crear la postulación
+            error_msg = 'Esta vacante ya alcanzó el límite máximo de postulantes'
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                return JsonResponse({'success': False, 'error': error_msg})
+            else:
+                messages.error(request, error_msg)
+                return redirect('detalle_vacante', vacante_id=vacante_id)
+
+        # Obtener mensaje de motivación
         mensaje_motivacion = request.POST.get('mensaje_motivacion', '').strip()
 
+        # Crear la postulación
         postulacion = Postulacion.objects.create(
             interesado=interesado,
             vacante=vacante,
@@ -3478,17 +3521,35 @@ def postularse_vacante(request, vacante_id):
             estado='enviada'
         )
 
-        return JsonResponse({
-            'success': True,
-            'message': 'Te has postulado exitosamente a esta vacante',
-            'postulacion_id': postulacion.id
-        })
+        success_msg = 'Te has postulado exitosamente a esta vacante'
+        
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': True,
+                'message': success_msg,
+                'postulacion_id': postulacion.id
+            })
+        else:
+            messages.success(request, success_msg)
+            return redirect('detalle_vacante', vacante_id=vacante_id)
 
+    except Vacante.DoesNotExist:
+        error_msg = 'Vacante no encontrada o no disponible'
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'error': error_msg})
+        else:
+            messages.error(request, error_msg)
+            return redirect('index')
+            
     except Exception as e:
-        return JsonResponse({
-            'success': False,
-            'error': f'Error al procesar la postulación: {str(e)}'
-        })
+        logger.error(f"Error en postularse_vacante: {str(e)}")
+        error_msg = f'Error al procesar la postulación: {str(e)}'
+        
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({'success': False, 'error': error_msg})
+        else:
+            messages.error(request, error_msg)
+            return redirect('detalle_vacante', vacante_id=vacante_id)
 
 @login_required
 def mis_postulaciones(request):
