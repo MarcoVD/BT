@@ -75,6 +75,41 @@ class ValidadorCodigoPostal {
         );
     }
 
+    // ✅ FUNCIÓN CORREGIDA - verificarYPrecargarDatos
+    verificarYPrecargarDatos() {
+        // Esperar un momento para que el DOM esté completamente cargado
+        setTimeout(() => {
+            const cpExistente = this.campoCodigoPostal?.value?.trim();
+            console.log('🔍 Verificando CP existente:', cpExistente);
+
+            // Si hay un CP de 5 dígitos, validarlo automáticamente
+            if (cpExistente && cpExistente.length === 5 && /^\d{5}$/.test(cpExistente)) {
+                console.log('✅ CP existente válido encontrado, precargando datos...');
+
+                // Verificar si los selects ya tienen datos cargados
+                const estadoSelect = document.getElementById('estado');
+                const municipioSelect = document.getElementById('municipio');
+                const localidadSelect = document.getElementById('localidad');
+
+                // Si los selects están vacíos o en estado inicial, cargar datos
+                const necesitaCargar = (
+                    !estadoSelect ||
+                    estadoSelect.options.length <= 1 ||
+                    (estadoSelect.options[0] && estadoSelect.options[0].text.includes('Ingresa tu código postal'))
+                );
+
+                if (necesitaCargar) {
+                    console.log('📡 Consultando datos para CP:', cpExistente);
+                    this.validarCodigoPostal(cpExistente);
+                } else {
+                    console.log('✅ Datos ya están cargados, no es necesario consultar');
+                }
+            } else {
+                console.log('❌ No hay CP válido para precargar');
+            }
+        }, 500); // Dar 500ms para que todo se inicialice
+    }
+
     manejarEntradaTexto(evento) {
         const valor = evento.target.value.trim();
 
@@ -148,6 +183,7 @@ class ValidadorCodigoPostal {
         evento.target.value = valor;
     }
 
+    // ✅ FUNCIÓN CORREGIDA - validarCodigoPostal
     async validarCodigoPostal(codigoPostal) {
         if (this.consultandoAPI) {
             console.log('Ya hay una consulta en progreso');
@@ -161,15 +197,22 @@ class ValidadorCodigoPostal {
 
             console.log(`Validando código postal: ${codigoPostal}`);
 
-            // Realizar petición AJAX con URL absoluta
-            const response = await fetch(`${window.location.origin}/ajax/consultar-codigo-postal/?codigo_postal=${codigoPostal}`, {
+            // ✅ CORREGIR URL - usar la URL correcta de Django
+            const url = `/ajax/obtener-datos-por-cp/?codigo_postal=${codigoPostal}`;
+            
+            const response = await fetch(url, {
                 method: 'GET',
                 headers: {
                     'X-Requested-With': 'XMLHttpRequest',
-                    'Content-Type': 'application/json',
-                    'X-CSRFToken': this.obtenerCSRFToken()
-                }
+                    'Content-Type': 'application/json'
+                    // ✅ NO necesita CSRF token para peticiones GET
+                },
+                credentials: 'same-origin'
             });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+            }
 
             const datos = await response.json();
 
@@ -186,40 +229,6 @@ class ValidadorCodigoPostal {
             this.consultandoAPI = false;
             this.mostrarCarga(false);
         }
-    }
-    verificarYPrecargarDatos() {
-        // Esperar un momento para que el DOM esté completamente cargado
-        setTimeout(() => {
-            const cpExistente = this.campoCodigoPostal.value.trim();
-
-            console.log('🔍 Verificando CP existente:', cpExistente);
-
-            // Si hay un CP de 5 dígitos, validarlo automáticamente
-            if (cpExistente && cpExistente.length === 5 && /^\d{5}$/.test(cpExistente)) {
-                console.log('✅ CP existente válido encontrado, precargando datos...');
-
-                // Verificar si los selects ya tienen datos cargados
-                const estadoSelect = document.getElementById('estado');
-                const municipioSelect = document.getElementById('municipio');
-                const localidadSelect = document.getElementById('localidad');
-
-                // Si los selects están vacíos o en estado inicial, cargar datos
-                const necesitaCargar = (
-                    !estadoSelect ||
-                    estadoSelect.options.length <= 1 ||
-                    estadoSelect.options[0].text.includes('Ingresa tu código postal')
-                );
-
-                if (necesitaCargar) {
-                    console.log('📡 Consultando datos para CP:', cpExistente);
-                    this.validarCodigoPostal(cpExistente);
-                } else {
-                    console.log('✅ Datos ya están cargados, no es necesario consultar');
-                }
-            } else {
-                console.log('❌ No hay CP válido para precargar');
-            }
-        }, 500); // Dar 500ms para que todo se inicialice
     }
 
     procesarRespuestaExitosa(datos) {
@@ -245,89 +254,126 @@ class ValidadorCodigoPostal {
         this.campoCodigoPostal.classList.remove('is-invalid');
         this.campoCodigoPostal.classList.add('is-valid');
 
-        // ✅ NUEVO: Autoguardar automáticamente cuando se cargan los datos
-        this.autoguardarDatosUbicacion(datos);
+        // ✅ AUTOGUARDAR SOLO SI EL USUARIO ESTÁ AUTENTICADO
+        if (this.usuarioAutenticado()) {
+            this.autoguardarDatosUbicacion(datos);
+        }
 
         console.log('✅ Código postal validado exitosamente');
     }
-// EN validador_codigo_postal.js - AGREGAR AL FINAL DE LA FUNCIÓN autoguardarDatosUbicacion()
 
-autoguardarDatosUbicacion(datos) {
-    try {
-        const datosUbicacion = {
-            codigo_postal: this.campoCodigoPostal.value.trim(),
-            estado_id: datos.estados[0]?.id || null,
-            municipio_id: datos.municipios[0]?.id || null,
-            localidad_id: datos.localidades[0]?.id || null,
-            estado_nombre: datos.estados[0]?.nombre || null,
-            municipio_nombre: datos.municipios[0]?.nombre || null,
-            localidad_nombre: datos.localidades[0]?.nombre || null,
-            calle_numero: document.getElementById('calle_numero')?.value.trim() || null
-        };
+    // ✅ FUNCIÓN CORREGIDA - autoguardarDatosUbicacion
+    autoguardarDatosUbicacion(datos) {
+        // ✅ VERIFICAR QUE EL USUARIO ESTÉ AUTENTICADO
+        if (!this.usuarioAutenticado()) {
+            console.log('❌ Usuario no autenticado, saltando autoguardado');
+            return;
+        }
 
-        console.log('💾 Autoguardando datos de ubicación:', datosUbicacion);
+        try {
+            const datosUbicacion = {
+                codigo_postal: this.campoCodigoPostal.value.trim(),
+                estado_id: datos.estados[0]?.id || null,
+                municipio_id: datos.municipios[0]?.id || null,
+                localidad_id: datos.localidades[0]?.id || null,
+                estado_nombre: datos.estados[0]?.nombre || null,
+                municipio_nombre: datos.municipios[0]?.nombre || null,
+                localidad_nombre: datos.localidades[0]?.nombre || null,
+                calle_numero: document.getElementById('calle_numero')?.value?.trim() || null
+            };
 
-        // Hacer petición AJAX para guardar
-        fetch('/ajax/autoguardar-ubicacion/', {
-            method: 'POST',
-            headers: {
-                'X-CSRFToken': this.obtenerCSRFToken(),
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(datosUbicacion)
-        })
-        .then(response => response.json())
-        .then(result => {
-            if (result.success) {
-                console.log('✅ Datos de ubicación autoguardados exitosamente');
+            console.log('💾 Autoguardando datos de ubicación:', datosUbicacion);
 
-                // ✅ ACTUALIZAR VARIABLES JAVASCRIPT Y VERIFICAR BOTÓN
-                if (window.datosInteresado) {
-                    // Actualizar código postal
-                    window.datosInteresado.codigo_postal = datosUbicacion.codigo_postal || '';
-
-                    // Actualizar ubicación completa si está disponible
-                    if (result.ubicacion_completa) {
-                        window.datosInteresado.ubicacion_completa = result.ubicacion_completa;
-                    } else {
-                        // Construir ubicación completa básica
-                        const partes = [];
-                        if (datosUbicacion.localidad_nombre) partes.push(datosUbicacion.localidad_nombre);
-                        if (datosUbicacion.municipio_nombre) partes.push(datosUbicacion.municipio_nombre);
-                        if (datosUbicacion.estado_nombre) partes.push(datosUbicacion.estado_nombre);
-                        if (datosUbicacion.codigo_postal) partes.push(`C.P. ${datosUbicacion.codigo_postal}`);
-
-                        window.datosInteresado.ubicacion_completa = partes.join(', ');
-                    }
-
-                    console.log('📍 Variables de ubicación actualizadas:', {
-                        codigo_postal: window.datosInteresado.codigo_postal,
-                        ubicacion_completa: window.datosInteresado.ubicacion_completa
-                    });
-
-                    // ✅ VERIFICAR ESTADO DEL BOTÓN DESPUÉS DE ACTUALIZAR UBICACIÓN
-                    setTimeout(() => {
-                        if (typeof verificarEstadoBotonGuardarCV === 'function') {
-                            console.log('🔄 Verificando botón después de autoguardado de ubicación...');
-                            verificarEstadoBotonGuardarCV();
-                        }
-                    }, 300);
-                }
-
-            } else {
-                console.warn('⚠️ Error autoguardando ubicación:', result.error);
+            // ✅ USAR TOKEN CSRF CORRECTO
+            const csrfToken = this.obtenerCSRFToken();
+            if (!csrfToken) {
+                console.warn('⚠️ No se pudo obtener token CSRF, saltando autoguardado');
+                return;
             }
-        })
-        .catch(error => {
-            console.error('❌ Error en autoguardado de ubicación:', error);
-        });
 
-    } catch (error) {
-        console.error('❌ Error preparando autoguardado:', error);
+            // Hacer petición AJAX para guardar
+            fetch('/ajax/autoguardar-ubicacion/', {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json',
+                    'X-Requested-With': 'XMLHttpRequest'
+                },
+                body: JSON.stringify(datosUbicacion),
+                credentials: 'same-origin'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(result => {
+                if (result.success) {
+                    console.log('✅ Datos de ubicación autoguardados exitosamente');
+
+                    // ✅ ACTUALIZAR VARIABLES JAVASCRIPT Y VERIFICAR BOTÓN
+                    this.actualizarDatosInteresado(datosUbicacion, result);
+
+                } else {
+                    console.warn('⚠️ Error autoguardando ubicación:', result.error);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Error en autoguardado de ubicación:', error);
+                // ✅ NO mostrar error al usuario, es un autoguardado en segundo plano
+            });
+
+        } catch (error) {
+            console.error('❌ Error preparando autoguardado:', error);
+        }
     }
-}
 
-// ✅ MÉTODOS MEJORADOS: Poblar selects con auto-selección
+    // ✅ NUEVA FUNCIÓN - verificar si usuario está autenticado
+    usuarioAutenticado() {
+        // Verificar si hay indicadores de autenticación
+        const authIndicator = document.querySelector('[data-user-authenticated="true"]');
+        const csrfToken = this.obtenerCSRFToken();
+        
+        return !!(authIndicator && csrfToken);
+    }
+
+    // ✅ NUEVA FUNCIÓN - actualizar datos del interesado
+    actualizarDatosInteresado(datosUbicacion, result) {
+        if (window.datosInteresado) {
+            // Actualizar código postal
+            window.datosInteresado.codigo_postal = datosUbicacion.codigo_postal || '';
+
+            // Actualizar ubicación completa si está disponible
+            if (result.ubicacion_completa) {
+                window.datosInteresado.ubicacion_completa = result.ubicacion_completa;
+            } else {
+                // Construir ubicación completa básica
+                const partes = [];
+                if (datosUbicacion.localidad_nombre) partes.push(datosUbicacion.localidad_nombre);
+                if (datosUbicacion.municipio_nombre) partes.push(datosUbicacion.municipio_nombre);
+                if (datosUbicacion.estado_nombre) partes.push(datosUbicacion.estado_nombre);
+                if (datosUbicacion.codigo_postal) partes.push(`C.P. ${datosUbicacion.codigo_postal}`);
+
+                window.datosInteresado.ubicacion_completa = partes.join(', ');
+            }
+
+            console.log('📍 Variables de ubicación actualizadas:', {
+                codigo_postal: window.datosInteresado.codigo_postal,
+                ubicacion_completa: window.datosInteresado.ubicacion_completa
+            });
+
+            // ✅ VERIFICAR ESTADO DEL BOTÓN DESPUÉS DE ACTUALIZAR UBICACIÓN
+            setTimeout(() => {
+                if (typeof verificarEstadoBotonGuardarCV === 'function') {
+                    console.log('🔄 Verificando botón después de autoguardado de ubicación...');
+                    verificarEstadoBotonGuardarCV();
+                }
+            }, 300);
+        }
+    }
+
+    // ✅ MÉTODOS MEJORADOS: Poblar selects con auto-selección
     poblarSelectEstados(estados) {
         const selectEstado = document.getElementById('estado');
         if (!selectEstado) return;
@@ -345,8 +391,14 @@ autoguardarDatosUbicacion(datos) {
         // Auto-seleccionar y actualizar campos ocultos
         if (estados.length === 1) {
             selectEstado.value = estados[0].id;
-            document.getElementById('estado_id').value = estados[0].id;
-            document.getElementById('estado_nombre').value = estados[0].nombre;
+            
+            // ✅ VERIFICAR QUE EXISTAN LOS CAMPOS ANTES DE ACTUALIZARLOS
+            const estadoIdField = document.getElementById('estado_id');
+            const estadoNombreField = document.getElementById('estado_nombre');
+            
+            if (estadoIdField) estadoIdField.value = estados[0].id;
+            if (estadoNombreField) estadoNombreField.value = estados[0].nombre;
+            
             selectEstado.dispatchEvent(new Event('change'));
         }
     }
@@ -368,8 +420,14 @@ autoguardarDatosUbicacion(datos) {
         // Auto-seleccionar y actualizar campos ocultos
         if (municipios.length === 1) {
             selectMunicipio.value = municipios[0].id;
-            document.getElementById('municipio_id').value = municipios[0].id;
-            document.getElementById('municipio_nombre').value = municipios[0].nombre;
+            
+            // ✅ VERIFICAR QUE EXISTAN LOS CAMPOS ANTES DE ACTUALIZARLOS
+            const municipioIdField = document.getElementById('municipio_id');
+            const municipioNombreField = document.getElementById('municipio_nombre');
+            
+            if (municipioIdField) municipioIdField.value = municipios[0].id;
+            if (municipioNombreField) municipioNombreField.value = municipios[0].nombre;
+            
             selectMunicipio.dispatchEvent(new Event('change'));
         }
     }
@@ -395,47 +453,52 @@ autoguardarDatosUbicacion(datos) {
         // Pero sí actualizar si solo hay una opción
         if (localidades.length === 1) {
             selectLocalidad.value = localidades[0].id;
-            document.getElementById('localidad_id').value = localidades[0].id;
-            document.getElementById('localidad_nombre').value = localidades[0].nombre;
+            
+            // ✅ VERIFICAR QUE EXISTAN LOS CAMPOS ANTES DE ACTUALIZARLOS
+            const localidadIdField = document.getElementById('localidad_id');
+            const localidadNombreField = document.getElementById('localidad_nombre');
+            
+            if (localidadIdField) localidadIdField.value = localidades[0].id;
+            if (localidadNombreField) localidadNombreField.value = localidades[0].nombre;
+            
             selectLocalidad.dispatchEvent(new Event('change'));
         }
     }
 
-procesarRespuestaError(datos) {
-    let mensajeError;
+    procesarRespuestaError(datos) {
+        let mensajeError;
 
-    // Primero decidir mensaje según código de error
-    switch (datos.codigo_error) {
-        case 'CP_NO_ENCONTRADO':
-            mensajeError = `El código postal ${this.campoCodigoPostal.value} no existe en México`;
-            break;
-        case 'ESTADO_NO_VALIDO':
-            mensajeError = `Este código postal no pertenece al Estado de México`;
-            break;
-        case 'FORMATO_INVALIDO':
-            mensajeError = 'El código postal debe tener exactamente 5 dígitos';
-            break;
-        case 'TIMEOUT':
-            mensajeError = 'Tiempo de espera agotado. Inténtalo nuevamente';
-            break;
-        case 'CONNECTION_ERROR':
-            mensajeError = 'Error de conexión. Verifica tu internet';
-            break;
-        default:
-            // Si no hay código_error válido, usar el mensaje del backend o mensaje por defecto
-            mensajeError = datos.message || 'Error desconocido al validar código postal';
-            break;
+        // Primero decidir mensaje según código de error
+        switch (datos.codigo_error) {
+            case 'CP_NO_ENCONTRADO':
+                mensajeError = `El código postal ${this.campoCodigoPostal.value} no existe en México`;
+                break;
+            case 'ESTADO_NO_VALIDO':
+                mensajeError = `Este código postal no pertenece al Estado de México`;
+                break;
+            case 'FORMATO_INVALIDO':
+                mensajeError = 'El código postal debe tener exactamente 5 dígitos';
+                break;
+            case 'TIMEOUT':
+                mensajeError = 'Tiempo de espera agotado. Inténtalo nuevamente';
+                break;
+            case 'CONNECTION_ERROR':
+                mensajeError = 'Error de conexión. Verifica tu internet';
+                break;
+            default:
+                // Si no hay código_error válido, usar el mensaje del backend o mensaje por defecto
+                mensajeError = datos.message || 'Error desconocido al validar código postal';
+                break;
+        }
+
+        this.mostrarError(mensajeError);
+
+        // Actualizar estilos del campo
+        this.campoCodigoPostal.classList.remove('is-valid');
+        this.campoCodigoPostal.classList.add('is-invalid');
+
+        console.warn('❌ Error en validación de código postal:', mensajeError);
     }
-
-    this.mostrarError(mensajeError);
-
-    // Actualizar estilos del campo
-    this.campoCodigoPostal.classList.remove('is-valid');
-    this.campoCodigoPostal.classList.add('is-invalid');
-
-    console.warn('❌ Error en validación de código postal:', mensajeError);
-}
-
 
     actualizarCampoMunicipio(municipioAPI) {
         const campoMunicipio = document.getElementById('municipio');
@@ -497,15 +560,47 @@ procesarRespuestaError(datos) {
         this.indicadorCarga.style.display = mostrar ? 'block' : 'none';
     }
 
+    // ✅ FUNCIÓN CORREGIDA - obtenerCSRFToken
     obtenerCSRFToken() {
-        const tokenElement = document.querySelector('[name=csrfmiddlewaretoken]');
-        return tokenElement ? tokenElement.value : '';
+        // Método 1: Desde cookie
+        let token = this.getCookie('csrftoken');
+        
+        if (token) {
+            return token;
+        }
+        
+        // Método 2: Desde meta tag
+        const metaTag = document.querySelector('meta[name="csrf-token"]');
+        if (metaTag) {
+            return metaTag.getAttribute('content');
+        }
+        
+        // Método 3: Desde input hidden
+        const hiddenInput = document.querySelector('[name=csrfmiddlewaretoken]');
+        if (hiddenInput) {
+            return hiddenInput.value;
+        }
+        
+        console.warn('⚠️ No se pudo obtener el token CSRF');
+        return null;
+    }
+
+    // ✅ NUEVA FUNCIÓN - getCookie
+    getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== '') {
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++) {
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
     }
 }
-
-// EN validador_codigo_postal.js - AGREGAR AL FINAL DE LA FUNCIÓN autoguardarDatosUbicacion()
-
-
 
 // Inicializar cuando el DOM esté listo
 document.addEventListener('DOMContentLoaded', function() {

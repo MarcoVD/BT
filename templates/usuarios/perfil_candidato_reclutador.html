@@ -154,7 +154,8 @@
                             {% if interesado.municipio %}
                                 <div class="contact-item">
                                     <i class="bi bi-geo-alt text-white"></i>
-                                    <span>{{ interesado.get_municipio_display }}, Estado de México</span>
+                                    <span>{{ interesado.municipio_nombre }}, {{ interesado.estado_nombre}} </span>
+                                    
                                 </div>
                             {% endif %}
                             {% if interesado.fecha_nacimiento %}

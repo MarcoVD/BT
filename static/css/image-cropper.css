@@ -1,11 +1,11 @@
 /* static/css/image-cropper.css - VERSIÓN ACTUALIZADA */
 
-/* Contenedor del cropper que ocupa todo el espacio disponible */
+/* Contenedor del cropper con proporciones reducidas */
 .image-cropper-container-full {
     width: 100%;
-    height: 70vh; /* 70% de la altura de la ventana */
-    min-height: 500px;
-    max-height: 600px;
+    height: 50vh; /* Reducido de 70vh a 50vh */
+    min-height: 350px; /* Reducido de 500px a 350px */
+    max-height: 450px; /* Reducido de 600px a 450px */
     margin: 20px 0;
     position: relative;
     background-color: #f8f9fa;
@@ -26,68 +26,66 @@
     display: block;
 }
 
+/* Contenedor del cropper simple (sin el -full) con tamaño más pequeño */
+.image-cropper-container {
+    width: 100%;
+    height: 350px; /* Reducido significativamente */
+    min-height: 300px; /* Altura mínima más pequeña */
+    max-height: 400px; /* Altura máxima más pequeña */
+    margin: 15px 0; /* Márgenes más pequeños */
+    position: relative;
+    background-color: #f8f9fa;
+    border: 2px solid #dee2e6;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Controles del cropper */
 .cropper-controls {
     display: flex;
     justify-content: center;
     gap: 15px;
-    margin-top: 20px;
+    margin-top: 15px; /* Reducido de 20px a 15px */
     flex-wrap: wrap;
     padding: 0 20px;
 }
 
 .cropper-controls .btn {
-    min-width: 120px;
-    padding: 8px 16px;
+    min-width: 100px; /* Reducido de 120px a 100px */
+    padding: 6px 12px; /* Reducido el padding */
 }
 
-/* Preview del recorte */
-.crop-preview {
-    width: 180px;
-    height: 180px;
-    border-radius: 50%;
-    overflow: hidden;
-    margin: 0 auto 20px auto;
-    border: 3px solid #dee2e6;
-    background-color: #f8f9fa;
-    display: none;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.crop-preview img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* Estados del modal */
+/* Estados del modal con altura reducida */
 .cropper-modal-body {
-    padding: 1.5rem;
-    min-height: 600px;
+    padding: 1.25rem; /* Reducido de 1.5rem */
+    min-height: 400px; /* Reducido de 600px a 400px */
 }
 
 .cropper-step {
     display: none;
-    min-height: 500px;
+    min-height: 350px; /* Reducido de 500px a 350px */
 }
 
 .cropper-step.active {
     display: block;
 }
 
-/* Instrucciones */
+/* Instrucciones con padding reducido */
 .cropper-instructions {
     background-color: #e3f2fd;
     border: 1px solid #bbdefb;
     border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
+    padding: 12px; /* Reducido de 15px a 12px */
+    margin-bottom: 15px; /* Reducido de 20px a 15px */
     text-align: center;
 }
 
 .cropper-instructions h6 {
     color: #1976d2;
-    margin-bottom: 10px;
+    margin-bottom: 8px; /* Reducido de 10px a 8px */
 }
 
 .cropper-instructions p {
@@ -96,16 +94,16 @@
     font-size: 14px;
 }
 
-/* Área de drop */
+/* Área de drop con altura reducida */
 .drop-zone {
     border: 2px dashed #9e9e9e;
     border-radius: 8px;
-    padding: 40px 20px;
+    padding: 30px 15px; /* Reducido de 40px 20px */
     text-align: center;
     background-color: #fafafa;
     transition: all 0.3s ease;
     cursor: pointer;
-    min-height: 200px;
+    min-height: 150px; /* Reducido de 200px a 150px */
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -120,78 +118,76 @@
 }
 
 .drop-zone i {
-    font-size: 3rem;
+    font-size: 2.5rem; /* Reducido de 3rem a 2.5rem */
     color: #9e9e9e;
-    margin-bottom: 15px;
+    margin-bottom: 12px; /* Reducido de 15px a 12px */
 }
 
 .drop-zone p {
-    margin: 5px 0;
+    margin: 4px 0; /* Reducido de 5px a 4px */
     color: #666;
 }
 
-/* Responsive */
+/* Modal con tamaño más pequeño */
+#cropperModal .modal-dialog {
+    max-width: 700px; /* Ancho máximo más pequeño */
+}
+
+/* Responsive con alturas más pequeñas */
 @media (max-width: 1200px) {
     .modal-xl {
-        max-width: 95%;
+        max-width: 90%; /* Reducido de 95% */
     }
 }
 
 @media (max-width: 992px) {
-    .image-cropper-container-full {
-        height: 60vh;
-        min-height: 400px;
-        max-height: 500px;
-    }
-    
-    .crop-preview {
-        width: 150px;
-        height: 150px;
+    .image-cropper-container-full,
+    .image-cropper-container {
+        height: 300px; /* Reducido para tablets */
+        min-height: 250px;
+        max-height: 350px;
     }
 }
 
 @media (max-width: 768px) {
-    .image-cropper-container-full {
-        height: 50vh;
-        min-height: 350px;
-        max-height: 450px;
+    .image-cropper-container-full,
+    .image-cropper-container {
+        height: 250px; /* Aún más pequeño para móviles */
+        min-height: 200px;
+        max-height: 300px;
     }
 
     .cropper-controls {
         flex-direction: column;
         align-items: center;
-        gap: 10px;
+        gap: 8px; /* Reducido gap */
     }
 
     .cropper-controls .btn {
         width: 100%;
-        max-width: 200px;
-    }
-
-    .crop-preview {
-        width: 120px;
-        height: 120px;
+        max-width: 180px; /* Reducido de 200px */
     }
 
     .drop-zone {
-        padding: 30px 15px;
-        min-height: 150px;
+        padding: 20px 10px; /* Padding más pequeño */
+        min-height: 120px; /* Altura mínima más pequeña */
     }
 
     .drop-zone i {
-        font-size: 2rem;
+        font-size: 2rem; /* Ícono más pequeño */
     }
 }
 
 @media (max-width: 576px) {
-    .image-cropper-container-full {
-        height: 45vh;
-        min-height: 300px;
-        max-height: 400px;
+    .image-cropper-container-full,
+    .image-cropper-container {
+        height: 220px; /* Muy pequeño para móviles pequeños */
+        min-height: 180px;
+        max-height: 250px;
     }
 
     .cropper-instructions {
-        padding: 10px;
+        padding: 8px; /* Padding muy pequeño */
     }
 
     .cropper-instructions h6 {
@@ -201,9 +197,19 @@
     .cropper-instructions p {
         font-size: 12px;
     }
+
+    .cropper-modal-body {
+        padding: 1rem; /* Padding más pequeño para móviles */
+        min-height: 300px; /* Altura mínima reducida */
+    }
+
+    #cropperModal .modal-dialog {
+        max-width: 95%; /* Casi todo el ancho en móviles */
+        margin: 10px auto; /* Márgenes más pequeños */
+    }
 }
 
-/* Cropper.js customization para mejor integración */
+/* Cropper.js customization para mejor integración con tamaños más pequeños */
 .cropper-container {
     direction: ltr;
     font-size: 0;
@@ -241,11 +247,11 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 200px;
+    height: 150px; /* Reducido de 200px */
     flex-direction: column;
     color: #666;
 }
 
 .cropper-loading .spinner-border {
-    margin-bottom: 15px;
+    margin-bottom: 10px; /* Reducido de 15px */
 }

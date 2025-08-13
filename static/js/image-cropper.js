@@ -1,4 +1,4 @@
-// static/js/image-cropper.js - VERSIÓN SIMPLIFICADA
+// static/js/image-cropper.js - VERSIÓN SIMPLIFICADA SIN CROP PREVIEW
 class ImageCropper {
     constructor() {
         this.cropper = null;
@@ -147,39 +147,8 @@ class ImageCropper {
             responsive: true,
             checkOrientation: false,
             minCropBoxWidth: 100,
-            minCropBoxHeight: 100,
-            ready: () => {
-                this.updatePreview();
-            },
-            cropend: () => {
-                this.updatePreview();
-            }
+            minCropBoxHeight: 100
         });
-    }
-
-    updatePreview() {
-        if (!this.cropper) return;
-
-        const canvas = this.cropper.getCroppedCanvas({
-            width: 160,
-            height: 160,
-            fillColor: '#fff',
-            imageSmoothingEnabled: true,
-            imageSmoothingQuality: 'high'
-        });
-
-        const previewContainer = document.getElementById('cropPreview');
-        if (!previewContainer) return;
-
-        // Limpiar preview anterior
-        previewContainer.innerHTML = '';
-        
-        // Crear nueva imagen de preview
-        const img = document.createElement('img');
-        img.src = canvas.toDataURL('image/jpeg', 0.9);
-        img.alt = 'Preview';
-        previewContainer.appendChild(img);
-        previewContainer.style.display = 'block';
     }
 
     cropAndSaveImage() {
@@ -276,7 +245,6 @@ class ImageCropper {
     resetCropper() {
         if (this.cropper) {
             this.cropper.reset();
-            this.updatePreview();
         }
     }
 
@@ -296,13 +264,6 @@ class ImageCropper {
         
         // Destruir el cropper
         this.destroyCropper();
-        
-        // Limpiar preview
-        const previewContainer = document.getElementById('cropPreview');
-        if (previewContainer) {
-            previewContainer.style.display = 'none';
-            previewContainer.innerHTML = '';
-        }
         
         // Volver al paso de selección
         document.getElementById('cropStep').classList.remove('active');
@@ -329,7 +290,6 @@ class ImageCropper {
         
         // Limpiar el estado
         this.destroyCropper();
-        document.getElementById('cropPreview').style.display = 'none';
         
         // Resetear pasos del modal
         document.getElementById('cropStep').classList.remove('active');

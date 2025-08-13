@@ -290,56 +290,50 @@
 {% if user.is_authenticated and user.rol == 'interesado' and puede_postularse and not ya_postulado %}
 <script>
 function postularseDirect() {
-    const postularBtn = document.getElementById('postularseBtn');
+  const postularBtn = document.getElementById('postularseBtn');
+  postularBtn.disabled = true;
+  postularBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
 
-    // Deshabilitar botón temporalmente
+  const formData = new FormData();
+  formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+  fetch("{% url 'postularse_vacante' vacante.id %}", {
+    method: 'POST',
+    body: formData,
+    headers: {
+      'X-CSRFToken': '{{ csrf_token }}',
+      'X-Requested-With': 'XMLHttpRequest',
+      'Accept': 'application/json'
+    },
+    credentials: 'same-origin'  // IMPRESCINDIBLE para que viaje la cookie de sesión
+  })
+  .then(async (response) => {
+    const ct = response.headers.get('content-type') || '';
+    // Evita que un 302 al login (HTML) te rompa con response.json()
+    if (!ct.includes('application/json')) {
+      const text = await response.text(); // útil para inspección en DevTools si quieres
+      throw new Error(`Respuesta no-JSON (status ${response.status})`);
+    }
+    const data = await response.json();
+    if (!response.ok || !data.success) {
+      throw new Error(data?.error || `Error ${response.status}`);
+    }
+    return data;
+  })
+  .then(() => {
+    mostrarMensaje('Postulación exitosa', 'success');
+    postularBtn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Ya te postulaste';
+    postularBtn.classList.remove('btn-primary');
+    postularBtn.classList.add('btn-success');
     postularBtn.disabled = true;
-    postularBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
-
-    const formData = new FormData();
-    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
-
-    fetch(`/postularse/{{ vacante.id }}/`, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': '{{ csrf_token }}'
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Mostrar mensaje de éxito
-            mostrarMensaje('Postulación exitosa', 'success');
-
-            // Cambiar botón ha estado "ya postulado"
-            postularBtn.innerHTML = '<i class="bi bi-check-circle-fill"></i> Ya te postulaste';
-            postularBtn.classList.remove('btn-primary');
-            postularBtn.classList.add('btn-success');
-            postularBtn.disabled = true;
-
-        } else {
-            mostrarMensaje(data.error, 'error');
-            // Si necesita completar perfil, redirigir
-            if (data.redirect_url) {
-                setTimeout(() => {
-                    window.location.href = data.redirect_url;
-                }, 2000);
-            } else {
-                // Restaurar botón si hay error
-                postularBtn.disabled = false;
-                postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
-            }
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        mostrarMensaje('Error de conexión. Inténtalo nuevamente.', 'error');
-
-        // Restaurar botón
-        postularBtn.disabled = false;
-        postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
-    });
+  })
+  .catch((err) => {
+    console.error(err);
+    // Si hubo redirect 302 al login o HTML inesperado, caerá aquí
+    mostrarMensaje('Error de conexión', 'error');
+    postularBtn.disabled = false;
+    postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
+  });
 }
 
 // {# mensajes del toast #}

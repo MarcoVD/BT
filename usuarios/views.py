@@ -3427,7 +3427,8 @@ def detalle_vacante_view(request, vacante_id):
         messages.error(request, 'Error al cargar la vacante.')
         return redirect('index')
 @login_required
-# @require_http_methods(["POST"])
+@require_POST
+# @ensuere_csrf_cookie
 def postularse_vacante(request, vacante_id):
     """Vista para que un interesado se postule a una vacante."""
     if request.method != 'POST':
