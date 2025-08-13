@@ -239,13 +239,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="col-md-6">
-                                <label for="{{ vacante_form.fecha_inicio_estimada.id_for_label }}" class="form-label">{{ vacante_form.fecha_inicio_estimada.label }}</label>
-                                {{ vacante_form.fecha_inicio_estimada }}
-                                {% if vacante_form.fecha_inicio_estimada.errors %}
-                                    <div class="invalid-feedback d-block">{{ vacante_form.fecha_inicio_estimada.errors }}</div>
-                                {% endif %}
-                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -257,15 +251,22 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="{{ vacante_form.fecha_limite.id_for_label }}" class="form-label">{{ vacante_form.fecha_limite.label }}</label>
                                 {{ vacante_form.fecha_limite }}
                                 {% if vacante_form.fecha_limite.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.fecha_limite.errors }}</div>
                                 {% endif %}
                             </div>
+                            <div class="col-md-4">
+                                <label for="{{ vacante_form.fecha_inicio_estimada.id_for_label }}" class="form-label">{{ vacante_form.fecha_inicio_estimada.label }}</label>
+                                {{ vacante_form.fecha_inicio_estimada }}
+                                {% if vacante_form.fecha_inicio_estimada.errors %}
+                                    <div class="invalid-feedback d-block">{{ vacante_form.fecha_inicio_estimada.errors }}</div>
+                                {% endif %}
+                            </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="{{ vacante_form.max_postulantes.id_for_label }}" class="form-label">{{ vacante_form.max_postulantes.label }}</label>
                                 {{ vacante_form.max_postulantes }}
                                 {% if vacante_form.max_postulantes.errors %}

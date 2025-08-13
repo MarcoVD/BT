@@ -741,7 +741,7 @@ class VacanteForm(forms.ModelForm):
             'detalles_salario': 'Detalles Adicionales del Salario',
             'fecha_inicio_estimada': 'Fecha Estimada de Inicio',
             'fecha_limite': 'Fecha Límite de Postulación',
-            'max_postulantes': 'Número Máximo de Postulantes',
+            'max_postulantes': 'Núm Máx de Postulantes',
             'modalidad': 'Modalidad de Trabajo',
         }
 
