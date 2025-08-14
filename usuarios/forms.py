@@ -13,10 +13,10 @@ class LoginForm(AuthenticationForm):
     """Formulario para inicio de sesión."""
 
     username = forms.EmailField(
-        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Correo electrónico'})
+        widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su correo electrónico'})
     )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Contraseña'})
+        widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': 'Ingrese su contraseña'})
     )
 
 
@@ -693,8 +693,8 @@ class VacanteForm(forms.ModelForm):
             'tipo_empleo': forms.Select(attrs={'class': 'form-select'}),
             'descripcion': forms.Textarea(attrs={
                 'class': 'form-control',
-                'rows': 6,
-                'placeholder': 'Describe las funciones, responsabilidades, el equipo de trabajo, la cultura de la empresa, etc.'
+                'rows': 5,
+                # 'placeholder': 'Describe las funciones, responsabilidades, el equipo de trabajo, la cultura de la empresa, etc.'
             }),
             'municipio': forms.Select(attrs={
                 'class': 'form-select',
@@ -735,12 +735,12 @@ class VacanteForm(forms.ModelForm):
             'categoria': 'Categoría de la Vacante',
             'tipo_empleo': 'Tipo de Empleo',
             'descripcion': 'Descripción Detallada de la Vacante',
-            'municipio': 'Municipio del Estado de México',
+            'municipio': 'Municipio',
             'salario_min': 'Salario Mínimo (MXN)',
             'salario_max': 'Salario Máximo (MXN)',
             'detalles_salario': 'Detalles Adicionales del Salario',
-            'fecha_inicio_estimada': 'Fecha Estimada de Inicio',
-            'fecha_limite': 'Fecha Límite de Postulación',
+            'fecha_inicio_estimada': 'Fecha de Inicio de labores',
+            'fecha_limite': 'Fecha Límite para Postularse',
             'max_postulantes': 'Núm Máx de Postulantes',
             'modalidad': 'Modalidad de Trabajo',
         }

@@ -15,7 +15,7 @@
             footer {
             display: none !important;
         }
-        .footer-bottom {
+        .footer-bottom {    
             display: none !important;
         }
 
@@ -69,7 +69,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <label for="{{ vacante_form.titulo.id_for_label }}" class="form-label">{{ vacante_form.titulo.label }}</label>
                                 {{ vacante_form.titulo }}
                                 {% if vacante_form.titulo.errors %}
@@ -153,24 +153,15 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <!-- Información del Estado (solo informativa) -->
+                            <!-- Información del Estado (solo informativa)
                             <div class="col-md-6">
                                 <label class="form-label">Estado</label>
                                 <div class="form-control-plaintext bg-light p-2 rounded border">
                                     <i class="bi bi-geo-alt-fill text-primary me-2"></i>
                                     <strong>Estado de México</strong>
                                 </div>
-                                <small class="form-text text-muted">Todas las vacantes se publican en el Estado de México</small>
-                            </div>
+                            </div> -->
 
-                            <!-- Campo de Municipio -->
-                            <div class="col-md-6">
-                                <label for="{{ vacante_form.municipio.id_for_label }}" class="form-label">{{ vacante_form.municipio.label }}</label>
-                                {{ vacante_form.municipio }}
-                                {% if vacante_form.municipio.errors %}
-                                    <div class="invalid-feedback d-block">{{ vacante_form.municipio.errors }}</div>
-                                {% endif %}
-                            </div>
 
                             <!-- ✅ CAMPOS DE SALARIO CON VALIDACIONES MEJORADAS -->
                             <div class="col-md-6">
@@ -231,7 +222,15 @@
                                 </div>
                             </div>
 
-                            <div class="col-12">
+                            <!-- Campo de Municipio -->
+                            <div class="col-md-6">
+                                <label for="{{ vacante_form.municipio.id_for_label }}" class="form-label">{{ vacante_form.municipio.label }}</label>
+                                {{ vacante_form.municipio }}
+                                {% if vacante_form.municipio.errors %}
+                                    <div class="invalid-feedback d-block">{{ vacante_form.municipio.errors }}</div>
+                                {% endif %}
+                            </div>
+                            <div class="col-md-6">
                                 <label for="{{ vacante_form.detalles_salario.id_for_label }}" class="form-label">{{ vacante_form.detalles_salario.label }}</label>
                                 {{ vacante_form.detalles_salario }}
                                 {% if vacante_form.detalles_salario.errors %}
@@ -251,14 +250,14 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="{{ vacante_form.fecha_limite.id_for_label }}" class="form-label">{{ vacante_form.fecha_limite.label }}</label>
                                 {{ vacante_form.fecha_limite }}
                                 {% if vacante_form.fecha_limite.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.fecha_limite.errors }}</div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="{{ vacante_form.fecha_inicio_estimada.id_for_label }}" class="form-label">{{ vacante_form.fecha_inicio_estimada.label }}</label>
                                 {{ vacante_form.fecha_inicio_estimada }}
                                 {% if vacante_form.fecha_inicio_estimada.errors %}
@@ -266,7 +265,7 @@
                                 {% endif %}
                             </div>
 
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="{{ vacante_form.max_postulantes.id_for_label }}" class="form-label">{{ vacante_form.max_postulantes.label }}</label>
                                 {{ vacante_form.max_postulantes }}
                                 {% if vacante_form.max_postulantes.errors %}

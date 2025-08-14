@@ -1,15 +1,3 @@
-/**
- * validador_fechas_vacante.js
- * Script mejorado para validaciones de fechas en formulario de vacantes
- * Ubicación: BT/static/js/validador_fechas_vacante.js
- *
- * Restricciones implementadas:
- * I) Las fechas se almacenan en BD como YYYY-MM-DD
- * II) fechaInicio y fechaLimite NUNCA pueden ser el mismo día
- * III) Ninguna fecha puede ser en el pasado (ayer, antier, etc.)
- * IV) fechaInicio siempre debe ser al menos un día después que fechaLimite
- */
-
 class ValidadorFechasVacante {
     constructor() {
         // Referencias a elementos del DOM
@@ -30,7 +18,7 @@ class ValidadorFechasVacante {
             fechaInicioAnterior: 'La fecha de inicio debe ser al menos un día después de la fecha límite.',
             fechaLimiteRequerida: 'La fecha límite de postulación es obligatoria.',
             fechaInvalida: 'Por favor, selecciona una fecha válida.',
-            domingoNoPermitido: 'No se pueden seleccionar domingos. Las postulaciones no están disponibles los domingos.'
+            // domingoNoPermitido: 'No se pueden seleccionar domingos. Las postulaciones no están disponibles los domingos.'
         };
 
         // Inicializar cuando el DOM esté listo
@@ -161,10 +149,10 @@ class ValidadorFechasVacante {
             mensajeError = this.mensajesError.fechaPasada;
         }
         // Validación adicional: No domingos
-        else if (this.esDomingo(fechaInicioSeleccionada)) {
-            esFechaValida = false;
-            mensajeError = this.mensajesError.domingoNoPermitido;
-        }
+        // else if (this.esDomingo(fechaInicioSeleccionada)) {
+        //     esFechaValida = false;
+        //     mensajeError = this.mensajesError.domingoNoPermitido;
+        // }
 
         this.estadoValidacion.fechaInicioValida = esFechaValida;
 
@@ -210,11 +198,11 @@ class ValidadorFechasVacante {
             esFechaValida = false;
             mensajeError = this.mensajesError.fechaPasada;
         }
-        // Validación adicional: No domingos
-        else if (this.esDomingo(fechaLimiteSeleccionada)) {
-            esFechaValida = false;
-            mensajeError = this.mensajesError.domingoNoPermitido;
-        }
+        // // Validación adicional: No domingos
+        // else if (this.esDomingo(fechaLimiteSeleccionada)) {
+        //     esFechaValida = false;
+        //     mensajeError = this.mensajesError.domingoNoPermitido;
+        // }
 
         this.estadoValidacion.fechaLimiteValida = esFechaValida;
 
