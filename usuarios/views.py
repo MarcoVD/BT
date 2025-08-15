@@ -2759,45 +2759,7 @@ class PublicarVacanteView(View):
         }
         return render(request, 'usuarios/publicar_vacante.html', context)
     
-# def convertir_fecha_input(fecha_str):
-#     """
-#     Convierte fecha de formato DD/MM/YYYY a YYYY-MM-DD o valida formato YYYY-MM-DD.
-#     Returns: fecha en formato YYYY-MM-DD o None si no es válida
-#     """
-#     if not fecha_str or not fecha_str.strip():
-#         return None
-    
-#     fecha_str = fecha_str.strip()
-    
-#     try:
-#         # Intentar formato YYYY-MM-DD (correcto para HTML input date)
-#         if '-' in fecha_str and len(fecha_str) == 10:
-#             datetime.strptime(fecha_str, '%Y-%m-%d')
-#             return fecha_str
-        
-#         # Intentar formato DD/MM/YYYY (formato que puede venir del frontend)
-#         elif '/' in fecha_str:
-#             fecha_obj = datetime.strptime(fecha_str, '%d/%m/%Y')
-#             return fecha_obj.strftime('%Y-%m-%d')
-        
-#         # Intentar formato DD-MM-YYYY
-#         elif '-' in fecha_str and len(fecha_str) == 10:
-#             # Verificar si es DD-MM-YYYY
-#             partes = fecha_str.split('-')
-#             if len(partes) == 3 and len(partes[0]) == 2:  # DD-MM-YYYY
-#                 fecha_obj = datetime.strptime(fecha_str, '%d-%m-%Y')
-#                 return fecha_obj.strftime('%Y-%m-%d')
-#             else:  # Ya es YYYY-MM-DD
-#                 datetime.strptime(fecha_str, '%Y-%m-%d')
-#                 return fecha_str
-        
-#         else:
-#             logger.warning(f"Formato de fecha no reconocido: {fecha_str}")
-#             return None
-            
-#     except ValueError as e:
-#         logger.error(f"Error al convertir fecha '{fecha_str}': {str(e)}")
-#         return None
+# el
 
 @method_decorator(login_required, name='dispatch')
 class EditarVacanteView(View):
