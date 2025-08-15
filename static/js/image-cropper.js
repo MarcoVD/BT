@@ -151,50 +151,55 @@ class ImageCropper {
         });
     }
 
-    cropAndSaveImage() {
-        if (!this.cropper) return;
+ // En image-cropper.js - REEMPLAZAR el método cropAndSaveImage() existente
 
-        // Mostrar loading en el botón
-        const cropButton = document.getElementById('cropButton');
-        const originalText = cropButton.innerHTML;
-        cropButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...';
-        cropButton.disabled = true;
+cropAndSaveImage() {
+    if (!this.cropper) return;
 
-        const canvas = this.cropper.getCroppedCanvas({
-            width: 160,
-            height: 160,
-            fillColor: '#fff',
-            imageSmoothingEnabled: true,
-            imageSmoothingQuality: 'high'
-        });
+    // Mostrar loading en el botón
+    const cropButton = document.getElementById('cropButton');
+    const originalText = cropButton.innerHTML;
+    cropButton.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...';
+    cropButton.disabled = true;
 
-        canvas.toBlob((blob) => {
-            this.croppedBlob = blob;
-            const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
-            
-            // Guardar la imagen inmediatamente
-            this.saveImageToServer(blob, dataUrl)
-                .then(() => {
-                    // Cerrar modal del cropper
-                    this.closeCropperModal();
-                    
-                    // Actualizar todas las imágenes en la página
-                    this.updateAllProfileImages(dataUrl);
-                    
-                    // Mostrar mensaje de éxito
-                    this.showMessage('Imagen guardada exitosamente', 'success');
-                })
-                .catch((error) => {
-                    console.error('Error:', error);
-                    this.showMessage('Error al guardar la imagen', 'error');
-                })
-                .finally(() => {
-                    // Restaurar botón
-                    cropButton.innerHTML = originalText;
-                    cropButton.disabled = false;
-                });
-        }, 'image/jpeg', 0.9);
-    }
+    const canvas = this.cropper.getCroppedCanvas({
+        width: 160,
+        height: 160,
+        fillColor: '#fff',
+        imageSmoothingEnabled: true,
+        imageSmoothingQuality: 'high'
+    });
+
+    canvas.toBlob((blob) => {
+        this.croppedBlob = blob;
+        const dataUrl = canvas.toDataURL('image/jpeg', 0.9);
+        
+        // Guardar la imagen inmediatamente
+        this.saveImageToServer(blob, dataUrl)
+            .then(() => {
+                // ✅ SOLUCIÓN RÁPIDA: Mostrar mensaje y recargar página
+                this.showMessage('Imagen guardada exitosamente. Recargando página...', 'success');
+                
+                // Cerrar modal inmediatamente
+                this.closeCropperModal();
+                
+                // ✅ RECARGAR PÁGINA DESPUÉS DE 1.5 SEGUNDOS
+                setTimeout(() => {
+                    console.log('🔄 Recargando página para actualizar estado de la imagen...');
+                    window.location.reload();
+                }, 1500);
+                
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                this.showMessage('Error al guardar la imagen', 'error');
+                
+                // Restaurar botón en caso de error
+                cropButton.innerHTML = originalText;
+                cropButton.disabled = false;
+            });
+    }, 'image/jpeg', 0.9);
+}
 
     async saveImageToServer(blob, dataUrl) {
         // Crear FormData solo con la imagen

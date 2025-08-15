@@ -497,22 +497,19 @@ console.log('📊 Datos iniciales del interesado:', window.datosInteresado);
 
                         <div class="col-md-12">
                             <label for="modal_telefono" class="form-label">Teléfono</label>
-                            <input type="tel" class="form-control" id="modal_telefono" name="telefono"
-                                   value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}" required>
+                            <input type="tel" class="form-control" id="modal_telefono" name="telefono" value="{% if interesado.telefono %}{{ interesado.telefono }}{% endif %}">
                         </div>
 
                         <div class="col-md-12">
                             <label for="modal_fecha_nacimiento" class="form-label">Fecha de Nacimiento</label>
-                            <input type="date" class="form-control" id="modal_fecha_nacimiento" name="fecha_nacimiento"
-                                   min="1960-01-01" max="2017-12-31"
-                                   value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}" required>
+                            <input type="date" class="form-control" id="modal_fecha_nacimiento" name="fecha_nacimiento" value="{% if interesado.fecha_nacimiento %}{{ interesado.fecha_nacimiento|date:'Y-m-d' }}{% endif %}">
                         </div>
 
                         <!-- Información de ubicación -->
                         <div class="col-12">
                             <hr class="my-3">
                             <h6 class="text-primary mb-3">
-                                <i class="bi bi-geo-alt-fill"></i> Ubicación
+                                <i class="bi bi-geo-alt-fill"></i> Domicilio
                             </h6>
                         </div>
 
@@ -1791,21 +1788,46 @@ document.addEventListener('DOMContentLoaded', function() {
     const cropperModalEl = document.getElementById('cropperModal');
 
     if (cropperModalEl) {
+        let imagenFueActualizada = false;
         // Solo escuchar el evento de cerrado sin forzar recarga
-        cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
-            console.log('🔄 Modal de cropper cerrado - imagen actualizada automáticamente');
-
-            // Verificar que las imágenes se hayan actualizado
-            setTimeout(() => {
-                const profileImages = document.querySelectorAll('.profile-photo');
-                if (profileImages.length > 0) {
-                    console.log('✅ Imágenes de perfil actualizadas sin recarga');
-                } else {
-                    console.log('ℹ️ No hay imágenes de perfil para actualizar');
-                }
-            }, 500);
+// Detectar cuando se actualiza una imagen exitosamente
+        document.addEventListener('imagenActualizada', function(event) {
+            console.log('🎉 Imagen actualizada detectada');
+            imagenFueActualizada = true;
         });
-    }
+
+        // Al cerrar el modal, verificar si se actualizó imagen
+        cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
+            console.log('🔄 Modal de cropper cerrado');
+            
+            // ✅ SOLUCIÓN RÁPIDA: Si se actualizó imagen, recargar página
+            if (imagenFueActualizada) {
+                console.log('🔄 Imagen fue actualizada, recargando página en 2 segundos...');
+                
+                // Mostrar mensaje de confirmación
+                const alertDiv = document.createElement('div');
+                alertDiv.className = 'alert alert-success position-fixed';
+                alertDiv.style.cssText = `
+                    top: 20px; right: 20px; z-index: 9999; max-width: 400px;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                `;
+                alertDiv.innerHTML = `
+                    <i class="bi bi-check-circle me-2"></i>
+                    <strong>Imagen guardada exitosamente.</strong><br>
+                    <small>Actualizando página...</small>
+                `;
+                document.body.appendChild(alertDiv);
+
+                // Recargar después de 2 segundos
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+                
+                // Resetear flag
+                imagenFueActualizada = false;
+            }
+        });
+    }  
 
     // ✅ EVENT LISTENER ADICIONAL PARA CONFIRMACIÓN DE GUARDADO
     document.addEventListener('imagenActualizada', function(event) {
