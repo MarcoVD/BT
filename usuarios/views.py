@@ -60,7 +60,14 @@ from .models import (
     RequisitoVacante,
     Postulacion
 )
-
+# Importar utilidades de permisos
+from .utils import (
+    es_reclutador_admin,
+    puede_ver_todas_las_vacantes,
+    puede_editar_vacante,
+    filtrar_vacantes_por_permisos,
+    obtener_vacantes_editables
+)
 # Importaciones de formularios locales
 from .forms import (
     LoginForm,
@@ -2801,11 +2808,20 @@ class EditarVacanteView(View):
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
 
+        if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+            messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
+            return redirect('index')
+
         try:
-            vacante = Vacante.objects.get(
-                id=vacante_id,
-                reclutador=request.user.reclutador
-            )
+            # Verificar permisos: ReclutadorAdmin puede editar cualquier vacante
+            if es_reclutador_admin(request.user):
+                vacante = Vacante.objects.get(id=vacante_id)
+            else:
+                # Reclutador normal solo puede editar sus vacantes
+                vacante = Vacante.objects.get(
+                    id=vacante_id,
+                    reclutador=request.user.reclutador
+                )
         except Vacante.DoesNotExist:
             messages.error(request, 'Vacante no encontrada o no tienes permiso para editarla.')
             return redirect('mis_vacantes')
@@ -2832,11 +2848,20 @@ class EditarVacanteView(View):
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
 
+        if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+            messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
+            return redirect('index')
+
         try:
-            vacante = Vacante.objects.get(
-                id=vacante_id,
-                reclutador=request.user.reclutador
-            )
+            # Verificar permisos: ReclutadorAdmin puede editar cualquier vacante
+            if es_reclutador_admin(request.user):
+                vacante = Vacante.objects.get(id=vacante_id)
+            else:
+                # Reclutador normal solo puede editar sus vacantes
+                vacante = Vacante.objects.get(
+                    id=vacante_id,
+                    reclutador=request.user.reclutador
+                )
         except Vacante.DoesNotExist:
             messages.error(request, 'Vacante no encontrada o no tienes permiso para editarla.')
             return redirect('mis_vacantes')
@@ -3000,7 +3025,6 @@ class EditarVacanteView(View):
             'accion': 'editar'
         }
         return render(request, 'usuarios/publicar_vacante.html', context)
-
 @method_decorator(login_required, name='dispatch')
 class MisVacantesView(View):
     """Vista para listar las vacantes del reclutador con paginación."""
@@ -3010,28 +3034,34 @@ class MisVacantesView(View):
             messages.error(request, 'No tienes permiso para acceder a esta página.')
             return redirect('index')
 
-        # --- INICIO DE LA MODIFICACIÓN ---
+        if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+            messages.error(request, 'Tu cuenta de reclutador debe estar aprobada.')
+            return redirect('index')
 
-        # 1. Obtener la lista de vacantes como antes
-        vacantes_list = Vacante.objects.filter(
-            reclutador=request.user.reclutador
-        ).order_by('-fecha_actualizacion')
+        es_admin = es_reclutador_admin(request.user)
 
-        # 2. Crear un objeto Paginator con 5 vacantes por página
+        # Obtener vacantes según permisos
+        if es_admin:
+            # ReclutadorAdmin ve todas las vacantes
+            vacantes_list = Vacante.objects.all().order_by('-fecha_actualizacion')
+        else:
+            # Reclutador normal solo ve sus vacantes
+            vacantes_list = Vacante.objects.filter(
+                reclutador=request.user.reclutador
+            ).order_by('-fecha_actualizacion')
+
+        # Crear un objeto Paginator con 5 vacantes por página
         paginator = Paginator(vacantes_list, 5)
         page_number = request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
-        # 3. Actualizar el contexto para pasar el objeto de la página
         context = {
-            'vacantes': page_obj,  # page_obj es iterable y contiene solo las 5 vacantes de la página actual
-            'page_obj': page_obj  # Se pasa el objeto completo para los controles de paginación
+            'vacantes': page_obj,
+            'page_obj': page_obj,
+            'es_reclutador_admin': es_admin,
         }
 
-        # --- FIN DE LA MODIFICACIÓN ---
-
         return render(request, 'usuarios/mis_vacantes.html', context)
-
 def index_view(request):
     """Vista de la página de inicio con vacantes publicadas y paginación."""
 
@@ -3253,6 +3283,7 @@ def autoguardar_informacion_personal(request):
         })
 
 @method_decorator(login_required, name='dispatch')
+@method_decorator(login_required, name='dispatch')
 class DashboardReclutadorView(View):
     """Vista para dashboard del reclutador - ACTUALIZADA."""
 
@@ -3266,30 +3297,38 @@ class DashboardReclutadorView(View):
             return redirect('index')
 
         reclutador = request.user.reclutador
+        es_admin = es_reclutador_admin(request.user)
+
+        # Determinar las vacantes según permisos
+        if es_admin:
+            # ReclutadorAdmin ve todas las vacantes
+            vacantes_queryset = Vacante.objects.all()
+            # Para postulaciones, también ve todas
+            vacantes_para_postulaciones = Vacante.objects.filter(estado_vacante='publicada')
+        else:
+            # Reclutador normal solo ve sus vacantes
+            vacantes_queryset = reclutador.vacantes.all()
+            vacantes_para_postulaciones = reclutador.vacantes.filter(estado_vacante='publicada')
 
         # Calcular estadísticas de vacantes por estado
-        vacantes_activas = reclutador.vacantes.filter(estado_vacante='publicada').count()
-        vacantes_borradores = reclutador.vacantes.filter(estado_vacante='borrador').count()
-        vacantes_cerradas = reclutador.vacantes.filter(estado_vacante='cerrada').count()
-        total_vacantes = reclutador.vacantes.count()
+        vacantes_activas = vacantes_queryset.filter(estado_vacante='publicada').count()
+        vacantes_borradores = vacantes_queryset.filter(estado_vacante='borrador').count()
+        vacantes_cerradas = vacantes_queryset.filter(estado_vacante='cerrada').count()
+        total_vacantes = vacantes_queryset.count()
 
         # Obtener las últimas 3 vacantes para mostrar en el dashboard
-        # ✅ INCLUIR TODOS LOS ESTADOS para que aparezcan borradores también
-        ultimas_vacantes = reclutador.vacantes.all().order_by('-fecha_actualizacion')[:3]
+        ultimas_vacantes = vacantes_queryset.order_by('-fecha_actualizacion')[:3]
 
-        # Calcular estadísticas de postulaciones solo para vacantes publicadas
-        vacantes_publicadas = reclutador.vacantes.filter(estado_vacante='publicada')
-        
         # Total de postulaciones recibidas
         postulaciones_recibidas = Postulacion.objects.filter(
-            vacante__in=vacantes_publicadas
+            vacante__in=vacantes_para_postulaciones
         ).count()
 
         # Postulaciones nuevas (últimas 24 horas)
         from datetime import datetime, timedelta
         hace_24_horas = timezone.now() - timedelta(hours=24)
         postulaciones_nuevas = Postulacion.objects.filter(
-            vacante__in=vacantes_publicadas,
+            vacante__in=vacantes_para_postulaciones,
             fecha_postulacion__gte=hace_24_horas
         ).count()
 
@@ -3302,10 +3341,10 @@ class DashboardReclutadorView(View):
             'ultimas_vacantes': ultimas_vacantes,
             'postulaciones_recibidas': postulaciones_recibidas,
             'postulaciones_nuevas': postulaciones_nuevas,
+            'es_reclutador_admin': es_admin,
         }
 
         return render(request, 'usuarios/dashboard_reclutador.html', context)
-
 
 # usuarios/views.py - REEMPLAZAR la función detalle_vacante_view existente
 
@@ -3691,12 +3730,16 @@ def cerrar_vacante_ajax(request, vacante_id):
         }, status=403)
 
     try:
-        # Obtener la vacante que pertenece al reclutador
-        vacante = get_object_or_404(
-            Vacante,
-            id=vacante_id,
-            reclutador=request.user.reclutador
-        )
+        # Verificar permisos: ReclutadorAdmin puede cerrar cualquier vacante
+        if es_reclutador_admin(request.user):
+            vacante = get_object_or_404(Vacante, id=vacante_id)
+        else:
+            # Reclutador normal solo puede cerrar sus vacantes
+            vacante = get_object_or_404(
+                Vacante,
+                id=vacante_id,
+                reclutador=request.user.reclutador
+            )
 
         # Verificar que la vacante esté en estado 'publicada'
         if vacante.estado_vacante != 'publicada':
@@ -3732,7 +3775,6 @@ def cerrar_vacante_ajax(request, vacante_id):
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
 
-
 @login_required
 @require_POST
 @csrf_protect
@@ -3756,12 +3798,16 @@ def reabrir_vacante_ajax(request, vacante_id):
         }, status=403)
 
     try:
-        # Obtener la vacante que pertenece al reclutador
-        vacante = get_object_or_404(
-            Vacante,
-            id=vacante_id,
-            reclutador=request.user.reclutador
-        )
+        # Verificar permisos: ReclutadorAdmin puede reabrir cualquier vacante
+        if es_reclutador_admin(request.user):
+            vacante = get_object_or_404(Vacante, id=vacante_id)
+        else:
+            # Reclutador normal solo puede reabrir sus vacantes
+            vacante = get_object_or_404(
+                Vacante,
+                id=vacante_id,
+                reclutador=request.user.reclutador
+            )
 
         # Verificar que la vacante esté en estado 'cerrada'
         if vacante.estado_vacante != 'cerrada':
@@ -3858,12 +3904,16 @@ def eliminar_borrador_ajax(request, vacante_id):
         }, status=403)
 
     try:
-        # Obtener la vacante que pertenece al reclutador
-        vacante = get_object_or_404(
-            Vacante,
-            id=vacante_id,
-            reclutador=request.user.reclutador
-        )
+        # Verificar permisos: ReclutadorAdmin puede eliminar cualquier borrador
+        if es_reclutador_admin(request.user):
+            vacante = get_object_or_404(Vacante, id=vacante_id)
+        else:
+            # Reclutador normal solo puede eliminar sus borradores
+            vacante = get_object_or_404(
+                Vacante,
+                id=vacante_id,
+                reclutador=request.user.reclutador
+            )
 
         # Verificar que la vacante esté en estado 'borrador'
         if vacante.estado_vacante != 'borrador':
@@ -3901,7 +3951,6 @@ def eliminar_borrador_ajax(request, vacante_id):
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
 
-
 @login_required
 def obtener_estado_vacante_ajax(request, vacante_id):
     """
@@ -3916,12 +3965,16 @@ def obtener_estado_vacante_ajax(request, vacante_id):
         }, status=403)
 
     try:
-        # Obtener la vacante que pertenece al reclutador
-        vacante = get_object_or_404(
-            Vacante,
-            id=vacante_id,
-            reclutador=request.user.reclutador
-        )
+        # Verificar permisos: ReclutadorAdmin puede consultar cualquier vacante
+        if es_reclutador_admin(request.user):
+            vacante = get_object_or_404(Vacante, id=vacante_id)
+        else:
+            # Reclutador normal solo puede consultar sus vacantes
+            vacante = get_object_or_404(
+                Vacante,
+                id=vacante_id,
+                reclutador=request.user.reclutador
+            )
 
         # Calcular estadísticas
         postulaciones_actuales = vacante.postulaciones.count()
@@ -3973,12 +4026,19 @@ class VerPostulantesView(View):
             return redirect('dashboard_reclutador')
 
         try:
-            # Obtener la vacante y verificar que pertenezca al reclutador
-            vacante = get_object_or_404(
-                Vacante.objects.select_related('secretaria', 'categoria'),
-                id=vacante_id,
-                reclutador=request.user.reclutador
-            )
+            # Verificar permisos: ReclutadorAdmin puede ver cualquier vacante
+            if es_reclutador_admin(request.user):
+                vacante = get_object_or_404(
+                    Vacante.objects.select_related('secretaria', 'categoria'),
+                    id=vacante_id
+                )
+            else:
+                # Reclutador normal solo puede ver sus vacantes
+                vacante = get_object_or_404(
+                    Vacante.objects.select_related('secretaria', 'categoria'),
+                    id=vacante_id,
+                    reclutador=request.user.reclutador
+                )
         except Vacante.DoesNotExist:
             messages.error(request, 'Vacante no encontrada o no tienes permiso para verla.')
             return redirect('mis_vacantes')
@@ -4030,8 +4090,8 @@ class VerPostulantesView(View):
             'enviadas': estado_counts.get('enviada', 0),
             'preseleccionados': estado_counts.get('preseleccionado', 0),
         }
+
 @login_required
-@csrf_exempt
 def cambiar_estado_postulacion(request, postulacion_id):
     """
     Vista AJAX para cambiar el estado de una postulación.
@@ -4106,6 +4166,7 @@ def cambiar_estado_postulacion(request, postulacion_id):
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
         }, status=500)
+        
 @login_required
 def ver_perfil_candidato(request, interesado_id):
     """
@@ -4181,9 +4242,6 @@ def ver_perfil_candidato(request, interesado_id):
         return redirect('dashboard_reclutador')
 
 
-# Agregar estas vistas al archivo usuarios/views.py
-
-
 def buscar_vacantes(request):
     """Vista para buscar vacantes con filtros y paginación."""
 
@@ -4234,7 +4292,6 @@ def buscar_vacantes(request):
 
     return render(request, 'usuarios/index.html', context)
 
-
 @require_http_methods(["GET"])
 def busqueda_vacantes_ajax(request):
     """Vista AJAX para búsqueda en tiempo real."""
@@ -4248,7 +4305,9 @@ def busqueda_vacantes_ajax(request):
     if busqueda:
         vacantes = vacantes.filter(
             Q(titulo__icontains=busqueda) |
-            Q(municipio__icontains=busqueda)
+            Q(municipio__icontains=busqueda)|
+            Q(categoria__nombre__icontains=busqueda) |
+            Q(secretaria__nombre__icontains=busqueda)
         )
 
     vacantes = vacantes.order_by('-fecha_publicacion')[:12]
