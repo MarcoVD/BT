@@ -10,10 +10,12 @@ load_dotenv(os.path.join(BASE_DIR,'.env.production'))
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-!8==@fr40w4j1g=0(i!rn!qwtxp2lewg5$lwjr-gsz#069kfrg')
+SECRET_KEY = os.getenv('SECRET_KEY')
+if not SECRET_KEY:
+    raise ValueError('SECRET_KEY environment variable is required')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.getenv('DEBUG', 'True').lower() == 'true'
+DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
 
 #  ALLOWED_HOSTS CORREGIDO PARA PRODUCCIÓN
 if DEBUG:
@@ -24,7 +26,7 @@ else:
         f"www.{os.getenv('DOMAIN', 'localhost')}",
     	'bolsadetrabajo.movimex.gob.mx',
         'www.bolsadetrabajo.movimex.gob.mx',
-	'127.0.0.1',
+	    '127.0.0.1',
         'localhost',
         '10.10.90.112',
     ] 
@@ -55,6 +57,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',  # <- añadir aquí
 ] 
 
 #  CONFIGURACIÓN DE SEGURIDAD PARA PRODUCCIÓN
@@ -72,6 +75,12 @@ if not DEBUG:
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
     X_FRAME_OPTIONS = 'DENY'
+    SECURE_REFERRER_POLICY = 'strict-origin-when-cross-origin'
+    PERMISSIONS_POLICY = {
+        'geolocation': [],
+        'microphone': [],
+        'camera': [],
+    }
 
     # Cookie Security
     SESSION_COOKIE_SECURE = True
@@ -79,7 +88,7 @@ if not DEBUG:
     SESSION_COOKIE_SAMESITE = 'Strict' 
     CSRF_COOKIE_SECURE = True
     CSRF_COOKIE_HTTPONLY = True
-    CSRF_COOKIE_SAMESITE = 'Lax'  # 'Lax' para permitir CSRF en enlaces seguros
+    CSRF_COOKIE_SAMESITE = 'Strict'
 
 # Configuración personalizada para timeout de sesión
 SESSION_TIMEOUT_SETTINGS = {
@@ -118,11 +127,11 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'bolsa_trabajo',
-            'USER': 'bolsa_admin',
-            'PASSWORD':'//BT29042025&&',
-            'HOST': 'localhost',
-            'PORT': '5432',
+            'NAME': os.getenv('DEV_DB_NAME', 'bolsa_trabajo'),
+            'USER': os.getenv('DEV_DB_USER', 'bolsa_admin'),
+            'PASSWORD': os.getenv('DEV_DB_PASSWORD'),
+            'HOST': os.getenv('DEV_DB_HOST', 'localhost'),
+            'PORT': os.getenv('DEV_DB_PORT', '5432'),
         }
     }
 else:
@@ -207,9 +216,9 @@ else:
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'marcovazquezdelgado.movilidad@gmail.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'jufg zcao sdzs hsof')
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Bolsa de Trabajo <marcovazquezdelgado.movilidad@gmail.com>')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'Bolsa de Trabajo <noreply@bolsadetrabajo.movimex.gob.mx>')
 
 SITE_ID = 1
 
