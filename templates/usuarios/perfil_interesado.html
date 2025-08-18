@@ -352,6 +352,34 @@
 <!-- EN EL TEMPLATE perfil_interesado.html - AGREGAR al inicio de los scripts -->
 
 <script>
+// ✅ CONFIGURACIÓN DE ENTORNO PARA DEBUGGING
+window.DEBUG_MODE = {% if debug %}true{% else %}false{% endif %};
+
+// ✅ FUNCIONES HELPER PARA LOGGING CONDICIONAL
+window.logError = function(message, ...args) {
+    if (window.DEBUG_MODE) {
+        console.error(message, ...args);
+    }
+};
+
+window.logWarn = function(message, ...args) {
+    if (window.DEBUG_MODE) {
+        console.warn(message, ...args);
+    }
+};
+
+window.logInfo = function(message, ...args) {
+    if (window.DEBUG_MODE) {
+        console.info(message, ...args);
+    }
+};
+
+window.logDebug = function(message, ...args) {
+    if (window.DEBUG_MODE) {
+        console.log(message, ...args);
+    }
+};
+
 // ✅ CREAR VARIABLES JAVASCRIPT CON DATOS ACTUALES DEL INTERESADO
 window.datosInteresado = {
     nombre: '{{ interesado.nombre|default:"" }}',
@@ -1094,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    logError('Error:', error);
                     alert('Error al guardar la experiencia');
                 });
         }
@@ -1176,7 +1204,7 @@ function eliminarExperiencia(id) {
         }
     })
     .catch(error => {
-        console.error('💥 Error:', error);
+        logError('💥 Error:', error);
 
         // Restaurar elemento
         if (experienciaElement) {
@@ -1224,7 +1252,7 @@ function eliminarExperiencia(id) {
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    logError('Error:', error);
                     alert('Error al guardar la educación');
                 });
         }
@@ -1308,7 +1336,7 @@ function eliminarEducacion(id) {
             mostrarFeedback(data.message || 'Educación eliminada exitosamente', 'success');
 
         } else {
-            console.error('❌ Error del servidor:', data.error);
+            logError('❌ Error del servidor:', data.error);
 
             // Restaurar elemento en caso de error
             if (educacionElement) {
@@ -1325,7 +1353,7 @@ function eliminarEducacion(id) {
         }
     })
     .catch(error => {
-        console.error('💥 Error en la petición:', error);
+        logError('💥 Error en la petición:', error);
 
         // Restaurar elemento en caso de error
         if (educacionElement) {
@@ -1371,7 +1399,7 @@ function eliminarEducacion(id) {
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    logError('Error:', error);
                     alert('Error al guardar la habilidad');
                 });
         }
@@ -1447,7 +1475,7 @@ function eliminarHabilidad(id) {
         }
     })
     .catch(error => {
-        console.error('💥 Error:', error);
+        logError('💥 Error:', error);
 
         // Restaurar elemento
         if (habilidadElement) {
@@ -1488,7 +1516,7 @@ function eliminarHabilidad(id) {
                     }
                 })
                 .catch(error => {
-                    console.error('Error:', error);
+                    logError('Error:', error);
                     alert('Error al guardar el idioma');
                 });
         }
@@ -1559,7 +1587,7 @@ function eliminarIdioma(id) {
         }
     })
     .catch(error => {
-        console.error('💥 Error:', error);
+        logError('💥 Error:', error);
 
         // Restaurar elemento
         if (idiomaElement) {
@@ -1841,7 +1869,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ VERIFICAR QUE TODAS LAS VARIABLES ESTÉN DISPONIBLES
     if (!window.datosInteresado) {
-        console.error('❌ ERROR CRÍTICO: window.datosInteresado no está definido');
+        logError('❌ ERROR CRÍTICO: window.datosInteresado no está definido');
 
         // Intentar recrear las variables desde el DOM si es posible
 
@@ -1876,7 +1904,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     if (elementosFaltantes.length > 0) {
-        console.error('❌ Elementos críticos faltantes:', elementosFaltantes);
+        logError('❌ Elementos críticos faltantes:', elementosFaltantes);
     } else {
     }
 
@@ -1913,7 +1941,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (typeof verificarEstadoBotonGuardarCV === 'function') {
             verificarEstadoBotonGuardarCV();
         } else {
-            console.error('❌ Función verificarEstadoBotonGuardarCV no está disponible');
+            logError('❌ Función verificarEstadoBotonGuardarCV no está disponible');
         }
     }, 2000); // 2 segundos para asegurar que todo esté cargado
 
@@ -1972,7 +2000,7 @@ window.verificarCV = function() {
     if (typeof verificarEstadoBotonGuardarCV === 'function') {
         verificarEstadoBotonGuardarCV();
     } else {
-        console.error('❌ Función no disponible');
+        logError('❌ Función no disponible');
     }
 };
 </script>
