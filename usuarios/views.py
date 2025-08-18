@@ -2489,15 +2489,18 @@ def descargar_cv_pdf_reclutador(request):
         # Obtener el interesado
         interesado = get_object_or_404(Interesado, id=interesado_id)
 
-        # Verificar permisos
-        tiene_permiso = Postulacion.objects.filter(
-            interesado=interesado,
-            vacante__reclutador=request.user.reclutador
-        ).exists()
+        # Verificar permisos según el tipo de reclutador
+        if not puede_ver_todas_las_vacantes(request.user):
+            # Reclutador normal: verificar que el candidato se haya postulado a alguna de sus vacantes
+            tiene_permiso = Postulacion.objects.filter(
+                interesado=interesado,
+                vacante__reclutador=request.user.reclutador
+            ).exists()
 
-        if not tiene_permiso:
-            messages.error(request, 'No tienes permiso para descargar este CV.')
-            return redirect('mis_vacantes')
+            if not tiene_permiso:
+                messages.error(request, 'No tienes permiso para descargar este CV.')
+                return redirect('mis_vacantes')
+        # Los reclutadores admin pueden descargar cualquier CV
 
         # Verificar que tenga CV
         if not hasattr(interesado, 'curriculum'):
@@ -4057,6 +4060,8 @@ class VerPostulantesView(View):
 def cambiar_estado_postulacion(request, postulacion_id):
     """
     Vista AJAX para cambiar el estado de una postulación.
+    Permite a reclutadores cambiar el estado de postulaciones de sus vacantes.
+    Los reclutadores admin pueden cambiar el estado de cualquier postulación.
     """
     if request.method != 'POST':
         return JsonResponse({
@@ -4069,6 +4074,13 @@ def cambiar_estado_postulacion(request, postulacion_id):
         return JsonResponse({
             'success': False,
             'error': 'No tienes permisos para esta acción'
+        }, status=403)
+
+    # Verificar que el reclutador esté aprobado
+    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+        return JsonResponse({
+            'success': False,
+            'error': 'Tu cuenta de reclutador debe estar aprobada'
         }, status=403)
 
     try:
@@ -4084,12 +4096,20 @@ def cambiar_estado_postulacion(request, postulacion_id):
                 'error': 'Estado no válido'
             }, status=400)
 
-        # Obtener la postulación y verificar que pertenezca a una vacante del reclutador
-        postulacion = get_object_or_404(
-            Postulacion.objects.select_related('vacante', 'interesado'),
-            id=postulacion_id,
-            vacante__reclutador=request.user.reclutador
-        )
+        # Verificar permisos: reclutador admin puede ver todas, otros solo las suyas
+        if puede_ver_todas_las_vacantes(request.user):
+            # Reclutador admin: puede modificar cualquier postulación
+            postulacion = get_object_or_404(
+                Postulacion.objects.select_related('vacante', 'interesado'),
+                id=postulacion_id
+            )
+        else:
+            # Reclutador normal: solo postulaciones de sus vacantes
+            postulacion = get_object_or_404(
+                Postulacion.objects.select_related('vacante', 'interesado'),
+                id=postulacion_id,
+                vacante__reclutador=request.user.reclutador
+            )
 
         # Guardar el estado anterior para logging
         estado_anterior = postulacion.estado
@@ -4133,7 +4153,8 @@ def cambiar_estado_postulacion(request, postulacion_id):
 def ver_perfil_candidato(request, interesado_id):
     """
     Vista para que los reclutadores vean el perfil completo de un candidato.
-    Solo puede acceder si el candidato se ha postulado a alguna de sus vacantes.
+    Los reclutadores normales solo pueden ver candidatos que se han postulado a sus vacantes.
+    Los reclutadores admin pueden ver cualquier perfil de candidato.
     """
 
     # Verificar que sea un reclutador
@@ -4153,15 +4174,18 @@ def ver_perfil_candidato(request, interesado_id):
             id=interesado_id
         )
 
-        # Verificar que el candidato se haya postulado a alguna vacante del reclutador
-        tiene_postulacion = Postulacion.objects.filter(
-            interesado=interesado,
-            vacante__reclutador=request.user.reclutador
-        ).exists()
+        # Verificar permisos según el tipo de reclutador
+        if not puede_ver_todas_las_vacantes(request.user):
+            # Reclutador normal: verificar que el candidato se haya postulado a alguna de sus vacantes
+            tiene_postulacion = Postulacion.objects.filter(
+                interesado=interesado,
+                vacante__reclutador=request.user.reclutador
+            ).exists()
 
-        if not tiene_postulacion:
-            messages.error(request, 'No tienes permiso para ver este perfil.')
-            return redirect('dashboard_reclutador')
+            if not tiene_postulacion:
+                messages.error(request, 'No tienes permiso para ver este perfil.')
+                return redirect('dashboard_reclutador')
+        # Los reclutadores admin pueden ver cualquier perfil, no necesitan verificación adicional
 
         # Obtener o crear curriculum
         curriculum = None
