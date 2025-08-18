@@ -520,7 +520,6 @@ function cambiarEstadoPostulacion(postulacionId, nuevoEstado, nombreCandidato) {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Respuesta del servidor:', data); // Debug
 
         if (data.success) {
             mostrarMensaje(`Estado de ${nombreCandidato} actualizado a "${data.estado_display}"`, 'success');
@@ -528,7 +527,6 @@ function cambiarEstadoPostulacion(postulacionId, nuevoEstado, nombreCandidato) {
             // ACTUALIZAR EL ATRIBUTO DATA-ESTADO EN EL HTML
             const applicantCard = document.querySelector(`.applicant-card[data-postulacion-id="${postulacionId}"]`);
             if (applicantCard) {
-                console.log(`Actualizando estado de ${data.nuevo_estado} para postulación ${postulacionId}`); // Debug
                 applicantCard.setAttribute('data-estado', data.nuevo_estado);
 
                 // También actualizar visualmente cualquier badge de estado si existe

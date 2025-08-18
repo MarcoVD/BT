@@ -315,8 +315,6 @@ function retirarPostulacion(postulacionId) {
     // Obtener CSRF token
     const csrfToken = getCookie('csrftoken');
 
-    console.log('Enviando petición para retirar postulación:', postulacionId);
-    console.log('CSRF Token:', csrfToken);
 
     fetch(`/retirar-postulacion/${postulacionId}/`, {
         method: 'POST',
@@ -328,8 +326,6 @@ function retirarPostulacion(postulacionId) {
         credentials: 'same-origin'
     })
     .then(response => {
-        console.log('Response status:', response.status);
-        console.log('Response headers:', response.headers);
 
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
@@ -338,7 +334,6 @@ function retirarPostulacion(postulacionId) {
         return response.json();
     })
     .then(data => {
-        console.log('Response data:', data);
 
         if (data.success) {
             // Mostrar mensaje de éxito

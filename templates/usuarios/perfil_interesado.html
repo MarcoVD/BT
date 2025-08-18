@@ -225,7 +225,6 @@
     <script>
     // ✅ SCRIPT PARA PREVENIR PROBLEMAS CON EL MODAL Y FORMULARIOS
     document.addEventListener('DOMContentLoaded', function() {
-        console.log('🛡️ Configurando prevención de conflictos...');
 
         // ✅ PREVENIR FORM SUBMISSIONS DEL INPUT FILE HIDDEN
         const hiddenFileInput = document.getElementById('foto_perfil');
@@ -233,13 +232,11 @@
             // Asegurar que no esté dentro de un form que se pueda enviar
             const form = hiddenFileInput.closest('form');
             if (form) {
-                console.log('⚠️ Input file está dentro de un form, previniendo submission');
                 form.addEventListener('submit', function(e) {
                     // Solo prevenir si es el input file el que disparó el evento
                     if (e.submitter === hiddenFileInput) {
                         e.preventDefault();
                         e.stopPropagation();
-                        console.log('🚫 Form submission prevenido desde input file');
                     }
                 });
             }
@@ -247,7 +244,6 @@
             // ✅ LIMPIAR EVENT LISTENERS DUPLICADOS DEL INPUT FILE
             const newFileInput = hiddenFileInput.cloneNode(true);
             hiddenFileInput.parentNode.replaceChild(newFileInput, hiddenFileInput);
-            console.log('🔄 Input file reinicializado para prevenir listeners duplicados');
         }
 
         // ✅ PREVENIR CLICKS ACCIDENTALES EN ELEMENTOS QUE PUEDAN CAUSAR PETICIONES
@@ -258,7 +254,6 @@
                 if (clicked) {
                     e.preventDefault();
                     e.stopPropagation();
-                    console.log('🚫 Click duplicado prevenido');
                     return false;
                 }
                 clicked = true;
@@ -283,7 +278,6 @@
                 const requestKey = url + JSON.stringify(options);
 
                 if (lastRequest === requestKey && (currentTime - lastRequestTime) < 2000) {
-                    console.log('🚫 Petición AJAX duplicada prevenida:', url);
                     return Promise.resolve(new Response('{"success": true, "message": "Petición duplicada ignorada"}', {
                         status: 200,
                         headers: { 'Content-Type': 'application/json' }
@@ -302,7 +296,6 @@
         if (modal) {
             // Limpiar cualquier estado anterior del modal
             modal.addEventListener('hidden.bs.modal', function() {
-                console.log('🧹 Modal cerrado, limpiando estado...');
 
                 // Remover backdrop si queda residual
                 const backdrops = document.querySelectorAll('.modal-backdrop');
@@ -337,18 +330,10 @@
             }, 100);
         }
 
-        console.log('✅ Configuración de prevención de conflictos completada');
     });
 
     // ✅ FUNCIÓN GLOBAL PARA DEBUGGING
     window.debugCropperState = function() {
-        console.log('🔍 Estado del Cropper:');
-        console.log('- Modal element:', document.getElementById('cropperModal'));
-        console.log('- Modal instance:', bootstrap.Modal.getInstance(document.getElementById('cropperModal')));
-        console.log('- Backdrops:', document.querySelectorAll('.modal-backdrop'));
-        console.log('- Body classes:', document.body.className);
-        console.log('- Body style:', document.body.style.cssText);
-        console.log('- ImageCropper instance:', window.imageCropper);
     };
     </script>
 
@@ -379,7 +364,6 @@ window.datosInteresado = {
     tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
 };
 
-console.log('📊 Datos iniciales del interesado:', window.datosInteresado);
 </script>
     <div class="container-fluid px-2 px-sm-3">
         <div class="row g-3 g-lg-4">
@@ -1034,19 +1018,14 @@ console.log('📊 Datos iniciales del interesado:', window.datosInteresado);
 <!-- SCRIPT ADICIONAL PARA DEBUG -->
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('Página cargada, verificando estado inicial del botón...');
 
     // Verificar elementos clave
     const btnDescarga = document.getElementById('btnDescargarCV');
     const fotoProfile = document.querySelector('.profile-photo');
     const fotoPlaceholder = document.querySelector('.profile-photo-placeholder');
 
-    console.log('Botón descarga encontrado:', !!btnDescarga);
-    console.log('Foto profile encontrada:', !!fotoProfile);
-    console.log('Foto placeholder encontrada:', !!fotoPlaceholder);
 
     if (fotoProfile) {
-        console.log('URL de foto:', fotoProfile.src);
     }
 
     // Verificar otros elementos
@@ -1055,10 +1034,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const habilidades = document.querySelectorAll('#habilidadesContainer .badge');
     const idiomas = document.querySelectorAll('#idiomasContainer .idioma-item');
 
-    console.log('Experiencias:', experiencias.length);
-    console.log('Educaciones:', educaciones.length);
-    console.log('Habilidades:', habilidades.length);
-    console.log('Idiomas:', idiomas.length);
 });
 </script>
 <script>
@@ -1129,7 +1104,6 @@ function eliminarExperiencia(id) {
         return;
     }
 
-    console.log('🗑️ Eliminando experiencia ID:', id);
 
     // Mostrar indicador de carga
     const experienciaElement = document.querySelector(`.experiencia-item[data-id="${id}"]`);
@@ -1163,7 +1137,6 @@ function eliminarExperiencia(id) {
 
                 setTimeout(() => {
                     experienciaElement.remove();
-                    console.log('✅ Elemento de experiencia eliminado del DOM');
 
                     // Verificar si quedan experiencias
                     const experienciasRestantes = document.querySelectorAll('#experienciaContainer .experiencia-item');
@@ -1271,7 +1244,6 @@ function eliminarEducacion(id) {
         return;
     }
 
-    console.log('🗑️ Eliminando educación ID:', id);
 
     // Mostrar indicador de carga en el elemento
     const educacionElement = document.querySelector(`.educacion-item[data-id="${id}"]`);
@@ -1296,11 +1268,9 @@ function eliminarEducacion(id) {
         }
     })
     .then(response => {
-        console.log('📡 Respuesta recibida:', response.status);
         return response.json();
     })
     .then(data => {
-        console.log('📄 Datos recibidos:', data);
 
         if (data.success) {
             // ✅ ELIMINAR ELEMENTO DEL DOM DINÁMICAMENTE
@@ -1312,7 +1282,6 @@ function eliminarEducacion(id) {
 
                 setTimeout(() => {
                     educacionElement.remove();
-                    console.log('✅ Elemento de educación eliminado del DOM');
 
                     // ✅ VERIFICAR SI QUEDA ALGUNA EDUCACIÓN
                     const educacionesRestantes = document.querySelectorAll('#educacionContainer .educacion-item');
@@ -1328,7 +1297,6 @@ function eliminarEducacion(id) {
                     // ✅ VERIFICAR ESTADO DEL BOTÓN DESPUÉS DE ELIMINAR
                     setTimeout(() => {
                         if (typeof verificarEstadoBotonGuardarCV === 'function') {
-                            console.log('🔄 Verificando estado del botón después de eliminar educación...');
                             verificarEstadoBotonGuardarCV();
                         }
                     }, 300);
@@ -1413,7 +1381,6 @@ function eliminarHabilidad(id) {
         return;
     }
 
-    console.log('🗑️ Eliminando habilidad ID:', id);
 
     // Encontrar el badge de la habilidad
     const habilidadElement = document.querySelector(`#habilidadesContainer .badge[data-id="${id}"]`);
@@ -1441,7 +1408,6 @@ function eliminarHabilidad(id) {
 
                 setTimeout(() => {
                     habilidadElement.remove();
-                    console.log('✅ Elemento de habilidad eliminado del DOM');
 
                     // Verificar si quedan habilidades
                     const habilidadesRestantes = document.querySelectorAll('#habilidadesContainer .badge');
@@ -1532,7 +1498,6 @@ function eliminarIdioma(id) {
         return;
     }
 
-    console.log('🗑️ Eliminando idioma ID:', id);
 
     // Mostrar indicador de carga
     const idiomaElement = document.querySelector(`.idioma-item[data-id="${id}"]`);
@@ -1560,7 +1525,6 @@ function eliminarIdioma(id) {
 
                 setTimeout(() => {
                     idiomaElement.remove();
-                    console.log('✅ Elemento de idioma eliminado del DOM');
 
                     // Verificar si quedan idiomas
                     const idiomasRestantes = document.querySelectorAll('#idiomasContainer .idioma-item');
@@ -1792,17 +1756,14 @@ document.addEventListener('DOMContentLoaded', function() {
         // Solo escuchar el evento de cerrado sin forzar recarga
 // Detectar cuando se actualiza una imagen exitosamente
         document.addEventListener('imagenActualizada', function(event) {
-            console.log('🎉 Imagen actualizada detectada');
             imagenFueActualizada = true;
         });
 
         // Al cerrar el modal, verificar si se actualizó imagen
         cropperModalEl.addEventListener('hidden.bs.modal', function (event) {
-            console.log('🔄 Modal de cropper cerrado');
             
             // ✅ SOLUCIÓN RÁPIDA: Si se actualizó imagen, recargar página
             if (imagenFueActualizada) {
-                console.log('🔄 Imagen fue actualizada, recargando página en 2 segundos...');
                 
                 // Mostrar mensaje de confirmación
                 const alertDiv = document.createElement('div');
@@ -1831,12 +1792,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ EVENT LISTENER ADICIONAL PARA CONFIRMACIÓN DE GUARDADO
     document.addEventListener('imagenActualizada', function(event) {
-        console.log('🎉 Evento: imagen actualizada exitosamente');
-        console.log('📷 Nueva imagen URL:', event.detail?.imageUrl || 'No disponible');
 
         // Opcional: Mostrar confirmación adicional
         if (event.detail?.imageUrl) {
-            console.log('✅ Imagen guardada y actualizada correctamente');
         }
     });
 });
@@ -1880,14 +1838,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <script>
 // ✅ SCRIPT ADICIONAL PARA GARANTIZAR FUNCIONAMIENTO CORRECTO
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Script adicional cargado');
 
     // ✅ VERIFICAR QUE TODAS LAS VARIABLES ESTÉN DISPONIBLES
     if (!window.datosInteresado) {
         console.error('❌ ERROR CRÍTICO: window.datosInteresado no está definido');
 
         // Intentar recrear las variables desde el DOM si es posible
-        console.log('🔄 Intentando recrear variables desde el DOM...');
 
         window.datosInteresado = {
             nombre: '{{ interesado.nombre|default:"" }}',
@@ -1900,7 +1856,6 @@ document.addEventListener('DOMContentLoaded', function() {
             tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
         };
 
-        console.log('✅ Variables recreadas:', window.datosInteresado);
     }
 
     // ✅ VERIFICACIÓN ADICIONAL DE ELEMENTOS CRÍTICOS
@@ -1923,7 +1878,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if (elementosFaltantes.length > 0) {
         console.error('❌ Elementos críticos faltantes:', elementosFaltantes);
     } else {
-        console.log('✅ Todos los elementos críticos están presentes');
     }
 
     // ✅ CONFIGURAR OBSERVADORES PARA CAMBIOS DINÁMICOS
@@ -1934,7 +1888,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 // Si se modificaron las secciones de CV, re-verificar
                 if (['experienciaContainer', 'educacionContainer', 'habilidadesContainer', 'idiomasContainer'].includes(targetId)) {
-                    console.log(`🔄 Cambios detectados en ${targetId}, re-verificando...`);
 
                     setTimeout(() => {
                         if (typeof verificarEstadoBotonGuardarCV === 'function') {
@@ -1956,7 +1909,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ EJECUTAR VERIFICACIÓN INICIAL DESPUÉS DE UN DELAY MÁS LARGO
     setTimeout(() => {
-        console.log('⏰ Ejecutando verificación inicial tardía...');
 
         if (typeof verificarEstadoBotonGuardarCV === 'function') {
             verificarEstadoBotonGuardarCV();
@@ -1968,7 +1920,6 @@ document.addEventListener('DOMContentLoaded', function() {
     // ✅ CONFIGURAR VERIFICACIÓN PERIÓDICA (OPCIONAL - PARA DEBUG)
     if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
         setInterval(() => {
-            console.log('🔄 Verificación periódica de debug...');
             if (typeof verificarEstadoBotonGuardarCV === 'function') {
                 verificarEstadoBotonGuardarCV();
             }
@@ -1977,7 +1928,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // ✅ MANEJAR RECARGAS DESPUÉS DE CAMBIOS AJAX
     window.addEventListener('beforeunload', function() {
-        console.log('📄 Página se está recargando...');
     });
 
     // ✅ EVENT LISTENER PARA EL BOTÓN DE DESCARGA (PREVENIR CLICKS CUANDO ESTÁ DESHABILITADO)
@@ -1988,7 +1938,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
                 e.stopPropagation();
 
-                console.log('🚫 Click en botón deshabilitado prevenido');
 
                 // Mostrar mensaje de campos faltantes
                 if (typeof validarFormularioCompleto === 'function') {
@@ -2006,15 +1955,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // ✅ FUNCIÓN HELPER PARA DEBUGGING
 window.debugCV = function() {
-    console.log('🔍 DEBUG DE CV:');
-    console.log('📊 Datos del interesado:', window.datosInteresado);
 
     if (typeof validarFormularioCompleto === 'function') {
         const validacion = validarFormularioCompleto();
-        console.log('✅ Estado de validación:', validacion);
     }
 
-    console.log('🔘 Estado del botón:', {
         elemento: document.getElementById('btnDescargarCV'),
         disabled: document.getElementById('btnDescargarCV')?.disabled,
         classes: document.getElementById('btnDescargarCV')?.className,
@@ -2026,7 +1971,6 @@ window.debugCV = function() {
 window.verificarCV = function() {
     if (typeof verificarEstadoBotonGuardarCV === 'function') {
         verificarEstadoBotonGuardarCV();
-        console.log('✅ Verificación manual ejecutada');
     } else {
         console.error('❌ Función no disponible');
     }

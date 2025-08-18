@@ -859,7 +859,6 @@ async function realizarPeticionAjax(accion, vacanteId) {
         throw new Error(`URL no encontrada para acción: ${accion}`);
     }
 
-    console.log(`🚀 Enviando petición ${accion} para vacante ${vacanteId} a: ${url}`);
 
     try {
         const response = await fetch(url, {
@@ -872,7 +871,6 @@ async function realizarPeticionAjax(accion, vacanteId) {
             credentials: 'same-origin'
         });
 
-        console.log(`📡 Respuesta recibida: Status ${response.status}`);
 
         if (!response.ok) {
             const errorText = await response.text();
@@ -881,7 +879,6 @@ async function realizarPeticionAjax(accion, vacanteId) {
         }
 
         const result = await response.json();
-        console.log(`✅ Respuesta JSON:`, result);
 
         return result;
 
@@ -953,7 +950,6 @@ function getCookie(name) {
 
 // ✅ INICIALIZACIÓN MEJORADA AL CARGAR LA PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('✅ Sistema de gestión de vacantes cargado (versión sin conflictos)');
 
     // ✅ LIMPIAR CUALQUIER ESTADO PREVIO
     window.procesandoAccion = false;
