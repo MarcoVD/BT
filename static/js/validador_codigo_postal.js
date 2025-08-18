@@ -9,7 +9,6 @@ class ValidadorCodigoPostal {
     }
 
     inicializar() {
-        console.log('🚀 ValidadorCodigoPostal inicializado');
 
         // Buscar el campo de código postal
         this.campoCodigoPostal = document.getElementById('codigo_postal');
@@ -80,11 +79,9 @@ class ValidadorCodigoPostal {
         // Esperar un momento para que el DOM esté completamente cargado
         setTimeout(() => {
             const cpExistente = this.campoCodigoPostal?.value?.trim();
-            console.log('🔍 Verificando CP existente:', cpExistente);
 
             // Si hay un CP de 5 dígitos, validarlo automáticamente
             if (cpExistente && cpExistente.length === 5 && /^\d{5}$/.test(cpExistente)) {
-                console.log('✅ CP existente válido encontrado, precargando datos...');
 
                 // Verificar si los selects ya tienen datos cargados
                 const estadoSelect = document.getElementById('estado');
@@ -99,13 +96,10 @@ class ValidadorCodigoPostal {
                 );
 
                 if (necesitaCargar) {
-                    console.log('📡 Consultando datos para CP:', cpExistente);
                     this.validarCodigoPostal(cpExistente);
                 } else {
-                    console.log('✅ Datos ya están cargados, no es necesario consultar');
                 }
             } else {
-                console.log('❌ No hay CP válido para precargar');
             }
         }, 500); // Dar 500ms para que todo se inicialice
     }
@@ -186,7 +180,6 @@ class ValidadorCodigoPostal {
     // ✅ FUNCIÓN CORREGIDA - validarCodigoPostal
     async validarCodigoPostal(codigoPostal) {
         if (this.consultandoAPI) {
-            console.log('Ya hay una consulta en progreso');
             return;
         }
 
@@ -195,7 +188,6 @@ class ValidadorCodigoPostal {
             this.mostrarCarga(true);
             this.limpiarMensajes();
 
-            console.log(`Validando código postal: ${codigoPostal}`);
 
             // ✅ CORREGIR URL - usar la URL correcta de Django
             const url = `/ajax/obtener-datos-por-cp/?codigo_postal=${codigoPostal}`;
@@ -232,7 +224,6 @@ class ValidadorCodigoPostal {
     }
 
     procesarRespuestaExitosa(datos) {
-        console.log('✅ Procesando respuesta exitosa:', datos);
 
         // Poblar selects como antes
         this.poblarSelectEstados(datos.estados);
@@ -259,14 +250,12 @@ class ValidadorCodigoPostal {
             this.autoguardarDatosUbicacion(datos);
         }
 
-        console.log('✅ Código postal validado exitosamente');
     }
 
     // ✅ FUNCIÓN CORREGIDA - autoguardarDatosUbicacion
     autoguardarDatosUbicacion(datos) {
         // ✅ VERIFICAR QUE EL USUARIO ESTÉ AUTENTICADO
         if (!this.usuarioAutenticado()) {
-            console.log('❌ Usuario no autenticado, saltando autoguardado');
             return;
         }
 
@@ -282,13 +271,11 @@ class ValidadorCodigoPostal {
                 calle_numero: document.getElementById('calle_numero')?.value?.trim() || null
             };
 
-            console.log('💾 Autoguardando datos de ubicación:', datosUbicacion);
 
             // ✅ USAR TOKEN CSRF CORRECTO
             const csrfToken = this.obtenerCSRFToken();
             if (!csrfToken) {
-                console.warn('⚠️ No se pudo obtener token CSRF, saltando autoguardado');
-                return;
+                        return;
             }
 
             // Hacer petición AJAX para guardar
@@ -310,13 +297,11 @@ class ValidadorCodigoPostal {
             })
             .then(result => {
                 if (result.success) {
-                    console.log('✅ Datos de ubicación autoguardados exitosamente');
 
                     // ✅ ACTUALIZAR VARIABLES JAVASCRIPT Y VERIFICAR BOTÓN
                     this.actualizarDatosInteresado(datosUbicacion, result);
 
                 } else {
-                    console.warn('⚠️ Error autoguardando ubicación:', result.error);
                 }
             })
             .catch(error => {
@@ -358,15 +343,10 @@ class ValidadorCodigoPostal {
                 window.datosInteresado.ubicacion_completa = partes.join(', ');
             }
 
-            console.log('📍 Variables de ubicación actualizadas:', {
-                codigo_postal: window.datosInteresado.codigo_postal,
-                ubicacion_completa: window.datosInteresado.ubicacion_completa
-            });
 
             // ✅ VERIFICAR ESTADO DEL BOTÓN DESPUÉS DE ACTUALIZAR UBICACIÓN
             setTimeout(() => {
                 if (typeof verificarEstadoBotonGuardarCV === 'function') {
-                    console.log('🔄 Verificando botón después de autoguardado de ubicación...');
                     verificarEstadoBotonGuardarCV();
                 }
             }, 300);
@@ -523,7 +503,6 @@ class ValidadorCodigoPostal {
                 // Agregar efecto visual
                 campoMunicipio.classList.add('is-valid');
 
-                console.log(`✅ Municipio actualizado: ${opcion.text}`);
                 break;
             }
         }
@@ -581,7 +560,6 @@ class ValidadorCodigoPostal {
             return hiddenInput.value;
         }
         
-        console.warn('⚠️ No se pudo obtener el token CSRF');
         return null;
     }
 

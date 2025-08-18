@@ -33,7 +33,6 @@ class SessionTimeout {
             return;
         }
 
-        console.log(`Sistema de timeout de sesión activado: ${this.config.timeoutMinutes} minutos`);
         
         this.setupEventListeners();
         this.startActivityCheck();

@@ -63,7 +63,6 @@
 //             this.setupElements();
 //             this.setupEventListeners();
 //             this.updateSubmitButton();
-//             console.log('✅ ValidadorRegistro inicializado correctamente');
 //         } catch (error) {
 //             console.error('❌ Error al inicializar ValidadorRegistro:', error);
 //         }
@@ -107,7 +106,6 @@
 //         this.elements.strengthText = document.getElementById('strengthText');
 
 //         // Log de elementos encontrados para debugging
-//         console.log('🔍 Elementos encontrados:', {
 //             form: !!this.elements.form,
 //             email: !!this.elements.emailInput,
 //             password1: !!this.elements.password1Input,
@@ -548,7 +546,6 @@
 
 //             console.warn('❌ Envío de formulario bloqueado - Validación incompleta:', invalidFields);
 //         } else {
-//             console.log('✅ Formulario válido - Permitiendo envío');
 //         }
 //     }
 
@@ -597,7 +594,6 @@
 //         }
 
 //         this.updateSubmitButton();
-//         console.log('🔄 ValidadorRegistro reseteado');
 //     }
 // }
 
@@ -611,7 +607,6 @@
 //     // Solo inicializar automáticamente para el formulario de registro de interesado
 //     if (document.getElementById('registroForm') && !document.getElementById('registroReclutadorForm')) {
 //         window.validadorRegistro = new ValidadorRegistro();
-//         console.log('✅ ValidadorRegistro auto-inicializado para formulario de interesado');
 //     }
 // });
 

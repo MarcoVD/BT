@@ -38,9 +38,7 @@ class ValidadorFechasVacante {
             this.configurarEventos();
             this.establecerFechasMinimas();
             this.validarValoresIniciales();
-            console.log('✅ ValidadorFechasVacante inicializado correctamente');
         } catch (error) {
-            console.error('❌ Error al inicializar ValidadorFechasVacante:', error);
         }
     }
 
@@ -136,7 +134,6 @@ class ValidadorFechasVacante {
         let esFechaValida = true;
         let mensajeError = '';
 
-        console.log(`Validando fecha inicio: ${valorFechaInicio} - Objeto Date: ${fechaInicioSeleccionada.toDateString()}`);
 
         // Validación I: Verificar formato y fecha válida
         if (isNaN(fechaInicioSeleccionada.getTime())) {
@@ -186,7 +183,6 @@ class ValidadorFechasVacante {
         let esFechaValida = true;
         let mensajeError = '';
 
-        console.log(`Validando fecha límite: ${valorFechaLimite} - Objeto Date: ${fechaLimiteSeleccionada.toDateString()}`);
 
         // Validación I: Verificar formato y fecha válida
         if (isNaN(fechaLimiteSeleccionada.getTime())) {
@@ -239,7 +235,6 @@ class ValidadorFechasVacante {
         const fechaInicioObj = new Date(valorFechaInicio + 'T00:00:00');
         const fechaLimiteObj = new Date(valorFechaLimite + 'T00:00:00');
         
-        console.log(`Comparando fechas - Inicio: ${fechaInicioObj.toDateString()} vs Límite: ${fechaLimiteObj.toDateString()}`);
 
         let relacionValida = true;
         let mensajeError = '';
@@ -248,27 +243,22 @@ class ValidadorFechasVacante {
         if (fechaInicioObj.getTime() === fechaLimiteObj.getTime()) {
             relacionValida = false;
             mensajeError = this.mensajesError.fechasDuplicadas;
-            console.log('Error: Fechas son el mismo día');
         }
         // Validación IV: fecha inicio debe ser al menos un día después de fecha límite
         else if (fechaInicioObj.getTime() <= fechaLimiteObj.getTime()) {
             relacionValida = false;
             mensajeError = this.mensajesError.fechaInicioAnterior;
-            console.log('Error: Fecha inicio no es posterior a fecha límite');
         }
         // Verificar que haya al menos un día de diferencia
         else {
             const diferenciaMilisegundos = fechaInicioObj.getTime() - fechaLimiteObj.getTime();
             const diferenciaDias = Math.ceil(diferenciaMilisegundos / (1000 * 60 * 60 * 24));
             
-            console.log(`Diferencia en días: ${diferenciaDias}`);
             
             if (diferenciaDias < 1) {
                 relacionValida = false;
                 mensajeError = this.mensajesError.fechaInicioAnterior;
-                console.log('Error: Diferencia menor a 1 día');
             } else {
-                console.log('✅ Relación entre fechas válida');
             }
         }
 
@@ -296,7 +286,6 @@ class ValidadorFechasVacante {
         fechaParaValidar.setHours(0, 0, 0, 0);
         
         const esDelPasado = fechaParaValidar <= fechaHoy;
-        console.log(`Verificando si es fecha pasada - Fecha: ${fechaParaValidar.toDateString()}, Hoy: ${fechaHoy.toDateString()}, ¿Es pasada?: ${esDelPasado}`);
         
         return esDelPasado;
     }
@@ -307,7 +296,6 @@ class ValidadorFechasVacante {
      */
     esDomingo(fechaAValidar) {
         const diaDeLaSemana = fechaAValidar.getDay();
-        console.log(`Verificando si es domingo - Fecha: ${fechaAValidar.toDateString()}, Día: ${diaDeLaSemana} (0=Dom, 1=Lun, 2=Mar, 3=Mié, 4=Jue, 5=Vie, 6=Sáb)`);
         return diaDeLaSemana === 0; // 0 = Domingo en JavaScript
     }
 
@@ -402,7 +390,6 @@ class ValidadorFechasVacante {
         
         // Si es para guardar borrador, permitir el envío sin validar fechas
         if (accionFormulario === 'guardar_borrador') {
-            console.log('💾 Guardando como borrador - validaciones de fecha omitidas');
             return true;
         }
 
@@ -432,12 +419,10 @@ class ValidadorFechasVacante {
                     primerCampoConError.focus();
                 }
 
-                console.warn('❌ Publicación bloqueada - Errores en fechas');
                 return false;
             }
         }
 
-        console.log('✅ Validación de fechas completada - Permitiendo envío');
         return true;
     }
 
@@ -524,16 +509,13 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Crear nueva instancia
         window.validadorFechasVacante = new ValidadorFechasVacante();
-        console.log('🚀 ValidadorFechasVacante iniciado con restricciones mejoradas');
 
         // Script de prueba para depuración (solo en desarrollo)
         if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-            console.log('=== PRUEBA DE VALIDACIÓN DE DOMINGOS ===');
             const fechasPrueba = ['2025-08-03', '2025-08-04', '2025-08-05', '2025-08-06'];
             fechasPrueba.forEach(fechaStr => {
                 const fechaObj = new Date(fechaStr + 'T00:00:00');
                 const nombresDias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-                console.log(`${fechaStr} (${nombresDias[fechaObj.getDay()]}) - getDay(): ${fechaObj.getDay()}`);
             });
         }
 

@@ -134,44 +134,36 @@ function validarFormularioCompleto() {
     const camposFaltantes = [];
     let esValido = true;
 
-    console.log('🔍 Iniciando validación completa del CV...');
-    console.log('📊 Datos actuales del interesado:', window.datosInteresado);
 
     // ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript
     if (!window.datosInteresado.nombre.trim()) {
         camposFaltantes.push('- Nombre');
         esValido = false;
-        console.log('❌ Falta: Nombre');
     }
 
     if (!window.datosInteresado.apellido_paterno.trim()) {
         camposFaltantes.push('- Apellido Paterno');
         esValido = false;
-        console.log('❌ Falta: Apellido Paterno');
     }
 
     if (!window.datosInteresado.apellido_materno.trim()) {
         camposFaltantes.push('- Apellido Materno');
         esValido = false;
-        console.log('❌ Falta: Apellido Materno');
     }
 
     if (!window.datosInteresado.telefono.trim()) {
         camposFaltantes.push('- Teléfono');
         esValido = false;
-        console.log('❌ Falta: Teléfono');
     }
 
     if (!window.datosInteresado.fecha_nacimiento.trim()) {
         camposFaltantes.push('- Fecha de Nacimiento');
         esValido = false;
-        console.log('❌ Falta: Fecha de Nacimiento');
     }
 
     if (!window.datosInteresado.codigo_postal.trim()) {
         camposFaltantes.push('- Código Postal');
         esValido = false;
-        console.log('❌ Falta: Código Postal');
     }
 
     // ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
@@ -180,14 +172,12 @@ function validarFormularioCompleto() {
         window.datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
         camposFaltantes.push('- Ubicación completa (Estado, Municipio, Localidad)');
         esValido = false;
-        console.log('❌ Falta: Ubicación completa válida');
     }
 
     // ✅ 2. VALIDAR FOTO DE PERFIL
     if (!window.datosInteresado.tiene_foto) {
         camposFaltantes.push('- Foto de perfil');
         esValido = false;
-        console.log('❌ Falta: Foto de perfil');
     }
 
     // ✅ 3. VALIDAR RESUMEN PROFESIONAL
@@ -195,7 +185,6 @@ function validarFormularioCompleto() {
     if (!resumenProfesional || !resumenProfesional.value.trim()) {
         camposFaltantes.push('- Resumen profesional');
         esValido = false;
-        console.log('❌ Falta: Resumen profesional');
     }
 
     // ✅ 4. VALIDAR EXPERIENCIAS LABORALES (mínimo 1)
@@ -203,7 +192,6 @@ function validarFormularioCompleto() {
     if (cantidadExperiencias < 1) {
         camposFaltantes.push('- Al menos 1 experiencia laboral');
         esValido = false;
-        console.log('❌ Falta: Al menos 1 experiencia laboral');
     }
 
     // ✅ 5. VALIDAR EDUCACIÓN/FORMACIÓN (mínimo 1)
@@ -211,7 +199,6 @@ function validarFormularioCompleto() {
     if (cantidadEducacion < 1) {
         camposFaltantes.push('- Al menos 1 formación educativa');
         esValido = false;
-        console.log('❌ Falta: Al menos 1 formación educativa');
     }
 
     // ✅ 6. VALIDAR HABILIDADES TÉCNICAS (mínimo 5)
@@ -219,7 +206,6 @@ function validarFormularioCompleto() {
     if (cantidadHabilidades < 5) {
         camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
         esValido = false;
-        console.log(`❌ Faltan habilidades: Solo tienes ${cantidadHabilidades}/5`);
     }
 
     // ✅ 7. VALIDAR IDIOMAS (mínimo 1)
@@ -227,17 +213,8 @@ function validarFormularioCompleto() {
     if (cantidadIdiomas < 1) {
         camposFaltantes.push('- Al menos 1 idioma');
         esValido = false;
-        console.log('❌ Falta: Al menos 1 idioma');
     }
 
-    console.log('🔍 Resultado de validación:', {
-        esValido,
-        camposFaltantes: camposFaltantes.length,
-        experiencias: cantidadExperiencias,
-        educaciones: cantidadEducacion,
-        habilidades: cantidadHabilidades,
-        idiomas: cantidadIdiomas
-    });
 
     return {
         esValido: esValido,
@@ -247,23 +224,19 @@ function validarFormularioCompleto() {
 
 // ✅ FUNCIÓN MEJORADA PARA ACTUALIZAR EL BOTÓN
 function verificarEstadoBotonGuardarCV() {
-    console.log('🚀 Verificando estado del botón de descarga...');
 
     const btnGuardarCV = document.getElementById('btnDescargarCV');
     if (!btnGuardarCV) {
-        console.log('❌ Botón de descarga no encontrado');
         return;
     }
 
     // Verificar que las variables estén disponibles
     if (!window.datosInteresado) {
-        console.log('❌ Variables de datos del interesado no están disponibles');
         return;
     }
 
     const validacionCompleta = validarFormularioCompleto();
 
-    console.log('📊 Estado de validación:', validacionCompleta);
 
     if (validacionCompleta.esValido) {
         // ✅ CV COMPLETO - HABILITAR BOTÓN
@@ -273,7 +246,6 @@ function verificarEstadoBotonGuardarCV() {
         btnGuardarCV.classList.remove('btn-secondary');
         btnGuardarCV.classList.add('btn-primary', 'text-white');
 
-        console.log('✅ Botón habilitado - CV completo');
     } else {
         // ❌ CV INCOMPLETO - DESHABILITAR BOTÓN
         btnGuardarCV.disabled = true;
@@ -282,13 +254,11 @@ function verificarEstadoBotonGuardarCV() {
         btnGuardarCV.classList.remove('btn-primary', 'text-white');
         btnGuardarCV.classList.add('btn-secondary');
 
-        console.log('❌ Botón deshabilitado. Campos faltantes:', validacionCompleta.camposFaltantes);
     }
 }
 
 // ✅ FUNCIÓN PARA ACTUALIZAR VARIABLES JAVASCRIPT
 function actualizarDatosInteresado(nuevosDatos) {
-    console.log('🔄 Actualizando datos del interesado...', nuevosDatos);
 
     if (!window.datosInteresado) {
         window.datosInteresado = {};
@@ -301,7 +271,6 @@ function actualizarDatosInteresado(nuevosDatos) {
         }
     });
 
-    console.log('✅ Datos actualizados:', window.datosInteresado);
 
     // Re-verificar estado del botón
     verificarEstadoBotonGuardarCV();
@@ -342,7 +311,6 @@ window.guardarPerfil = function() {
                 tiene_foto: window.datosInteresado ? window.datosInteresado.tiene_foto : false
             });
 
-            console.log('✅ Variables actualizadas después de guardar perfil');
 
             // Cerrar modal
             bootstrap.Modal.getInstance(document.getElementById('perfilModal')).hide();
@@ -386,7 +354,6 @@ window.autoguardarResumenConVerificacion = function() {
 
         // Configurar nuevo timeout
         timeoutResumen = setTimeout(() => {
-            console.log('💾 Autoguardando resumen profesional...');
             // Aquí puedes agregar lógica de autoguardado si la necesitas
 
             // Re-verificar estado del botón después de cambio
@@ -397,11 +364,9 @@ window.autoguardarResumenConVerificacion = function() {
 
 // ✅ INICIALIZACIÓN AL CARGAR LA PÁGINA
 document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Página cargada, iniciando validación de CV...');
 
     // Verificar que las variables estén disponibles
     if (window.datosInteresado) {
-        console.log('📊 Datos del interesado disponibles:', window.datosInteresado);
 
         // ✅ EJECUTAR VERIFICACIÓN INICIAL DEL BOTÓN
         setTimeout(() => {
@@ -425,7 +390,6 @@ document.addEventListener('DOMContentLoaded', function() {
         idiomas: document.querySelectorAll('#idiomasContainer .idioma-item').length
     };
 
-    console.log('🔍 Elementos encontrados en la página:', elementos);
 });
 
 // ✅ OTRAS FUNCIONES EXISTENTES SE MANTIENEN IGUAL...
@@ -476,7 +440,6 @@ function configurarValidadorModalPerfil() {
 }
 
 function consultarCPParaModal(codigoPostal) {
-    console.log('Consultando CP para modal:', codigoPostal);
 
     fetch(`/ajax/consultar-codigo-postal/?codigo_postal=${codigoPostal}`, {
         method: 'GET',

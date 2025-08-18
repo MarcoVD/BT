@@ -69,7 +69,6 @@
 //             this.calculatePagination();
 //             this.updateDisplay();
 //
-//             console.log('ResponsiveCardsPagination inicializado correctamente');
 //         } catch (error) {
 //             console.error('Error inicializando ResponsiveCardsPagination:', error);
 //         }
@@ -269,7 +268,6 @@
 //             this.calculatePagination();
 //             this.updateDisplay();
 //
-//             console.log(`Dispositivo cambió de ${previousDevice} a ${this.currentDevice}`);
 //         }
 //     }
 //
@@ -366,7 +364,6 @@
 //             itemSelector: '.responsive-card-item'
 //         });
 //
-//         console.log('Sistema de paginación de vacantes inicializado');
 //     }
 // });
 //

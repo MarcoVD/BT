@@ -185,7 +185,6 @@ cropAndSaveImage() {
                 
                 // ✅ RECARGAR PÁGINA DESPUÉS DE 1.5 SEGUNDOS
                 setTimeout(() => {
-                    console.log('🔄 Recargando página para actualizar estado de la imagen...');
                     window.location.reload();
                 }, 1500);
                 

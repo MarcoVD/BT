@@ -10,7 +10,6 @@ class GestionVacantes {
     init() {
         this.configurarEventListeners();
         this.verificarEstadosVacantes();
-        console.log('✅ Sistema de gestión de vacantes inicializado');
     }
 
     /**
@@ -45,7 +44,6 @@ class GestionVacantes {
             try {
                 await this.actualizarEstadoVacante(vacanteId);
             } catch (error) {
-                console.warn(`Error verificando estado de vacante ${vacanteId}:`, error);
             }
         }
     }
@@ -72,7 +70,6 @@ class GestionVacantes {
             }
         } catch (error) {
             // Silenciar errores de verificación para no molestar al usuario
-            console.debug(`Error verificando vacante ${vacanteId}:`, error);
         }
     }
 
