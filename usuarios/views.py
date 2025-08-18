@@ -4057,13 +4057,21 @@ class VerPostulantesView(View):
         }
 
 @login_required
+@csrf_exempt
 def cambiar_estado_postulacion(request, postulacion_id):
     """
     Vista AJAX para cambiar el estado de una postulación.
     Permite a reclutadores cambiar el estado de postulaciones de sus vacantes.
     Los reclutadores admin pueden cambiar el estado de cualquier postulación.
     """
+    # Logging para diagnóstico
+    logger.info(f"cambiar_estado_postulacion llamada por usuario: {request.user.email}")
+    logger.info(f"Usuario rol: {request.user.rol}")
+    logger.info(f"Usuario autenticado: {request.user.is_authenticated}")
+    logger.info(f"Método: {request.method}")
+    
     if request.method != 'POST':
+        logger.warning(f"Método no permitido: {request.method}")
         return JsonResponse({
             'success': False,
             'error': 'Método no permitido'
@@ -4071,26 +4079,44 @@ def cambiar_estado_postulacion(request, postulacion_id):
 
     # Verificar que sea un reclutador
     if request.user.rol != 'reclutador':
+        logger.warning(f"Usuario {request.user.email} no es reclutador. Rol: {request.user.rol}")
         return JsonResponse({
             'success': False,
             'error': 'No tienes permisos para esta acción'
         }, status=403)
 
     # Verificar que el reclutador esté aprobado
-    if not hasattr(request.user, 'reclutador') or not request.user.reclutador.aprobado:
+    if not hasattr(request.user, 'reclutador'):
+        logger.error(f"Usuario {request.user.email} no tiene perfil de reclutador")
+        return JsonResponse({
+            'success': False,
+            'error': 'No tienes perfil de reclutador asociado'
+        }, status=403)
+        
+    if not request.user.reclutador.aprobado:
+        logger.warning(f"Reclutador {request.user.email} no está aprobado")
         return JsonResponse({
             'success': False,
             'error': 'Tu cuenta de reclutador debe estar aprobada'
         }, status=403)
+    
+    # Verificar si es reclutador admin
+    es_admin = puede_ver_todas_las_vacantes(request.user)
+    logger.info(f"Usuario {request.user.email} es reclutador admin: {es_admin}")
 
     try:
         import json
+        logger.info(f"Request body: {request.body}")
         data = json.loads(request.body)
+        logger.info(f"Datos parseados: {data}")
         nuevo_estado = data.get('nuevo_estado')
+        logger.info(f"Nuevo estado solicitado: {nuevo_estado}")
 
         # Validar que el nuevo estado sea válido
         estados_validos = [choice[0] for choice in Postulacion.ESTADOS_POSTULACION]
+        logger.info(f"Estados válidos: {estados_validos}")
         if nuevo_estado not in estados_validos:
+            logger.error(f"Estado no válido: {nuevo_estado}")
             return JsonResponse({
                 'success': False,
                 'error': 'Estado no válido'
@@ -4129,21 +4155,27 @@ def cambiar_estado_postulacion(request, postulacion_id):
             'success': True,
             'message': f'Estado actualizado exitosamente',
             'estado_display': estado_display,
+            'nuevo_estado': nuevo_estado,
             'postulacion_id': postulacion_id
         })
 
-    except json.JSONDecodeError:
+    except json.JSONDecodeError as e:
+        logger.error(f"Error JSON: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': 'Datos JSON inválidos'
         }, status=400)
-    except Postulacion.DoesNotExist:
+    except Postulacion.DoesNotExist as e:
+        logger.error(f"Postulación no existe: {str(e)}")
         return JsonResponse({
             'success': False,
             'error': 'Postulación no encontrada o no tienes permiso para modificarla'
         }, status=404)
     except Exception as e:
+        logger.error(f"Error en cambiar_estado_postulacion: {str(e)}")
         print(f"Error en cambiar_estado_postulacion: {str(e)}")
+        import traceback
+        logger.error(f"Traceback: {traceback.format_exc()}")
         return JsonResponse({
             'success': False,
             'error': f'Error interno del servidor: {str(e)}'
