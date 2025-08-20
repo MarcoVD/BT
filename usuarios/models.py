@@ -756,6 +756,36 @@ class Vacante(models.Model):
         """Retorna 'Estado de México' siempre"""
         return "Estado de México"
 
+    def cerrar_por_vencimiento(self):
+        """Cierra la vacante si ha llegado a su fecha límite."""
+        if self.fecha_limite and timezone.now().date() >= self.fecha_limite:
+            if self.estado_vacante == 'publicada':
+                self.estado_vacante = 'cerrada'
+                self.save(update_fields=['estado_vacante'])
+                return True
+        return False
+
+    @classmethod
+    def cerrar_vacantes_vencidas(cls):
+        """Método de clase para cerrar todas las vacantes vencidas."""
+        from django.utils import timezone
+        hoy = timezone.now().date()
+        
+        vacantes_vencidas = cls.objects.filter(
+            estado_vacante='publicada',
+            fecha_limite__lt=hoy
+        )
+        
+        contador = 0
+        for vacante in vacantes_vencidas:
+            vacante.estado_vacante = 'cerrada'
+            contador += 1
+        
+        if contador > 0:
+            cls.objects.bulk_update(vacantes_vencidas, ['estado_vacante'])
+        
+        return contador
+
     class Meta:
         verbose_name = "Vacante"
         verbose_name_plural = "Vacantes"
