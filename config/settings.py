@@ -92,7 +92,7 @@ if not DEBUG:
 
 # Configuración personalizada para timeout de sesión
 SESSION_TIMEOUT_SETTINGS = {
-    'TIMEOUT_MINUTES': 15,           # Tiempo total de inactividad
+    'TIMEOUT_MINUTES': 15,           # Tiempo total de inactividad minutos
     'WARNING_MINUTES': 2,            # Advertencia antes del logout
     'CHECK_INTERVAL_SECONDS': 30,    # Frecuencia de verificación
     'ENABLE_SERVER_SIDE_TIMEOUT': True,  # Habilitar middleware de timeout

@@ -69,7 +69,8 @@ MANIFEST
 #  before PyInstaller builds the exe, so as to inject date/other infos into it.
 *.manifest
 *.spec
-
+reporte
+REPORTE
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
@@ -238,3 +239,6 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+REPORTE_SEGURIDAD_INYECCION.md
+security_report.json
+test_security_injection.py
