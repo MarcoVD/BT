@@ -1416,6 +1416,7 @@ function eliminarHabilidad(id) {
         habilidadElement.style.opacity = '0.5';
         habilidadElement.style.pointerEvents = 'none';
     }
+    {##}
 
     fetch(`/ajax/habilidad/eliminar/${id}/`, {
         method: 'DELETE',
