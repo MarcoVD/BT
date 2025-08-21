@@ -389,6 +389,7 @@ window.datosInteresado = {
     fecha_nacimiento: '{{ interesado.fecha_nacimiento|default:"" }}',
     codigo_postal: '{{ interesado.codigo_postal|default:"" }}',
     ubicacion_completa: '{{ interesado.ubicacion_completa|default:"" }}',
+    resumen_profesional: '{{ interesado.resumen_profesional|default:"" }}',
     tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
 };
 
@@ -751,26 +752,16 @@ window.datosInteresado = {
                             </div>
                         </div>
 
-                        <!-- BOTÓN DE DESCARGA CORREGIDO EN EL TEMPLATE perfil_interesado.html -->
-
+                        <!-- BOTÓN DE DESCARGA DINÁMICO -->
                         <div class="text-end mt-4 mb-5">
-                            {% if tiene_cv %}
-                                <a id="btnDescargarCV"
-                                href="{% url 'descargar_cv_pdf' %}"
-                                class="btn btn-secondary"
-                                disabled>
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    <span class="fw-bold">CV Incompleto</span>
-                                </a>
-                            {% else %}
-                                <button type="button"
-                                        class="btn btn-secondary"
-                                        title="Completa tu CV para poder descargarlo"
-                                        disabled>
-                                    <i class="bi bi-exclamation-circle"></i>
-                                    <span class="fw-bold">CV Incompleto</span>
-                                </button>
-                            {% endif %}
+                            <a id="btnDescargarCV"
+                               href="{% url 'descargar_cv_pdf' %}"
+                               class="btn btn-secondary"
+                               disabled
+                               title="Completa tu CV para poder descargarlo">
+                                <i class="bi bi-exclamation-circle"></i>
+                                <span class="fw-bold">CV Incompleto</span>
+                            </a>
                         </div>
                     </form>
                 </div>
@@ -1881,6 +1872,7 @@ document.addEventListener('DOMContentLoaded', function() {
             fecha_nacimiento: '{{ interesado.fecha_nacimiento|default:"" }}',
             codigo_postal: '{{ interesado.codigo_postal|default:"" }}',
             ubicacion_completa: '{{ interesado.ubicacion_completa|default:"" }}',
+            resumen_profesional: '{{ interesado.resumen_profesional|default:"" }}',
             tiene_foto: {% if interesado.foto_perfil %}true{% else %}false{% endif %}
         };
 
