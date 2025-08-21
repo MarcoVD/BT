@@ -181,8 +181,23 @@ function validarFormularioCompleto() {
     }
 
     // ✅ 3. VALIDAR RESUMEN PROFESIONAL
-    const resumenProfesional = document.querySelector('#resumen_profesional');
-    if (!resumenProfesional || !resumenProfesional.value.trim()) {
+    // Verificar tanto desde la variable JavaScript como desde el DOM
+    let tieneResumen = false;
+    
+    // Primero verificar la variable JavaScript
+    if (window.datosInteresado.resumen_profesional && window.datosInteresado.resumen_profesional.trim()) {
+        tieneResumen = true;
+    }
+    
+    // Si no está en la variable, verificar el textarea directamente
+    if (!tieneResumen) {
+        const resumenTextarea = document.querySelector('#resumen_profesional');
+        if (resumenTextarea && resumenTextarea.value.trim()) {
+            tieneResumen = true;
+        }
+    }
+    
+    if (!tieneResumen) {
         camposFaltantes.push('- Resumen profesional');
         esValido = false;
     }

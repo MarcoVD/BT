@@ -160,4 +160,9 @@ urlpatterns = [
     path('ajax/consultar-codigo-postal/', views.obtener_datos_por_cp, name='consultar_codigo_postal'),
     # URL para compatibilidad con el código existente
     path('ajax/obtener_datos_por_cp/', views.obtener_datos_por_cp, name='obtener_datos_por_cp_legacy'),
+    
+    # ===========================
+    # URLs AJAX PARA VERIFICACIÓN DE CV
+    # ===========================
+    path('ajax/verificar-estado-cv/', views.verificar_estado_cv_ajax, name='verificar_estado_cv_ajax'),
 ]

@@ -4332,3 +4332,83 @@ def busqueda_vacantes_ajax(request):
 
     html = render_to_string('usuarios/vacantes_lista.html', {'vacantes': vacantes})
     return JsonResponse({'html': html})
+
+
+# =========================
+# VERIFICACIÓN DE CV COMPLETO
+# =========================
+
+def verificar_cv_completo(interesado):
+    """
+    Verifica si el CV del interesado está completo
+    """
+    # 1. Verificar información personal básica
+    if not all([
+        interesado.nombre and interesado.nombre.strip(),
+        interesado.apellido_paterno and interesado.apellido_paterno.strip(),
+        interesado.apellido_materno and interesado.apellido_materno.strip(),
+        interesado.telefono and interesado.telefono.strip(),
+        interesado.fecha_nacimiento,
+        interesado.codigo_postal and interesado.codigo_postal.strip(),
+        interesado.estado and interesado.estado.strip(),
+        interesado.municipio and interesado.municipio.strip(),
+        interesado.localidad and interesado.localidad.strip()
+    ]):
+        return False, "Falta información personal básica"
+
+    # 2. Verificar foto de perfil
+    if not interesado.foto_perfil:
+        return False, "Falta foto de perfil"
+
+    # 3. Verificar resumen profesional
+    if not interesado.resumen_profesional or not interesado.resumen_profesional.strip():
+        return False, "Falta resumen profesional"
+
+    # 4. Verificar al menos una experiencia laboral
+    if not interesado.experiencias.exists():
+        return False, "Falta al menos una experiencia laboral"
+
+    # 5. Verificar al menos una educación
+    if not interesado.educaciones.exists():
+        return False, "Falta al menos una educación"
+
+    # 6. Verificar al menos 5 habilidades técnicas
+    if interesado.habilidades.count() < 5:
+        return False, "Faltan habilidades (mínimo 5)"
+
+    # 7. Verificar al menos un idioma
+    if not interesado.idiomas.exists():
+        return False, "Falta al menos un idioma"
+
+    return True, "CV completo"
+
+
+@login_required
+def verificar_estado_cv_ajax(request):
+    """
+    Endpoint AJAX para verificar si el CV está completo
+    """
+    if request.method != 'GET':
+        return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+    try:
+        interesado = request.user.interesado
+        es_completo, mensaje = verificar_cv_completo(interesado)
+        
+        return JsonResponse({
+            'cv_completo': es_completo,
+            'mensaje': mensaje,
+            'success': True
+        })
+    
+    except AttributeError:
+        return JsonResponse({
+            'error': 'Usuario no es un interesado',
+            'cv_completo': False
+        }, status=400)
+    
+    except Exception as e:
+        return JsonResponse({
+            'error': str(e),
+            'cv_completo': False
+        }, status=500)
