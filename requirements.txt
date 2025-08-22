@@ -19,7 +19,7 @@ cssselect2==0.8.0
 cyclonedx-python-lib==9.1.0
 defusedxml==0.7.1
 distlib==0.4.0
-Django==5.2.2
+django==5.2.2
 django-axes==8.0.0
 django-crispy-forms==2.4
 django-formtools==2.5.1
@@ -31,7 +31,7 @@ django-phonenumber-field==8.1.0
 django-two-factor-auth==1.17.0
 dotenv==0.9.9
 dparse==0.6.4
-filelock==3.18.0
+filelock==3.16.1
 fonttools==4.58.2
 ghp-import==2.1.0
 griffe==1.11.1

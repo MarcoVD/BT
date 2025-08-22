@@ -23,10 +23,26 @@ class Command(BaseCommand):
             action='store_true',
             help='Fuerza la recarga eliminando datos existentes'
         )
+        parser.add_argument(
+            '--batch-size',
+            type=int,
+            default=100,
+            help='Tamaño de lote para procesamiento (default: 100)'
+        )
+        parser.add_argument(
+            '--timeout',
+            type=int,
+            default=30,
+            help='Timeout en segundos para operaciones de BD (default: 30)'
+        )
 
     def handle(self, *args, **options):
         csv_path = options['csv_path']
         force_reload = options['force']
+        self.batch_size = options['batch_size']
+        self.timeout = options['timeout']
+        
+        self.stdout.write(f'🔧 Configuración: Lotes de {self.batch_size} registros, timeout {self.timeout}s')
 
         # Verificar que los archivos CSV existan
         csv_files = {
@@ -141,24 +157,63 @@ class Command(BaseCommand):
         self.stdout.write(f'   ✅ {contador} estados cargados')
 
     def _cargar_codigos_postales(self, file_path):
-        """Cargar códigos postales desde CSV."""
+        """Cargar códigos postales desde CSV en lotes."""
         self.stdout.write('📮 Cargando Códigos Postales...')
 
         contador = 0
+        errores = 0
+        lote_size = self.batch_size  # Usar tamaño configurado
+        lote_actual = []
+        
         with open(file_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
-            for row in reader:
-                cp, created = Codigos_Postales.objects.get_or_create(
-                    id=int(row['id']),
-                    defaults={
-                        'codigo_postal': int(row['codigo_postal']),
-                        'estatus': int(row['iestado']),
-                    }
-                )
-                if created:
-                    contador += 1
+            for i, row in enumerate(reader):
+                try:
+                    lote_actual.append(row)
+                    
+                    # Procesar lote cuando llegue al tamaño especificado
+                    if len(lote_actual) >= lote_size:
+                        contador_lote = self._procesar_lote_codigos_postales(lote_actual)
+                        contador += contador_lote
+                        lote_actual = []
+                        
+                        # Mostrar progreso cada 1000 registros
+                        if (i + 1) % 1000 == 0:
+                            self.stdout.write(f'   📍 {i + 1} registros procesados, {contador} códigos postales cargados...')
+                
+                except Exception as e:
+                    errores += 1
+                    if errores <= 10:
+                        self.stdout.write(f'   ⚠️  Error en línea {i + 1}: {str(e)}')
+            
+            # Procesar el último lote si queda algo
+            if lote_actual:
+                contador_lote = self._procesar_lote_codigos_postales(lote_actual)
+                contador += contador_lote
 
         self.stdout.write(f'   ✅ {contador} códigos postales cargados')
+        if errores > 0:
+            self.stdout.write(f'   ⚠️  {errores} errores encontrados')
+
+    def _procesar_lote_codigos_postales(self, lote):
+        """Procesar un lote de códigos postales con manejo de errores."""
+        contador = 0
+        with transaction.atomic():
+            for row in lote:
+                try:
+                    cp, created = Codigos_Postales.objects.get_or_create(
+                        id=int(row['id']),
+                        defaults={
+                            'codigo_postal': int(row['codigo_postal']),
+                            'estatus': int(row['iestado']),
+                        }
+                    )
+                    if created:
+                        contador += 1
+                except Exception as e:
+                    # Log error pero continúa con el siguiente registro
+                    continue
+        return contador
 
     def _cargar_municipios(self, file_path):
         """Cargar municipios desde CSV LEYENDO EL id_estado REAL."""
@@ -217,13 +272,14 @@ class Command(BaseCommand):
             self.stdout.write(f'   ⚠️  {errores} errores encontrados')
 
     def _cargar_localidades(self, file_path):
-        """Cargar localidades usando el estado REAL del municipio."""
+        """Cargar localidades usando el estado REAL del municipio en lotes."""
         self.stdout.write('🏠 Cargando Localidades...')
 
         contador = 0
         errores = 0
         tipos_asentamiento_cache = {}
         zona_regional_default = Zonas_Regionales.objects.get(id=1)
+        lote_size = max(25, self.batch_size // 2)  # Lotes más pequeños para localidades
 
         # Crear cache de municipio -> estado
         self.stdout.write('   📋 Creando cache municipio -> estado...')
@@ -245,9 +301,48 @@ class Command(BaseCommand):
 
         self.stdout.write(f'   ✅ Cache creado con {len(municipio_estado_cache)} relaciones')
 
+        lote_actual = []
         with open(file_path, 'r', encoding='utf-8') as file:
             reader = csv.DictReader(file)
-            for row in reader:
+            for i, row in enumerate(reader):
+                try:
+                    lote_actual.append(row)
+                    
+                    # Procesar lote cuando llegue al tamaño especificado
+                    if len(lote_actual) >= lote_size:
+                        contador_lote = self._procesar_lote_localidades(
+                            lote_actual, tipos_asentamiento_cache, 
+                            municipio_estado_cache, zona_regional_default
+                        )
+                        contador += contador_lote
+                        lote_actual = []
+                        
+                        # Mostrar progreso cada 500 registros
+                        if (i + 1) % 500 == 0:
+                            self.stdout.write(f'   📍 {i + 1} registros procesados, {contador} localidades cargadas...')
+                
+                except Exception as e:
+                    errores += 1
+                    if errores <= 10:
+                        self.stdout.write(f'   ⚠️  Error en línea {i + 1}: {str(e)}')
+            
+            # Procesar el último lote si queda algo
+            if lote_actual:
+                contador_lote = self._procesar_lote_localidades(
+                    lote_actual, tipos_asentamiento_cache, 
+                    municipio_estado_cache, zona_regional_default
+                )
+                contador += contador_lote
+
+        self.stdout.write(f'   ✅ {contador} localidades cargadas')
+        if errores > 0:
+            self.stdout.write(f'   ⚠️  {errores} errores encontrados')
+
+    def _procesar_lote_localidades(self, lote, tipos_asentamiento_cache, municipio_estado_cache, zona_regional_default):
+        """Procesar un lote de localidades con manejo de errores."""
+        contador = 0
+        with transaction.atomic():
+            for row in lote:
                 try:
                     # Obtener o crear tipo de asentamiento
                     tipo_asentamiento_nombre = row.get('tipo_asentamiento', '').strip()
@@ -284,11 +379,6 @@ class Command(BaseCommand):
                     if not estado:
                         # Si no hay estado en cache, usar fallback
                         estado = Estados.objects.first()
-                        if errores < 5:  # Solo mostrar primeros errores
-                            self.stdout.write(
-                                self.style.WARNING(
-                                    f'   ⚠️  Sin estado para municipio ID {municipio_id}, usando fallback')
-                            )
 
                     # Crear la localidad
                     localidad, created = Localidades.objects.get_or_create(
@@ -307,20 +397,10 @@ class Command(BaseCommand):
                     if created:
                         contador += 1
 
-                    # Progress indicator cada 1000 registros
-                    if contador % 1000 == 0:
-                        self.stdout.write(f'   📍 {contador} localidades procesadas...')
-
                 except Exception as e:
-                    errores += 1
-                    if errores <= 10:
-                        self.stdout.write(
-                            self.style.WARNING(f'   ⚠️  Error en localidad {row.get("id", "?")}: {str(e)}')
-                        )
-
-        self.stdout.write(f'   ✅ {contador} localidades cargadas')
-        if errores > 0:
-            self.stdout.write(f'   ⚠️  {errores} errores encontrados')
+                    # Log error pero continúa con el siguiente registro
+                    continue
+        return contador
 
     def _mostrar_estadisticas(self):
         """Mostrar estadísticas finales de la carga."""

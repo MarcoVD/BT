@@ -127,30 +127,39 @@ if DEBUG:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DEV_DB_NAME', 'bolsa_trabajo'),
-            'USER': os.getenv('DEV_DB_USER', 'bolsa_admin'),
-            'PASSWORD': os.getenv('DEV_DB_PASSWORD'),
-            'HOST': os.getenv('DEV_DB_HOST', 'localhost'),
-            'PORT': os.getenv('DEV_DB_PORT', '5432'),
+            'NAME': 'django',
+            'USER': 'smov',
+            'PASSWORD': 'dqxspmo123@',
+            'HOST': '100.100.100.108',
+            'PORT': '5432',
         }
+ 
+        
+#         DB_NAME='django'
+# DB_USER='smov'
+# DB_PASSWORD='dqxspmo123@'
+# DB_HOST='100.100.100.108'
+# DB_PORT=5432
     }
 else:
     # Configuración para producción
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': os.getenv('DB_NAME', 'bolsa_trabajo'),
-            'USER': os.getenv('DB_USER', 'bolsa_admin'),
-            'PASSWORD': os.getenv('DB_PASSWORD'),
-            'HOST': os.getenv('DB_HOST', 'localhost'),
-            'PORT': os.getenv('DB_PORT', '5432'),
+            'NAME': 'django',
+            'USER': 'smov',
+            'PASSWORD': 'dqxspmo123@',
+            'HOST': '100.100.100.108',
+            'PORT': '5432',
             'OPTIONS': {
                 'sslmode': 'prefer',
             },
         }
     }
+            # 'PASSWORD': os.getenv('DB_PASSWORD', 'dqxspmo123@'),
 
 AUTH_USER_MODEL = 'usuarios.Usuario'
+# AUTH_USER_MODEL = 'auth.User'  # Cambiar a 'usuarios.Usuario' si se usa un modelo personalizado
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
