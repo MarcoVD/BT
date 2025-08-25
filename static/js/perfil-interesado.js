@@ -7,664 +7,713 @@
 // EN perfil-interesado.js - AGREGAR verificación en las funciones AJAX existentes
 
 // ✅ MODIFICAR la función guardarExperiencia()
-window.guardarExperiencia = function() {
-    const form = document.getElementById('experienciaForm');
-    const formData = new FormData(form);
+window.guardarExperiencia = function () {
+	const form = document.getElementById("experienciaForm")
+	const formData = new FormData(form)
 
-    let url = experienciaEditandoId ?
-        `/ajax/experiencia/editar/${experienciaEditandoId}/` :
-        '/ajax/experiencia/agregar/';
+	let url = experienciaEditandoId
+		? `/ajax/experiencia/editar/${experienciaEditandoId}/`
+		: "/ajax/experiencia/agregar/"
 
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            bootstrap.Modal.getInstance(document.getElementById('experienciaModal')).hide();
-            location.reload();
-            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EXPERIENCIA
-            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
-        } else {
-            alert('Error: ' + JSON.stringify(data.errors || data.error));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al guardar la experiencia');
-    });
+	fetch(url, {
+		method: "POST",
+		body: formData,
+		headers: {
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				bootstrap.Modal.getInstance(
+					document.getElementById("experienciaModal"),
+				).hide()
+				location.reload()
+				// ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EXPERIENCIA
+				setTimeout(() => verificarEstadoBotonGuardarCV(), 300)
+			} else {
+				alert("Error: " + JSON.stringify(data.errors || data.error))
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error)
+			alert("Error al guardar la experiencia")
+		})
 }
 
 // ✅ MODIFICAR la función guardarEducacion()
-window.guardarEducacion = function() {
-    const form = document.getElementById('educacionForm');
-    const formData = new FormData(form);
-    let url = educacionEditandoId ?
-        `/ajax/educacion/editar/${educacionEditandoId}/` :
-        '/ajax/educacion/agregar/';
+window.guardarEducacion = function () {
+	const form = document.getElementById("educacionForm")
+	const formData = new FormData(form)
+	let url = educacionEditandoId
+		? `/ajax/educacion/editar/${educacionEditandoId}/`
+		: "/ajax/educacion/agregar/"
 
-    fetch(url, {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            bootstrap.Modal.getInstance(document.getElementById('educacionModal')).hide();
-            location.reload();
-            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EDUCACIÓN
-            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
-        } else {
-            alert('Error: ' + JSON.stringify(data.errors || data.error));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al guardar la educación');
-    });
+	fetch(url, {
+		method: "POST",
+		body: formData,
+		headers: {
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				bootstrap.Modal.getInstance(
+					document.getElementById("educacionModal"),
+				).hide()
+				location.reload()
+				// ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR/EDITAR EDUCACIÓN
+				setTimeout(() => verificarEstadoBotonGuardarCV(), 300)
+			} else {
+				alert("Error: " + JSON.stringify(data.errors || data.error))
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error)
+			alert("Error al guardar la educación")
+		})
 }
 
 // ✅ MODIFICAR la función guardarHabilidad()
-window.guardarHabilidad = function() {
-    const form = document.getElementById('habilidadForm');
-    const formData = new FormData(form);
+window.guardarHabilidad = function () {
+	const form = document.getElementById("habilidadForm")
+	const formData = new FormData(form)
 
-    fetch('/ajax/habilidad/agregar/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            bootstrap.Modal.getInstance(document.getElementById('habilidadModal')).hide();
-            location.reload();
-            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR HABILIDAD
-            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
-        } else {
-            alert('Error: ' + JSON.stringify(data.errors || data.error));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al guardar la habilidad');
-    });
+	fetch("/ajax/habilidad/agregar/", {
+		method: "POST",
+		body: formData,
+		headers: {
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				bootstrap.Modal.getInstance(
+					document.getElementById("habilidadModal"),
+				).hide()
+				location.reload()
+				// ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR HABILIDAD
+				setTimeout(() => verificarEstadoBotonGuardarCV(), 300)
+			} else {
+				alert("Error: " + JSON.stringify(data.errors || data.error))
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error)
+			alert("Error al guardar la habilidad")
+		})
 }
 
 // ✅ MODIFICAR la función guardarIdioma()
-window.guardarIdioma = function() {
-    const form = document.getElementById('idiomaForm');
-    const formData = new FormData(form);
+window.guardarIdioma = function () {
+	const form = document.getElementById("idiomaForm")
+	const formData = new FormData(form)
 
-    fetch('/ajax/idioma/agregar/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            bootstrap.Modal.getInstance(document.getElementById('idiomaModal')).hide();
-            location.reload();
-            // ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR IDIOMA
-            setTimeout(() => verificarEstadoBotonGuardarCV(), 300);
-        } else {
-            alert('Error: ' + JSON.stringify(data.errors || data.error));
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Error al guardar el idioma');
-    });
+	fetch("/ajax/idioma/agregar/", {
+		method: "POST",
+		body: formData,
+		headers: {
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				bootstrap.Modal.getInstance(
+					document.getElementById("idiomaModal"),
+				).hide()
+				location.reload()
+				// ✅ VERIFICAR BOTÓN DESPUÉS DE AGREGAR IDIOMA
+				setTimeout(() => verificarEstadoBotonGuardarCV(), 300)
+			} else {
+				alert("Error: " + JSON.stringify(data.errors || data.error))
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error)
+			alert("Error al guardar el idioma")
+		})
 }
 
 // ✅ FUNCIÓN DE VALIDACIÓN MEJORADA
 function validarFormularioCompleto() {
-    const camposFaltantes = [];
-    let esValido = true;
+	const camposFaltantes = []
+	let esValido = true
 
-    console.log('🔍 Iniciando validación completa del CV...');
-    console.log('📊 Datos actuales del interesado:', window.datosInteresado);
+	console.log("🔍 Iniciando validación completa del CV...")
+	console.log("📊 Datos actuales del interesado:", window.datosInteresado)
 
-    // ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript
-    if (!window.datosInteresado.nombre.trim()) {
-        camposFaltantes.push('- Nombre');
-        esValido = false;
-        console.log('❌ Falta: Nombre');
-    }
+	// ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript
+	if (!window.datosInteresado.nombre.trim()) {
+		camposFaltantes.push("- Nombre")
+		esValido = false
+		console.log("❌ Falta: Nombre")
+	}
 
-    if (!window.datosInteresado.apellido_paterno.trim()) {
-        camposFaltantes.push('- Apellido Paterno');
-        esValido = false;
-        console.log('❌ Falta: Apellido Paterno');
-    }
+	if (!window.datosInteresado.apellido_paterno.trim()) {
+		camposFaltantes.push("- Apellido Paterno")
+		esValido = false
+		console.log("❌ Falta: Apellido Paterno")
+	}
 
-    if (!window.datosInteresado.apellido_materno.trim()) {
-        camposFaltantes.push('- Apellido Materno');
-        esValido = false;
-        console.log('❌ Falta: Apellido Materno');
-    }
+	if (!window.datosInteresado.apellido_materno.trim()) {
+		camposFaltantes.push("- Apellido Materno")
+		esValido = false
+		console.log("❌ Falta: Apellido Materno")
+	}
 
-    if (!window.datosInteresado.telefono.trim()) {
-        camposFaltantes.push('- Teléfono');
-        esValido = false;
-        console.log('❌ Falta: Teléfono');
-    }
+	if (!window.datosInteresado.telefono.trim()) {
+		camposFaltantes.push("- Teléfono")
+		esValido = false
+		console.log("❌ Falta: Teléfono")
+	}
 
-    if (!window.datosInteresado.fecha_nacimiento.trim()) {
-        camposFaltantes.push('- Fecha de Nacimiento');
-        esValido = false;
-        console.log('❌ Falta: Fecha de Nacimiento');
-    }
+	if (!window.datosInteresado.fecha_nacimiento.trim()) {
+		camposFaltantes.push("- Fecha de Nacimiento")
+		esValido = false
+		console.log("❌ Falta: Fecha de Nacimiento")
+	}
 
-    if (!window.datosInteresado.codigo_postal.trim()) {
-        camposFaltantes.push('- Código Postal');
-        esValido = false;
-        console.log('❌ Falta: Código Postal');
-    }
+	if (!window.datosInteresado.codigo_postal.trim()) {
+		camposFaltantes.push("- Código Postal")
+		esValido = false
+		console.log("❌ Falta: Código Postal")
+	}
 
-    // ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
-    if (!window.datosInteresado.ubicacion_completa.trim() ||
-        window.datosInteresado.ubicacion_completa.toLowerCase().includes('no especificada') ||
-        window.datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
-        camposFaltantes.push('- Ubicación completa (Estado, Municipio, Localidad)');
-        esValido = false;
-        console.log('❌ Falta: Ubicación completa válida');
-    }
+	// ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
+	if (
+		!window.datosInteresado.ubicacion_completa.trim() ||
+		window.datosInteresado.ubicacion_completa
+			.toLowerCase()
+			.includes("no especificada") ||
+		window.datosInteresado.ubicacion_completa
+			.toLowerCase()
+			.includes("ubicación no especificada")
+	) {
+		camposFaltantes.push("- Ubicación completa (Estado, Municipio, Localidad)")
+		esValido = false
+		console.log("❌ Falta: Ubicación completa válida")
+	}
 
-    // ✅ 2. VALIDAR FOTO DE PERFIL
-    if (!window.datosInteresado.tiene_foto) {
-        camposFaltantes.push('- Foto de perfil');
-        esValido = false;
-        console.log('❌ Falta: Foto de perfil');
-    }
+	// ✅ 2. VALIDAR FOTO DE PERFIL
+	if (!window.datosInteresado.tiene_foto) {
+		camposFaltantes.push("- Foto de perfil")
+		esValido = false
+		console.log("❌ Falta: Foto de perfil")
+	}
 
-    // ✅ 3. VALIDAR RESUMEN PROFESIONAL
-    const resumenProfesional = document.querySelector('#resumen_profesional');
-    if (!resumenProfesional || !resumenProfesional.value.trim()) {
-        camposFaltantes.push('- Resumen profesional');
-        esValido = false;
-        console.log('❌ Falta: Resumen profesional');
-    }
+	// ✅ 3. VALIDAR RESUMEN PROFESIONAL
+	const resumenProfesional = document.querySelector("#resumen_profesional")
+	if (!resumenProfesional || !resumenProfesional.value.trim()) {
+		camposFaltantes.push("- Resumen profesional")
+		esValido = false
+		console.log("❌ Falta: Resumen profesional")
+	}
 
-    // ✅ 4. VALIDAR EXPERIENCIAS LABORALES (mínimo 1)
-    const cantidadExperiencias = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
-    if (cantidadExperiencias < 1) {
-        camposFaltantes.push('- Al menos 1 experiencia laboral');
-        esValido = false;
-        console.log('❌ Falta: Al menos 1 experiencia laboral');
-    }
+	// ✅ 4. VALIDAR EXPERIENCIAS LABORALES (mínimo 1)
+	const cantidadExperiencias = document.querySelectorAll(
+		"#experienciaContainer .experiencia-item",
+	).length
+	if (cantidadExperiencias < 1) {
+		camposFaltantes.push("- Al menos 1 experiencia laboral")
+		esValido = false
+		console.log("❌ Falta: Al menos 1 experiencia laboral")
+	}
 
-    // ✅ 5. VALIDAR EDUCACIÓN/FORMACIÓN (mínimo 1)
-    const cantidadEducacion = document.querySelectorAll('#educacionContainer .educacion-item').length;
-    if (cantidadEducacion < 1) {
-        camposFaltantes.push('- Al menos 1 formación educativa');
-        esValido = false;
-        console.log('❌ Falta: Al menos 1 formación educativa');
-    }
+	// ✅ 5. VALIDAR EDUCACIÓN/FORMACIÓN (mínimo 1)
+	const cantidadEducacion = document.querySelectorAll(
+		"#educacionContainer .educacion-item",
+	).length
+	if (cantidadEducacion < 1) {
+		camposFaltantes.push("- Al menos 1 formación educativa")
+		esValido = false
+		console.log("❌ Falta: Al menos 1 formación educativa")
+	}
 
-    // ✅ 6. VALIDAR HABILIDADES TÉCNICAS (mínimo 5)
-    const cantidadHabilidades = document.querySelectorAll('#habilidadesContainer .badge').length;
-    if (cantidadHabilidades < 5) {
-        camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
-        esValido = false;
-        console.log(`❌ Faltan habilidades: Solo tienes ${cantidadHabilidades}/5`);
-    }
+	// ✅ 6. VALIDAR HABILIDADES TÉCNICAS (mínimo 5)
+	const cantidadHabilidades = document.querySelectorAll(
+		"#habilidadesContainer .badge",
+	).length
+	if (cantidadHabilidades < 5) {
+		camposFaltantes.push(
+			`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`,
+		)
+		esValido = false
+		console.log(`❌ Faltan habilidades: Solo tienes ${cantidadHabilidades}/5`)
+	}
 
-    // ✅ 7. VALIDAR IDIOMAS (mínimo 1)
-    const cantidadIdiomas = document.querySelectorAll('#idiomasContainer .idioma-item').length;
-    if (cantidadIdiomas < 1) {
-        camposFaltantes.push('- Al menos 1 idioma');
-        esValido = false;
-        console.log('❌ Falta: Al menos 1 idioma');
-    }
+	// ✅ 7. VALIDAR IDIOMAS (mínimo 1)
+	const cantidadIdiomas = document.querySelectorAll(
+		"#idiomasContainer .idioma-item",
+	).length
+	if (cantidadIdiomas < 1) {
+		camposFaltantes.push("- Al menos 1 idioma")
+		esValido = false
+		console.log("❌ Falta: Al menos 1 idioma")
+	}
 
-    console.log('🔍 Resultado de validación:', {
-        esValido,
-        camposFaltantes: camposFaltantes.length,
-        experiencias: cantidadExperiencias,
-        educaciones: cantidadEducacion,
-        habilidades: cantidadHabilidades,
-        idiomas: cantidadIdiomas
-    });
+	console.log("🔍 Resultado de validación:", {
+		esValido,
+		camposFaltantes: camposFaltantes.length,
+		experiencias: cantidadExperiencias,
+		educaciones: cantidadEducacion,
+		habilidades: cantidadHabilidades,
+		idiomas: cantidadIdiomas,
+	})
 
-    return {
-        esValido: esValido,
-        camposFaltantes: camposFaltantes
-    };
+	return {
+		esValido: esValido,
+		camposFaltantes: camposFaltantes,
+	}
 }
 
 // ✅ FUNCIÓN MEJORADA PARA ACTUALIZAR EL BOTÓN
 function verificarEstadoBotonGuardarCV() {
-    console.log('🚀 Verificando estado del botón de descarga...');
+	console.log("🚀 Verificando estado del botón de descarga...")
 
-    const btnGuardarCV = document.getElementById('btnDescargarCV');
-    if (!btnGuardarCV) {
-        console.log('❌ Botón de descarga no encontrado');
-        return;
-    }
+	const btnGuardarCV = document.getElementById("btnDescargarCV")
+	if (!btnGuardarCV) {
+		console.log("❌ Botón de descarga no encontrado")
+		return
+	}
 
-    // Verificar que las variables estén disponibles
-    if (!window.datosInteresado) {
-        console.log('❌ Variables de datos del interesado no están disponibles');
-        return;
-    }
+	// Verificar que las variables estén disponibles
+	if (!window.datosInteresado) {
+		console.log("❌ Variables de datos del interesado no están disponibles")
+		return
+	}
 
-    const validacionCompleta = validarFormularioCompleto();
+	const validacionCompleta = validarFormularioCompleto()
 
-    console.log('📊 Estado de validación:', validacionCompleta);
+	console.log("📊 Estado de validación:", validacionCompleta)
 
-    if (validacionCompleta.esValido) {
-        // ✅ CV COMPLETO - HABILITAR BOTÓN
-        btnGuardarCV.disabled = false;
-        btnGuardarCV.title = 'Descargar CV - Todos los campos están completos';
-        btnGuardarCV.innerHTML = '<i class="bi bi-download"></i> Descargar PDF';
-        btnGuardarCV.classList.remove('btn-secondary');
-        btnGuardarCV.classList.add('btn-primary', 'text-white');
+	if (validacionCompleta.esValido) {
+		// ✅ CV COMPLETO - HABILITAR BOTÓN
+		btnGuardarCV.disabled = false
+		btnGuardarCV.title = "Descargar CV - Todos los campos están completos"
+		btnGuardarCV.innerHTML = '<i class="bi bi-download"></i> Descargar PDF'
+		btnGuardarCV.classList.remove("btn-secondary")
+		btnGuardarCV.classList.add("btn-primary", "text-white")
 
-        console.log('✅ Botón habilitado - CV completo');
-    } else {
-        // ❌ CV INCOMPLETO - DESHABILITAR BOTÓN
-        btnGuardarCV.disabled = true;
-        btnGuardarCV.title = 'Campos faltantes:\n' + validacionCompleta.camposFaltantes.join('\n');
-        btnGuardarCV.innerHTML = '<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>';
-        btnGuardarCV.classList.remove('btn-primary', 'text-white');
-        btnGuardarCV.classList.add('btn-secondary');
+		console.log("✅ Botón habilitado - CV completo")
+	} else {
+		// ❌ CV INCOMPLETO - DESHABILITAR BOTÓN
+		btnGuardarCV.disabled = true
+		btnGuardarCV.title =
+			"Campos faltantes:\n" + validacionCompleta.camposFaltantes.join("\n")
+		btnGuardarCV.innerHTML =
+			'<i class="bi bi-exclamation-circle"></i> <span class="fw-bold">CV Incompleto</span>'
+		btnGuardarCV.classList.remove("btn-primary", "text-white")
+		btnGuardarCV.classList.add("btn-secondary")
 
-        console.log('❌ Botón deshabilitado. Campos faltantes:', validacionCompleta.camposFaltantes);
-    }
+		console.log(
+			"❌ Botón deshabilitado. Campos faltantes:",
+			validacionCompleta.camposFaltantes,
+		)
+	}
 }
 
 // ✅ FUNCIÓN PARA ACTUALIZAR VARIABLES JAVASCRIPT
 function actualizarDatosInteresado(nuevosDatos) {
-    console.log('🔄 Actualizando datos del interesado...', nuevosDatos);
+	console.log("🔄 Actualizando datos del interesado...", nuevosDatos)
 
-    if (!window.datosInteresado) {
-        window.datosInteresado = {};
-    }
+	if (!window.datosInteresado) {
+		window.datosInteresado = {}
+	}
 
-    // Actualizar solo los campos que vienen en nuevosDatos
-    Object.keys(nuevosDatos).forEach(key => {
-        if (nuevosDatos[key] !== undefined && nuevosDatos[key] !== null) {
-            window.datosInteresado[key] = nuevosDatos[key];
-        }
-    });
+	// Actualizar solo los campos que vienen en nuevosDatos
+	Object.keys(nuevosDatos).forEach(key => {
+		if (nuevosDatos[key] !== undefined && nuevosDatos[key] !== null) {
+			window.datosInteresado[key] = nuevosDatos[key]
+		}
+	})
 
-    console.log('✅ Datos actualizados:', window.datosInteresado);
+	console.log("✅ Datos actualizados:", window.datosInteresado)
 
-    // Re-verificar estado del botón
-    verificarEstadoBotonGuardarCV();
+	// Re-verificar estado del botón
+	verificarEstadoBotonGuardarCV()
 }
 
 // ✅ AGREGAR AL FINAL DE LA FUNCIÓN guardarPerfil() EN EL MODAL
 // Modificar la función guardarPerfil existente para que llame a la validación después de guardar:
-window.guardarPerfil = function() {
-    const form = document.getElementById('perfilForm');
-    const formData = new FormData(form);
+window.guardarPerfil = function () {
+	const form = document.getElementById("perfilForm")
+	const formData = new FormData(form)
 
-    // Mostrar loading en el botón
-    const guardarBtn = document.querySelector('#perfilModal .btn-primary');
-    const textoOriginal = guardarBtn.innerHTML;
-    guardarBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...';
-    guardarBtn.disabled = true;
+	// Mostrar loading en el botón
+	const guardarBtn = document.querySelector("#perfilModal .btn-primary")
+	const textoOriginal = guardarBtn.innerHTML
+	guardarBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Guardando...'
+	guardarBtn.disabled = true
 
-    fetch('/ajax/actualizar-perfil-completo/', {
-        method: 'POST',
-        body: formData,
-        headers: {
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // ✅ ACTUALIZAR LAS VARIABLES JAVASCRIPT CON LOS NUEVOS DATOS
-            actualizarDatosInteresado({
-                nombre: formData.get('nombre') || '',
-                apellido_paterno: formData.get('apellido_paterno') || '',
-                apellido_materno: formData.get('apellido_materno') || '',
-                telefono: formData.get('telefono') || '',
-                fecha_nacimiento: formData.get('fecha_nacimiento') || '',
-                codigo_postal: formData.get('codigo_postal') || '',
-                ubicacion_completa: data.datos.ubicacion_completa || '',
-                // Mantener estado de foto actual
-                tiene_foto: window.datosInteresado ? window.datosInteresado.tiene_foto : false
-            });
+	fetch("/ajax/actualizar-perfil-completo/", {
+		method: "POST",
+		body: formData,
+		headers: {
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				// ✅ ACTUALIZAR LAS VARIABLES JAVASCRIPT CON LOS NUEVOS DATOS
+				actualizarDatosInteresado({
+					nombre: formData.get("nombre") || "",
+					apellido_paterno: formData.get("apellido_paterno") || "",
+					apellido_materno: formData.get("apellido_materno") || "",
+					telefono: formData.get("telefono") || "",
+					fecha_nacimiento: formData.get("fecha_nacimiento") || "",
+					codigo_postal: formData.get("codigo_postal") || "",
+					ubicacion_completa: data.datos.ubicacion_completa || "",
+					// Mantener estado de foto actual
+					tiene_foto: window.datosInteresado
+						? window.datosInteresado.tiene_foto
+						: false,
+				})
 
-            console.log('✅ Variables actualizadas después de guardar perfil');
+				console.log("✅ Variables actualizadas después de guardar perfil")
 
-            // Cerrar modal
-            bootstrap.Modal.getInstance(document.getElementById('perfilModal')).hide();
+				// Cerrar modal
+				bootstrap.Modal.getInstance(
+					document.getElementById("perfilModal"),
+				).hide()
 
-            // Actualizar la información en la card
-            actualizarCardPerfil(data.datos);
+				// Actualizar la información en la card
+				actualizarCardPerfil(data.datos)
 
-            // ✅ IMPORTANTE: Re-verificar el estado del botón inmediatamente
-            setTimeout(() => {
-                verificarEstadoBotonGuardarCV();
-            }, 300);
+				// ✅ IMPORTANTE: Re-verificar el estado del botón inmediatamente
+				setTimeout(() => {
+					verificarEstadoBotonGuardarCV()
+				}, 300)
 
-            // Mostrar mensaje de éxito
-            mostrarToast('Perfil actualizado exitosamente', 'success');
-
-        } else {
-            mostrarToast('Error: ' + (data.error || 'Error desconocido'), 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        mostrarToast('Error al actualizar el perfil', 'error');
-    })
-    .finally(() => {
-        // Restaurar botón
-        guardarBtn.innerHTML = textoOriginal;
-        guardarBtn.disabled = false;
-    });
+				// Mostrar mensaje de éxito
+				mostrarToast("Perfil actualizado exitosamente", "success")
+			} else {
+				mostrarToast("Error: " + (data.error || "Error desconocido"), "error")
+			}
+		})
+		.catch(error => {
+			console.error("Error:", error)
+			mostrarToast("Error al actualizar el perfil", "error")
+		})
+		.finally(() => {
+			// Restaurar botón
+			guardarBtn.innerHTML = textoOriginal
+			guardarBtn.disabled = false
+		})
 }
 
 // ✅ FUNCIÓN PARA AUTOGUARDADO DE RESUMEN PROFESIONAL CON VERIFICACIÓN
-window.autoguardarResumenConVerificacion = function() {
-    const resumenTextarea = document.getElementById('resumen_profesional');
-    if (!resumenTextarea) return;
+window.autoguardarResumenConVerificacion = function () {
+	const resumenTextarea = document.getElementById("resumen_profesional")
+	if (!resumenTextarea) return
 
-    let timeoutResumen = null;
+	let timeoutResumen = null
 
-    resumenTextarea.addEventListener('input', function() {
-        // Limpiar timeout anterior
-        clearTimeout(timeoutResumen);
+	resumenTextarea.addEventListener("input", function () {
+		// Limpiar timeout anterior
+		clearTimeout(timeoutResumen)
 
-        // Configurar nuevo timeout
-        timeoutResumen = setTimeout(() => {
-            console.log('💾 Autoguardando resumen profesional...');
-            // Aquí puedes agregar lógica de autoguardado si la necesitas
+		// Configurar nuevo timeout
+		timeoutResumen = setTimeout(() => {
+			console.log("💾 Autoguardando resumen profesional...")
+			// Aquí puedes agregar lógica de autoguardado si la necesitas
 
-            // Re-verificar estado del botón después de cambio
-            verificarEstadoBotonGuardarCV();
-        }, 1500); // 1.5 segundos después de dejar de escribir
-    });
+			// Re-verificar estado del botón después de cambio
+			verificarEstadoBotonGuardarCV()
+		}, 1500) // 1.5 segundos después de dejar de escribir
+	})
 }
 
 // ✅ INICIALIZACIÓN AL CARGAR LA PÁGINA
-document.addEventListener('DOMContentLoaded', function() {
-    console.log('🚀 Página cargada, iniciando validación de CV...');
+document.addEventListener("DOMContentLoaded", function () {
+	console.log("🚀 Página cargada, iniciando validación de CV...")
 
-    // Verificar que las variables estén disponibles
-    if (window.datosInteresado) {
-        console.log('📊 Datos del interesado disponibles:', window.datosInteresado);
+	// Verificar que las variables estén disponibles
+	if (window.datosInteresado) {
+		console.log("📊 Datos del interesado disponibles:", window.datosInteresado)
 
-        // ✅ EJECUTAR VERIFICACIÓN INICIAL DEL BOTÓN
-        setTimeout(() => {
-            verificarEstadoBotonGuardarCV();
-        }, 1000); // Esperar 1 segundo para que todo se cargue
+		// ✅ EJECUTAR VERIFICACIÓN INICIAL DEL BOTÓN
+		setTimeout(() => {
+			verificarEstadoBotonGuardarCV()
+		}, 1000) // Esperar 1 segundo para que todo se cargue
 
-        // Configurar autoguardado de resumen
-        autoguardarResumenConVerificacion();
+		// Configurar autoguardado de resumen
+		autoguardarResumenConVerificacion()
+	} else {
+		console.error("❌ Variables del interesado no están disponibles")
+	}
 
-    } else {
-        console.error('❌ Variables del interesado no están disponibles');
-    }
+	// ✅ VERIFICAR ELEMENTOS EN LA PÁGINA PARA DEBUG
+	const elementos = {
+		btnDescarga: document.getElementById("btnDescargarCV"),
+		resumen: document.querySelector("#resumen_profesional"),
+		experiencias: document.querySelectorAll(
+			"#experienciaContainer .experiencia-item",
+		).length,
+		educaciones: document.querySelectorAll(
+			"#educacionContainer .educacion-item",
+		).length,
+		habilidades: document.querySelectorAll("#habilidadesContainer .badge")
+			.length,
+		idiomas: document.querySelectorAll("#idiomasContainer .idioma-item").length,
+	}
 
-    // ✅ VERIFICAR ELEMENTOS EN LA PÁGINA PARA DEBUG
-    const elementos = {
-        btnDescarga: document.getElementById('btnDescargarCV'),
-        resumen: document.querySelector('#resumen_profesional'),
-        experiencias: document.querySelectorAll('#experienciaContainer .experiencia-item').length,
-        educaciones: document.querySelectorAll('#educacionContainer .educacion-item').length,
-        habilidades: document.querySelectorAll('#habilidadesContainer .badge').length,
-        idiomas: document.querySelectorAll('#idiomasContainer .idioma-item').length
-    };
-
-    console.log('🔍 Elementos encontrados en la página:', elementos);
-});
+	console.log("🔍 Elementos encontrados en la página:", elementos)
+})
 
 // ✅ OTRAS FUNCIONES EXISTENTES SE MANTIENEN IGUAL...
 // [El resto de las funciones como mostrarModalPerfil, configurarValidadorModalPerfil, etc. se mantienen iguales]
 
-window.mostrarModalPerfil = function() {
-    // El modal ya tiene los valores pre-cargados desde el template
-    // Solo necesitamos configurar el validador de CP para el modal
-    configurarValidadorModalPerfil();
+window.mostrarModalPerfil = function () {
+	// El modal ya tiene los valores pre-cargados desde el template
+	// Solo necesitamos configurar el validador de CP para el modal
+	configurarValidadorModalPerfil()
 
-    new bootstrap.Modal(document.getElementById('perfilModal')).show();
+	new bootstrap.Modal(document.getElementById("perfilModal")).show()
 }
 
 function configurarValidadorModalPerfil() {
-    const modalCP = document.getElementById('modal_codigo_postal');
+	const modalCP = document.getElementById("modal_codigo_postal")
 
-    if (!modalCP) return;
+	if (!modalCP) return
 
-    // Remover listeners existentes para evitar duplicados
-    modalCP.replaceWith(modalCP.cloneNode(true));
-    const nuevoModalCP = document.getElementById('modal_codigo_postal');
+	// Remover listeners existentes para evitar duplicados
+	modalCP.replaceWith(modalCP.cloneNode(true))
+	const nuevoModalCP = document.getElementById("modal_codigo_postal")
 
-    let timeoutCP = null;
+	let timeoutCP = null
 
-    // Event listener para el CP en el modal
-    nuevoModalCP.addEventListener('input', function(e) {
-        const valor = e.target.value.trim();
+	// Event listener para el CP en el modal
+	nuevoModalCP.addEventListener("input", function (e) {
+		const valor = e.target.value.trim()
 
-        clearTimeout(timeoutCP);
-        limpiarSelectsModal();
+		clearTimeout(timeoutCP)
+		limpiarSelectsModal()
 
-        if (valor.length === 5 && /^\d{5}$/.test(valor)) {
-            timeoutCP = setTimeout(() => {
-                consultarCPParaModal(valor);
-            }, 1000);
-        }
-    });
+		if (valor.length === 5 && /^\d{5}$/.test(valor)) {
+			timeoutCP = setTimeout(() => {
+				consultarCPParaModal(valor)
+			}, 1000)
+		}
+	})
 
-    // También validar al perder foco
-    nuevoModalCP.addEventListener('blur', function(e) {
-        const valor = e.target.value.trim();
+	// También validar al perder foco
+	nuevoModalCP.addEventListener("blur", function (e) {
+		const valor = e.target.value.trim()
 
-        if (valor.length === 5 && /^\d{5}$/.test(valor)) {
-            clearTimeout(timeoutCP);
-            consultarCPParaModal(valor);
-        }
-    });
+		if (valor.length === 5 && /^\d{5}$/.test(valor)) {
+			clearTimeout(timeoutCP)
+			consultarCPParaModal(valor)
+		}
+	})
 }
 
 function consultarCPParaModal(codigoPostal) {
-    console.log('Consultando CP para modal:', codigoPostal);
+	console.log("Consultando CP para modal:", codigoPostal)
 
-    fetch(`/ajax/consultar-codigo-postal/?codigo_postal=${codigoPostal}`, {
-        method: 'GET',
-        headers: {
-            'X-Requested-With': 'XMLHttpRequest',
-            'Content-Type': 'application/json',
-            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value
-        }
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            poblarSelectsModal(data);
-            mostrarMensajeModal('Código postal válido', 'success');
-        } else {
-            mostrarMensajeModal(data.message || 'Código postal no encontrado', 'error');
-        }
-    })
-    .catch(error => {
-        console.error('Error consultando CP:', error);
-        mostrarMensajeModal('Error de conexión', 'error');
-    });
+	fetch(`/ajax/consultar-codigo-postal/?codigo_postal=${codigoPostal}`, {
+		method: "GET",
+		headers: {
+			"X-Requested-With": "XMLHttpRequest",
+			"Content-Type": "application/json",
+			"X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+		},
+	})
+		.then(response => response.json())
+		.then(data => {
+			if (data.success) {
+				poblarSelectsModal(data)
+				mostrarMensajeModal("Código postal válido", "success")
+			} else {
+				mostrarMensajeModal(
+					data.message || "Código postal no encontrado",
+					"error",
+				)
+			}
+		})
+		.catch(error => {
+			console.error("Error consultando CP:", error)
+			mostrarMensajeModal("Error de conexión", "error")
+		})
 }
 
 function poblarSelectsModal(datos) {
-    // Poblar Estados
-    const selectEstado = document.getElementById('modal_estado');
-    if (selectEstado && datos.estados) {
-        selectEstado.innerHTML = '<option value="">Selecciona un estado</option>';
-        selectEstado.disabled = false;
+	// Poblar Estados
+	const selectEstado = document.getElementById("modal_estado")
+	if (selectEstado && datos.estados) {
+		selectEstado.innerHTML = '<option value="">Selecciona un estado</option>'
+		selectEstado.disabled = false
 
-        datos.estados.forEach(estado => {
-            const option = document.createElement('option');
-            option.value = estado.id;
-            option.textContent = estado.nombre;
-            selectEstado.appendChild(option);
-        });
+		datos.estados.forEach(estado => {
+			const option = document.createElement("option")
+			option.value = estado.id
+			option.textContent = estado.nombre
+			selectEstado.appendChild(option)
+		})
 
-        if (datos.estados.length === 1) {
-            selectEstado.value = datos.estados[0].id;
-            document.getElementById('modal_estado_id').value = datos.estados[0].id;
-            document.getElementById('modal_estado_nombre').value = datos.estados[0].nombre;
-        }
-    }
+		if (datos.estados.length === 1) {
+			selectEstado.value = datos.estados[0].id
+			document.getElementById("modal_estado_id").value = datos.estados[0].id
+			document.getElementById("modal_estado_nombre").value =
+				datos.estados[0].nombre
+		}
+	}
 
-    // Poblar Municipios
-    const selectMunicipio = document.getElementById('modal_municipio');
-    if (selectMunicipio && datos.municipios) {
-        selectMunicipio.innerHTML = '<option value="">Selecciona un municipio</option>';
-        selectMunicipio.disabled = false;
+	// Poblar Municipios
+	const selectMunicipio = document.getElementById("modal_municipio")
+	if (selectMunicipio && datos.municipios) {
+		selectMunicipio.innerHTML =
+			'<option value="">Selecciona un municipio</option>'
+		selectMunicipio.disabled = false
 
-        datos.municipios.forEach(municipio => {
-            const option = document.createElement('option');
-            option.value = municipio.id;
-            option.textContent = municipio.nombre;
-            selectMunicipio.appendChild(option);
-        });
+		datos.municipios.forEach(municipio => {
+			const option = document.createElement("option")
+			option.value = municipio.id
+			option.textContent = municipio.nombre
+			selectMunicipio.appendChild(option)
+		})
 
-        if (datos.municipios.length === 1) {
-            selectMunicipio.value = datos.municipios[0].id;
-            document.getElementById('modal_municipio_id').value = datos.municipios[0].id;
-            document.getElementById('modal_municipio_nombre').value = datos.municipios[0].nombre;
-        }
-    }
+		if (datos.municipios.length === 1) {
+			selectMunicipio.value = datos.municipios[0].id
+			document.getElementById("modal_municipio_id").value =
+				datos.municipios[0].id
+			document.getElementById("modal_municipio_nombre").value =
+				datos.municipios[0].nombre
+		}
+	}
 
-    // Poblar Localidades
-    const selectLocalidad = document.getElementById('modal_localidad');
-    if (selectLocalidad && datos.localidades) {
-        selectLocalidad.innerHTML = '<option value="">Selecciona una localidad</option>';
-        selectLocalidad.disabled = false;
+	// Poblar Localidades
+	const selectLocalidad = document.getElementById("modal_localidad")
+	if (selectLocalidad && datos.localidades) {
+		selectLocalidad.innerHTML =
+			'<option value="">Selecciona una localidad</option>'
+		selectLocalidad.disabled = false
 
-        datos.localidades.forEach(localidad => {
-            const option = document.createElement('option');
-            option.value = localidad.id;
-            const nombreCompleto = localidad.tipo_asentamiento ?
-                `${localidad.nombre} (${localidad.tipo_asentamiento})` :
-                localidad.nombre;
-            option.textContent = nombreCompleto;
-            selectLocalidad.appendChild(option);
-        });
-    }
+		datos.localidades.forEach(localidad => {
+			const option = document.createElement("option")
+			option.value = localidad.id
+			const nombreCompleto = localidad.tipo_asentamiento
+				? `${localidad.nombre} (${localidad.tipo_asentamiento})`
+				: localidad.nombre
+			option.textContent = nombreCompleto
+			selectLocalidad.appendChild(option)
+		})
+	}
 }
 
 function limpiarSelectsModal() {
-    const selects = ['modal_estado', 'modal_municipio', 'modal_localidad'];
+	const selects = ["modal_estado", "modal_municipio", "modal_localidad"]
 
-    selects.forEach(selectId => {
-        const select = document.getElementById(selectId);
-        if (select) {
-            select.innerHTML = '<option value="">Ingresa tu código postal primero</option>';
-            select.disabled = true;
-        }
-    });
+	selects.forEach(selectId => {
+		const select = document.getElementById(selectId)
+		if (select) {
+			select.innerHTML =
+				'<option value="">Ingresa tu código postal primero</option>'
+			select.disabled = true
+		}
+	})
 }
 
 function mostrarMensajeModal(mensaje, tipo) {
-    // Crear mensaje temporal en el modal
-    const modalBody = document.querySelector('#perfilModal .modal-body');
-    let alertExistente = modalBody.querySelector('.alert-temp');
+	// Crear mensaje temporal en el modal
+	const modalBody = document.querySelector("#perfilModal .modal-body")
+	let alertExistente = modalBody.querySelector(".alert-temp")
 
-    if (alertExistente) {
-        alertExistente.remove();
-    }
+	if (alertExistente) {
+		alertExistente.remove()
+	}
 
-    const alertClass = tipo === 'success' ? 'alert-success' : 'alert-danger';
-    const icono = tipo === 'success' ? 'bi-check-circle' : 'bi-exclamation-triangle';
+	const alertClass = tipo === "success" ? "alert-success" : "alert-danger"
+	const icono =
+		tipo === "success" ? "bi-check-circle" : "bi-exclamation-triangle"
 
-    const alertDiv = document.createElement('div');
-    alertDiv.className = `alert ${alertClass} alert-dismissible fade show alert-temp`;
-    alertDiv.innerHTML = `
+	const alertDiv = document.createElement("div")
+	alertDiv.className = `alert ${alertClass} alert-dismissible fade show alert-temp`
+	alertDiv.innerHTML = `
         <i class="bi ${icono} me-2"></i>${mensaje}
         <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-    `;
+    `
 
-    modalBody.insertBefore(alertDiv, modalBody.firstChild);
+	modalBody.insertBefore(alertDiv, modalBody.firstChild)
 
-    // Auto-remover después de 3 segundos
-    setTimeout(() => {
-        if (alertDiv && alertDiv.parentNode) {
-            alertDiv.remove();
-        }
-    }, 3000);
+	// Auto-remover después de 3 segundos
+	setTimeout(() => {
+		if (alertDiv && alertDiv.parentNode) {
+			alertDiv.remove()
+		}
+	}, 3000)
 }
 
 function actualizarCardPerfil(datos) {
-    // Actualizar nombre completo
-    const nombreElemento = document.querySelector('.card h4, .card .h5');
-    if (nombreElemento && datos.nombre_completo) {
-        nombreElemento.textContent = datos.nombre_completo;
-    }
+	// Actualizar nombre completo
+	const nombreElemento = document.querySelector(".card h4, .card .h5")
+	if (nombreElemento && datos.nombre_completo) {
+		nombreElemento.textContent = datos.nombre_completo
+	}
 
-    // Actualizar teléfono
-    const telefonoSpan = document.querySelector('.bi-telephone').nextElementSibling;
-    if (telefonoSpan) {
-        telefonoSpan.textContent = datos.telefono || 'No especificado';
-        telefonoSpan.className = datos.telefono ? '' : 'text-muted';
-    }
+	// Actualizar teléfono
+	const telefonoSpan =
+		document.querySelector(".bi-telephone").nextElementSibling
+	if (telefonoSpan) {
+		telefonoSpan.textContent = datos.telefono || "No especificado"
+		telefonoSpan.className = datos.telefono ? "" : "text-muted"
+	}
 
-    // Actualizar ubicación
-    const ubicacionSpan = document.querySelector('.bi-geo-alt').nextElementSibling;
-    if (ubicacionSpan) {
-        ubicacionSpan.textContent = datos.ubicacion_completa || 'Ubicación no especificada';
-        ubicacionSpan.className = datos.ubicacion_completa ? '' : 'text-muted';
-    }
+	// Actualizar ubicación
+	const ubicacionSpan = document.querySelector(".bi-geo-alt").nextElementSibling
+	if (ubicacionSpan) {
+		ubicacionSpan.textContent =
+			datos.ubicacion_completa || "Ubicación no especificada"
+		ubicacionSpan.className = datos.ubicacion_completa ? "" : "text-muted"
+	}
 }
 
 function mostrarToast(mensaje, tipo) {
-    // Crear contenedor de toasts si no existe
-    let toastContainer = document.getElementById('toast-container');
-    if (!toastContainer) {
-        toastContainer = document.createElement('div');
-        toastContainer.id = 'toast-container';
-        toastContainer.className = 'toast-container position-fixed bottom-0 start-0 p-3';
-        toastContainer.style.zIndex = '1055';
-        document.body.appendChild(toastContainer);
-    }
+	// Crear contenedor de toasts si no existe
+	let toastContainer = document.getElementById("toast-container")
+	if (!toastContainer) {
+		toastContainer = document.createElement("div")
+		toastContainer.id = "toast-container"
+		toastContainer.className =
+			"toast-container position-fixed bottom-0 start-0 p-3"
+		toastContainer.style.zIndex = "1055"
+		document.body.appendChild(toastContainer)
+	}
 
-    const toastId = 'toast-' + Date.now();
-    const toastDiv = document.createElement('div');
-    toastDiv.id = toastId;
+	const toastId = "toast-" + Date.now()
+	const toastDiv = document.createElement("div")
+	toastDiv.id = toastId
 
-    let bgClass = 'success';
-    let icon = 'check-circle';
+	let bgClass = "success"
+	let icon = "check-circle"
 
-    if (tipo === 'error') {
-        bgClass = 'danger';
-        icon = 'exclamation-circle';
-    }
+	if (tipo === "error") {
+		bgClass = "danger"
+		icon = "exclamation-circle"
+	}
 
-    toastDiv.className = `toast align-items-center text-bg-${bgClass} border-0`;
-    toastDiv.setAttribute('role', 'alert');
-    toastDiv.innerHTML = `
+	toastDiv.className = `toast align-items-center text-bg-${bgClass} border-0`
+	toastDiv.setAttribute("role", "alert")
+	toastDiv.innerHTML = `
         <div class="d-flex">
             <div class="toast-body">
                 <i class="bi bi-${icon} me-2"></i>${mensaje}
             </div>
             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"></button>
         </div>
-    `;
+    `
 
-    toastContainer.appendChild(toastDiv);
+	toastContainer.appendChild(toastDiv)
 
-    const toast = new bootstrap.Toast(toastDiv, { autohide: true, delay: 4000 });
-    toast.show();
+	const toast = new bootstrap.Toast(toastDiv, { autohide: true, delay: 4000 })
+	toast.show()
 
-    toastDiv.addEventListener('hidden.bs.toast', function() {
-        toastDiv.remove();
-    });
+	toastDiv.addEventListener("hidden.bs.toast", function () {
+		toastDiv.remove()
+	})
 }
 
 // =========================
@@ -672,29 +721,31 @@ function mostrarToast(mensaje, tipo) {
 // =========================
 
 // Event listeners del modal ya existentes...
-document.addEventListener('DOMContentLoaded', function() {
-    // Configurar event listeners para los selects del modal
-    ['modal_estado', 'modal_municipio', 'modal_localidad'].forEach(selectId => {
-        const select = document.getElementById(selectId);
-        if (select) {
-            select.addEventListener('change', function() {
-                const selectedOption = this.options[this.selectedIndex];
-                const baseId = selectId.replace('modal_', '');
-                const idField = document.getElementById(`modal_${baseId}_id`);
-                const nameField = document.getElementById(`modal_${baseId}_nombre`);
+document.addEventListener("DOMContentLoaded", function () {
+	// Configurar event listeners para los selects del modal
+	;["modal_estado", "modal_municipio", "modal_localidad"].forEach(selectId => {
+		const select = document.getElementById(selectId)
+		if (select) {
+			select.addEventListener("change", function () {
+				const selectedOption = this.options[this.selectedIndex]
+				const baseId = selectId.replace("modal_", "")
+				const idField = document.getElementById(`modal_${baseId}_id`)
+				const nameField = document.getElementById(`modal_${baseId}_nombre`)
 
-                if (selectedOption && selectedOption.value && idField && nameField) {
-                    idField.value = selectedOption.value;
-                    nameField.value = selectedOption.text;
-                }
-            });
-        }
-    });
+				if (selectedOption && selectedOption.value && idField && nameField) {
+					idField.value = selectedOption.value
+					nameField.value = selectedOption.text
+				}
+			})
+		}
+	})
 
-    // Limpiar modal al cerrar
-    document.getElementById('perfilModal')?.addEventListener('hidden.bs.modal', function() {
-        // Limpiar alertas temporales
-        const alertsTemp = this.querySelectorAll('.alert-temp');
-        alertsTemp.forEach(alert => alert.remove());
-    });
-});
+	// Limpiar modal al cerrar
+	document
+		.getElementById("perfilModal")
+		?.addEventListener("hidden.bs.modal", function () {
+			// Limpiar alertas temporales
+			const alertsTemp = this.querySelectorAll(".alert-temp")
+			alertsTemp.forEach(alert => alert.remove())
+		})
+})
