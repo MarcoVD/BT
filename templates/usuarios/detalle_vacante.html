@@ -337,7 +337,7 @@ function postularseDirect() {
   .catch((err) => {
     console.error(err);
     // Si hubo redirect 302 al login o HTML inesperado, caerá aquí
-    mostrarMensaje('Padrino, llena tu CV', 'error');
+    mostrarMensaje('Completa tu CV antes de poder postularte a una vacante', 'error');
     postularBtn.disabled = false;
     postularBtn.innerHTML = '<i class="bi bi-send-fill"></i> Postularme Ahora';
   });
