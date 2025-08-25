@@ -252,10 +252,17 @@
                                         </button>
                                     {% endif %}
                                 {% else %}
-                                    <button type="button" class="btn btn-secondary btn-lg" disabled>
-                                        <i class="bi bi-lock-fill"></i> No Disponible
-                                    </button>
-                                    <small class="text-muted">Esta vacante no acepta postulaciones</small>
+                                    {% if not cv_completo %}
+                                        <a href="{% url 'perfil_interesado' %}" class="btn btn-warning btn-lg">
+                                            <i class="bi bi-exclamation-circle-fill"></i> Completar CV
+                                        </a>
+                                        <small class="text-muted">Completa tu CV para postularte</small>
+                                    {% else %}
+                                        <button type="button" class="btn btn-secondary btn-lg" disabled>
+                                            <i class="bi bi-lock-fill"></i> No Disponible
+                                        </button>
+                                        <small class="text-muted">Esta vacante no acepta postulaciones</small>
+                                    {% endif %}
                                 {% endif %}
                             {% elif not user.is_authenticated %}
                                 <a href="{% url 'registro_interesado' %}" class="btn btn-primary btn-lg">
