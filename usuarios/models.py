@@ -725,6 +725,7 @@ class Vacante(models.Model):
     # Límites de postulación
     max_postulantes = models.IntegerField(choices=[(5, '5'), (10, '10'), (20, '20'), (50, '50')], default=20)
     max_postulaciones_por_interesado = models.IntegerField(default=1)
+    max_postulaciones_por_consulta = models.IntegerField(default=10)
 
     def __str__(self):
         return f"{self.titulo} - {self.secretaria.nombre}"
