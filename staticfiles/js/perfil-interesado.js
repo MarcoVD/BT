@@ -377,66 +377,103 @@ document.addEventListener('DOMContentLoaded', function() {
         const camposFaltantes = [];
         let esValido = true;
 
-        // 1. Validar información personal
-        const camposPersonales = [
-            { selector: '#nombre', nombre: 'Nombre' },
-            { selector: '#apellido_paterno', nombre: 'Apellido Paterno' },
-            { selector: '#apellido_materno', nombre: 'Apellido Materno' },
-            { selector: '#telefono', nombre: 'Teléfono' },
-            { selector: '#fecha_nacimiento', nombre: 'Fecha de Nacimiento' },
-            { selector: '#municipio', nombre: 'Municipio' },
-            { selector: '#codigo_postal', nombre: 'Código Postal' }
-        ];
+        // ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript del template
+        if (!window.datosInteresado) {
+            camposFaltantes.push('- Error: Datos del interesado no disponibles');
+            return { esValido: false, camposFaltantes: camposFaltantes };
+        }
 
-        camposPersonales.forEach(campo => {
-            const elemento = document.querySelector(campo.selector);
-            if (!elemento || !elemento.value.trim()) {
-                camposFaltantes.push(`- ${campo.nombre}`);
-                esValido = false;
-            }
-        });
+        const datosInteresado = window.datosInteresado;
 
-        // 2. Validar foto de perfil - CORREGIDO
-        const fotoPreview = document.querySelector('.profile-photo');
-        const fotoPlaceholder = document.querySelector('.profile-photo-placeholder');
-        
-        // Verificar si tiene foto: debe existir un elemento .profile-photo O si no hay placeholder
-        const tieneFoto = fotoPreview || !fotoPlaceholder;
-        
-        if (!tieneFoto) {
+        if (!datosInteresado.nombre || !datosInteresado.nombre.trim()) {
+            camposFaltantes.push('- Nombre');
+            esValido = false;
+        }
+
+        if (!datosInteresado.apellido_paterno || !datosInteresado.apellido_paterno.trim()) {
+            camposFaltantes.push('- Apellido Paterno');
+            esValido = false;
+        }
+
+        if (!datosInteresado.apellido_materno || !datosInteresado.apellido_materno.trim()) {
+            camposFaltantes.push('- Apellido Materno');
+            esValido = false;
+        }
+
+        if (!datosInteresado.telefono || !datosInteresado.telefono.trim()) {
+            camposFaltantes.push('- Teléfono');
+            esValido = false;
+        }
+
+        if (!datosInteresado.fecha_nacimiento || !datosInteresado.fecha_nacimiento.trim()) {
+            camposFaltantes.push('- Fecha de Nacimiento');
+            esValido = false;
+        }
+
+        if (!datosInteresado.codigo_postal || !datosInteresado.codigo_postal.trim()) {
+            camposFaltantes.push('- Código Postal');
+            esValido = false;
+        }
+
+        // ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
+        if (!datosInteresado.ubicacion_completa || 
+            !datosInteresado.ubicacion_completa.trim() ||
+            datosInteresado.ubicacion_completa.toLowerCase().includes('no especificada') ||
+            datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
+            camposFaltantes.push('- Ubicación completa (Estado, Municipio, Localidad)');
+            esValido = false;
+        }
+
+        // ✅ 2. VALIDAR FOTO DE PERFIL
+        if (!datosInteresado.tiene_foto) {
             camposFaltantes.push('- Foto de perfil');
             esValido = false;
         }
 
-        // 3. Validar resumen profesional
-        const resumenProfesional = document.querySelector('#resumen_profesional');
-        if (!resumenProfesional || !resumenProfesional.value.trim()) {
+        // ✅ 3. VALIDAR RESUMEN PROFESIONAL
+        // Verificar tanto desde la variable JavaScript como desde el DOM
+        let tieneResumen = false;
+        
+        // Primero verificar la variable JavaScript
+        if (datosInteresado.resumen_profesional && datosInteresado.resumen_profesional.trim()) {
+            tieneResumen = true;
+        }
+        
+        // Si no está en la variable, verificar el textarea directamente
+        if (!tieneResumen) {
+            const resumenTextarea = document.querySelector('#resumen_profesional');
+            if (resumenTextarea && resumenTextarea.value.trim()) {
+                tieneResumen = true;
+            }
+        }
+        
+        if (!tieneResumen) {
             camposFaltantes.push('- Resumen profesional');
             esValido = false;
         }
 
-        // 4. Validar experiencias laborales (mínimo 1)
+        // ✅ 4. VALIDAR EXPERIENCIAS LABORALES (mínimo 1)
         const cantidadExperiencias = document.querySelectorAll('#experienciaContainer .experiencia-item').length;
         if (cantidadExperiencias < 1) {
             camposFaltantes.push('- Al menos 1 experiencia laboral');
             esValido = false;
         }
 
-        // 5. Validar educación/formación (mínimo 1)
+        // ✅ 5. VALIDAR EDUCACIÓN/FORMACIÓN (mínimo 1)
         const cantidadEducacion = document.querySelectorAll('#educacionContainer .educacion-item').length;
         if (cantidadEducacion < 1) {
             camposFaltantes.push('- Al menos 1 formación educativa');
             esValido = false;
         }
 
-        // 6. Validar habilidades técnicas (mínimo 5)
+        // ✅ 6. VALIDAR HABILIDADES TÉCNICAS (mínimo 5)
         const cantidadHabilidades = document.querySelectorAll('#habilidadesContainer .badge').length;
         if (cantidadHabilidades < 5) {
             camposFaltantes.push(`- Al menos 5 habilidades técnicas (tienes ${cantidadHabilidades})`);
             esValido = false;
         }
 
-        // 7. Validar idiomas (mínimo 1)
+        // ✅ 7. VALIDAR IDIOMAS (mínimo 1)
         const cantidadIdiomas = document.querySelectorAll('#idiomasContainer .idioma-item').length;
         if (cantidadIdiomas < 1) {
             camposFaltantes.push('- Al menos 1 idioma');

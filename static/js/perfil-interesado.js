@@ -134,48 +134,56 @@ function validarFormularioCompleto() {
     const camposFaltantes = [];
     let esValido = true;
 
+    // ✅ VERIFICAR QUE LAS VARIABLES ESTÉN DISPONIBLES
+    if (!window.datosInteresado) {
+        camposFaltantes.push('- Error: Datos del interesado no disponibles');
+        return { esValido: false, camposFaltantes: camposFaltantes };
+    }
+
+    const datosInteresado = window.datosInteresado;
 
     // ✅ 1. VALIDAR INFORMACIÓN PERSONAL usando las variables JavaScript
-    if (!window.datosInteresado.nombre.trim()) {
+    if (!datosInteresado.nombre || !datosInteresado.nombre.trim()) {
         camposFaltantes.push('- Nombre');
         esValido = false;
     }
 
-    if (!window.datosInteresado.apellido_paterno.trim()) {
+    if (!datosInteresado.apellido_paterno || !datosInteresado.apellido_paterno.trim()) {
         camposFaltantes.push('- Apellido Paterno');
         esValido = false;
     }
 
-    if (!window.datosInteresado.apellido_materno.trim()) {
+    if (!datosInteresado.apellido_materno || !datosInteresado.apellido_materno.trim()) {
         camposFaltantes.push('- Apellido Materno');
         esValido = false;
     }
 
-    if (!window.datosInteresado.telefono.trim()) {
+    if (!datosInteresado.telefono || !datosInteresado.telefono.trim()) {
         camposFaltantes.push('- Teléfono');
         esValido = false;
     }
 
-    if (!window.datosInteresado.fecha_nacimiento.trim()) {
+    if (!datosInteresado.fecha_nacimiento || !datosInteresado.fecha_nacimiento.trim()) {
         camposFaltantes.push('- Fecha de Nacimiento');
         esValido = false;
     }
 
-    if (!window.datosInteresado.codigo_postal.trim()) {
+    if (!datosInteresado.codigo_postal || !datosInteresado.codigo_postal.trim()) {
         camposFaltantes.push('- Código Postal');
         esValido = false;
     }
 
     // ✅ VALIDAR UBICACIÓN COMPLETA MEJORADA
-    if (!window.datosInteresado.ubicacion_completa.trim() ||
-        window.datosInteresado.ubicacion_completa.toLowerCase().includes('no especificada') ||
-        window.datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
+    if (!datosInteresado.ubicacion_completa || 
+        !datosInteresado.ubicacion_completa.trim() ||
+        datosInteresado.ubicacion_completa.toLowerCase().includes('no especificada') ||
+        datosInteresado.ubicacion_completa.toLowerCase().includes('ubicación no especificada')) {
         camposFaltantes.push('- Ubicación completa (Estado, Municipio, Localidad)');
         esValido = false;
     }
 
     // ✅ 2. VALIDAR FOTO DE PERFIL
-    if (!window.datosInteresado.tiene_foto) {
+    if (!datosInteresado.tiene_foto) {
         camposFaltantes.push('- Foto de perfil');
         esValido = false;
     }
@@ -185,7 +193,7 @@ function validarFormularioCompleto() {
     let tieneResumen = false;
     
     // Primero verificar la variable JavaScript
-    if (window.datosInteresado.resumen_profesional && window.datosInteresado.resumen_profesional.trim()) {
+    if (datosInteresado.resumen_profesional && datosInteresado.resumen_profesional.trim()) {
         tieneResumen = true;
     }
     
@@ -229,7 +237,6 @@ function validarFormularioCompleto() {
         camposFaltantes.push('- Al menos 1 idioma');
         esValido = false;
     }
-
 
     return {
         esValido: esValido,
