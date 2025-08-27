@@ -503,8 +503,6 @@ class Secretaria(models.Model):
     sector = models.CharField(max_length=100, blank=True, null=True)
     fecha_registro = models.DateTimeField(auto_now_add=True)
     activa = models.BooleanField(default=True)
-    # jose @ edomex.gob.mx
-    # QAZWSXEDCRFVT
     def __str__(self):
         return self.nombre
 
@@ -841,11 +839,6 @@ class RequisitoVacante(models.Model):
     class Meta:
         verbose_name = "Requisito de Vacante"
         verbose_name_plural = "Requisitos de Vacantes"
-
-
-# ==============================
-# MODELOS PARA EL SISTEMA DE CV
-# ==============================
 
 class Curriculum(models.Model):
     """Modelo para el currículum de un interesado."""
