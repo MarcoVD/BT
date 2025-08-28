@@ -325,8 +325,8 @@ class CurriculumForm(forms.ModelForm):
         widgets = {
             'resumen_profesional': forms.Textarea(attrs={
                 'class': 'form-control',
-                'rows': 4,
-                'placeholder': 'Ej: Profesional con 5 años de experiencia en desarrollo web...'
+                'rows': 2,
+                # 'placeholder': 'Ej: Profesional con 5 años de experiencia en desarrollo web...'
             })
         }
 
@@ -687,7 +687,7 @@ class VacanteForm(forms.ModelForm):
         widgets = {
             'titulo': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ej: Desarrollador Fullstack Senior'
+                'placeholder': ''
             }),
             'categoria': forms.Select(attrs={'class': 'form-select'}),
             'tipo_empleo': forms.Select(attrs={'class': 'form-select'}),
@@ -715,7 +715,7 @@ class VacanteForm(forms.ModelForm):
             }),
             'detalles_salario': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ej: A tratar, Según aptitudes, Más bonos'
+                # 'placeholder': 'Ej: A tratar, Según aptitudes, Más bonos'
             }),
             # ✅ WIDGETS CORREGIDOS PARA FECHAS
             'fecha_inicio_estimada': forms.DateInput(attrs={
@@ -738,7 +738,7 @@ class VacanteForm(forms.ModelForm):
             'municipio': 'Municipio',
             'salario_min': 'Salario Mínimo (MXN)',
             'salario_max': 'Salario Máximo (MXN)',
-            'detalles_salario': 'Detalles Adicionales del Salario',
+            # 'detalles_salario': 'Detalles Adicionales del Salario',
             'fecha_inicio_estimada': 'Fecha de Inicio de labores',
             'fecha_limite': 'Fecha Límite para Postularse',
             'max_postulantes': 'Núm Máx de Postulantes',
@@ -819,7 +819,7 @@ class RequisitoVacanteForm(forms.ModelForm):
         widgets = {
             'educacion_minima': forms.TextInput(attrs={
                 'class': 'form-control',
-                'placeholder': 'Ej: Licenciatura en Informática (Titulado)'
+                # 'placeholder': 'Ej: Licenciatura en Informática (Titulado)'
             }),
             # WIDGET ACTUALIZADO: Ahora es un Select para elegir años
             'experiencia_minima': forms.Select(attrs={
@@ -827,8 +827,8 @@ class RequisitoVacanteForm(forms.ModelForm):
             }),
             'descripcion_requisitos': forms.Textarea(attrs={
                 'class': 'form-control',
-                'rows': 6,
-                'placeholder': 'Ej: - Licenciatura en Informática (Titulado).\n- 3+ años de experiencia con Python/Django.\n- Conocimiento de bases de datos PostgreSQL.\n- Habilidades de comunicación efectiva.'
+                'rows': 2,
+                # 'placeholder': 'Ej: - Licenciatura en Informática (Titulado).\n- 3+ años de experiencia con Python/Django.\n- Conocimiento de bases de datos PostgreSQL.\n- Habilidades de comunicación efectiva.'
             }),
         }
         labels = {
@@ -849,7 +849,3 @@ class RequisitoVacanteForm(forms.ModelForm):
         # Configurar help_text personalizado
         self.fields[
             'experiencia_minima'].help_text = 'Selecciona los años mínimos de experiencia requeridos para el puesto.'
-
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['descripcion_requisitos'].required = True
