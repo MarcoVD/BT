@@ -705,8 +705,8 @@ class Vacante(models.Model):
     # Salario
     salario_min = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
     salario_max = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
-    # detalles_salario = models.CharField(max_length=200, blank=True, null=True,
-                                        # help_text="Ej: A tratar, Según aptitudes, Más bonos")
+    detalles_salario = models.CharField(max_length=200, blank=True, null=True,
+                                        help_text="Ej: A tratar, Según aptitudes, Más bonos")
 
     # Fechas
     fecha_inicio_estimada = models.DateField(blank=True, null=True)

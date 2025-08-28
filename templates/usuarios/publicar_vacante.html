@@ -12,12 +12,6 @@
 {% block content %}
 
     <style>
-            footer {
-            display: none !important;
-        }
-        .footer-bottom {    
-            display: none !important;
-        }
 
         /* Estilos para validaciones de salario */
         .salary-validation-error {
@@ -153,17 +147,6 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <!-- Información del Estado (solo informativa)
-                            <div class="col-md-6">
-                                <label class="form-label">Estado</label>
-                                <div class="form-control-plaintext bg-light p-2 rounded border">
-                                    <i class="bi bi-geo-alt-fill text-primary me-2"></i>
-                                    <strong>Estado de México</strong>
-                                </div>
-                            </div> -->
-
-
-                            <!-- ✅ CAMPOS DE SALARIO CON VALIDACIONES MEJORADAS -->
                             <div class="col-md-6">
                                 <label for="{{ vacante_form.salario_min.id_for_label }}" class="form-label">
                                     {{ vacante_form.salario_min.label }}
@@ -186,7 +169,7 @@
                                 {% if vacante_form.salario_min.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.salario_min.errors }}</div>
                                 {% endif %}
-{#                                <small class="form-text text-muted">El salario mínimo debe ser mayor a $0</small>#}
+<!-- {#                                <small class="form-text text-muted">El salario mínimo debe ser mayor a $0</small>#} -->
                             </div>
 
                             <div class="col-md-6">
@@ -230,13 +213,13 @@
                                     <div class="invalid-feedback d-block">{{ vacante_form.municipio.errors }}</div>
                                 {% endif %}
                             </div>
-                            <div class="col-md-6">
+                            <!-- <div class="col-md-6">
                                 <label for="{{ vacante_form.detalles_salario.id_for_label }}" class="form-label">{{ vacante_form.detalles_salario.label }}</label>
                                 {{ vacante_form.detalles_salario }}
                                 {% if vacante_form.detalles_salario.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.detalles_salario.errors }}</div>
                                 {% endif %}
-                            </div>
+                            </div> -->
 
 
                         </div>
