@@ -147,7 +147,7 @@
                     </div>
                     <div class="card-body">
                         <div class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="{{ vacante_form.salario_min.id_for_label }}" class="form-label">
                                     {{ vacante_form.salario_min.label }}
                                     <span class="text-danger">*</span>
@@ -172,7 +172,7 @@
 <!-- {#                                <small class="form-text text-muted">El salario mínimo debe ser mayor a $0</small>#} -->
                             </div>
 
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="{{ vacante_form.salario_max.id_for_label }}" class="form-label">
                                     {{ vacante_form.salario_max.label }}
                                     <span class="text-danger">*</span>
@@ -194,11 +194,11 @@
                                 {% if vacante_form.salario_max.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.salario_max.errors }}</div>
                                 {% endif %}
-{#                                <small class="form-text text-muted">El salario máximo debe ser mayor al mínimo</small>#}
+<!-- {#                                <small class="form-text text-muted">El salario máximo debe ser mayor al mínimo</small>#} -->
                             </div>
 
                             <!-- Mensaje de validación general para salarios -->
-                            <div class="col-12">
+                            <div class="col-4">
                                 <div id="salary-validation-alert" class="alert alert-danger" style="display: none;">
                                     <i class="bi bi-exclamation-triangle me-2"></i>
                                     <span id="salary-validation-message"></span>
@@ -206,7 +206,7 @@
                             </div>
 
                             <!-- Campo de Municipio -->
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 <label for="{{ vacante_form.municipio.id_for_label }}" class="form-label">{{ vacante_form.municipio.label }}</label>
                                 {{ vacante_form.municipio }}
                                 {% if vacante_form.municipio.errors %}
