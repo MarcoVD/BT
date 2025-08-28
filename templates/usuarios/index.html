@@ -51,10 +51,10 @@
                 <div class="col-md-12 mb-3">
                     <div class="card vacante-card">
                         <div class="card-body">
-                            <div class="row">
+                            <div class="row">       
                                 <div class="col-md-9">
                                     <h5 class="card-title text-primary fw-bold">{{ vacante.titulo }}</h5>
-                                    <!-- <h6 class="card-subtitle mb-2 text-muted">{{ vacante.secretaria.nombre }}</h6> -->
+                                    <h6 class="card-subtitle mb-2 text-muted">{{ vacante.categoria.nombre }}<h6>
                                     <p class="card-text small">
                                         {{ vacante.descripcion|truncatewords:25 }}
                                     </p>
@@ -74,7 +74,7 @@
                                 </div>
                             </div>
                             <div class="mt-2">
-                                <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span>
+                                <!-- <span class="badge rounded-pill border border-primary text-black">{{ vacante.categoria.nombre }}</span> -->
                                 <span class="badge rounded-pill border border-danger text-dark">{{ vacante.get_tipo_empleo_display }}</span>
                                 <span class="badge rounded-pill border border-success text-dark">{{ vacante.get_modalidad_display }}</span>
                             </div>
