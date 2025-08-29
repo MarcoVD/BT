@@ -30,11 +30,6 @@ respaldo_bolsa_trabajo.sql
 config/settings.py
 config/settings_production.py
 .github
-# sudo systemctl restart nginx
-# sudo systemctl daemon-reload
-# sudo systemctl restart  gunicorn_bt.service
-# sudo systemctl status  gunicorn_bt.service
-
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -100,6 +95,8 @@ cover/
 local_settings.py
 db.sqlite3
 db.sqlite3-journal
+
+.bash_history
 
 # Flask stuff:
 instance/

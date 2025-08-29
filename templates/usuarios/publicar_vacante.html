@@ -169,7 +169,6 @@
                                 {% if vacante_form.salario_min.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.salario_min.errors }}</div>
                                 {% endif %}
-<!-- {#                                <small class="form-text text-muted">El salario mínimo debe ser mayor a $0</small>#} -->
                             </div>
 
                             <div class="col-md-4">
@@ -194,11 +193,10 @@
                                 {% if vacante_form.salario_max.errors %}
                                     <div class="invalid-feedback d-block">{{ vacante_form.salario_max.errors }}</div>
                                 {% endif %}
-<!-- {#                                <small class="form-text text-muted">El salario máximo debe ser mayor al mínimo</small>#} -->
                             </div>
 
                             <!-- Mensaje de validación general para salarios -->
-                            <div class="col-4">
+                            <div class="col-md-4">
                                 <div id="salary-validation-alert" class="alert alert-danger" style="display: none;">
                                     <i class="bi bi-exclamation-triangle me-2"></i>
                                     <span id="salary-validation-message"></span>
