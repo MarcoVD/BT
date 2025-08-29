@@ -721,9 +721,14 @@ class Vacante(models.Model):
     destacada = models.BooleanField(default=False)
 
     # Límites de postulación
-    max_postulantes = models.IntegerField(choices=[(5, '5'), (10, '10'), (20, '20'), (50, '50')], default=20)
+    max_postulantes = models.IntegerField(choices=[(5, '5'), (10, '10'), (20, '20'), (50, '50')], default=5)
     max_postulaciones_por_interesado = models.IntegerField(default=1)
     max_postulaciones_por_consulta = models.IntegerField(default=5)
+
+    def save(self, *args, **kwargs):
+        # sincronizar campo
+        self.max_postulaciones_por_consulta = self.max_postulantes
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return f"{self.titulo} - {self.secretaria.nombre}"
