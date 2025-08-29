@@ -13,6 +13,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='vacante',
             name='max_postulaciones_por_consulta',
-            field=models.IntegerField(default=10),
+            field=models.IntegerField(default=5),
         ),
     ]
+
+
+# cambio de default
