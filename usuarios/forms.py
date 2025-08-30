@@ -130,11 +130,7 @@ class RecuperarContrasenaForm(forms.Form):
 
 
 class RestablecerContrasenaForm(SetPasswordForm):
-    """
-    Formulario para restablecer contraseña con validaciones mejoradas.
-    Extiende el SetPasswordForm de Django pero con validaciones personalizadas.
-    """
-    
+
     # Lista de contraseñas comunes
     COMMON_PASSWORDS = [
         '123456', 'password', '123456789', '12345678', '12345', '1234567',
@@ -763,14 +759,6 @@ class VacanteForm(forms.ModelForm):
         # Configurar ayuda para campos de salario
         self.fields['salario_min'].help_text = 'Ingresa el salario mínimo. Debe ser mayor a $0. Ejemplo: 25000.00'
         self.fields['salario_max'].help_text = 'Ingresa el salario máximo. Debe ser mayor al mínimo. Ejemplo: 35000.00'
-
-        # ✅ CONFIGURAR FORMATO DE FECHA CORRECTO
-        # self.fields['fecha_limite'].help_text = 'Selecciona la fecha límite para recibir postulaciones'
-        # self.fields['fecha_inicio_estimada'].help_text = 'Fecha estimada de inicio del trabajo (opcional)'
-        
-        # # Configurar input_formats para fechas
-        # self.fields['fecha_limite'].input_formats = ['%Y-%m-%d']
-        # self.fields['fecha_inicio_estimada'].input_formats = ['%Y-%m-%d']
 
         # Agregar opción vacía al select de municipio
         municipio_choices = [('', 'Selecciona un municipio...')] + list(self.fields['municipio'].choices)

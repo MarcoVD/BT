@@ -119,7 +119,6 @@
                                             <a href="{% url 'editar_vacante' vacante.id %}" class="btn btn-outline-secondary btn-sm">
                                                 <i class="bi bi-pencil-square"></i> Editar
                                             </a>
-                                            <!-- ✅ BOTÓN DE REABRIR CON VALIDACIÓN CONDICIONAL -->
                                             {% if vacante.postulaciones.count < vacante.max_postulantes %}
                                                 <button type="button" class="btn btn-outline-success btn-sm"
                                                         onclick="ejecutarAccion('reabrir', {{ vacante.id }}, '{{ vacante.titulo|escapejs }}')">
