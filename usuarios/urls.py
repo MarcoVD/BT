@@ -147,9 +147,6 @@ urlpatterns = [
     # ===========================
     # usuarios/urls.py - Agregar estas URLs en la sección AJAX
 
-    # ===========================
-    # URLs AJAX PARA CONSULTA DE CÓDIGO POSTAL Y UBICACIÓN
-    # ===========================
     path('ajax/obtener-datos-por-cp/', views.obtener_datos_por_cp, name='obtener_datos_por_cp'),
     path('ajax/validar-codigo-postal/', views.validar_codigo_postal, name='validar_codigo_postal'),
     path('ajax/guardar-ubicacion/', views.guardar_ubicacion_completa, name='guardar_ubicacion_completa'),
@@ -160,9 +157,6 @@ urlpatterns = [
     path('ajax/consultar-codigo-postal/', views.obtener_datos_por_cp, name='consultar_codigo_postal'),
     # URL para compatibilidad con el código existente
     path('ajax/obtener_datos_por_cp/', views.obtener_datos_por_cp, name='obtener_datos_por_cp_legacy'),
-    
-    # ===========================
-    # URLs AJAX PARA VERIFICACIÓN DE CV
-    # ===========================
+
     path('ajax/verificar-estado-cv/', views.verificar_estado_cv_ajax, name='verificar_estado_cv_ajax'),
 ]
