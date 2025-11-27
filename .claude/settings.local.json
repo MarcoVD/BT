@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python manage.py:*)",
+      "Bash(python test_resumen_modal.py)",
+      "Bash(python:*)",
+      "Bash(rm:*)"
+    ],
+    "deny": [],
+    "defaultMode": "acceptEdits",
+    "additionalDirectories": [
+      "/home",
+      "/var/www/bolsa-trabajo",
+      "/etc/nginx/sites-enabled",
+      "/etc/systemd/system"
+    ]
+  }
+}

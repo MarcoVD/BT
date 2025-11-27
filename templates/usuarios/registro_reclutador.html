@@ -265,57 +265,14 @@
 
                 <!-- Encabezado del Formulario -->
                 <div class="form-header text-center">
-                    <h2 class="fw-bold">Registro para Reclutadores</h2>
-                    <p class="text-muted mb-0">Únete al equipo de reclutamiento de la Secretaría de Movilidad del Estado de México.</p>
+                    <h2 class="fw-bold">Registro para Reclutadoresssss</h2>
                 </div>
 
                 <form method="post" class="needs-validation" id="registroForm" novalidate>
                     {% csrf_token %}
 
                     <!-- Sección 1: Información de la Secretaría (Solo lectura) -->
-                    <div class="form-section">
-                        <h5 class="form-section-title">
-                            <i class="bi bi-building-fill"></i>
-                            Organización
-                        </h5>
 
-                        {% if secretaria_movilidad %}
-                        <div class="secretaria-info">
-                            <h6><i class="bi bi-building"></i> {{ secretaria_movilidad.nombre }}</h6>
-
-                            <div class="info-item">
-                                <i class="bi bi-geo-alt"></i>
-                                <span>{{ secretaria_movilidad.direccion|default:"Dirección no disponible" }}</span>
-                            </div>
-
-                            {% if secretaria_movilidad.sitio_web %}
-                            <div class="info-item">
-                                <i class="bi bi-globe"></i>
-                                <a href="{{ secretaria_movilidad.sitio_web }}" target="_blank" class="text-decoration-none">
-                                    {{ secretaria_movilidad.sitio_web }}
-                                </a>
-                            </div>
-                            {% endif %}
-
-                            {% if secretaria_movilidad.descripcion %}
-                            <div class="info-item">
-                                <i class="bi bi-info-circle"></i>
-                                <span>{{ secretaria_movilidad.descripcion }}</span>
-                            </div>
-                            {% endif %}
-                        </div>
-
-                        <div class="alert alert-info">
-                            <i class="bi bi-info-circle me-2"></i>
-                            <strong>Información:</strong> Todos los reclutadores registrados formarán parte del equipo de la Secretaría de Movilidad del Estado de México.
-                        </div>
-                        {% else %}
-                        <div class="alert alert-danger">
-                            <i class="bi bi-exclamation-triangle me-2"></i>
-                            <strong>Error:</strong> La información de la Secretaría de Movilidad no está disponible. Contacta al administrador del sistema.
-                        </div>
-                        {% endif %}
-                    </div>
 
                     <!-- Sección 2: Datos del Reclutador -->
                     <div class="form-section border-top">
